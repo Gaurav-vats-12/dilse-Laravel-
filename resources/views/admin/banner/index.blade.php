@@ -24,11 +24,10 @@
                 <a href="{{ route('admin.banner.create')}}" type ="button" class="btn btn-success float-right" >Add Banner</a>
               </div>
                         <div class="card-body">
-                            <table id="example2" class="table table-bordered table-hover">
+                            <table id="bannerTable" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Sno</th>
-                                        <th>Benner uuid</th>
                                         <th>Banner Title </th>
                                         <th>Banner Image </th>
                                         <th>Banner Type </th>
@@ -40,7 +39,6 @@
                                 @foreach ($banner as $key => $value)
                                 <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $value->banneruuid }}</td>
                                 <td>{{ $value->banner_title }}</td>
                                 <td><img src="{{ url('/storage/banner/'.$value->bannerImage.'')}}" style="height: 34px; width: auto;"></td>
                                 <td>{{ ucfirst($value->banner_type )}}</td>

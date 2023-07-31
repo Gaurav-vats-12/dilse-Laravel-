@@ -35,4 +35,7 @@
   <!-- Toastr -->
   <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css')}}">
   <link rel="stylesheet" href="{{ asset('plugins/Dropify/css/dropify.min.css') }}">
+ <!-- DataTables -->
+ <link rel="stylesheet" href="//cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+
   <link rel="stylesheet" href="{{asset('backend/css/app.css')}}">

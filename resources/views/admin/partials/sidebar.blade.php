@@ -25,6 +25,17 @@
               </p>
             </a>
           </li>
+          <li class="nav-item {{ (request()->is('admin/setting*')) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ (request()->is('admin/setting*')) ? 'active' : '' }}">
+              <p> {{ __('Site   Setting') }} <i class="right fas fa-angle-left"></i> </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('admin.setting.genral') }}" class="nav-link {{ (request()->is('admin/setting/genral')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ __('Genral Setting') }}</p>
+                </a>
+              </li>
           <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>

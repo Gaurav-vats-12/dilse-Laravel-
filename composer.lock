@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "22a32a2c6f5e108d2a852e39acacb68a",
+    "content-hash": "f2b6c5c7567294d9e5ed0312e86e64ed",
     "packages": [
         {
             "name": "bmatovu/multi-auth",
@@ -133,6 +133,73 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "browner12/helpers",
+            "version": "v3.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/browner12/helpers.git",
+                "reference": "0e66da06d750255f871fc5d9801e83b25e6942b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/browner12/helpers/zipball/0e66da06d750255f871fc5d9801e83b25e6942b2",
+                "reference": "0e66da06d750255f871fc5d9801e83b25e6942b2",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/contracts": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^10.0",
+                "scrutinizer/ocular": "^1.1",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "suggest": {
+                "moneyphp/money": "Money value object."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "browner12\\helpers\\HelperServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "browner12\\helpers\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Brown",
+                    "email": "browner12@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "generic helpers",
+            "homepage": "https://github.com/browner12/helpers",
+            "keywords": [
+                "browner12",
+                "helpers"
+            ],
+            "support": {
+                "issues": "https://github.com/browner12/helpers/issues",
+                "source": "https://github.com/browner12/helpers/tree/v3.5.0"
+            },
+            "time": "2023-02-26T23:53:40+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -3703,6 +3770,54 @@
                 }
             ],
             "time": "2023-04-28T07:47:42+00:00"
+        },
+        {
+            "name": "syamsoul/laravel-set-env",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/syamsoul/laravel-set-env.git",
+                "reference": "b8deee33fee0b7bb83afffd7f6caf4460d932e36"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/syamsoul/laravel-set-env/zipball/b8deee33fee0b7bb83afffd7f6caf4460d932e36",
+                "reference": "b8deee33fee0b7bb83afffd7f6caf4460d932e36",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^10.4",
+                "illuminate/support": "^10.4"
+            },
+            "type": "laravel-package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SoulDoit\\SetEnv\\Providers\\SetEnvServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SoulDoit\\SetEnv\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Syamsoul Azrien",
+                    "email": "syamsoulazrien.miat@gmail.com"
+                }
+            ],
+            "description": "Easily update or insert Laravel environment variable with Artisan command",
+            "support": {
+                "issues": "https://github.com/syamsoul/laravel-set-env/issues",
+                "source": "https://github.com/syamsoul/laravel-set-env/tree/1.0.5"
+            },
+            "time": "2023-05-08T09:22:38+00:00"
         },
         {
             "name": "symfony/console",

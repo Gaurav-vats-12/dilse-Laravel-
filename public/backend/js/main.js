@@ -1,5 +1,8 @@
 jQuery( function () {
     jQuery('.dropify').dropify();
+    $("#site_location").select2({
+        maximumSelectionLength: 2
+      });
 
     var url = window.location.pathname;
     if (url.indexOf("/banner") > -1) {
@@ -60,7 +63,21 @@ jQuery( function () {
         jQuery('.banner_type__popup').css('display','none');
         jQuery('.banner_type__sales').css('display','none');
       }
+      let table = new DataTable('#bannerTable',{
+        "responsive": true,
+        "lengthMenu": [10, 20],
+        "searching": true,
+          "columnDefs": [
+      { orderable: true, className: 'reorder', targets: 0 },
+      { orderable: true, className: 'reorder', targets: 2 },
+      { orderable: true, className: 'reorder', targets: 4 },
+      { orderable: false, targets: '_all' }
+    ]
+    });
+    }else if(url.indexOf("/genral") > -1){
+        $("#site_location").select2({
+            maximumSelectionLength: 2
+ });
     }
-
 
 });

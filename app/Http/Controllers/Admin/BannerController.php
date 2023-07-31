@@ -96,4 +96,10 @@ class BannerController extends Controller
         return redirect()->route('admin.banner.index')->withSuccess('Banner Successfully Deleted');;
 
     }
+
+
+    public function updateStatus(string $id ){
+        dd('sadsa');
+
+    }
 }

@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ config('app.name', 'Laravel')  }}</title>
+        <title>{{ setting('site_title', 'LaraStarter') }}</title>
         @include('admin.partials.header_style')
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">

@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\SettingController;
 // use App\Modules\Admins\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,6 +9,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['web', 'admin.auth', 'admin.verified'])->group(function(){
         Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::resource('banner', BannerController::class);
+        Route::get('/banner/changeStatus/{id}', [BannerController::class, 'updateStatus'])->name('banner.changeStatus');
+        Route::prefix('setting')->name('setting.')->group(function(){
+            Route::get('/genral', [SettingController::class, 'genralsetting'])->name('genral');
+            Route::put('/genral/{id}', [SettingController::class, 'updategenralSetting'])->name('genralstore');
+
+        });
     });
 });
 // Route::middleware(['web', 'admin.auth', 'admin.verified'])->get('/admin', function () {
