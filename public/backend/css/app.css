@@ -1,0 +1,22 @@
+
+
+.yes {
+    pointer-events: none;
+}
+
+  .banner_type__home  {
+  display: none;
+}
+.banner_type__popup  {
+  display: none;
+}
+.banner_type__promo  {
+  display: none;
+}
+.banner_type__sales  {
+  display: none;
+}
+.dropify-wrapper .dropify-message p {
+  font-size: 14px;
+  margin: 5px 0 0;
+}
