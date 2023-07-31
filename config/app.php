@@ -172,6 +172,7 @@ return [
         Spatie\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        browner12\helpers\HelperServiceProvider::class,
 
 
 

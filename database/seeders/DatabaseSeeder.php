@@ -17,6 +17,14 @@ class DatabaseSeeder extends Seeder
     	$this->command->info('Deleting tables...');
         $this->call([
             Adminseeder::class,
+            SettingSeeder::class,
+            CountriesTableSeeder::class,
+            StatesTableSeeder::class,
+            CitiesTableChunkOneSeeder::class,
+            CitiesTableChunkTwoSeeder::class,
+            CitiesTableChunkThreeSeeder::class,
+            CitiesTableChunkFourSeeder::class,
+            CitiesTableChunkFiveSeeder::class,
         ]);
         $this->command->info('Finished!');
 
