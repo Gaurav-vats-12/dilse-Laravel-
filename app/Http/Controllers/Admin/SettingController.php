@@ -42,4 +42,8 @@ class SettingController extends Controller
          return redirect()->route('admin.setting.genral')->withSuccess('Site Setting  Updated');;
     }
 
+    public function footersetting(){
+
+    }
+
 }
