@@ -49,7 +49,7 @@
                         <div class="form-group">
                             {!!Form::label('banner_image', 'Banner Image');!!}
                             {!! Form::hidden('upload_url',old('upload_url') );!!}
-                            {!! Form::file('banner_image', array('id' => 'banner_image','class'=>'dropify' ,'data-max-file-size'=>'1M','data-max-height'=>'1000','data-errors-position'=>'outside','data-allowed-file-extensions'=>'png jpg') );!!}
+                            {!! Form::file('banner_image', array('id' => 'banner_image','class'=>'dropify','data-errors-position'=>'outside','data-allowed-file-extensions'=>'png jpg') );!!}
                             @error('banner_image')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'ThePretender-ExpSansBold';
+    src: url('ThePretender-ExpSansBold.woff2') format('woff2'),
+        url('ThePretender-ExpSansBold.woff') format('woff'),
+        url('ThePretender-ExpSansBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ThePretender-ExpSans';
+    src: url('ThePretender-ExpSans.woff2') format('woff2'),
+        url('ThePretender-ExpSans.woff') format('woff'),
+        url('ThePretender-ExpSans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ThePretender-ExpSansBoldPress';
+    src: url('ThePretender-ExpSansBoldPress.woff2') format('woff2'),
+        url('ThePretender-ExpSansBoldPress.woff') format('woff'),
+        url('ThePretender-ExpSansBoldPress.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ThePretender-ExpSansBoldPress';
+    src: url('ThePretender-ExpSansBoldPress_1.woff2') format('woff2'),
+        url('ThePretender-ExpSansBoldPress_1.woff') format('woff'),
+        url('ThePretender-ExpSansBoldPress_1.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ThePretender-ExpSans';
+    src: url('ThePretender-ExpSans_1.woff2') format('woff2'),
+        url('ThePretender-ExpSans_1.woff') format('woff'),
+        url('ThePretender-ExpSans_1.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
