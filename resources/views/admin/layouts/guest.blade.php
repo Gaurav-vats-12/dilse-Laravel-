@@ -12,6 +12,5 @@
     <body class="hold-transition login-page">
     {{ $slot }}
         @include('admin.partials.footer_scripts')
-        <h1>Hello </h1>
     </body>
 </html>
