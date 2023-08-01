@@ -29,7 +29,7 @@
                                     <tr>
                                         <th>Sno</th>
                                         <th>Banner Title </th>
-                                        <th>Banner Image </th>
+                                        <!-- <th>Banner Image </th> -->
                                         <th>Banner Type </th>
                                         <th>Banner Status </th>
                                         <th>Action</th>
@@ -40,7 +40,7 @@
                                 <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $value->banner_title }}</td>
-                                <td><img src="{{ url('/storage/banner/'.$value->bannerImage.'')}}" style="height: 34px; width: auto;"></td>
+                                <!-- <td><img src="{{ url('/storage/banner/'.$value->bannerImage.'')}}" style="height: 34px; width: auto;"></td> -->
                                 <td>{{ ucfirst($value->banner_type )}}</td>
                                 <td> @if ($value->status == 'active')<div class="mt-sm-1 d-block"> <span class="badge badge-success">Active</span>  </div> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Inactive</span> </div> @endif </td>
                                 <td class="project-actions">

@@ -46,13 +46,14 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             {!!Form::label('banner_image', 'Banner Image');!!}
                             {!! Form::hidden('upload_url',old('upload_url') );!!}
                             {!! Form::file('banner_image', array('id' => 'banner_image','class'=>'dropify' ,'data-max-file-size'=>'1M','data-max-height'=>'1000','data-errors-position'=>'outside','data-allowed-file-extensions'=>'png jpg' ,'data-default-file'=>url('/storage/banner/'.$Banner->bannerImage.'')) );!!}
                             @error('banner_image')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
+</div> -->
                         <div class="form-group">
                            {!!Form::label('banner_type', 'Banner Type');!!}
                            {!! Form::select('banner_type', array('' => 'Select banner Type', 'home' => 'Home' , 'popup' => 'Popup' , 'promo' => 'Promo' , 'sales' => 'Sales'), old('banner_type' ,$Banner->banner_type)  , array('class' => 'form-control form-select' ,'id'=>'banner_type') )!!}

@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->uuid('settings_uuid');
             $table->string('site_title')->nullable();
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
@@ -23,8 +22,11 @@ return new class extends Migration
             $table->string('website_url')->nullable();
             $table->string('site_currency')->nullable();
             $table->string('logo')->nullable();
-            $table->string('Favicon')->nullable();
-            $table->json('site_location')->nullable();
+            $table->string('favicon')->nullable();
+            $table->string('opening_hour')->nullable();
+            $table->string('footer_logo')->nullable();
+            $table->text('footer_image_2')->nullable();
+            $table->text('site_location')->nullable();
             $table->string('copyright_text')->nullable();
             $table->string('facebook_url')->nullable();
             $table->string('youtube_url')->nullable();
