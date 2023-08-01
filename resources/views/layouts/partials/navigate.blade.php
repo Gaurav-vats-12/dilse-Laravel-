@@ -8,7 +8,7 @@
                   <a href="">
                     <div class="contact_info_txt">
                       <div class="contact_info_img">
-                        <img src="assets/img/phone-o1.png" alt="" />
+                        <img src="{{asset('frontend/img/phone-o1.png') }}" alt="" />
                       </div>
                       <p>416-532-4141, 416-534-6344</p>
                     </div>
@@ -18,7 +18,7 @@
                   <a href="">
                     <div class="contact_info_txt">
                       <div class="contact_info_img">
-                        <img src="assets/img/phone-o1.png" alt="" />
+                        <img src="{{asset('frontend/img/phone-o1.png') }}" alt="" />
                       </div>
                       <p>416-532-4141, 416-534-6344</p>
                     </div>
@@ -53,7 +53,7 @@
               </ul>
             </div>
             <div class="site_logo">
-              <img src="{{asset('frontend/img/site-logo-dil.png') }}" alt="">
+              <img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : '' }}" alt="">
             </div>
             <div class="menu_left menu_right">
               <ul>
