@@ -75,15 +75,32 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                      {!!Form::label('Favicon', 'Favicon');!!}
-                                     {!! Form::file('Favicon', array('id' => 'logo','class'=>'dropify' ,'data-max-file-size'=>'1M','data-max-height'=>'1000','data-errors-position'=>'outside','data-allowed-file-extensions'=>'png jpg','data-default-file'=>url('/storage/site/Favicon/'.setting('Favicon').'')) );!!}
+                                     {!! Form::file('Favicon', array('id' => 'logo','class'=>'dropify' ,'data-max-file-size'=>'1M','data-max-height'=>'1000','data-errors-position'=>'outside','data-allowed-file-extensions'=>'png jpg','data-default-file'=>url('/storage/site/Favicon/'.setting('favicon').'')) );!!}
                                      @error('Favicon')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="row py-2">
-                                    <div class="col-xl-12 form-group">
-                                     {!!Form::label('site_title', 'Address *');!!}
+                                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                    {!!Form::label('footer_logo', 'Footer Logo  *');!!}
+                                    {!! Form::file('footer_logo', array('id' => 'footer_logo','class'=>'dropify' ,'data-max-file-size'=>'1M','data-max-height'=>'1000','data-errors-position'=>'outside','data-allowed-file-extensions'=>'png jpg','data-default-file'=>url('/storage/site/logo/'.setting('footer_logo').'')) );!!}
+                                    @error('logo')  <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                     {!!Form::label('footer_image_2', 'Site Companies');!!}
+                                     {!! Form::file('footer_image_2[]', array('id' => 'footer_image_2','class'=>'','accept'=>'image*','multiple'=>'true') );!!}
+                                     @error('Favicon')  <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="row py-2">
+                                <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                     {!!Form::label('address', 'Address *');!!}
                                      {!! Form::textarea('address',old('address',setting('address')  ) , array('class' => 'form-control' ,'cols'=>'10','rows'=>'4') );!!}
                                      @error('address')  <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                     {!!Form::label('opening_hour', 'Opening Hours *');!!}
+                                     {!! Form::text('opening_hour',old('opening_hour',setting('opening_hour')  ) , array('class' => 'form-control') );!!}
+                                     @error('opening_hour')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="row py-2">

@@ -17,7 +17,6 @@
             <div class="col-12">
               <button type="submit" class="btn btn-primary btn-block">  {{ __('Email Password Reset Link') }}</button>
             </div>
-
           </div>
         </form>
         <p class="mt-3 mb-1">

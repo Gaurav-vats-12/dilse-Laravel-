@@ -87,9 +87,9 @@ jQuery( function () {
     ]
     });
     }else if(url.indexOf("/genral") > -1){
-        $("#site_location").select2({
-            maximumSelectionLength: 2
- });
+        $("#site_location").select2({ maximumSelectionLength: 2});
+
+
     }else if(url.indexOf("/manage-pages") > -1){
         jQuery(document).on("focusout","#page_title", function(e) {
             jQuery('#page_slug').val(`${jQuery('#page_title').val().replace(/\s+/g, '-').toLowerCase()}`);

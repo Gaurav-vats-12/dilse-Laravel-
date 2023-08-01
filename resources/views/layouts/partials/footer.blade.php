@@ -15,7 +15,7 @@
           <div class="col-md-5">
             <div class="footer_cntnt">
               <div class="footer_logo">
-                <img src="{{asset('frontend/img/footer_logo-1.png')}}" alt="" />
+                <img src="{{ setting('footer_logo') != null ? url('/storage/site/logo/'.setting('footer_logo').'') : '' }}" alt="" />
               </div>
             </div>
           </div>
@@ -34,14 +34,14 @@
         </div>
         <div class="open_hr">
           <h3>Opening Hours</h3>
-          <p>Mon – Sun: 11:30 AM – 10:30 PM</p>
+          <p>{{ setting('opening_hour') != null ?__(setting('opening_hour')) : '' }}</p>
         </div>
       </div>
 
       <div class="copy_right">
         <div class="container">
           <div class="copy_right_txt">
-            <p>{{ setting('copyright_text') != null ? setting('copyright_text') : '' }}</p>
+            <p>{{ setting('copyright_text') != null ? __(setting('copyright_text')) : '' }}</p>
             <ul>
               <li><img src="{{asset('frontend/img/logo-footer-1.png')}}" alt="" /></li>
               <li><img src="{{asset('frontend/img/logo-footer-2.png')}}" alt="" /></li>
