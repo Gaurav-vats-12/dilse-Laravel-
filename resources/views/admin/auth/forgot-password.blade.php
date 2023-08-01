@@ -1,25 +1,31 @@
 <x-admin-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+<div class="login-box">
+    <div class="login-logo">
+    <img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : '' }}" alt="">
     </div>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('admin.password.email') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">  {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}</p>
+        <form method="POST" action="{{ route('admin.password.email') }}"> @csrf
+        <div class="mb-3">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+       </div>
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block">  {{ __('Email Password Reset Link') }}</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+        <p class="mt-3 mb-1">
+          <a href="{{route('admin.login')}}">Login</a>
+        </p>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
 </x-admin-guest-layout>

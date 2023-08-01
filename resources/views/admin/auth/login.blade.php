@@ -1,7 +1,7 @@
 <x-admin-guest-layout>
 <div class="login-box">
         <div class="login-logo">
-            <a href="{{route('home')}}"><b>Admin</b>LTE</a>
+        <img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : '' }}" alt="">
         </div>
 
         <div class="card">
