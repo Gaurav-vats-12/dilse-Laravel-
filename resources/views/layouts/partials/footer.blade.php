@@ -41,7 +41,7 @@
       <div class="copy_right">
         <div class="container">
           <div class="copy_right_txt">
-            <p>© 2023 Dil Se Indian Restaurant & Bar. All Rights Reserved.</p>
+            <p>{{ setting('copyright_text') != null ? setting('copyright_text') : '' }}</p>
             <ul>
               <li><img src="{{asset('frontend/img/logo-footer-1.png')}}" alt="" /></li>
               <li><img src="{{asset('frontend/img/logo-footer-2.png')}}" alt="" /></li>
