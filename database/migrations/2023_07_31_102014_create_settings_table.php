@@ -29,9 +29,9 @@ return new class extends Migration
             $table->text('site_location')->nullable();
             $table->string('copyright_text')->nullable();
             $table->string('facebook_url')->nullable();
-            $table->string('youtube_url')->nullable();
-            $table->string('linkedin_url')->nullable();
+            $table->string('twitter_url')->nullable();
             $table->string('instagram_url')->nullable();
+            $table->string('blogto_url')->nullable();
             $table->timestamps();
         });
     }

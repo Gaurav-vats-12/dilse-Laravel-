@@ -1,7 +1,7 @@
 <?php
 
 // use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\{HomeController, ContectController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'Homepage'])->name('home');
+Route::post('/contact-us', [ContectController::class, 'store'])->name('contact-us-form');
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

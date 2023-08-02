@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                      {!!Form::label('site_email', 'Default Email *');!!}
-                                     {!! Form::email('site_email',old('site_email' ,setting('site_email')) , array('class' => 'form-control') );!!}
+                                     {!! Form::text('site_email',old('site_email' ,setting('site_email')) , array('class' => 'form-control') );!!}
                                      <small><i class="fa-solid fa-circle-question"></i>Default email will be used by your customer by contacting you</small>
                                      @error('site_email')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
@@ -110,16 +110,16 @@
                                     @error('facebook_url')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                     {!!Form::label('youtube_url', 'Youtube');!!}
-                                     {!! Form::url('youtube_url',old('youtube_url' ,setting('youtube_url')) , array('class' => 'form-control') );!!}
-                                     @error('youtube_url')  <span class="text-danger">{{ $message }}</span> @enderror
+                                     {!!Form::label('twitter_url', 'twitter');!!}
+                                     {!! Form::url('twitter_url',old('twitter_url' ,setting('twitter_url')) , array('class' => 'form-control') );!!}
+                                     @error('twitter_url')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="row py-2">
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                    {!!Form::label('linkedin_url', 'Linkedin' );!!}
-                                    {!! Form::url('linkedin_url',old('linkedin_url' ,setting('linkedin_url')) , array('class' => 'form-control') );!!}
-                                    @error('linkedin_url')  <span class="text-danger">{{ $message }}</span> @enderror
+                                    {!!Form::label('blogto_url', 'Blog To Url' );!!}
+                                    {!! Form::url('blogto_url',old('blogto_url' ,setting('blogto_url')) , array('class' => 'form-control') );!!}
+                                    @error('blogto_url')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                      {!!Form::label('instagram_url', 'Instagram');!!}

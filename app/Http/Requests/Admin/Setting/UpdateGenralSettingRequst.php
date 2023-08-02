@@ -24,7 +24,7 @@ class UpdateGenralSettingRequst extends FormRequest
         return [
             'site_title' =>  'required|max:255',
             'site_email' =>  'required|email',
-            'phone' =>  'required|max:11',
+            'phone' =>  'required',
             'copyright_text' =>  'required',
             'site_currency' =>  'required',
             'site_location' =>  'required',

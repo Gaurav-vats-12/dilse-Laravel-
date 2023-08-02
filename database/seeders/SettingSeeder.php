@@ -19,7 +19,7 @@ class SettingSeeder extends Seeder
 
     }
     private function sitesetting(){
-        Setting::create(['site_title' => 'LaraStarter',  'meta_description'  => 'A laravel starter kit for web artisans.', 'address' => 'Dake','site_currency' => '$', 'site_email' => 'superadmin@ecommerceaibot.com', 'phone' => '7018702974','copyright_text' => '© Copyrights 2023. All rights reserved',  'created_at' => now(), 'updated_at' => now()]);
+        Setting::create(['site_title' => 'Dil Se',  'meta_description'  => 'A laravel starter kit for web artisans.', 'address' => 'Dake','site_currency' => '$', 'site_email' => 'superadmin@ecommerceaibot.com', 'phone' => '416-532-4141,416-534-6344','facebook_url' => 'https://www.facebook.com/dilse.ca/','twitter_url' => 'https://www.twitter.com/dilse.ca/','blogto_url' => 'https://www.blogto.com/restaurants/dil-se-indian-toronto/','instagram_url' => 'https://www.instagram.com/dilse.ca/','opening_hour' => 'Mon – Sun: 11:30 AM – 10:30 PM','copyright_text' => '© Copyrights 2023. All rights reserved',  'created_at' => now(), 'updated_at' => now()]);
          $this->command->info('Site Setting Successfully Updated');
   }
   private function mail_seeder(){
