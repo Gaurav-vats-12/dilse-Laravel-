@@ -674,6 +674,25 @@ form.contact_form {
 .ours h2 {
   font-size: 46px;
 }
+.counter_im {
+  background: #FCEBB9;
+}
+.counter_crd {
+  background: #fff;
+  text-align: center;
+  padding: 36px 15px 31px;
+  border-radius: 30px;
+}
+.counter_crd h3 {
+  font-size: 22px;
+  color: #EB0029;
+  margin-bottom: 2px;
+}
+.counter_crd h2 {
+  font-size: 46px;
+}
+
+
 /* ---------------------
         contact us
 ------------------------ */
