@@ -50,7 +50,7 @@
                   create a culinary delight that satisfies your taste buds.
                 </p>
                 <div class="about_cntnt_bn">
-                  <a href="#" class="theme_btn">Read More</a>
+                  <a href="{{url('about-us')}}" class="theme_btn">Read More</a>
                 </div>
               </div>
             </div>
