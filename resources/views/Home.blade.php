@@ -31,17 +31,15 @@
 
         </div>
       </section>
-      <section class="about_se py_8">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-            <video id="hello" playsinline preload>
-        <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
-       </video>
-            </div>
-
+      <section class="video_dilse">
+          <!-- <video id="hello" playsinline preload>
+              <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
+          </video> -->
+          <div class="video_dilse_play">
+          <video width="" height="" autoplay loop muted>
+            <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
+          </video>
           </div>
-        </div>
       </section>
       <section class="about_se py_8">
         <div class="container">
