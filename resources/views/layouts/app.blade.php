@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('meta')
         <title>{{ setting('site_title', 'LaraStarter') }}</title>
+ <link rel="icon" type="image/x-icon" href="{{ setting('Favicon', 'https://www.dilse.ca/wp-content/uploads/2021/03/fav.png') }}">
     @include('layouts.partials.header_style')
 </head>
 <body>

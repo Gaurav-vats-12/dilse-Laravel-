@@ -12,5 +12,7 @@
     <script src="{{asset('frontend/js/main.js') }}"></script>
     <!-- Function.js -->
     <script src="{{asset('frontend/js/function.js') }}"></script>
+
+
 </body>
 </html>

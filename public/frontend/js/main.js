@@ -10,10 +10,14 @@ jQuery(document).ready(function () {
         });
 
         jQuery('.testimonial_slider').slick({  infinite: true, arrows: false, dots: false, });
-
         jQuery('.multiple-items').slick({ infinite: true,
+  });
+
+  jQuery(document).on("submit",".contact_form",async function(e) {
+    console.log('asdsad');
 
   });
+
     }
 
 

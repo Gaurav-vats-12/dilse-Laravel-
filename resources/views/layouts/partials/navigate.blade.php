@@ -10,7 +10,7 @@
                       <div class="contact_info_img">
                         <img src="{{asset('frontend/img/phone-o1.png') }}" alt="" />
                       </div>
-                      <p>416-532-4141, 416-534-6344</p>
+                      <p>{{ setting('phone') != null ? setting('phone') : '' }}</p>
                     </div>
                   </a>
                 </li>
@@ -20,7 +20,7 @@
                       <div class="contact_info_img">
                         <img src="{{asset('frontend/img/phone-o1.png') }}" alt="" />
                       </div>
-                      <p>416-532-4141, 416-534-6344</p>
+                      <p>{{ setting('site_email') != null ? setting('site_email') : '' }}</p>
                     </div>
                   </a>
                 </li>
@@ -29,13 +29,13 @@
             <div class="social_icons">
               <ul>
                 <li></li>
-                  <a href="#"><img src="{{asset('frontend/img/fb-01.png') }}" alt="" /></a>
+                  <a href="{{ setting('facebook_url') != null ? setting('facebook_url') : '' }}" target ="_blank"><img src="{{asset('frontend/img/fb-01.png') }}" alt="" /></a>
                 </li>
                 <li>
-                  <a href="#"><img src="{{asset('frontend/img/fb-01.png')}}" alt="" /></a>
+                  <a href="{{ setting('instagram_url') != null ? setting('instagram_url') : '' }}" target ="_blank"><img src="{{asset('frontend/img/insta-1.png') }}" alt="" /></a>
                 </li>
                 <li>
-                  <a href="#"><img src="{{asset('frontend/img/fb-01.png')}}" alt="" /></a>
+                  <a href="{{ setting('twitter_url') != null ? setting('twitter_url') : '' }}" target ="_blank" ><img src="{{asset('frontend/img/twi.png') }}" alt="" /></a>
                 </li>
               </ul>
             </div>
@@ -53,7 +53,9 @@
               </ul>
             </div>
             <div class="site_logo">
-              <img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : '' }}" alt="">
+                <!--               <img src="assets/img/site-logo-dil.png" alt="">
+ -->
+              <img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}" alt="">
             </div>
             <div class="menu_left menu_right">
               <ul>
