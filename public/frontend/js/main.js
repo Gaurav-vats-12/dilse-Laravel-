@@ -35,8 +35,6 @@ jQuery(document).ready(function () {
     }
     });
 
-    document.getElementById("hello").setAttribute("autoplay", "autoplay");
-
     jQuery(document).on("submit","#emailSubscribeForm",async function(e) {
         e.preventDefault();
         var ajax_value_list = $(this).serialize();
