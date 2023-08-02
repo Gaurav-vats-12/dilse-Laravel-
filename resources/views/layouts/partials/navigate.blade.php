@@ -60,11 +60,10 @@
             <div class="menu_left menu_right">
               <ul>
                <li><a href="{{url('gallery')}}">Gallery</a></li>
+               <li><a href="{{url('contact-us')}}">Contact Us</a></li>
               @if(Request::is('/'))
-                <li><a href="{{url('gift-card')}}">Gift Card</a></li>
-              @endif
-                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
-              @if(!Request::is('/'))
+                <li><a href="#" class="theme_btn">Book a table</a></li>
+              @else
                 <li><a href="#" class="theme_btn">Read More</a></li>
               @endif
               </ul>
