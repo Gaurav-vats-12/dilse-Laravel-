@@ -45,7 +45,7 @@
                   <div class="location_img">
                     <img src="{{asset('frontend/img/location.png')}}" alt="" />
                   </div>
-                  <p>1234567890</p>
+                  <p>416-534-6344</p>
                 </div>
               </div>
             </div>
