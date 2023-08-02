@@ -62,12 +62,11 @@
                <li><a href="{{url('gallery')}}">Gallery</a></li>
                 <li><a href="{{url('contact-us')}}">Contact Us</a></li>
               @if(Request::is('/'))
-               
               @else
                 <li><a href="#" class="theme_btn">Read More</a></li>
               @endif
               </ul>
-            
+
             </div>
           </div>
         </div>

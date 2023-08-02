@@ -34,6 +34,18 @@
       <section class="about_se py_8">
         <div class="container">
           <div class="row">
+            <div class="col-md-12">
+            <video id="hello" playsinline preload>
+        <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
+       </video>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <section class="about_se py_8">
+        <div class="container">
+          <div class="row">
             <div class="col-md-6">
               <div class="about_img">
                 <img src="{{asset('frontend/img/about-img.png')}}" alt="" />
@@ -435,9 +447,12 @@
                   typesetting industry. Lorem Ipsum has been.
                 </p>
               </div>
-              <form action="" class="sub_scribe_form">
+              <form  class="sub_scribe_form" id="emailSubscribeForm">
+              <input type="hidden" name="email_action_url" id="email_action_url"  value="{{ route('emailSubscription') }}">
+
                 <div class="custn_input">
-                  <input type="text" placeholder="Enter your email" />
+                  <input type="text" placeholder="Enter your email"  name="email_address"/>
+                  <span id="email_address-error" class="text-danger error"></span>
                 </div>
                 <div class="sub_scribe_form_btn">
                   <button class="theme_btn">Subscribe Now</button>
@@ -449,7 +464,8 @@
       </section>
       <section class="contact_sec bg_style" style="background-image: url('{{asset('frontend/img/contact_bkg.jpg')}}')" >
         <div class="container">
-          <form action="" class="contact_form">
+          <form action="" class="contact_form" id="conatact_cus_form">
+          <input type="hidden" name="contact_us_action_url" id="contact_us_action_url"  value="{{ route('contact-us-form') }}">
             <div class="tittle_heading">
               <h3>Reach US</h3>
               <h2>Contact Us</h2>
@@ -457,33 +473,44 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="custn_input">
-                  <input type="text" placeholder="First name" />
+                  <input type="text" placeholder="First name"  name="first_name"/>
+                  <span id="first_name-error" class="text-danger error"></span>
+
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="custn_input">
-                  <input type="text" placeholder="Last name" />
+                  <input type="text" placeholder="Last name" name="last_name" />
+                  <span id="last_name-error" class="text-danger error"></span>
+
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="custn_input">
-                  <input type="text" placeholder="E-mail" />
+                  <input type="email" placeholder="E-mail"   name="email"/>
+                  <span id="email-error" class="text-danger error"></span>
+
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="custn_input">
-                  <input type="text" placeholder="Phone number" />
+                  <input type="text"  placeholder="Phone number" name="phone" />
+                  <span id="phone-error" class="text-danger error"></span>
+
                 </div>
               </div>
               <div class="col-md-12">
                 <div class="custn_input">
                   <textarea
-                    name=""
+                  name="message"
                     id=""
                     cols="30"
                     rows="6"
                     placeholder="Message"
+
                   ></textarea>
+                  <span id="message-error" class="text-danger error"></span>
+
                 </div>
               </div>
             </div>

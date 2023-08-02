@@ -19,12 +19,15 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'Homepage'])->name('home');
-Route::post('/contact-us', [ContectController::class, 'store'])->name('contact-us-form');
-
-
-
 Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact');
 Route::post('/submit-contact-form', [HomeController::class, 'submitContactForm'])->name('contact.submit');
+Route::post('/contact-us', [HomeController::class, 'submitContactFormAjax'])->name('contact-us-form');
+Route::post('/email-subscription', [HomeController::class, 'emailSubscription'])->name('emailSubscription');
+Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
+Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
+Route::get('/gift-cart', [HomeController::class, 'giftcart'])->name('gift-cart');
+
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
