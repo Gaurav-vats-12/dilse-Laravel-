@@ -24,5 +24,5 @@ $("input").keypress(function(e) {
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
-    timer: 3000
+    timer: 10000
   });
