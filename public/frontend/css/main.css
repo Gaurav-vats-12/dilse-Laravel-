@@ -670,3 +670,23 @@ section.sight_food_location {
   border-radius: 10px;
   background: #fcebb9;
 }
+
+.menu_left {
+    z-index: 1;
+}
+
+
+/* ---------------------
+         Gallery
+------------------------ */
+.gallery_pics {
+    background: #fcebb9;
+    padding-bottom: 50px;
+  }
+  .gallery_crd_img {
+    margin-bottom: 30px;
+  }
+  .gallery_crd_img img {
+    width: 100%;
+  }
+

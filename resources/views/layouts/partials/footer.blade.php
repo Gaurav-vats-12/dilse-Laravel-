@@ -5,10 +5,10 @@
             <div class="quick_links">
               <h3>Quick Links</h3>
               <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Gift Card</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="{{route('aboutus')}}">About Us</a></li>
+                <li><a href="{{route('gallery')}}">Gallery</a></li>
+                <li><a href="{{route('gift-cart')}}">Gift Card</a></li>
+                <li><a href="{{route('contact')}}">Contact Us</a></li>
               </ul>
             </div>
           </div>

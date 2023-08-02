@@ -7,7 +7,7 @@
     <!-- Bootstrap Bundle (includes Popper) -->
     <script src="{{asset('plugins/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Beauty Toast -->
-    <script src="{{ asset('public/plugins/beautyToast/js/beautyToast.js') }}"></script>
+    <script src="{{ asset('plugins/beautyToast/js/beautyToast.js') }}"></script>
     <!--slick js -->
     <script src="{{asset('plugins/slick-1.8.1/slick/slick.min.js') }}"></script>
     <!-- main.js -->
