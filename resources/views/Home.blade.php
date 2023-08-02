@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-6">
               <div class="about_cntnt">
-                <h3>About us Dil Se Indian Restaurant & BaR Testing abc </h3>
+                <h3>About us Dil Se Indian Restaurant & BaR Testing Hello  </h3>
                 <h2>Bringing You An Authentic Indian Taste</h2>
                 <p>
                   Craving for homemade Indian food? Dil Se brings you the taste
