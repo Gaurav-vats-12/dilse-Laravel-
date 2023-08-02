@@ -26,7 +26,7 @@ Route::post('/contact-us', [HomeController::class, 'submitContactFormAjax'])->na
 Route::post('/email-subscription', [HomeController::class, 'emailSubscription'])->name('emailSubscription');
 Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
-Route::get('/gift-card', [HomeController::class, 'giftcart'])->name('gift-card'); 
+Route::get('/gift-card', [HomeController::class, 'giftCard'])->name('gift-card'); 
 
 
 // Route::get('/dashboard', function () {
