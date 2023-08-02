@@ -240,6 +240,37 @@ header.main_header {
   height: 100%;
   object-fit: cover;
 }
+
+
+.home-slider-main-tw {
+  position: absolute;
+  top: 26%;
+  left: 0;
+  right: 0;
+}
+.video_dilse_play-tw{
+  position: relative;
+}
+.video_dilse_play-tw::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgb(0 0 0 / 62%);
+}
+
+.video_dilse_play-tw video {
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+
+
+
+
 .about_se {
   position: relative;
 }
