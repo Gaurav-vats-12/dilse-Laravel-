@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('banneruuid');
             $table->string('banner_title');
             $table->string('banner_heading');
-            $table->string('bannerImage');
+            $table->string('bannerImage')->nullable();
             $table->longText('banner_discription');
             $table->enum('banner_type',['none','home','popup','promo','sales'])->default('none');
             $table->enum('status',['none','active','inactive'])->default('none');
