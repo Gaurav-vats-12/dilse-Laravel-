@@ -165,6 +165,9 @@ header.main_header {
   color: #fff;
   padding: 11px 18.5px;
 }
+.menu_left{
+  z-index: 1;
+}
 
 .menu_left ul li {
   display: inline-block;

@@ -5,7 +5,7 @@
             <div class="contact_info">
               <ul>
                 <li>
-                  <a href="">
+                  <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
                     <div class="contact_info_txt">
                       <div class="contact_info_img">
                         <img src="{{asset('frontend/img/phone-o1.png') }}" alt="" />
@@ -15,7 +15,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="mailto:{{ setting('site_email') != null ? setting('site_email') : '' }}">
                     <div class="contact_info_txt">
                       <div class="contact_info_img">
                         <img src="{{asset('frontend/img/phone-o1.png') }}" alt="" />
@@ -47,26 +47,23 @@
           <div class="btm_header_flx">
             <div class="menu_left">
               <ul>
-                <li><a href="{{ route('home')}}">Home</a></li>
+                <li><a href="{{ url('/')}}">Home</a></li>
                 <li><a href="#">Menu</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="{{url('about-us')}}">About Us</a></li>
               </ul>
             </div>
             <div class="site_logo">
-                <!--               <img src="assets/img/site-logo-dil.png" alt="">
- -->
-              <img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}" alt="">
+                <!--<img src="assets/img/site-logo-dil.png" alt="">-->
+                <a href="#"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}" alt="">
+                </a>
             </div>
             <div class="menu_left menu_right">
-              
               <ul>
+               <li><a href="{{url('gallery')}}">Gallery</a></li>
+                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
               @if(Request::is('/'))
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Menu</a></li>
-                <li><a href="#">About Us</a></li>
+               
               @else
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Contact Us</a></li>
                 <li><a href="#" class="theme_btn">Read More</a></li>
               @endif
               </ul>
