@@ -31,17 +31,15 @@
 
         </div>
       </section>
-      <section class="about_se py_8">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-            <video id="hello" playsinline preload>
-        <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
-       </video>
-            </div>
-
+      <section class="video_dilse">
+          <!-- <video id="hello" playsinline preload>
+              <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
+          </video> -->
+          <div class="video_dilse_play">
+          <video width="" height="" autoplay loop muted>
+            <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
+          </video>
           </div>
-        </div>
       </section>
       <section class="about_se py_8">
         <div class="container">
@@ -435,10 +433,7 @@
             <div class="col-md-6">
               <div class="sub_scribe_txt">
                 <h2>Subscribe Our Newsletter</h2>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been.
-                </p>
+                <p>Stay up-to-date with our latest news and updates by subscribing to our newsletter today!</p>
               </div>
               <form  class="sub_scribe_form" id="emailSubscribeForm">
               <input type="hidden" name="email_action_url" id="email_action_url"  value="{{ route('emailSubscription') }}">
