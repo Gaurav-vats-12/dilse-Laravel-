@@ -404,7 +404,7 @@
                 </p>
                 <div class="testimonial_user">
                   <div class="testimonial_user_img">
-                    <img src="{{asset('frontend/img/user-1.png')}}" alt="" />
+                    <img src="{{asset('frontend/img/user-2.png')}}" alt="" />
                   </div>
                   <div class="testimonial_user_txt">
                     <h3>Pallak Razdan</h3>
