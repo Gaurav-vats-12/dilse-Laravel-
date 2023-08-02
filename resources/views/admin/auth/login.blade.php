@@ -1,7 +1,7 @@
 <x-admin-guest-layout>
 <div class="login-box">
         <div class="login-logo">
-        <img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : '' }}" alt="">
+            <a><b>DilSe</b> Admin Panel</a>
         </div>
 
         <div class="card">
