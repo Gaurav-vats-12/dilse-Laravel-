@@ -19,7 +19,6 @@
         "realrashid/sweet-alert": "^7.0",
         "spatie/image": "^2.2",
         "spatie/laravel-html": "^3.2",
-        "spatie/laravel-newsletter": "^5.1",
         "syamsoul/laravel-set-env": "^1.0"
     },
     "require-dev": {

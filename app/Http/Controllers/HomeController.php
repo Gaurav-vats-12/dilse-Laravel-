@@ -6,8 +6,6 @@ use App\Models\emailsubscription;
 use App\Mail\ContactNotification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
-use Newsletter;
-
 class HomeController extends Controller
 {
     public function Homepage(){
@@ -75,12 +73,10 @@ class HomeController extends Controller
         if ($validator->fails()) {
             return response()->json(['errors'=>$validator->errors()]);
         }
-        if ( ! Newsletter::isSubscribed($request->email_address) )
-        {
-            Newsletter::subscribePending($request->email);
-            return response()->json(['code' => 200 ,  'status' =>'success', "message"=>"Thanks For Subscribe"]);
-            dd('jkkjkj');
-        }
+        // $listId = env('MAILCHIMP_LIST_ID');
+        // $mailchimp = new MailChimp(env('MAILCHIMP_APIKEY'));
+        // dd($mailchimp);
+
     }
 
     public function aboutus(){
