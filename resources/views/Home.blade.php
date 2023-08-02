@@ -27,8 +27,6 @@
           </div>
 @endforeach
             @endif
-
-
         </div>
       </section>
       <!--section class="video_dilse">
