@@ -433,10 +433,7 @@
             <div class="col-md-6">
               <div class="sub_scribe_txt">
                 <h2>Subscribe Our Newsletter</h2>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been.
-                </p>
+                <p>Stay up-to-date with our latest news and updates by subscribing to our newsletter today!</p>
               </div>
               <form  class="sub_scribe_form" id="emailSubscribeForm">
               <input type="hidden" name="email_action_url" id="email_action_url"  value="{{ route('emailSubscription') }}">
