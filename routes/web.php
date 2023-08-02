@@ -22,6 +22,9 @@ Route::get('/', [HomeController::class, 'Homepage'])->name('home');
 Route::post('/contact-us', [ContectController::class, 'store'])->name('contact-us-form');
 
 
+
+Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact');
+Route::post('/submit-contact-form', [HomeController::class, 'submitContactForm'])->name('contact.submit');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
