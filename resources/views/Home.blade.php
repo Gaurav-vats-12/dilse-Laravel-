@@ -31,17 +31,15 @@
 
         </div>
       </section>
-      <section class="about_se py_8">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-            <video id="hello" playsinline preload>
-        <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
-       </video>
-            </div>
-
+      <section class="video_dilse">
+          <!-- <video id="hello" playsinline preload>
+              <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
+          </video> -->
+          <div class="video_dilse_play">
+          <video width="" height="" autoplay loop muted>
+            <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
+          </video>
           </div>
-        </div>
       </section>
       <section class="about_se py_8">
         <div class="container">
@@ -380,18 +378,14 @@
           <div class="testimonial_slider">
             <div class="testimonial_slider_cntnt">
               <div class="testimonial_slider_txt">
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of.
+                <p>We visited Dil Se for our anniversary and had a wonderful meal. The food was well seasoned and flavorful. The staff was very friendly and helpful as they suggested dishes based on our preferences. For dessert, we were presented with an anniversary topper and an anniversary song. It was truly a nice touch. I will definitely visit on my next trip to Canada!
                 </p>
                 <div class="testimonial_user">
                   <div class="testimonial_user_img">
                     <img src="{{asset('frontend/img/user-1.png')}}" alt="" />
                   </div>
                   <div class="testimonial_user_txt">
-                    <h3>Jennifer Forward</h3>
+                    <h3>Kevin Ali</h3>
                     <ul>
                       <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
                       <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
@@ -406,17 +400,14 @@
             <div class="testimonial_slider_cntnt">
               <div class="testimonial_slider_txt">
                 <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of.
+                One of the few Indian Restaurants that managed to get each and every dish right! Their food feels like home, is absolutely delicious and is served with so much warmth leading to an overall lovely experience! I’d recommend them in a heartbeat and will be a going back whenever I miss home.
                 </p>
                 <div class="testimonial_user">
                   <div class="testimonial_user_img">
-                    <img src="{{asset('frontend/img/user-1.png')}}" alt="" />
+                    <img src="{{asset('frontend/img/user-2.png')}}" alt="" />
                   </div>
                   <div class="testimonial_user_txt">
-                    <h3>Jennifer Forward</h3>
+                    <h3>Pallak Razdan</h3>
                     <ul>
                       <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
                       <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
@@ -442,10 +433,7 @@
             <div class="col-md-6">
               <div class="sub_scribe_txt">
                 <h2>Subscribe Our Newsletter</h2>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been.
-                </p>
+                <p>Stay up-to-date with our latest news and updates by subscribing to our newsletter today!</p>
               </div>
               <form  class="sub_scribe_form" id="emailSubscribeForm">
               <input type="hidden" name="email_action_url" id="email_action_url"  value="{{ route('emailSubscription') }}">
