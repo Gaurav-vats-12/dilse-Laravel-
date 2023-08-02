@@ -14,7 +14,6 @@ jQuery(document).ready(function () {
   });
 
   jQuery(document).on("submit","#conatact_cus_form",async function(e) {
-    console.log('asdsad');
     e.preventDefault();
     var ajax_value_list = $(this).serialize();
     var ajx_url = jQuery('#contact_us_action_url').val();
@@ -37,8 +36,6 @@ jQuery(document).ready(function () {
 
     jQuery(document).on("submit","#emailSubscribeForm",async function(e) {
         e.preventDefault();
-        console.log('asdsad');
-
         var ajax_value_list = $(this).serialize();
         var ajx_url = jQuery('#email_action_url').val();
         const resPose = await Ajax_response(ajx_url,"POST",ajax_value_list,'');
@@ -66,6 +63,12 @@ jQuery(document).ready(function () {
 
 
     }
+    jQuery("#phone").on("keypress keyup blur",function (event) {
+        jQuery(this).val($(this).val().replace(/[^0-9\.]/g,''));
+           if ((e.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+               event.preventDefault();
+           }
+     });
 
 
 });
