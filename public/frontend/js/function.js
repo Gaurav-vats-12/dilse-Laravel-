@@ -13,3 +13,9 @@ return await jQuery.ajax({
   }
 });
 }
+
+$("input").keypress(function(e) {
+    var input_val=   $(this).val();
+       var name=   $(this).attr('name');
+      if(!input_val){  jQuery(`#${name}-error`).html('');  }
+  });

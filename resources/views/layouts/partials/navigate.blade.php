@@ -61,14 +61,14 @@
               <ul>
                <li><a href="{{url('gallery')}}">Gallery</a></li>
               @if(Request::is('/'))
-                <li><a href="#">Gift Card</a></li>
+                <li><a href="{{route('gift-card')}}">Gift Card</a></li>
               @endif
                 <li><a href="{{url('contact-us')}}">Contact Us</a></li>
               @if(!Request::is('/'))
                 <li><a href="#" class="theme_btn">Read More</a></li>
               @endif
               </ul>
-            
+
             </div>
           </div>
         </div>
