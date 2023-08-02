@@ -113,6 +113,7 @@ class HomeController extends Controller
         return view('gallery');
     }
     public function giftcart(){
+        die('root working');
         return view('gift-cart');
     }
 }

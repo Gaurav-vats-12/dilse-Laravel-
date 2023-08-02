@@ -161,8 +161,8 @@
             </div>
             <div class="col-md-4">
               <div class="counter_crd">
-                <h3>Team</h3>
-                <h2>100+</h2>
+                <h3>Deliveries</h3>
+                <h2>10000+</h2>
               </div>
             </div>
           </div>
