@@ -40,8 +40,8 @@
                         </div>
 
                         <div class="form-group">
-                        {!!Form::label('banner_discription', 'Banner Discription');!!}
-                        {!! Form::textarea('banner_discription',old('banner_discription') , array('class' => 'form-control','placeholder'=>'Banner Discription') );!!}
+                        {!!Form::label('banner_discription', 'Banner Description');!!}
+                        {!! Form::textarea('banner_discription',old('banner_discription') , array('class' => 'form-control','placeholder'=>'Banner Description') );!!}
                             @error('banner_discription')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
