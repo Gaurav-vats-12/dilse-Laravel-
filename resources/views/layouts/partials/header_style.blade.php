@@ -10,5 +10,8 @@
     <link rel="stylesheet" href="{{asset('plugins/slick-1.8.1/slick/slick-theme.css')}}">
     <!-- Jquery UI  -->
     <link rel="stylesheet" href="{{asset('plugins/jquery-ui/jquery-ui.min.css') }}">
+    <!-- Beauty Toast  -->
+    <link rel="stylesheet" href="{{ asset('public/plugins/beautyToast/css/beautyToast.css') }}" />
+
     <!-- main.css -->
     <link rel="stylesheet" href="{{asset('frontend/css/main.css') }}" />

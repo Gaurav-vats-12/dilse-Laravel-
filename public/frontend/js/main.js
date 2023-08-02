@@ -14,9 +14,28 @@ jQuery(document).ready(function () {
   });
 
   jQuery(document).on("submit",".contact_form",async function(e) {
-    console.log('asdsad');
+    e.preventDefault();
+    var ajax_value_list = $(this).serialize();
+    var ajx_url = jQuery('#contact_us_action_url').val();
+    const resPose = await Ajax_response(ajx_url,"POST",ajax_value_list,'');
+    if(resPose.status =='success'){
+        if(resPose.status =='success'){
+            beautyToast.success({
+              title: 'success', // Set the title of beautyToast
+              message: resPose.message, // Set the message of beautyToast
+              darkTheme: true,
+              onClose : function(){
+                location.reload();
+              },
+              });
+          }
 
-  });
+    }else{
+        jQuery.each(resPose.errors, function (key, value) {
+            jQuery(`#${key}-error`).text(value);
+          });
+    }
+    });
 
     }
 

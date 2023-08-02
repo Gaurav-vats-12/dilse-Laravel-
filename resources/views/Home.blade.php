@@ -449,8 +449,7 @@
       </section>
       <section class="contact_sec bg_style" style="background-image: url('{{asset('frontend/img/contact_bkg.jpg')}}')" >
         <div class="container">
-          <form method ="POST" class="contact_form">
-          <input type="hidden" name="contact_us_action_url" id="contact_us_action_url"  value="{{ route('contact-us-form') }}">
+          <form action="" class="contact_form">
             <div class="tittle_heading">
               <h3>Reach US</h3>
               <h2>Contact Us</h2>
