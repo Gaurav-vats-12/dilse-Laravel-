@@ -7,7 +7,7 @@
               <ul>
                 <li><a href="{{url('about-us')}}">About Us</a></li>
                 <li><a href="{{url('gallery')}}">Gallery</a></li>
-                <li><a href="{{route('gift-card')}}">Gift Card</a></li>
+                <li><a href="{{url('gift-card')}}">Gift Card</a></li>
                 <li><a href="{{url('contact-us')}}">Contact Us</a></li>
               </ul>
             </div>
