@@ -18,13 +18,9 @@
               <div class="home-slider-content">
                 <h3>Welcome to Dil se</h3>
                 <h1>
-                  Served With Affection Your Go-to<span>Indian Restaurant</span>
+                  Made With Love-<span>Served With Affection</span>
                 </h1>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text
-                </p>
+                <p> Your Go-to Indian Restaurant</p>
                 <div class="home_slider_btn">
                   <a href="#" class="theme_btn">Book A Table</a>
                 </div>
