@@ -20,14 +20,11 @@ jQuery(document).ready(function () {
     const resPose = await Ajax_response(ajx_url,"POST",ajax_value_list,'');
     if(resPose.status =='success'){
         if(resPose.status =='success'){
-            beautyToast.success({
-              title: 'success', // Set the title of beautyToast
-              message: resPose.message, // Set the message of beautyToast
-              darkTheme: true,
-              onClose : function(){
-                location.reload();
-              },
-              });
+            Toast.fire({
+                icon: 'success',
+                title: resPose.message,
+              })
+              $("#conatact_cus_form")[0].reset();
           }
 
     }else{
@@ -44,18 +41,20 @@ jQuery(document).ready(function () {
         var ajax_value_list = $(this).serialize();
         var ajx_url = jQuery('#email_action_url').val();
         const resPose = await Ajax_response(ajx_url,"POST",ajax_value_list,'');
+        console.log(resPose);
         if(resPose.status =='success'){
-            if(resPose.status =='success'){
-                beautyToast.success({
-                  title: 'success', // Set the title of beautyToast
-                  message: resPose.message, // Set the message of beautyToast
-                  darkTheme: true,
-                  onClose : function(){
-                    location.reload();
-                  },
-                  });
-              }
+            Toast.fire({
+                icon: 'success',
+                title: resPose.message,
+              })
+              location.reload();
 
+        } else if(resPose.status =='error'){
+            Toast.fire({
+                icon: 'warning',
+                title: resPose.message
+              })
+              $("#emailSubscribeForm")[0].reset();
         }else{
             jQuery.each(resPose.errors, function (key, value) {
                 jQuery(`#${key}-error`).text(value);

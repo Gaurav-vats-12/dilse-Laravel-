@@ -19,3 +19,10 @@ $("input").keypress(function(e) {
        var name=   $(this).attr('name');
       if(!input_val){  jQuery(`#${name}-error`).html('');  }
   });
+
+  var Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+  });

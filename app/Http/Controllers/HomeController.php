@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Models\Admin\Banner;
-use App\Models\emailsubscription;
+use App\Models\Subscriber;
 use App\Mail\ContactNotification;
 use Illuminate\Support\Facades\Mail;
+use App\Services\MailchimpService;
 use Illuminate\Http\Request;
+
+
 class HomeController extends Controller
 {
     public function Homepage(){
@@ -78,9 +81,28 @@ class HomeController extends Controller
         if ($validator->fails()) {
             return response()->json(['errors'=>$validator->errors()]);
         }
-        // $listId = env('MAILCHIMP_LIST_ID');
-        // $mailchimp = new MailChimp(env('MAILCHIMP_APIKEY'));
-        // dd($mailchimp);
+
+        // $mailsub =  $mailchimp->subscribeToList($request->input('email_address'), config('services.mailchimp.list_key'));
+        $getdata = Subscriber::where('email_address',$request->input('email_address'))->first();
+        if($getdata){
+            return response()->json(['code' => 200 ,  'status' =>'error', "message"=>"This email is already Subscribed"]);
+
+        }else{
+            $mailchimp = new MailchimpService();
+            $mailchimp->subscribeToList($request->input('email_address'), config('services.mailchimp.list_key'));
+            Subscriber::insertGetId(['email_address' => $request->email_address,'status' => 'subscribed','created_at' => now(),'updated_at' => now()]);
+            return response()->json(['code' => 200 ,  'status' =>'success', "message"=>"Email Subscribe Successfully"]);
+        }
+
+
+        // return response()->json(['code' => 200 ,  'status' =>'success', "message"=>"Email Subscribe Successfully"]);
+        // // $mail = $mailchimp->lists->subscribe( $listId, ['email' => $request->email_address]
+        // // );
+
+
+
+
+
 
     }
 
