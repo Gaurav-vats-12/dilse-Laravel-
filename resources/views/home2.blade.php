@@ -96,7 +96,7 @@
                   aria-controls="v-pills-Non-Veg"
                   aria-selected="false"
                 >
-                  Non-Veg <img src="{{asset('frontend/img/arrow_taste.png')}}')}}" alt="" />
+                  Non-Veg <img src="{{asset('frontend/img/arrow_taste.png')}}" alt="" />
                 </button>
                 <button
                   class="nav-link"
@@ -119,7 +119,7 @@
                   aria-labelledby="v-pills-Appetizers-tab"
                 >
                   <div class="taste_the_img">
-                    <img src="{{asset('frontend/img/taste-the.png')}}" alt="" />
+                    <img src="{{asset('frontend/img/Appetizers.png')}}" alt="" />
                   </div>
                 </div>
                 <div
@@ -129,7 +129,7 @@
                   aria-labelledby="v-pills-Non-Veg-tab"
                 >
                   <div class="taste_the_img">
-                    <img src="{{asset('frontend/img/taste-the.png')}}" alt="" />
+                    <img src="{{asset('frontend/img/Non-Veg.png')}}" alt="" />
                   </div>
                 </div>
                 <div
@@ -139,7 +139,7 @@
                   aria-labelledby="v-pills-Vegetarian-tab"
                 >
                   <div class="taste_the_img">
-                    <img src="{{asset('frontend/img/taste-the.png')}}" alt="" />
+                    <img src="{{asset('frontend/img/Vegetarian.png')}}" alt="" />
                   </div>
                 </div>
               </div>
