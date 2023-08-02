@@ -113,6 +113,6 @@ class HomeController extends Controller
         return view('gallery');
     }
     public function giftCard(){
-        return view('gift-cart');
+        return view('gift-card');
     }
 }
