@@ -65,7 +65,7 @@ jQuery(document).ready(function () {
     }
     jQuery("#phone").on("keypress keyup blur",function (event) {
         jQuery(this).val($(this).val().replace(/[^0-9\.]/g,''));
-           if ((e.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+           if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
                event.preventDefault();
            }
      });
