@@ -87,7 +87,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="custn_input">
-                      <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone number" required />
+                      <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone number" id="phone" required />
                     </div>
                   </div>
                   <div class="col-md-12">
