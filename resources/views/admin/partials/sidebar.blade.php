@@ -25,13 +25,13 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
           <a href="{{ route('admin.manage-pages.index') }}" class="nav-link {{ (request()->is('admin/manage-pages*')) ? 'active' : '' }}">
               <p>
               {{ __('Manage Pages') }}
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item {{ (request()->is('admin/setting*')) ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ (request()->is('admin/setting*')) ? 'active' : '' }}">
               <p> {{ __('Site   Setting') }} <i class="right fas fa-angle-left"></i> </p>

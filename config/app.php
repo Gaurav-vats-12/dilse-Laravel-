@@ -174,9 +174,6 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         browner12\helpers\HelperServiceProvider::class,
 
-
-
-
     ])->toArray(),
 
     /*
