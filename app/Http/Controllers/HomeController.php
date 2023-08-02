@@ -13,6 +13,11 @@ class HomeController extends Controller
         return view('Home',compact('banner'));
     }
 
+    public function Homepage2(){
+        $banner = Banner::where(['banner_type' => 'home'])->where('status','active')->get();
+        return view('home2',compact('banner'));
+    }
+
     public function contact(){
         return view('contact');
     }

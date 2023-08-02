@@ -3,42 +3,34 @@
 @section('frontcontent')
 <input type="hidden" id="prevArrow" value="{{asset('frontend/img/left_arrow.png') }}">
 <input type="hidden" id="nextArrow" value="{{asset('frontend/img/right_arrow.png') }}">
-<section  class="hero_banner bg_style" style="background-image: url('{{asset('frontend/img/hero_banner-1.jpg') }}')" >
-        <div class="home-slider">
-            @if ($banner)
-@foreach ($banner as $key=> $banner_value )
+      <section class="video_dilse-tw">
+          <!-- <video id="hello" playsinline preload>
+              <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
+          </video> -->
+          <div class="video_dilse_play-tw">
+          <video width="" height="" autoplay loop muted>
+            <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
 
-<div class="home-slider-main">
+
+          </video>
+          <div class="home-slider-main-tw">
             <div class="container">
               <div class="home-slider-content">
-                <h3> {!! __($banner_value->banner_title)!!}</h3>
+                <h3>Welcome to Dil se</h3>
                 <h1>
-                {!! __($banner_value->banner_heading)!!}
+                  Served With Affection Your Go-to<span>Indian Restaurant</span>
                 </h1>
                 <p>
-                <!-- {!! __($banner_value->banner_discription)!!} -->
-                {!! __(substr_replace($banner_value->banner_discription, "", 150))!!}
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text
                 </p>
                 <div class="home_slider_btn">
-                  <a href="{!! __($banner_value->banner_details1)!!}" class="theme_btn">{!! __($banner_value->banner_details2)!!}</a>
+                  <a href="#" class="theme_btn">Book A Table</a>
                 </div>
               </div>
             </div>
           </div>
-@endforeach
-            @endif
-
-
-        </div>
-      </section>
-      <section class="video_dilse">
-          <!-- <video id="hello" playsinline preload>
-              <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
-          </video> -->
-          <div class="video_dilse_play">
-          <video width="" height="" autoplay loop muted>
-            <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
-          </video>
           </div>
       </section>
       <section class="about_se py_8">
