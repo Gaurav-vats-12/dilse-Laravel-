@@ -317,7 +317,7 @@
             <div class="col-md-4">
               <div class="best_food_crd">
                 <div class="best_food_crd_img">
-                  <img src="{{asset('frontend/img/food-2.png')}}" alt="" />
+                  <img src="{{asset('frontend/img/basmti.png')}}" alt="" />
                 </div>
                 <div class="best_food_cntnt">
                   <div class="best_food_txt">
@@ -338,7 +338,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="meet_chef_img">
-                <img src="{{asset('frontend/img/chef.png')}}" alt="" />
+                <img src="{{asset('frontend/img/chef-1.png')}}" alt="" />
               </div>
             </div>
             <div class="col-md-6">
