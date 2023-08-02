@@ -54,15 +54,17 @@
             </div>
             <div class="site_logo">
                 <!--<img src="assets/img/site-logo-dil.png" alt="">-->
-                <a href="#"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}" alt="">
+                <a href="{{ url('/')}}"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}" alt="">
                 </a>
             </div>
             <div class="menu_left menu_right">
               <ul>
                <li><a href="{{url('gallery')}}">Gallery</a></li>
-                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
               @if(Request::is('/'))
-              @else
+                <li><a href="{{route('gift-card')}}">Gift Card</a></li>
+              @endif
+                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
+              @if(!Request::is('/'))
                 <li><a href="#" class="theme_btn">Read More</a></li>
               @endif
               </ul>
