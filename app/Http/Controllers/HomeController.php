@@ -112,8 +112,7 @@ class HomeController extends Controller
     public function gallery(){
         return view('gallery');
     }
-    public function giftcart(){
-        die('root working');
+    public function giftCard(){
         return view('gift-cart');
     }
 }
