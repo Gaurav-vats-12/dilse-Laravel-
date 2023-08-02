@@ -37,6 +37,8 @@ jQuery(document).ready(function () {
 
     jQuery(document).on("submit","#emailSubscribeForm",async function(e) {
         e.preventDefault();
+        console.log('asdsad');
+
         var ajax_value_list = $(this).serialize();
         var ajx_url = jQuery('#email_action_url').val();
         const resPose = await Ajax_response(ajx_url,"POST",ajax_value_list,'');
