@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('emailsubscriptions', function (Blueprint $table) {
+        Schema::create('subscribers', function (Blueprint $table) {
             $table->id();
             $table->string('email_address');
             $table->enum('status',['none','subscribed','unsubscribed'])->default('none');
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('emailsubscriptions');
+        Schema::dropIfExists('subscribers');
     }
 };

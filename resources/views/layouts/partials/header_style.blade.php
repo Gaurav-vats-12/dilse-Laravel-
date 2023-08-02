@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="{{asset('plugins/slick-1.8.1/slick/slick-theme.css')}}">
     <!-- Jquery UI  -->
     <link rel="stylesheet" href="{{asset('plugins/jquery-ui/jquery-ui.min.css') }}">
-    <!-- Beauty Toast  -->
-    <link rel="stylesheet" href="{{ asset('plugins/beautyToast/css/beautyToast.css') }}" />
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+    <!-- Toast Alert  -->
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 
     <!-- main.css -->
     <link rel="stylesheet" href="{{asset('frontend/css/main.css') }}" />
