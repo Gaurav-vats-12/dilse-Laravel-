@@ -61,7 +61,7 @@
               <ul>
                <li><a href="{{url('gallery')}}">Gallery</a></li>
               @if(Request::is('/'))
-                <li><a href="{{route('gift-card')}}">Gift Card</a></li>
+                <li><a href="{{url('gift-card')}}">Gift Card</a></li>
               @endif
                 <li><a href="{{url('contact-us')}}">Contact Us</a></li>
               @if(!Request::is('/'))
