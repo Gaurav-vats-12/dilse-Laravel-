@@ -58,11 +58,19 @@
               <img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}" alt="">
             </div>
             <div class="menu_left menu_right">
+              
               <ul>
+              @if(Request::is('/'))
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Menu</a></li>
                 <li><a href="#">About Us</a></li>
+              @else
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#" class="theme_btn">Read More</a></li>
+              @endif
               </ul>
+            
             </div>
           </div>
         </div>
