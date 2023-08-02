@@ -14,6 +14,7 @@ jQuery(document).ready(function () {
   });
 
   jQuery(document).on("submit","#conatact_cus_form",async function(e) {
+    console.log('asdsad');
     e.preventDefault();
     var ajax_value_list = $(this).serialize();
     var ajx_url = jQuery('#contact_us_action_url').val();
@@ -43,6 +44,7 @@ jQuery(document).ready(function () {
         const resPose = await Ajax_response(ajx_url,"POST",ajax_value_list,'');
         console.log(resPose);
         if(resPose.status =='success'){
+            console.log('asdsad');
             Toast.fire({
                 icon: 'success',
                 title: resPose.message,
