@@ -100,6 +100,11 @@ jQuery( function () {
           })
 
 
+    }else if(url.indexOf("/testimonial") > -1){
+        jQuery('#testimonial_description').summernote({
+            tabsize: 2,
+            height: 100
+          })
     }
 
 });

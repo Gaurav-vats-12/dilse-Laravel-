@@ -371,49 +371,26 @@
             <h2>What’s our Client say about Us</h2>
           </div>
           <div class="testimonial_slider">
+            @if ($Testimonial)
+            @foreach ($Testimonial as $key => $TestimonialValue )
             <div class="testimonial_slider_cntnt">
               <div class="testimonial_slider_txt">
-                <p>We visited Dil Se for our anniversary and had a wonderful meal. The food was well seasoned and flavorful. The staff was very friendly and helpful as they suggested dishes based on our preferences. For dessert, we were presented with an anniversary topper and an anniversary song. It was truly a nice touch. I will definitely visit on my next trip to Canada!
-                </p>
+              {!! __($TestimonialValue->testimonial_description) !!}
                 <div class="testimonial_user">
                   <div class="testimonial_user_img">
-                    <img src="{{asset('frontend/img/user-1.png')}}" alt="" />
+                    <img src="{{ url('/storage/testimonial/'.$TestimonialValue->testonomailsImage.'')}}" alt="" />
                   </div>
                   <div class="testimonial_user_txt">
-                    <h3>Kevin Ali</h3>
+                    <h3>{!! __($TestimonialValue->custumber_name) !!}</h3>
                     <ul>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
+                    @for($i=1; $i<=$TestimonialValue->rating; $i++)  <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li> @endfor
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="testimonial_slider_cntnt">
-              <div class="testimonial_slider_txt">
-                <p>
-                One of the few Indian Restaurants that managed to get each and every dish right! Their food feels like home, is absolutely delicious and is served with so much warmth leading to an overall lovely experience! I’d recommend them in a heartbeat and will be a going back whenever I miss home.
-                </p>
-                <div class="testimonial_user">
-                  <div class="testimonial_user_img">
-                    <img src="{{asset('frontend/img/user-2.png')}}" alt="" />
-                  </div>
-                  <div class="testimonial_user_txt">
-                    <h3>Pallak Razdan</h3>
-                    <ul>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @endforeach
+            @endif
           </div>
         </div>
       </section>
