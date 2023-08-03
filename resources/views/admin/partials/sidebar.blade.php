@@ -25,6 +25,12 @@
               </p>
             </a>
           </li>
+          <a href="{{ route('admin.testimonial.index') }}" class="nav-link {{ (request()->is('admin/testimonial*')) ? 'active' : '' }}">
+              <p>
+              {{ __('Manage Testimonial ') }}
+              </p>
+            </a>
+          </li>
           <!-- <li class="nav-item">
           <a href="{{ route('admin.manage-pages.index') }}" class="nav-link {{ (request()->is('admin/manage-pages*')) ? 'active' : '' }}">
               <p>

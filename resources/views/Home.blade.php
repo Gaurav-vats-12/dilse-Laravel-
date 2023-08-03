@@ -27,20 +27,15 @@
           </div>
 @endforeach
             @endif
-
-
         </div>
       </section>
-      <section class="video_dilse">
-          <!-- <video id="hello" playsinline preload>
-              <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
-          </video> -->
+      <!--section class="video_dilse">
           <div class="video_dilse_play">
           <video width="" height="" autoplay loop muted>
             <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
           </video>
           </div>
-      </section>
+      </section-->
       <section class="about_se py_8">
         <div class="container">
           <div class="row">
@@ -62,7 +57,7 @@
                   create a culinary delight that satisfies your taste buds.
                 </p>
                 <div class="about_cntnt_bn">
-                  <a href="#" class="theme_btn">Read More</a>
+                  <a href="{{url('about-us')}}" class="theme_btn">Read More</a>
                 </div>
               </div>
             </div>
@@ -322,7 +317,7 @@
             <div class="col-md-4">
               <div class="best_food_crd">
                 <div class="best_food_crd_img">
-                  <img src="{{asset('frontend/img/food-2.png')}}" alt="" />
+                  <img src="{{asset('frontend/img/basmti.png')}}" alt="" />
                 </div>
                 <div class="best_food_cntnt">
                   <div class="best_food_txt">
@@ -343,7 +338,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="meet_chef_img">
-                <img src="{{asset('frontend/img/chef.png')}}" alt="" />
+                <img src="{{asset('frontend/img/chef-1.png')}}" alt="" />
               </div>
             </div>
             <div class="col-md-6">
@@ -376,49 +371,26 @@
             <h2>What’s our Client say about Us</h2>
           </div>
           <div class="testimonial_slider">
+            @if ($Testimonial)
+            @foreach ($Testimonial as $key => $TestimonialValue )
             <div class="testimonial_slider_cntnt">
               <div class="testimonial_slider_txt">
-                <p>We visited Dil Se for our anniversary and had a wonderful meal. The food was well seasoned and flavorful. The staff was very friendly and helpful as they suggested dishes based on our preferences. For dessert, we were presented with an anniversary topper and an anniversary song. It was truly a nice touch. I will definitely visit on my next trip to Canada!
-                </p>
+              {!! __($TestimonialValue->testimonial_description) !!}
                 <div class="testimonial_user">
                   <div class="testimonial_user_img">
-                    <img src="{{asset('frontend/img/user-1.png')}}" alt="" />
+                    <img src="{{ url('/storage/testimonial/'.$TestimonialValue->testonomailsImage.'')}}" alt="" />
                   </div>
                   <div class="testimonial_user_txt">
-                    <h3>Kevin Ali</h3>
+                    <h3>{!! __($TestimonialValue->custumber_name) !!}</h3>
                     <ul>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
+                    @for($i=1; $i<=$TestimonialValue->rating; $i++)  <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li> @endfor
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="testimonial_slider_cntnt">
-              <div class="testimonial_slider_txt">
-                <p>
-                One of the few Indian Restaurants that managed to get each and every dish right! Their food feels like home, is absolutely delicious and is served with so much warmth leading to an overall lovely experience! I’d recommend them in a heartbeat and will be a going back whenever I miss home.
-                </p>
-                <div class="testimonial_user">
-                  <div class="testimonial_user_img">
-                    <img src="{{asset('frontend/img/user-2.png')}}" alt="" />
-                  </div>
-                  <div class="testimonial_user_txt">
-                    <h3>Pallak Razdan</h3>
-                    <ul>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                      <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @endforeach
+            @endif
           </div>
         </div>
       </section>

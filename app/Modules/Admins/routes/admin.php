@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController};
+use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController};
 // use App\Modules\Admins\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,14 +8,17 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['web', 'admin.auth', 'admin.verified'])->group(function(){
         Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
         Route::resource('banner', BannerController::class);
-        Route::get('/banner/changeStatus/{id}', [BannerController::class, 'updateStatus'])->name('banner.changeStatus');
+        // Route::get('/banner/changeStatus/{id}', [BannerController::class, 'updateStatus'])->name('banner.changeStatus');
         Route::prefix('setting')->name('setting.')->group(function(){
             Route::get('/genral', [SettingController::class, 'genralsetting'])->name('genral');
             Route::put('/genral/{id}', [SettingController::class, 'updategenralSetting'])->name('genralstore');
             Route::get('/footer-setting', [SettingController::class, 'footersetting'])->name('footersetting');
-
         });
         Route::resource('manage-pages', PageManagementController::class);
+
+        // testimonial
+        Route::resource('testimonial', TestimonialsController::class);
+
     });
 });
 // Route::middleware(['web', 'admin.auth', 'admin.verified'])->get('/admin', function () {

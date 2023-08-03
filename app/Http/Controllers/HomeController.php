@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Admin\Banner;
+use App\Models\Admin\{Banner,Testimonial};
 use App\Models\Subscriber;
 use App\Mail\ContactNotification;
 use Illuminate\Support\Facades\Mail;
@@ -13,7 +13,9 @@ class HomeController extends Controller
 {
     public function Homepage(){
         $banner = Banner::where(['banner_type' => 'home'])->where('status','active')->get();
-        return view('Home',compact('banner'));
+        $Testimonial = Testimonial::where('status','active')->get();
+
+        return view('Home',compact('banner','Testimonial'));
     }
 
     public function contact(){
