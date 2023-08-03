@@ -9,7 +9,7 @@
           </video> -->
           <div class="video_dilse_play-tw">
           <video id="home_banner_vd" width="" height="" autoplay loop muted>
-            <source src="{{asset('frontend/vedio/dilSEok.mp4#t=13')}}" type="video/mp4" />
+            <source src="{{asset('frontend/vedio/dilSEok.mp4#t=13.8')}}" type="video/mp4" />
 
 
           </video>
