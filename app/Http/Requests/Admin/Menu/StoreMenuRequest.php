@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Pages;
+namespace App\Http\Requests\Admin\Menu;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorepagesRequest extends FormRequest
+class StoreMenuRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,8 @@ class StorepagesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'page_title' =>  'required|max:255',
-            'page_slug' =>  'required|max:255',
-            'page_content' =>  'required',
-            'page_meta_title' =>  'required|max:255',
-            'page_meta_description' =>  'required',
+            'menu_name' =>  'required|max:255',
+            'menu_slug' =>  'required|max:255',
             'status' => 'required|in:active,inactive',
         ];
     }

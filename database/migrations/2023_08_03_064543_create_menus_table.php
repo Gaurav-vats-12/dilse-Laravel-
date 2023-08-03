@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->uuid('pagesuuid');
-            $table->string('page_title');
-            $table->string('page_slug');
-            $table->longText('page_content');
-            $table->string('page_meta_title');
-            $table->longText('page_meta_description');
+            $table->string('menu_name');
+            $table->string('menu_slug');
             $table->enum('status',['none','active','inactive'])->default('none');
             $table->timestamps();
             $table->softDeletes(); // <-- This will add a deleted_at field
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('menus');
     }
 };

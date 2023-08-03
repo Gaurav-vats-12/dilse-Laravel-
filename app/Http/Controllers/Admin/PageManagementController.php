@@ -13,7 +13,7 @@ class PageManagementController extends Controller
     {
         confirmDelete('Delete Page!',"Are you sure you want to delete?");
         $page    = Page::get();
-         return view('admin.Pages.index',compact('page'));
+         return view('admin.page.pages.index',compact('page'));
     }
 
     /**
@@ -21,7 +21,7 @@ class PageManagementController extends Controller
      */
     public function create()
     {
-        return view('admin.Pages.create');
+        return view('admin.page.pages.create');
     }
 
     /**
@@ -29,7 +29,7 @@ class PageManagementController extends Controller
      */
     public function store(StorepagesRequest $request)
     {
-           Page::insert(['pagesuuid' => $request->pagesuuid, 'page_title' => $request->page_title, 'page_slug' => $request->page_slug,'page_content' => $request->page_content,'status' => $request->status,'created_at' => now(), 'updated_at' => now() ]);
+           Page::insert(['pagesuuid' => $request->pagesuuid, 'page_title' => $request->page_title, 'page_slug' => $request->page_slug,'page_content' => $request->page_content,'page_meta_title' => $request->page_meta_title,'page_meta_description' => $request->page_meta_description,'status' => $request->status,'created_at' => now(), 'updated_at' => now() ]);
         return redirect()->route('admin.manage-pages.index')->withSuccess('Page Successfully Created');
     }
 
@@ -47,7 +47,7 @@ class PageManagementController extends Controller
     public function edit(string $id)
     {
         $page = Page::findOrFail($id);
-        return view('admin.Pages.edit' ,compact('page'));
+        return view('admin.page.pages.edit' ,compact('page'));
 
     }
 
@@ -56,7 +56,7 @@ class PageManagementController extends Controller
      */
     public function update(StorepagesRequest $request, string $id)
     {
-        Page::findOrFail($id)->update(['page_title' => $request->page_title, 'page_slug' => $request->page_slug,'page_content' => $request->page_content,'status' => $request->status,'updated_at' => now() ]);
+        Page::findOrFail($id)->update(['page_title' => $request->page_title, 'page_slug' => $request->page_slug,'page_content' => $request->page_content,'page_meta_title' => $request->page_meta_title,'page_meta_description' => $request->page_meta_description,'status' => $request->status, 'updated_at' => now() ]);
         return redirect()->route('admin.manage-pages.index')->withSuccess('Page Successfully Updated');
 
     }
