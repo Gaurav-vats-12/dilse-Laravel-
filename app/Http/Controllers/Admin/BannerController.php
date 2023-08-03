@@ -20,7 +20,7 @@ class BannerController extends Controller
         $title = 'Delete Banner!';
         $text = "Are you sure you want to delete?";
         confirmDelete('Delete testimonial!',"Are you sure you want to delete?");
-       return view('admin.banner.index',compact('banner'));
+       return view('admin.page.banner.index',compact('banner'));
     }
 
     /**
