@@ -395,7 +395,7 @@
         <div class="container">
           <div class="tittle_heading">
             <h3>Testimonials</h3>
-            <h2>What’s our Client say about Us</h2>
+            <h2>What’s our Client say about Us test</h2>
           </div>
           <div class="testimonial_slider">
             @if ($Testimonial)
