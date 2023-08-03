@@ -99,8 +99,10 @@ class HomeController extends Controller
     public function gallery(){
         return view('Pages.gallery');
     }
-    public function giftcart(){
-        return view('Pages.gift-cart');
+
+    public function giftCard(){
+        return view('gift-card');
+
     }
 
 }

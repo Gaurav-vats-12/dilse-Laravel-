@@ -18,7 +18,7 @@
                   <a href="mailto:{{ setting('site_email') != null ? setting('site_email') : '' }}">
                     <div class="contact_info_txt">
                       <div class="contact_info_img">
-                        <img src="{{asset('frontend/img/phone-o1.png') }}" alt="" />
+                        <img src="{{asset('frontend/img/mail.png') }}" alt="" />
                       </div>
                       <p>{{ setting('site_email') != null ? setting('site_email') : '' }}</p>
                     </div>
@@ -61,7 +61,7 @@
               <ul>
                <li><a href="{{url('gallery')}}">Gallery</a></li>
                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
-              @if(Request::is('/'))
+              @if(Request::is('/') || Request::is('home-2'))
                 <li><a href="#" class="theme_btn">Book a table</a></li>
               @else
                 <li><a href="#" class="theme_btn">Read More</a></li>

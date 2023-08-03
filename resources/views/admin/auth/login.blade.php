@@ -1,7 +1,7 @@
 <x-admin-guest-layout>
 <div class="login-box">
         <div class="login-logo">
-        <img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : '' }}" alt="">
+            <a><b>DilSe</b> Admin Panel</a>
         </div>
 
         <div class="card">
@@ -17,12 +17,12 @@
         <x-text-input id="password" class="form-control" type="password" name="password" autocomplete="current-password" />
         <x-input-error :messages="$errors->get('password')" class="mt-2" />
   </div>
-  <div class="mb-3 form-check">
+  <!--div class="mb-3 form-check">
   <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
                 <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
             </label>
-  </div>
+  </div-->
   <button type="submit" class="btn btn-primary">   {{ __('Log in') }}</button>
 </form>
 

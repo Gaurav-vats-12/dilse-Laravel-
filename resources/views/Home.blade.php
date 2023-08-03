@@ -3,7 +3,35 @@
 @section('frontcontent')
 <input type="hidden" id="prevArrow" value="{{asset('frontend/img/left_arrow.png') }}">
 <input type="hidden" id="nextArrow" value="{{asset('frontend/img/right_arrow.png') }}">
-<section  class="hero_banner bg_style" style="background-image: url('{{asset('frontend/img/hero_banner-1.jpg') }}')" >
+<section class="video_dilse-tw">
+          <!-- <video id="hello" playsinline preload>
+              <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
+          </video> -->
+          <div class="video_dilse_play-tw">
+          <video id="home_banner_vd" width="" height="" autoplay loop muted>
+            <source src="{{asset('frontend/vedio/dilSEok.mp4#t=13.8')}}" type="video/mp4" />
+
+
+          </video>
+          <div class="home-slider-main-tw">
+            <div class="container">
+              <div class="home-slider-content">
+                <h3>Welcome to Dil se</h3>
+                <h1>
+                  Made With Love-<span>Served With Affection</span>
+                </h1>
+                <p> Your Go-to Indian Restaurant</p>
+              </div>
+
+              <div class="home_slider_btn">
+                  <a href="#" class="theme_btn">Book A Table</a> <a href="#" class="theme_btn">Order Now</a> <a href="#" class="theme_btn">Book A Table</a>
+                </div>
+
+            </div>
+          </div>
+          </div>
+      </section>
+<!--section  class="hero_banner bg_style" style="background-image: url('{{asset('frontend/img/hero_banner-1.jpg') }}')" >
         <div class="home-slider">
             @if ($banner)
 @foreach ($banner as $key=> $banner_value )
@@ -16,7 +44,6 @@
                 {!! __($banner_value->banner_heading)!!}
                 </h1>
                 <p>
-                <!-- {!! __($banner_value->banner_discription)!!} -->
                 {!! __(substr_replace($banner_value->banner_discription, "", 150))!!}
                 </p>
                 <div class="home_slider_btn">
@@ -28,7 +55,7 @@
 @endforeach
             @endif
         </div>
-      </section>
+      </section-->
       <!--section class="video_dilse">
           <div class="video_dilse_play">
           <video width="" height="" autoplay loop muted>

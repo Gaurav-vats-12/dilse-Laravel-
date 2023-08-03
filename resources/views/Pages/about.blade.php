@@ -144,4 +144,28 @@
           </div>
         </div>
       </section>
+      <section class="counter_im py_8">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="counter_crd">
+                <h3>Happy Customers</h3>
+                <h2>3500+</h2>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="counter_crd">
+                <h3>Dishes</h3>
+                <h2>200+</h2>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="counter_crd">
+                <h3>Deliveries</h3>
+                <h2>10000+</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 @endsection
