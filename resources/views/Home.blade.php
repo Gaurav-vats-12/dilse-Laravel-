@@ -18,7 +18,7 @@
               <div class="home-slider-content">
                 <h3>Welcome to Dil se</h3>
                 <h1>
-                  Made With Love-<span>Served With Affection</span>
+                  Made With Love- Served With Affection
                 </h1>
                 <p> Your Go-to Indian Restaurant</p>
               </div>
