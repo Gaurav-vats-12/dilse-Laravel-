@@ -3,7 +3,7 @@
 // use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\{HomeController, ContectController};
 use Illuminate\Support\Facades\Route;
-use App\Models\Admin\{Page};
+use App\Models\Admin\Page;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,22 +28,10 @@ Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/gift-cart', [HomeController::class, 'giftcart'])->name('gift-cart');
 
-// Route::any('/term-and-condition', [HomeController::class, 'dynamicPages'])->name('termcondition');
-
 Route::any('/{slug}', function ($slug) {
     if($slug =='term-and-condition' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-and-policy'){
         $pagdata= Page::where('page_slug',$slug)->first();
         return view('Pages.dynamic-page-genrate',compact('pagdata'));
     }
 });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 
