@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Admin\{Banner,Testimonial};
+use App\Models\Admin\{Banner,Testimonial,Page};
 use App\Models\Subscriber;
 use App\Mail\ContactNotification;
 use Illuminate\Support\Facades\Mail;
@@ -16,11 +16,6 @@ class HomeController extends Controller
         $Testimonial = Testimonial::where('status','active')->get();
 
         return view('Home',compact('banner','Testimonial'));
-    }
-
-    public function Homepage2(){
-        $banner = Banner::where(['banner_type' => 'home'])->where('status','active')->get();
-        return view('home2',compact('banner'));
     }
 
     public function contact(){
@@ -96,25 +91,18 @@ class HomeController extends Controller
             return response()->json(['code' => 200 ,  'status' =>'success', "message"=>"Email Subscribe Successfully"]);
         }
 
-
-        // return response()->json(['code' => 200 ,  'status' =>'success', "message"=>"Email Subscribe Successfully"]);
-        // // $mail = $mailchimp->lists->subscribe( $listId, ['email' => $request->email_address]
-        // // );
-
-
-
-
-
-
     }
 
     public function aboutus(){
-        return view('about');
+        return view('Pages.about');
     }
     public function gallery(){
-        return view('gallery');
+        return view('Pages.gallery');
     }
+
     public function giftCard(){
         return view('gift-card');
+
     }
+
 }

@@ -24,7 +24,7 @@ class UpdateBannerRequest extends FormRequest
         return [
             'banner_title' =>  'required|max:255',
             'banner_heading' =>  'required|max:255',
-            'banner_discription' =>  'required|max:10000',
+            'banner_discription' =>  'required',
             'banner_type' => 'required|in:home,popup,promo,sales',
             'home_banner_button_url' => 'required_if:banner_type,==,home',
             'home_banner_button_name' => 'required_if:banner_type,==,home|max:255',

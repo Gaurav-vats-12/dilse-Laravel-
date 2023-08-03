@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController};
+use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController,MenuController,BlogController};
 // use App\Modules\Admins\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +18,13 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
         // testimonial
         Route::resource('testimonial', TestimonialsController::class);
+
+        // Menu's
+        Route::resource('menu', MenuController::class);
+
+        // Blog
+        Route::resource('blog', BlogController::class);
+
 
     });
 });

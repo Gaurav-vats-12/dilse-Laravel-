@@ -16,7 +16,7 @@ class SettingController extends Controller
 {
     public function genralsetting(){
 
-        return view('admin.setting.genralsetting');
+        return view('admin.page.setting.genralsetting');
 
     }
 
@@ -56,7 +56,7 @@ class SettingController extends Controller
             foreach($request->file('footer_image_2') as $file)  {
 
                 $footer_image_2Image = time().'-'.$file->getClientOriginalName();
-                ResizeImage::make($file)->resize(45, 45)->save($footer_image_2path.'/'. $footer_image_2Image);
+                ResizeImage::make($file)->save($footer_image_2path.'/'. $footer_image_2Image);
              $imageslist[] = $footer_image_2Image;
 
         }  $footer_image_2 = implode(',', $imageslist);}

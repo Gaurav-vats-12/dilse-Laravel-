@@ -23,12 +23,12 @@
             <div class="quick_links">
               <h3>Menu</h3>
               <ul>
-                <li><a href="#">Appetizers</a></li>
-                <li><a href="#">Tandoori</a></li>
-                <li><a href="#">Vegeterian</a></li>
-                <li><a href="#">Non Veg</a></li>
-                <li><a href="#">Basmati Rice</a></li>
-              </ul>
+            @foreach ( Menuhelper() as $key => $menu )
+            @if ($key < 5)
+            <li><a href="#" menu_slug ="{{ __(ucfirst( $menu->menu_slug)) }}">{{ __(ucfirst( $menu->menu_name)) }}</a></li>
+            @endif
+            @endforeach
+            </ul>
             </div>
           </div>
         </div>
@@ -43,11 +43,9 @@
           <div class="copy_right_txt">
             <p>{{ setting('copyright_text') != null ? __(setting('copyright_text')) : '' }}</p>
             <ul>
-              <li><img src="{{asset('frontend/img/logo-footer-1.png')}}" alt="" /></li>
-              <li><img src="{{asset('frontend/img/logo-footer-2.png')}}" alt="" /></li>
-              <li><img src="{{asset('frontend/img/logo-footer-3.png')}}" alt="" /></li>
-              <li><img src="{{asset('frontend/img/logo-footer-4.png')}}" alt="" /></li>
-              <li><img src="{{asset('frontend/img/logo-footer-5.png')}}" alt="" /></li>
+            @foreach(explode(',', setting('footer_image_2')) as $info)
+            <li><img src="{{ url('/storage/site/footer/otherImage/'.$info.'')}}" alt="{{$info}}" /></li>
+              @endforeach
             </ul>
           </div>
         </div>

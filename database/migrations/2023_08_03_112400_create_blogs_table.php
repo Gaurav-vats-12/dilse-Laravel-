@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->uuid('pagesuuid');
-            $table->string('page_title');
-            $table->string('page_slug');
-            $table->longText('page_content');
-            $table->string('page_meta_title');
-            $table->longText('page_meta_description');
-            $table->enum('status',['none','active','inactive'])->default('none');
+            $table->string('blog_title');
+            $table->string('blog_slug');
+            $table->text('blog_content');
+            $table->string('blog_meta_title');
+            $table->string('blog_meta_description');
+            $table->enum('status',['none','published','inactive','draft'])->default('draft');
             $table->timestamps();
             $table->softDeletes(); // <-- This will add a deleted_at field
+
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('blogs');
     }
 };
