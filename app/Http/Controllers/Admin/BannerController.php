@@ -28,7 +28,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('admin.banner.create');
+        return view('admin.page.banner.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class BannerController extends Controller
     public function edit(string $id)
     {
         $Banner = Banner::findOrFail($id);
-        return view('admin.banner.edit' ,compact('Banner'));
+        return view('admin.page.banner.edit' ,compact('Banner'));
     }
 
     /**

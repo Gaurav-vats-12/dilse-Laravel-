@@ -3,6 +3,7 @@
 // use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\{HomeController, ContectController};
 use Illuminate\Support\Facades\Route;
+use App\Models\Admin\{Page};
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,16 @@ Route::post('/contact-us', [HomeController::class, 'submitContactFormAjax'])->na
 Route::post('/email-subscription', [HomeController::class, 'emailSubscription'])->name('emailSubscription');
 Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
-Route::get('/gift-cart', [HomeController::class, 'giftcart'])->name('gift-cart'); 
+Route::get('/gift-cart', [HomeController::class, 'giftcart'])->name('gift-cart');
 
+// Route::any('/term-and-condition', [HomeController::class, 'dynamicPages'])->name('termcondition');
+
+Route::any('/{slug}', function ($slug) {
+    if($slug =='term-and-condition' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-and-policy'){
+        $pagdata= Page::where('page_slug',$slug)->first();
+        return view('Pages.dynamic-page-genrate',compact('pagdata'));
+    }
+});
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -38,4 +47,3 @@ Route::get('/gift-cart', [HomeController::class, 'giftcart'])->name('gift-cart')
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-// require __DIR__.'/auth.php';

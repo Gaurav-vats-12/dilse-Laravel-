@@ -20,7 +20,7 @@ class TestimonialsController extends Controller
     {
         confirmDelete('Delete testimonial!',"Are you sure you want to delete?");
         $Testimonial = Testimonial::get();
-        return view('admin.testimonial.index',compact('Testimonial'));
+        return view('admin.page.testimonial.index',compact('Testimonial'));
     }
 
     /**
@@ -28,7 +28,7 @@ class TestimonialsController extends Controller
      */
     public function create()
     {
-       return view('admin.testimonial.create');
+       return view('admin.page.testimonial.create');
     }
 
     /**
@@ -63,7 +63,7 @@ class TestimonialsController extends Controller
     public function edit(string $id)
     {
         $Testimonial = Testimonial::findOrFail($id);
-        return view('admin.testimonial.edit',compact('Testimonial'));
+        return view('admin.page.testimonial.edit',compact('Testimonial'));
     }
 
     /**

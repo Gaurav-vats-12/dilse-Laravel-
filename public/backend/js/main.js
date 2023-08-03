@@ -105,6 +105,15 @@ jQuery( function () {
             tabsize: 2,
             height: 100
           })
+    }else if(url.indexOf("/menu") > -1){
+        jQuery(document).on("focusout","#menu_name", function(e) {
+            jQuery('#menu_slug').val(`${jQuery('#menu_name').val().replace(/\s+/g, '-').toLowerCase()}`);
+          });
+    }else if(url.indexOf("/blog") > -1){
+        jQuery('#blog_content').summernote({ tabsize: 2, height: 100 })
+        jQuery(document).on("focusout","#blog_title", function(e) {
+            jQuery('#blog_slug').val(`${jQuery('#blog_title').val().replace(/\s+/g, '-').toLowerCase()}`);
+          });
     }
 
 });

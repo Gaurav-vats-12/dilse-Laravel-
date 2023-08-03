@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Pages;
+namespace App\Http\Requests\Admin\Blog;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorepagesRequest extends FormRequest
+class StoreBannerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,14 @@ class StorepagesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'page_title' =>  'required|max:255',
-            'page_slug' =>  'required|max:255',
-            'page_content' =>  'required',
-            'page_meta_title' =>  'required|max:255',
-            'page_meta_description' =>  'required',
-            'status' => 'required|in:active,inactive',
+            'blog_title' =>  'required|max:255',
+            'blog_slug' =>  'required|max:255',
+            'blog_content' =>  'required',
+            'blog_meta_title' =>  'required|max:255',
+            'blog_meta_description' =>  'required',
+            'status' => 'required|in:published,inactive,draft',
+
+
         ];
     }
 }

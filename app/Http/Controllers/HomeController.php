@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Admin\{Banner,Testimonial};
+use App\Models\Admin\{Banner,Testimonial,Page};
 use App\Models\Subscriber;
 use App\Mail\ContactNotification;
 use Illuminate\Support\Facades\Mail;
@@ -91,25 +91,16 @@ class HomeController extends Controller
             return response()->json(['code' => 200 ,  'status' =>'success', "message"=>"Email Subscribe Successfully"]);
         }
 
-
-        // return response()->json(['code' => 200 ,  'status' =>'success', "message"=>"Email Subscribe Successfully"]);
-        // // $mail = $mailchimp->lists->subscribe( $listId, ['email' => $request->email_address]
-        // // );
-
-
-
-
-
-
     }
 
     public function aboutus(){
-        return view('about');
+        return view('Pages.about');
     }
     public function gallery(){
-        return view('gallery');
+        return view('Pages.gallery');
     }
     public function giftcart(){
-        return view('gift-cart');
+        return view('Pages.gift-cart');
     }
+
 }
