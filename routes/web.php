@@ -20,7 +20,6 @@ use App\Models\Admin\Page;
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'Homepage'])->name('home');
-Route::get('/home-2', [HomeController::class, 'Homepage2']);
 Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact');
 Route::post('/submit-contact-form', [HomeController::class, 'submitContactForm'])->name('contact.submit');
 Route::post('/contact-us', [HomeController::class, 'submitContactFormAjax'])->name('contact-us-form');
