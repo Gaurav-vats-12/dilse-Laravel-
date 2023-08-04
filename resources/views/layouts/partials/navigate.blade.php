@@ -48,7 +48,7 @@
             <div class="menu_left">
               <ul>
                 <li><a href="{{ url('/')}}">Home</a></li>
-                <li><a href="#">Menu</a></li>
+                <li><a href="{{url('menu')}}">Menu</a></li>
                 <li><a href="{{url('about-us')}}">About Us</a></li>
               </ul>
             </div>

@@ -102,7 +102,10 @@ class HomeController extends Controller
 
     public function giftCard(){
         return view('Pages.gift-card');
+    }
 
+    public function menu(){
+        return view('Pages.menu');
     }
 
 }
