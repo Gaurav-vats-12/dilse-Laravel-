@@ -4,6 +4,7 @@
 use App\Http\Controllers\{HomeController, ContectController};
 use Illuminate\Support\Facades\Route;
 use App\Models\Admin\Page;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,6 @@ use App\Models\Admin\Page;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -27,10 +27,20 @@ Route::post('/email-subscription', [HomeController::class, 'emailSubscription'])
 Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/gift-card', [HomeController::class, 'giftCard'])->name('gift-card'); 
-Route::any('/{slug}', function ($slug) {
-    if($slug =='term-and-condition' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-and-policy'){
-        $pagdata= Page::where('page_slug',$slug)->first();
-        return view('Pages.dynamic-page-genrate',compact('pagdata'));
+
+Route::get('{admin}', function ($admin) {
+    // Check if the $admin variable conflicts with any other route or page
+    // If it does, handle the conflict appropriately (e.g., redirect to admin dashboard)
+    if ($admin === 'admin') {
+        return redirect()->route('admin.dashboard');
     }
+
+    // Handle other routes...
 });
 
+Route::any('/{slug?}', function ($slug = null) {
+        if($slug =='term-and-condition' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-and-policy'){
+            $pagdata= Page::where('page_slug',$slug)->first();
+            return view('Pages.dynamic-page-genrate',compact('pagdata'));
+        }
+});
