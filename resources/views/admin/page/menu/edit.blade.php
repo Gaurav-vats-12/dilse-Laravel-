@@ -27,14 +27,16 @@
                         @method('PUT')
                     <div class="form-group">
                             <label for="menu_name">Name</label>
-                            <input type="text" name="menu_name" id="menu_name"  class="form-control" value="{{ old('menu_name' ,$Menu->menu_name)}}">
+                            <input type="text" name="menu_name"  class="form-control" value="{{ old('menu_name' ,$Menu->menu_name)}}">
                             @error('menu_name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="menu_slug">Slug</label>
-                            <input type="text" readonly name="menu_slug" id="menu_slug"  class="form-control" value="{{ old('menu_slug' ,$Menu->menu_slug)}}">
+                            <input type="text" readonly name="menu_slug"   class="form-control" value="{{ old('menu_slug' ,$Menu->menu_slug)}}">
+                            <small><i class="fa-solid fa-circle-question"></i> Menu Slug cannot be changed</small>
+
                             @error('menu_slug')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
