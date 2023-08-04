@@ -33,7 +33,7 @@ Route::get('{slug}', function ($slug) {
     // If it does, handle the conflict appropriately (e.g., redirect to admin dashboard)
     if ($slug === 'admin') {
         return redirect()->route('admin.dashboard');
-    }elseif($slug =='term-and-condition' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-and-policy'){
+    }elseif($slug =='terms-and-conditions' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-policy'){
         $pagdata= Page::where('page_slug',$slug)->first();
         return view('Pages.dynamic-page-genrate',compact('pagdata'));
     }
