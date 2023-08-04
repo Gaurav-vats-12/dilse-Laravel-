@@ -32,9 +32,9 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                        <label for="blog_slug">   {{ __('Blog Slug *') }}</label>
-                            <input type="text" name="blog_slug" id="blog_slug" class="form-control" readonly placeholder ="Blog Slug" value="{{ old('blog_slug') }}">
-                            @error('blog_slug')
+                        <label for="blog_image">   {{ __('Blog Image') }}</label>
+                            <input type="file" name="blog_image" id="blog_image" class="form-control dropify" >
+                            @error('blog_image')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

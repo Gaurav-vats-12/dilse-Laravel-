@@ -61,6 +61,7 @@
               <ul>
                <li><a href="{{url('gallery')}}">Gallery</a></li>
                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
+               <li><a href="{{url('blog')}}">Blog</a></li>
               @if(Request::is('/') || Request::is('home-2'))
                 <li><a href="#" class="theme_btn">Book a table</a></li>
               @else

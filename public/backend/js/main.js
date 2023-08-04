@@ -111,9 +111,7 @@ jQuery( function () {
           });
     }else if(url.indexOf("/blog") > -1){
         jQuery('#blog_content').summernote({ tabsize: 2, height: 100 })
-        jQuery(document).on("focusout","#blog_title", function(e) {
-            jQuery('#blog_slug').val(`${jQuery('#blog_title').val().replace(/\s+/g, '-').toLowerCase()}`);
-          });
+
     }
 
 });

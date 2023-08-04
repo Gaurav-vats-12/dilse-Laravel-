@@ -18,13 +18,13 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
           <a href="{{ route('admin.banner.index') }}" class="nav-link {{ (request()->is('admin/banner*')) ? 'active' : '' }}">
               <p>
               {{ __('Manage Banners') }}
               </p>
             </a>
-          </li>
+          </li> -->
           <a href="{{ route('admin.testimonial.index') }}" class="nav-link {{ (request()->is('admin/testimonial*')) ? 'active' : '' }}">
               <p>
               {{ __('Manage Testimonial ') }}

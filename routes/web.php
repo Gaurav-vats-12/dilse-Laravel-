@@ -1,7 +1,7 @@
 <?php
 
 // use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\{HomeController, ContectController};
+use App\Http\Controllers\{HomeController,BlogController};
 use Illuminate\Support\Facades\Route;
 use App\Models\Admin\Page;
 use Illuminate\Support\Facades\URL;
@@ -27,6 +27,8 @@ Route::post('/email-subscription', [HomeController::class, 'emailSubscription'])
 Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/discount-and-coupons', [HomeController::class, 'giftCard'])->name('discountandcoupons');
+Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
+Route::get('/blog/{slug}', [BlogController::class, 'blogdetails'])->name('blogdetails');
 
 Route::get('{slug}', function ($slug) {
     // Check if the $admin variable conflicts with any other route or page
@@ -37,6 +39,5 @@ Route::get('{slug}', function ($slug) {
         $pagdata= Page::where('page_slug',$slug)->first();
         return view('Pages.dynamic-page-genrate',compact('pagdata'));
     }
-
     // Handle other routes...
 });
