@@ -40,14 +40,37 @@
 
       <div class="copy_right">
         <div class="container">
+          <div class="row">
+            <div class="col-md-5">
           <div class="copy_right_txt">
             <p>{{ setting('copyright_text') != null ? __(setting('copyright_text')) : '' }}</p>
-            <ul>
+           
+          </div>
+</div>
+<div class="col-md-4">
+          <div class="copyright_links">
+              <ul>
+                <li><a href="{{url('terms-and-conditions')}}">Term and Condition</a></li>
+                <li><a href="{{url('privacy-policy')}}">Privacy Policy</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+          <div class="copyright_links">
+          <ul>
             @foreach(explode(',', setting('footer_image_2')) as $info)
             <li><img src="{{ url('/storage/site/footer/otherImage/'.$info.'')}}" alt="{{$info}}" /></li>
               @endforeach
             </ul>
+            </div>
           </div>
+
+          <div class="copy_right_txt dd_bottom">
+            <p>Desinger and Developer By <a href="">Exotica It Solutions</a></p>
+          </div>
+
+</div>
         </div>
       </div>
     </footer>
