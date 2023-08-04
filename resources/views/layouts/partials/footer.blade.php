@@ -66,8 +66,8 @@
             </div>
           </div>
 
-          <div class="copy_right_txt">
-            <p>Desinger and Developer</p>
+          <div class="copy_right_txt dd_bottom">
+            <p>Desinger and Developer By <a href="">Exotica It Solutions</a></p>
           </div>
 
 </div>
