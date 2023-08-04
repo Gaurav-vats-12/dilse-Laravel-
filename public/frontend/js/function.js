@@ -1,5 +1,4 @@
 var ajaxResult = null;
-
 async   function Ajax_response(url,method,values,callback,_beforetask =null){
   jQuery.ajaxSetup({headers: { 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')  }
 });
@@ -36,7 +35,6 @@ $("input").keypress(function(e) {
 
  const counters = document.querySelectorAll('.counter');
  const speed = 200;
-
  counters.forEach((counter) => {
    const updateCount = () => {
      const target = parseInt(counter.getAttribute('data-value'));
