@@ -8,6 +8,7 @@
                 <li><a href="{{ route('aboutus') }}">About Us</a></li>
                 <li><a href="{{ route('gallery') }}">Gallery</a></li>
                 <li><a href="{{ route('discountandcoupons') }}">Discount and Coupons</a></li>
+                <li><a href="{{ url('dilse-foundation-and-donation') }}">Dilse Foundation and Donation</a></li>
                 <li><a href="{{ route('contact') }}">Contact Us</a></li>
               </ul>
             </div>
@@ -44,7 +45,7 @@
             <div class="col-md-5">
           <div class="copy_right_txt">
             <p>{{ setting('copyright_text') != null ? __(setting('copyright_text')) : '' }}</p>
-           
+
           </div>
 </div>
 <div class="col-md-4">

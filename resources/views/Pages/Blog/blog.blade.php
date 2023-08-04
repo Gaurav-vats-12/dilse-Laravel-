@@ -18,7 +18,7 @@
           <div class="tittle_heading">
           </div>
           <div class="row">
-            @if (sizeof($blog) >0)
+            @if (isset($blog) && count($blog) >0)
             @foreach ($blog  as $blog )
             <div class="col-md-4">
               <div class="featured_card">
