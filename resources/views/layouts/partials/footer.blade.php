@@ -65,6 +65,11 @@
             </ul>
             </div>
           </div>
+
+          <div class="copy_right_txt">
+            <p>Desinger and Developer</p>
+          </div>
+
 </div>
         </div>
       </div>

@@ -617,14 +617,20 @@ form.contact_form {
   align-items: center;
 }
 .copy_right_txt p {
-  font-size: 22px;
+  font-size: 15px;
   font-family: "Kalam";
   font-weight: bold;
   margin-bottom: 0;
   color: #0b0708;
 }
+.copy_right .row {
+  align-items: center;
+}
 .copy_right_txt ul li {
-  margin-left: 12px;
+  margin-left: 13px;
+}
+.copyright_links ul li:first-child {
+  margin-left: 0;
 }
 .open_hr {
   display: flex;
@@ -788,8 +794,8 @@ section.sight_food_location {
 }
 .copyright_links ul {
   display: flex;
-  align-items: end;
-  justify-content: end;
+  align-items: center;
+  justify-content: center;
 }
 
 .copyright_links ul li {
