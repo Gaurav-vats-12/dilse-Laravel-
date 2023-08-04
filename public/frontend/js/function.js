@@ -26,3 +26,29 @@ $("input").keypress(function(e) {
     showConfirmButton: false,
     timer: 10000
   });
+
+  jQuery("#phone").on("keypress keyup blur",function (event) {
+    jQuery(this).val($(this).val().replace(/[^0-9\.]/g,''));
+       if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+           event.preventDefault();
+       }
+ });
+
+ const counters = document.querySelectorAll('.counter');
+ const speed = 200;
+
+ counters.forEach((counter) => {
+   const updateCount = () => {
+     const target = parseInt(counter.getAttribute('data-value'));
+     const count = parseInt(counter.innerText);
+     const increment = Math.trunc(target / speed);
+
+     if (count < target) {
+       counter.innerText = `${count + increment}+`;
+       setTimeout(updateCount, 1);
+     } else {
+       counter.innerText = `${target}+`;
+     }
+   };
+   updateCount();
+ });
