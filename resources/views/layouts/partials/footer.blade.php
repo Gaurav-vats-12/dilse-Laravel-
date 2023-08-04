@@ -45,7 +45,7 @@
             <div class="col-md-5">
           <div class="copy_right_txt">
             <p>{{ setting('copyright_text') != null ? __(setting('copyright_text')) : '' }}</p>
-           
+
           </div>
 </div>
 <div class="col-md-4">
