@@ -44,8 +44,7 @@ class BlogController extends Controller
             $img = ResizeImage::make($blog_image->path());
             ResizeImage::make($request->file('blog_image'))->save($destinationPath.'/'. $blogImage);
         }
-        $slug = Str::slug($request->blog_title, '-').' '.\Str::random(4).'';
-
+        $slug = Str::slug($request->blog_title, '-').'-'.mt_rand(0,20);
         Blog::insert(['blog_title' => $request->blog_title, 'blog_image' => $blogImage,'slug' => $slug,'blog_content' => $request->blog_content,'blog_meta_title' => $request->blog_meta_title,'blog_meta_description' => $request->blog_meta_description,'status' => $request->status,'created_at' => now(), 'updated_at' => now() ]);
         return redirect()->route('admin.blog.index')->withSuccess('Blog  Successfully Created');
     }
