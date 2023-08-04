@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('page_title');
             $table->string('page_slug');
             $table->longText('page_content');
-            $table->string('page_meta_title');
-            $table->longText('page_meta_description');
+            $table->string('page_meta_title')->nullable();
+            $table->longText('page_meta_description')->nullable();
             $table->enum('status',['none','active','inactive'])->default('none');
             $table->timestamps();
             $table->softDeletes(); // <-- This will add a deleted_at field

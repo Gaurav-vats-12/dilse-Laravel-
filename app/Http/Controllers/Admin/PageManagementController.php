@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Requests\Admin\Pages\StorepagesRequest;
+use App\Http\Requests\Admin\Pages\{StorepagesRequest, UpdatePagesRequest};
 use App\Models\Admin\Page;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -54,9 +54,9 @@ class PageManagementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StorepagesRequest $request, string $id)
+    public function update(UpdatePagesRequest $request, string $id)
     {
-        Page::findOrFail($id)->update(['page_title' => $request->page_title, 'page_slug' => $request->page_slug,'page_content' => $request->page_content,'page_meta_title' => $request->page_meta_title,'page_meta_description' => $request->page_meta_description,'status' => $request->status, 'updated_at' => now() ]);
+        Page::findOrFail($id)->update(['page_title' => $request->page_title,'page_slug' => Page::findOrFail($id)->page_slug,'page_meta_title' => $request->page_meta_title,'page_meta_description' => $request->page_meta_description,'status' => $request->status, 'updated_at' => now() ]);
         return redirect()->route('admin.manage-pages.index')->withSuccess('Page Successfully Updated');
 
     }
