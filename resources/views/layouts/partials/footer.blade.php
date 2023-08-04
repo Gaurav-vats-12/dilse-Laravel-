@@ -16,7 +16,7 @@
           <div class="col-md-5">
             <div class="footer_cntnt">
               <div class="footer_logo">
-                <img src="{{ setting('footer_logo') != null ? url('/storage/site/logo/'.setting('footer_logo').'') : '' }}" alt="" />
+                <img src="{{ setting('footer_logo') != null ? url('/storage/site/logo/'.setting('footer_logo').'') : asset('frontend/img/footer_logo-1.png') }}" alt="" />
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="open_hr">
           <h3>Opening Hours</h3>
-          <p>{{ setting('opening_hour') != null ?__(setting('opening_hour')) : '' }}</p>
+          <p>{{ setting('opening_hour') != null ?__(setting('opening_hour' ,'Mon – Sun: 11:30 AM – 10:30 PM')) : '' }}</p>
         </div>
       </div>
 
@@ -60,9 +60,22 @@
           <div class="col-md-3">
           <div class="copyright_links">
           <ul>
+            @if (setting('footer_image_2')!=null)
             @foreach(explode(',', setting('footer_image_2')) as $info)
             <li><img src="{{ url('/storage/site/footer/otherImage/'.$info.'')}}" alt="{{$info}}" /></li>
               @endforeach
+            @else
+             <li><img src="{{asset('frontend/img/logo-footer-1.png') }}" alt="" /></li>
+                <li><img src="{{asset('frontend/img/logo-footer-2.png') }}" alt="" /></li>
+                <li><img src="{{asset('frontend/img/logo-footer-3.png') }}" alt="" /></li>
+                <li><img src="{{asset('frontend/img/logo-footer-4.png') }}" alt="" /></li>
+                <li><img src="{{asset('frontend/img/logo-footer-5.png') }}" alt="" /></li>
+
+            @endif
+            <!-- @dd(setting('footer_image_2')); -->
+
+
+
             </ul>
             </div>
           </div>

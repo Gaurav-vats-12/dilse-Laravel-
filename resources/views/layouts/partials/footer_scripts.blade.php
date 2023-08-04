@@ -1,5 +1,4 @@
 
-
    <!-- jquery -->
     <script src="{{asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- Jquery UI  -->
@@ -18,8 +17,6 @@
     <script src="{{asset('frontend/js/main.js') }}"></script>
     <!-- Function.js -->
     <script src="{{asset('frontend/js/function.js') }}"></script>
-
-
 </script>
 
 </body>

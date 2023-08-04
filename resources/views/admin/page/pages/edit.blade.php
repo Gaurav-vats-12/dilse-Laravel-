@@ -26,14 +26,16 @@
                     <form method="POST" action="{{ route('admin.manage-pages.update',$page->id )}}" accept-charset="UTF-8" enctype="multipart/form-data">@csrf @method('PUT')
                         <div class="form-group">
                             <label for="page_title">Page Title*</label>
-                            <input type="text" name="page_title" id="page_title" class="form-control" value="{{ old('page_title' ,$page->page_title )}}">
+                            <input type="text" name="page_title"  class="form-control" value="{{ old('page_title' ,$page->page_title )}}">
                             @error('page_title')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="page_slug">Page Slug*</label>
-                            <input type="text" class="form-control" name="page_slug" readonly id="page_slug" value="{{ old('page_slug' ,$page->page_slug)}}">
+                            <input type="text" class="form-control" name="page_slug" readonly value="{{ old('page_slug' ,$page->page_slug)}}">
+                            <small><i class="fa-solid fa-circle-question"></i> Page Slug cannot be changed</small>
+
                             @error('page_slug')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -54,7 +56,7 @@
                         </div>
                         <div class="form-group">
                         <label for="page_content">Page Content</label>
-                        <textarea name="page_content" id="page_content" class="form-control">{{ old('page_content' ,$page->page_content)}}</textarea>
+                        <textarea name="page_content"  class="form-control">{{ old('page_content' ,$page->page_content)}}</textarea>
                             @error('page_content')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
