@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @yield('meta')
-        <title>{{ setting('site_title', 'LaraStarter') }} | @yield('title')</title>
+        <title>{{ setting('site_title', 'Dilse') }} | @yield('title')</title>
         <link rel="icon" type="image/x-icon" href="{{ setting('Favicon') != null ? setting('Favicon') : url('frontend/img/fav.png') }}">
     @include('layouts.partials.header_style')
 </head>

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('meta')
-<meta property="og:title" content="{{ __($pagdata->page_meta_title) }}">
-<meta property="og:description" content="{{ __($pagdata->page_meta_description) }}">
-<meta name="title" content="{{ __($pagdata->page_meta_title) }}">
-<meta name="description" content="{{ __($pagdata->page_meta_description) }}">
+<meta property="og:title" content="@if(isset($pagdata->page_meta_title)) {{ __($pagdata->page_meta_title) }} @endif">
+<meta property="og:description" content="@if(isset($pagdata->page_meta_description)) {{ __($pagdata->page_meta_description) }} @endif">
+<meta name="title" content="@if(isset($pagdata->page_meta_title)) {{ __($pagdata->page_meta_title) }} @endif">
+<meta name="description" content="@if(isset($pagdata->page_meta_description)) {{ __($pagdata->page_meta_description) }} @endif">
 @endsection
 @section('title', 'Term and Condition')
 @section('frontcontent')
