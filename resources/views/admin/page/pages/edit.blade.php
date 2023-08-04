@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label for="page_slug">Page Slug*</label>
-                            <input type="text" class="form-control" name="page_slug" readonly id="page_slug" value="{{ old('page_slug' ,$page->page_slug)}}">
+                            <input type="text" class="form-control" name="page_slug" readonly value="{{ old('page_slug' ,$page->page_slug)}}">
                             <small><i class="fa-solid fa-circle-question"></i> Page Slug cannot be changed</small>
 
                             @error('page_slug')
