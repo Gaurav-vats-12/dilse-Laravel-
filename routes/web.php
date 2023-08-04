@@ -26,7 +26,7 @@ Route::post('/contact-us', [HomeController::class, 'submitContactFormAjax'])->na
 Route::post('/email-subscription', [HomeController::class, 'emailSubscription'])->name('emailSubscription');
 Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
-Route::get('/gift-card', [HomeController::class, 'giftCard'])->name('gift-card'); 
+Route::get('/discount-and-coupons', [HomeController::class, 'giftCard'])->name('discountandcoupons');
 Route::any('/{slug}', function ($slug) {
     if($slug =='term-and-condition' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-and-policy'){
         $pagdata= Page::where('page_slug',$slug)->first();

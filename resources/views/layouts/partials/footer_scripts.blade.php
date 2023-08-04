@@ -18,10 +18,8 @@
     <!-- Function.js -->
     <script src="{{asset('frontend/js/function.js') }}"></script>
 
-    <script>
-    $(window).scroll(function() {    
+    $(window).scroll(function() {
         var scroll = $(window).scrollTop();
-
         //>=, not <=
         if (scroll >= 550) {
             //clearHeader, not clearheader - caps H

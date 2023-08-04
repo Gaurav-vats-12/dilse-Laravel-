@@ -101,7 +101,7 @@ class HomeController extends Controller
     }
 
     public function giftCard(){
-        return view('gift-card');
+        return view('Pages.gift-card');
 
     }
 

@@ -60,30 +60,10 @@ jQuery(document).ready(function () {
               });
         }
     });
-
-
     }
-    jQuery("#phone").on("keypress keyup blur",function (event) {
-        jQuery(this).val($(this).val().replace(/[^0-9\.]/g,''));
-           if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-               event.preventDefault();
-           }
-     });
 
 
 });
-//     $('.home-slider').slick({
-// 	infinite: true,
-//     arrows: true,
-//     dots: false,
-//     prevArrow:"<img class='a-left control-c prev slick-prev' src='assets/img/left_arrow.png'>",
-//     nextArrow:"<img class='a-right control-c next slick-next' src='assets/img/right_arrow.png'>"
-//     });
-//     $('.testimonial_slider').slick({
-//         infinite: true,
-//         arrows: false,
-//         dots: false,
-//     });
-// });
+
 
 
