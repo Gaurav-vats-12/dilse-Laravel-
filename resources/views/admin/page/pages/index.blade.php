@@ -41,18 +41,16 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $pageValue->page_title }}</td>
                                 <td>{{ $pageValue->page_slug }}</td>
-                                <td>{!! $pageValue->page_content !!}</td>
+                                <td>{!! \Illuminate\Support\Str::limit(strip_tags($pageValue->page_content)) !!}</td>
                                 <td>{{ $pageValue->page_title }}</td>
                                 <td class="project-actions">
                           <a class="btn btn-info btn-sm" href="{{ route('admin.manage-pages.edit', $pageValue->id) }}">
                               <i class="fas fa-pencil-alt">
                               </i>
-                              Edit
                           </a>
                           <a class="btn btn-danger btn-sm" href="{{ route('admin.manage-pages.destroy', $pageValue->id) }}" data-confirm-delete="true">
                               <i class="fas fa-trash">
                               </i>
-                              Delete
                           </a>
                       </td>
                                 </tr>
