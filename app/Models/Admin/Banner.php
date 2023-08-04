@@ -11,4 +11,6 @@ class Banner extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
     protected $dates = ['deleted_at'];
+
+
 }
