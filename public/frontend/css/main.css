@@ -809,4 +809,15 @@ section.sight_food_location {
   padding: 10px 0;
   font-size: 16px;
 }
+.dd_bottom p {
+  text-align: center;
+  width: 100%;
+  padding-top: 18px;
+  border-top: 1px solid #dcd9da;
+  margin-top: 20px;
+  font-weight: 500;
+}
+.dd_bottom p a {
+  color: #000;
+}
 
