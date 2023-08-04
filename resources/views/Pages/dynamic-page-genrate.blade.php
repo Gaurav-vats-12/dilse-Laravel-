@@ -7,6 +7,7 @@
 @endsection
 @section('title', 'Term and Condition')
 @section('frontcontent')
+
 <section
         class="inner_bannner bg_style"
         style="background-image: url('{{asset('frontend/img/gift-card.jpg')}}')"

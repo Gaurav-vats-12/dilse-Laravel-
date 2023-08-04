@@ -15,8 +15,5 @@ class BlogController extends Controller
 
         $blog = Blog::where('slug', $slug)->firstOrFail();
         return view('Pages.Blog.singleblogdetails',compact('blog'));
-
-
-
     }
 }
