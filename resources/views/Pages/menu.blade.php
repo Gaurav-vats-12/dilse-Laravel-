@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Gift Cart')
+@section('title', 'Menu')
 @section('frontcontent')
 <section
         class="inner_bannner bg_style"
@@ -9,11 +9,11 @@
           <div class="home-slider-main">
             <div class="container">
               <div class="home-slider-content">
-                <h1>Gift Card</h1>
+                <h1>Menu</h1>
               </div>
             </div>
           </div>
-        </div> 
+        </div>
       </section>
       <section class="menu_main py_8">
     <div class="container">
@@ -90,7 +90,7 @@
                           </div>
                         </div>
                       </div>
-                 
+
                 </div>
             </div>
         </div>
