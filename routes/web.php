@@ -30,14 +30,13 @@ Route::get('/discount-and-coupons', [HomeController::class, 'giftCard'])->name('
 Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'blogdetails'])->name('blogdetails');
 
+Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
+
 Route::get('{slug}', function ($slug) {
-    // Check if the $admin variable conflicts with any other route or page
-    // If it does, handle the conflict appropriately (e.g., redirect to admin dashboard)
     if ($slug === 'admin') {
         return redirect()->route('admin.dashboard');
     }elseif($slug =='terms-and-conditions' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-policy'){
         $pagdata= Page::where('page_slug',$slug)->first();
         return view('Pages.dynamic-page-genrate',compact('pagdata'));
     }
-    // Handle other routes...
 });
