@@ -791,6 +791,10 @@ section.sight_food_location {
     color: #716b6d;
     line-height: 32px;
     text-transform: lowercase;
+    margin-bottom: 32px;
+}
+.ds_content h2 {
+    margin: 29px 0 15px;
 }
 .copyright_links ul {
   display: flex;
@@ -1395,3 +1399,6 @@ img.mfp-img {
   font-weight: 600;
 }
 
+.ds_content {
+    border-bottom: 1px solid #dcd9da;
+}
