@@ -48,10 +48,10 @@
                               <i class="fas fa-pencil-alt">
                               </i>
                           </a>
-                          <a class="btn btn-danger btn-sm" href="{{ route('admin.manage-pages.destroy', $pageValue->id) }}" data-confirm-delete="true">
+                          <!-- <a class="btn btn-danger btn-sm" desabled href="{{ route('admin.manage-pages.destroy', $pageValue->id) }}" data-confirm-delete="true">
                               <i class="fas fa-trash">
                               </i>
-                          </a>
+                          </a> -->
                       </td>
                                 </tr>
 
