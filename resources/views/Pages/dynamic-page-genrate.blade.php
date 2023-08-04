@@ -21,7 +21,7 @@
           </div>
         </div>
       </section>
-      <section class="gallery_pics gift_crd py_8">
+      <section class="ds_content py_8">
         <div class="container">
         {!! __($pagdata->page_content) !!}
 
