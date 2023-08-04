@@ -150,19 +150,19 @@
             <div class="col-md-4">
               <div class="counter_crd">
                 <h3>Happy Customers</h3>
-                <h2>3500+</h2>
+                <h2 class="counter" data-value ="3500+">0+</h2>
               </div>
             </div>
             <div class="col-md-4">
               <div class="counter_crd">
                 <h3>Dishes</h3>
-                <h2>200+</h2>
+                <h2 class="counter" data-value ="200+">0+</h2>
               </div>
             </div>
             <div class="col-md-4">
               <div class="counter_crd">
                 <h3>Deliveries</h3>
-                <h2>10000+</h2>
+                <h2 class="counter" data-value ="10000+">0+</h2>
               </div>
             </div>
           </div>
