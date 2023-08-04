@@ -18,16 +18,7 @@
     <!-- Function.js -->
     <script src="{{asset('frontend/js/function.js') }}"></script>
 
-    $(window).scroll(function() {
-        var scroll = $(window).scrollTop();
-        //>=, not <=
-        if (scroll >= 550) {
-            //clearHeader, not clearheader - caps H
-            $(".home_slider_btn").addClass("active");
-        }else if(scroll < 550){
-            $(".home_slider_btn").removeClass("active");
-        }
-    });
+
 </script>
 
 </body>
