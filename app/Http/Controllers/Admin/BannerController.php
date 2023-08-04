@@ -40,8 +40,8 @@ class BannerController extends Controller
         //     $banner_image = $request->file(trim('banner_image'));
         //     $bannerImage = time().'-'.$banner_image->getClientOriginalName();
         //     $destinationPath = public_path('storage/banner/'); !is_dir($destinationPath) &&  mkdir($destinationPath, 0777, true);
-        //     $img = ResizeImage::make($banner_image->path());
-        //     ResizeImage::make($request->file('banner_image'))->resize(1440, 674)->save($destinationPath.'/'. $bannerImage);
+        //     $img = ResizeImage::make($banner_image->path ResizeImage::make($request->file('banner_image'))->resize(1440, 674)->save($destinationPath.'/'. $bannerImage);());
+        //
         // }
         if ($request->banner_type =='home') { $banner_details1 = $request->home_banner_button_url; $banner_details2 = $request->home_banner_button_name; } else if($request->banner_type =='popup') { $banner_details1 = $request->popup_banner_button_url;  $banner_details2 = $request->popup_banner_button_name;}else if($request->banner_type =='promo') {$banner_details1 = $request->promo_banner_button_url; $banner_details2 = $request->promo_banner_button_name; }else{ $banner_details1 = $request->banner_sales_start_date; $banner_details2 = $request->banner_sales_end_date; }
         Banner::insertGetId(['banneruuid'=>\Str::random(10), 'banner_title' => $request->banner_title,'banner_heading' => $request->banner_heading, 'banner_discription' => strip_tags($request->banner_discription),'bannerImage' =>null, 'banner_type' => $request->banner_type,'status' => $request->status,'banner_details1'=>$banner_details1,'banner_details2'=>$banner_details2,'created_at' => now(),'updated_at' => now()]);

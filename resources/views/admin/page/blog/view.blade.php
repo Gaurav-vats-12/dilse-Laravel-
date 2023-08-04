@@ -45,6 +45,12 @@
                         </p>
                         </div>
                         <div class="form-group">
+                        <label for="blog_content"> {{ __('Blog Image') }}</label>
+                        <p class="text">
+                        <img src="{{ url('/storage/blog/'.$blog->blog_title.'/'.$blog->blog_image.'') }}" alt="" width="100px">
+                        </p>
+                        </div>
+                        <div class="form-group">
                         <label for="blog_meta_title">   {{ __('Blog Meta Title  *') }}</label>
                         <p class="text">
                         {!! __($blog->blog_meta_title) !!}
