@@ -28,19 +28,15 @@ Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/gift-card', [HomeController::class, 'giftCard'])->name('gift-card'); 
 
-Route::get('{admin}', function ($admin) {
+Route::get('{slug}', function ($slug) {
     // Check if the $admin variable conflicts with any other route or page
     // If it does, handle the conflict appropriately (e.g., redirect to admin dashboard)
-    if ($admin === 'admin') {
+    if ($slug === 'admin') {
         return redirect()->route('admin.dashboard');
+    }elseif($slug =='term-and-condition' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-and-policy'){
+        $pagdata= Page::where('page_slug',$slug)->first();
+        return view('Pages.dynamic-page-genrate',compact('pagdata'));
     }
 
     // Handle other routes...
-});
-
-Route::any('/{slug?}', function ($slug = null) {
-        if($slug =='term-and-condition' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-and-policy'){
-            $pagdata= Page::where('page_slug',$slug)->first();
-            return view('Pages.dynamic-page-genrate',compact('pagdata'));
-        }
 });
