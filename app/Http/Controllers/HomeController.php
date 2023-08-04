@@ -19,7 +19,7 @@ class HomeController extends Controller
     }
 
     public function contact(){
-        return view('contact');
+        return view('Pages.contact');
     }
 
     public function submitContactForm(Request $request)
