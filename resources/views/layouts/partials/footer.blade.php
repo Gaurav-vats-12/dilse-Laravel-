@@ -8,7 +8,6 @@
                 <li><a href="{{ route('aboutus') }}">About Us</a></li>
                 <li><a href="{{ route('gallery') }}">Gallery</a></li>
                 <li><a href="{{ route('discountandcoupons') }}">Discount and Coupons</a></li>
-                <li><a href="{{ url('dilse-foundation-and-donation') }}">Dilse Foundation and Donation</a></li>
                 <li><a href="{{ route('contact') }}">Contact Us</a></li>
               </ul>
             </div>
