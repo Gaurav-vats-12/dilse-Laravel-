@@ -14,16 +14,15 @@ function makeid(length) {
     var form =  $(this).closest("form");
     var name = $(this).data("name");
     event.preventDefault();
-   new   swal({
+     Swal.fire({
         title: `Are you sure you want to delete this record?`,
-        icon: "warning",
-        buttons: true,
         showCancelButton: true,
-        dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-        form.submit();
-      }
-    });
+        confirmButtonText: 'Save',
+        denyButtonText: `Don't save`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        } else  {
+        }
+      })
 });
