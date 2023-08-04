@@ -4,6 +4,7 @@
 use App\Http\Controllers\{HomeController, ContectController};
 use Illuminate\Support\Facades\Route;
 use App\Models\Admin\Page;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,6 @@ use App\Models\Admin\Page;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -26,11 +26,12 @@ Route::post('/contact-us', [HomeController::class, 'submitContactFormAjax'])->na
 Route::post('/email-subscription', [HomeController::class, 'emailSubscription'])->name('emailSubscription');
 Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
-Route::get('/discount-and-coupons', [HomeController::class, 'giftCard'])->name('discountandcoupons');
+Route::get('/gift-card', [HomeController::class, 'giftCard'])->name('gift-card');
 Route::any('/{slug}', function ($slug) {
     if($slug =='term-and-condition' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-and-policy'){
         $pagdata= Page::where('page_slug',$slug)->first();
         return view('Pages.dynamic-page-genrate',compact('pagdata'));
     }
-});
 
+    // Handle other routes...
+});
