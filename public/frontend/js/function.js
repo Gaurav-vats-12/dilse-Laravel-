@@ -53,7 +53,7 @@ $("input").keypress(function(e) {
    updateCount();
  });
 
- $(window).scroll(function() {
+ jQuery(window).scroll(function() {
     var scroll = $(window).scrollTop();
     //>=, not <=
     if (scroll >= 550) {
@@ -62,4 +62,26 @@ $("input").keypress(function(e) {
     }else if(scroll < 550){
         $(".home_slider_btn").removeClass("active");
     }
+});
+
+
+jQuery('.image-popup-vertical-fit').magnificPopup({
+
+    type: 'image',
+    mainClass: 'mfp-with-zoom',
+    gallery:{
+              enabled:true
+          },
+          zoom: {
+            enabled: true,
+
+            duration: 300, // duration of the effect, in milliseconds
+            easing: 'ease-in-out', // CSS transition easing function
+
+            opener: function(openerElement) {
+
+              return openerElement.is('img') ? openerElement : openerElement.find('img');
+          }
+        }
+
 });

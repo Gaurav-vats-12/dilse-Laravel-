@@ -25,7 +25,7 @@
                   <div class="location_img">
                     <img src="{{asset('frontend/img/location.png')}}" alt="" />
                   </div>
-                  <p>335 Roncesvalles AveToronto, ON M6R – 2M8</p>
+                  <p>{{ setting('address') != null ? setting('address') : '' }}</p>
                 </div>
               </div>
             </div>
@@ -35,7 +35,7 @@
                   <div class="location_img">
                     <img src="{{asset('frontend/img/message.png')}}" alt="" />
                   </div>
-                  <p>info@dilse.com</p>
+                  <p>{{ setting('site_email') != null ? setting('site_email') : '' }}</p>
                 </div>
               </div>
             </div>
@@ -45,7 +45,7 @@
                   <div class="location_img">
                     <img src="{{asset('frontend/img/location.png')}}" alt="" />
                   </div>
-                  <p>416-534-6344</p>
+                  <p>{{ setting('phone') != null ? setting('phone') : '' }}</p>
                 </div>
               </div>
             </div>
