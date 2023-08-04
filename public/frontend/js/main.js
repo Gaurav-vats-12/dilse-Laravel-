@@ -63,16 +63,40 @@ jQuery(document).ready(function () {
     }
 
 });
+const counters = document.querySelectorAll('.counter');
+ const speed = 200;
+ counters.forEach((counter) => {
+   const updateCount = () => {
+     const target = parseInt(counter.getAttribute('data-value'));
+     const count = parseInt(counter.innerText);
+     const increment = Math.trunc(target / speed);
 
-$(".gallery_crd_img img").click(function () {
-    var $src = $(this).attr("src");
-    $(".show").fadeIn();
-    $(".img-show img").attr("src", $src);
+     if (count < target) {
+       counter.innerText = `${count + increment}+`;
+       setTimeout(updateCount, 1);
+     } else {
+       counter.innerText = `${target}+`;
+     }
+   };
+   updateCount();
+ });
+
+ jQuery('.image-popup-vertical-fit').magnificPopup({
+    type: 'image',
+    mainClass: 'mfp-with-zoom',
+    gallery:{
+              enabled:true
+          },
+          zoom: {
+            enabled: true,
+
+            duration: 300, // duration of the effect, in milliseconds
+            easing: 'ease-in-out', // CSS transition easing function
+
+            opener: function(openerElement) {
+
+              return openerElement.is('img') ? openerElement : openerElement.find('img');
+          }
+        }
 });
-
-$("span, .overlay").click(function () {
-    $(".show").fadeOut();
-});
-
-
 

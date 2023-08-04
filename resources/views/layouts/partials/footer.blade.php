@@ -72,10 +72,6 @@
                 <li><img src="{{asset('frontend/img/logo-footer-5.png') }}" alt="" /></li>
 
             @endif
-            <!-- @dd(setting('footer_image_2')); -->
-
-
-
             </ul>
             </div>
           </div>
