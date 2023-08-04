@@ -47,12 +47,10 @@
                           <a class="btn btn-info btn-sm" href="{{ route('admin.manage-pages.edit', $pageValue->id) }}">
                               <i class="fas fa-pencil-alt">
                               </i>
-                              Edit
                           </a>
                           <a class="btn btn-danger btn-sm" href="{{ route('admin.manage-pages.destroy', $pageValue->id) }}" data-confirm-delete="true">
                               <i class="fas fa-trash">
                               </i>
-                              Delete
                           </a>
                       </td>
                                 </tr>
