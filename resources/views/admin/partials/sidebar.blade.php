@@ -18,6 +18,20 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+          <a href="{{ route('admin.menu.index') }}" class="nav-link {{ (request()->is('admin/menu*')) ? 'active' : '' }}">
+              <p>
+              {{ __('Manage Menus ') }}
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+          <a href="{{ route('admin.food-items.index') }}" class="nav-link {{ (request()->is('admin/food-items*')) ? 'active' : '' }}">
+              <p>
+              {{ __('Manage Food Items ') }}
+              </p>
+            </a>
+          </li>
           <!-- <li class="nav-item">
           <a href="{{ route('admin.banner.index') }}" class="nav-link {{ (request()->is('admin/banner*')) ? 'active' : '' }}">
               <p>
@@ -31,13 +45,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-          <a href="{{ route('admin.menu.index') }}" class="nav-link {{ (request()->is('admin/menu*')) ? 'active' : '' }}">
-              <p>
-              {{ __('Manage Menus ') }}
-              </p>
-            </a>
-          </li>
+        
           <li class="nav-item">
           <a href="{{ route('admin.manage-pages.index') }}" class="nav-link {{ (request()->is('admin/manage-pages*')) ? 'active' : '' }}">
               <p>

@@ -3,6 +3,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController,MenuController,BlogController};
 // use App\Modules\Admins\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\FoodItemController;
+use App\Http\Controllers\Admin\ExtraFoodItemController;
 
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['web', 'admin.auth', 'admin.verified'])->group(function(){
@@ -15,6 +17,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('/footer-setting', [SettingController::class, 'footersetting'])->name('footersetting');
         });
         Route::resource('manage-pages', PageManagementController::class);
+
+        // food items
+        Route::resource('food-items', FoodItemController::class);
+        Route::resource('extra-items', ExtraFoodItemController::class);
 
         // testimonial
         Route::resource('testimonial', TestimonialsController::class);
