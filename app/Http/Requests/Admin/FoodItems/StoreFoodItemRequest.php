@@ -27,6 +27,7 @@ class StoreFoodItemRequest extends FormRequest
             'product_image' =>'required',
             'description' =>'required',
             'price' => 'required',
+            'extra_items' => 'required',
             'status' => 'required|in:1,0',
 
         ];

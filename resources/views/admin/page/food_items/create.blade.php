@@ -26,7 +26,7 @@
                     <form method="POST" action="{{ route('admin.food-items.store')}}" accept-charset="UTF-8" enctype="multipart/form-data">@csrf
                         <div class="form-group">
                         <label for="Name">   {{ __('Name *') }}</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder ="Blog Name" value="{{ old('name') }}">
+                            <input type="text" name="name" id="name" class="form-control" placeholder ="Name" value="{{ old('name') }}">
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -36,7 +36,7 @@
                         <select name="menu_id" id="menu_id" class="form-control form-select">
                         <option value=""> Select Menu</option>
                            @foreach( $menus as  $key=> $menu)
-                            <option value="{{$key}}" >{{ $menu->menu_name}}</option>
+                            <option value="{{$menu->id}}" >{{ $menu->menu_name}}</option>
                               @endforeach
 
                             </select>
@@ -71,6 +71,19 @@
                         <label for="blog_meta_description"> {{ __('Featured') }}</label>
                         <input type="checkbox" value="1"  name="featured"  {{ old('featured') == 1 ? 'checked' : '' }}  data-bootstrap-switch data-off-color="danger" data-on-color="success">
                             @error('featured')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                        <label for="status">   {{ __('Extra Items') }}</label>
+                        <select name="extra_items[]" id="extra_items" class="form-control form-select" multiple>
+                            <option value="">Select Extra Items</option>
+                            @foreach( $exta_items as  $key=> $exta_items)
+                            <option value="{{$exta_items->id}}" >{{ $exta_items->name}}</option>
+                              @endforeach
+                        </select>
+                            @error('status')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

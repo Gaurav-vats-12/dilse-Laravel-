@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Admin\ExtraFoodItems;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -18,6 +19,11 @@ class FoodItem extends Model
     {
         return $this->belongsTo(Menu::class, 'menu_id', 'id');
     }
+
+    public function ExtraFoodItems(){
+        return $this->hasMany(ExtraFoodItems::class, 'food_item_id', 'id');
+    }
+
 
     protected static function booted()
     {
@@ -46,4 +52,7 @@ class FoodItem extends Model
 
         return $slug;
     }
+
+
+
 }
