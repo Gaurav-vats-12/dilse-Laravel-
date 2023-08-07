@@ -17,7 +17,8 @@
     <script src="{{asset('frontend/js/main.js') }}"></script>
     <!-- Function.js -->
     <script src="{{asset('frontend/js/function.js') }}"></script>
-</script>
 
+    @include('sweetalert::alert')
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 </body>
 </html>

@@ -29,6 +29,8 @@ class SettingController extends Controller
             $siteImage = time().'-'.$site_logo->getClientOriginalName();
             $sitelogopath = public_path('storage/site/logo'); !is_dir($sitelogopath) &&  mkdir($sitelogopath, 0777, true);
             ResizeImage::make($request->file('logo'))->resize(90, 60)->save($sitelogopath.'/'. $siteImage);
+            DeleteOldImage($sitelogopath.'/'.$setting_get->site_logo);
+
          }else{
             $siteImage = $setting_get->site_logo;
          }
@@ -37,6 +39,8 @@ class SettingController extends Controller
             $FaviconImage = time().'-'.$Favicon->getClientOriginalName();
             $Faviconpath = public_path('storage/site/Favicon'); !is_dir($Faviconpath) &&  mkdir($Faviconpath, 0777, true);
             ResizeImage::make($request->file('Favicon'))->resize(90, 60)->save($Faviconpath.'/'. $FaviconImage);
+            DeleteOldImage($Faviconpath.'/'.$setting_get->favicon);
+
          }else{
             $FaviconImage = $setting_get->favicon;
          }
@@ -47,6 +51,8 @@ class SettingController extends Controller
             $footer_logoImage = time().'-'.$Favicon->getClientOriginalName();
             $footer_logopath = public_path('storage/site/logo'); !is_dir($footer_logopath) &&  mkdir($footer_logopath, 0777, true);
             ResizeImage::make($request->file('footer_logo'))->resize(390, 250)->save($footer_logopath.'/'. $footer_logoImage);
+            DeleteOldImage($footer_logopath.'/'.$setting_get->footer_logo);
+
         }else{
             $footer_logoImage = $setting_get->footer_logo;
          }
@@ -58,6 +64,7 @@ class SettingController extends Controller
                 $footer_image_2Image = time().'-'.$file->getClientOriginalName();
                 ResizeImage::make($file)->save($footer_image_2path.'/'. $footer_image_2Image);
              $imageslist[] = $footer_image_2Image;
+             DeleteOldImage($footer_image_2path.'/'.$file);
 
         }  $footer_image_2 = implode(',', $imageslist);}
         else{

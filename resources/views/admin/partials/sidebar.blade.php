@@ -54,6 +54,13 @@
             </a>
           </li>
           <li class="nav-item">
+          <a href="{{ route('admin.manage-gallery.index') }}" class="nav-link {{ (request()->is('admin/manage-gallery*')) ? 'active' : '' }}">
+              <p>
+              {{ __('Manage Gallery') }}
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
           <a href="{{ route('admin.blog.index') }}" class="nav-link {{ (request()->is('admin/blog*')) ? 'active' : '' }}">
               <p>
               {{ __('Manage Blogs ') }}

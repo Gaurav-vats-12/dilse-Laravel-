@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\{FoodItem,Menu};
+use App\Http\Requests\Admin\FoodItems\{StoreFoodItemRequest,UpdateFoodItemRequest};
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as ResizeImage;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
-use App\Http\Requests\{StoreFoodItems,UpdateFoodItems};
-use File,Exception;
 
 
 class FoodItemController extends Controller
@@ -14,38 +16,32 @@ class FoodItemController extends Controller
     public function index()
     {
         $foodItems = FoodItem::with(['menu'])->get();
-        return view('admin.food_items.index',compact('foodItems'));
+        return view('admin.page.food_items.index',compact('foodItems'));
     }
 
     public function create()
     {
         $menus = Menu::where('status','active')->get();
-        return view('admin.food_items.create',compact('menus'));
+        return view('admin.page.food_items.create',compact('menus'));
     }
 
-   
-    public function store(StoreFoodItems $request)
-    {
-        try{
-            $imageName = time().'.'.$request->logo_image->extension();
-            $request->logo_image->move(public_path('storage/food-items/'), $imageName); 
-    
-            $restaurant = FoodItem::create([
-                'name' => $request->name,
-                'menu_id' => $request->menu_id,
-                'description' => $request->description,
-                'price' => $request->price,
-                'image' => $imageName,
-                'featured'=> (isset($request->featured)) ? $request->featured : 0,
-                
-            ]);
-           
-            return redirect(route('food-items.index'))->withSuccess('Food Item Added Successfully');
 
-           
-        }catch(Exception $e){
-            return $e->getMessage();
-        }   
+    public function store(StoreFoodItemRequest $request)
+    {
+        if($request->hasFile('product_image') && $request->file('product_image')->isValid()){
+            $product_image = $request->file('product_image');
+            $ProductImage = time().'-'.$product_image->getClientOriginalName();
+            $sitepath = public_path('storage/products'); !is_dir($sitepath) &&  mkdir($sitepath, 0777, true);
+            ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
+        }
+          $restaurant = FoodItem::create([  'name' => $request->name, 'menu_id' => $request->menu_id, 'description' => $request->description, 'price' => $request->price,
+                'image' => $ProductImage,
+                'featured'=> (isset($request->featured)) ? 1 : 0,
+                'status'=> (isset($request->status)) ? 1 : 0,
+                'created_at' => now(),
+                 'updated_at' => now()
+            ]);
+        return redirect()->route('admin.food-items.index')->withSuccess('Details Successfully Created');
     }
 
 
@@ -58,61 +54,55 @@ class FoodItemController extends Controller
 
         $foodItem = FoodItem::with(['menu'])->where('id',$id)->first();
         $menus = Menu::pluck('menu_name','id');
-        return view('admin.food_items.edit',compact('foodItem','menus'));
+
+        return view('admin.page.food_items.edit',compact('foodItem','menus'));
     }
 
-  
-    public function update(UpdateFoodItems $request, $id)
-    {
-        //dd($id);
-       try{
-            $foodItem = FoodItem::findOrFail($id);
-            $foodItem->name = $request->name;
-            $foodItem->menu_id = $request->menu_id;
-            $foodItem->description = $request->description;
-            $foodItem->price = $request->price;
-            $foodItem->status = $request->status;
-            $foodItem->featured = (isset($request->featured)) ? $request->featured : 0;
-            
-            if(isset($request->logo_image)){
-                if($request->old_image != ''){
-                    $image = public_path('storage/food-items/'.$request->old_image); 
-                    if(File::exists($image))
-                    {
-                        unlink($image);
-                    } 
-                }
-                $imageName = time().'.'.$request->logo_image->extension();
-                $request->logo_image->move(public_path('storage/food-items/'), $imageName);
-                $foodItem->image = $imageName;
-            }
-            $foodItem->save();
-            
-            return redirect(route('admin.food-items.index'))->withSuccess('Details Updated Successfully');
 
-        }catch(Exception $e){
-            return $e->getMessage();
-        }   
-        
+    public function update(UpdateFoodItemRequest $request, string $id)
+    {
+        $FoodItem = FoodItem::findOrFail($id);
+
+        if($request->hasFile('product_image') && $request->file('product_image')->isValid()){
+            $sitepath = public_path('storage/products'); !is_dir($sitepath) &&  mkdir($sitepath, 0777, true);
+            $product_image = $request->file('product_image');
+            $ProductImage = time().'-'.$product_image->getClientOriginalName();
+            DeleteOldImage($sitepath.'/'.$FoodItem->image);
+            ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
+            }else{
+            $ProductImage = $FoodItem->image;
+        }
+
+        FoodItem::findOrFail($id)->update([ 'name' => $request->name, 'menu_id' => $request->menu_id, 'description' => $request->description, 'price' => $request->price,
+        'image' => $ProductImage,
+        'featured'=> (isset($request->featured)) ? 1 : 0,
+        'status'=> (isset($request->status)) ? 1 : 0,
+         'updated_at' => now()
+    ]);
+    return redirect()->route('admin.food-items.index')->withSuccess('Details Successfully Updated');
+
+
+
     }
 
     public function destroy(Request $request,$id)
-    {   
-        
+    {
+
         try{
             $user_id =$request->user_id;
             FoodItem::findOrFail($id)->delete();
-            
+
             if(isset($request->all()['redirect_to']) && $request->all()['redirect_to'] == 'restaurant')
             {
                 return redirect('admin/restaurants/'.$user_id.'/?tab=food')->withSuccess('Record Deleted!!!!!!');
             }else{
-                return redirect(route('foodItems.index'))->withSuccess('Record Deleted!!!!!!');
+                return redirect()->route('admin.food-items.index')->withSuccess('Record Deleted!!!!!!');
             }
 
         }catch(Exception $e){
             return $e->getMessage();
-        }   
-       
+        }
     }
+
+
 }

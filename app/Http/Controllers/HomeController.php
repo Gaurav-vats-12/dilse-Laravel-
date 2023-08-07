@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Admin\{Banner,Testimonial,Page};
+use App\Models\Admin\{Banner,Testimonial,Page,FoodItem,Gallery};
 use App\Models\Subscriber;
 use App\Mail\ContactNotification;
 use Illuminate\Support\Facades\Mail;
+
 use App\Services\MailchimpService;
 use Illuminate\Http\Request;
 
@@ -97,15 +98,12 @@ class HomeController extends Controller
         return view('Pages.about');
     }
     public function gallery(){
-        return view('Pages.gallery');
+        return view('Pages.gallery')->with('gallery',Gallery::where('status' ,1)->get());
     }
 
     public function giftCard(){
         return view('Pages.gift-card');
     }
 
-    public function menu(){
-        return view('Pages.menu');
-    }
 
 }

@@ -13,7 +13,7 @@
               </div>
             </div>
           </div>
-        </div> 
+        </div>
       </section>
       <section class="gallery_pics gift_crd py_8">
         <div class="container">
