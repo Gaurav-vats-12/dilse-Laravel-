@@ -39,9 +39,7 @@ class FoodItemController extends Controller
                 'featured'=> (isset($request->featured)) ? $request->featured : 0,
                 
             ]);
-           
             return redirect(route('admin.food-items.index'))->withSuccess('Food Item Added Successfully');
-
            
         }catch(Exception $e){
             return $e->getMessage();
@@ -101,7 +99,6 @@ class FoodItemController extends Controller
         try{
             FoodItem::findOrFail($id)->delete();
             return redirect(route('admin.food-items.index'))->withSuccess('Food Item Deleted Successfully');
-
         }catch(Exception $e){
             return $e->getMessage();
         }   
