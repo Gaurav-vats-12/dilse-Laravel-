@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Models\Admin\{FoodItem,Menu};
+use App\Models\Admin\{FoodItem,Menu,ExtraItem,ExtraFoodItems};
 use App\Http\Requests\Admin\FoodItems\{StoreFoodItemRequest,UpdateFoodItemRequest};
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as ResizeImage;
@@ -22,7 +22,8 @@ class FoodItemController extends Controller
     public function create()
     {
         $menus = Menu::where('status','active')->get();
-        return view('admin.page.food_items.create',compact('menus'));
+        $exta_items = ExtraItem::where('status',1)->get();
+        return view('admin.page.food_items.create',compact('menus','exta_items'));
     }
 
 
@@ -34,14 +35,13 @@ class FoodItemController extends Controller
             $sitepath = public_path('storage/products'); !is_dir($sitepath) &&  mkdir($sitepath, 0777, true);
             ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
         }
-          $restaurant = FoodItem::create([  'name' => $request->name, 'menu_id' => $request->menu_id, 'description' => $request->description, 'price' => $request->price,
-                'image' => $ProductImage,
-                'featured'=> (isset($request->featured)) ? 1 : 0,
-                'status'=> (isset($request->status)) ? 1 : 0,
-                'created_at' => now(),
-                 'updated_at' => now()
-            ]);
+        $extra_items = $request->extra_items;
 
+
+
+
+          $restaurant = FoodItem::create(['name' => $request->name, 'menu_id' => $request->menu_id, 'description' => $request->description, 'price' => $request->price, 'image' => $ProductImage,'featured'=> (isset($request->featured)) ? 1 : 0,'status'=> (isset($request->status)) ? 1 : 0,'created_at' => now(),'updated_at' => now()]);
+            foreach ($request->extra_items as $key => $value) { ExtraFoodItems::create(['food_item_id' => $restaurant->id, 'extra_item_id' => $value,'created_at' => now(), 'updated_at' => now()]); }
             return redirect(route('admin.food-items.index'))->withSuccess('Food Item Added Successfully');
 
     }
@@ -54,10 +54,12 @@ class FoodItemController extends Controller
            return redirect()->back();
         }
 
-        $foodItem = FoodItem::with(['menu'])->where('id',$id)->first();
+        $foodItem = FoodItem::with(['menu','ExtraFoodItems'])->where('id',$id)->first();
+        $exta_items = ExtraItem::where('status',1)->get();
+
         $menus = Menu::pluck('menu_name','id');
 
-        return view('admin.page.food_items.edit',compact('foodItem','menus'));
+        return view('admin.page.food_items.edit',compact('foodItem','menus','exta_items'));
     }
 
 

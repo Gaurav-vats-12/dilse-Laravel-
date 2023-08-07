@@ -73,6 +73,19 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                        @php $selected = $foodItem->ExtraFoodItems;  @endphp
+                        <label for="status">   {{ __('Extra Items') }}</label>
+                        <select name="extra_items[]" id="extra_items" class="form-control form-select" multiple>
+                            <option value="">Select Extra Items</option>
+                            @foreach( $exta_items as  $key => $exta_item)
+                            <option value="{{$exta_item->id}}"  {{ $foodItem->ExtraFoodItems->contains('id',$exta_item->food_item_id )? 'checked': ''}} >{{ $exta_item->name}}</option>
+                              @endforeach
+                        </select>
+                            @error('status')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                         <label for="status">   {{ __('Status') }}</label>
                         <select name="status" id="status" class="form-control form-select">
                             <option value="">Select status</option>

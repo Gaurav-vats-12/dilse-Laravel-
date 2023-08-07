@@ -43,7 +43,7 @@
                                             <img src="{{ url('/storage/products/addon/'.$Item->image.'') }}" alt="" style="width:60px; height:60px;">
                                         </td>
                                         <td>{{$Item->name}}</td>
-                                        <td>{{$Item->description}}</td>
+                                        <td class="">{!! $Item->description !!}</td>
                                         <td>{{$Item->price}}</td>
                                         <td> @if ($Item->status == 1)<div class="mt-sm-1 d-block"> <span class="badge badge-success">Active</span>  </div> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Inactive</span> </div> @endif </td>
                                         <td class="project-actions"><a class="btn btn-info btn-sm" href="{{ route('admin.extra-items.edit', $Item->id) }}"> <i class="fas fa-pencil-alt"></i> </a><form method="POST" action="{{ route('admin.extra-items.destroy', $Item->id) }}">  @csrf @method('DELETE') <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button> </form></td>
