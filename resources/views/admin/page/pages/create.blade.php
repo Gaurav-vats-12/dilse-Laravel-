@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group">
                         <label for="page_content">Page Content</label>
-                        <textarea name="page_content" id="page_content" class="form-control">{{ old('page_content')}}</textarea>
+                        <textarea name="page_content" id="page_content" class="form-control summernote">{{ old('page_content')}}</textarea>
                             @error('page_content')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

@@ -3,41 +3,44 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\{FoodItem,ExtraItem};
+use App\Http\Requests\Admin\ExtraItems\{StoreExtaItemsRequest,UpdateExtaItemsRequest};
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as ResizeImage;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
-use App\Http\Requests\{StoreExtaItems,UpdateExtaItems};
-use File,Exception;
 
 
 class ExtraFoodItemController extends Controller
 {
-    
+
     public function index()
     {
         $items = ExtraItem::get();
-        return view('admin.extra_items.index',compact('items'));
+        return view('admin.page.extra_items.index',compact('items'));
     }
 
     public function create()
     {
-        return view('admin.extra_items.create');
+        return view('admin.page.extra_items.create');
     }
 
-    public function store(StoreExtaItems $request)
+    public function store(StoreExtaItemsRequest $request)
     {
-        try{
-            $imageName = time().'.'.$request->logo_image->extension();
-            $request->logo_image->move(public_path('storage/extraitems'), $imageName); 
+        if($request->hasFile('extra_product_image') && $request->file('extra_product_image')->isValid()){
+            $product_image = $request->file('extra_product_image');
+            $ProductImage = time().'-'.$product_image->getClientOriginalName();
+            $sitepath = public_path('storage/products/addon'); !is_dir($sitepath) &&  mkdir($sitepath, 0777, true);
+            ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
+        }
+   ExtraItem::create([  'name' => $request->name,
+   'description' => $request->description, 'price' => $request->price,
+   'image' => $ProductImage,
+   'status'=> (isset($request->status)) ? 1 : 0,
+   'created_at' => now(),
+    'updated_at' => now()
+]);
+return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Created Successfully');
 
-            $restaurant = ExtraItem::create([
-                'name' => $request->name,
-                'description' => $request->description,
-                'price' => $request->price,
-                'image' => $imageName,
-            ]);
-            return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Created Successfully');
-        }catch(Exception $e){
-            return $e->getMessage();
-        }   
 
     }
 
@@ -49,38 +52,31 @@ class ExtraFoodItemController extends Controller
         }
 
         $extraItem = ExtraItem::where('id',$id)->first();
-        return view('admin.extra_items.edit',compact('extraItem'));
+        return view('admin.page.extra_items.edit',compact('extraItem'));
     }
 
-  
-    public function update(UpdateExtaItems $request, $id)
-    {
-       
-        try{
-            $extraItem = ExtraItem::findOrFail($id);
-            $extraItem->name = $request->name;
-            $extraItem->description = $request->description;
-            $extraItem->price = $request->price;
-            $extraItem->status = $request->status;
-            
-            if(isset($request->logo_image)){
-                if($request->old_image != ''){
-                    $image = public_path('storage/extraitems'.$request->old_image); 
-                    if(File::exists($image))
-                    {
-                        unlink($image);
-                    } 
-                }
-                $imageName = time().'.'.$request->logo_image->extension();
-                $request->logo_image->move(public_path('storage/extraitems'), $imageName);
-                $extraItem->image = $imageName;
-            }
 
-            $extraItem->save();
-            return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Updated Successfully');
-        }catch(Exception $e){
-            return $e->getMessage();
-        }     
+    public function update(UpdateExtaItemsRequest $request, $id)
+    {
+
+        $FoodItem = ExtraItem::findOrFail($id);
+
+        if($request->hasFile('extra_product_image') && $request->file('extra_product_image')->isValid()){
+            $product_image = $request->file('extra_product_image');
+            $ProductImage = time().'-'.$product_image->getClientOriginalName();
+            $sitepath = public_path('storage/products/addon'); !is_dir($sitepath) &&  mkdir($sitepath, 0777, true);
+            ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
+            DeleteOldImage($sitepath.'/'.$FoodItem->image);
+            }else{
+            $ProductImage = $FoodItem->image;
+        }
+        ExtraItem::findOrFail($id)->update([  'name' => $request->name,
+        'description' => $request->description, 'price' => $request->price,
+        'image' => $ProductImage,
+        'status'=> (isset($request->status)) ? 1 : 0,
+         'updated_at' => now()
+     ]);
+     return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Updated Successfully');
     }
 
     public function destroy(Request $request,$id)
@@ -91,6 +87,6 @@ class ExtraFoodItemController extends Controller
             return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Deleted!');
         }catch(Exception $e){
             return $e->getMessage();
-        } 
+        }
     }
 }

@@ -24,7 +24,7 @@
                 <a href="{{ route('admin.menu.create')}}" type ="button" class="btn btn-success float-right" >Add Menu</a>
               </div>
                         <div class="card-body">
-                            <table id="datatable" class="table table-bordered table-hover">
+                            <table id="menutable" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Sno</th>
@@ -40,16 +40,8 @@
                                 <td>{!! $value->menu_name !!}</td>
                                 <td>{!! $value->menu_slug !!}</td>
                                 <td> @if ($value->status == 'active')<div class="mt-sm-1 d-block"> <span class="badge badge-success">Active</span>  </div> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Inactive</span> </div> @endif </td>
-                                <td class="project-actions">
-                          <a class="btn btn-info btn-sm" href="{{ route('admin.menu.edit', $value->id) }}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="{{ route('admin.menu.destroy', $value->id) }}" data-confirm-delete="true">
-                              <i class="fas fa-trash">
-                              </i>
-                          </a>
-                      </td>
+                                <td class="project-actions"><a class="btn btn-info btn-sm" href="{{ route('admin.menu.edit', $value->id) }}"> <i class="fas fa-pencil-alt"></i> </a><form method="POST" action="{{ route('admin.menu.destroy', $value->id) }}">  @csrf @method('DELETE') <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button> </form></td>
+
 
                             </tr>
                             @endforeach

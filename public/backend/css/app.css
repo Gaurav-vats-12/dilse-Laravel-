@@ -20,20 +20,23 @@
   font-size: 14px;
   margin: 5px 0 0;
 }
-ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-}
 .testimonial_user_txt ul li {
     display: inline-block;
 }
-
+td.project-actions a {
+    margin-right: 10px;
+}
 td.project-actions {
     display: flex;
     border-bottom: none;
 }
-
-td.project-actions a {
-    margin-right: 10px;
+/* ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
 }
+
+
+
+
+ */
