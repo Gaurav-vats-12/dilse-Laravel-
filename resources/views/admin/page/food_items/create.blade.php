@@ -25,8 +25,8 @@
                     <div class="card-body">
                     <form method="POST" action="{{ route('admin.food-items.store')}}" accept-charset="UTF-8" enctype="multipart/form-data">@csrf
                         <div class="form-group">
-                        <label for="Name">   {{ __('Blog Name *') }}</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder ="Blog Name" value="{{ old('Name') }}">
+                        <label for="Name">   {{ __('Name *') }}</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder ="Blog Name" value="{{ old('name') }}">
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
