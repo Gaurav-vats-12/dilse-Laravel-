@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ setting('site_title', 'LaraStarter') }}</title>
+        <title>Admin Panel - {{ setting('site_title', 'Dilse') }}</title>
         <link rel="icon" type="image/x-icon" href="{{ setting('Favicon') != null ? setting('Favicon') : url('frontend/img/fav.png') }}">
         @include('admin.partials.header_style')
     </head>
