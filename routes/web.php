@@ -1,7 +1,7 @@
 <?php
 
 // use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\{HomeController,BlogController};
+use App\Http\Controllers\{HomeController,BlogController,MenuController,CartController};
 use Illuminate\Support\Facades\Route;
 use App\Models\Admin\Page;
 use Illuminate\Support\Facades\URL;
@@ -30,7 +30,19 @@ Route::get('/discount-and-coupons', [HomeController::class, 'giftCard'])->name('
 Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'blogdetails'])->name('blogdetails');
 
-Route::get('/menu', [HomeController::class, 'menu'])->name('menu');
+Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
+
+
+// Add to Cart
+Route::prefix('cart')->name('cart.')->group(function(){
+    Route::get('/create/{id}', [CartController::class, 'addtocart'])->name('add');
+
+
+});
+
+
+//
+
 
 Route::get('{slug}', function ($slug) {
     if ($slug === 'admin') {

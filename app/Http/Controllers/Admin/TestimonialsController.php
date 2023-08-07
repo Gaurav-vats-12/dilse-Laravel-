@@ -73,10 +73,11 @@ class TestimonialsController extends Controller
     {
         $Testimonial = Testimonial::findOrFail($id);
         if($request->hasFile(trim('testonomailsImage'))){
+            $destinationPath = public_path('storage/testimonial/'); !is_dir($destinationPath) &&  mkdir($destinationPath, 0777, true);
             $banner_image = $request->file(trim('testonomailsImage'));
             $testonomailsImage = time().'-'.$banner_image->getClientOriginalName();
-            $destinationPath = public_path('storage/testimonial/'); !is_dir($destinationPath) &&  mkdir($destinationPath, 0777, true);
             ResizeImage::make($request->file('testonomailsImage'))->resize(80, 80)->save($destinationPath.'/'. $testonomailsImage);
+            DeleteOldImage($destinationPath.'/'.$Testimonial->testonomailsImage);
         }else{
             $testonomailsImage = $Testimonial->testonomailsImage;
         }

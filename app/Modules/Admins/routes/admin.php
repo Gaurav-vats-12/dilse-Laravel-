@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController,MenuController,BlogController};
+use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController,MenuController,BlogController,GalleryController};
 // use App\Modules\Admins\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FoodItemController;
@@ -31,6 +31,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         // Blog
         Route::resource('blog', BlogController::class);
 
+        // Gallery Image
+        Route::resource('manage-gallery', GalleryController::class);
 
     });
 });

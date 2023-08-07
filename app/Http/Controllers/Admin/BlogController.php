@@ -75,9 +75,10 @@ class BlogController extends Controller
     {
         $blog = Blog::findOrFail($id);
         if($request->hasFile(trim('blog_image'))){
+            $destinationPath = public_path('storage/blog/'); !is_dir($destinationPath) &&  mkdir($destinationPath, 0777, true);
+            DeleteOldImage($destinationPath.'/'.$blog->blog_image);
             $blog_image = $request->file(trim('blog_image'));
             $blogImage = time().'-'.$blog_image->getClientOriginalName();
-            $destinationPath = public_path('storage/blog/'); !is_dir($destinationPath) &&  mkdir($destinationPath, 0777, true);
             $img = ResizeImage::make($blog_image->path());
             ResizeImage::make($request->file('blog_image'))->save($destinationPath.'/'. $blogImage);
         }else{
@@ -99,4 +100,5 @@ class BlogController extends Controller
         return redirect()->route('admin.blog.index')->withSuccess('Blog Successfully Deleted');
 
     }
+
 }

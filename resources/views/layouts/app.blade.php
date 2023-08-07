@@ -7,7 +7,7 @@
 
     @yield('meta')
         <title>{{ setting('site_title', 'Dilse') }} | @yield('title')</title>
-        <link rel="icon" type="image/x-icon" href="{{ setting('Favicon') != null ? setting('Favicon') : url('frontend/img/fav.png') }}">
+        <link rel="icon" type="image/x-icon" href="{{ setting('favicon') != null ? url('/storage/site/Favicon/'.setting('favicon').'') : url('frontend/img/fav.png') }}">
     @include('layouts.partials.header_style')
 </head>
 <body>
