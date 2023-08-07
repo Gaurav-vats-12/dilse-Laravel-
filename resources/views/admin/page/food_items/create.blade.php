@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group">
                         <label for="description"> {{ __('Description') }}</label>
-                        <textarea name="description" id="description" class="form-control" placeholder="Enter Description" >{{ old('blog_content') }}</textarea>
+                        <textarea name="description" id="description" class="form-control summernote" placeholder="Enter Description" >{{ old('blog_content') }}</textarea>
                             @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

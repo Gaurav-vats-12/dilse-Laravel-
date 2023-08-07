@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label for="testimonial_description">Description</label>
-                            <textarea name="testimonial_description" id="testimonial_description" class="form-control">{{ old('testimonial_description')}}</textarea>
+                            <textarea name="testimonial_description" id="testimonial_description" class="form-control summernote">{{ old('testimonial_description')}}</textarea>
                             <small><i class="fa-solid fa-circle-question"></i> Please Enter testonomials description</small>
                             @error('testimonial_description')
                                 <span class="text-danger">{{ $message }}</span>

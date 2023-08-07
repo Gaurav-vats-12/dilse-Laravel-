@@ -3,12 +3,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Create Blog</h1>
+            <h1 class="m-0">Create Extra Food</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-            <li class="breadcrumb-item active">Create Blog</li>
+            <li class="breadcrumb-item active">Create Extra Food  Items</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -23,51 +23,43 @@
                     <div class="card card-primary">
                         <div class="card">
                     <div class="card-body">
-                    <form method="POST" action="{{ route('admin.blog.store')}}" accept-charset="UTF-8" enctype="multipart/form-data">@csrf
+                    <form method="POST" action="{{ route('admin.extra-items.store')}}" accept-charset="UTF-8" enctype="multipart/form-data">@csrf
                         <div class="form-group">
-                        <label for="blog_title">   {{ __('Blog Title *') }}</label>
-                            <input type="text" name="blog_title" id="blog_title" class="form-control" placeholder ="Blog title" value="{{ old('blog_title') }}">
-                            @error('blog_title')
+                        <label for="name">   {{ __('Name *') }}</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder ="Enter Name" value="{{ old('Name') }}">
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                        <label for="extra_product_image">   {{ __('Logo Image') }}</label>
+                            <input type="file" name="extra_product_image" id="extra_product_image"  class="form-control dropify" >
+                            @error('extra_product_image')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                        <label for="blog_image">   {{ __('Blog Image') }}</label>
-                            <input type="file" name="blog_image" id="blog_image" class="form-control dropify" >
-                            @error('blog_image')
+                        <label for="description"> {{ __('Description') }}</label>
+                        <textarea name="description" id="description" class="form-control summernote" placeholder="Enter Description" >{{ old('blog_content') }}</textarea>
+                            @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                        <label for="blog_content"> {{ __('Blog Content') }}</label>
-                        <textarea name="blog_content" id="blog_content" class="form-control summernote" placeholder="Blog Content" >{{ old('blog_content') }}</textarea>
-                            @error('blog_content')
+                        <label for="price">   {{ __('Price') }}</label>
+                        <input type="number" class="form-control" min="1" max="1000" name="price" placeholder="Enter Price" value="{{old('price')}}" >
+                            @error('price')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                        <label for="blog_meta_title">   {{ __('Blog Meta Title  *') }}</label>
-                            <input type="text" name="blog_meta_title" id="blog_meta_title" class="form-control"  placeholder ="Blog Meta Title" value="{{ old('blog_meta_title') }}">
-                            @error('blog_meta_title')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                        <label for="blog_meta_description"> {{ __('Blog Meta Description') }}</label>
-                        <textarea name="blog_meta_description" id="blog_content" class="form-control" placeholder="Blog Content" >{{ old('blog_content') }}</textarea>
-                            @error('blog_content')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                        <label for="status">   {{ __('Banner status') }}</label>
+                        <label for="status">   {{ __('Status') }}</label>
                         <select name="status" id="status" class="form-control form-select">
                             <option value="">Select status</option>
-                            <option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>Published</option>
-                             <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive
-                             <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft
-                            </select>
-
+                            <option value= '1' {{ old('status') == '1' ? 'selected' : '' }}>Active</option>
+                             <option value=0 {{ old('status') == '0' ? 'selected' : '' }}>Inactive
+                        </select>
                             @error('status')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

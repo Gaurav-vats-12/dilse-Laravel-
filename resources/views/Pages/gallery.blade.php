@@ -16,8 +16,13 @@
         <div class="container">
             <div class="row">
             @if (isset($gallery) && count($gallery) >0)
+            @php
+            $count = count($gallery);
+        @endphp
             @foreach ($gallery  as $key => $gallery )
                 <div class="col-md-4">
+                    @php $i = 0; @endphp
+                    @for ($i=1; $i<=$count;$i++)
                     <div class="gallery_pics_crd">
                         <div class="gallery_crd_img">
                             <a class="image-popup-vertical-fit" href="{{ url('/storage/gallery/'.$gallery->image.'') }}"
@@ -26,6 +31,8 @@
                             </a>
                         </div>
                     </div>
+                    @endfor
+
                 </div>
                 @endforeach
                 @else

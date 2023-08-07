@@ -24,7 +24,7 @@
                 <a href="{{ route('admin.blog.create')}}" type ="button" class="btn btn-success float-right" >Add Blog</a>
               </div>
                         <div class="card-body">
-                            <table id="bannerTable" class="table table-bordered table-hover">
+                            <table id="blog_table" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Sno</th>

@@ -43,9 +43,7 @@ class FoodItemController extends Controller
             ]);
 
             return redirect(route('admin.food-items.index'))->withSuccess('Food Item Added Successfully');
-        }catch(Exception $e){
-            return $e->getMessage();
-        }   
+
     }
 
 
@@ -84,19 +82,10 @@ class FoodItemController extends Controller
          'updated_at' => now()
     ]);
     return redirect()->route('admin.food-items.index')->withSuccess('Details Successfully Updated');
-
-
-
     }
 
-    public function destroy(Request $request,$id)
-        try{
-            FoodItem::findOrFail($id)->delete();
-            return redirect(route('admin.food-items.index'))->withSuccess('Food Item Deleted Successfully');
-        }catch(Exception $e){
-            return $e->getMessage();
-        }
+    public function destroy(Request $request,$id){
+        FoodItem::findOrFail($id)->delete();
+        return redirect(route('admin.food-items.index'))->withSuccess('Food Item Deleted Successfully');
     }
-
-
 }

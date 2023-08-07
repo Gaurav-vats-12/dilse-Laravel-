@@ -24,7 +24,7 @@
                 <a href="{{ route('admin.manage-pages.create')}}" type ="button" class="btn btn-success float-right" >Add Pages</a>
               </div>
                         <div class="card-body">
-                            <table id="datatable" class="table table-bordered table-hover">
+                            <table id="manage_pages_datatable" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Sno</th>
@@ -42,7 +42,7 @@
                                 <td>{{ $pageValue->page_title }}</td>
                                 <td>{{ $pageValue->page_slug }}</td>
                                 <td>{!! \Illuminate\Support\Str::limit(strip_tags($pageValue->page_content)) !!}</td>
-                                <td>{{ $pageValue->page_title }}</td>
+                                <td> @if ($pageValue->status == 'active')<div class="mt-sm-1 d-block"> <span class="badge badge-success">Active</span>  </div> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Inactive</span> </div> @endif </td>
                                 <td class="project-actions">
                           <a class="btn btn-info btn-sm" href="{{ route('admin.manage-pages.edit', $pageValue->id) }}">
                               <i class="fas fa-pencil-alt">

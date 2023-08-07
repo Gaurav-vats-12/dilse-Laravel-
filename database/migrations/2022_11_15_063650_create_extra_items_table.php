@@ -21,6 +21,8 @@ return new class extends Migration
             $table->decimal('price');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
+            $table->softDeletes(); // <-- This will add a deleted_at field
+
         });
     }
 

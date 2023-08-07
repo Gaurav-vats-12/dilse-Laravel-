@@ -23,7 +23,7 @@
                     <div class="card-header"><a href="{{ route('admin.food-items.create')}}" type ="button" class="btn btn-success float-right" >Add Food Items</a>
               </div>
                         <div class="card-body">
-                            <table id="bannerTable" class="table table-bordered table-hover">
+                            <table id="food_items" class="table table-bordered table-hover">
                             <thead>
                                     <tr>
                                         <th>ID</th>

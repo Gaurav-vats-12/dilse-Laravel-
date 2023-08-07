@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                         <label for="blog_content"> {{ __('Blog Content') }}</label>
-                        <textarea name="blog_content" id="blog_content" class="form-control" placeholder="Blog Content" >{{ old('blog_content' ,$blog->blog_content) }}</textarea>
+                        <textarea name="blog_content" id="blog_content" class="form-control summernote" placeholder="Blog Content" >{{ old('blog_content' ,$blog->blog_content) }}</textarea>
                             @error('blog_content')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

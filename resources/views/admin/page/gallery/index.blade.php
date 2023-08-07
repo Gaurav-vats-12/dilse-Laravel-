@@ -24,16 +24,18 @@
                 <a href="{{ route('admin.manage-gallery.create')}}" type ="button" class="btn btn-success float-right" >Add Gallery</a>
               </div>
                         <div class="card-body">
-                            <table id="bannerTable" class="table table-bordered table-hover">
+                            <table id="manage_gallery_datatable" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>Sno</th>
                                         <th>  Title  </th>
-                                        <th>Iamge </th>
+                                        <th>Image </th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
+
+                                <tbody>
                                 @foreach ( $gallery as $key => $value )
                                 <tr>
                                 <td>{{ $key + 1 }}</td>
@@ -43,7 +45,6 @@
                                 <td class="project-actions"><a class="btn btn-info btn-sm" href="{{ route('admin.manage-gallery.edit', $value->id) }}"> <i class="fas fa-pencil-alt"></i> </a><form method="POST" action="{{ route('admin.manage-gallery.destroy', $value->id) }}">  @csrf @method('DELETE') <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button> </form></td>
                                 </tr>
                                 @endforeach
-                                <tbody>
                                 </tbody>
                             </table>
                         </div>
