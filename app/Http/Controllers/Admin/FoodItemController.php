@@ -39,9 +39,7 @@ class FoodItemController extends Controller
                 'featured'=> (isset($request->featured)) ? $request->featured : 0,
                 
             ]);
-           
-            return redirect(route('food-items.index'))->withSuccess('Food Item Added Successfully');
-
+            return redirect(route('admin.food-items.index'))->withSuccess('Food Item Added Successfully');
            
         }catch(Exception $e){
             return $e->getMessage();
@@ -98,18 +96,9 @@ class FoodItemController extends Controller
 
     public function destroy(Request $request,$id)
     {   
-        
         try{
-            $user_id =$request->user_id;
             FoodItem::findOrFail($id)->delete();
-            
-            if(isset($request->all()['redirect_to']) && $request->all()['redirect_to'] == 'restaurant')
-            {
-                return redirect('admin/restaurants/'.$user_id.'/?tab=food')->withSuccess('Record Deleted!!!!!!');
-            }else{
-                return redirect(route('foodItems.index'))->withSuccess('Record Deleted!!!!!!');
-            }
-
+            return redirect(route('admin.food-items.index'))->withSuccess('Food Item Deleted Successfully');
         }catch(Exception $e){
             return $e->getMessage();
         }   
