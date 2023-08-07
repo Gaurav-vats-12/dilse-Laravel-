@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('extra_food_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('food_item_id')->constrained()->on('food_items')->nullable()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('extra_item_id')->constrained()->on('extra_items')->nullable()->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('food_item_id')->unsigned();
+            $table->bigInteger('extra_item_id')->unsigned();
+            $table->foreign('food_item_id')->references('id')->on('food_items')->onDelete('cascade');
+            $table->foreign('extra_item_id')->references('id')->on('extra_items')->onDelete('cascade');
             $table->timestamps();
         });
     }
