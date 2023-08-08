@@ -8,5 +8,6 @@ use Illuminate\Http\Request;
 class UserControoller extends Controller
 {
    public function dashboard(){
+    dd('asdsads');
    }
 }
