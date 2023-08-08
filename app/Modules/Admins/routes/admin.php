@@ -39,6 +39,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
             Route::get('/', [CustomerController::class, 'index'])->name('index');
             Route::get('/view/{id}', [CustomerController::class, 'show'])->name('view');
             Route::get('/control/{id}', [CustomerController::class, 'control'])->name('control');
+
         });
 
     });
