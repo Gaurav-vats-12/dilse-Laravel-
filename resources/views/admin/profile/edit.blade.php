@@ -19,10 +19,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-        <!-- @include('admin.profile.partials.update-profile-information-form') -->
+        @include('admin.profile.partials.update-profile-information-form')
         </div>
         <div class="col-md-12">
-        <!-- @include('admin.profile.partials.update-password-form') -->
+        @include('admin.profile.partials.update-password-form')
         </div>
     </div>
 </div>
