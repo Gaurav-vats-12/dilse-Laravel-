@@ -49,7 +49,6 @@ Route::get('{slug}', function ($slug) {
         return redirect()->route('admin.dashboard');
     }elseif ($slug === 'user') {
         return redirect()->route('user.dashboard');
-        # code...
     }elseif($slug =='terms-and-conditions' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-policy'){
         $pagdata= Page::where('page_slug',$slug)->first();
         return view('Pages.dynamic-page-genrate',compact('pagdata'));
