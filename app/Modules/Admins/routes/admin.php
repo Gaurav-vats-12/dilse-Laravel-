@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController,MenuController,BlogController,GalleryController};
+use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController,MenuController,BlogController,GalleryController,CustomerController};
 use App\Modules\Admins\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FoodItemController;
@@ -33,6 +33,14 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
         // Gallery Image
         Route::resource('manage-gallery', GalleryController::class);
+
+
+        Route::prefix('manage-customer')->name('manage-customer.')->group(function(){
+            Route::get('/', [CustomerController::class, 'index'])->name('index');
+            Route::get('/view/{id}', [CustomerController::class, 'show'])->name('view');
+            Route::get('/control/{id}', [CustomerController::class, 'control'])->name('control');
+
+        });
 
     });
 });
