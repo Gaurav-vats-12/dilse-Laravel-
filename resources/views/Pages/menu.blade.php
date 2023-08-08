@@ -19,7 +19,7 @@
                     <ul class="menu_list">
                         @foreach (Menuhelper() as $key => $menu)
                             <li class="menu_list_inner">
-                                <a href="#">
+                                <a href="{{ route('menu' , $menu->menu_slug) }}">
                                     <h3 class="active">{{ __($menu->menu_name) }}</h3>
                                     <div class="menu_icon_img">
                                         <img src="{{ asset('frontend/img/menu_icon.png') }}" alt="">
@@ -31,6 +31,7 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="menu_main_box">
+                    @if (isset($FoodItem) && count($FoodItem) >0)
                         @foreach ( $FoodItem as $key => $FoodItemValue )
                         <div class="best_food_crd">
                             <div class="best_food_crd_img">
@@ -48,6 +49,10 @@
                             </div>
                         </div>
                         @endforeach
+                    @else
+                    <h4>No Food Item  Found</h4>
+                    @endif
+
                     </div>
                 </div>
             </div>
