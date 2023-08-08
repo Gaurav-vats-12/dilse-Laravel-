@@ -37,13 +37,12 @@ class FoodItemController extends Controller
         }
         $extra_items = $request->extra_items;
 
-
-
-
           $restaurant = FoodItem::create(['name' => $request->name, 'menu_id' => $request->menu_id, 'description' => $request->description, 'price' => $request->price, 'image' => $ProductImage,'featured'=> (isset($request->featured)) ? 1 : 0,'status'=> (isset($request->status)) ? 1 : 0,'created_at' => now(),'updated_at' => now()]);
-            foreach ($request->extra_items as $key => $value) { ExtraFoodItems::create(['food_item_id' => $restaurant->id, 'extra_item_id' => $value,'created_at' => now(), 'updated_at' => now()]); }
-            return redirect(route('admin.food-items.index'))->withSuccess('Food Item Added Successfully');
-
+         
+          foreach ($request->extra_items as $key => $value) { 
+                ExtraFoodItems::create(['food_item_id' => $restaurant->id, 'extra_item_id' => $value]); 
+            }
+        return redirect(route('admin.food-items.index'))->withSuccess('Food Item Added Successfully');
     }
 
 
@@ -53,13 +52,13 @@ class FoodItemController extends Controller
         if($checkId == 0){
            return redirect()->back();
         }
-
+        
         $foodItem = FoodItem::with(['menu','ExtraFoodItems'])->where('id',$id)->first();
-        $exta_items = ExtraItem::where('status',1)->get();
-
+        $extraFoodItems = $foodItem->ExtraFoodItems->pluck('extra_item_id')->toArray();
+        $exta_items = ExtraItem::where('status',1)->pluck('name','id');
         $menus = Menu::pluck('menu_name','id');
 
-        return view('admin.page.food_items.edit',compact('foodItem','menus','exta_items'));
+        return view('admin.page.food_items.edit',compact('foodItem','menus','exta_items','extraFoodItems'));
     }
 
 
@@ -72,18 +71,34 @@ class FoodItemController extends Controller
             $product_image = $request->file('product_image');
             $ProductImage = time().'-'.$product_image->getClientOriginalName();
             DeleteOldImage($sitepath.'/'.$FoodItem->image);
-            ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
+            //ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
+            ResizeImage::make( $product_image)->save($sitepath.'/'. $ProductImage);
             }else{
             $ProductImage = $FoodItem->image;
         }
 
-        FoodItem::findOrFail($id)->update([ 'name' => $request->name, 'menu_id' => $request->menu_id, 'description' => $request->description, 'price' => $request->price,
-        'image' => $ProductImage,
-        'featured'=> (isset($request->featured)) ? 1 : 0,
-        'status'=> (isset($request->status)) ? 1 : 0,
-         'updated_at' => now()
-    ]);
-    return redirect()->route('admin.food-items.index')->withSuccess('Details Successfully Updated');
+        FoodItem::findOrFail($id)->update([ 
+            'name' => $request->name, 
+            'menu_id' => $request->menu_id, 
+            'description' => $request->description, 
+            'price' => $request->price,
+            'image' => $ProductImage,
+            'featured'=> (isset($request->featured)) ? 1 : 0,
+            'status'=> (isset($request->status)) ? 1 : 0,
+            'updated_at' => now()
+        ]);
+
+        $item = ExtraFoodItems::where([
+            ['food_item_id',$id],
+            ])->delete();
+
+        $newItems = [];
+        foreach($request->extra_items as $key =>$extraItem){
+            $newItems[$key]['food_item_id'] = $id;
+            $newItems[$key]['extra_item_id'] = $extraItem;    
+        };
+        ExtraFoodItems::insert($newItems);      
+        return redirect()->route('admin.food-items.index')->withSuccess('Details Successfully Updated');
     }
 
     public function destroy(Request $request,$id){

@@ -4,7 +4,8 @@ jQuery( function () {
         height: 100
       })
 
-
+      
+    $('.select2').select2()
     jQuery('.dropify').dropify();
     $("#site_location").select2({
         maximumSelectionLength: 2

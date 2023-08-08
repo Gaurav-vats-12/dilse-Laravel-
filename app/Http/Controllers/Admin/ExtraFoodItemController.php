@@ -32,16 +32,14 @@ class ExtraFoodItemController extends Controller
             $sitepath = public_path('storage/products/addon'); !is_dir($sitepath) &&  mkdir($sitepath, 0777, true);
             ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
         }
-   ExtraItem::create([  'name' => $request->name,
-   'description' => $request->description, 'price' => $request->price,
-   'image' => $ProductImage,
-   'status'=> (isset($request->status)) ? 1 : 0,
-   'created_at' => now(),
-    'updated_at' => now()
-]);
-return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Created Successfully');
-
-
+            ExtraItem::create([  'name' => $request->name,
+            'description' => $request->description, 'price' => $request->price,
+            'image' => $ProductImage,
+            'status'=> (isset($request->status)) ? 1 : 0,
+            'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Created Successfully');
     }
 
     public function edit($id)
