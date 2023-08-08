@@ -38,7 +38,7 @@ class GalleryController extends Controller
             $gallery_image = $request->file('gallery_image');
             $galleryImage = time().'-'.$gallery_image->getClientOriginalName();
             $sitelogopath = public_path('storage/gallery'); !is_dir($sitelogopath) &&  mkdir($sitelogopath, 0777, true);
-            ResizeImage::make($request->file('gallery_image'))->resize(303, 287)->save($sitelogopath.'/'. $galleryImage);
+            ResizeImage::make($request->file('gallery_image'))->save($sitelogopath.'/'. $galleryImage);
         }
         Gallery::insert(['name' => $request->image_title, 'image' => $galleryImage,'status' => ($request->status =='1') ? 1 : 0,'created_at' => now(), 'updated_at' => now() ]);
         return redirect()->route('admin.manage-gallery.index')->withSuccess('Gallery Successfully Created');
@@ -73,7 +73,7 @@ class GalleryController extends Controller
             $gallery_image = $request->file('gallery_image');
             $galleryImage = time().'-'.$gallery_image->getClientOriginalName();
              $this->deleteIamge($image_pasth.'/'.$Gallery->image);
-            ResizeImage::make($request->file('gallery_image'))->resize(303, 287)->save($image_pasth.'/'. $galleryImage);
+            ResizeImage::make($request->file('gallery_image'))->save($image_pasth.'/'. $galleryImage);
             }else{
             $galleryImage = $Gallery->image;
         }

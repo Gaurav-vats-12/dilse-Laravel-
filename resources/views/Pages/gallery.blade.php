@@ -34,7 +34,7 @@
                 </div>
                     @php $i= 0 @endphp
                 @endif
-
+               
                 @endforeach
                 @else
             <h4>No Gallery Found</h4>
