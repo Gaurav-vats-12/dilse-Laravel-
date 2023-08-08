@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Blog;
 use Illuminate\Support\Str;
-
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as ResizeImage;
 use RealRashid\SweetAlert\Facades\Alert;

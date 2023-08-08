@@ -39,16 +39,21 @@ class LoginRequest extends FormRequest
      */
     public function authenticate(): void
     {
+
         $this->ensureIsNotRateLimited();
-
-        if (! Auth::guard('user')->attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        if (Auth::guard('user')->attempt($this->only('email', 'password'), $this->boolean('remember'),)) {
+            if (Auth::guard('user')->user()->status != 1) {
+                Auth::guard('user')->logout();
+                throw ValidationException::withMessages([
+                    'email' => __('You do not have an account because it has been deleted or deactivated.'),
+                ]);
+            }
+        } else {
             RateLimiter::hit($this->throttleKey());
-
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => __('auth.failed'),
             ]);
         }
-
         RateLimiter::clear($this->throttleKey());
     }
 
