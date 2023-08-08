@@ -55,14 +55,14 @@
                         </div>
                         <div class="form-group">
                         <label for="description"> {{ __('Description') }}</label>
-                        <textarea name="description" id="description" class="form-control summernote" placeholder="Enter Description" >{{ old('blog_content') }}</textarea>
+                        <textarea name="description" id="description" class="form-control summernote" placeholder="Enter Description" >{{ old('description') }}</textarea>
                             @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                         <label for="price">   {{ __('Price') }}</label>
-                        <input type="number" class="form-control" min="1" max="1000" name="price" placeholder="Enter Price" value="{{old('price')}}" >
+                        <input type="text" class="form-control" min="1" max="1000" name="price" placeholder="Enter Price" value="{{old('price')}}" >
                             @error('price')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

@@ -44,7 +44,7 @@
                                 <td> @if(strpos($foodItem->image, "https://") !== false)<img src="{{$foodItem->image}}" alt="" style="width:60px; height:60px;"> @else <img src="{{ url('/storage/products/'.$foodItem->image.'') }}" alt="" style="width:60px; height:60px;"> @endif </td>
                                     <td>{{$foodItem->name}}</td>
                                     <td>{{$foodItem->menu->menu_name}}</td>
-                                    <td>{{$foodItem->description}}</td>
+                                    <td>{!! \Illuminate\Support\Str::limit(strip_tags($foodItem->description)) !!}</td>
                                     <td>{{$foodItem->price}}</td>
                                     <td> @if ($foodItem->status == 1)<div class="mt-sm-1 d-block"> <span class="badge badge-success">Active</span>  </div> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Inactive</span> </div> @endif </td>
                                     <td>@if($foodItem->featured) {{'Yes'}} @else {{'No'}} @endif</td>

@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-group">
                         <label for="price">   {{ __('Price') }}</label>
-                        <input type="number" class="form-control" min="1" max="1000" name="price" placeholder="Enter Price" value="{{old('price',$foodItem->price )}}" >
+                        <input type="text" class="form-control" min="1" max="1000" name="price" placeholder="Enter Price" value="{{old('price',$foodItem->price )}}" >
                             @error('price')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
