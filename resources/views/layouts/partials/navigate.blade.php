@@ -1,4 +1,5 @@
-<header class="main_header">
+
+<header class="main_header {{ (request()->is('user*')) ? 'signup_main_header' : '' }}">
       <div class="top_header">
         <div class="container">
           <div class="info_bx">

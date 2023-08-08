@@ -73,12 +73,11 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                        @php $selected = $foodItem->ExtraFoodItems;  @endphp
                         <label for="status">   {{ __('Extra Items') }}</label>
-                        <select name="extra_items[]" id="extra_items" class="form-control form-select" multiple>
+                        <select name="extra_items[]" id="extra_items" class="form-control select2" multiple="multiple"  data-placeholder="Select Extra Item">
                             <option value="">Select Extra Items</option>
                             @foreach( $exta_items as  $key => $exta_item)
-                            <option value="{{$exta_item->id}}"  {{ $foodItem->ExtraFoodItems->contains('id',$exta_item->food_item_id )? 'checked': ''}} >{{ $exta_item->name}}</option>
+                            <option value="{{$key}}" {{ in_array($key,$extraFoodItems) ? 'selected' : '' }} >{{ $exta_item}}</option>
                               @endforeach
                         </select>
                             @error('status')

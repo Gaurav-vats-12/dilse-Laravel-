@@ -38,7 +38,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53</h3>
+                <h3>{{\App\Models\Admin\FoodItem::count()}}</h3>
 
                 <p>Food Items</p>
               </div>
@@ -53,7 +53,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{\App\Modules\Users\Models\User::count()}}</h3>
 
                 <p>User Registrations</p>
               </div>

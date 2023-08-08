@@ -52,7 +52,7 @@
               </p>
             </a>
           </li>
-        
+
           <li class="nav-item">
           <a href="{{ route('admin.manage-pages.index') }}" class="nav-link {{ (request()->is('admin/manage-pages*')) ? 'active' : '' }}">
               <p>
@@ -71,6 +71,13 @@
           <a href="{{ route('admin.blog.index') }}" class="nav-link {{ (request()->is('admin/blog*')) ? 'active' : '' }}">
               <p>
               {{ __('Manage Blogs ') }}
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+          <a href="{{ route('admin.manage-customer.index') }}" class="nav-link {{ (request()->is('admin/manage-customer*')) ? 'active' : '' }}">
+              <p>
+              {{ __('Manage Customer ') }}
               </p>
             </a>
           </li>
