@@ -9,6 +9,14 @@ class CartController extends Controller
 {
 
 
+public function viewcart(){
+    return view('Pages.cart');
+
+
+
+}
+
+
    public function addtocart( string $id ){
 
     $product = FoodItem::findOrFail($id);

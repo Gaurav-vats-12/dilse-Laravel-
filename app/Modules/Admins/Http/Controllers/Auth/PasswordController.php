@@ -6,6 +6,8 @@ use App\Modules\Admins\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
+
 use Illuminate\Validation\Rules\Password;
 
 class PasswordController extends Controller
@@ -23,7 +25,7 @@ class PasswordController extends Controller
         $request->user('admin')->update([
             'password' => Hash::make($validated['password']),
         ]);
-
-        return back()->with('status', 'password-updated');
+        \Auth::guard('admin')->logout();
+        return redirect()->route('admin.login')->withToastSuccess('Password Update Successfully');
     }
 }

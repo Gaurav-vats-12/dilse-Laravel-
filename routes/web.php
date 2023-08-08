@@ -35,6 +35,7 @@ Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
 
 // Add to Cart
 Route::prefix('cart')->name('cart.')->group(function(){
+    Route::get('/', [CartController::class, 'viewcart'])->name('view');
     Route::get('/create/{id}', [CartController::class, 'addtocart'])->name('add');
 
 
