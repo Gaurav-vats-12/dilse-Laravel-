@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->datetime('order_date');
             $table->decimal('amount', 10, 2);
             $table->enum('payment_status', ['Pending', 'Paid', 'Failed']);
@@ -24,8 +23,6 @@ return new class extends Migration
             $table->timestamps();
 
             // Define foreign key constraint
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
         });
     }
 
