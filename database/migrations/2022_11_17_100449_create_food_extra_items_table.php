@@ -8,27 +8,24 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('food_extra_items', function (Blueprint $table) {
+        Schema::create('extra_food_items', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('food_item_id')->unsigned();
             $table->bigInteger('extra_item_id')->unsigned();
             $table->foreign('food_item_id')->references('id')->on('food_items')->onDelete('cascade');
             $table->foreign('extra_item_id')->references('id')->on('extra_items')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('food_extra_items');
+        Schema::dropIfExists('extra_food_items');
     }
 };
