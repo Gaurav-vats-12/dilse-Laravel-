@@ -77,7 +77,7 @@
 
                         <div class="form-group">
                         <label for="status">   {{ __('Extra Items') }}</label>
-                        <select name="extra_items[]" id="extra_items" class="form-control form-select" multiple>
+                        <select name="extra_items[]" id="extra_items" class="form-control  select2" multiple="multiple"  data-placeholder="Select Extra Item">
                             <option value="">Select Extra Items</option>
                             @foreach( $exta_items as  $key=> $exta_items)
                             <option value="{{$exta_items->id}}" >{{ $exta_items->name}}</option>
