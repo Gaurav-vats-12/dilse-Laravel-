@@ -1402,3 +1402,51 @@ img.mfp-img {
 .ds_content {
     border-bottom: 1px solid #dcd9da;
 }
+
+/* ---------------------
+  sign up
+------------------------ */
+.signup_main_header {
+    background: #0b0708;
+  }
+  .login_wrapper {
+    background-color: #fcebb9;
+    padding-top: 120px;
+  }
+  .tittle_heading span {
+    color: #eb0029;
+  }
+  form.contact_form label {
+    font-size: 16px;
+    font-family: "Kalam";
+    color: #0b0708;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .about_left_image::before {
+    z-index: 0;
+    top: 170px;
+  }
+  .about_sign_img {
+    position: relative;
+  }
+  form.contact_form p {
+    text-align: center;
+    margin-top: 22px;
+    color: #0b0708;
+    font-family: "Kalam";
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  form.contact_form a {
+    color: #eb0029;
+    font-family: "Kalam";
+    font-weight: 600;
+  }
+  .forget_passcode {
+    display: flex;
+    justify-content: space-between;
+  }
+  .contact_form_btn {
+    margin-top: 13px;
+  }

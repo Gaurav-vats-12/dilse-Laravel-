@@ -169,9 +169,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Modules\Admins\AdminServiceProvider::class,
+        App\Modules\Users\UserServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         browner12\helpers\HelperServiceProvider::class,
+
 
     ])->toArray(),
 

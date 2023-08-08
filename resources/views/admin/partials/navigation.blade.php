@@ -91,7 +91,7 @@
       <li class="nav-item dropdown">
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">{{ Auth::guard('admin')->check() ? Auth::guard('admin')->user()->name : '' }}</a>
             <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
-              <li><a href="#" class="dropdown-item">Setting</a></li>
+              <li><a href="{{route('admin.profile.edit')}}" class="dropdown-item">Setting</a></li>
               <li>
               <form method="POST" action="{{ route('admin.logout') }}"> @csrf  <x-responsive-nav-link :href="route('admin.logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item"> {{ __('Log Out') }}</form>   </x-responsive-nav-link>
               </li>
