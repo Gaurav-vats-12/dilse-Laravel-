@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Admin\{Banner,Testimonial,Page,FoodItem,Gallery};
+
 use App\Models\Subscriber;
 use App\Mail\ContactNotification;
 use App\Models\Booking;
@@ -16,9 +17,9 @@ class HomeController extends Controller
 {
     public function Homepage(){
         $banner = Banner::where(['banner_type' => 'home'])->where('status','active')->get();
+        $FoodItem =FoodItem::where('featured',1)->where('status',1)->limit(3)->get();
         $Testimonial = Testimonial::where('status','active')->get();
-
-        return view('Home',compact('banner','Testimonial'));
+        return view('Home',compact('banner','Testimonial','FoodItem'));
     }
 
     public function contact(){
