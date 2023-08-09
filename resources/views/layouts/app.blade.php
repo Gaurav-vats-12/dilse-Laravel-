@@ -13,6 +13,8 @@
 <body>
     @include('layouts.partials.navigate')
 <div class="wrapper">
+<div class="loader display"></div>
+
   @yield('frontcontent')
   </div>
 @include('layouts.partials.footer')

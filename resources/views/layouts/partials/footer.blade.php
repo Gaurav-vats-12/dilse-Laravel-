@@ -75,12 +75,10 @@
             </ul>
             </div>
           </div>
-
           <div class="copy_right_txt dd_bottom">
-            <p>Desinger and Developer By <a href="">Exotica It Solutions</a></p>
+            <p>Desinger and Developer By <a href="https://www.exoticaitsolutions.com" target ="_blank">Exotica It Solutions</a></p>
           </div>
-
-</div>
+        </div>
         </div>
       </div>
     </footer>
