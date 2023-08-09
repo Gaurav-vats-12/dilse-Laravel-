@@ -4,7 +4,7 @@ jQuery( function () {
         height: 100
       })
 
-      
+
     $('.select2').select2()
     jQuery('.dropify').dropify();
     $("#site_location").select2({
@@ -182,6 +182,23 @@ jQuery( function () {
               "columnDefs": [
           { orderable: true, className: 'reorder', targets: 0 },
           { orderable: true, className: 'reorder', targets: 1 },
+          { orderable: false, targets: '_all' }
+        ]
+        });
+    }else if(url.indexOf("/booking") > -1){
+        new DataTable('#manage_bookign_table',{
+            "responsive": true,
+            "lengthMenu": [10, 20],
+            "searching": true,
+              "columnDefs": [
+          { orderable: true, className: 'reorder', targets: 0 },
+          { orderable: true, className: 'reorder', targets: 1 },
+          { orderable: true, className: 'reorder', targets: 2 },
+          { orderable: true, className: 'reorder', targets: 3 },
+          { orderable: true, className: 'reorder', targets: 4 },
+          { orderable: true, className: 'reorder', targets: 5 },
+          { orderable: true, className: 'reorder', targets: 6 },
+          { orderable: true, className: 'reorder', targets: 7 },
           { orderable: false, targets: '_all' }
         ]
         });

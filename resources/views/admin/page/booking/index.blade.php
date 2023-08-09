@@ -23,7 +23,7 @@
                     <div class="card-header">
               </div>
                         <div class="card-body">
-                            <table id="view_customer_table" class="table table-bordered table-hover">
+                            <table id="manage_bookign_table" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                  <th>Sno </th>
