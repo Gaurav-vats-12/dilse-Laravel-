@@ -36,7 +36,7 @@
                             <ul class="shopping_items">
                                 <li>
                                     <div class="shoping_imge">
-                                        <img src="{{asset('frontend/img/17.webp')}}" alt="">
+                                        <img src="{{asset('frontend/img/food-1.png')}}" alt="">
                                     </div>
                                 </li>
                                 <li>
