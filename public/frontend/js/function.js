@@ -92,3 +92,27 @@ function getUrlParameter(name) {
     results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+
+async function getData(page){
+    const response = await Ajax_response('?page=' + page,"GET",'','','');
+    console.log(response);
+    // if (response) {
+    //     $("#menu_data_find").empty().html(response);
+    //     jQuery('.loader').addClass('display')
+    //     location.hash = page;
+    // }
+}
+
+
+// $(window).on('hashchange', function() {
+//     console.log('asdsad');
+//     // if (window.location.hash) {
+//     //     var page = window.location.hash.replace('#', '');
+//     //     console.log(page);
+//     //     if (page == Number.NaN || page <= 0) {
+//     //         return false;
+//     //     }else{
+//     //         getData(page);
+//     //     }
+//     // }
+// });
