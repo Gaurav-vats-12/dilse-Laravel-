@@ -63,7 +63,8 @@
                <li><a href="{{url('gallery')}}">Gallery</a></li>
                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
                <li><a href="{{url('blog')}}">Blog</a></li>
-              @if(Request::is('/') || Request::is('home-2'))
+               <li><a href="{{asset('frontend/img/carts__icon.svg')}}" class="cart_item">5</a></li> 
+              @if(Request::is('/'))
                 <li><a href="#" class="theme_btn">Book a table</a></li>
               @else
                 <li><a href="#" class="theme_btn">Read More</a></li>
