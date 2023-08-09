@@ -2,6 +2,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController,MenuController,BlogController,GalleryController,CustomerController};
 use App\Modules\Admins\Http\Controllers\ProfileController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FoodItemController;
 use App\Http\Controllers\Admin\ExtraFoodItemController;
@@ -33,6 +34,17 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
         // Gallery Image
         Route::resource('manage-gallery', GalleryController::class);
+
+        // Manage Booking Details
+        Route::prefix('booking')->name('booking.')->group(function(){
+            Route::get('/', [BookingController::class, 'fetchBooking'])->name('index');
+        });
+
+        //
+
+
+
+
 
 
         Route::prefix('manage-customer')->name('manage-customer.')->group(function(){

@@ -31,6 +31,8 @@ Route::get('/discount-and-coupons', [HomeController::class, 'giftCard'])->name('
 Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'blogdetails'])->name('blogdetails');
 Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
+
+// Booking  a Reservation
 Route::get('/book-a-reservation', [BookingController::class, 'bookATable'])->name('booktable');
 Route::post('/submit-reservation-form', [BookingController::class, 'submitBookATable'])->name('booktable.submit');
 
