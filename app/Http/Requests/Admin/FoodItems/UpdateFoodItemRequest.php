@@ -23,7 +23,7 @@ class UpdateFoodItemRequest extends FormRequest
     {
         return [
             'name' =>'required',
-            'menu_id' => 'required',
+            'menu' => 'required',
             'description' =>'required',
             'price' => 'required',
             'status' => 'required|in:1,0',
