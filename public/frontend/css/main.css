@@ -1735,3 +1735,22 @@ img.mfp-img {
     display: none;
 
   }
+
+  .menu_left.menu_right ul li a.cart_item {
+    position: relative;
+  }
+  .menu_left.menu_right ul li a.cart_item span {
+    position: absolute;
+    right: 18%;
+    top: 12%;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #000;
+    line-height: 15px;
+    border-radius: 50%;
+    text-align: center;
+  
+  }
+
