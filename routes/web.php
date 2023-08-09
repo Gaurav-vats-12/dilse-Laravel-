@@ -23,6 +23,7 @@ Route::get('/', [HomeController::class, 'Homepage'])->name('home');
 Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact');
 Route::post('/submit-contact-form', [HomeController::class, 'submitContactForm'])->name('contact.submit');
 Route::get('/book-a-reservation', [HomeController::class, 'bookATable'])->name('booktable');
+Route::post('/submit-reservation-form', [HomeController::class, 'submitBookATable'])->name('booktable.submit');
 Route::post('/contact-us', [HomeController::class, 'submitContactFormAjax'])->name('contact-us-form');
 Route::post('/email-subscription', [HomeController::class, 'emailSubscription'])->name('emailSubscription');
 Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');

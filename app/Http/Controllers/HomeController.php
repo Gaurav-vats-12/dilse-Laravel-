@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\Admin\{Banner,Testimonial,Page,FoodItem,Gallery};
 use App\Models\Subscriber;
 use App\Mail\ContactNotification;
+use App\Models\Booking;
 use Illuminate\Support\Facades\Mail;
 
 use App\Services\MailchimpService;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 
 class HomeController extends Controller
@@ -107,6 +109,32 @@ class HomeController extends Controller
 
     public function bookATable(){
         return view('Pages.book-table');
+    }
+
+    public function submitBookATable(Request $request){
+
+        $request->validate([
+            'name' => 'required|max:50',
+        'email' => 'required|email',
+        'date' => 'required',
+        'time' => 'required',
+        'phone' => 'required|min:10|max:10',
+        'select_part' => 'required',
+        ]);
+
+        $bookingData = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'date' => Carbon::parse($request->input('date'))->format('Y-m-d'),
+            'time' => $request->input('time'),
+            'phone' => $request->input('phone'),
+            'persons' => $request->input('select_part'),
+            'comments' => $request->input('comments'),
+        ];
+
+        Booking::create($bookingData);
+        //Mail::to('shaurya.dograexoticait@gmail.com')->send(new ContactNotification($contactData));
+        return redirect()->back()->with('success', 'You booking requested has been sent! We will update you shortly');
     }
 
 

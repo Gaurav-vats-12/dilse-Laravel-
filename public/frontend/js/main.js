@@ -75,7 +75,12 @@ jQuery(document).ready(function () {
             $input.val( val-1 ).change();
         }
     });
-
+    $( "#datepicker" ).datepicker();
+    $('#timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 15,
+        scrollbar: true
+    });
 });
 
 
