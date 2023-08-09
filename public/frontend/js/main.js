@@ -93,7 +93,12 @@ jQuery(document).on('click', '.pagination a', async function(event){
             $input.val( val-1 ).change();
         }
     });
-
+    $( "#datepicker" ).datepicker({ minDate: 0});
+    $('#timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 15,
+        scrollbar: true
+    });
 });
 
 
