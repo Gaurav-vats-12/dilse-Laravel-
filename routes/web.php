@@ -31,7 +31,7 @@ Route::get('/discount-and-coupons', [HomeController::class, 'giftCard'])->name('
 Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'blogdetails'])->name('blogdetails');
 
-Route::get('/product-category/{slug}', [MenuController::class, 'menu'])->name('menu');
+Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
 
 
 
