@@ -17,8 +17,7 @@ function makeid(length) {
      Swal.fire({
         title: `Are you sure you want to delete this record?`,
         showCancelButton: true,
-        confirmButtonText: 'Save',
-        denyButtonText: `Don't save`,
+        confirmButtonText: 'Ok',
       }).then((result) => {
         if (result.isConfirmed) {
             form.submit();

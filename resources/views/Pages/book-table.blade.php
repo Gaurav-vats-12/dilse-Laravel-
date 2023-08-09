@@ -76,7 +76,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="custn_input">
-                      <select name="select_part">
+                      <select name="select_part" class="form-control form-select">
                         <option value="">Select Part Size</option>
                         @for($i=1;$i <= 6;$i++)
                           <option value="{{$i}}">{{$i}} Person </option>

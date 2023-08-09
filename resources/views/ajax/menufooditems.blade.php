@@ -17,7 +17,7 @@
                             </div>
                         </div>
                         @endforeach
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center CustomPagination">
                 {!! $FoodItem->links() !!}
             </div>
                     @else

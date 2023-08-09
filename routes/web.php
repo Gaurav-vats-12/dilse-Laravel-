@@ -1,7 +1,7 @@
 <?php
 
 // use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\{HomeController,BlogController,MenuController,CartController};
+use App\Http\Controllers\{HomeController,BlogController,MenuController,CartController,BookingController};
 use Illuminate\Support\Facades\Route;
 use App\Models\Admin\Page;
 use Illuminate\Support\Facades\URL;
@@ -22,8 +22,7 @@ use Illuminate\Support\Facades\URL;
 Route::get('/', [HomeController::class, 'Homepage'])->name('home');
 Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact');
 Route::post('/submit-contact-form', [HomeController::class, 'submitContactForm'])->name('contact.submit');
-Route::get('/book-a-reservation', [HomeController::class, 'bookATable'])->name('booktable');
-Route::post('/submit-reservation-form', [HomeController::class, 'submitBookATable'])->name('booktable.submit');
+
 Route::post('/contact-us', [HomeController::class, 'submitContactFormAjax'])->name('contact-us-form');
 Route::post('/email-subscription', [HomeController::class, 'emailSubscription'])->name('emailSubscription');
 Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
@@ -31,8 +30,9 @@ Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/discount-and-coupons', [HomeController::class, 'giftCard'])->name('discountandcoupons');
 Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'blogdetails'])->name('blogdetails');
-
 Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
+Route::get('/book-a-reservation', [BookingController::class, 'bookATable'])->name('booktable');
+Route::post('/submit-reservation-form', [BookingController::class, 'submitBookATable'])->name('booktable.submit');
 
 
 
