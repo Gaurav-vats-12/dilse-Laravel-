@@ -64,11 +64,7 @@
                <li><a href="{{url('gallery')}}">Gallery</a></li>
                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
                <li><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">0</span></a></li> 
-              @if(Request::is('/'))
-                <li><a href="#" class="theme_btn">Book a table</a></li>
-              @else
-                <li><a href="#" class="theme_btn">Read More</a></li>
-              @endif
+               <li><a href="{{url('book-a-reservation')}}" class="theme_btn">Book a table</a></li>
               </ul>
 
             </div>
