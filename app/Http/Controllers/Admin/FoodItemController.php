@@ -35,13 +35,15 @@ class FoodItemController extends Controller
             $sitepath = public_path('storage/products'); !is_dir($sitepath) &&  mkdir($sitepath, 0777, true);
             ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
         }
-        $extra_items = $request->extra_items;
+        
 
           $restaurant = FoodItem::create(['name' => $request->name, 'menu_id' => $request->menu_id, 'description' => $request->description, 'price' => $request->price, 'image' => $ProductImage,'featured'=> (isset($request->featured)) ? 1 : 0,'status'=> (isset($request->status)) ? 1 : 0,'created_at' => now(),'updated_at' => now()]);
-         
-          foreach ($request->extra_items as $key => $value) { 
+          if(isset($request->extra_items)){
+            $extra_items = $request->extra_items;  
+             foreach ($request->extra_items as $key => $value) { 
                 ExtraFoodItems::create(['food_item_id' => $restaurant->id, 'extra_item_id' => $value]); 
             }
+        }    
         return redirect(route('admin.food-items.index'))->withSuccess('Food Item Added Successfully');
     }
 
