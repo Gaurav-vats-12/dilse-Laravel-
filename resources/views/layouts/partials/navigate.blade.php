@@ -63,7 +63,7 @@
                <li><a href="{{url('gallery')}}">Gallery</a></li>
                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
                <li><a href="{{url('blog')}}">Blog</a></li>
-               <li><a href="{{asset('frontend/img/carts__icon.svg')}}" class="cart_item">5</a></li> 
+               <li><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">5</span></a></li> 
               @if(Request::is('/'))
                 <li><a href="#" class="theme_btn">Book a table</a></li>
               @else
