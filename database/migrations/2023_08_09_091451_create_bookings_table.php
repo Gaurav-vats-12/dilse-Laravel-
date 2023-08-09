@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->date('date');
-            $table->time('time');
+            $table->string('time');
             $table->string('persons');
             $table->text('comments')->nullable();
             $table->tinyinteger('status')->default(0);

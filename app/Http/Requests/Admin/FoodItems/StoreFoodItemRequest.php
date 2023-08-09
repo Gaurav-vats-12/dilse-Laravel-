@@ -23,7 +23,7 @@ class StoreFoodItemRequest extends FormRequest
     {
         return [
             'name' =>'required',
-            'menu_id' => 'required',
+            'menu' => 'required',
             'product_image' =>'required',
             'description' =>'required',
             'price' => 'required',

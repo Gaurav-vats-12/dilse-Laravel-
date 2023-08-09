@@ -16,9 +16,9 @@ class BookingNotification extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($bookingData)
     {
-        //
+        $this->bookingData = $bookingData;
     }
 
     /**
@@ -37,7 +37,7 @@ class BookingNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.booking_notification',
         );
     }
 
@@ -49,5 +49,12 @@ class BookingNotification extends Mailable
     public function attachments(): array
     {
         return [];
+    }
+
+    public function build()
+    {
+        return $this->from($this->bookingData['email'])
+                    ->subject('Booking Confirmation')
+                    ->with('bookingData', $this->bookingData);
     }
 }

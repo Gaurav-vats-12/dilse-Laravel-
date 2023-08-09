@@ -32,14 +32,14 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                        <label for="menu_id">   {{ __(' Menu') }}</label>
-                        <select name="menu_id" class="form-control">
+                        <label for="menu">   {{ __(' Menu') }}</label>
+                        <select name="menu" class="form-control">
                           <option value=""> Select menu</option>
                               @foreach( $menus as  $key=> $category)
                                    <option value="{{$key}}" @if($foodItem->menu->id == $key) selected @endif>{{ $category}}</option>
                                  @endforeach
                                     </select>
-                            @error('menu_id')
+                            @error('menu')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -80,7 +80,7 @@
                             <option value="{{$key}}" {{ in_array($key,$extraFoodItems) ? 'selected' : '' }} >{{ $exta_item}}</option>
                               @endforeach
                         </select>
-                            @error('status')
+                            @error('extra_items')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

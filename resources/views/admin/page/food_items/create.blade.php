@@ -32,8 +32,8 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                        <label for="menu_id">   {{ __(' Menu') }}</label>
-                        <select name="menu_id" id="menu_id" class="form-control form-select">
+                        <label for="menu">   {{ __(' Menu') }}</label>
+                        <select name="menu" id="menu" class="form-control form-select">
                         <option value=""> Select Menu</option>
                            @foreach( $menus as  $key=> $menu)
                             <option value="{{$menu->id}}" >{{ $menu->menu_name}}</option>
@@ -41,7 +41,7 @@
 
                             </select>
 
-                            @error('status')
+                            @error('menu')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -83,7 +83,7 @@
                             <option value="{{$exta_items->id}}" >{{ $exta_items->name}}</option>
                               @endforeach
                         </select>
-                            @error('status')
+                            @error('extra_items')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
