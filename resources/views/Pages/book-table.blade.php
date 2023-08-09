@@ -40,7 +40,7 @@
                       <div class="error">{{ $message }}</div>
                        @enderror
                     </div>
-                   
+
                   </div>
                   <div class="col-md-6">
                     <div class="custn_input">
