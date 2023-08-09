@@ -105,5 +105,9 @@ class HomeController extends Controller
         return view('Pages.gift-card');
     }
 
+    public function bookATable(){
+        return view('Pages.book-table');
+    }
+
 
 }
