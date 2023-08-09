@@ -309,54 +309,29 @@
             <h2>Our Popular Food Items</h2>
           </div>
           <div class="row">
+          @if (isset($FoodItem) && count($FoodItem) >0)
+          @foreach ( $FoodItem as $key => $FoodItemValue )
             <div class="col-md-4">
               <div class="best_food_crd">
                 <div class="best_food_crd_img">
-                  <img src="{{asset('frontend/img/food-1.png')}}" alt="" />
+                <img src="{{ url('/storage/products/'.$FoodItemValue->image.'') }}" alt="{{ $FoodItemValue->image}}">
                 </div>
                 <div class="best_food_cntnt">
                   <div class="best_food_txt">
-                    <h3>Samosa Channa</h3>
-                    <h2>$7.99</h2>
+                  <h3>{{ $FoodItemValue->name}}</h3>
+                  <h2>${{ $FoodItemValue->price}}</h2>
                   </div>
                   <div class="best_food_btn">
-                    <a href="#" class="theme_btn">Add To Cart</a>
+                  <a href="{{ route('cart.add', $FoodItemValue->id) }}" class="theme_btn btn-block text-center" role="button">Add to cart</a>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="best_food_crd">
-                <div class="best_food_crd_img">
-                  <img src="{{asset('frontend/img/food-2.png')}}" alt="" />
-                </div>
-                <div class="best_food_cntnt">
-                  <div class="best_food_txt">
-                    <h3>Tandoori Chicken</h3>
-                    <h2>$11.99</h2>
-                  </div>
-                  <div class="best_food_btn">
-                    <a href="#" class="theme_btn">Add To Cart</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="best_food_crd">
-                <div class="best_food_crd_img">
-                  <img src="{{asset('frontend/img/basmti.png')}}" alt="" />
-                </div>
-                <div class="best_food_cntnt">
-                  <div class="best_food_txt">
-                    <h3>Basmati-Rice</h3>
-                    <h2>$7.99</h2>
-                  </div>
-                  <div class="best_food_btn">
-                    <a href="#" class="theme_btn">Add To Cart</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @endforeach
+            @else
+            <h4>No Food Feature  Item  Found</h4>
+@endif
+
           </div>
         </div>
       </section>
