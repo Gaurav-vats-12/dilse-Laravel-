@@ -66,7 +66,6 @@
                <li><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">0</span></a></li> 
                <!--li><a href="{{url('book-a-reservation')}}" class="theme_btn">Book a table</a></li-->
                <li><select class="select_location" name="select_location">
-                  <option value="">Select Location</option>
                   <option>Toronto</option>
                   <option >Bramptonn</option>
                </select></li>
