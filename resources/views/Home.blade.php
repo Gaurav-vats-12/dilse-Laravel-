@@ -24,7 +24,7 @@
               </div>
 
               <div class="home_slider_btn">
-                  <a href="{{route('booktable')}}" class="theme_btn">Book A Table</a> <a href="{{route('menu')}}" class="theme_btn">Order Now</a> <a href="{{route('booktable')}}" class="theme_btn">Book A Table</a>
+                  <a href="{{route('booktable')}}" class="theme_btn">Book A Reservation</a> <a href="{{route('menu')}}" class="theme_btn">Order Now</a>
                 </div>
 
             </div>
