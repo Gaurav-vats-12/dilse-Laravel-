@@ -20,7 +20,7 @@ class HomeController extends Controller
         $FoodItem =FoodItem::where('featured',1)->where('status',1)->limit(3)->get();
         $Testimonial = Testimonial::where('status','active')->get();
 
-        return view('Home',compact('banner','Testimonial','FoodItem'));
+        return view('Home',compact('banner','Testimonial'));
     }
 
     public function contact(){

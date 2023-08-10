@@ -81,7 +81,7 @@ class FoodItemController extends Controller
 
         FoodItem::findOrFail($id)->update([
             'name' => $request->name,
-            'menu_id' => $request->menu_id,
+            'menu_id' => $request->menu,
             'description' => $request->description,
             'price' => $request->price,
             'image' => $ProductImage,
