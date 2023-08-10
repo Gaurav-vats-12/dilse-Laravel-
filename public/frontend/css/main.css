@@ -1782,6 +1782,13 @@ img.mfp-img {
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background: #fff;
+    background: #d90d0d;
+    color: #fff;
+    border: none;
+}
+
+.select_location  option {
+  background: #fff;
+  color: #000;
 }
 
