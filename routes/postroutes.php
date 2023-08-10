@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\{HomeController,BlogController,MenuController,CartController,BookingController,ContactUsController};
 use Illuminate\Support\Facades\Route;
+
 // Contact Us
 Route::post('/submit-contact-form', [ContactUsController::class, 'store'])->name('contact.submit');
 Route::post('/contact-us', [ContactUsController::class, 'submitContactFormAjax'])->name('contact-us-form');
@@ -13,6 +14,3 @@ Route::post('/submit-reservation-form', [BookingController::class, 'submitBookAT
 Route::prefix('cart')->name('cart.')->group(function(){
     Route::POST('/create', [CartController::class, 'addtocart'])->name('add');
 });
-
-
-?>

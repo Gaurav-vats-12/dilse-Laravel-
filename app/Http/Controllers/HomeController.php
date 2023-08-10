@@ -9,7 +9,7 @@ class HomeController extends Controller
         $FoodItem = FoodItem::where('extra_items',0)->where('featured',1)->where('status',1)->limit(3)->get();
         $Testimonial = Testimonial::where('status','active')->get();
 
-        return view('Home',compact('banner','Testimonial'));
+        return view('Home',compact('banner','Testimonial','FoodItem'));
     }
 
     public function aboutus(){

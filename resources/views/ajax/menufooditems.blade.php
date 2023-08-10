@@ -9,6 +9,7 @@
                                 <div class="best_food_txt">
                                     <a href="{{ route('menudetails' , $FoodItems->slug)}}"><h3> {{ $FoodItems->name}}</h3></a>
 
+
                                     <h2>${{ $FoodItems->price}}</h2>
                                 </div>
                                 <div class="best_btn_food">

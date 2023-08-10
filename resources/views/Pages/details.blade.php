@@ -16,6 +16,7 @@
             </div>
             <div class="product_price">
               <h2>$ {{ $food_details->price}} </h2>
+
             </div>
             <div class="product_discription">
              {!! $food_details->description !!}
@@ -48,6 +49,7 @@
             <div class="best_food_cntnt">
               <div class="best_food_txt">
               <a href="{{ route('menudetails' , $related_products->slug)}}" ><h3> {{ $related_products->name}}</h3></a>
+
               <h2>${{ $related_products->price}}</h2>
               </div>
               <div class="best_btn_food">
