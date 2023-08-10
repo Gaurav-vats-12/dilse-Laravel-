@@ -14,5 +14,3 @@ Route::post('/submit-reservation-form', [BookingController::class, 'submitBookAT
 Route::prefix('cart')->name('cart.')->group(function(){
     Route::POST('/create', [CartController::class, 'addtocart'])->name('add');
 });
-
-?>

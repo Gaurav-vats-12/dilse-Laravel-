@@ -15,7 +15,8 @@
               <h1> {{ $food_details->name}} </h1>
             </div>
             <div class="product_price">
-              <h2>$7.99</h2>
+              <h2>$ {{ $food_details->price}} </h2>
+
             </div>
             <div class="product_discription">
              {!! $food_details->description !!}
@@ -47,7 +48,8 @@
             </div>
             <div class="best_food_cntnt">
               <div class="best_food_txt">
-              <a href="{{ route('menudetails' , $related_products->slug)}}" target="_blank"><h3> {{ $related_products->name}}</h3></a>
+              <a href="{{ route('menudetails' , $related_products->slug)}}" ><h3> {{ $related_products->name}}</h3></a>
+
               <h2>${{ $related_products->price}}</h2>
               </div>
               <div class="best_btn_food">
