@@ -1445,7 +1445,7 @@ img.mfp-img {
   font-weight: 600;
 }
 
-.ds_content, .featured_posts, .contact_form_us {
+.ds_content, .featured_posts, .contact_form_us, .inner_bannner {
     border-bottom: 1px solid #dcd9da;
 }
 
