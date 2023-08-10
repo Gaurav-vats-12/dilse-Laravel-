@@ -15,12 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name',200);
             $table->string('image',200);
-            $table->string('image_postion',200)->nullable();     //
+            $table->tinyInteger('image_postion')->default(0);
             $table->boolean('status')->default(false);
-
             $table->timestamps();
             $table->softDeletes(); // <-- This will add a deleted_at field
-
         });
     }
 
