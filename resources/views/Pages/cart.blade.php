@@ -122,8 +122,6 @@
                             </div>
                             <div class="order_totalse">
                             <p>${{ $subtotal > 50 ? $subtotal + 50 : $subtotal + 0 }}</p>
-
-                                <!-- <p>${{ $subtotal }}</p> -->
                             </div>
                         </div>
                         <div class="cart_btn">

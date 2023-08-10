@@ -318,7 +318,7 @@
                 </div>
                 <div class="best_food_cntnt">
                   <div class="best_food_txt">
-                  <a href="{{ route('menudetails' , $FoodItemValue->slug)}}" target="_blank"><h3> {{ $FoodItemValue->name}}</h3></a>
+                  <a href="{{ route('menudetails' , $FoodItemValue->slug)}}"><h3> {{ $FoodItemValue->name}}</h3></a>
                   <h2>${{ $FoodItemValue->price}}</h2>
                   </div>
                   <div class="best_food_btn">
