@@ -46,9 +46,6 @@ Route::prefix('cart')->name('cart.')->group(function(){
 });
 Route::post('/submit-reservation-form', [BookingController::class, 'submitBookATable'])->name('booktable.submit');
 
-
-
-
 // Add to Cart
 Route::prefix('cart')->name('cart.')->group(function(){
     Route::get('/', [CartController::class, 'viewcart'])->name('view');
