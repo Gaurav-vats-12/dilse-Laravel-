@@ -5,7 +5,7 @@
 <meta name="title" content="@if(isset($pagdata->page_meta_title)) {{ __($pagdata->page_meta_title) }} @endif">
 <meta name="description" content="@if(isset($pagdata->page_meta_description)) {{ __($pagdata->page_meta_description) }} @endif">
 @endsection
-@section('title', 'Term and Condition')
+@section('title', $pagdata->page_title)
 @section('frontcontent')
 
 <section

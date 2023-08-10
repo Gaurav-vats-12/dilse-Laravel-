@@ -1,7 +1,7 @@
 <?php
 
 // use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\{HomeController,BlogController,MenuController,CartController,BookingController};
+use App\Http\Controllers\{HomeController,BlogController,MenuController,CartController,BookingController,ContactUsController};
 use Illuminate\Support\Facades\Route;
 use App\Models\Admin\Page;
 use Illuminate\Support\Facades\URL;
@@ -16,24 +16,21 @@ use Illuminate\Support\Facades\URL;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+// Home Page
 Route::get('/', [HomeController::class, 'Homepage'])->name('home');
-Route::get('/contact-us', [HomeController::class, 'contact'])->name('contact');
-Route::post('/submit-contact-form', [HomeController::class, 'submitContactForm'])->name('contact.submit');
-
-Route::post('/contact-us', [HomeController::class, 'submitContactFormAjax'])->name('contact-us-form');
-Route::post('/email-subscription', [HomeController::class, 'emailSubscription'])->name('emailSubscription');
+// Contact Us
+Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact');
+// About Us
 Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
+// Gallery Page
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
+// Discount and Coupans
 Route::get('/discount-and-coupons', [HomeController::class, 'giftCard'])->name('discountandcoupons');
+// Bolg Page
 Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'blogdetails'])->name('blogdetails');
+// Menu Page
 Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
-
-
-
 
 // Booking  a Reservation
 Route::get('/book-a-reservation', [BookingController::class, 'bookATable'])->name('booktable');
@@ -41,15 +38,16 @@ Route::post('/submit-reservation-form', [BookingController::class, 'submitBookAT
 
 
 
-
 // Add to Cart
 Route::prefix('cart')->name('cart.')->group(function(){
     Route::get('/', [CartController::class, 'viewcart'])->name('view');
     Route::get('/create/{id}', [CartController::class, 'addtocart'])->name('add');
+
+
 });
 
 
-
+//
 
 
 Route::get('{slug}', function ($slug) {
@@ -62,3 +60,4 @@ Route::get('{slug}', function ($slug) {
         return view('Pages.dynamic-page-genrate',compact('pagdata'));
     }
 });
+require __DIR__.'/postroutes.php';

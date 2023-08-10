@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>Booking Confirmation</title>
 </head>
 <body>
-<h1>New Booking Request</h1>
-<p>Name: {{ $bookingData['name'] }}</p>
-<p>Email: {{ $bookingData['email'] }}</p>
-<p>Phone: {{ $bookingData['phone'] }}</p>
-<p>date: {{ $bookingData['date'] }}</p>
-<p>time: {{ $bookingData['time'] }}</p>
-<p>select_part: {{ $bookingData['persons'] }}</p>
-<p>comments: {{ $bookingData['comments'] }}</p>
+  <h1>Booking Confirmation</h1>
+  <p>Thank you for your booking! Your reservation is confirmed for <strong>{{ $bookingData['date'] }} </strong> at <strong>{{ $bookingData['time'] }} </strong>.</p>
+  <p>Here are the details of your booking:</p>
+  <ul>
+    <li>Name: <strong>{{ $bookingData['name'] }}</strong></li>
+    <li>Contact Information: <strong>{{ $bookingData['phone'] }} , {{ $bookingData['email'] }}</strong></li>
+    <li>Number of Guests: <strong>{{ $bookingData['persons'] }}</strong></li>
+    <li>Special Requests: <strong> {{ $bookingData['comments'] }} </strong></li>
+  </ul>
+  <p>We look forward to seeing you on <strong> {{ $bookingData['date'] }}( {{ $bookingData['time'] }}) !</strong></p>
+  <p>Sincerely,</p>
+  <p>Dil Se</p>
 </body>
 </html>

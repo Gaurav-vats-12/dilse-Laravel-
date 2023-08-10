@@ -24,6 +24,8 @@ class StoreGalleryRequest extends FormRequest
         return [
             'image_title' =>  'required|max:255',
             'gallery_image' => 'required|image',
+            'image_postion' =>  'required|max:255',
+
             'status' => 'required|in:1,0',
         ];
     }

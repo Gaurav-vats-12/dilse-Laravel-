@@ -1,3 +1,5 @@
+var url = window.location.pathname;
+
 var ajaxResult = null;
 async   function Ajax_response(url,method,values,beforetask, success,callback){
   jQuery.ajaxSetup({headers: { 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')  } });
@@ -10,7 +12,6 @@ return await jQuery.ajax({
 success: function(msg){
     callback  },
   error: function(_request, status, _error) {
-    console.log(status);
   }
 });
 }
@@ -35,41 +36,9 @@ $("input").keypress(function(e) {
        }
  });
 
- const counters = document.querySelectorAll('.counter');
- const speed = 2000;
- counters.forEach((counter) => {
-   const updateCount = () => {
-     const target = parseInt(counter.getAttribute('data-value'));
-     const count = parseInt(counter.innerText);
-     const increment = Math.trunc(target / speed);
 
-     if (count < target) {
-       counter.innerText = `${count + increment}+`;
-       setTimeout(updateCount, 1);
-     } else {
-       counter.innerText = `${target}+`;
-     }
-   };
-   updateCount();
- });
 
- /*const counters1 = document.querySelectorAll('.counter1');
- const speed1 = 1000;
- counters1.forEach((counter) => {
-   const updateCount = () => {
-     const target = parseInt(counter.getAttribute('data-value'));
-     const count = parseInt(counter.innerText);
-     const increment = Math.trunc(target / speed1); 
-     console.log('here',target);
-     if (count < target) {
-      counter.innerText = `${count + increment}+`;
-       setTimeout(updateCount, 1);
-     } else {
-       counter.innerText = `${target}+`;
-     }
-   };
-   updateCount();
- });*/
+
 
  function animate(obj, initVal, lastVal, duration) {
     let startTime = null;
@@ -101,9 +70,29 @@ $("input").keypress(function(e) {
 //start animating
   window.requestAnimationFrame(step);
 }
-let text1 = document.getElementById('counter1');
 
-animate(text1, 0, 200, 7000);
+
+if(url.indexOf("/about-us") > -1){
+    const counters = document.querySelectorAll('.counter');
+    const speed = 2000;
+    counters.forEach((counter) => {
+      const updateCount = () => {
+        const target = parseInt(counter.getAttribute('data-value'));
+        const count = parseInt(counter.innerText);
+        const increment = Math.trunc(target / speed);
+
+        if (count < target) {
+          counter.innerText = `${count + increment}+`;
+          setTimeout(updateCount, 1);
+        } else {
+          counter.innerText = `${target}+`;
+        }
+      };
+      updateCount();
+    });
+    let text1 = document.getElementById('counter1');
+    animate(text1, 0, 200, 7000);
+  }
 
 
  jQuery(window).scroll(function() {
@@ -146,26 +135,13 @@ function getUrlParameter(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-async function getData(page){
-    const response = await Ajax_response('?page=' + page,"GET",'','','');
-    console.log(response);
-    // if (response) {
-    //     $("#menu_data_find").empty().html(response);
-    //     jQuery('.loader').addClass('display')
-    //     location.hash = page;
-    // }
+async function add_tocart_functionalty(ajax_url,ajax_value){
+    const resPose = await Ajax_response(ajax_url,"POST",ajax_value,'');
+    if(resPose.status =='success'){
+        jQuery('.cart_count').text(resPose.cart_total);
+        Toast.fire({ icon: 'success',title: resPose.message, })
+        setTimeout(function(){
+            jQuery('#add_to_cart').removeClass('added')
+        }, 2000);
+    }
 }
-
-
-// $(window).on('hashchange', function() {
-//     console.log('asdsad');
-//     // if (window.location.hash) {
-//     //     var page = window.location.hash.replace('#', '');
-//     //     console.log(page);
-//     //     if (page == Number.NaN || page <= 0) {
-//     //         return false;
-//     //     }else{
-//     //         getData(page);
-//     //     }
-//     // }
-// });

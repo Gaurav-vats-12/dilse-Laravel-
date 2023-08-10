@@ -25,7 +25,7 @@
               </div>
                         <div class="card-body">
                             <table id="manage_pages_datatable" class="table table-bordered table-hover">
-                                <thead>
+                                <thead class="text-uppercase">
                                     <tr>
                                         <th>Sno</th>
                                         <th>Page Title </th>
