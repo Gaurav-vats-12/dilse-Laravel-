@@ -32,9 +32,13 @@ Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'blogdetails'])->name('blogdetails');
 Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
 
+
+
+
 // Booking  a Reservation
 Route::get('/book-a-reservation', [BookingController::class, 'bookATable'])->name('booktable');
 Route::post('/submit-reservation-form', [BookingController::class, 'submitBookATable'])->name('booktable.submit');
+
 
 
 
@@ -42,12 +46,10 @@ Route::post('/submit-reservation-form', [BookingController::class, 'submitBookAT
 Route::prefix('cart')->name('cart.')->group(function(){
     Route::get('/', [CartController::class, 'viewcart'])->name('view');
     Route::get('/create/{id}', [CartController::class, 'addtocart'])->name('add');
-
-
 });
 
 
-//
+
 
 
 Route::get('{slug}', function ($slug) {
