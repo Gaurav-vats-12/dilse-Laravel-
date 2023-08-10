@@ -15,4 +15,5 @@ Route::prefix('cart')->name('cart.')->group(function(){
     Route::POST('/create', [CartController::class, 'addtocart'])->name('add');
 });
 
+
 ?>
