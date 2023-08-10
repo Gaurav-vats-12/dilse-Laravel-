@@ -84,9 +84,9 @@ ul {
 }
 .tittle_heading h2 {
   color: #0b0708;
-  font-size: 46px;
+  font-size: 36px;
   font-weight: 900;
-  line-height: 58px;
+  line-height: 43px;
   text-transform: uppercase;
   margin-bottom: 0;
 }
@@ -111,7 +111,7 @@ header.main_header {
   width: 100%;
   background-color: #000;
   position: sticky;
-  top: -12%;
+  top: -52px;
 }
 .top_header {
   padding: 10px 0;
