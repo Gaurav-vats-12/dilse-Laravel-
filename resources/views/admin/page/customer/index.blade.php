@@ -24,7 +24,7 @@
               </div>
                         <div class="card-body">
                             <table id="view_customer_table" class="table table-bordered table-hover">
-                                <thead>
+                                <thead class="text-uppercase">
                                     <tr>
                                  <th>Sno </th>
                                 <th>FULL NAME</th>

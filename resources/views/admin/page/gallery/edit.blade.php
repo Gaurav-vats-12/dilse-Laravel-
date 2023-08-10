@@ -38,6 +38,13 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="form-group">
+                        <label for="image_postion">   {{ __('Short Order') }}</label>
+                        <input type="number" name="image_postion" id="image_postion" class="form-control" min="0" max="{{\App\Models\Admin\Gallery::count()}}" placeholder ="Short Order" value="{{ old('image_postion' ,$gallery->image_postion) }}">
+                            @error('image_postion')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
 
                         <div class="form-group">
                         <label for="status">   {{ __('Banner status') }}</label>

@@ -66,13 +66,34 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                        <label for="blog_meta_description"> {{ __('Featured') }}</label>
-                        <input type="checkbox" value="1"  name="featured"  {{ old('featured' ,$foodItem->featured) == 1 ? 'checked' : '' }}  data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                            <h6>  {{ __('Featured') }}</h6>
+                          <label class="switch" for="featured">
+                        <input type="checkbox" name="featured" id="featured" value="1" {{ old('featured' ,$foodItem->featured ) == 1 ? 'checked' : '' }}>
+                        <span class="slider round"></span>
+                        </label>
                             @error('featured')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
+                            <h6>  {{ __('Extra Items') }}</h6>
+                          <label class="switch" for="extra_items">
+                        <input type="checkbox" name="extra_items" id="extra_items" value="1" {{ old('extra_items' ,$foodItem->extra_items) == 1 ? 'checked' : '' }}>
+                        <span class="slider round"></span>
+                        </label>
+
+                            @error('extra_items')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <!-- <div class="form-group">
+                        <label for="blog_meta_description"> {{ __('Featured') }}</label>
+                        <input type="checkbox" value="1"  name="featured"  {{ old('featured' ,$foodItem->featured) == 1 ? 'checked' : '' }}  data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                            @error('featured')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div> -->
+                        <!-- <div class="form-group">
                         <label for="status">   {{ __('Extra Items') }}</label>
                         <select name="extra_items[]" id="extra_items" class="form-control select2" multiple="multiple"  data-placeholder="Select Extra Item">
                             <option value="">Select Extra Items</option>
@@ -83,7 +104,7 @@
                             @error('extra_items')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </div> -->
                         <div class="form-group">
                         <label for="status">   {{ __('Status') }}</label>
                         <select name="status" id="status" class="form-control form-select">

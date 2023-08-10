@@ -40,7 +40,7 @@ class GalleryController extends Controller
             $sitelogopath = public_path('storage/gallery'); !is_dir($sitelogopath) &&  mkdir($sitelogopath, 0777, true);
             ResizeImage::make($request->file('gallery_image'))->save($sitelogopath.'/'. $galleryImage);
         }
-        Gallery::insert(['name' => $request->image_title, 'image' => $galleryImage,'status' => ($request->status =='1') ? 1 : 0,'created_at' => now(), 'updated_at' => now() ]);
+        Gallery::insert(['name' => $request->image_title, 'image' => $galleryImage,'image_postion' => $request->image_postion, 'status' => ($request->status =='1') ? 1 : 0,'created_at' => now(), 'updated_at' => now() ]);
         return redirect()->route('admin.manage-gallery.index')->withSuccess('Gallery Successfully Created');
 
     }
@@ -77,8 +77,7 @@ class GalleryController extends Controller
             }else{
             $galleryImage = $Gallery->image;
         }
-
-        $gallery::findOrFail($id)->update(['name' => $request->image_title, 'image' => $galleryImage,'status' => ($request->status =='1') ? 1 : 0, 'updated_at' => now() ]);
+        $gallery::findOrFail($id)->update(['name' => $request->image_title, 'image' => $galleryImage, 'image_postion' => $request->image_postion,  'status' => ($request->status =='1') ? 1 : 0, 'updated_at' => now() ]);
         return redirect()->route('admin.manage-gallery.index')->withSuccess('Gallery Successfully Updated');
     }
 

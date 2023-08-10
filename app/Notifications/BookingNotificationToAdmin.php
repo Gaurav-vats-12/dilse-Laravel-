@@ -10,14 +10,15 @@ use Illuminate\Notifications\Notification;
 class BookingNotificationToAdmin extends Notification
 {
     use Queueable;
-    private $BookingNotificationToAdmin;
+    public $BookingNotificationToAdmin;
+
 
     /**
      * Create a new notification instance.
      */
     public function __construct($BookingNotificationToAdmin)
     {
-     $this->BookingNotificationToAdmin = $BookingNotificationToAdmin;
+         $this->BookingNotificationToAdmin = $BookingNotificationToAdmin;
 
     }
 
@@ -28,7 +29,7 @@ class BookingNotificationToAdmin extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['database' ,'mail'];
     }
 
     /**
@@ -37,9 +38,10 @@ class BookingNotificationToAdmin extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->greeting('Hello Admin')
+                    ->line('New Booking Request')
+                    ->line($this->BookingNotificationToAdmin['body'])
+                    ->line($this->BookingNotificationToAdmin['thanks']);
     }
 
     /**

@@ -25,7 +25,7 @@
               </div>
                         <div class="card-body">
                             <table id="testonomails_table" class="table table-bordered table-hover">
-                                <thead>
+                                <thead class="text-uppercase">
                                     <tr>
                                         <th>Sno</th>
                                         <th>Customber Name</th>

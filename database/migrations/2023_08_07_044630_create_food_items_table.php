@@ -21,6 +21,7 @@ return new class extends Migration
             $table->float('price', 8, 2);
             $table->boolean('status')->default(false);
             $table->boolean('featured')->default(false);
+            $table->boolean('extra_items')->default(false);
             $table->timestamps();
             $table->softDeletes(); // <-- This will add a deleted_at field
 

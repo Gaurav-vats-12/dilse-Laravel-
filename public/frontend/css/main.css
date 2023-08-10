@@ -1792,3 +1792,25 @@ img.mfp-img {
   color: #000;
 }
 
+/* ---------------------
+product
+------------------------ */
+.product_reviews ul {
+    display: flex;
+    height: 20%;
+    width: 100px;
+    gap: 2px;
+    margin-bottom: 15px;
+  }
+  .product_price h2 {
+    color: #eb0029;
+  }
+  .product_price {
+    border-bottom: 1px solid #0000001a;
+  }
+  .product_discription p {
+    margin-top: 13px;
+  }
+  .Product_slider .best_food_crd {
+    padding: 15px;
+  }
