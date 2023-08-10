@@ -86,7 +86,6 @@ class GalleryController extends Controller
      */
     public function destroy(string $id ,Gallery $gallery)
     {
-
         $gallery::findOrFail($id)->delete();
         return redirect()->route('admin.manage-gallery.index')->withSuccess('Gallery Successfully Deleted');
 
