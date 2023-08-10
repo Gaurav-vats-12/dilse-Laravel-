@@ -23,7 +23,6 @@ class UpdateGalleryRequest extends FormRequest
     {
         return [
             'image_title' =>  'required|max:255',
-            'image_postion' =>  'required|max:255',
             'status' => 'required|in:1,0',
         ];
     }
