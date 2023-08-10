@@ -72,33 +72,35 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="custn_input">
-                      <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="First name" required />
+
+                      <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="First name" />
+                      @error('first_name') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="custn_input">
-                      <input type="text" name="last_name" value="{{ old('last_name') }}" placeholder="Last name" required />
+                      <input type="text" name="last_name" value="{{ old('last_name') }}" placeholder="Last name" />
+                      @error('last_name') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="custn_input">
-                      <input type="email" name="email" value="{{ old('email') }}" placeholder="E-mail" required />
+                      <input type="email" name="email" value="{{ old('email') }}" placeholder="E-mail" />
+                      @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="custn_input">
-                      <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone number" id="phone" required />
+                      <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone number" id="phone"  />
+                      @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
+
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="custn_input">
-                      <textarea
-                        name="message"
-                        id=""
-                        cols="30"
-                        rows="6"
-                        placeholder="Message" required
-                      >{{ old('message') }}</textarea>
+                      <textarea name="message" id="message" cols="30" rows="6" placeholder="Message" >{{ old('message') }}</textarea>
+                      @error('message') <span class="text-danger">{{ $message }}</span> @enderror
+
                     </div>
                   </div>
                 </div>

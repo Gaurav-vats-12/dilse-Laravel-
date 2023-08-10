@@ -25,7 +25,7 @@
               </div>
                         <div class="card-body">
                             <table id="bannerTable" class="table table-bordered table-hover">
-                                <thead>
+                                <thead class="text-uppercase">
                                     <tr>
                                         <th>Sno</th>
                                         <th>Banner Title </th>

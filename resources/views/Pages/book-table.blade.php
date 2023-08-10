@@ -79,7 +79,7 @@
                       <select name="select_part" class="form-control form-select">
                         <option value="">Select Part Size</option>
                         @for($i=1;$i <= 6;$i++)
-                          <option value="{{$i}}">{{$i}} Person </option>
+                          <option value="{{$i}}"  {{ old('select_part') == $i ? 'selected' : '' }} >{{$i}} Person </option>
                         @endfor
                       </select>
                       @error('select_part')

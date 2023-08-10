@@ -17,12 +17,12 @@
     <script src="{{asset('frontend/js/main.js') }}"></script>
     <!-- Function.js -->
     <script src="{{asset('frontend/js/function.js') }}"></script>
-    
+
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
-    
+
     @include('sweetalert::alert')
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 </body>

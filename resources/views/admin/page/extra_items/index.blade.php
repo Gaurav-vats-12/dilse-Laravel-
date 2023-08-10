@@ -24,7 +24,7 @@
               </div>
                         <div class="card-body">
                         <table id="extra_food_items" class="table table-bordered table-striped">
-                                <thead>
+                                <thead class="text-uppercase">
                                     <tr>
                                         <th>ID</th>
                                         <th>Image</th>
