@@ -17,15 +17,20 @@ jQuery(document).ready(function () {
         }
         parseInt(jQuery(this).siblings(".qty").val(qty))
         let product__price = parseFloat(jQuery(this).siblings(".qty").attr("product__price")),
-            counterproductive = qty * product__price,
+            counterproductive =   parseFloat(qty * product__price)
             ajax_url = jQuery('#ajax_url').val();
         let dilavery_charge = jQuery('#dilavery_charge').val();
-        jQuery(`#product_quantity_price__${product_oid}`).text(counterproductive);
+        jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive}`);
         jQuery(`#product_quntity__${product_oid}`).val(qty);
-        jQuery(`#product_price__${product_oid}`).val(counterproductive);
+        jQuery(`#product_price__${product_oid}`).val(`$${counterproductive}`);
         let ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
         let resPose; [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')]);
         if(resPose.status ==='success') {
+            if (resPose.subtotal > 50){
+                jQuery('#dilevery_total').html(`<p>$50</p>`);
+            }else{
+                jQuery('#dilevery_total').html(`<p>$0</p>`);
+            }
             jQuery('#subtotal').html(`<p>$${resPose.subtotal}</p>`);
             jQuery('#total').html(`<p>$${resPose.total}</p>`);
         }
@@ -49,14 +54,20 @@ jQuery(document).ready(function () {
                    let resPose;
                    [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
                    if(resPose.status ==='success') {
+                       if (resPose.subtotal > 50){
+                           jQuery('#dilevery_total').html(`<p>$50</p>`);
+                       }else{
+                           jQuery('#dilevery_total').html(`<p>$0</p>`);
+                       }
+                       jQuery('#subtotal').text(resPose.subtotal);
+                       jQuery('#total').text(resPose.total);
                        if(uid ===0){
                            jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                            jQuery('#order_details').empty();
                        }else{
                            let product_oid = parseInt(jQuery(this).attr("produc_id"));
                            jQuery(`#cart_products-${product_oid}`).empty();
-                           jQuery('#subtotal').html(`<p>$${resPose.subtotal}</p>`);
-                           jQuery('#total').html(`<p>$${resPose.total}</p>`);
+
                            if(uid-1 ===0){
                                jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                                jQuery('#order_details').empty();
