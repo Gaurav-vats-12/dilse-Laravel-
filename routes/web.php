@@ -34,13 +34,8 @@ Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
 Route::get('/menu/{slug}', [MenuController::class, 'menudetails'])->name('menudetails');
 
 
-
-
 // Booking  a Reservation
 Route::get('/book-a-reservation', [BookingController::class, 'bookATable'])->name('booktable');
-<<<<<<<<< Temporary merge branch 1
-Route::post('/submit-reservation-form', [BookingController::class, 'submitBookATable'])->name('booktable.submit');
-
 
 
 
@@ -55,15 +50,12 @@ Route::prefix('cart')->name('cart.')->group(function(){
 
 //
 
-
-=========
 // Add to Cart
 Route::prefix('cart')->name('cart.')->group(function(){
     Route::get('/', [CartController::class, 'viewcart'])->name('view');
     // Route::get('/create/{id}', [CartController::class, 'addtocart'])->name('add');
 });
 //  Slug Dependency
->>>>>>>>> Temporary merge branch 2
 Route::get('{slug}', function ($slug) {
     if ($slug === 'admin') {
         return redirect()->route('admin.dashboard');
