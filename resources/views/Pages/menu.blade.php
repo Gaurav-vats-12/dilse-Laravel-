@@ -30,8 +30,10 @@
                     </ul>
                 </div>
                 <div class="col-lg-9">
-                    <div class="menu_main_box" id="menu_data_find">
                     <div class="loader display"></div>
+                    <input type="hidden" name="slug" id="slug" value="{{$slug}}">
+
+                    <div class="menu_main_box " id="menu_data_find">
                         @include('ajax.menufooditems')
 
                     </div>

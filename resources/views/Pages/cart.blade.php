@@ -20,23 +20,16 @@
         <div class="container">
             <div class="tittle_heading">
                 <h2>Shopping Cart</h2>
-                <!-- <div class="breadcumb_main" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Cart</li>
-                    </ol>
-                </div> -->
             </div>
 
             <div class="row">
-                <div class="col-sm-12 col-md-7 col-lg-7">
+                <div class="col-sm-12 col-md-7 col-lg-8" id="cart_messages">
                 @php  $subtotal = 0; @endphp
                 @if(session('cart'))
                 @foreach(session('cart') as $id => $details)
                 @php
-                  $subtotal = $subtotal + $details["price"]
-        @endphp
-                    <div class="shoping_main_top">
+                  $subtotal = $subtotal + $details["price"]@endphp
+                    <div class="shoping_main_top" id="cart_products-{{$id}}">
                         <div class="shopping_items_main">
                             <ul class="shopping_items">
                                 <li>
@@ -52,22 +45,24 @@
                                 <li>
                                     <div class="shop_item_quantity qty-input">
                                         <form id='myform' method='POST' class='quantity' action='#'>
-                                            <input type='button' value='-' class='qtyminus minus qty-count qty-count--minus' field='quantity' quantity-type ="minus" product_oid ="{{$details['productdetails']->id}}" />
+                                            <input type='button' value='-' class='qtyminus minus qty-count qty-count--minus' field='quantity' quantity-type ="minus" productoid ="{{$details['productdetails']->id}}" />
                                             <input type='text' name='quantity' min="1" max="500"  value='{{ $details["quantity"]}}' class='qty' product__price ="{{ $details['price']}}" />
                                             <input type="hidden" name="product_price" id="product_price__{{$details['productdetails']->id}}" value="{{ $details['price']}}">
-                                            <input type="hidden" name="product_quntity" id="product_quntity__{{$details['productdetails']->id}}" value="1">
-                                            <input type='button' value='+' class='qtyplus plus qty-count qty-count--add' quantity-type ="plus" field='quantity' product_oid ="{{ $details['productdetails']->id}}" />
+                                            <input type="hidden" name="product_quantity" id="product_quntity__{{$details['productdetails']->id}}" value="1">
+                                            <input type="hidden" name="ajax_url" id="ajax_url" value="{{ route('cart.update') }}" >
+                                            <input type='button' value='+' class='qty-plus plus qty-count qty-count--add' quantity-type ="plus" field='quantity' productoid ="{{ $details['productdetails']->id}}" />
                                         </form>
                                     </div>
-                                    <div class="price">
-                                        <h6>$ <span id="product_quantity_price__{{$id}}">{{ $details['price'] }}</span></h6></div>
                                 </li>
                                 <li>
                                     <div class="shope_price">
-                                        <div class="shope_p_tag"><span class="text-green-500 !leading-none">${{ $details["price"]}}</span>
+                                        <div class="shope_p_tag"><span class="text-green-500 !leading-none">${{ $details['productdetails']->price}}</span>
                                         </div>
+                                        <div class="price"><h6>$ <span id="product_quantity_price__{{$id}}">{{ $details['price'] }}</span></h6></div>
+
                                         <div class="remove_price">
-                                            <a class="theme_btn" href="">remove</a>
+                                            <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
+                                            <a class="theme_btn" href="javascript:void(0)" id ="remove_add_to_Cart" produc_id ="{{ $id }}">remove</a>
                                         </div>
                                     </div>
                                 </li>
@@ -76,8 +71,9 @@
                     </div>
                     @endforeach @else <h4> No Cart  Items Found</h4>  @endif
                 </div>
-                @if(session('cart'))
-                <div class="col-sm-12 col-md-7 col-lg-5">
+
+                <div class="col-sm-12 col-md-7 col-lg-4" id="order_details">
+                    @if(session('cart'))
                     <div class="order_summary">
                         <div class="tittle_heading">
                             <h6> Order Summary </h6>
@@ -89,7 +85,7 @@
                                     </p>
                                 </div>
 
-                                <div class="s_total">
+                                <div class="s_total" id="subtotal">
                                     <p>${{ $subtotal }}
                                     </p>
                                 </div>
@@ -100,8 +96,9 @@
                                     </p>
                                 </div>
 
-                                <div class="s_total" id="total">
+                                <div class="s_total" id="dilevery_total">
                                     <p>${{ $subtotal > 50 ?  50 : 0 }}</p>
+                                    <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{ $subtotal > 50 ?  50 : 0 }}">
                                 </div>
                             </li>
                         </ul>
@@ -110,7 +107,7 @@
                                 <p>Total
                                 </p>
                             </div>
-                            <div class="order_totalse">
+                            <div class="order_totalse" id="total">
                             <p>${{ $subtotal > 50 ? $subtotal + 50 : $subtotal + 0 }}</p>
                             </div>
                         </div>

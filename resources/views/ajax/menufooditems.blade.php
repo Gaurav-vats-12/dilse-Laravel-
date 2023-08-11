@@ -1,4 +1,5 @@
-                    <input type="hidden" name="slug" id="slug" value="{{$slug}}">
+
+
                     @if (isset($FoodItem) && count($FoodItem) >0)
                         @foreach ( $FoodItem as $key => $FoodItems)
                         <div class="best_food_crd">
@@ -16,7 +17,9 @@
                                 <input type="hidden" name="ajax_url" id="ajax_url" value="{{ route('cart.add') }}" >
                             <input type="hidden" name="product_price" id="product_price__{{$FoodItems->id}}" value="{{ $FoodItems->price }}">
                             <input type="hidden" name="product_quntity" id="product_quntity_{{$FoodItems->id}}" value="1">
-                             <a href="javascript:void(0)" class="theme_btn btn-block text-center" id="add_to_cart" role="button" product_uid = "{{$FoodItems->id }}">Add to cart</a>
+                                    <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" role="button" product_uid = "{{$FoodItems->id }}">  <span class="add-to-cart">Add to cart</span>
+                                        <span class="added-to-cart">Added to cart</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
