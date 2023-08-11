@@ -52,6 +52,7 @@ jQuery(document).ready(function () {
                    [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
                    if(resPose.status ==='success') {
                        jQuery('#subtotal').text(resPose.subtotal);
+
                        jQuery('#total').text(resPose.total);
                        if(uid ===0){
                            jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
