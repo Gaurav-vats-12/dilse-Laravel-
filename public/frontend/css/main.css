@@ -1628,21 +1628,23 @@ img.mfp-img {
   }
 
   .shop_item_quantity #myform {
-    text-align: center;
-    padding: 5px;
-    border: 1px dotted #efefef;
-    margin: 2%;
-    display: flex;
-    justify-content: space-between;
-    width: 132px;
-    margin: auto;
-    padding: 0px;
+      text-align: center;
+      padding: 5px;
+      border: 1px dotted #efefef;
+      margin: 2%;
+      display: flex;
+      justify-content: center;
+      width: 132px;
+      margin: auto;
+      padding: 0px;
+      gap: 10px !important;
+      text-align: center;
   }
 
   .shope_price {
     position: relative;
     height: 100%;
-    width: 90px;
+    width: 140px;
   }
 
   .shope_price .shope_p_tag {
@@ -1660,6 +1662,7 @@ img.mfp-img {
     font-weight: 700;
     position: absolute;
       bottom: 0px;
+      right:0px;
   }
   .remove_price a {
     padding: 5px 14px;
@@ -1763,18 +1766,15 @@ img.mfp-img {
   }
   /* Checkout page css */
   .loader{
-    position: fixed;
     left: 0px;
     top: 0px;
     width: 100%;
     height: 100%;
-    z-index: 9999;
-    background: url('//upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Phi_fenomeni.gif/50px-Phi_fenomeni.gif')
-                50% 50% no-repeat rgb(249,249,249);
+    z-index: 1;
+    background: url('https://i.ibb.co/8xxVZS9/loader.gif') 50% 50% no-repeat;
   }
  .display{
     display: none;
-
   }
 
   .select_location {
@@ -1814,3 +1814,114 @@ product
   .Product_slider .best_food_crd {
     padding: 15px;
   }
+.add-to-cart-button {
+    &:active {
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(252, 186, 3,.45);
+        box-shadow: 0 0 0 0.2rem rgba(252, 186, 3,.45);
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:hover,
+    &:focus {
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(252, 186, 3,.45);
+        box-shadow: 0 0 0 0.2rem rgba(252, 186, 3,.45);
+        -webkit-transform: translateY(-1px);
+        transform: translateY(-1px);
+    }
+
+    &.added {
+        background: #eb0029;
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(11, 252, 3, 0.45);
+        box-shadow: 0 0 0 0.2rem rgb(255 45 45 / 31%);
+
+        .add-to-cart {
+            display: none;
+        }
+
+        .added-to-cart {
+            display: block;
+        }
+
+        .cart-icon {
+            animation: drop 0.3s forwards;
+            -webkit-animation: drop 0.3s forwards;
+            animation-delay: 0.18s;
+        }
+
+        .box-1,
+        .box-2 {
+            top: 18px;
+        }
+
+        .tick {
+            animation: grow 0.6s forwards;
+            -webkit-animation: grow 0.6s forwards;
+            animation-delay: 0.7s;
+        }
+
+    }
+
+}
+
+.add-to-cart,
+.added-to-cart {
+}
+
+.added-to-cart {
+    display: none;
+    position: relative;
+}
+
+.add-to-cart-box {
+    height: 5px;
+    position: absolute;
+    top: 0;
+    width: 5px;
+}
+
+.price {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+.price  h6 {
+    font-size: 20px;
+    font-weight: 700 !important;
+}
+.shoping_datas h6 {
+    margin-left: 10px;
+}
+.shop_item_quantity {
+    width: 160px;
+}
+.shoping_imge {
+    max-width: 170px;
+    height: 105px;
+}
+.shop_item_quantity.qty-input form input.qty {
+    padding: 4px;
+}
+.best_btn_food {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.best_food_cntnt {
+     display: block;
+    align-items: self-end;
+    padding-top: 27px;
+}
+.best_btn_food .theme_btn {
+    padding: 3px 8px;
+}
+/*.menu_main_box .best_food_crd{*/
+/*    position: relative;*/
+/*}*/
+/*.menu_main_box {*/
+/*    position: relative;*/
+/*}*/

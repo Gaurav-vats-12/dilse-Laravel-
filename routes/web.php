@@ -1,8 +1,13 @@
 <?php
 
 // use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\{HomeController,BlogController,MenuController,CartController,BookingController,ContactUsController};
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController as BlogControllerAlias;
+use App\Http\Controllers\BookingController as BookingControllerAlias;
+use App\Http\Controllers\CartController as CartControllerAlias;
+use App\Http\Controllers\ContactUsController as ContactUsControllerAlias;
+use App\Http\Controllers\HomeController as HomeControllerAlias;
+use App\Http\Controllers\MenuController as MenuControllerAlias;
+use Illuminate\Support\Facades\Route as RouteAlias;
 use App\Models\Admin\Page;
 use Illuminate\Support\Facades\URL;
 
@@ -17,46 +22,37 @@ use Illuminate\Support\Facades\URL;
 |
 */
 // Home Page
-Route::get('/', [HomeController::class, 'Homepage'])->name('home');
+RouteAlias::get('/', [HomeControllerAlias::class, 'Homepage'])->name('home');
 // Contact Us
-Route::get('/contact-us', [ContactUsController::class, 'index'])->name('contact');
+RouteAlias::get('/contact-us', [ContactUsControllerAlias::class, 'index'])->name('contact');
 // About Us
-Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
+RouteAlias::get('/about-us', [HomeControllerAlias::class, 'aboutus'])->name('aboutus');
 // Gallery Page
-Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
+RouteAlias::get('/gallery', [HomeControllerAlias::class, 'gallery'])->name('gallery');
 // Discount and Coupans
-Route::get('/discount-and-coupons', [HomeController::class, 'giftCard'])->name('discountandcoupons');
+RouteAlias::get('/discount-and-coupons', [HomeControllerAlias::class, 'giftCard'])->name('discountandcoupons');
 // Bolg Page
-Route::get('/blog', [BlogController::class, 'blog'])->name('blog');
-Route::get('/blog/{slug}', [BlogController::class, 'blogdetails'])->name('blogdetails');
+RouteAlias::get('/blog', [BlogControllerAlias::class, 'blog'])->name('blog');
+RouteAlias::get('/blog/{slug}', [BlogControllerAlias::class, 'blogdetails'])->name('blogdetails');
 // Menu Page
-Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
-Route::get('/menu/{slug}', [MenuController::class, 'menudetails'])->name('menudetails');
+RouteAlias::get('/menu', [MenuControllerAlias::class, 'menu'])->name('menu');
+RouteAlias::get('/menu/{slug}', [MenuControllerAlias::class, 'menudetails'])->name('menudetails');
 
 
 // Booking  a Reservation
-Route::get('/book-a-reservation', [BookingController::class, 'bookATable'])->name('booktable');
+RouteAlias::get('/book-a-reservation', [BookingControllerAlias::class, 'bookATable'])->name('booktable');
 
 
 
 // Add to Cart
-Route::prefix('cart')->name('cart.')->group(function(){
-    Route::get('/', [CartController::class, 'viewcart'])->name('view');
-    Route::get('/create/{id}', [CartController::class, 'addtocart'])->name('add');
-
-
+RouteAlias::prefix('cart')->name('cart.')->group(function(){
+    RouteAlias::get('/', [CartControllerAlias::class, 'viewcart'])->name('view');
+    RouteAlias::get('/create/{id}', [CartControllerAlias::class, 'addtocart'])->name('add');
 });
 
 
-//
-
-// Add to Cart
-Route::prefix('cart')->name('cart.')->group(function(){
-    Route::get('/', [CartController::class, 'viewcart'])->name('view');
-    // Route::get('/create/{id}', [CartController::class, 'addtocart'])->name('add');
-});
 //  Slug Dependency
-Route::get('{slug}', function ($slug) {
+RouteAlias::get('{slug}', function ($slug) {
     if ($slug === 'admin') {
         return redirect()->route('admin.dashboard');
     }elseif ($slug === 'user') {

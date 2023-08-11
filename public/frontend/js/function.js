@@ -128,20 +128,17 @@ jQuery('.image-popup-vertical-fit').magnificPopup({
 
 });
 
-function getUrlParameter(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
-async function add_tocart_functionalty(ajax_url,ajax_value){
-    const resPose = await Ajax_response(ajax_url,"POST",ajax_value,'');
-    if(resPose.status =='success'){
+async function add_cart_functionally(ajax_url, ajax_value){
+    let resPose;
+    [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')]);
+    resPose.cart_total = undefined;
+    if(resPose.status ==='success'){
         jQuery('.cart_count').text(resPose.cart_total);
+        jQuery('#subtotal').html('<p>$50</p>');
+        // jQuery('.total').html('<p>$'+resPose.subtotal+'</p>');
         Toast.fire({ icon: 'success',title: resPose.message, })
         setTimeout(function(){
-            jQuery('#add_to_cart').removeClass('added')
-        }, 2000);
+            jQuery('.add-to-cart-button').removeClass('added')
+        }, 1000);
     }
 }
