@@ -48,7 +48,7 @@
                                     <div class="shop_item_quantity qty-input">
                                         <form id='myform' method='POST' class='quantity' action='#'>
                                             <input type='button' value='-' class='qtyminus minus qty-count qty-count--minus' field='quantity' quantity-type ="minus" productoid ="{{$details['productdetails']->id}}" />
-                                            <input type='text' name='quantity' min="1" max="500"  value='{{ $details["quantity"]}}' class='qty' product__price ="{{ $details['price']}}" />
+                                            <input type='text' name='quantity' min="1" max="500" readonly  value='{{ $details["quantity"]}}' class='qty' product__price ="{{ $details['price']}}" />
                                             <input type="hidden" name="product_price" id="product_price__{{$details['productdetails']->id}}" value="{{ $details['price']}}">
                                             <input type="hidden" name="product_quantity" id="product_quntity__{{$details['productdetails']->id}}" value="1">
                                             <input type="hidden" name="ajax_url" id="ajax_url" value="{{ route('cart.update') }}" >
@@ -58,9 +58,9 @@
                                 </li>
                                 <li>
                                     <div class="shope_price">
-                                        <div class="shope_p_tag"><span class="text-green-500 !leading-none"> $ {{ $details['productdetails']->price}}</span>
+                                        <div class="shope_p_tag"><span class="text-green-500 !leading-none"> ${{ $details['productdetails']->price}}</span>
                                         </div>
-                                        <div class="price"><h6> <span id="product_quantity_price__{{$id}}">$ {{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
+                                        <div class="price"><h6> <span id="product_quantity_price__{{$id}}">${{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
 
                                         <div class="remove_price">
                                             <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
@@ -99,8 +99,8 @@
                                 </div>
 
                                 <div class="s_total" id="dilevery_total">
-                                    <p >${{ $subtotal > 50 ?  50 : 0 }}</p>
-                                    <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{ $subtotal > 50 ?  50 : 0 }}">
+                                    <p >${{4.25}}</p>
+                                    <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{4.25}}">
                                 </div>
                             </li>
                         </ul>

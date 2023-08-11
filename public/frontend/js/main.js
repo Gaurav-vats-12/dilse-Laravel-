@@ -7,7 +7,8 @@ jQuery(document).ready(function () {
         let product_oid = parseInt(jQuery(this).attr("productoid")),
             qtyMin = parseInt(jQuery(this).siblings(".qty").attr("min")),
             qtyMax = parseInt(jQuery(this).siblings(".qty").attr("max")),
-            qty = parseInt(jQuery(this).siblings(".qty").val()),
+            quantity = jQuery(this).siblings(".qty"),
+            qty = parseInt(quantity.val())
             quantity_type = jQuery(this).attr("quantity-type").toString();
         if ('plus' === quantity_type) {qty += 1;if (qty >= qtyMax) {jQuery(this).attr("disabled", true);}} else {
             qty = qty <= qtyMin ? qtyMin : (qty -= 1);
@@ -15,7 +16,8 @@ jQuery(document).ready(function () {
                 jQuery(this).attr("disabled", true);
             }
         }
-        parseInt(jQuery(this).siblings(".qty").val(qty))
+        quantity.val(qty)
+        // parseInt(jQuery(this).find(".qty").val(qty))
         let product__price = parseFloat(jQuery(this).siblings(".qty").attr("product__price")),
             counterproductive =   parseFloat(qty * product__price)
             ajax_url = jQuery('#ajax_url').val();
@@ -26,11 +28,6 @@ jQuery(document).ready(function () {
         let ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
         let resPose; [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')]);
         if(resPose.status ==='success') {
-            if (resPose.subtotal > 50){
-                jQuery('#dilevery_total').html(`<p>$50</p>`);
-            }else{
-                jQuery('#dilevery_total').html(`<p>$0</p>`);
-            }
             jQuery('#subtotal').html(`<p>$${resPose.subtotal}</p>`);
             jQuery('#total').html(`<p>$${resPose.total}</p>`);
         }
@@ -54,12 +51,8 @@ jQuery(document).ready(function () {
                    let resPose;
                    [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
                    if(resPose.status ==='success') {
-                       if (resPose.subtotal > 50){
-                           jQuery('#dilevery_total').html(`<p>$50</p>`);
-                       }else{
-                           jQuery('#dilevery_total').html(`<p>$0</p>`);
-                       }
                        jQuery('#subtotal').text(resPose.subtotal);
+
                        jQuery('#total').text(resPose.total);
                        if(uid ===0){
                            jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
