@@ -200,7 +200,7 @@ header.main_header {
   background: rgb(0 0 0 / 62%);
 }
 .home-slider-content h3 {
-  font-size: 22px;
+  font-size: 20px;
   color: #fff;
   letter-spacing: 4px;
   margin-bottom: 6px;
@@ -566,8 +566,8 @@ ul._service_list li:last-child {
   max-width: 1113px;
 }
 .sub_scribe_txt h2 {
-  font-size: 46px;
-  line-height: 62px;
+  font-size: 36px;
+  line-height:43px;
   margin-bottom: 6px;
 }
 .sub_scribe_txt p {
