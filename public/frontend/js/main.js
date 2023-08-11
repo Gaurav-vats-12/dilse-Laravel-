@@ -3,37 +3,58 @@ jQuery(document).ready(function () {
     /**
      *  Cart Page JQuery
      */
-    jQuery(document).on("click",".plus ,.minus", async function (e) {
-        let product_oid = parseInt(jQuery(this).attr("productoid")),
-            qtyMin = parseInt(jQuery(this).siblings(".qty").attr("min")),
-            qtyMax = parseInt(jQuery(this).siblings(".qty").attr("max")),
-            quantity = jQuery(this).siblings(".qty"),
-            qty = parseInt(quantity.val())
-            quantity_type = jQuery(this).attr("quantity-type").toString();
-        if ('plus' === quantity_type) {qty += 1;if (qty >= qtyMax) {jQuery(this).attr("disabled", true);}} else {
-            qty = qty <= qtyMin ? qtyMin : (qty -= 1);
-            if (qty === qtyMin) {
-                jQuery(this).attr("disabled", true);
+    let jQueryqtyInputs = jQuery(".qty-input");
+    if (!jQueryqtyInputs.length) {return;
+ }
+    let jQueryinputs = jQueryqtyInputs.find(".product-qty");
+    console.log(jQueryinputs)
+
+    let jQuerycountBtn = jQueryqtyInputs.find(".qty-count");
+    let qtyMin = parseInt(jQueryinputs.attr("min"));
+    let qtyMax = parseInt(jQueryinputs.attr("max"));
+
+    jQuery(document).on("click", ".plus ,.minus",  async function (e) {
+        let jQuerythis = jQuery(this);
+        let jQueryminusBtn = jQuerythis.siblings(".qty-count--minus");
+        let jQueryaddBtn = jQuerythis.siblings(".qty-count--add");
+        let quantity = jQuery(this).siblings(".qty");
+        let  ajax_url = jQuery('#ajax_url').val();
+        let dilavery_charge = jQuery('#dilavery_charge').val();
+        let product__price = parseFloat(jQuery(this).siblings(".qty").attr("product__price"));
+        let  qty = parseInt(quantity.val());
+        let quantity_type = jQuery(this).attr("quantity-type").toString();
+        let product_oid = parseInt(jQuery(this).attr("productoid"));
+        if ('plus' === quantity_type) {
+            jQueryaddBtn.attr("disabled", false);
+            jQueryminusBtn.attr("disabled", false);
+            if (qty >= qtyMax) {
+                quantity.val( qtyMax ).change()
+                jQuerythis.attr("disabled", true);
+            }else{
+                quantity.val( qty+1 ).change();
+            }
+        }else{
+            jQueryaddBtn.attr("disabled", false);
+            jQueryminusBtn.attr("disabled", false);
+            if (isNaN(qty) || qty <= qtyMin) {
+                jQuerythis.attr("disabled", true);
+                quantity.val( qtyMin).change();
+            }else{
+                quantity.val( qty-1 ).change();
             }
         }
-        console.log(quantity.val())
-
-        // // quantity.val(qty)
-        // // parseInt(jQuery(this).find(".qty").val(qty))
-        // let product__price = parseFloat(jQuery(this).siblings(".qty").attr("product__price")),
-        //     counterproductive =   parseFloat(qty * product__price)
-        //     ajax_url = jQuery('#ajax_url').val();
-        // let dilavery_charge = jQuery('#dilavery_charge').val();
-        // jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive}`);
-        // jQuery(`#product_quntity__${product_oid}`).val(qty);
-        // jQuery(`#product_price__${product_oid}`).val(`$${counterproductive}`);
-        // let ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
-        // let resPose; [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')]);
-        // if(resPose.status ==='success') {
-        //     jQuery('#subtotal').html(`<p>$${resPose.subtotal}</p>`);
-        //     jQuery('#total').html(`<p>$${resPose.total}</p>`);
-        // }
+        let counterproductive =   parseFloat(qty * product__price);
+        let ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
+        jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive}`);
+        jQuery(`#product_quntity__${product_oid}`).val(qty);
+        jQuery(`#product_price__${product_oid}`).val(`$${counterproductive}`);
+        let resPose; [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')]);
+        if(resPose.status ==='success') {
+            jQuery('#subtotal').html(`<p>$${resPose.subtotal}</p>`);
+            jQuery('#total').html(`<p>$${resPose.total}</p>`);
+        }
     });
+
 
     /**
      *  Remove Add to Cart
@@ -123,27 +144,42 @@ jQuery(document).ready(function () {
             jQuery("#menu_data_find").empty().html(response);
         }
     });
+
+    jQuery('.row.Product_slider').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 3,
+        slidesToScroll: 1
+    });
+
+
+    jQuery(document).on("submit","#conatact_cus_form",async function(e) {
+        e.preventDefault();
+        var ajax_value_list = $(this).serialize();
+        var ajx_url = jQuery('#contact_us_action_url').val();
+        const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
+        if(resPose.status === 'success'){
+            Toast.fire({ icon: 'success',title: resPose.message, })
+            $("#conatact_cus_form")[0].reset();
+
+        }else{
+            jQuery.each(resPose.errors, function (key, value) {
+                jQuery(`#${key}-error`).text(value);
+            });
+        }
+
+    });
+
+        $( "#datepicker" ).datepicker({ minDate: 0});
+    $('#timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 15,
+        scrollbar: true
+    });
 });
 
 
-//     jQuery(document).on("click","#menu", function(e) {
-//         // e.preventDefault();
-//         // jQuery('.loader').removeClass('display');
-//         // $("#menu_data_find").empty();
-//
-//
-// });
-
-//
-//
-//     jQuery('.row.Product_slider').slick({
-//     dots: false,
-//     infinite: true,
-//     speed: 300,
-//     slidesToShow: 3,
-//     slidesToScroll: 1
-//
-//   });
 //   jQuery('.testimonial_slider').slick({
 //     infinite: true,
 //     arrows: false,
@@ -179,121 +215,60 @@ jQuery(document).ready(function () {
 //
 // });
 // // Contact Us Form
-//   jQuery(document).on("submit","#conatact_cus_form",async function(e) {
-//     e.preventDefault();
-//     var ajax_value_list = $(this).serialize();
-//     var ajx_url = jQuery('#contact_us_action_url').val();
-//       const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
-//     if(resPose.status === 'success'){
-//             Toast.fire({ icon: 'success',title: resPose.message, })
-//    $("#conatact_cus_form")[0].reset();
+
 //
-//     }else{
-//        jQuery.each(resPose.errors, function (key, value) {
-//             jQuery(`#${key}-error`).text(value);
-//           });
-// }
-//
-//     });
-//
-//     jQuery(document).on("submit","#emailSubscribeForm",async function(e) {
-//         e.preventDefault();
-//         var ajax_value_list = $(this).serialize();
-//         var ajx_url = jQuery('#email_action_url').val();
-//         const resPose = await Ajax_response(ajx_url,"POST",ajax_value_list,'');
-//         console.log(resPose);
-//         if(resPose.status =='success'){
-//             console.log('asdsad');
-//             Toast.fire({
-//                 icon: 'success',
-//                 title: resPose.message,
-//               })
-//               location.reload();
-//
-//         } else if(resPose.status =='error'){
-//             Toast.fire({
-//                 icon: 'warning',
-//                 title: resPose.message
-//               })
-//               $("#emailSubscribeForm")[0].reset();
-//         }else{
-//             jQuery.each(resPose.errors, function (key, value) {
-//                 jQuery(`#${key}-error`).text(value);
-//               });
-//         }
+    jQuery(document).on("submit","#emailSubscribeForm",async function(e) {
+        e.preventDefault();
+        var ajax_value_list = $(this).serialize();
+        var ajx_url = jQuery('#email_action_url').val();
+        const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
+        console.log(resPose);
+        if (resPose.status == 'success') {
+            console.log('asdsad');
+            Toast.fire({
+                icon: 'success',
+                title: resPose.message,
+            })
+            location.reload();
+
+        } else if (resPose.status == 'error') {
+            Toast.fire({
+                icon: 'warning',
+                title: resPose.message
+            })
+            $("#emailSubscribeForm")[0].reset();
+        } else {
+            jQuery.each(resPose.errors, function (key, value) {
+                jQuery(`#${key}-error`).text(value);
+            });
+        }
+
+    });
 
 
 
 
     // // Add to cart Functionalty
 
+ jQuery('.image-popup-vertical-fit').magnificPopup({
+     type: 'image',
+     mainClass: 'mfp-with-zoom',
+     gallery: {
+         enabled: true
+     },
+     zoom: {
+         enabled: true,
 
-//     jQuery(document).on("click",".plus ,.minus", function(e) {
-//         var jQuerythis = jQuery(this);
-//         var jQueryinput = jQuerythis.siblings(".qty");
-//         var qtyMin = parseInt(jQueryinput.attr("min"));
-//         var qtyMax = parseInt(jQueryinput.attr("max"));
-//         var qty = parseInt(jQueryinput.val());
-//         var product_oid = jQuerythis.attr("product_oid");
-//         var quantity_type =  jQuerythis.attr("quantity-type");
-//         if(quantity_type =='plus'){
-//             qty += 1;
-//               if (qty >= qtyMax) {  jQuerythis.attr("disabled", true); }
-//         }else{
-//             qty = qty <= qtyMin ? qtyMin : (qty -= 1);
-//             if (qty == qtyMin) {
-//                 jQuerythis.attr("disabled", true);
-//               }
-//
-//         }
-//         jQueryinput.val(qty);
-//         var product__price =  jQueryinput.attr("product__price");
-//         var producttotalprice = qty *product__price
-//         jQuery('#product_quantity_price__'+product_oid+'').text(producttotalprice);
-//         jQuery('#product_quntity__'+product_oid+'').val(qty);
-//         jQuery('#product_price__'+product_oid+'').val(producttotalprice);
-//
-//     });
-//
-//
-//     $( "#datepicker" ).datepicker({ minDate: 0});
-//     $('#timepicker').timepicker({
-//         timeFormat: 'h:mm p',
-//         interval: 15,
-//         scrollbar: true
-//     });
-// });
-//
-//
-//
-//
-//  jQuery('.image-popup-vertical-fit').magnificPopup({
-//     type: 'image',
-//     mainClass: 'mfp-with-zoom',
-//     gallery:{
-//               enabled:true
-//           },
-//           zoom: {
-//             enabled: true,
-//
-//             duration: 300, // duration of the effect, in milliseconds
-//             easing: 'ease-in-out', // CSS transition easing function
-//
-//             opener: function(openerElement) {
-//
-//               return openerElement.is('img') ? openerElement : openerElement.find('img');
-//           }
-//         }
-//
-// // Product Details
-//
-//
-//         // $('.quantity').on('click', '.plus', function(e) {
-//         //     let $input = $(this).prev('input.qty');
-//         //     let val = parseInt($input.val());
-//         //     $input.val( val+1 ).change();
-//         // });
+         duration: 300, // duration of the effect, in milliseconds
+         easing: 'ease-in-out', // CSS transition easing function
+
+         opener: function (openerElement) {
+
+             return openerElement.is('img') ? openerElement : openerElement.find('img');
+         }
+     }
+
+ });
 //
 
-// });
 
