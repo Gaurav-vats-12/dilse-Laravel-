@@ -16,21 +16,23 @@ jQuery(document).ready(function () {
                 jQuery(this).attr("disabled", true);
             }
         }
-        quantity.val(qty)
-        // parseInt(jQuery(this).find(".qty").val(qty))
-        let product__price = parseFloat(jQuery(this).siblings(".qty").attr("product__price")),
-            counterproductive =   parseFloat(qty * product__price)
-            ajax_url = jQuery('#ajax_url').val();
-        let dilavery_charge = jQuery('#dilavery_charge').val();
-        jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive}`);
-        jQuery(`#product_quntity__${product_oid}`).val(qty);
-        jQuery(`#product_price__${product_oid}`).val(`$${counterproductive}`);
-        let ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
-        let resPose; [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')]);
-        if(resPose.status ==='success') {
-            jQuery('#subtotal').html(`<p>$${resPose.subtotal}</p>`);
-            jQuery('#total').html(`<p>$${resPose.total}</p>`);
-        }
+        console.log(quantity.val())
+
+        // // quantity.val(qty)
+        // // parseInt(jQuery(this).find(".qty").val(qty))
+        // let product__price = parseFloat(jQuery(this).siblings(".qty").attr("product__price")),
+        //     counterproductive =   parseFloat(qty * product__price)
+        //     ajax_url = jQuery('#ajax_url').val();
+        // let dilavery_charge = jQuery('#dilavery_charge').val();
+        // jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive}`);
+        // jQuery(`#product_quntity__${product_oid}`).val(qty);
+        // jQuery(`#product_price__${product_oid}`).val(`$${counterproductive}`);
+        // let ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
+        // let resPose; [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')]);
+        // if(resPose.status ==='success') {
+        //     jQuery('#subtotal').html(`<p>$${resPose.subtotal}</p>`);
+        //     jQuery('#total').html(`<p>$${resPose.total}</p>`);
+        // }
     });
 
     /**
@@ -52,7 +54,6 @@ jQuery(document).ready(function () {
                    [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
                    if(resPose.status ==='success') {
                        jQuery('#subtotal').text(resPose.subtotal);
-
                        jQuery('#total').text(resPose.total);
                        if(uid ===0){
                            jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
