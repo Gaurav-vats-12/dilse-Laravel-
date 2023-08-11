@@ -1436,7 +1436,7 @@ img.mfp-img {
   text-transform: capitalize;
 }
 
-.best_btn_food .theme_btn {
+    .best_btn_food .theme_btn {
   padding: 11px 14px;
   background: #0b0708;
   border: 1px solid #0b0708;
@@ -1907,9 +1907,12 @@ product
     padding: 4px;
 }
 .best_btn_food {
-    /*position: absolute;*/
+    position: absolute;
     right: 0px;
     bottom: 0px;
+}
+.best_food_cntnt {
+    position: relative;
 }
 .best_food_cntnt {
      display: block;

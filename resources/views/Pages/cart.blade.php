@@ -58,9 +58,9 @@
                                 </li>
                                 <li>
                                     <div class="shope_price">
-                                        <div class="shope_p_tag"><span class="text-green-500 !leading-none"> ${{ $details['productdetails']->price}}</span>
+                                        <div class="shope_p_tag"><span class="text-green-500 !leading-none"> $ {{ $details['productdetails']->price}}</span>
                                         </div>
-                                        <div class="price"><h6> <span id="product_quantity_price__{{$id}}">${{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
+                                        <div class="price"><h6> <span id="product_quantity_price__{{$id}}">$ {{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
 
                                         <div class="remove_price">
                                             <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
