@@ -9,6 +9,7 @@ class MenuController extends Controller
     if ($request->ajax()) {
         $slug = $request->slug;
         $menu_id = Menu::where('menu_slug',$slug)->first()->id;
+
         $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);
         return view('ajax.menufooditems',compact('FoodItem','slug'));
     }else{

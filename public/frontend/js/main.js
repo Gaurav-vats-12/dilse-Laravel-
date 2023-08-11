@@ -99,7 +99,7 @@ jQuery(document).on('click', '.pagination a', async function(event){
         var ajax_value ={product_oid,product_quntity,product_price};
         var ajax_url = jQuery('#ajax_url').val();
         jQuery(this).addClass('added')
-            add_tocart_functionalty(ajax_url,ajax_value)
+            add_cart_functionally(ajax_url,ajax_value)
         });
 
     jQuery(document).on("click",".plus ,.minus", function(e) {

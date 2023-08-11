@@ -4,9 +4,6 @@
 <input type="hidden" id="prevArrow" value="{{asset('frontend/img/left_arrow.png') }}">
 <input type="hidden" id="nextArrow" value="{{asset('frontend/img/right_arrow.png') }}">
 <section class="video_dilse-tw">
-          <!-- <video id="hello" playsinline preload>
-              <source src="{{asset('frontend/vedio/dil SE ok.mp4')}}" type="video/mp4" />
-          </video> -->
           <div class="video_dilse_play-tw">
           <video id="home_banner_vd" width="" height="" autoplay loop muted>
             <source src="{{asset('frontend/vedio/dilSEok.mp4#t=13.8')}}" type="video/mp4" />
@@ -325,7 +322,9 @@
                   <input type="hidden" name="ajax_url" id="ajax_url" value="{{ route('cart.add') }}" >
                   <input type="hidden" name="product_price" id="product_price__{{$FoodItemValue->id}}" value="{{ $FoodItemValue->price }}">
                     <input type="hidden" name="product_quntity" id="product_quntity_{{$FoodItemValue->id}}" value="1">
-                        <a href="javascript:void(0)" class="theme_btn btn-block text-center" id="add_to_cart" role="button" product_uid = "{{$FoodItemValue->id }}">  <span class="add-to-cart">Add to cart</span></a>
+                        <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" role="button" product_uid = "{{$FoodItemValue->id }}">  <span class="add-to-cart">Add to cart</span>
+                            <span class="added-to-cart">Edit to cart</span>
+                        </a>
                   </div>
                 </div>
               </div>

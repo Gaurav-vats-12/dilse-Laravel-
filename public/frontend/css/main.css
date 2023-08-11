@@ -1814,3 +1814,73 @@ product
   .Product_slider .best_food_crd {
     padding: 15px;
   }
+.add-to-cart-button {
+    &:active {
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(252, 186, 3,.45);
+        box-shadow: 0 0 0 0.2rem rgba(252, 186, 3,.45);
+        -webkit-transform: translateY(4px);
+        transform: translateY(4px);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:hover,
+    &:focus {
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(252, 186, 3,.45);
+        box-shadow: 0 0 0 0.2rem rgba(252, 186, 3,.45);
+        -webkit-transform: translateY(-1px);
+        transform: translateY(-1px);
+    }
+
+    &.added {
+        background: #2fbf30;
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(11, 252, 3, 0.45);
+        box-shadow: 0 0 0 0.2rem rgba(11, 252, 3, 0.45);
+
+        .add-to-cart {
+            display: none;
+        }
+
+        .added-to-cart {
+            display: block;
+        }
+
+        .cart-icon {
+            animation: drop 0.3s forwards;
+            -webkit-animation: drop 0.3s forwards;
+            animation-delay: 0.18s;
+        }
+
+        .box-1,
+        .box-2 {
+            top: 18px;
+        }
+
+        .tick {
+            animation: grow 0.6s forwards;
+            -webkit-animation: grow 0.6s forwards;
+            animation-delay: 0.7s;
+        }
+
+    }
+
+}
+
+.add-to-cart,
+.added-to-cart {
+}
+
+.added-to-cart {
+    display: none;
+    position: relative;
+}
+
+.add-to-cart-box {
+    height: 5px;
+    position: absolute;
+    top: 0;
+    width: 5px;
+}
+

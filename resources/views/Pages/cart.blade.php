@@ -56,14 +56,11 @@
                                             <input type='text' name='quantity' min="1" max="500"  value='{{ $details["quantity"]}}' class='qty' product__price ="{{ $details['price']}}" />
                                             <input type="hidden" name="product_price" id="product_price__{{$details['productdetails']->id}}" value="{{ $details['price']}}">
                                             <input type="hidden" name="product_quntity" id="product_quntity__{{$details['productdetails']->id}}" value="1">
-
                                             <input type='button' value='+' class='qtyplus plus qty-count qty-count--add' quantity-type ="plus" field='quantity' product_oid ="{{ $details['productdetails']->id}}" />
                                         </form>
                                     </div>
                                     <div class="price">
-            <h6>$ <span id="product_quantity_price__{{$id}}">{{ $details['price'] }}</span></h6>
-
-      </div>
+                                        <h6>$ <span id="product_quantity_price__{{$id}}">{{ $details['price'] }}</span></h6></div>
                                 </li>
                                 <li>
                                     <div class="shope_price">
@@ -77,11 +74,7 @@
                             </ul>
                         </div>
                     </div>
-                    @endforeach
-            @else
-            <h4> No Cart  Items Found</h4>
-            @endif
-
+                    @endforeach @else <h4> No Cart  Items Found</h4>  @endif
                 </div>
                 @if(session('cart'))
                 <div class="col-sm-12 col-md-7 col-lg-5">
@@ -109,9 +102,6 @@
 
                                 <div class="s_total" id="total">
                                     <p>${{ $subtotal > 50 ?  50 : 0 }}</p>
-                                <!-- <p>$ @if ($subtotal == 100) {{ $subtotal +100 }}  @else{{ $subtotal  }}@endif
-
-                                    </p> -->
                                 </div>
                             </li>
                         </ul>
@@ -129,7 +119,7 @@
                         </div>
                     </div>
                 </div>
-  @endif
+                @endif
             </div>
             @if (isset($extra_items) && count($extra_items) >0)
             <div class="product_c_main">
