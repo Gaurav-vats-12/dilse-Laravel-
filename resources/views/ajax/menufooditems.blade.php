@@ -7,7 +7,8 @@
                             </div>
                             <div class="best_food_cntnt">
                                 <div class="best_food_txt">
-                                    <a href="{{ route('menudetails' , $FoodItems->slug)}}" target="_blank"><h3> {{ $FoodItems->name}}</h3></a>
+                                    <a href="{{ route('menudetails' , $FoodItems->slug)}}"><h3> {{ $FoodItems->name}}</h3></a>
+
 
                                     <h2>${{ $FoodItems->price}}</h2>
                                 </div>

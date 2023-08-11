@@ -28,7 +28,7 @@ class SettingController extends Controller
             $site_logo = $request->file('logo');
             $siteImage = time().'-'.$site_logo->getClientOriginalName();
             $sitelogopath = public_path('storage/site/logo'); !is_dir($sitelogopath) &&  mkdir($sitelogopath, 0777, true);
-            ResizeImage::make($request->file('logo'))->resize(90, 60)->save($sitelogopath.'/'. $siteImage);
+            ResizeImage::make($request->file('logo'))->save($sitelogopath.'/'. $siteImage);
             DeleteOldImage($sitelogopath.'/'.$setting_get->site_logo);
 
          }else{
@@ -38,7 +38,7 @@ class SettingController extends Controller
             $Favicon = $request->file('Favicon');
             $FaviconImage = time().'-'.$Favicon->getClientOriginalName();
             $Faviconpath = public_path('storage/site/Favicon'); !is_dir($Faviconpath) &&  mkdir($Faviconpath, 0777, true);
-            ResizeImage::make($request->file('Favicon'))->resize(90, 60)->save($Faviconpath.'/'. $FaviconImage);
+            ResizeImage::make($request->file('Favicon'))->save($Faviconpath.'/'. $FaviconImage);
             DeleteOldImage($Faviconpath.'/'.$setting_get->favicon);
 
          }else{
