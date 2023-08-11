@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\{HomeController,BlogController,MenuController,CartController,BookingController,ContactUsController};
+use App\Http\Controllers\{HomeController,BlogController,MenuController,CartController,BookingController};
 use Illuminate\Support\Facades\Route;
 
 // Contact Us
@@ -14,3 +14,4 @@ Route::post('/submit-reservation-form', [BookingController::class, 'submitBookAT
 Route::prefix('cart')->name('cart.')->group(function(){
     Route::POST('/create', [CartController::class, 'addtocart'])->name('add');
 });
+?>

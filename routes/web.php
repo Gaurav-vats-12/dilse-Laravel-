@@ -33,26 +33,23 @@ Route::get('/blog/{slug}', [BlogController::class, 'blogdetails'])->name('blogde
 Route::get('/menu', [MenuController::class, 'menu'])->name('menu');
 Route::get('/menu/{slug}', [MenuController::class, 'menudetails'])->name('menudetails');
 
+
 // Booking  a Reservation
 Route::get('/book-a-reservation', [BookingController::class, 'bookATable'])->name('booktable');
 
-// Add to Cart
-Route::prefix('cart')->name('cart.')->group(function(){
-    Route::get('/', [CartController::class, 'viewcart'])->name('view');
-});
-Route::post('/submit-reservation-form', [BookingController::class, 'submitBookATable'])->name('booktable.submit');
+
 
 // Add to Cart
 Route::prefix('cart')->name('cart.')->group(function(){
     Route::get('/', [CartController::class, 'viewcart'])->name('view');
     Route::get('/create/{id}', [CartController::class, 'addtocart'])->name('add');
+
+
 });
 
 
+//
 
-
-// Booking  a Reservation
-Route::get('/book-a-reservation', [BookingController::class, 'bookATable'])->name('booktable');
 // Add to Cart
 Route::prefix('cart')->name('cart.')->group(function(){
     Route::get('/', [CartController::class, 'viewcart'])->name('view');
