@@ -26,9 +26,11 @@
                 <div class="col-sm-12 col-md-7 col-lg-8" id="cart_messages">
                 @php  $subtotal = 0; @endphp
                 @if(session('cart'))
+{{--                        @dd(session('cart'))--}}
                 @foreach(session('cart') as $id => $details)
                 @php
-                  $subtotal = $subtotal + $details["price"]@endphp
+                  $subtotal = $subtotal + $details["price"] *  $details["quantity"]@endphp
+
                     <div class="shoping_main_top" id="cart_products-{{$id}}">
                         <div class="shopping_items_main">
                             <ul class="shopping_items">
@@ -56,9 +58,9 @@
                                 </li>
                                 <li>
                                     <div class="shope_price">
-                                        <div class="shope_p_tag"><span class="text-green-500 !leading-none">${{ $details['productdetails']->price}}</span>
+                                        <div class="shope_p_tag"><span class="text-green-500 !leading-none"> $ {{ $details['productdetails']->price}}</span>
                                         </div>
-                                        <div class="price"><h6>$ <span id="product_quantity_price__{{$id}}">{{ $details['price'] }}</span></h6></div>
+                                        <div class="price"><h6> <span id="product_quantity_price__{{$id}}">$ {{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
 
                                         <div class="remove_price">
                                             <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
@@ -97,7 +99,7 @@
                                 </div>
 
                                 <div class="s_total" id="dilevery_total">
-                                    <p>${{ $subtotal > 50 ?  50 : 0 }}</p>
+                                    <p >${{ $subtotal > 50 ?  50 : 0 }}</p>
                                     <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{ $subtotal > 50 ?  50 : 0 }}">
                                 </div>
                             </li>

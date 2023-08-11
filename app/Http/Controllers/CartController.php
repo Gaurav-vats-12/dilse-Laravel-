@@ -59,15 +59,10 @@ public function viewcart(){
             $cart = session()->get('cart');
 
             if (!empty($request->qty)) {
-                $cart[$request->product_oid] = [
-                    "id" => $request->product_oid,
-                    "price" =>  round($request->counterproductive ,2) ,
-                    "quantity" => $request->qty,
-                    "productdetails" => $product,
-                ];
+                $cart[$request->product_oid]["quantity"] = $request->qty;
                 session()->put('cart', $cart);
                 foreach ($cart as $key => $details) {
-                    $subtotal =  $subtotal + round($details["price"] ,2) ;
+                    $subtotal =  $subtotal + round($details["price"]  * $details["quantity"], 2) ;
                 }
                 $total =  $subtotal + $request->dilavery_charge;
              return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product add to cart successfully"]);
@@ -100,9 +95,7 @@ public function viewcart(){
                 return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product add to cart successfully"]);
             }else{
                 return response()->json(['code' => 203 ,  'cart_total'=>nullValue(),'status' =>'error', "message"=>"Product Id Not Found"]);
-
             }
-
 
         } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
             return response()->json(['code' => 400 , 'cart_total'=>'Null', 'subtotal'=>nullOrEmptyString() ,'total'=>nullOrEmptyString() , 'status' =>'error', "message"=>"Something Wrong"]);
