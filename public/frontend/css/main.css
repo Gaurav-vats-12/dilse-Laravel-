@@ -1907,7 +1907,7 @@ product
     padding: 4px;
 }
 .best_btn_food {
-    position: absolute;
+    /*position: absolute;*/
     right: 0px;
     bottom: 0px;
 }
