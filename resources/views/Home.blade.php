@@ -411,7 +411,7 @@
                 <h2>Subscribe Our Newsletter</h2>
                 <p>Stay up-to-date with our latest news and updates by subscribing to our newsletter today!</p>
               </div>
-              <form  class="sub_scribe_form" id="emailSubscribeForm">
+              <form  class="sub_scribe_form" id="emailSubscribeForm" method="POST">
               <input type="hidden" name="email_action_url" id="email_action_url"  value="{{ route('emailSubscription') }}">
 
                 <div class="custn_input">
@@ -428,7 +428,7 @@
       </section>
       <section class="contact_sec bg_style" style="background-image: url('{{asset('frontend/img/contact_bkg.jpg')}}')" >
         <div class="container">
-          <form action="" class="contact_form" id="conatact_cus_form">
+          <form method="POST" class="contact_form" id="conatact_cus_form">
           <input type="hidden" name="contact_us_action_url" id="contact_us_action_url"  value="{{ route('contact-us-form') }}">
             <div class="tittle_heading">
               <h3>Reach US</h3>
