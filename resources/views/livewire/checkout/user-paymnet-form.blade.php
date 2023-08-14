@@ -17,7 +17,7 @@
                         <label for="pay_on_store" class="radio-label_1">Pay In Store</label>
                     </div>
                 </li>
-
+                <li>
                     <div class="radio-item_1">
                         <input id="payonline" value="payonline" name="payment_method" type="radio" required="">
                         <label for="payonline" class="radio-label_1">Pay Online</label>
@@ -44,6 +44,7 @@
 
                     <li class="grand-total">
                         <span class="key">GRAND TOTAL:</span>
+                        <input type="hidden" name="tototal_amount" value="{{ $subtotal > 50 ? $subtotal + 50 : $subtotal + 0 }}">
                         <span class="value">${{ $subtotal > 50 ? $subtotal + 50 : $subtotal + 0 }}</span>
                     </li>
                 </ul>

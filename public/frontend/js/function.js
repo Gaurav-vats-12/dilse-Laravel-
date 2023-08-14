@@ -133,7 +133,6 @@ jQuery('.image-popup-vertical-fit').magnificPopup({
 
 async function state_dependency_country_list(ajax_post, url) {
     const response = await Ajax_response(url, "POST", ajax_post, '');
-    jQuery.each(response.states, function (key, value) {
-        jQuery("#billing_state").append(`<option value="${value.name}" state_id ="${value.id}">${value.name}</option>`);
-    });
+    jQuery(`#billing_state`).empty().html(response);
+
 }

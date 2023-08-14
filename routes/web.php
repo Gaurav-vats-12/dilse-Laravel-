@@ -8,6 +8,7 @@ use App\Http\Controllers\CheckoutController as CheckoutControllerAlias;
 use App\Http\Controllers\ContactUsController as ContactUsControllerAlias;
 use App\Http\Controllers\HomeController as HomeControllerAlias;
 use App\Http\Controllers\MenuController as MenuControllerAlias;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route as RouteAlias;
 use App\Models\Admin\Page;
 use Illuminate\Support\Facades\URL;
@@ -53,6 +54,7 @@ RouteAlias::prefix('cart')->name('cart.')->group(function(){
 
 RouteAlias::prefix('checkout')->name('checkout.')->group(callback: function(){
     RouteAlias::get('/', [CheckoutControllerAlias::class, 'index'])->name('view');
+//    RouteAlias::get('/payment/{payment_type}/{order_id}/{user_id}/{total_amount}', [PaymentController::class, 'index'])->name('paymnet');
 //    dd('checkout');
 
 

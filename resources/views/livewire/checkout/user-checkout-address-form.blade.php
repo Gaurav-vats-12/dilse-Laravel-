@@ -76,11 +76,11 @@
     </div>
     <div class="col-md-6">
         <div class="cusstom_input">
-
+            <input type="hidden" name="selected_billing_state" id="selected_billing_state" value="{{ old('billing_state') }}">
             <label for="billing_state" class="">Province&nbsp;<span class="required" title="required">*</span></label>
             <select name="billing_state" id="billing_state" class="form-select">
             </select>
-            @error('billing_country')
+            @error('billing_state')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
@@ -89,7 +89,7 @@
         <div class="cusstom_input">
             <label for="billing_city" class="">Town / City&nbsp;<span class="required" title="required">*</span></label>
             <input type="text" placeholder="" name="billing_city"  value="{{ old('billing_city') }}">
-            @error('billing_country')
+            @error('billing_city')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
@@ -99,7 +99,7 @@
             <label for="billing_postcode" class="">Postal code&nbsp;<span class="required" title="required">*</span></label>
             <input type="text" placeholder="" name="billing_postcode"  maxlength="7" value="{{ old('billing_postcode')  }}">
 
-            @error('billing_country')
+            @error('billing_postcode')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
