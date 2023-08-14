@@ -208,24 +208,23 @@
                     </div>
                         <div class="tab-pane fade" id="Chutney" role="tabpanel" aria-labelledby="Chutney-tab"> 
                             <div class="product_checkout">
-                            @foreach ( $extra_items as $key => $extra_item )
-                                @if($extra_item->menu_id == 7)
-                                    <div class="product_box">
-                                        <div class="product_img">
-                                        <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
+                                @foreach ( $extra_items as $key => $extra_item )
+                                    @if($extra_item->menu_id == 7)
+                                        <div class="product_box">
+                                            <div class="product_img">
+                                            <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
+                                            </div>
+                                            <div class="product_cont">
+                                            <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
+                                        <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
+                                        <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
+                                                <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
+                                                <span class="added-to-cart">Added to cart</span>
+                                            </a>
+                                            </div>
                                         </div>
-                                        <div class="product_cont">
-                                        <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
-                                    <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
-                                    <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
-                                            <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
-                                            <span class="added-to-cart">Added to cart</span>
-                                        </a>
-                                        </div>
-                                    </div>
-                                    </div>
-                                @endif
-                                @endforeach     
+                                    @endif
+                                 @endforeach     
                             </div>
                      </div>
             
