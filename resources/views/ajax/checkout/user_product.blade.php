@@ -14,7 +14,7 @@
         @foreach(session('cart') as $id => $details)
             @php  $subtotal = $subtotal + $details["price"] *  $details["quantity"]@endphp
             <tr>
-                
+
                 <td>{{ $key++ }}</td>
                 <td> <h6>{{ $details['productdetails']->name}}</h6></td>
                 <td>{{  $details["quantity"] }}</td>
