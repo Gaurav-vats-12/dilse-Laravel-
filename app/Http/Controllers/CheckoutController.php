@@ -81,4 +81,9 @@ class CheckoutController extends Controller
             return redirect(route('home'))->withToastSuccess('Order Placed Successfully');
         }
     }
+
+
+    public function user_address(){
+        return view('ajax.checkout.user_address');
+    }
 }

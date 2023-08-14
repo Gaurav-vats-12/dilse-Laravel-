@@ -11,7 +11,7 @@
         </thead>
         <tbody class="text-left">
         @php $key = 1; $subtotal =0; @endphp
-        @foreach($cart as $id => $details)
+        @foreach(session('cart') as $id => $details)
             @php  $subtotal = $subtotal + $details["price"] *  $details["quantity"]@endphp
             <tr>
                 <td>{{ $key++ }}</td>

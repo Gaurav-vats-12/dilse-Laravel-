@@ -1,3 +1,7 @@
+@php $key = 1; $subtotal =0; @endphp
+@foreach(session('cart') as $id => $details)
+    @php  $subtotal = $subtotal + $details["price"] *  $details["quantity"]@endphp
+@endforeach
 <div class="row summary mb-4">
 
     <div class="col-sm-12 text-left">
@@ -50,7 +54,6 @@
                 </ul>
             </div>
         </div>
-
 
     </div>
 
