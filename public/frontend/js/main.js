@@ -134,7 +134,7 @@ jQuery(document).ready(function () {
     });
 
     /**
-     *     Remove  The Cart in Cart page
+     *     Remove  The Cart in Cart page (Cart Page)
      */
 
     jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
