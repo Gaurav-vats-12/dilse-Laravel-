@@ -21,4 +21,3 @@
     <script src="{{asset('frontend/js/function.js') }}"></script>
    @include('sweetalert::alert')
 
-   @livewireScripts
