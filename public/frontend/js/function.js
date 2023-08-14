@@ -24,8 +24,9 @@ $("input").keypress(function(e) {
 
   var Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: 'bottom-end',
     showConfirmButton: false,
+      showCloseButton: true,
     timer: 10000
   });
 
