@@ -1922,6 +1922,122 @@ product
 .best_btn_food .theme_btn {
     padding: 3px 8px;
 }
+
+
+/* -------------------------------
+            CHECKOUT PAGE
+------------------------------ */
+.checkout_form_details {
+    max-width: 100%;
+    flex: 0 0 100%;
+    padding: 0px 12px;
+}
+.contact_main {
+    display: flex;
+}
+.contact_info {
+    display: flex;
+    justify-content: space-between;
+}
+.checkout_page {
+    background: #f7f7f7;
+}
+.checkout_page .pro_cart_summary {
+    background: #fff;
+}
+.contact_lef {
+    max-width: 70%;
+    flex: 0 0 70%;
+}
+.contact_rgh button {
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    color: #333f49;
+    padding: 5px 20px;
+    background: transparent;
+    border: 1px solid #d5d5d5;
+}
+.contcat_text h5 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    color: #333f49;
+    margin-bottom: 5px;
+}
+.checkout_change_card {
+    background: #ffffff;
+    border: 1px solid #d4d4d4;
+    padding: 30px 25px;
+    margin-bottom: 22px;
+}
+.contcat_text {
+    padding-left: 22px;
+}
+.contcat_text p {
+    font-size: 14px;
+    line-height: 19px;
+}
+.contcat_text p span {
+    display: inline-block;
+    padding-left: 22px;
+}
+.cusstom_input label,
+.radio_btnns label {
+    font-family: "Poppins";
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 14px;
+    line-height: 21px;
+    color: #333f49;
+}
+.radio_btnns label .radio_input label {
+    font-family: "Open Sans";
+    line-height: 19px;
+}
+.radio_btnns label span {
+    color: rgba(111, 111, 111, 1);
+}
+.radio_btnns {
+    padding-top: 10px;
+    padding-bottom: 40px;
+}
+.cusstom_input {
+    margin-bottom: 26px;
+}
+.cusstom_input input,
+.cusstom_input select {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    background: #ffffff;
+    border: 1px solid #d4d4d4;
+    color: #6f6f6f;
+    width: 100%;
+    padding: 13px 20px;
+}
+.contact_change_btn button {
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+}
+.checkout_formms {
+    margin-top: 30px;
+    border-top: 1px solid #d4d4d4;
+    padding-top: 30px;
+    /* display: none; */
+}
+
+.cancel_bttn {
+    background: transparent;
+    color: #333f49;
+}
+.contact_change_btn button.save_bttn {
+    font-size: 16px;
+}
 /*.menu_main_box .best_food_crd{*/
 /*    position: relative;*/
 /*}*/

@@ -4,6 +4,7 @@
 use App\Http\Controllers\BlogController as BlogControllerAlias;
 use App\Http\Controllers\BookingController as BookingControllerAlias;
 use App\Http\Controllers\CartController as CartControllerAlias;
+use App\Http\Controllers\CheckoutController as CheckoutControllerAlias;
 use App\Http\Controllers\ContactUsController as ContactUsControllerAlias;
 use App\Http\Controllers\HomeController as HomeControllerAlias;
 use App\Http\Controllers\MenuController as MenuControllerAlias;
@@ -50,6 +51,12 @@ RouteAlias::prefix('cart')->name('cart.')->group(function(){
     RouteAlias::get('/create/{id}', [CartControllerAlias::class, 'addtocart'])->name('add');
 });
 
+RouteAlias::prefix('checkout')->name('checkout.')->group(callback: function(){
+    RouteAlias::get('/', [CheckoutControllerAlias::class, 'index'])->name('view');
+//    dd('checkout');
+
+
+});
 
 //  Slug Dependency
 RouteAlias::get('{slug}', function ($slug) {
