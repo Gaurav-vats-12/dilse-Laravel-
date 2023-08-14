@@ -1,4 +1,4 @@
-jQuery(document).ready(async function () {
+jQuery(document).ready(function () {
 
     /**
      * Subscribe Our Newsletter Submission Form Ajax (Home Page)
@@ -10,10 +10,10 @@ jQuery(document).ready(async function () {
         if (resPose.status === `success`) {
             Toast.fire({icon: `success`, title: resPose.message})
             $("#emailSubscribeForm")[0].reset();
-        } else if (resPose.status === `error`) {
+        }else if(resPose.status === `error`){
             Toast.fire({icon: `warning`, title: resPose.message})
             $("#emailSubscribeForm")[0].reset();
-        } else {
+        }else{
             jQuery.each(resPose.errors, function (key, value) {
                 jQuery(`#${key}-error`).text(value);
             });
@@ -25,14 +25,25 @@ jQuery(document).ready(async function () {
      */
     jQuery(document).on("click", "#add_to_cart", async function (event) {
         jQuery(this).toggleClass(`added`);
-        let product_oid = jQuery(this).attr("product_uid"),
-            product_quntity = jQuery(`#product_quntity_${product_oid}`).val(),
-            product_price = jQuery(`#product_price__${product_oid}`).val(),
-            ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#ajax_url').val();
+        let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#ajax_url').val();
         const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
             Toast.fire({icon: `success`, title: resPose.message})
             jQuery(`.cart_count`).html(resPose.cart_total);
+        }
+    });
+
+    /**
+     *  Add to Cart  In Website (Extra_Items)
+     */
+    jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
+        jQuery(this).toggleClass(`added`);
+        let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#extra_ajax_url').val();
+        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+        if (resPose.status === `success`) {
+            Toast.fire({icon: `success`, title: resPose.message})
+            jQuery(`.cart_count`).html(resPose.cart_total);
+            setTimeout(function() { window.location.reload()}, 1000);
         }
     });
     /**
@@ -46,14 +57,14 @@ jQuery(document).ready(async function () {
     /**
      *     Contact us Form Submission  iN ajax  (Home Page)
      */
-    jQuery(document).on("submit", "#conatact_cus_form", async function (e) {
+    jQuery(document).on("submit","#conatact_cus_form",async function(e) {
         e.preventDefault();
         let ajax_value_list = $(this).serialize(), ajx_url = jQuery(`#contact_us_action_url`).val();
         const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
-        if (resPose.status === 'success') {
-            Toast.fire({icon: 'success', title: resPose.message,})
+        if(resPose.status === 'success'){
+            Toast.fire({ icon: 'success',title: resPose.message, })
             jQuery("#conatact_cus_form")[0].reset();
-        } else {
+        }else{
             jQuery.each(resPose.errors, function (key, value) {
                 jQuery(`#${key}-error`).text(value);
             });
@@ -95,42 +106,68 @@ jQuery(document).ready(async function () {
     /**
      *  Update the quantity According to plus and minus in cart page (Cart page )
      */
-    jQuery(document).on("click", ".plus ,.minus", async function (e) {
-        let jQueryqtyInputs = jQuery(`.qty-input`), qtyMin = parseInt(jQueryqtyInputs.find(`.product-qty`).attr(`min`)),
-            qtyMax = parseInt(jQueryqtyInputs.find(`.product-qty`).attr(`max`)), jQuerythis = jQuery(this),
-            jQueryminusBtn = jQuerythis.siblings(`.qty-count--minus`),
-            jQueryaddBtn = jQuerythis.siblings(`.qty-count--add`), quantity = jQuery(this).siblings(`.qty`),
-            qty = parseInt(quantity.val()), ajax_url = jQuery(`#ajax_url`).val(),
+    jQuery(document).on("click", ".update-qty", async function (e) {
+        var $button = jQuery(this);
+        var oldValue = $button.closest('.update-cart-qty').find("input.product-qty").val();
+        //let jQueryqtyInputs = jQuery(`.qty-input`),
+        //qtyMin = parseInt(jQueryqtyInputs.find(`.product-qty`).attr(`min`)),
+        //qtyMax = parseInt(jQueryqtyInputs.find(`.product-qty`).attr(`max`)),
+        //jQuerythis = jQuery(this),
+        //jQueryminusBtn = jQuerythis.siblings(`.qty-count--minus`),
+        //jQueryaddBtn = jQuerythis.siblings(`.qty-count--add`),
+        let quantity = jQuery(this).parent().find(`.product-qty`),
+            ajax_url = jQuery(`#ajax_url`).val(),
             dilavery_charge = jQuery(`#dilavery_charge`).val(),
             product__price = parseFloat(quantity.attr(`product__price`)),
-            quantity_type = jQuery(this).attr(`quantity-type`).toString(),
+            //quantity_type = jQuery(this).attr(`quantity-type`).toString(),
             product_oid = parseInt(jQuery(this).attr(`productoid`));
-        if ('plus' === quantity_type) {
-            jQueryaddBtn.attr("disabled", false);
-            jQueryminusBtn.attr("disabled", false);
-            if (qty >= qtyMax) {
-                quantity.val(qtyMax).change()
-                jQuerythis.attr("disabled", true);
+
+        if ($button.text() == "+") {
+            var newVal = parseFloat(oldValue) + 1;
+        }else {
+            console.log('checking total',newVal);
+            // Don't allow decrementing below zero
+
+            if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
             } else {
-                quantity.val(qty + 1).change();
+                newVal = 0;
             }
-        } else {
-            jQueryaddBtn.attr("disabled", false);
-            jQueryminusBtn.attr("disabled", false);
-            if (isNaN(qty) || qty <= qtyMin) {
-                quantity.val(qtyMin).change();
-                let uid = jQuery('.shopping_items_main').length;
-                jQuery(`#cart_products-${product_oid}`).empty();
-            } else {
-                quantity.val(qty - 1).change();
+            if(newVal === 0){
+                $button.closest('.shopping_items').find('#remove_add_to_Cart').trigger('click');
             }
         }
+        $button.closest('.update-cart-qty').find("input.product-qty").attr('value',newVal);
+        /*if ('plus' === quantity_type) {
+                jQueryaddBtn.attr("disabled", false);
+                jQueryminusBtn.attr("disabled", false);
+                if (qty >= qtyMax) {
+                    quantity.val(qtyMax).change();
+                    jQuerythis.attr("disabled", true);
+                } else {
+                    console.log(qty);
+                    quantity.val(qty+1);
+                    console.log('quantity',quantity.val());
+                    quantity.attr('value',qty+1)
+                    //quantity.val(qty + 1).change();
+                }
+            } else {
+                jQueryaddBtn.attr("disabled", false);
+                jQueryminusBtn.attr("disabled", false);
+                if (isNaN(qty) || qty <= qtyMin) {
+                    quantity.val(qtyMin).change();
+                    let uid = jQuery('.shopping_items_main').length;
+                    jQuery(`#cart_products-${product_oid}`).empty();
+                } else {
+                    quantity.val(qty - 1).change();
+                }
+            }*/
+        let qty = newVal;
+        let counterproductive = parseFloat(newVal * product__price), ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
 
-        let counterproductive = parseFloat(qty * product__price),
-            ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
-        jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive}`);
+        jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive.toFixed(2)}`);
         jQuery(`#product_quntity__${product_oid}`).val(qty);
-        jQuery(`#product_price__${product_oid}`).val(`$${counterproductive}`);
+        jQuery(`#product_price__${product_oid}`).val(`$${counterproductive.toFixed(2)}`);
 
         const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
@@ -177,18 +214,4 @@ jQuery(document).ready(async function () {
             }
         });
     });
-
-
-    if (url.indexOf("/checkout") > -1) {
-        /**
-         * State Dependency In Checkout Page
-         */
-        let country_uid = parseInt(jQuery('#billing_country').find(":selected").attr('country_uid'));
-        let ajax_value = {country_uid,'type':'country'};
-        let ajax_url = jQuery('#state_ajax').val();
-        await state_dependency_country_list(ajax_value, ajax_url);
-
-    }
-
-
 });
