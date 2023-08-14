@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="shipment_form checkout_formms">
-                          @include('ajax.checkout.user_address')
+                            @livewire('checkout.user-checkout-address-form')
                         </div>
                     </div>
 
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="shipment_form checkout_formms">
-                            @include('ajax.checkout.user_product')
+                            @livewire('checkout.user-product-cart-list')
                         </div>
                     </div>
                     <div class="checkout_change_card payment_change">
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div class="shipment_form checkout_formms">
-                            @include('ajax.checkout.user_paymnet_form')
+                            @livewire('checkout.user-paymnet-form')
                          </div>
                         <div class="summary-checkout">
                             <p class="checkout-info">Your personal data will used to process your order, support
