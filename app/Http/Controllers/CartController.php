@@ -58,7 +58,7 @@ public function viewcart(){
             $product = FoodItemAlias::findOrFail($request->product_oid);
             $cart = session()->get('cart');
 
-            if (!empty($request->qty)) {
+            if ($request->qty > 0 || $request->qty  > '0'  ) {
                 $cart[$request->product_oid]["quantity"] = $request->qty;
                 session()->put('cart', $cart);
                 foreach ($cart as $key => $details) {
@@ -66,6 +66,17 @@ public function viewcart(){
                 }
                 $total =  $subtotal + $request->dilavery_charge;
              return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product add to cart successfully"]);
+            }else{
+                if(isset($request->product_oid)) {
+                    unset($request->product_oid);
+                    session()->put('cart', $cart);
+                }
+                foreach ($cart as $key => $details) {
+                    $subtotal =  $subtotal + round($details["price"] ,2) ;
+                }
+                $total =  $subtotal + $request->dilavery_charge;
+                return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total'=>round($total,2) ,'status' =>'success', "message"=>" Product Remove from add  to cart successfully"]);
+
             }
         } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
             return response()->json(['code' => 400 , 'cart_total'=>'Null', 'subtotal'=>nullOrEmptyString() ,'total'=>nullOrEmptyString() , 'status' =>'error', "message"=>"Something Wrong"]);
