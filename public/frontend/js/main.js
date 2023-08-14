@@ -115,16 +115,19 @@ jQuery(document).ready(function () {
                 jQueryaddBtn.attr("disabled", false);
                 jQueryminusBtn.attr("disabled", false);
                 if (isNaN(qty) || qty <= qtyMin) {
-                    jQuerythis.attr("disabled", true);
                     quantity.val(qtyMin).change();
+                    let uid = jQuery('.shopping_items_main').length;
+                    jQuery(`#cart_products-${product_oid}`).empty();
                 } else {
                     quantity.val(qty - 1).change();
                 }
             }
+
         let counterproductive = parseFloat(qty * product__price), ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
             jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive}`);
             jQuery(`#product_quntity__${product_oid}`).val(qty);
             jQuery(`#product_price__${product_oid}`).val(`$${counterproductive}`);
+
             const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
             jQuery(`#subtotal`).html(`<p>$${resPose.subtotal}</p>`);

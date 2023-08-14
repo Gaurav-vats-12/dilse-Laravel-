@@ -48,7 +48,7 @@
                                     <div class="shop_item_quantity qty-input">
                                         <form id='myform' method='POST' class='quantity' action='#'>
                                             <input type='button' value='-' class='qtyminus minus qty-count qty-count--minus' field='quantity' quantity-type ="minus" productoid ="{{$details['productdetails']->id}}" />
-                                            <input type='text' name='quantity' min="1" max="50" readonly  value='{{ $details["quantity"]}}' class='qty product-qty' product__price ="{{ $details['price']}}" />
+                                            <input type='text' name='quantity' min="0" max="50" readonly  value='{{ $details["quantity"]}}' class='qty product-qty' product__price ="{{ $details['price']}}" />
                                             <input type="hidden" name="product_price" id="product_price__{{$details['productdetails']->id}}" value="{{ $details['price']}}">
                                             <input type="hidden" name="product_quantity" id="product_quntity__{{$details['productdetails']->id}}" value="1">
                                             <input type="hidden" name="ajax_url" id="ajax_url" value="{{ route('cart.update') }}" >
