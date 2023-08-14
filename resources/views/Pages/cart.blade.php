@@ -21,7 +21,6 @@
             <div class="tittle_heading">
                 <h2>Shopping Cart</h2>
             </div>
-
             <div class="row">
                 <div class="col-sm-12 col-md-7 col-lg-8" id="cart_messages">
                 @php  $subtotal = 0; @endphp
@@ -46,14 +45,14 @@
                                 </li>
                                 <li>
                                     <div class="shop_item_quantity qty-input">
-                                        <form id='myform' method='POST' class='quantity' action='#'>
-                                            <input type='button' value='-' class='qtyminus minus qty-count qty-count--minus' field='quantity' quantity-type ="minus" productoid ="{{$details['productdetails']->id}}" />
+                                        <div id='myform' method='POST' class='quantity update-cart-qty'>
+                                            <a  class='qtyminus minus qty-count qty-count--minus update-qty' field='quantity' quantity-type ="minus" productoid ="{{$details['productdetails']->id}}" >-</a>
                                             <input type='text' name='quantity' min="0" max="50" readonly  value='{{ $details["quantity"]}}' class='qty product-qty' product__price ="{{ $details['price']}}" />
                                             <input type="hidden" name="product_price" id="product_price__{{$details['productdetails']->id}}" value="{{ $details['price']}}">
                                             <input type="hidden" name="product_quantity" id="product_quntity__{{$details['productdetails']->id}}" value="1">
                                             <input type="hidden" name="ajax_url" id="ajax_url" value="{{ route('cart.update') }}" >
-                                            <input type='button' value='+' class='qty-plus plus qty-count qty-count--add' quantity-type ="plus" field='quantity' productoid ="{{ $details['productdetails']->id}}" />
-                                        </form>
+                                            <a class='qty-plus plus qty-count qty-count--add update-qty' quantity-type ="plus" field='quantity' productoid ="{{ $details['productdetails']->id}}" >+</a>
+                                        </div>
                                     </div>
                                 </li>
                                 <li>
@@ -110,7 +109,7 @@
                                 </p>
                             </div>
                             <div class="order_totalse" id="total">
-                            <p>${{ $subtotal > 50 ? $subtotal + 50 : $subtotal + 0 }}</p>
+                            <p>${{ $subtotal + 4.25 }}</p>
                             </div>
                         </div>
                         <div class="cart_btn">
@@ -123,26 +122,112 @@
             @if (isset($extra_items) && count($extra_items) >0)
             <div class="product_c_main">
                 <div class="tittle_heading">
-                    <h6>Extras</h6>
+                    <h6>Extra Items</h6>
                 </div>
 
-            <div class="product_checkout">
-
-            @foreach ( $extra_items as $key => $extra_item )
-                <div class="product_box">
-                    <div class="product_img">
-                    <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="Bread-tab" data-bs-toggle="tab" data-bs-target="#Bread" type="button" role="tab" aria-controls="home" aria-selected="true">Bread</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Rice-tab" data-bs-toggle="tab" data-bs-target="#Rice" type="button" role="tab" aria-controls="profile" aria-selected="false">Rice</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Drinks-tab" data-bs-toggle="tab" data-bs-target="#Drinks" type="button" role="tab" aria-controls="contact" aria-selected="false">Drinks</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="Chutney-tab" data-bs-toggle="tab" data-bs-target="#Chutney" type="button" role="tab" aria-controls="contact" aria-selected="false">Chutney</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    
+                    <div class="tab-pane fade show active" id="Bread" role="tabpanel" aria-labelledby="Bread-tab">
+                        @foreach ( $extra_items as $key => $extra_item )
+                                @if($extra_item->menu_id == 6)
+                                <div class="product_checkout">
+                                <div class="product_box">
+                                    <div class="product_img">
+                                    <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
+                                    </div>
+                                    <div class="product_cont">
+                                    <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
+                                    <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
+                                    <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
+                                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
+                                            <span class="added-to-cart">Added to cart</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
-                    <div class="product_cont">
-                        <a href="" class="view_product">
-                            <p>Add Product</p>
-                        </a>
+                    <div class="tab-pane fade show " id="Rice" role="tabpanel" aria-labelledby="Rice-tab">
+                        @foreach ( $extra_items as $key => $extra_item )
+                                    @if($extra_item->menu_id == 5)
+                                    <div class="product_checkout">
+                                    <div class="product_box">
+                                        <div class="product_img">
+                                        <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
+                                        </div>
+                                        <div class="product_cont">
+                                        <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
+                                    <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
+                                    <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
+                                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
+                                            <span class="added-to-cart">Added to cart</span>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                @endif
+                        @endforeach
                     </div>
+                    <div class="tab-pane fade" id="Drinks" role="tabpanel" aria-labelledby="Drinks-tab"> @foreach ( $extra_items as $key => $extra_item )
+                                    @if($extra_item->menu_id == 9)
+                                    <div class="product_checkout">
+                                    <div class="product_box">
+                                        <div class="product_img">
+                                        <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
+                                        </div>
+                                        <div class="product_cont">
+                                        <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
+                                    <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
+                                    <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
+                                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
+                                            <span class="added-to-cart">Added to cart</span>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                @endif
+                        @endforeach</div>
+                        <div class="tab-pane fade" id="Chutney" role="tabpanel" aria-labelledby="Chutney-tab"> 
+                                @if($extra_item->menu_id == 7)
+                                    <div class="product_checkout">
+                                    <div class="product_box">
+                                        <div class="product_img">
+                                        <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
+                                        </div>
+                                        <div class="product_cont">
+                                        <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
+                                    <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
+                                    <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
+                                            <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
+                                            <span class="added-to-cart">Added to cart</span>
+                                        </a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                @endif</div>
                 </div>
-                @endforeach
+            
+
+            
+              
 
 
-            </div>
+          
             </div>
         </div>
         @endif
