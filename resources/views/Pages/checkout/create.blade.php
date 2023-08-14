@@ -3,7 +3,7 @@
 @section('frontcontent')
 <section class="checkout_page py_8">
     <div class="container">
-    <form action="" method="post" class="form" data-cc-on-file="false" data-stripe-publishable-key="pk_test_51Ivb1EKWmcMvWMrc8zHdmMdktWv8bAbywxvdNS2TzzJgq93J0u9lao33b4ScCEl3pkViZUDY9Py1JuI1uDfKtKna00a9D3UDcJ" id="payment-form" autocomplete="off"> @csrf
+    <form action="{{route('checkout.create')}}" method="post" class="woocommerce form" data-cc-on-file="false" id="payment-form" autocomplete="off"> @csrf
 
         <div class="main_checkout">
             <div class="checkout_form_details">
@@ -25,6 +25,7 @@
                             </div>
                         </div>
                         <div class="shipment_form checkout_formms">
+                            @livewire('checkout.user-checkout-address-form')
                         </div>
                     </div>
 
@@ -42,26 +43,9 @@
                             </div>
                         </div>
                         <div class="shipment_form checkout_formms">
-
+                            @livewire('checkout.user-product-cart-list')
                         </div>
-                                    <div class="cart-table table-responsive">
-            <table class="table table-bordered">
-                <thead class="text-left">
-                <tr>
-                    <th width="20%">Product</th>
-                    <th width="50%">Description</th>
-                    <th width="15%">Qty</th>
-                    <th width="15%">Price</th>
-                </tr>
-                </thead>
-                <tbody class="text-left">
-
-                </tbody>
-            </table>
-</div>
- </div>
                     </div>
-
                     <div class="checkout_change_card payment_change">
                         <div class="contact_info">
                             <div class="contact_lef">
@@ -76,11 +60,15 @@
                             </div>
                         </div>
                         <div class="shipment_form checkout_formms">
-
+                            @livewire('checkout.user-paymnet-form')
+                         </div>
                         <div class="summary-checkout">
-                    <button class="checkout-cta">Place Your Order</button>
-                </div>
-                </div>
+                            <p class="checkout-info">Your personal data will used to process your order, support
+                                your experience throughout this website, and for other purposes described in our
+                                privacy policy.</p>
+                            <button type="submit" class="theme_btn">
+                                Place Your <strong class="font-italic">Order</strong> <span class="bx bx-right-arrow-alt float-right"></span>
+                            </button>                </div>
                     </div>
 
                 </div>

@@ -13,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->datetime('order_date');
-            $table->decimal('amount', 10, 2);
-            $table->enum('payment_status', ['Pending', 'Paid', 'Failed']);
-            $table->enum('status', ['Pending','Processing', 'Shipped', 'Delivered','Cancelled']);
+            $table->string('full_name', 255)->nullable();
+            $table->string('company_name', 255)->nullable();
             $table->string('shipping_address', 255);
             $table->string('billing_address', 255);
-            $table->string('payment_method', 50);
+            $table->decimal('total_amount', 10, 2);
+            $table->enum('status', ['Pending','Processing', 'Shipped', 'Delivered','Cancelled']);
             $table->timestamps();
-
-            // Define foreign key constraint
         });
     }
 

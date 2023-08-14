@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController as CheckoutControllerAlias;
 use App\Http\Controllers\ContactUsController;
 use Illuminate\Support\Facades\Route as RouteAlias;
 
@@ -18,7 +19,10 @@ RouteAlias::prefix('cart')->name('cart.')->group(callback: function (){
     RouteAlias::POST('/create', [CartController::class, 'addtocart'])->name('add');
     RouteAlias::POST('/update', [CartController::class, 'updatecart'])->name('update');
     RouteAlias::POST('/delete/{id}', [CartController::class, 'destroy'])->name('delete');
-
 });
 
+//Checkout
+RouteAlias::prefix('checkout')->name('checkout.')->group(callback: function (){
+    RouteAlias::POST('/create', [CheckoutControllerAlias::class, 'create'])->name('create');
+});
 

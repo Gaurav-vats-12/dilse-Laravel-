@@ -33,10 +33,10 @@ jQuery(document).ready(function () {
         }
     });
 
-     /**
+    /**
      *  Add to Cart  In Website (Extra_Items)
      */
-     jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
+    jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
         jQuery(this).toggleClass(`added`);
         let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#extra_ajax_url').val();
         const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
@@ -107,69 +107,36 @@ jQuery(document).ready(function () {
      *  Update the quantity According to plus and minus in cart page (Cart page )
      */
     jQuery(document).on("click", ".update-qty", async function (e) {
-        var $button = jQuery(this);
-        var oldValue = $button.closest('.update-cart-qty').find("input.product-qty").val();
-        //let jQueryqtyInputs = jQuery(`.qty-input`), 
-            //qtyMin = parseInt(jQueryqtyInputs.find(`.product-qty`).attr(`min`)),
-            //qtyMax = parseInt(jQueryqtyInputs.find(`.product-qty`).attr(`max`)), 
-            //jQuerythis = jQuery(this),
-            //jQueryminusBtn = jQuerythis.siblings(`.qty-count--minus`),
-            //jQueryaddBtn = jQuerythis.siblings(`.qty-count--add`), 
-            let quantity = jQuery(this).parent().find(`.product-qty`),
-            ajax_url = jQuery(`#ajax_url`).val(),
+        let newVal;
+        let $button = jQuery(this), oldValue = $button.closest('.update-cart-qty').find("input.product-qty").val(),
+            quantity = jQuery(this).parent().find(`.product-qty`), ajax_url = jQuery(`#ajax_url`).val(),
             dilavery_charge = jQuery(`#dilavery_charge`).val(),
             product__price = parseFloat(quantity.attr(`product__price`)),
-            //quantity_type = jQuery(this).attr(`quantity-type`).toString(),
             product_oid = parseInt(jQuery(this).attr(`productoid`));
+        if ($button.text() == "+") {
+            newVal = parseFloat(oldValue) + 1;
+        }else {
+            console.log('checking total',newVal);
+            // Don't allow decrementing below zero
 
-            if ($button.text() == "+") {
-                var newVal = parseFloat(oldValue) + 1;
-            }else {
-                console.log('checking total',newVal); 
-                // Don't allow decrementing below zero
-                
-                if (oldValue > 0) {
-                    var newVal = parseFloat(oldValue) - 1;
-                } else {
-                    newVal = 0;
-                }
-                if(newVal === 0){
-                    $button.closest('.shopping_items').find('#remove_add_to_Cart').trigger('click');
-                }
-            }
-            $button.closest('.update-cart-qty').find("input.product-qty").attr('value',newVal);     
-        /*if ('plus' === quantity_type) {
-                jQueryaddBtn.attr("disabled", false);
-                jQueryminusBtn.attr("disabled", false);
-                if (qty >= qtyMax) {
-                    quantity.val(qtyMax).change();
-                    jQuerythis.attr("disabled", true);
-                } else {
-                    console.log(qty);
-                    quantity.val(qty+1);
-                    console.log('quantity',quantity.val());
-                    quantity.attr('value',qty+1)
-                    //quantity.val(qty + 1).change();
-                }
+            if (oldValue > 0) {
+                newVal = parseFloat(oldValue) - 1;
             } else {
-                jQueryaddBtn.attr("disabled", false);
-                jQueryminusBtn.attr("disabled", false);
-                if (isNaN(qty) || qty <= qtyMin) {
-                    quantity.val(qtyMin).change();
-                    let uid = jQuery('.shopping_items_main').length;
-                    jQuery(`#cart_products-${product_oid}`).empty();
-                } else {
-                    quantity.val(qty - 1).change();
-                }
-            }*/
-        let qty = newVal;    
+                newVal = 0;
+            }
+            if(newVal === 0){
+                $button.closest('.shopping_items').find('#remove_add_to_Cart').trigger('click');
+            }
+        }
+        $button.closest('.update-cart-qty').find("input.product-qty").attr('value',newVal);
+        let qty = newVal;
         let counterproductive = parseFloat(newVal * product__price), ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
-           
-        jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive.toFixed(2)}`);
-            jQuery(`#product_quntity__${product_oid}`).val(qty);
-            jQuery(`#product_price__${product_oid}`).val(`$${counterproductive.toFixed(2)}`);
 
-            const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+        jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive.toFixed(2)}`);
+        jQuery(`#product_quntity__${product_oid}`).val(qty);
+        jQuery(`#product_price__${product_oid}`).val(`$${counterproductive.toFixed(2)}`);
+
+        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
             jQuery(`#subtotal`).html(`<p>$${resPose.subtotal}</p>`);
             jQuery(`#total`).html(`<p>$${resPose.total}</p>`);
@@ -214,9 +181,18 @@ jQuery(document).ready(function () {
             }
         });
     });
+    if (url.indexOf("/checkout") > -1) {
+        /**
+         * State Dependency In Checkout Page
+         */
+        let country_uid = parseInt(jQuery('#billing_country').find(":selected").attr('country_uid'));
+        let ajax_url = jQuery('#state_ajax').val();
 
+        let selected_billing_state = jQuery('#selected_billing_state').val();
+        let ajax_value = {country_uid,'type':'country',selected_billing_state};
 
-
+        state_dependency_country_list(ajax_value, ajax_url);
+    }
 
 
 });
