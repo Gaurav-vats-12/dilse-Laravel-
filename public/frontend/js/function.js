@@ -129,17 +129,11 @@ jQuery('.image-popup-vertical-fit').magnificPopup({
 
 });
 
-async function add_cart_functionally(ajax_url, ajax_value){
-    let resPose;
-    [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')]);
-    resPose.cart_total = undefined;
-    if(resPose.status ==='success'){
-        jQuery('.cart_count').text(resPose.cart_total);
-        jQuery('#subtotal').html('<p>$50</p>');
-        // jQuery('.total').html('<p>$'+resPose.subtotal+'</p>');
-        Toast.fire({ icon: 'success',title: resPose.message, })
-        setTimeout(function(){
-            jQuery('.add-to-cart-button').removeClass('added')
-        }, 1000);
-    }
+
+
+async function state_dependency_country_list(ajax_post, url) {
+    const response = await Ajax_response(url, "POST", ajax_post, '');
+    jQuery.each(response.states, function (key, value) {
+        jQuery("#billing_state").append(`<option value="${value.name}" state_id ="${value.id}">${value.name}</option>`);
+    });
 }

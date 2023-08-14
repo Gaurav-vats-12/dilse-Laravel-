@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="{{asset('plugins/slick-1.8.1/slick/slick-theme.css')}}">
     <!-- Jquery UI  -->
     <link rel="stylesheet" href="{{asset('plugins/jquery-ui/jquery-ui.min.css') }}">
-    <!-- Sweet Alert -->
+  <!-- Time Picker CSS  -->
+  <link rel="stylesheet" href="{{asset('plugins/timepicker/css/jquery.timepicker.min.css')}}">
+
+  <!-- Sweet Alert -->
     <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
     <!-- Toast Alert  -->
     <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
@@ -18,7 +21,4 @@
     <!-- main.css -->
     <link rel="stylesheet" href="{{asset('frontend/css/main.css') }}" />
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-
+  @livewireStyles

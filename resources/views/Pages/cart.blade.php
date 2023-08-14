@@ -28,8 +28,7 @@
                 @if(session('cart'))
 {{--                        @dd(session('cart'))--}}
                 @foreach(session('cart') as $id => $details)
-                @php
-                  $subtotal = $subtotal + $details["price"] *  $details["quantity"]@endphp
+                @php  $subtotal = $subtotal + $details["price"] *  $details["quantity"]@endphp
 
                     <div class="shoping_main_top" id="cart_products-{{$id}}">
                         <div class="shopping_items_main">
@@ -88,8 +87,7 @@
                                 </div>
 
                                 <div class="s_total" id="subtotal">
-                                    <p>${{ $subtotal }}
-                                    </p>
+                                    <p>${{ $subtotal }}</p>
                                 </div>
                             </li>
                             <li>
@@ -114,7 +112,7 @@
                             </div>
                         </div>
                         <div class="cart_btn">
-                            <input class="theme_btn" type="button" value="Checkout">
+                          <a href="{{route('checkout.view')}}" class="theme_btn">Proceed To Checkout</a>
                         </div>
                     </div>
                 </div>
@@ -140,7 +138,6 @@
                     </div>
                 </div>
                 @endforeach
-
 
             </div>
             </div>

@@ -1,7 +1,7 @@
 <?php
-
+use App\Http\Controllers\API\FetchStateCountries as FetchStateCountriesAlias;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route as RouteAlias;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+RouteAlias::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+RouteAlias::POST('/fetch_state', [FetchStateCountriesAlias::class, 'fetch_state_cities'])->name('state');
 
 

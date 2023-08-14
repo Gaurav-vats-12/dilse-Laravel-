@@ -1,4 +1,4 @@
-jQuery(document).ready(function () {
+jQuery(document).ready(async function () {
 
     /**
      * Subscribe Our Newsletter Submission Form Ajax (Home Page)
@@ -10,10 +10,10 @@ jQuery(document).ready(function () {
         if (resPose.status === `success`) {
             Toast.fire({icon: `success`, title: resPose.message})
             $("#emailSubscribeForm")[0].reset();
-        }else if(resPose.status === `error`){
+        } else if (resPose.status === `error`) {
             Toast.fire({icon: `warning`, title: resPose.message})
             $("#emailSubscribeForm")[0].reset();
-        }else{
+        } else {
             jQuery.each(resPose.errors, function (key, value) {
                 jQuery(`#${key}-error`).text(value);
             });
@@ -25,7 +25,10 @@ jQuery(document).ready(function () {
      */
     jQuery(document).on("click", "#add_to_cart", async function (event) {
         jQuery(this).toggleClass(`added`);
-            let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#ajax_url').val();
+        let product_oid = jQuery(this).attr("product_uid"),
+            product_quntity = jQuery(`#product_quntity_${product_oid}`).val(),
+            product_price = jQuery(`#product_price__${product_oid}`).val(),
+            ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#ajax_url').val();
         const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
             Toast.fire({icon: `success`, title: resPose.message})
@@ -43,14 +46,14 @@ jQuery(document).ready(function () {
     /**
      *     Contact us Form Submission  iN ajax  (Home Page)
      */
-    jQuery(document).on("submit","#conatact_cus_form",async function(e) {
+    jQuery(document).on("submit", "#conatact_cus_form", async function (e) {
         e.preventDefault();
         let ajax_value_list = $(this).serialize(), ajx_url = jQuery(`#contact_us_action_url`).val();
         const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
-        if(resPose.status === 'success'){
-            Toast.fire({ icon: 'success',title: resPose.message, })
+        if (resPose.status === 'success') {
+            Toast.fire({icon: 'success', title: resPose.message,})
             jQuery("#conatact_cus_form")[0].reset();
-        }else{
+        } else {
             jQuery.each(resPose.errors, function (key, value) {
                 jQuery(`#${key}-error`).text(value);
             });
@@ -103,32 +106,33 @@ jQuery(document).ready(function () {
             quantity_type = jQuery(this).attr(`quantity-type`).toString(),
             product_oid = parseInt(jQuery(this).attr(`productoid`));
         if ('plus' === quantity_type) {
-                jQueryaddBtn.attr("disabled", false);
-                jQueryminusBtn.attr("disabled", false);
-                if (qty >= qtyMax) {
-                    quantity.val(qtyMax).change()
-                    jQuerythis.attr("disabled", true);
-                } else {
-                    quantity.val(qty + 1).change();
-                }
+            jQueryaddBtn.attr("disabled", false);
+            jQueryminusBtn.attr("disabled", false);
+            if (qty >= qtyMax) {
+                quantity.val(qtyMax).change()
+                jQuerythis.attr("disabled", true);
             } else {
-                jQueryaddBtn.attr("disabled", false);
-                jQueryminusBtn.attr("disabled", false);
-                if (isNaN(qty) || qty <= qtyMin) {
-                    quantity.val(qtyMin).change();
-                    let uid = jQuery('.shopping_items_main').length;
-                    jQuery(`#cart_products-${product_oid}`).empty();
-                } else {
-                    quantity.val(qty - 1).change();
-                }
+                quantity.val(qty + 1).change();
             }
+        } else {
+            jQueryaddBtn.attr("disabled", false);
+            jQueryminusBtn.attr("disabled", false);
+            if (isNaN(qty) || qty <= qtyMin) {
+                quantity.val(qtyMin).change();
+                let uid = jQuery('.shopping_items_main').length;
+                jQuery(`#cart_products-${product_oid}`).empty();
+            } else {
+                quantity.val(qty - 1).change();
+            }
+        }
 
-        let counterproductive = parseFloat(qty * product__price), ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
-            jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive}`);
-            jQuery(`#product_quntity__${product_oid}`).val(qty);
-            jQuery(`#product_price__${product_oid}`).val(`$${counterproductive}`);
+        let counterproductive = parseFloat(qty * product__price),
+            ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
+        jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive}`);
+        jQuery(`#product_quntity__${product_oid}`).val(qty);
+        jQuery(`#product_price__${product_oid}`).val(`$${counterproductive}`);
 
-            const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
             jQuery(`#subtotal`).html(`<p>$${resPose.subtotal}</p>`);
             jQuery(`#total`).html(`<p>$${resPose.total}</p>`);
@@ -175,7 +179,16 @@ jQuery(document).ready(function () {
     });
 
 
+    if (url.indexOf("/checkout") > -1) {
+        /**
+         * State Dependency In Checkout Page
+         */
+        let country_uid = parseInt(jQuery('#billing_country').find(":selected").attr('country_uid'));
+        let ajax_value = {country_uid,'type':'country'};
+        let ajax_url = jQuery('#state_ajax').val();
+        await state_dependency_country_list(ajax_value, ajax_url);
 
+    }
 
 
 });
