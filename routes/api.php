@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\API\FetchStateCountries as FetchStateCountriesAlias;
+use App\Http\Controllers\API\PaymnetCallbackController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route as RouteAlias;
 
@@ -19,4 +20,5 @@ RouteAlias::middleware('auth:sanctum')->get('/user', function (Request $request)
 });
 RouteAlias::POST('/fetch_state', [FetchStateCountriesAlias::class, 'fetch_state_cities'])->name('state');
 
+RouteAlias::POST('/payment/callback', [PaymnetCallbackController::class, 'callback'])->name('callback');
 

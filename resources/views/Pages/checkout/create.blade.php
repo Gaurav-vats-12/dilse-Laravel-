@@ -3,7 +3,7 @@
 @section('frontcontent')
     <section class="checkout_page py_8">
         <div class="container">
-            <form action="{{route('checkout.create')}}" method="post" class="woocommerce form" data-cc-on-file="false" id="payment-form" autocomplete="off"> @csrf
+            <form action="{{route('checkout.create')}}" method="post" class="woocommerce form require-validation" data-cc-on-file="false" id="payment-form" autocomplete="off"  data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" novalidate> @csrf
 
                 <div class="main_checkout">
                     <div class="checkout_form_details">
@@ -25,10 +25,9 @@
                                     </div>
                                 </div>
                                 <div class="shipment_form checkout_formms">
-                                    @include('ajax.checkout.user_adress')
+                                   @include('ajax.checkout.user_address')
                                 </div>
                             </div>
-
                             <div class="checkout_change_card payment_change">
                                 <div class="contact_info">
                                     <div class="contact_lef">
@@ -67,7 +66,7 @@
                                     <p class="checkout-info">Your personal data will used to process your order, support
                                         your experience throughout this website, and for other purposes described in our
                                         privacy policy.</p>
-                                    <button type="submit" class="theme_btn">
+                                    <button type="submit" class="theme_btn" id="submit-payment">
                                         Place Your <strong class="font-italic">Order</strong> <span class="bx bx-right-arrow-alt float-right"></span>
                                     </button>                </div>
                             </div>

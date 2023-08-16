@@ -1,4 +1,7 @@
 
+   <!-- Stripe -->
+   <script src="https://js.stripe.com/v3/"></script>
+
    <!-- jquery -->
     <script src="{{asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- Jquery UI  -->

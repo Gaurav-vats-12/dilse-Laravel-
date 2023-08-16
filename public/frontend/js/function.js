@@ -134,5 +134,13 @@ jQuery('.image-popup-vertical-fit').magnificPopup({
 async function state_dependency_country_list(ajax_post, url) {
     const response = await Ajax_response(url, "POST", ajax_post, '');
     jQuery(`#billing_state`).empty().html(response);
+}
 
+function stripe_payment(){
+    let stripe_key = jQuery('#stripe_key').val();
+
+    let stripe = new Stripe(stripe_key);
+    var elements = stripe.elements();
+    var cardElement = elements.create('card');
+    cardElement.mount('#card-element');    console.log(stripe)
 }

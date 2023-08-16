@@ -3,10 +3,11 @@
     <div class="col-md-6">
         <div class="cusstom_input">
             <label for="billing_first_name" class="">First name <span class="required" title="required">*</span></label>
-            <input type="text" placeholder="First Name" name ="billing_first_name" value="{{ old('billing_first_name') }}">
+            <input type="text" placeholder="First Name"  class="form-control" name ="billing_first_name" value="{{ old('billing_first_name') }}">
             @error('billing_first_name')
             <span class="text-danger">{{ $message }}</span>
-            @enderror                                        </div>
+            @enderror
+          </div>
     </div>
     <div class="col-md-6">
         <div class="cusstom_input">

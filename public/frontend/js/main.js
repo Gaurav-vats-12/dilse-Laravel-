@@ -116,7 +116,6 @@ jQuery(document).ready(function () {
         if ($button.text() == "+") {
             newVal = parseFloat(oldValue) + 1;
         }else {
-            console.log('checking total',newVal);
             // Don't allow decrementing below zero
 
             if (oldValue > 0) {
@@ -128,20 +127,22 @@ jQuery(document).ready(function () {
                 $button.closest('.shopping_items').find('#remove_add_to_Cart').trigger('click');
             }
         }
+        if(newVal === 0){
+            console.log('No Cahnage')
+
+        }else{
         $button.closest('.update-cart-qty').find("input.product-qty").attr('value',newVal);
         let qty = newVal;
         let counterproductive = parseFloat(newVal * product__price), ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
-
         jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive.toFixed(2)}`);
         jQuery(`#product_quntity__${product_oid}`).val(qty);
         jQuery(`#product_price__${product_oid}`).val(`$${counterproductive.toFixed(2)}`);
-
         const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
             jQuery(`#subtotal`).html(`<p>$${resPose.subtotal}</p>`);
             jQuery(`#total`).html(`<p>$${resPose.total}</p>`);
         }
-
+        }
     });
 
     /**
@@ -190,9 +191,26 @@ jQuery(document).ready(function () {
 
         let selected_billing_state = jQuery('#selected_billing_state').val();
         let ajax_value = {country_uid,'type':'country',selected_billing_state};
-
         state_dependency_country_list(ajax_value, ajax_url);
+        /**
+         * Payment Option
+         */
+        jQuery(document).on("click", ".payment_option", async function (event) {
+            let payment_value = jQuery('input[name="payment_method"]:checked').val();
+            console.log(payment_value);
+            if (payment_value ==='payonline') {
+                jQuery('#stripe_paymnet_form').css('display','block');
+                stripe_payment();
+
+            } else {
+                jQuery('#stripe_paymnet_form').css('display','none');
+            }
+
+        });
+
     }
+
+
 
 
 });

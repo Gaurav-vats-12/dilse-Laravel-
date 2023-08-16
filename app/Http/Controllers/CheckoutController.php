@@ -8,6 +8,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth as AuthAlias;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -36,9 +38,9 @@ class CheckoutController extends Controller
 
     /**
      * @param StoreCheckoutRequest $request
-     * @return void
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Foundation\Application|Application|RedirectResponse
      */
-    public function create (StoreCheckoutRequest $request)
+    public function create (StoreCheckoutRequest $request): Application|RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\Foundation\Application
     {
         $user_id = (AuthAlias::guard('user')->check()) ? 'Hello': null;
         $checkout_value = [
@@ -66,7 +68,7 @@ class CheckoutController extends Controller
         OrderItemsAlias::insert($cart_datals);
         if($request->payment_method == 'pay_on_delivery') {
             $paymnet_status = [
-                'paymnet_id'=>\Str::random(10),
+                'paymnet_id'=>Str::random(10),
                 'user_id'=>$user_id,
                 'order_id'=>$order_id,
                 'payment_amount'=>round($request->tototal_amount ,2),
@@ -79,11 +81,24 @@ class CheckoutController extends Controller
             Payments::insert($paymnet_status);
             Session::forget('cart');
             return redirect(route('home'))->withToastSuccess('Order Placed Successfully');
+
+        }elseif ($request->payment_method == 'pay_on_store'){
+            $paymnet_status = [
+                'paymnet_id'=>Str::random(10),
+                'user_id'=>$user_id,
+                'order_id'=>$order_id,
+                'payment_amount'=>round($request->tototal_amount ,2),
+                'payment_method'=>$request->payment_method,
+                'payment_status'=>'pending',
+                'payment_date'=> date("Y-m-d H:i:s"),
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
+            Payments::insert($paymnet_status);
+            Session::forget('cart');
+            return redirect(route('home'))->withToastSuccess('Order Placed Successfully');
+        }else{
+            dd('Stripe');
         }
-    }
-
-
-    public function user_address(){
-        return view('ajax.checkout.user_address');
     }
 }

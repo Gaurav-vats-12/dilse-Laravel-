@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'providers' => ServiceProvider::defaultProviders()->merge([
+    'providers' => ServiceProvider::defaultProviders()->merge(providers: [
         /*
          * Package Service Providers...
          */
@@ -174,6 +174,7 @@ return [
         browner12\helpers\HelperServiceProvider::class,
         App\Modules\Users\UserServiceProvider::class,
 
+
     ])->toArray(),
 
     /*
@@ -190,6 +191,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Image' => Intervention\Image\Facades\Image::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
+
     ])->toArray(),
 
 ];
