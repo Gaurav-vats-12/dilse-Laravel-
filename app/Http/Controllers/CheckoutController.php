@@ -77,7 +77,7 @@ class CheckoutController extends Controller
                 'updated_at' => now()
             ];
             Payments::insert($paymnet_status);
-            unset($cart);
+            Session::forget('cart');
             return redirect(route('home'))->withToastSuccess('Order Placed Successfully');
         }
     }
