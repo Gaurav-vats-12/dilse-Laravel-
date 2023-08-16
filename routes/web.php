@@ -54,11 +54,9 @@ RouteAlias::prefix('cart')->name('cart.')->group(function(){
 
 RouteAlias::prefix('checkout')->name('checkout.')->group(callback: function(){
     RouteAlias::get('/', [CheckoutControllerAlias::class, 'index'])->name('view');
-//    RouteAlias::get('/payment/{payment_type}/{order_id}/{user_id}/{total_amount}', [PaymentController::class, 'index'])->name('paymnet');
-//    dd('checkout');
-
-
+    RouteAlias::get('/user_address', [CheckoutControllerAlias::class, 'user_address'])->name('user_address');
 });
+
 
 //  Slug Dependency
 RouteAlias::get('{slug}', function ($slug) {

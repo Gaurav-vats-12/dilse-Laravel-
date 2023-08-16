@@ -117,6 +117,7 @@
                     </div>
                     @endif
                 </div>
+                @if(session('cart'))
                 @if (isset($extra_items) && count($extra_items) >0)
                     <div class="product_c_main">
                         <div class="tittle_heading">
@@ -226,6 +227,7 @@
 
             </div>
     </div>
+    @endif
     @endif
     </section>
 

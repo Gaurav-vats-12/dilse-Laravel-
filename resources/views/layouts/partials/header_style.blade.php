@@ -1,3 +1,4 @@
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/fontawesome.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/brands.css')}}">

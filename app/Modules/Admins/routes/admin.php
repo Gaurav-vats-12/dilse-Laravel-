@@ -14,7 +14,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
         // Route::get('/banner/changeStatus/{id}', [BannerController::class, 'updateStatus'])->name('banner.changeStatus');
         Route::prefix('setting')->name('setting.')->group(function(){
             Route::get('/genral', [SettingController::class, 'genralsetting'])->name('genral');
-            Route::put('/genral/{id}', [SettingController::class, 'updategenralSetting'])->name('genralstore');
+            Route::put('/genral/{id}', [SettingController::class, 'unregenerateSetting'])->name('genralstore');
             Route::get('/footer-setting', [SettingController::class, 'footersetting'])->name('footersetting');
         });
         Route::resource('manage-pages', PageManagementController::class);
