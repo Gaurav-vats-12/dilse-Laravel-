@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController,MenuController,BlogController,GalleryController,CustomerController};
+use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController,MenuController,BlogController,GalleryController,CustomerController,OrderController};
 use App\Modules\Admins\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
@@ -44,7 +44,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 
 
-
+        Route::resource('order', OrderController::class);
+        // Route::get('/order-manage', [App\Http\Controllers\OrderController::class, 'index'])->name('order-manage');
 
 
         Route::prefix('manage-customer')->name('manage-customer.')->group(function(){
