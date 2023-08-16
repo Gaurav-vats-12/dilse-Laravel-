@@ -23,7 +23,7 @@
                     <div class="card-header">
               </div>
                         <div class="card-body">
-                            <table id="view_customer_table" class="table table-bordered table-hover">
+                            <table id="manage_orders" class="table table-bordered table-hover">
                                 <thead class="text-uppercase">
                                     <tr>
                                  <th>Sno </th>
@@ -33,18 +33,20 @@
                                  <th>Action</th>
                                     </tr>
                                 </thead>
-
-                                @foreach ($orders as $order)
-                                <td>{{ $order->user_id  }}</td>
-                                <td>{{ $order->full_name }}</td>
-                                <td>{{ $order->company_name }}</td>
-                                <td>  {{ $order->status }}</td>
-
-                                <td class="project-actions">
-                                    <a class="btn btn-info btn-sm" href=""><i class="fa-solid fa-eye"></i>  </a>
-                                    <a href="{{ route('admin.manage-customer.control', $order->id) }}" class="btn text-warning btn-sm" data-bs-toggle="tooltip" data-bs-original-title="inactive"></a>
-                                    @endforeach
                                 <tbody>
+
+                                    @foreach ($orders as $key=>  $order)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $order->full_name }}</td>
+                                            <td>{{ $order->company_name }}</td>
+                                            <td>  {{ $order->status }}</td>
+                                            <td class="project-actions">
+                                                <a class="btn btn-info btn-sm" href=""><i class="fa-solid fa-eye"></i>  </a>
+                                                <a href="{{ route('admin.manage-customer.control', $order->id) }}" class="btn text-warning btn-sm" data-bs-toggle="tooltip" data-bs-original-title="inactive"></a></td>
+                                        </tr>
+                                    @endforeach
+
 
                                 </tbody>
                             </table>

@@ -35,7 +35,7 @@ class BookingController extends Controller
     }
 
     public function fetchBooking(){
-        return view('admin.page.booking.index')->with('booking',Booking::orderBy("id", "dec")->get());
+        return view('admin.page.booking.index')->with('booking',Booking::orderBy("id", "ASC")->get());
     }
 
     public function show(string $id){

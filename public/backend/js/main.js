@@ -202,6 +202,18 @@ jQuery( function () {
           { orderable: false, targets: '_all' }
         ]
         });
+    }else if(url.indexOf("/order") > -1){
+        new DataTable('#manage_orders',{
+            "responsive": true,
+            "lengthMenu": [10, 20],
+            "searching": true,
+            "columnDefs": [
+                { orderable: true, className: 'reorder', targets: 0 },
+                { orderable: true, className: 'reorder', targets: 1 },
+                { orderable: true, className: 'reorder', targets: 2 },
+                { orderable: false, targets: '_all' }
+            ]
+        });
     }
 
 });
