@@ -11,15 +11,9 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $orders = Order::all();  // Fetches all rows from the orders table
-       // dd($orders);
-        return view('admin.page.order.index',compact('orders'));
-
-        // // ///return view('manage-order', ['orders' => $orders]);
-        // return view('admin.Pages.order.index', compact('orders'));
-
+        return view(view: 'admin.page.order.index')->with('orders', value: Order::latest()->get());
     }
 
     /**
@@ -43,7 +37,7 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**

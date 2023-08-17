@@ -8,7 +8,6 @@ use App\Http\Controllers\CheckoutController as CheckoutControllerAlias;
 use App\Http\Controllers\ContactUsController as ContactUsControllerAlias;
 use App\Http\Controllers\HomeController as HomeControllerAlias;
 use App\Http\Controllers\MenuController as MenuControllerAlias;
-use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route as RouteAlias;
 use App\Models\Admin\Page;
 use Illuminate\Support\Facades\URL;
@@ -31,15 +30,18 @@ RouteAlias::get('/contact-us', [ContactUsControllerAlias::class, 'index'])->name
 RouteAlias::get('/about-us', [HomeControllerAlias::class, 'aboutus'])->name('aboutus');
 // Gallery Page
 RouteAlias::get('/gallery', [HomeControllerAlias::class, 'gallery'])->name('gallery');
-// Discount and Coupans
+// Discount and Coupons
 RouteAlias::get('/discount-and-coupons', [HomeControllerAlias::class, 'giftCard'])->name('discountandcoupons');
 // Bolg Page
 RouteAlias::get('/blog', [BlogControllerAlias::class, 'blog'])->name('blog');
 RouteAlias::get('/blog/{slug}', [BlogControllerAlias::class, 'blogdetails'])->name('blogdetails');
 // Menu Page
 RouteAlias::get('/menu', [MenuControllerAlias::class, 'menu'])->name('menu');
+
 RouteAlias::get('/menu/{slug}', [MenuControllerAlias::class, 'menudetails'])->name('menudetails');
 
+//Thank You, Page
+RouteAlias::get('/order-confirmed/{id}', [HomeControllerAlias::class, 'order_confirm'])->name('order_confirm');
 
 // Booking  a Reservation
 RouteAlias::get('/book-a-reservation', [BookingControllerAlias::class, 'bookATable'])->name('booktable');

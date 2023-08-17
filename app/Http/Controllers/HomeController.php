@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Models\Admin\{Banner,Testimonial,Page,FoodItem,Gallery};
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+
 class HomeController extends Controller
 {
     public function Homepage(){
@@ -24,7 +28,14 @@ class HomeController extends Controller
         return view('Pages.gift-card');
     }
 
-
+    /**
+     * @param $id
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function  order_confirm($id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    {
+            return view('Pages.order-confirmation-templates');
+    }
 
 
 }

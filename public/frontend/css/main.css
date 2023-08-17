@@ -2080,9 +2080,45 @@ p {
     line-height: 1.8;
     font-size: 14px;
 }
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 30px;
+}
+#msform .bg-shadow, #msform .form-card {
+    background: white;
+    border: 0 none;
+    border-radius: 0px;
+    box-shadow: 0 5px 12px 0 rgb(121 121 121 / 10%);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    position: relative;
+}
+.page-header {
+    margin: 0 0 1rem;
+    padding-bottom: 1rem;
+    padding-top: .5rem;
+    border-bottom: 1px dotted #e2e2e2;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.text-left {
+    text-align: left!important;
+}
+.order-details {
+    height: 200px;
+}
+
 /*.menu_main_box .best_food_crd{*/
 /*    position: relative;*/
 /*}*/
 /*.menu_main_box {*/
 /*    position: relative;*/
 /*}*/
+

@@ -44,16 +44,9 @@ class CheckoutController extends Controller
      */
     public function create (StoreCheckoutRequest $request): Application|RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\Foundation\Application
     {
-        Stripe::setApiKey('sk_test_51JIrpKSEf4LguLAhFSUv3dgziS6KzJ1bDvOdr0ftU1W3I5pmtktzpk7lqYjenK3Y9QqXjg1jFD2UZjdLpFgHuyrM00JMhbecVp');
-        $token = $request->stripeToken;
-        $charge = Charge::create([
-            'amount' => 1000, // Amount in cents
-            'currency' => 'inr',
-            'description' => 'Example Charge',
-            'source' => $token,
-        ]);
-        dd($request->all());
+
         $user_id = (AuthAlias::guard('user')->check()) ? 'Hello': null;
+
         $checkout_value = [
             'user_id' => $user_id,
             "order_date" => date("Y-m-d H:i:s"),
@@ -67,6 +60,8 @@ class CheckoutController extends Controller
             'updated_at' => now()
         ];
         $order_id = Order::insertGetId($checkout_value);
+
+
         $cart = session()->get('cart', []);
         foreach ($cart as $key => $details) $cart_datals[] = [
             'order_id' => $order_id,
@@ -79,8 +74,7 @@ class CheckoutController extends Controller
         OrderItemsAlias::insert($cart_datals);
         if($request->payment_method == 'pay_on_delivery') {
             $paymnet_status = [
-                'paymnet_id'=>Str::random(10),
-                'user_id'=>$user_id,
+                'payment_id'=>Str::random(10),
                 'order_id'=>$order_id,
                 'payment_amount'=>round($request->tototal_amount ,2),
                 'payment_method'=>$request->payment_method,
@@ -91,8 +85,7 @@ class CheckoutController extends Controller
             ];
             Payments::insert($paymnet_status);
             Session::forget('cart');
-            return redirect(route('home'))->withToastSuccess('Order Placed Successfully');
-
+            return redirect(route('order_confirm' ,$order_id))->withToastSuccess('Order Placed Successfully');
         }elseif ($request->payment_method == 'pay_on_store'){
             $paymnet_status = [
                 'paymnet_id'=>Str::random(10),
@@ -107,7 +100,8 @@ class CheckoutController extends Controller
             ];
             Payments::insert($paymnet_status);
             Session::forget('cart');
-            return redirect(route('home'))->withToastSuccess('Order Placed Successfully');
+            Session::forget('order_type');
+            return redirect(route('order_confirm',$order_id))->withToastSuccess('Order Placed Successfully');
         }else{
             dd('Stripe');
         }
