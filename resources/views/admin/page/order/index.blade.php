@@ -28,22 +28,28 @@
                                     <tr>
                                  <th>Sno </th>
                                 <th>FULL NAME</th>
-                                <th>Company Name</th>
+                                        <th>Price</th>
+
                                  <th>STATUS</th>
+                             <th>Payment Status</th>
                                  <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     @foreach ($orders as $key=>  $order)
+
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $order->full_name }}</td>
-                                            <td>{{ $order->company_name }}</td>
-                                            <td>  {{ $order->status }}</td>
+                                            <td>$ {{ $order->payment->payment_amount }}</td>
+                                            <td>{{ $order->status }}</td>
+                                            <td>  {{ $order->payment->payment_status }}</td>
+
                                             <td class="project-actions">
-                                                <a class="btn btn-info btn-sm" href=""><i class="fa-solid fa-eye"></i>  </a>
-                                                <a href="{{ route('admin.manage-customer.control', $order->id) }}" class="btn text-warning btn-sm" data-bs-toggle="tooltip" data-bs-original-title="inactive"></a></td>
+                                                <a class="btn btn-info btn-sm" href="{{ route('admin.order.show' , $order->id) }}"><i class="fa-solid fa-eye"></i>  </a>
+                                                <a href="javascript:void(0)" class="btn btn-info btn-sm" data-bs-toggle="modal" data-target="#modal-default" ><i class="fa-solid fa-plus" title="Accept" ></i>  </a>
+                                            @include('admin.page.order.includes.order_accept')
                                         </tr>
                                     @endforeach
 

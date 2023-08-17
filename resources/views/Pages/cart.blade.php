@@ -2,20 +2,6 @@
 @section('title', 'Cart')
 @section('frontcontent')
     <div class="wraper">
-        <!--section
-            class="inner_bannner bg_style"
-            style="background-image: url({{asset('frontend/img/contact_banner.png')}})"
-        >
-            <div class="about_banner_section">
-                <div class="home-slider-main">
-                    <div class="container">
-                        <div class="home-slider-content">
-                            <h1>Cart</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section-->
         <section class="shopping_cart py_8">
             <div class="container">
                 <div class="tittle_heading">
@@ -24,6 +10,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-7 col-lg-8" id="cart_messages">
                         @php  $subtotal = 0; @endphp
+{{--                        @dd(session('order_type'))--}}
                         @if(session('cart'))
                             {{--                        @dd(session('cart'))--}}
                             @foreach(session('cart') as $id => $details)
@@ -89,17 +76,7 @@
                                             <p>${{ $subtotal }}</p>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="s_subtotal">
-                                            <p>Delivery Charges
-                                            </p>
-                                        </div>
 
-                                        <div class="s_total" id="dilevery_total">
-                                            <p >${{4.25}}</p>
-                                            <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{4.25}}">
-                                        </div>
-                                    </li>
                                 </ul>
                                 <div class="order_totals d-flex align-items-center justify-content-between">
                                     <div class="order_totalses">
@@ -107,11 +84,17 @@
                                         </p>
                                     </div>
                                     <div class="order_totalse" id="total">
-                                        <p>${{ $subtotal + 4.25 }}</p>
+                                        <p>$ {{ (session('order_type')) ? $subtotal +  4.25 : $subtotal + 0.00 }}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="cart_btn">
-                                    <a href="{{route('checkout.view')}}" class="theme_btn">Proceed To Checkout</a>
+                                    @if(session('order_type'))
+                                        <a href="{{route('checkout.view')}}" class="theme_btn">Proceed To Checkout</a>
+                                    @else
+                                        <a href="javascript:void(0)" class="theme_btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Proceed To Checkout</a>
+                                        @include('layouts.partials.order_popup')
+                                    @endif
                                 </div>
                             </div>
                     </div>
@@ -140,7 +123,7 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
 
-                            <div class="tab-pane fade show active" id="Bread" role="tabpanel" aria-labelledby="Bread-tab">   
+                            <div class="tab-pane fade show active" id="Bread" role="tabpanel" aria-labelledby="Bread-tab">
                                 <div class="product_checkout">
                                     @foreach ( $extra_items as $key => $extra_item )
                                         @if($extra_item->menu_id == 6)
@@ -157,7 +140,7 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                            
+
                                         @endif
                                     @endforeach
                                 </div>
@@ -179,16 +162,16 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                            
+
                                         @endif
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="Drinks" role="tabpanel" aria-labelledby="Drinks-tab"> 
-                                
+                            <div class="tab-pane fade" id="Drinks" role="tabpanel" aria-labelledby="Drinks-tab">
+
                             <div class="product_checkout">
                                 @foreach ( $extra_items as $key => $extra_item )
-                                    
+
                                     @if($extra_item->menu_id == 9)
                                             <div class="product_box">
                                                 <div class="product_img">
@@ -203,12 +186,12 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                        
+
                                     @endif
                                 @endforeach</div>
                                 </div>
                             <div class="tab-pane fade" id="Chutney" role="tabpanel" aria-labelledby="Chutney-tab">
-                                
+
                             <div class="product_checkout">
                             @foreach ( $extra_items as $key => $extra_item )
                                 @if($extra_item->menu_id == 7)
@@ -225,7 +208,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                   
+
                                 @endif
                                 @endforeach
                             </div>

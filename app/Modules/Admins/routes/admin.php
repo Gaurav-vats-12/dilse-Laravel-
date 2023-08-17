@@ -45,7 +45,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 
         Route::resource('order', OrderController::class);
-        // Route::get('/order-manage', [App\Http\Controllers\OrderController::class, 'index'])->name('order-manage');
 
 
         Route::prefix('manage-customer')->name('manage-customer.')->group(function(){

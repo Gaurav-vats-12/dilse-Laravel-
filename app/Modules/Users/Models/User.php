@@ -2,11 +2,13 @@
 
 namespace App\Modules\Users\Models;
 
+use App\Models\Order\Order as OrderAlias;
 use App\Modules\Users\Database\Factories\UserFactory;
 use App\Modules\Users\Notifications\Auth\ResetPassword;
 use App\Modules\Users\Notifications\Auth\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -50,7 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory<static>
      */
-    protected static function newFactory()
+    protected static function newFactory(): \Illuminate\Database\Eloquent\Factories\Factory
     {
         return UserFactory::new();
     }
@@ -60,16 +62,28 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @param  string  $token
      */
-    public function sendPasswordResetNotification($token)
+    public function sendPasswordResetNotification($token): void
     {
-        $this->notify(new ResetPassword($token));
+        if (!empty($this)) {
+            $this->notify(instance: new ResetPassword($token));
+        }
     }
 
     /**
      * Send the email verification notification.
      */
-    public function sendEmailVerificationNotification()
+    public function sendEmailVerificationNotification(): void
     {
-        $this->notify(new VerifyEmail());
+        if (!empty($this)) {
+            $this->notify(new VerifyEmail());
+        }
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(OrderAlias::class);
     }
 }

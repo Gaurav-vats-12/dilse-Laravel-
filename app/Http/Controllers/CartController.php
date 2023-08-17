@@ -64,7 +64,7 @@ public function viewcart(){
                 foreach ($cart as $key => $details) {
                     $subtotal =  $subtotal + round($details["price"]  * $details["quantity"], 2) ;
                 }
-                $total =  $subtotal + $request->dilavery_charge;
+                $total =  $subtotal + 0.00;
              return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product add to cart successfully"]);
             }else{
                 if(isset($request->product_oid)) {
@@ -74,7 +74,7 @@ public function viewcart(){
                 foreach ($cart as $key => $details) {
                     $subtotal =  $subtotal + round($details["price"] ,2) ;
                 }
-                $total =  $subtotal + $request->dilavery_charge;
+                $total =  $subtotal +  $subtotal + 0.00;
                 return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total'=>round($total,2) ,'status' =>'success', "message"=>" Product Remove from add  to cart successfully"]);
 
             }
@@ -102,7 +102,7 @@ public function viewcart(){
                 foreach ($cart as $key => $details) {
                     $subtotal =  $subtotal + round($details["price"] ,2) ;
                 }
-                $total =  $subtotal + $request->dilavery_charge;
+                $total =   $subtotal + 0.00;
                 return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product add to cart successfully"]);
             }else{
                 return response()->json(['code' => 203 ,  'cart_total'=>nullValue(),'status' =>'error', "message"=>"Product Id Not Found"]);

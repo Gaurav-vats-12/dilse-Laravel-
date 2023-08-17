@@ -38,22 +38,16 @@
                         <span class="key">SUBTOTAL (1 ITEMS): </span>
                         <span class="value">${{ $subtotal }}</span>
                     </li>
-
-                    <li class="charges ">
-                        <span class="key">Coupon Discount:</span>
-                        <span class="value">$0.00</span>
-                    </li>
-
                     <li class="charges">
-                        <span class="key">Shipping Fee:</span>
-                        <span class="value" data-value="{{4.25}}">${{4.25}}</span>
+                        <span class="key">Delivery Charges :</span>
+                        <span class="value"  data-value ="{{ (session('order_type') && session('order_type') == "delivery") ? 4.25: 0.00 }}" >${{ (session('order_type') && session('order_type') == "delivery") ? 4.25: 0.00 }}</span>
                     </li>
-
                     <li class="grand-total">
                         <span class="key">GRAND TOTAL:</span>
-                        <input type="hidden" name="tototal_amount" value="{{ $subtotal > 50 ? $subtotal + 50 : $subtotal + 0 }}">
-                        <span class="value">${{ $subtotal > 50 ? $subtotal + 50 : $subtotal + 0 }}</span>
+                        <input type="hidden" name="tototal_amount" value="{{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + 4.25:  $subtotal + 0.00 }}">
+                        <span class="value">${{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + 4.25:  $subtotal + 0.00 }}</span>
                     </li>
+
                 </ul>
             </div>
         </div>
