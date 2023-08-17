@@ -48,6 +48,7 @@ RouteAlias::get('/book-a-reservation', [BookingControllerAlias::class, 'bookATab
 
 
 
+
 // Add to Cart
 RouteAlias::prefix('cart')->name('cart.')->group(function(){
     RouteAlias::get('/', [CartControllerAlias::class, 'viewcart'])->name('view');
@@ -57,6 +58,7 @@ RouteAlias::prefix('cart')->name('cart.')->group(function(){
 RouteAlias::prefix('checkout')->name('checkout.')->group(callback: function(){
     RouteAlias::get('/', [CheckoutControllerAlias::class, 'index'])->name('view');
     RouteAlias::get('/user_address', [CheckoutControllerAlias::class, 'user_address'])->name('user_address');
+    RouteAlias::post('/payment', [CheckoutControllerAlias::class, 'makePayment'])->name('payment');
 });
 
 

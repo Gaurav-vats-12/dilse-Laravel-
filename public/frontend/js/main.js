@@ -223,7 +223,7 @@ jQuery(document).ready(function () {
             let payment_value = jQuery('input[name="payment_method"]:checked').val();
             if (payment_value ==='payonline') {
                 jQuery('#stripe_paymnet_form').css('display','block');
-                 stripe_payment();
+                 //stripe_payment();
             } else {
                 jQuery('#stripe_paymnet_form').css('display','none');
             }

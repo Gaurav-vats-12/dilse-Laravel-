@@ -1724,12 +1724,9 @@ form.contact_form a {
 
 .product_checkout{
     display: flex;
-    justify-content: space-between;
+    gap: 30px;
 }
-.product_checkout {
-    display: flex;
-    justify-content: space-between;
-}
+
 .product_img{
     height: 150px;
 }
@@ -1739,7 +1736,7 @@ form.contact_form a {
     object-fit: cover;
 }
 .product_cont {
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
 }
 .product_cont p{
     text-align: center;
@@ -2122,3 +2119,42 @@ p {
 /*    position: relative;*/
 /*}*/
 
+/* 16-8-23 */
+a.qtyminus.minus.qty-count.qty-count--minus.update-qty,a.qty-plus.plus.qty-count.qty-count--add.update-qty {
+    border: 1px solid #7c7676;
+    padding: 0px 11px;
+    border-radius: 5px;
+}
+
+.product_cont a.view_product{
+    padding: 4px 10px;
+}
+.product_checkout .product_box{
+    border: none;
+}
+.product_cont{
+    text-align: center;
+    padding-top: 40px;
+}
+.product_c_main ul#myTab {
+    margin-bottom: 46px !important;
+    border-bottom: none;
+}
+.product_c_main ul#myTab .nav-link.active {
+    padding: 10px 30px;
+    background: red !important;
+    color: #fff !important;
+}
+.product_c_main ul#myTab .nav-link {
+    padding: 10px 30px;
+    color: #000 !important;
+}
+.product_c_main ul#myTab .nav-link:hover {
+box-shadow: 3px 3px 5px #eb0029 !important;
+}
+.product_c_main ul#myTab .nav-link:hover {
+    box-shadow: 1px 1px 16px 3px #f3bac4 !important;
+}
+.product_c_main .tittle_heading h6 {
+    font-size: 29px;
+}

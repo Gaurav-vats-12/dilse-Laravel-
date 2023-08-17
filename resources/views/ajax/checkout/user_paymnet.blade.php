@@ -28,9 +28,9 @@
             </ul>
             </form>
             <div class="payment">
-            <div class="payment-meth" data-method="stripe" id="stripe_paymnet_form" style="display: none;">
-             @include('ajax.checkout.stripe_credit_card_form')
-         </div>
+            <div class="payment-meth" data-method="stripe" id="stripe_paymnet_form" >
+                @include('ajax.checkout.stripe_credit_card_form')
+            </div>
             </div>
             <div class="col-sm-12">
                 <ul class="total-summary-list">
