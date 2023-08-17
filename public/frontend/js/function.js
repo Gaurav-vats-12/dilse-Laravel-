@@ -136,11 +136,35 @@ async function state_dependency_country_list(ajax_post, url) {
     jQuery(`#billing_state`).empty().html(response);
 }
 
-function stripe_payment(){
-    let stripe_key = jQuery('#stripe_key').val();
+function stripe_payment() {
+    var stripe = Stripe('pk_test_51JIrpKSEf4LguLAhzQzDp4Ip68Uzs9XgPMDBu659kmy67lSD90DaT82Osa3upIn4dRDUXgu9CzwfHjd4F8Otw4CD00ze2kGJcP');
+    var elements = stripe.elements({
+        clientSecret: 'sk_test_51JIrpKSEf4LguLAhFSUv3dgziS6KzJ1bDvOdr0ftU1W3I5pmtktzpk7lqYjenK3Y9QqXjg1jFD2UZjdLpFgHuyrM00JMhbecVp',
+    });
 
-    let stripe = new Stripe(stripe_key);
-    var elements = stripe.elements();
-    var cardElement = elements.create('card');
-    cardElement.mount('#card-element');    console.log(stripe)
+    var card = elements.create('expressCheckout');
+    card.mount('#card-element');
+
+    card.addEventListener('change', function(event) {
+        var displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+    // let stripe = Stripe('pk_test_51JIrpKSEf4LguLAhzQzDp4Ip68Uzs9XgPMDBu659kmy67lSD90DaT82Osa3upIn4dRDUXgu9CzwfHjd4F8Otw4CD00ze2kGJcP');
+    // let elements = stripe.elements({
+    //     clientSecret: 'sk_test_51JIrpKSEf4LguLAhFSUv3dgziS6KzJ1bDvOdr0ftU1W3I5pmtktzpk7lqYjenK3Y9QqXjg1jFD2UZjdLpFgHuyrM00JMhbecVp',
+    // });
+    // let expressCheckoutElement = elements.create('expressCheckout');
+    // expressCheckoutElement.mount('#card-element');
+    // let stripe_key = jQuery('#stripe_key').val();
+    // let stripe = new Stripe('pk_test_51JIrpKSEf4LguLAhzQzDp4Ip68Uzs9XgPMDBu659kmy67lSD90DaT82Osa3upIn4dRDUXgu9CzwfHjd4F8Otw4CD00ze2kGJcP');
+    // var elements = stripe.elements();
+    // var cardElement = elements.create('expressCheckout');
+    //  console.log(stripe)
+
 }
+
+// }

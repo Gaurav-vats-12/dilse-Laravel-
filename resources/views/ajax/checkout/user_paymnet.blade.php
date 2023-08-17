@@ -9,23 +9,24 @@
             <ul class="payment-metho-radio d-flex">
                 <li>
                     <div class="radio-item_1">
-                        <input id="pay_on_delivery" value="pay_on_delivery"  class="payment_option" name="payment_method" type="radio" checked>
+                        <input id="pay_on_delivery" value="pay_on_delivery"  class="payment_option" name="payment_method" type="radio" {{ old('payment_method') == 'pay_on_delivery' ? 'checked' : '' }}>
                         <label for="pay_on_delivery" class="radio-label_1">Pay In Delivery</label>
                     </div>
                 </li>
                 <li>
                     <div class="radio-item_1">
-                        <input id="pay_on_store" value="pay_on_store"  class="payment_option" name="payment_method" type="radio" required="">
+                        <input id="pay_on_store" value="pay_on_store"  class="payment_option" name="payment_method" type="radio" {{ old('payment_method') == 'pay_on_store' ? 'checked' : '' }}>
                         <label for="pay_on_store" class="radio-label_1">Pay In Store</label>
                     </div>
                 </li>
                 <li>
                     <div class="radio-item_1">
-                        <input id="payonline" value="payonline" class="payment_option"  name="payment_method" type="radio" required="">
+                        <input id="payonline" value="payonline" class="payment_option"  name="payment_method" type="radio" {{ old('payment_method') == 'payonline' ? 'checked' : '' }}>
                         <label for="payonline" class="radio-label_1">Pay Online</label>
                     </div>
                 </li>
             </ul>
+            </form>
             <div class="payment">
             <div class="payment-meth" data-method="stripe" id="stripe_paymnet_form" style="display: none;">
              @include('ajax.checkout.stripe_credit_card_form')

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Blog')
-
+@section('title', 'Blog')
 @section('frontcontent')
 <section class="inner_bannner bg_style" style="background-image: url('{{asset('frontend/img/about_banner-image.png') }}')">
         <div class="about_banner_section">

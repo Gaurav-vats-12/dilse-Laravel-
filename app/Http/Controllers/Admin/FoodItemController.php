@@ -12,11 +12,10 @@ use Illuminate\Http\Request;
 
 class FoodItemController extends Controller
 {
-
     public function index()
     {
         $foodItems = FoodItem::with(['menu'])->get();
-        return view('admin.page.food_items.index',compact('foodItems'));
+        return view(view: 'admin.page.food_items.index', data: compact('foodItems'));
     }
 
     public function create()
