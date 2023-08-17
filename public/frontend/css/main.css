@@ -1750,7 +1750,7 @@ form.contact_form a {
 .product_box {
     border: 1px solid #ccc;
     border-radius: 14px;
-    flex: 0 0 15%;
+    flex: 0 0 20%;
     overflow: hidden;
 }
 .product_c_main{
@@ -2134,7 +2134,7 @@ a.qtyminus.minus.qty-count.qty-count--minus.update-qty,a.qty-plus.plus.qty-count
 }
 .product_cont{
     text-align: center;
-    padding-top: 40px;
+    padding-top: 20px;
 }
 .product_c_main ul#myTab {
     margin-bottom: 46px !important;
@@ -2157,4 +2157,65 @@ box-shadow: 3px 3px 5px #eb0029 !important;
 }
 .product_c_main .tittle_heading h6 {
     font-size: 29px;
+}
+
+
+
+
+.modal-content {
+    padding: 20px;
+    background: #fffdf6;
+}
+.row.take_pop a img {
+    display: block;
+    margin: auto;
+}
+.row.take_pop a p {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+.row.take_pop .thumb {
+    border-right: 2px solid red;
+}
+.row.take_pop .thumb:last-child {
+    border-right: none;
+}
+#staticBackdrop .modal-header {
+    padding: 0px 10px;
+    border-bottom: 2px solid #ebcdcd;
+    padding-bottom: 10px;
+}
+
+.btn-close {
+   background-image: url("../img/cross_popup.png") !important;
+   background-size: cover;
+   opacity: 1;
+   background-position: right top;
+}
+
+.video_dilse-tw .modal-dialog {
+    position: relative;
+}
+
+.video_dilse-tw .modal-dialog {
+    position: relative;
+    height: 100vh;
+}
+.video_dilse-tw .modal-content{
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%);
+}
+
+.cost_p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.product_cont .title_cost h3 {
+    font-size: 17px;
+    text-align: left;
 }
