@@ -2,7 +2,7 @@
 @section('title', 'Cart')
 @section('frontcontent')
     <div class="wraper">
-        <section
+        <!--section
             class="inner_bannner bg_style"
             style="background-image: url({{asset('frontend/img/contact_banner.png')}})"
         >
@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section-->
         <section class="shopping_cart py_8">
             <div class="container">
                 <div class="tittle_heading">
@@ -140,51 +140,56 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
 
-                            <div class="tab-pane fade show active" id="Bread" role="tabpanel" aria-labelledby="Bread-tab">
-                                @foreach ( $extra_items as $key => $extra_item )
-                                    @if($extra_item->menu_id == 6)
-                                        <div class="product_checkout">
-                                            <div class="product_box">
-                                                <div class="product_img">
-                                                    <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
+                            <div class="tab-pane fade show active" id="Bread" role="tabpanel" aria-labelledby="Bread-tab">   
+                                <div class="product_checkout">
+                                    @foreach ( $extra_items as $key => $extra_item )
+                                        @if($extra_item->menu_id == 6)
+                                                <div class="product_box">
+                                                    <div class="product_img">
+                                                        <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
+                                                    </div>
+                                                    <div class="product_cont">
+                                                        <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
+                                                        <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
+                                                        <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
+                                                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
+                                                            <span class="added-to-cart">Added to cart</span>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <div class="product_cont">
-                                                    <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
-                                                    <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
-                                                    <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
-                                                    <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
-                                                        <span class="added-to-cart">Added to cart</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                            
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
                             <div class="tab-pane fade show " id="Rice" role="tabpanel" aria-labelledby="Rice-tab">
-                                @foreach ( $extra_items as $key => $extra_item )
-                                    @if($extra_item->menu_id == 5)
-                                        <div class="product_checkout">
-                                            <div class="product_box">
-                                                <div class="product_img">
-                                                    <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
+                                <div class="product_checkout">
+                                    @foreach ( $extra_items as $key => $extra_item )
+                                        @if($extra_item->menu_id == 5)
+                                                <div class="product_box">
+                                                    <div class="product_img">
+                                                        <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
+                                                    </div>
+                                                    <div class="product_cont">
+                                                        <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
+                                                        <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
+                                                        <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
+                                                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
+                                                            <span class="added-to-cart">Added to cart</span>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <div class="product_cont">
-                                                    <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
-                                                    <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
-                                                    <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
-                                                    <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
-                                                        <span class="added-to-cart">Added to cart</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                            
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
-                            <div class="tab-pane fade" id="Drinks" role="tabpanel" aria-labelledby="Drinks-tab"> @foreach ( $extra_items as $key => $extra_item )
+                            <div class="tab-pane fade" id="Drinks" role="tabpanel" aria-labelledby="Drinks-tab"> 
+                                
+                            <div class="product_checkout">
+                                @foreach ( $extra_items as $key => $extra_item )
+                                    
                                     @if($extra_item->menu_id == 9)
-                                        <div class="product_checkout">
                                             <div class="product_box">
                                                 <div class="product_img">
                                                     <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
@@ -198,12 +203,15 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        
                                     @endif
                                 @endforeach</div>
+                                </div>
                             <div class="tab-pane fade" id="Chutney" role="tabpanel" aria-labelledby="Chutney-tab">
+                                
+                            <div class="product_checkout">
+                            @foreach ( $extra_items as $key => $extra_item )
                                 @if($extra_item->menu_id == 7)
-                                    <div class="product_checkout">
                                         <div class="product_box">
                                             <div class="product_img">
                                                 <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
@@ -217,10 +225,12 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
-                                @endif</div>
+                                   
+                                @endif
+                                @endforeach
+                            </div>
                         </div>
-
+                        </div>
 
 
                     </div>
