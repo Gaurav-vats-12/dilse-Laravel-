@@ -21,6 +21,20 @@ jQuery(document).ready(function () {
     });
 
     /**
+     * Order Type In Menu
+     */
+    jQuery(document).on("click", ".thumbnail", async function (event) {
+        event.preventDefault();
+        let type = jQuery(this).attr('type'), current_url = jQuery(this).attr('current_url'),
+            AjaxForm = jQuery(this).attr('AjaxForm'), slug = 'appetizers', page = 1, ajax_value = {slug, page, type,current_url};
+        const response = await Ajax_response(AjaxForm, "GET", ajax_value, '', '');
+        if (response.status ==='success'){
+            window.location.href = response.url;
+        }else{
+            window.location.href = AjaxForm;
+        }
+    });
+    /**
      *  Add to Cart  In Website (Home Page ,Menu page,Product Details Pages)
      */
     jQuery(document).on("click", "#add_to_cart", async function (event) {

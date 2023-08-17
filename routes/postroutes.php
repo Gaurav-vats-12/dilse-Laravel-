@@ -1,19 +1,22 @@
 <?php
-use App\Http\Controllers\BookingController;
+use App\Http\Controllers\BookingController as BookingControllerAlias;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController as CheckoutControllerAlias;
-use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\ContactUsController as ContactUsControllerAlias;
+use App\Http\Controllers\MenuController as MenuControllerAlias;
 use Illuminate\Support\Facades\Route as RouteAlias;
 
 //Contact Us
-RouteAlias::post('/submit-contact-form', [ContactUsController::class, 'store'])->name('contact.submit');
-RouteAlias::post('/contact-us', [ContactUsController::class, 'submitContactFormAjax'])->name('contact-us-form');
+RouteAlias::post('/submit-contact-form', [ContactUsControllerAlias::class, 'store'])->name('contact.submit');
+RouteAlias::post('/contact-us', [ContactUsControllerAlias::class, 'submitContactFormAjax'])->name('contact-us-form');
 //Email Subcriptiopn
-RouteAlias::post('/email-subscription', array(ContactUsController::class, 'emailSubscription'))->name('emailSubscription');
+RouteAlias::post('/email-subscription', array(ContactUsControllerAlias::class, 'emailSubscription'))->name('emailSubscription');
+//Menu POST DATA
+RouteAlias::POST('/post_menu_data', [MenuControllerAlias::class, 'post_menu_data'])->name('post_menu_data');
 
 
 // Booking  a Reservation
-RouteAlias::post('/submit-reservation-form', [BookingController::class, 'submitBookATable'])->name('booktable.submit');
+RouteAlias::post('/submit-reservation-form', [BookingControllerAlias::class, 'submitBookATable'])->name('booktable.submit');
 // Add To Cart
 RouteAlias::prefix('cart')->name('cart.')->group(callback: function (){
     RouteAlias::POST('/create', [CartController::class, 'addtocart'])->name('add');

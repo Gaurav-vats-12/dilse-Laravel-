@@ -21,13 +21,19 @@
               </div>
 
               <div class="home_slider_btn">
-                  <a href="{{route('booktable')}}" class="theme_btn">Book A Reservation</a> <a href="{{route('menu')}}" class="theme_btn">Order Now</a>
+                  <a href="{{route('booktable')}}" class="theme_btn">Book A Reservation</a> <a href="javascript:void(0)" class="theme_btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Order Now</a>
+
                 </div>
 
             </div>
+
           </div>
+              @include('layouts.partials.order_popup')
+
           </div>
-      </section>
+
+</section>
+
 <!--section  class="hero_banner bg_style" style="background-image: url('{{asset('frontend/img/hero_banner-1.jpg') }}')" >
         <div class="home-slider">
             @if ($banner)
