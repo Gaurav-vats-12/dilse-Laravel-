@@ -195,17 +195,24 @@ jQuery(document).ready(function () {
         /**
          * Payment Option
          */
+        let payment_value = jQuery('input[name="payment_method"]:checked').val();
+        (`payonline` == payment_value) ? jQuery(`#stripe_paymnet_form`).css(`display`, `block`) : jQuery(`#stripe_paymnet_form`).css(`display`, `none`);
+        // if (`payonline` === payment_value){
+        //     jQuery(`#stripe_paymnet_form`).css(`display`,`block`);
+        // }else{
+        //     jQuery(`#stripe_paymnet_form`).css(`display`,`block`);
+        // }
+
+        // console.log(payment_value);
+
         jQuery(document).on("click", ".payment_option", async function (event) {
             let payment_value = jQuery('input[name="payment_method"]:checked').val();
-            console.log(payment_value);
             if (payment_value ==='payonline') {
                 jQuery('#stripe_paymnet_form').css('display','block');
-                stripe_payment();
-
+                 stripe_payment();
             } else {
                 jQuery('#stripe_paymnet_form').css('display','none');
             }
-
         });
 
     }

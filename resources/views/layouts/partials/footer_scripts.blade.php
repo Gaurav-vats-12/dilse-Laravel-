@@ -1,10 +1,12 @@
 
    <!-- Stripe -->
    <script src="https://js.stripe.com/v3/"></script>
-
    <!-- jquery -->
     <script src="{{asset('plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Jquery UI  -->
+   <!-- Jquery  Validations  -->
+   <script src="{{asset('plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+   <script src="{{asset('plugins/jquery-validation/additional-methods.min.js') }}"></script>
+   <!-- Jquery UI  -->
     <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- magnific Pop Ups -->
     <script src="{{asset('plugins/magnific-popup/js/magnific-popup.min.js')}}"></script>

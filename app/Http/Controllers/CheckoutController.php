@@ -16,6 +16,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Checkout\StoreCheckoutRequest;
 use App\Models\Order\Order;
 use Illuminate\Http\Request;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 
 class CheckoutController extends Controller
@@ -42,6 +44,15 @@ class CheckoutController extends Controller
      */
     public function create (StoreCheckoutRequest $request): Application|RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\Foundation\Application
     {
+        Stripe::setApiKey('sk_test_51JIrpKSEf4LguLAhFSUv3dgziS6KzJ1bDvOdr0ftU1W3I5pmtktzpk7lqYjenK3Y9QqXjg1jFD2UZjdLpFgHuyrM00JMhbecVp');
+        $token = $request->stripeToken;
+        $charge = Charge::create([
+            'amount' => 1000, // Amount in cents
+            'currency' => 'inr',
+            'description' => 'Example Charge',
+            'source' => $token,
+        ]);
+        dd($request->all());
         $user_id = (AuthAlias::guard('user')->check()) ? 'Hello': null;
         $checkout_value = [
             'user_id' => $user_id,
