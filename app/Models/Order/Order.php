@@ -33,6 +33,8 @@ class Order extends Model
         return $this->hasMany(OrderItems::class);
     }
 
+
+
     /**
      * @return HasOne
      */

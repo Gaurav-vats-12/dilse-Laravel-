@@ -16,4 +16,6 @@ class OrderItems extends Model
     {
         return $this->belongsTo(related: Order::class);
     }
+
+
 }

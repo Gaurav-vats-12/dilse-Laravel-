@@ -214,6 +214,29 @@ jQuery( function () {
                 { orderable: false, targets: '_all' }
             ]
         });
+
+        jQuery(document).on("click","#formSubmit",async function(event) {
+            event.preventDefault();
+            let AjaxValue = jQuery('#update_order_status').serialize();
+            let Url = $('#update_order_status').attr('action');
+            const resPose = await Ajax_response(Url, "POST", AjaxValue, '');
+            if(resPose.status === 'success'){
+                Toast.fire({ icon: 'success',title: resPose.message, })
+                jQuery("#update_order_status")[0].reset();
+                jQuery('#Order_model').modal('toggle');
+            }else{
+                jQuery.each(resPose.errors, function (key, value) {
+                    jQuery(`#${key}-error`).text(value);
+                });
+            }
+
+            // let ajax_value_list = $(this).serialize(), ajx_url = jQuery(`#update_order_status`).val();
+            //
+            // console.log(ajax_value_list)
+
+
+        });
+
     }
 
 });

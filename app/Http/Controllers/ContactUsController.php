@@ -28,7 +28,8 @@ class ContactUsController extends Controller
         Mail::to(setting('site_email'))->send(new ContactNotification($contactData));
         return redirect()->back()->withToastSuccess('Your message has been sent successfully!');
     }
-public function submitContactFormAjax(StoreContactUsAjaxRequest $request){
+public function submitContactFormAjax(StoreContactUsAjaxRequest $request): \Illuminate\Http\JsonResponse
+{
     $contactData = [
         'first_name' => $request->first_name,
         'last_name' => $request->last_name,
@@ -40,7 +41,8 @@ public function submitContactFormAjax(StoreContactUsAjaxRequest $request){
     return response()->json(['code' => 200 ,  'status' =>'success', "message"=>"Thanks for being awesome! We have received your message and would like to thank you for writing to us. ..."]);
 }
 
-public function emailSubscription(StoreEmailSubcriptionRequest $request){
+public function emailSubscription(StoreEmailSubcriptionRequest $request): \Illuminate\Http\JsonResponse
+{
     $getdata = Subscriber::where('email_address',$request->input('email_address'))->first();
     if($getdata){
         return response()->json(['code' => 200 ,  'status' =>'error', "message"=>"This email is already Subscribed"]);

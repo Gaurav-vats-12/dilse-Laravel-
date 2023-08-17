@@ -37,6 +37,9 @@
 <script src="{{asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
 <!-- Bootstrap4 Duallistbox -->
 <script src="{{asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
+
+<script src="{{asset('plugins/toastr/toastr.min.js') }}"></script>
+<!-- Toast Alert -->
 <script src="{{asset('plugins/toastr/toastr.min.js') }}"></script>
 <!-- DataTables  & Plugins -->
 <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
@@ -45,6 +48,9 @@
 <script src="{{asset('backend/js/custom.js') }}"></script>
 <script src="{{asset('backend/js/main.js') }}"></script>
 <script src="{{asset('backend/js/adminlte.js') }}"></script>
+
+{{--Comman Js--}}
+<script src="{{asset('plugins/commonFunction/js/function.js') }}"></script>
 
 @include('sweetalert::alert')
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Order\StoreOrderRequest as StoreOrderRequestAlias;
 use Illuminate\Http\Request;
 use App\Models\Order\Order;
 
@@ -51,9 +52,10 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreOrderRequestAlias $request, string $id)
     {
-        //
+        Order::findOrFail($id)->update(['time_taken' => $request->order_time_taken,'status' => 'Processing','updated_at' => now() ]);
+        return response()->json(['code' => 200 ,  'status' =>'success', "message"=>"Order Change Successfully"]);
     }
 
     /**

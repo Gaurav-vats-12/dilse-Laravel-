@@ -48,8 +48,13 @@
 
                                             <td class="project-actions">
                                                 <a class="btn btn-info btn-sm" href="{{ route('admin.order.show' , $order->id) }}"><i class="fa-solid fa-eye"></i>  </a>
-                                                <a href="javascript:void(0)" class="btn btn-info btn-sm" data-bs-toggle="modal" data-target="#modal-default" ><i class="fa-solid fa-plus" title="Accept" ></i>  </a>
-                                            @include('admin.page.order.includes.order_accept')
+                                                <a  href="javascript:void(0)"  class="btn btn-info btn-sm" data-toggle="modal"  data-target="#Order_model">
+                                                    <i class="fa-solid fa-plus" title="Accept" ></i>
+                                                </a>
+                                            <div class="order_data">
+                                                @include('admin.page.order.includes.order_accept')
+
+                                            </div>
                                         </tr>
                                     @endforeach
 
