@@ -17,7 +17,13 @@ use App\Http\Requests\Checkout\StoreCheckoutRequest;
 use App\Models\Order\Order;
 use Illuminate\Http\Request;
 use Stripe\Charge;
+use Stripe\Customer;
 use Stripe\Stripe;
+use Stripe\StripeClient;
+use Stripe\PaymentIntent;
+use Exception;
+use Illuminate\Support\Facades\Validator;
+use Stripe\Exception\CardException;
 
 
 class CheckoutController extends Controller
@@ -111,5 +117,28 @@ class CheckoutController extends Controller
         }else{
             dd('Stripe');
         }
+    }
+
+    public function makePayment(Request $request)
+    {
+        try {
+            Stripe::setApiKey('sk_test_51Ng3mqJhLKjdolzE2GL61wsIWnQtDpRIOcFzLWmFh7AavxCv6DCIoumHsHfb5znC8O0lvPlpnnvpzViO3IXfSafT00pPW1Pumu');
+            
+            $test = Charge::create ([
+                    "amount" => 1500,
+                    "currency" => "usd",
+                    "description" => "Dilse Payment",
+                    "source" => $request->stripeToken,
+                    'metadata' => [
+                        'customer_name' => 'Robin Pandey',
+                        'customer_address' => '510 Earl Grey Dr, Ontario',
+                    ],
+            ]);
+
+            return redirect(route('home'))->withToastSuccess('Order Placed Successfully');
+        } catch (CardException $e) {
+            return back()->withErrors(['message' => $e->getMessage()]);
+        }
+        
     }
 }
