@@ -109,7 +109,7 @@ class CheckoutController extends Controller
             Session::forget('order_type');
             return redirect(route('order_confirm',$order_id))->withToastSuccess('Order Placed Successfully');
         }else{
-            dd('Stripe');
+
         }
     }
 
@@ -117,7 +117,7 @@ class CheckoutController extends Controller
     {
         try {
             Stripe::setApiKey('sk_test_51Ng3mqJhLKjdolzE2GL61wsIWnQtDpRIOcFzLWmFh7AavxCv6DCIoumHsHfb5znC8O0lvPlpnnvpzViO3IXfSafT00pPW1Pumu');
-            
+
             $test = Charge::create ([
                     "amount" => 1500,
                     "currency" => "usd",
@@ -133,6 +133,6 @@ class CheckoutController extends Controller
         } catch (CardException $e) {
             return back()->withErrors(['message' => $e->getMessage()]);
         }
-        
+
     }
 }
