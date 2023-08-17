@@ -23,7 +23,6 @@
         if (error) {
             // Handle error
         } else {
-            alert(token);
             // Append token to the form and submit
             const hiddenInput = document.createElement('input');
             hiddenInput.setAttribute('type', 'hidden');
