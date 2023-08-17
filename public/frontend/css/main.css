@@ -341,7 +341,10 @@ header.main_header {
     color: #000;
 }
 
-
+.home_best_food_cntnt {
+    display: flex !important;
+    justify-content: space-between;
+}
 
 
 .about_se {
