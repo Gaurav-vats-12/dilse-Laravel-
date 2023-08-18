@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Order\OrderItems as OrderItemsAlias;
 use App\Models\Order\Payments;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\Factory as FactoryAlias;
+use Illuminate\Contracts\View\View as ViewAlias;
+use Illuminate\Foundation\Application as ApplicationAlias;
+use Illuminate\Http\RedirectResponse as RedirectResponseAlias;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -16,8 +17,9 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\Checkout\StoreCheckoutRequest;
 use App\Models\Order\Order;
 use Illuminate\Http\Request;
-use Stripe\Charge;
+use Stripe\Charge as ChargeAlias;
 use Stripe\Customer;
+use Stripe\Exception\ApiErrorException;
 use Stripe\Stripe;
 use Stripe\StripeClient;
 use Stripe\PaymentIntent;
@@ -30,15 +32,15 @@ class CheckoutController extends Controller
 {
 
     /**
-     * @return Application|Factory|View|\Illuminate\Foundation\Application|RedirectResponse
+     * @return ApplicationAlias|ViewAlias|FactoryAlias|RedirectResponseAlias
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function index()
+    public function index(): ApplicationAlias|ViewAlias|FactoryAlias|RedirectResponseAlias
     {
         $cart = session()->get('cart');
         if(session('cart')){
-            return view('Pages.checkout.create');
+            return view(view: 'Pages.checkout.create');
         }else{
             return redirect()->route('home');
         }
@@ -46,14 +48,14 @@ class CheckoutController extends Controller
 
     /**
      * @param StoreCheckoutRequest $request
-     * @return \Illuminate\Routing\Redirector|\Illuminate\Foundation\Application|Application|RedirectResponse
+     * @return \Illuminate\Routing\Redirector|ApplicationAlias|Application|RedirectResponseAlias
      */
-    public function create (StoreCheckoutRequest $request): Application|RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\Foundation\Application
+    public function create (StoreCheckoutRequest $request): Application|RedirectResponseAlias|\Illuminate\Routing\Redirector|ApplicationAlias
     {
+//        dd($request->all());
 
-        $user_id = (AuthAlias::guard('user')->check()) ? 'Hello': null;
-
-        $checkout_value = [
+        $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
+        $order_id = Order::insertGetId([
             'user_id' => $user_id,
             "order_date" => date("Y-m-d H:i:s"),
             'full_name' => $request->billing_first_name .' '. $request->billing_last_name,
@@ -64,12 +66,11 @@ class CheckoutController extends Controller
             'billing_address' => $request->billing_address_1 .','. $request->billing_address_2.','. $request->billing_country.','. $request->billing_state.','. $request->billing_city.','. $request->billing_postcode,
             'total_amount' => round($request->tototal_amount ,2),
             'status'=> 'Pending',
+            'order_type' => $request->order_type,
+            'shipping_charge' => round($request->shipping_charge ,2),
             'created_at' => now(),
             'updated_at' => now()
-        ];
-        $order_id = Order::insertGetId($checkout_value);
-
-
+        ]);
         $cart = session()->get('cart', []);
         foreach ($cart as $key => $details) $cart_datals[] = [
             'order_id' => $order_id,
@@ -96,8 +97,7 @@ class CheckoutController extends Controller
             return redirect(route('order_confirm' ,$order_id))->withToastSuccess('Order Placed Successfully');
         }elseif ($request->payment_method == 'pay_on_store'){
             $paymnet_status = [
-                'paymnet_id'=>Str::random(10),
-                'user_id'=>$user_id,
+                'payment_id'=>Str::random(10),
                 'order_id'=>$order_id,
                 'payment_amount'=>round($request->tototal_amount ,2),
                 'payment_method'=>$request->payment_method,
@@ -111,30 +111,53 @@ class CheckoutController extends Controller
             Session::forget('order_type');
             return redirect(route('order_confirm',$order_id))->withToastSuccess('Order Placed Successfully');
         }else{
-
-        }
-    }
-
-    public function makePayment(Request $request)
-    {
-        try {
             Stripe::setApiKey('sk_test_51Ng3mqJhLKjdolzE2GL61wsIWnQtDpRIOcFzLWmFh7AavxCv6DCIoumHsHfb5znC8O0lvPlpnnvpzViO3IXfSafT00pPW1Pumu');
-
-            $test = Charge::create ([
-                    "amount" => 1500,
+            try {
+                $stripe_paymnet = ChargeAlias::create([
+                    "amount" => round($request->tototal_amount *100 ,2),
                     "currency" => "usd",
                     "description" => "Dilse Payment",
                     "source" => $request->stripeToken,
                     'metadata' => [
-                        'customer_name' => 'Robin Pandey',
-                        'customer_address' => '510 Earl Grey Dr, Ontario',
+                        'customer_name' => $request->billing_first_name .' '. $request->billing_last_name,
+                             'customer_address' => $request->billing_address_1 .','. $request->billing_address_2.','. $request->billing_country.','. $request->billing_state.','. $request->billing_city.','. $request->billing_postcode,
                     ],
-            ]);
+                ]);
+                $paymnet_status = [
+                    'payment_id'=>$stripe_paymnet['id'],
+                    'order_id'=>$order_id,
+                    'payment_amount'=>round($request->tototal_amount ,2),
+                    'payment_method'=>$request->payment_method,
+                    'paymnet_json'=>json_encode($stripe_paymnet),
+                    'payment_status'=>'Paid',
+                    'payment_date'=> date("Y-m-d H:i:s"),
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ];
+                Payments::insert($paymnet_status);
+                Session::forget('cart');
+                Session::forget('order_type');
+                return redirect(route('order_confirm',$order_id))->withToastSuccess('Order Placed Successfully');
+            } catch (ApiErrorException $e) {
+                $paymnet_status = [
+                    'payment_id'=>Str::random(10),
+                    'order_id'=>$order_id,
+                    'payment_amount'=>round($request->tototal_amount ,2),
+                    'payment_method'=>$request->payment_method,
+                    'paymnet_json'=>null,
+                    'payment_status'=>'failed',
+                    'payment_date'=> date("Y-m-d H:i:s"),
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ];
+                Payments::insert($paymnet_status);
+                Session::forget('cart');
+                Session::forget('order_type');
+                return redirect(route('order_confirm',$order_id))->withToastSuccess('Order Placed Successfully');
+            }
 
-            return redirect(route('home'))->withToastSuccess('Order Placed Successfully');
-        } catch (CardException $e) {
-            return back()->withErrors(['message' => $e->getMessage()]);
         }
-
     }
+
+
 }
