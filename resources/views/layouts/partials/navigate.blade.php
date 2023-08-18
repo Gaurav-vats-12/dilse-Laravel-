@@ -39,7 +39,7 @@
                   <a href="{{ setting('twitter_url') != null ? setting('twitter_url') : '' }}" target ="_blank" ><img src="{{asset('frontend/img/twi.png') }}" alt="" /></a>
                 </li>
                 <li>
-                  <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target ="_blank" ><img src="{{asset('frontend/img/blogo-to.png') }}" alt="" /></a>
+                  <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target ="_blank" ><img src="{{asset('frontend/img/blogto.png') }}" alt="" /></a>
                 </li>
               </ul>
             </div>
