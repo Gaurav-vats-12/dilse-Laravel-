@@ -41,7 +41,7 @@ RouteAlias::get('/menu', [MenuControllerAlias::class, 'menu'])->name('menu');
 RouteAlias::get('/menu/{slug}', [MenuControllerAlias::class, 'menudetails'])->name('menudetails');
 
 //Thank You, Page
-RouteAlias::get('/order-confirmed/{id}', [HomeControllerAlias::class, 'order_confirm'])->name('order_confirm');
+RouteAlias::get('/thank-you/{id}', [HomeControllerAlias::class, 'order_confirm'])->name('order_confirm');
 
 // Booking  a Reservation
 RouteAlias::get('/book-a-reservation', [BookingControllerAlias::class, 'bookATable'])->name('booktable');
