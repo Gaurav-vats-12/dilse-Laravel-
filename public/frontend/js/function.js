@@ -136,34 +136,29 @@ async function state_dependency_country_list(ajax_post, url) {
     jQuery(`#billing_state`).empty().html(response);
 }
 
-function stripe_payment() {
-    var stripe = Stripe('pk_test_51JIrpKSEf4LguLAhzQzDp4Ip68Uzs9XgPMDBu659kmy67lSD90DaT82Osa3upIn4dRDUXgu9CzwfHjd4F8Otw4CD00ze2kGJcP');
-    var elements = stripe.elements({
-        clientSecret: 'sk_test_51JIrpKSEf4LguLAhFSUv3dgziS6KzJ1bDvOdr0ftU1W3I5pmtktzpk7lqYjenK3Y9QqXjg1jFD2UZjdLpFgHuyrM00JMhbecVp',
-    });
-
-    var card = elements.create('expressCheckout');
-    card.mount('#card-element');
-
-    card.addEventListener('change', function(event) {
-        var displayError = document.getElementById('card-errors');
-        if (event.error) {
-            displayError.textContent = event.error.message;
-        } else {
-            displayError.textContent = '';
+function stripe_payment_intergation() {
+    let stripe = Stripe('pk_test_51Ng3mqJhLKjdolzELxiiUuoQAeIh37PT6KR6QFkiSVF7thLp85BG0oN0t4INLtwW0X0ggOC1dZE2uUq8FEE1t2a200WqliAM32');
+    let elements = stripe.elements();
+    let cardElement = elements.create('card');
+    cardElement.mount('#card-element');
+    const form = document.getElementById('payment-form');
+    jQuery(document).on("submit", "#payment-form", async function (event) {
+        event.preventDefault();
+        const { token, error } = await stripe.createToken(cardElement);
+        if (error) {
+        }else{
+            const hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+            form.submit();
         }
+
     });
-    // let stripe = Stripe('pk_test_51JIrpKSEf4LguLAhzQzDp4Ip68Uzs9XgPMDBu659kmy67lSD90DaT82Osa3upIn4dRDUXgu9CzwfHjd4F8Otw4CD00ze2kGJcP');
-    // let elements = stripe.elements({
-    //     clientSecret: 'sk_test_51JIrpKSEf4LguLAhFSUv3dgziS6KzJ1bDvOdr0ftU1W3I5pmtktzpk7lqYjenK3Y9QqXjg1jFD2UZjdLpFgHuyrM00JMhbecVp',
-    // });
-    // let expressCheckoutElement = elements.create('expressCheckout');
-    // expressCheckoutElement.mount('#card-element');
-    // let stripe_key = jQuery('#stripe_key').val();
-    // let stripe = new Stripe('pk_test_51JIrpKSEf4LguLAhzQzDp4Ip68Uzs9XgPMDBu659kmy67lSD90DaT82Osa3upIn4dRDUXgu9CzwfHjd4F8Otw4CD00ze2kGJcP');
-    // var elements = stripe.elements();
-    // var cardElement = elements.create('expressCheckout');
-    //  console.log(stripe)
+
+
+
 
 }
 

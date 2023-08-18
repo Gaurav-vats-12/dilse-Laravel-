@@ -24,9 +24,13 @@
                             </div>
                         </div>
                         @endforeach
-                        <div class="d-flex justify-content-center CustomPagination">
-                {!! $FoodItem->links() !!}
-            </div>
+                        <div class="CustomPagination">
+                            {!! $FoodItem->links() !!}
+                        </div>
+
+{{--                        <div class="d-flex justify-content-center CustomPagination">--}}
+
+{{--            </div>--}}
                     @else
                     <h4>No Food Item  Found</h4>
                     @endif

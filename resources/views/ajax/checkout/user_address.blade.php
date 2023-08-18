@@ -2,8 +2,9 @@
 <div class="row">
     <div class="col-md-6">
         <div class="cusstom_input">
-            <label for="billing_first_name" class="">First name <span class="required"
-                                                                      title="required">*</span></label>
+            <input type="hidden" name="order_type" value="{{ session('order_type') }}">
+            <input type="hidden" name="delivery_charge" value="{{ (session('order_type') && session('order_type') == "delivery") ? 4.25: 0.00 }}">
+            <label for="billing_first_name" class="">First name <span class="required" title="required">*</span></label>
             <input type="text" placeholder="First Name" class="form-control" name="billing_first_name"
                    value="{{ old('billing_first_name') }}">
             @error('billing_first_name')
@@ -35,8 +36,7 @@
     </div>
     <div class="col-md-6">
         <div class="cusstom_input">
-            <label for="billing_phone" class="">Phone&nbsp;<span class="required"
-                                                                 title="required">*</span></label>
+            <label for="billing_phone" class="">Phone&nbsp;<span class="required" title="required">*</span></label>
             <input type="tel" placeholder="Enter Phone Number" name="billing_phone" id="billing_phone"
                    value="{{ old('billing_phone') }}">
             @error('billing_phone')

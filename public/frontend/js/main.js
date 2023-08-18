@@ -211,23 +211,69 @@ jQuery(document).ready(function () {
          */
         let payment_value = jQuery('input[name="payment_method"]:checked').val();
         (`payonline` == payment_value) ? jQuery(`#stripe_paymnet_form`).css(`display`, `block`) : jQuery(`#stripe_paymnet_form`).css(`display`, `none`);
-        // if (`payonline` === payment_value){
-        //     jQuery(`#stripe_paymnet_form`).css(`display`,`block`);
-        // }else{
-        //     jQuery(`#stripe_paymnet_form`).css(`display`,`block`);
-        // }
-
-        // console.log(payment_value);
 
         jQuery(document).on("click", ".payment_option", async function (event) {
             let payment_value = jQuery('input[name="payment_method"]:checked').val();
             if (payment_value ==='payonline') {
                 jQuery('#stripe_paymnet_form').css('display','block');
-                 //stripe_payment();
+                 stripe_payment_intergation();
             } else {
                 jQuery('#stripe_paymnet_form').css('display','none');
             }
         });
+        $("#payment-form").validate({
+            rules: {
+                billing_first_name: {
+                    required: true,
+                    maxlength: 50,
+                },
+                billing_last_name: {
+                    required: true,
+
+                }, billing_phone: {
+                    required: true,
+                },billing_email: {
+                    required: true,
+                },billing_address_1: {
+                    required: true,
+                },billing_address_2: {
+                    required: true,
+                },billing_city: {
+                    required: true,
+                },billing_postcode: {
+                    required: true,
+                },payment_method: {
+                    required: true,
+                }
+            },
+            messages: {
+                billing_first_name: {
+                    required:  "Please enter First  name",
+                },
+                email: {
+                    required: "Please enter your email",
+                    email: "Please enter a valid email address"
+                }
+            }
+        });
+    //     jQuery("#payment-form").validate({
+    //     rules: {
+    //         billing_first_name: {
+    //             required: true,
+    //             maxlength: 255,
+    //         },messages: {
+    //             billing_first_name:{
+    //                 required: 'The First Name is Required',
+    //             }
+    //         },
+    //         //     lastname: 'required',
+    //         //     u_email: {
+    //         //     required: true,
+    //         //         email: true,//add an email rule that will ensure the value entered is valid email id.
+    //         //         maxlength: 255,
+    //         // },
+    //     }
+    // });
 
     }
 

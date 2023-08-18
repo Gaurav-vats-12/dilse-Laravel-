@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->on('users')->nullable()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->datetime('order_date');
             $table->string('full_name', 255)->nullable();
             $table->string('company_name', 255)->nullable();
@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('shipping_address', 255);
             $table->string('billing_address', 255);
             $table->decimal('total_amount', 10, 2);
+            $table->enum('order_type', ['take_out','delivery', 'dinein'])->nullable();
+            $table->decimal('shipping_charge', 10, 2)->nullable();
             $table->enum('status', ['Pending','Processing', 'Shipped', 'Delivered','Cancelled']);
             $table->timestamps();
         });
