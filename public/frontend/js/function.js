@@ -142,11 +142,11 @@ function stripe_payment_intergation() {
     let cardElement = elements.create('card');
     cardElement.mount('#card-element');
     const form = document.getElementById('payment-form');
-    jQuery(document).on("submit", "#payment-form", async function (event) {
+    jQuery(document).on("submit", ".stripe_form", async function (event) {
         event.preventDefault();
-        const { token, error } = await stripe.createToken(cardElement);
+        const {token, error} = await stripe.createToken(cardElement);
         if (error) {
-        }else{
+        } else {
             const hiddenInput = document.createElement('input');
             hiddenInput.setAttribute('type', 'hidden');
             hiddenInput.setAttribute('name', 'stripeToken');
@@ -154,12 +154,7 @@ function stripe_payment_intergation() {
             form.appendChild(hiddenInput);
             form.submit();
         }
-
     });
-
-
-
 
 }
 
-// }
