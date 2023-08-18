@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Order\OrderItems;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\ExtraFoodItems;
@@ -53,6 +54,9 @@ class FoodItem extends Model
         return $slug;
     }
 
-
+    public function orderItems(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(OrderItems::class);
+    }
 
 }

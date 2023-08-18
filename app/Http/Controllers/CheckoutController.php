@@ -58,6 +58,8 @@ class CheckoutController extends Controller
             "order_date" => date("Y-m-d H:i:s"),
             'full_name' => $request->billing_first_name .' '. $request->billing_last_name,
             'company_name' => $request->billing_company,
+            'email_address' => $request->billing_email,
+            'phone_number' => $request->billing_phone,
             'shipping_address' => $request->billing_address_1 .','. $request->billing_address_2.','. $request->billing_country.','. $request->billing_state.','. $request->billing_city.','. $request->billing_postcode,
             'billing_address' => $request->billing_address_1 .','. $request->billing_address_2.','. $request->billing_country.','. $request->billing_state.','. $request->billing_city.','. $request->billing_postcode,
             'total_amount' => round($request->tototal_amount ,2),
