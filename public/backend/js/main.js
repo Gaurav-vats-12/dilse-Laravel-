@@ -214,29 +214,55 @@ jQuery( function () {
                 { orderable: false, targets: '_all' }
             ]
         });
-
-        jQuery(document).on("click","#formSubmit",async function(event) {
+        jQuery(document).on("click", "#append_pop_ups" ,function (event) {
+            jQuery(`#order_time_taken-${jQuery(this).attr('order_uid')}-error`).text();
+            jQuery(`#Order_model-${jQuery(this).attr('order_uid')}`).modal('show')
+            localStorage.setItem('order_id', jQuery(this).attr('order_uid'));
+        });
+        jQuery(document).on("click",`#formSubmit`,async function(event) {
             event.preventDefault();
-            let AjaxValue = jQuery('#update_order_status').serialize();
             let Url = $('#update_order_status').attr('action');
-            const resPose = await Ajax_response(Url, "POST", AjaxValue, '');
-            if(resPose.status === 'success'){
-                Toast.fire({ icon: 'success',title: resPose.message, })
-                jQuery("#update_order_status")[0].reset();
-                jQuery('#Order_model').modal('toggle');
+            let order_id = localStorage.getItem('order_id');
+            let order_time_taken = jQuery(`#order_time_taken-${order_id}`).val();
+            if(order_time_taken){
+                jQuery(`#order_time_taken-${order_id}-error`).text();
+                let AjaxValue ={order_id ,order_time_taken};
+                const resPose = await Ajax_response(Url, "POST", AjaxValue, '');
+                if(resPose.status === 'success'){
+                    Toast.fire({ icon: 'success',title: resPose.message, });
+                    jQuery(`#Order_model-${order_id}`).modal('hide')
+                    $("#update_order_status")[0].reset();
+                    location.reload();
+                }
             }else{
-                jQuery.each(resPose.errors, function (key, value) {
-                    jQuery(`#${key}-error`).text(value);
-                });
+                jQuery(`#order_time_taken-${order_id}-error`).text('The order time taken field is required.');
             }
+        });
+        // jQuery(document).on("click",`#ChangeOrderStatus`,async function(event) {
+        jQuery(document).on("click", "#ChangeOrderStatus" ,function (event) {
+            event.preventDefault();
+                Swal.fire({
+                    title: `Are you sure you want to Change  this Order ?`,
+                    showCancelButton: true,
+                    confirmButtonText: 'Ok',
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        let order_uid = jQuery(this).attr('order_uid'), url = jQuery('#ajax_value').val(),  AjaxValue = {order_uid};
+                        const resPose = await Ajax_response(url, "POST", AjaxValue, '');
+                        if(resPose.status === 'success'){
+                            Toast.fire({ icon: 'success',title: resPose.message, });
+                            location.reload();
+                        }
+                    } else {
+                    }
+                })
+        });
 
-            // let ajax_value_list = $(this).serialize(), ajx_url = jQuery(`#update_order_status`).val();
-            //
-            // console.log(ajax_value_list)
+        jQuery(document).on("click", "#print_order" ,function (event) {
+            window.print();
 
 
         });
-
     }
 
 });

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->datetime('order_date');
             $table->string('full_name', 255)->nullable();
             $table->string('company_name', 255)->nullable();
+            $table->string('email_address', 255)->nullable();
+            $table->string('phone_number', 255)->nullable();
             $table->string('shipping_address', 255);
             $table->string('billing_address', 255);
             $table->decimal('total_amount', 10, 2);

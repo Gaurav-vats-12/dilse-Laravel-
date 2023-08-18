@@ -2,6 +2,7 @@
 
 namespace App\Models\Order;
 
+use App\Models\Admin\FoodItem;
 use App\Modules\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,11 +29,12 @@ class Order extends Model
     /**
      * @return HasMany
      */
-    public function items(): HasMany
+
+
+    public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItems::class);
     }
-
 
 
     /**

@@ -48,7 +48,9 @@
 <script src="{{asset('backend/js/custom.js') }}"></script>
 <script src="{{asset('backend/js/main.js') }}"></script>
 <script src="{{asset('backend/js/adminlte.js') }}"></script>
-
+<!-- Jquery  Validations  -->
+<script src="{{asset('plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+<script src="{{asset('plugins/jquery-validation/additional-methods.min.js') }}"></script>
 {{--Comman Js--}}
 <script src="{{asset('plugins/commonFunction/js/function.js') }}"></script>
 

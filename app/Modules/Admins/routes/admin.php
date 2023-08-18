@@ -1,65 +1,82 @@
 <?php
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\{BannerController,SettingController,PageManagementController,TestimonialsController,MenuController,BlogController,GalleryController,CustomerController,OrderController};
-use App\Modules\Admins\Http\Controllers\ProfileController;
-use App\Http\Controllers\BookingController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\FoodItemController;
-use App\Http\Controllers\Admin\ExtraFoodItemController;
+use App\Http\Controllers\Admin\AdminController as AdminControllerAlias;
+use App\Http\Controllers\Admin\BannerController as BannerControllerAlias;
+use App\Http\Controllers\Admin\BlogController as BlogControllerAlias;
+use App\Http\Controllers\Admin\CustomerController as CustomerControllerAlias;
+use App\Http\Controllers\Admin\GalleryController as GalleryControllerAlias;
+use App\Http\Controllers\Admin\MenuController as MenuControllerAlias;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\OrderManagemnetController as OrderManagemnetControllerAlias;
+use App\Http\Controllers\Admin\PageManagementController as PageManagementControllerAlias;
+use App\Http\Controllers\Admin\SettingController as SettingControllerAlias;
+use App\Http\Controllers\Admin\TestimonialsController as TestimonialsControllerAlias;
+use App\Modules\Admins\Http\Controllers\ProfileController as ProfileControllerAlias;
+use App\Http\Controllers\BookingController as BookingControllerAlias;
+use Illuminate\Support\Facades\Route as RouteAlias;
+use App\Http\Controllers\Admin\FoodItemController as FoodItemControllerAlias;
+use App\Http\Controllers\Admin\ExtraFoodItemController as ExtraFoodItemControllerAlias;
 
-Route::prefix('admin')->name('admin.')->group(function(){
-    Route::middleware(['web', 'admin.auth', 'admin.verified'])->group(function(){
-        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-        Route::resource('banner', BannerController::class);
+RouteAlias::prefix('admin')->name('admin.')->group(callback: function(){
+    RouteAlias::middleware(['web', 'admin.auth', 'admin.verified'])->group(callback: function(){
+        RouteAlias::get('/dashboard', [AdminControllerAlias::class, 'dashboard'])->name('dashboard');
+        RouteAlias::resource('banner', BannerControllerAlias::class);
         // Route::get('/banner/changeStatus/{id}', [BannerController::class, 'updateStatus'])->name('banner.changeStatus');
-        Route::prefix('setting')->name('setting.')->group(function(){
-            Route::get('/genral', [SettingController::class, 'genralsetting'])->name('genral');
-            Route::put('/genral/{id}', [SettingController::class, 'unregenerateSetting'])->name('genralstore');
-            Route::get('/footer-setting', [SettingController::class, 'footersetting'])->name('footersetting');
+        RouteAlias::prefix('setting')->name('setting.')->group(callback: function(){
+            RouteAlias::get('/genral', [SettingControllerAlias::class, 'genralsetting'])->name('genral');
+            RouteAlias::put('/genral/{id}', [SettingControllerAlias::class, 'unregenerateSetting'])->name('genralstore');
+            RouteAlias::get('/footer-setting', [SettingControllerAlias::class, 'footersetting'])->name('footersetting');
         });
-        Route::resource('manage-pages', PageManagementController::class);
+        RouteAlias::resource('manage-pages', PageManagementControllerAlias::class);
 
         // food items
-        Route::resource('food-items', FoodItemController::class);
-        Route::resource('extra-items', ExtraFoodItemController::class);
+        RouteAlias::resource('food-items', FoodItemControllerAlias::class);
+        RouteAlias::resource('extra-items', ExtraFoodItemControllerAlias::class);
 
         // testimonial
-        Route::resource('testimonial', TestimonialsController::class);
+        RouteAlias::resource('testimonial', TestimonialsControllerAlias::class);
 
         // Menu's
-        Route::resource('menu', MenuController::class);
+        RouteAlias::resource('menu', MenuControllerAlias::class);
 
         // Blog
-        Route::resource('blog', BlogController::class);
+        RouteAlias::resource('blog', BlogControllerAlias::class);
 
         // Gallery Image
-        Route::resource('manage-gallery', GalleryController::class);
+        RouteAlias::resource('manage-gallery', GalleryControllerAlias::class);
 
         // Manage Booking Details
-        Route::prefix('booking')->name('booking.')->group(function(){
-            Route::get('/', [BookingController::class, 'fetchBooking'])->name('index');
-            Route::get('/view/{id}', [BookingController::class, 'show'])->name('show');
+        RouteAlias::prefix('booking')->name('booking.')->group(callback: function(){
+            RouteAlias::get('/', [BookingControllerAlias::class, 'fetchBooking'])->name('index');
+            RouteAlias::get('/view/{id}', [BookingControllerAlias::class, 'show'])->name('show');
         });
 
 
 
+        RouteAlias::prefix('order')->name('order.')->group(function(){
+            RouteAlias::get('/', [OrderManagemnetControllerAlias::class, 'index'])->name('index');
+            RouteAlias::get('/view/{id}', [OrderManagemnetControllerAlias::class, 'viewOrder'])->name('show');
+            RouteAlias::POST('/update-order', [OrderManagemnetControllerAlias::class, 'orderStatus'])->name('orderStatus');
+            RouteAlias::POST('/update-status', [OrderManagemnetControllerAlias::class, 'ChangeOrderStatus'])->name('ChangeOrderStatus');
 
-        Route::resource('order', OrderController::class);
+        });
 
 
-        Route::prefix('manage-customer')->name('manage-customer.')->group(function(){
-            Route::get('/', [CustomerController::class, 'index'])->name('index');
-            Route::get('/view/{id}', [CustomerController::class, 'show'])->name('view');
-            Route::get('/control/{id}', [CustomerController::class, 'control'])->name('control');
+//        Route::resource('order', OrderController::class);
+
+
+        RouteAlias::prefix('manage-customer')->name('manage-customer.')->group(callback: function(){
+            RouteAlias::get('/', [CustomerControllerAlias::class, 'index'])->name('index');
+            RouteAlias::get('/view/{id}', [CustomerControllerAlias::class, 'show'])->name('view');
+            RouteAlias::get('/control/{id}', [CustomerControllerAlias::class, 'control'])->name('control');
 
         });
 
     });
 });
-Route::group(['as' => 'admin.', 'prefix' => '/admin', 'middleware' => ['web', 'admin.auth']], function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+RouteAlias::group(['as' => 'admin.', 'prefix' => '/admin', 'middleware' => ['web', 'admin.auth']], function () {
+    RouteAlias::get('/profile', [ProfileControllerAlias::class, 'edit'])->name('profile.edit');
+    RouteAlias::patch('/profile', [ProfileControllerAlias::class, 'update'])->name('profile.update');
+    RouteAlias::delete('/profile', [ProfileControllerAlias::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';

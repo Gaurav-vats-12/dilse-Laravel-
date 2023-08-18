@@ -100,3 +100,24 @@ td.project-actions {
   .slider.round:before {
     border-radius: 50%;
   }
+
+.billing-item {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+ .shipping-item {
+     border: 1px solid #ccc;
+     padding: 20px;
+     max-width: 600px;
+     margin: 0 auto;
+
+} .order-item {
+      border: 1px solid #ccc;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+
+  }
+

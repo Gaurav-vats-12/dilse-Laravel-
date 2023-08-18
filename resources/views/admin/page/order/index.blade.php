@@ -39,8 +39,8 @@
 
                                     @foreach ($orders as $key=>  $order)
 
-                                        <tr>
-                                            <td>{{ $key + 1 }}</td>
+                                        <tr order_uid ="{{ $order->id }}">
+                                            <td  >{{ $key + 1 }}</td>
                                             <td>{{ $order->full_name }}</td>
                                             <td>$ {{ $order->payment->payment_amount }}</td>
                                             <td>{{ $order->status }}</td>
@@ -48,9 +48,18 @@
 
                                             <td class="project-actions">
                                                 <a class="btn btn-info btn-sm" href="{{ route('admin.order.show' , $order->id) }}"><i class="fa-solid fa-eye"></i>  </a>
-                                                <a  href="javascript:void(0)"  class="btn btn-info btn-sm" data-toggle="modal"  data-target="#Order_model">
+
+                                            @if( $order->status =='Pending')
+                                                <a href="javascript:void(0)" id="append_pop_ups"  class="btn btn-info btn-sm" order_uid = "{{ $order->id }}">
                                                     <i class="fa-solid fa-plus" title="Accept" ></i>
                                                 </a>
+                                                @endif
+                                                @if( $order->status =='Processing')
+                                                    <input type="hidden" name="ajax_value" id="ajax_value" value="{{ route('admin.order.ChangeOrderStatus') }}">
+                                                        <a href="javascript:void(0)" id="ChangeOrderStatus"  class="btn btn-info btn-sm" order_uid = "{{ $order->id }}">
+                                                            <i class="fa-solid fa-minus" title="Accept" ></i>
+                                                        </a>
+                                                @endif
                                             <div class="order_data">
                                                 @include('admin.page.order.includes.order_accept')
 
