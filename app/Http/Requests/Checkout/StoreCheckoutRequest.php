@@ -22,8 +22,7 @@ class StoreCheckoutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'billing_first_name' => 'required|min:1|max:50',
-            'billing_last_name' => 'required|min:1|max:50',
+            'billing_full_name' => 'required|min:1|max:50',
             'billing_phone' => 'required',
             'billing_email' => 'required|email',
             'billing_address_1' => 'required|min:1|max:255',
