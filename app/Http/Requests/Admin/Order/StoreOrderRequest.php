@@ -24,7 +24,7 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'order_time_taken' =>  'required|max:255',
+            'order_time_taken' =>  'required|max:3',
         ];
     }
 
