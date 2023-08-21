@@ -48,4 +48,12 @@ class UserController extends Controller
         UserAddressManageAlias::updateOrCreate(['user_id'=>$request->login_uer_id],$user_address );
         return Redirect::back()->withToastSuccess('User  Address Updated');
     }
+
+    /**
+     * @return View|ApplicationAlias1|FactoryAlias|Application
+     */
+    public function listingOrder(): View|ApplicationAlias1|FactoryAlias|Application
+    {
+        return view('user.Pages.Order.view-order-list');
+    }
 }

@@ -31,21 +31,20 @@
                         <th>Quantity</th>
                         <th>Order Type</th>
                     </tr>
-                    @foreach($orderItem->OrderItems as $key => $item)
+                    @foreach ($orderItem->orderItems as $key=>  $items)
+                        <tr>
+                            <td><img src="{{Storage::url('products/'.$items->product->image )}}"></td>
+                            <td>{{$items->product->id}}</td>
+                            <td><a href="/menu/{{$items->product->slug}}">{{$items->product->name}}</a></td>
+                            <td>${{$items->product->price}}</td>
+                            <td>{{$items->quantity}}</td>
+                            <td>{{$orderItem->order_type}}</td>
+                        </tr>
 
-                    @php
-                        $relatedProduct = $product->where('id', $item->id)->first();
-                    @endphp
 
-                    <tr>
-                        <td><img src="{{Storage::url('products/' . $relatedProduct->image)}}"></td>
-                        <td>{{$item->id}}</td>
-                        <td><a href="/menu/{{$relatedProduct->slug}}">{{$relatedProduct->name}}</a></td>
-                        <td>${{$item->price}}</td>
-                        <td>{{$item->quantity}}</td>
-                        <td>{{$orderItem->order_type}}</td>
-                    </tr>
-                @endforeach
+
+                    @endforeach
+
 
 
 

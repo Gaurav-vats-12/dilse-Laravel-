@@ -26,11 +26,11 @@
             <label for="billing_company" class="">Company name&nbsp;<span
                     class="optional">(optional)</span></label>
             <input type="text" placeholder="Enter  Company Name" name="billing_company"
-                   value=" {{ Auth::guard('user')->check() ?  old('billing_company' ,Auth::guard('user')->user()->billing_company)   : old('billing_company') }}">
+                   value=" {{ Auth::guard('user')->check() ?  old('billing_company' ,Auth::guard('user')->user()->addresses->billing_company)   : old('billing_company') }}">
             @error('billing_company')
             <span class="text-danger">{{ $message }}</span>
             @enderror
-                   value="{{ old('billing_company') }}">
+
 
         </div>
     </div>
