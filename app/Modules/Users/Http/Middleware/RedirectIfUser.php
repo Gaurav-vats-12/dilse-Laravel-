@@ -18,6 +18,7 @@ class RedirectIfUser
     public function handle(Request $request, Closure $next, string $guard = 'user'): Response
     {
         if (Auth::guard($guard)->check()) {
+
             return redirect('/user');
         }
 
