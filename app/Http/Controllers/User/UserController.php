@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserAddress\UpdateStroreRequest as UpdateStroreRequestAlias;
+use App\Models\Admin\FoodItem as FoodItemAlias;
 use App\Models\Order\Order;
 use App\Models\User\UserAddressManage as UserAddressManageAlias;
 use Illuminate\Contracts\Foundation\Application;
@@ -13,6 +14,7 @@ use Illuminate\Foundation\Application as ApplicationAlias1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -32,8 +34,6 @@ class UserController extends Controller
      * @return void
      */
     public function update_address(UpdateStroreRequestAlias $request ){
-//        dd($request->all());
-
         $user_address = [
             'user_id' => $request->login_uer_id,
             'billing_address1' => $request->billing_address_1,
@@ -55,8 +55,30 @@ class UserController extends Controller
     public function listingOrder(): View|ApplicationAlias1|FactoryAlias|Application
     {
         $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
-
-        $OrderDetails = Order::where('user_id',$user_id)->paginate(3);
+        $OrderDetails = Order::where('user_id',$user_id)->get();
         return view('user.Pages.Order.view-order-list',compact('OrderDetails'));
+    }
+
+    public  function OrderCancelled( $id ){
+        Order::findOrFail($id)->update(['status' => 'Cancelled','updated_at' => now() ]);
+        return Redirect::back()->withToastSuccess('Order Cancelled SuccessFully');
+    }
+    public function OrderReorder($id){
+        $order_details = Order::findOrFail($id)->orderItems;
+        if (session('cart')) Session::forget('cart');
+        foreach ($order_details as $key => $details){
+            $cart[$details->id] = [
+                "id" => $details->id,
+                "price" =>  round($details->price ,2) ,
+                "quantity" =>   $details->quantity,
+                "productdetails" =>FoodItemAlias::findOrFail($details->id),
+            ];
+        }
+        session()->put('cart', $cart);
+        return redirect(route('checkout.view'))->withToastSuccess('Your Product Is Already Add to ca');
+
+
+
+
     }
 }

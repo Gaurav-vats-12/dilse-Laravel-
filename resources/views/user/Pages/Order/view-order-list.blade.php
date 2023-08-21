@@ -23,14 +23,14 @@
                                             :{{   date("d M ,Y", strtotime($orders->order_date))  }} ({{  DateTime::createFromFormat('H:i:s',explode(' ', $orders->order_date)[1])->format('h:i:s A')  }})
                                             &nbsp;| &nbsp; <b>Status:</b>
                                             <span>{{ $orders->status }}</span>
-                                            @if($orders->status !='Cancelled')|
-                                            <a href="https://ketramart.com/user/order-cancel/43" onclick="return confirm('Are you sure?');" class="btn-danger">Cancel Order</a>
+                                            @if($orders->status =='Pending')|
+                                            <a href="{{ route('user.order-cancelled' ,$orders->id) }}" onclick="return confirm('Are you sure?');" class="btn-danger">Cancel Order</a>
+
                                             @endif
                                         </h6>
                                     </div>
                                     <div class="franchies-wap table-responsive orders-table-wrapper mt-3">
                                         <hr>
-
                                         <table class="table orders-table table-borderless">
                                             <thead>
                                             <tr>
@@ -73,17 +73,20 @@
                                             </div>
                                             </tbody>
                                         </table>
+                                        <div class="Reorder_Class">
+                                            @if($orders->status =='Delivered')
+                                                <a class="" href="{{ route('user.OrderReorder' ,$orders->id) }}"> Reorder Order</a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
                                 <div class="CustomPagination" id="orderItemsDetails">
-                                    {!! $OrderDetails->links() !!}
+{{--                                    {!! $OrderDetails->links() !!}--}}
                                 </div>
                         @else
                             <h4> No Order Found</h4>
                         @endif
-
-
                     </div>
                 </div>
             </div>
