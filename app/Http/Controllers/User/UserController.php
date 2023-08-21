@@ -58,25 +58,23 @@ class UserController extends Controller
         $OrderDetails = Order::where('user_id',$user_id)->get();
         return view('user.Pages.Order.view-order-list',compact('OrderDetails'));
     }
-
     public  function OrderCancelled( $id ){
         Order::findOrFail($id)->update(['status' => 'Cancelled','updated_at' => now() ]);
         return Redirect::back()->withToastSuccess('Order Cancelled SuccessFully');
     }
+
     public function OrderReorder($id){
         $order_details = Order::findOrFail($id)->orderItems;
         if (session('cart')) Session::forget('cart');
         foreach ($order_details as $key => $details){
-            $cart[$details->id] = [
-                "id" => $details->id,
+            $cart[$details->product_id ] = [
+                "id" => $details->product_id ,
                 "price" =>  round($details->price ,2) ,
                 "quantity" =>   $details->quantity,
-                "productdetails" =>FoodItemAlias::findOrFail($details->id),
+                "productdetails" =>FoodItemAlias::findOrFail($details->product_id ),
             ];
         }
         session()->put('cart', $cart);
-        return redirect(route('checkout.view'))->withToastSuccess('Your Product Is Already Add to ca');
-
-
+        return redirect(route('checkout.view'))->withToastSuccess('ItemS Added to Card Successfully');
     }
 }
