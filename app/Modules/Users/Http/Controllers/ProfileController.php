@@ -29,7 +29,8 @@ class ProfileController extends Controller
         $user = Auth::guard('user')->user();
         $user->display_name = $request->display_name;
         $user->phone = $request->phone;
-         $user->save();
+        $user->billing_company = $request->billing_company;
+        $user->save();
         return redirect()->route('user.profile.edit')->withToastSuccess('Profile Update Successfully');
     }
 

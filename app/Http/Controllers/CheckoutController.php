@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory as FactoryAlias;
 use Illuminate\Contracts\View\View as ViewAlias;
 use Illuminate\Foundation\Application as ApplicationAlias;
 use Illuminate\Http\RedirectResponse as RedirectResponseAlias;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -55,9 +56,11 @@ class CheckoutController extends Controller
     {
         $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
         if(AuthAlias::guard('user')->check()){
+            $user = AuthAlias::guard('user')->user();
+            $user->billing_company = $request->billing_company;
+            $user->save();
             $user_address = [
                 'user_id' => $user_id,
-                'billing_company' => $request->billing_company,
                 'billing_address1' => $request->billing_address_1,
                 'billing_address2' => $request->billing_address_2,
                 'countryId' => $request->billing_country,
@@ -73,7 +76,6 @@ class CheckoutController extends Controller
             'user_id' => $user_id,
             "order_date" => date("Y-m-d H:i:s"),
             'full_name' => $request->billing_full_name,
-            'company_name' => $request->billing_company,
             'email_address' => $request->billing_email,
             'phone_number' => $request->billing_phone,
             'shipping_address' => $request->billing_address_1 .','. $request->billing_address_2.','. $request->billing_country.','. $request->billing_state.','. $request->billing_city.','. $request->billing_postcode,
