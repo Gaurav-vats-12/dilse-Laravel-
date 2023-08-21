@@ -52,9 +52,12 @@ class CheckoutController extends Controller
      */
     public function create (StoreCheckoutRequest $request): Application|RedirectResponseAlias|\Illuminate\Routing\Redirector|ApplicationAlias
     {
-//        dd($request->all());
-
         $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
+        if(AuthAlias::guard('user')->check()){
+            dd('Hello');
+
+
+        }
         $order_id = Order::insertGetId([
             'user_id' => $user_id,
             "order_date" => date("Y-m-d H:i:s"),
@@ -71,6 +74,7 @@ class CheckoutController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
         $cart = session()->get('cart', []);
         foreach ($cart as $key => $details) $cart_datals[] = [
             'order_id' => $order_id,

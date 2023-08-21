@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\ConntactUs\{StoreContactUsRequest,StoreContactUsAjaxRequest,StoreEmailSubcriptionRequest};
+use App\Http\Requests\ConntactUs\StoreContactUsAjaxRequest;
+use App\Http\Requests\ConntactUs\StoreContactUsRequest as StoreContactUsRequestAlias;
+use App\Http\Requests\ConntactUs\StoreEmailSubcriptionRequest;
 use App\Mail\ContactNotification;
 use App\Models\Subscriber;
 use App\Services\MailchimpService;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class ContactUsController extends Controller
 
     }
 
-    public function store(StoreContactUsRequest $request){
+    public function store(StoreContactUsRequestAlias $request){
         $contactData = [
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,

@@ -1,29 +1,42 @@
-<x-user-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
+@section('title', 'User Edit Profile Update ')
+@section('frontcontent')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('user.profile.partials.update-profile-information-form')
-                </div>
+    <section class="menu_main1 py_8">
+        <div class="container">
+            <div class="tittle_heading">
+                <h2>User dashboard</h2>
             </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('user.profile.partials.update-password-form')
+            <div class="row">
+                <div class="col-lg-3">
+                    @include('user.layouts.partials.user_sidebar')
                 </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('user.profile.partials.delete-user-form')
+                <div class="col-lg-9">
+                    <form method="post" action="{{ route('user.profile.update') }}" class="form profile-info-form">@csrf @method('patch')
+                        <div class="cusstom_input">
+                            <x-input-label for="name" :value="__('Name')" />
+                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"  autofocus autocomplete="name" />
+                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                        </div>
+                        <div class="cusstom_input">
+                            <x-input-label for="display_name" :value="__('Display Name')" />
+                            <x-text-input id="display_name" name="display_name" type="text" class="mt-1 block w-full" :value="old('display_name', $user->name)"  autofocus autocomplete="name" />
+                            <x-input-error class="mt-2" :messages="$errors->get('display_name')" />
+                        </div>
+                        <div class="cusstom_input">
+                            <x-input-label for="email" :value="__('Email')" />
+                            <x-text-input id="email" name="email" readonly="" type="email" class="mt-1 block w-full" :value="old('email', $user->email)"  autocomplete="username" />
+                            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                        </div>
+                        <div class="cusstom_input">
+                            <x-input-label for="email" :value="__('Phone')" />
+                            <x-text-input id="phone" name="phone"  type="tel" class="mt-1 block w-full" :value="old('phone', $user->phone)"  autocomplete="username" />
+                            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+                        </div>
+                        <x-primary-button class="theme_btn">{{ __('Save') }}</x-primary-button>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-</x-user-app-layout>
+    </section>
+@endsection

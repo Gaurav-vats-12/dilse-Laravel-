@@ -6,7 +6,7 @@
             <input type="hidden" name="delivery_charge" value="{{ (session('order_type') && session('order_type') == "delivery") ? 4.25: 0.00 }}">
             <label for="billing_first_name" class="">First name <span class="required" title="required">*</span></label>
             <input type="text" placeholder="First Name" class="form-control" name="billing_first_name"
-                   value="{{ old('billing_first_name') }}">
+                   value="{{ Auth::guard('user')->check() ? explode(' ',Auth::guard('user')->user()->name)[0]  : old('billing_first_name') }}">
             @error('billing_first_name')
             <span class="text-danger">{{ $message }}</span>
             @enderror
@@ -17,7 +17,7 @@
             <label for="billing_last_name" class="">Last name&nbsp;<span class="required"
                                                                          title="required">*</span></label>
             <input type="text" placeholder="Last Name" name="billing_last_name"
-                   value="{{ old('billing_last_name') }}">
+                   value="{{ Auth::guard('user')->check() ? explode(' ',Auth::guard('user')->user()->name)[1]  : old('billing_first_name') }}">
             @error('billing_last_name')
             <span class="text-danger">{{ $message }}</span>
             @enderror

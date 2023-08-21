@@ -56,9 +56,12 @@ RouteAlias::prefix('cart')->name('cart.')->group(function(){
 });
 
 RouteAlias::prefix('checkout')->name('checkout.')->group(callback: function(){
-    RouteAlias::get('/', [CheckoutControllerAlias::class, 'index'])->name('view');
-    RouteAlias::get('/user_address', [CheckoutControllerAlias::class, 'user_address'])->name('user_address');
-    RouteAlias::post('/payment', [CheckoutControllerAlias::class, 'makePayment'])->name('payment');
+    RouteAlias::middleware(['userLoginCheckout'])->group(function() {
+        RouteAlias::get('/', [CheckoutControllerAlias::class, 'index'])->name('view');
+        RouteAlias::get('/user_address', [CheckoutControllerAlias::class, 'user_address'])->name('user_address');
+        RouteAlias::post('/payment', [CheckoutControllerAlias::class, 'makePayment'])->name('payment');
+    });
+
 });
 
 

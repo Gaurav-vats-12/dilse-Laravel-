@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function dashboard(){
-        dd('asdsads');
+       return view('user.dashboard');
        }
+    public function user_address(){
+
+    }
 }
