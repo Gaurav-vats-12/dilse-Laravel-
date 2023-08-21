@@ -33,7 +33,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         session()->put('url_session',url()->previous());
         return redirect()->intended('/')->withToastSuccess(' User Login Successfully');
-
     }
 
     /**

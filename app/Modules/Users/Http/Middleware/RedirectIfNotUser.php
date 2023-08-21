@@ -20,12 +20,7 @@ class RedirectIfNotUser
      */
     public function handle(Request $request, Closure $next, string $guard = 'user'): Response
     {
-        dd('RedirectIfNotUser');
         if (Auth::guard($guard)->check()) {
-            dd(parse_url(url()->previous()));
-            if(parse_url(url()->previous())['query']){
-                return redirect()->intended('/checkout');
-            }
             return $next($request);
         }
 

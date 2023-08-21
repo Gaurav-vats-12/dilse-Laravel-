@@ -15,8 +15,6 @@ class CheckUserLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-     $url_session = session()->get('url_session', []);
-        dd( $url_session);
 //
 //        if(strpos($url_session,'cart')){
 //            return redirect()->intended('/checkout');
