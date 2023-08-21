@@ -5,6 +5,9 @@ use App\Models\Admin\{Banner,Testimonial,Page,FoodItem,Gallery};
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use App\Models\Order\Order;
+use Illuminate\Http\Request;
+use App\Models\Order\OrderItem;
 
 class HomeController extends Controller
 {
@@ -32,10 +35,25 @@ class HomeController extends Controller
      * @param $id
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function  order_confirm($id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function  order_confirm(Request $request , $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-            return view('Pages.order-confirmation-templates');
+        $orderWithItems = Order::with('OrderItems')->find($id);
+        $productIds = $orderWithItems->OrderItems->pluck('id')->all();
+
+$product = FoodItem::whereIn('id', $productIds)->get();
+
+      //  $product = FoodItem::find($productIds[0]);
+       // dd($product->id) ;
+    // If you want to dump and die the $product variable, do it here:
+    // dd($product);
+
+    return view('Pages.order-confirmation-templates', [
+        'orderItem' => $orderWithItems,
+        'product' => $product
+    ]);
+
     }
+
 
 
 }

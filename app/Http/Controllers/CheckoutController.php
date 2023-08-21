@@ -52,8 +52,7 @@ class CheckoutController extends Controller
      */
     public function create (StoreCheckoutRequest $request): Application|RedirectResponseAlias|\Illuminate\Routing\Redirector|ApplicationAlias
     {
-//        dd($request->all());
-
+       //dd($request->all());
         $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
         $order_id = Order::insertGetId([
             'user_id' => $user_id,

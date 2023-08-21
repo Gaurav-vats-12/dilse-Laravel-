@@ -351,7 +351,7 @@ header.main_header {
     position: relative;
 }
 .about_se::before {
-    content: url("../img/about-leaf.png");
+    /* content: url("../img/about-leaf.png"); */
     position: absolute;
     left: 0;
     top: 100px;
@@ -2221,4 +2221,39 @@ box-shadow: 3px 3px 5px #eb0029 !important;
 .product_cont .title_cost h3 {
     font-size: 17px;
     text-align: left;
+}
+
+/***********thank you page **********/
+.thank-you-container {
+    max-width: 838px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+.thank-you-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.thank-you-container table, th, td {
+    border: 1px solid #ddd;
+}
+
+.thank-you-container th, td {
+    padding: 8px 12px;
+}
+
+.thank-you-container th {
+    background-color: #f2f2f2;
+}
+
+.thank-you-container tr:hover {
+    background-color: #f5f5f5;
+}
+
+.thank-you-container td img {
+    width: 92px;
 }
