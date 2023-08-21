@@ -4,7 +4,7 @@
         <div class="cusstom_input">
             <input type="hidden" name="order_type" value="{{ session('order_type') }}">
             <input type="hidden" name="delivery_charge" value="{{ (session('order_type') && session('order_type') == "delivery") ? 4.25: 0.00 }}">
-            <label for="billing_full_name" class="">First name <span class="required" title="required">*</span></label>
+            <label for="billing_full_name" class="">Full name <span class="required" title="required">*</span></label>
             <input type="text" placeholder="Full  Name" class="form-control" name="billing_full_name" value="{{ Auth::guard('user')->check() ? old('billing_full_name' ,Auth::guard('user')->user()->name)   : old('billing_full_name') }}">
             @error('billing_full_name')
             <span class="text-danger">{{ $message }}</span>
