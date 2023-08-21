@@ -2278,7 +2278,7 @@ box-shadow: 3px 3px 5px #eb0029 !important;
     margin-bottom: 0px;
 }
 /***********thank you page **********/
-.thank-you-container {
+.thank-you-container { 
     max-width: 838px;
     margin: 50px auto;
     padding: 40px;
