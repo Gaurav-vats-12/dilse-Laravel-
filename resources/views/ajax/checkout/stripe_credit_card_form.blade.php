@@ -1,7 +1,6 @@
 
 
     <div id="card-element">
-    </div>
         <!-- A Stripe Element will be inserted here. -->
    <input type="hidden" name="stripeToken" />
     <div class="group">
@@ -29,6 +28,7 @@
         Success! Your Stripe token is <span class="token"></span>
       </div>
     </div>
+    </div> 
     </div> 
 <style>
 #card-element form {
