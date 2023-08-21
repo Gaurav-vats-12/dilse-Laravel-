@@ -16,9 +16,8 @@ use Illuminate\Support\Facades\Redirect;
 class UserController extends Controller
 {
     public function dashboard(){
-
        return view('user.dashboard');
-       }
+    }
 
     /**
      * @return Application|FactoryAlias|View
