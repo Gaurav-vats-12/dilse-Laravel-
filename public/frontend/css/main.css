@@ -352,7 +352,7 @@ header.main_header {
     position: relative;
 }
 .about_se::before {
-    content: url("../img/about-leaf.png");
+    /* content: url("../img/about-leaf.png"); */
     position: absolute;
     left: 0;
     top: 100px;
@@ -2222,14 +2222,3 @@ box-shadow: 3px 3px 5px #eb0029 !important;
     font-size: 17px;
     text-align: left;
 }
-input.InputElement.is-empty.Input.Input--empty {
-    font-size:24px;
-    padding-bottom: 2px;
-}
-iframe {
-    height: 33.8px!important;
-}
-/* .InputContainer .InputElement {
-    position: absolute;
-    top: 15px;
-} */

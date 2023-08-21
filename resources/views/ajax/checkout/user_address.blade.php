@@ -29,9 +29,7 @@
                     class="optional">(optional)</span></label>
             <input type="text" placeholder="Enter  Company Name" name="billing_company"
                    value="{{ old('billing_company') }}">
-            @error('billing_company')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
+
         </div>
     </div>
     <div class="col-md-6">
