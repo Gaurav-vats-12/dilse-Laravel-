@@ -331,6 +331,7 @@ header.main_header {
     text-align: center;
     display: block;
     margin: auto;
+    width:100%;
 }
 
 .CustomPagination ul.pagination li.page-item.active span{
@@ -2060,7 +2061,6 @@ span.required {
 }
 .total-summary-list li {
     margin: 1em 0;
-    overflow: hidden;
 }
 .total-summary-list li .key {
     color: #333;
@@ -2222,7 +2222,6 @@ box-shadow: 3px 3px 5px #eb0029 !important;
     font-size: 17px;
     text-align: left;
 }
-
 
 /***********thank you page **********/
 .thank-you-container {
