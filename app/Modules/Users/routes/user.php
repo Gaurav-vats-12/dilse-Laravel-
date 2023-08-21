@@ -13,9 +13,6 @@ Route::prefix('user')->name('user.')->group(function(){
         Route::get('/profile-address', [UserController::class, 'user_address'])->name('profile.address');
         Route::patch('/profile-address', [UserController::class, 'update_address'])->name('profile.address.update');
         Route::get('/order', [UserController::class, 'listingOrder'])->name('order');
-        Route::get('/order-cancelled/{id}', [UserController::class, 'OrderCancelled'])->name('order-cancelled');
-        Route::get('/order-cancelled/{id}', [UserController::class, 'OrderReorder'])->name('OrderReorder');
-
     });
 });
 

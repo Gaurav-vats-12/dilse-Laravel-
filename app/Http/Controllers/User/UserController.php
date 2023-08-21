@@ -78,7 +78,5 @@ class UserController extends Controller
         return redirect(route('checkout.view'))->withToastSuccess('Your Product Is Already Add to ca');
 
 
-
-
     }
 }
