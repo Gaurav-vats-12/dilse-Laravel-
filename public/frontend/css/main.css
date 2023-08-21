@@ -2343,3 +2343,9 @@ li.logout {
 .right_text:hover li.logout {
     display: block;
 }
+
+.login_header a {
+    background: none;
+    font-weight: 700;
+    margin-right: 60px;
+}
