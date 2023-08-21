@@ -2335,4 +2335,34 @@ box-shadow: 3px 3px 5px #eb0029 !important;
     width: 92px;
 }
 
-
+.pagination {
+    justify-content: center;
+}
+.group span {
+    color: #000;
+}
+.right_text {
+      position: absolute;
+    right: 0;
+    top: 92px;
+}
+.right_text a {
+    background: #d90d0d;
+    padding: 9px 8px;
+    border-radius: 4px;
+    color: #fff;
+    margin-right: 11px;
+    font-size: 17px;
+}
+li.logout a {
+    background: #fff;
+    color: #000;
+    padding: 6px 39px;
+}
+li.logout {
+    margin-top: 11px;
+    display: none;
+}
+.right_text:hover li.logout {
+    display: block;
+}

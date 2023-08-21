@@ -72,20 +72,34 @@
                   <option>Toronto</option>
                   <option >Bramptonn</option>
                </select></li>
-                  <li class="">
-                      @if(Auth::guard('user')->check())
-                          <a href="{{route('user.dashboard')}}">
-                              <span>{{ Auth::guard('user')->user()->name }}</span>
-                          </a>
-                      @else
-                      <a href="{{route('user.login')}}">
-                          <span>Login</span>
-                      </a>
-                      @endif
-                  </li>
+                 
               </ul>
             </div>
           </div>
+        </div>
+        <div class="right_text">
+            <ul>  @if(Auth::guard('user')->check())
+                  <li class="">
+                     
+                          <a href="{{route('user.dashboard')}}">
+                              <span>{{ Auth::guard('user')->user()->name }}</span>
+                          </a>
+                     
+                 
+                  <li class="logout">
+                  <a href="">Logout</a>
+                  </li>
+
+                  @else
+                  </li>
+                      <a href="{{route('user.login')}}">
+                          <span>Login</span>
+                      </a>
+                  @endif
+                </li>
+
+               
+              </ul>
         </div>
       </div>
     </header>
