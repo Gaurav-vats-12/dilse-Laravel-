@@ -20,7 +20,6 @@ class RedirectIfUser
         if (Auth::guard($guard)->check()) {
             return redirect('/user');
         }
-
         return $next($request);
     }
 }

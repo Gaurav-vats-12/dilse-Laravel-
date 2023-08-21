@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Order\OrderItems as OrderItemsAlias;
 use App\Models\Order\Payments;
+use App\Models\User\UserAddressManage as UserAddressManageAlias;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
 use Illuminate\Contracts\View\View as ViewAlias;
@@ -52,8 +53,22 @@ class CheckoutController extends Controller
      */
     public function create (StoreCheckoutRequest $request): Application|RedirectResponseAlias|\Illuminate\Routing\Redirector|ApplicationAlias
     {
-       //dd($request->all());
         $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
+        if(AuthAlias::guard('user')->check()){
+            $user_address = [
+                'user_id' => $user_id,
+                'billing_company' => $request->billing_company,
+                'billing_address1' => $request->billing_address_1,
+                'billing_address2' => $request->billing_address_2,
+                'countryId' => $request->billing_country,
+                'statesid' => $request->billing_state,
+                'city' => $request->billing_city,
+                'pincode' => $request->billing_postcode,
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
+            UserAddressManageAlias::updateOrCreate(['user_id'=>$request->login_uer_id],$user_address );
+        }
         $order_id = Order::insertGetId([
             'user_id' => $user_id,
             "order_date" => date("Y-m-d H:i:s"),
@@ -70,6 +85,7 @@ class CheckoutController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
         $cart = session()->get('cart', []);
         foreach ($cart as $key => $details) $cart_datals[] = [
             'order_id' => $order_id,
