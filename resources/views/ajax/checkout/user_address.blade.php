@@ -30,6 +30,8 @@
             @error('billing_company')
             <span class="text-danger">{{ $message }}</span>
             @enderror
+                   value="{{ old('billing_company') }}">
+
         </div>
     </div>
     <div class="col-md-6">

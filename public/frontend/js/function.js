@@ -138,10 +138,117 @@ async function state_dependency_country_list(ajax_post, url) {
 
 function stripe_payment_intergation() {
     let stripe = Stripe('pk_test_51Ng3mqJhLKjdolzELxiiUuoQAeIh37PT6KR6QFkiSVF7thLp85BG0oN0t4INLtwW0X0ggOC1dZE2uUq8FEE1t2a200WqliAM32');
-    let elements = stripe.elements();
-    let cardElement = elements.create('card');
-    cardElement.mount('#card-element');
-    const form = document.getElementById('payment-form');
+    var elements = stripe.elements();
+
+    var style = {
+      base: {
+        iconColor: '#666EE8',
+        color: '#31325F',
+        lineHeight: '40px',
+        fontWeight: 300,
+        fontFamily: 'Helvetica Neue',
+        fontSize: '15px',
+    
+        '::placeholder': {
+          color: '#CFD7E0',
+        },
+      },
+    };
+
+    var cardNumberElement = elements.create('cardNumber', {
+        style: style
+      });
+      cardNumberElement.mount('#card-number-element');
+      
+      var cardExpiryElement = elements.create('cardExpiry', {
+        style: style
+      });
+      cardExpiryElement.mount('#card-expiry-element');
+      
+      var cardCvcElement = elements.create('cardCvc', {
+        style: style
+      });
+      cardCvcElement.mount('#card-cvc-element');
+
+      function setOutcome(result) {
+        var successElement = document.querySelector('.success');
+        var errorElement = document.querySelector('.error');
+        successElement.classList.remove('visible');
+        errorElement.classList.remove('visible');
+      
+        if (result.token) {
+          // In this example, we're simply displaying the token
+          successElement.querySelector('.token').textContent = result.token.id;
+          successElement.classList.add('visible');
+      
+          // In a real integration, you'd submit the form with the token to your backend server
+          //var form = document.querySelector('form');
+          //form.querySelector('input[name="token"]').setAttribute('value', result.token.id);
+          //form.submit();
+        } else if (result.error) {
+          errorElement.textContent = result.error.message;
+          errorElement.classList.add('visible');
+        }
+      }
+      
+      var cardBrandToPfClass = {
+          'visa': 'pf-visa',
+        'mastercard': 'pf-mastercard',
+        'amex': 'pf-american-express',
+        'discover': 'pf-discover',
+        'diners': 'pf-diners',
+        'jcb': 'pf-jcb',
+        'unknown': 'pf-credit-card',
+      }
+      
+      function setBrandIcon(brand) {
+          var brandIconElement = document.getElementById('brand-icon');
+        var pfClass = 'pf-credit-card';
+        if (brand in cardBrandToPfClass) {
+            pfClass = cardBrandToPfClass[brand];
+        }
+        for (var i = brandIconElement.classList.length - 1; i >= 0; i--) {
+            brandIconElement.classList.remove(brandIconElement.classList[i]);
+        }
+        brandIconElement.classList.add('pf');
+        brandIconElement.classList.add(pfClass);
+      }
+      
+      cardNumberElement.on('change', function(event) {
+          // Switch brand logo
+          if (event.brand) {
+            setBrandIcon(event.brand);
+        }
+      
+          setOutcome(event);
+      });
+
+    //let cardElement = elements.create('card');
+
+    //var cardElement = elements.create('card');
+    //cardElement.mount('#card-element');
+    const form = document.getElementById('payment-form');  
+    document.querySelector('form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var options = {
+          address_zip: document.getElementById('postal-code').value,
+        };
+        const {token, error} = await stripe.createToken(cardNumberElement, options);
+
+
+        if (error) {
+        } else {
+            setOutcome(token);
+            const hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+            form.submit();
+        }
+      });
+
+    /*const form = document.getElementById('payment-form');
     jQuery(document).on("submit", ".stripe_form", async function (event) {
         event.preventDefault();
         const {token, error} = await stripe.createToken(cardElement);
@@ -154,7 +261,7 @@ function stripe_payment_intergation() {
             form.appendChild(hiddenInput);
             form.submit();
         }
-    });
+    });*/
 
 }
 

@@ -14,6 +14,7 @@ class OrderItems extends Model
     protected $guarded = [];
 
 
+
     public function order(): BelongsTo
     {
         return $this->belongsTo(related: Order::class);
@@ -24,6 +25,12 @@ class OrderItems extends Model
     {
         return $this->belongsTo(FoodItem::class);
     }
-
-
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItems::class);
+    }
+    public function products()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

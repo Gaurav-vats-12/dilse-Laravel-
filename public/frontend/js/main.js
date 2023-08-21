@@ -42,6 +42,7 @@ jQuery(document).ready(function () {
         let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#ajax_url').val();
         const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
+            setTimeout(function() { jQuery('.add-to-cart-button').removeClass(`added`)}, 2000);
             Toast.fire({icon: `success`, title: resPose.message})
             jQuery(`.cart_count`).html(resPose.cart_total);
         }
