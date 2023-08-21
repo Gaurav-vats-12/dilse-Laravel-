@@ -84,12 +84,16 @@
                           <a href="{{route('user.dashboard')}}">
                               <span>{{ Auth::guard('user')->user()->name }}</span>
                           </a>
-
-
                   <li class="logout">
-                        <form method="POST" action="{{ route('user.logout') }}"> @csrf  <x-responsive-nav-link :href="route('user.logout')"  class="dropdown-item"> {{ __('Log Out') }}</form>   </x-responsive-nav-link>
-                    </li>
+                        <form method="POST" action="{{ route('user.logout') }}">  @csrf
+                            <x-responsive-nav-link  :href="route('user.logout')"
+                                                    onclick="event.preventDefault();
+                        this.closest('form').submit();" class="dropdown-item py-1 d-flex align-items-center justify-content-between">
+                                <span> {{ __('Log Out') }}</span>
+                        </form>
+                        </x-responsive-nav-link>
 
+                    </li>
                   @else
                   <li class="login_header">
                       <a href="{{route('user.login')}}">
