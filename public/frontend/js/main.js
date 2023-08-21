@@ -261,6 +261,17 @@ jQuery(document).ready(function () {
                 }
             }
         });
+    }else if(url.indexOf("/profile-address") > -1){
+        /**
+         * State Dependency In Checkout Page
+         */
+        let country_uid = parseInt(jQuery('#billing_country').find(":selected").attr('country_uid'));
+
+        let ajax_url = jQuery('#state_ajax').val();
+        let selected_billing_state = jQuery('#selected_billing_state').val();
+        console.log(selected_billing_state)
+        let ajax_value = {country_uid,'type':'country',selected_billing_state};
+        state_dependency_country_list(ajax_value, ajax_url);
     }
 
 

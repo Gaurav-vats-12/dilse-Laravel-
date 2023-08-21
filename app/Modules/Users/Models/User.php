@@ -3,12 +3,14 @@
 namespace App\Modules\Users\Models;
 
 use App\Models\Order\Order as OrderAlias;
+use App\Models\User\UserAddressManage;
 use App\Modules\Users\Database\Factories\UserFactory;
 use App\Modules\Users\Notifications\Auth\ResetPassword;
 use App\Modules\Users\Notifications\Auth\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasMany as HasManyAlias;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -82,8 +84,19 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @return HasMany
      */
-    public function orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function orders(): HasManyAlias
     {
         return $this->hasMany(OrderAlias::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+
+    public function addresses(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(UserAddressManage::class);
+    }
+
+
 }

@@ -14,9 +14,9 @@
             <h3 class="{{ (request()->is('user/profile')) ? 'active' : '' }}">profile</h3>
         </a>
     </li>
-    <li class="menu_list_inner1">
-        <a href="">
-            <h3>Adress</h3>
+    <li class="menu_list_inner1 {{ (request()->is('user/profile-address')) ? 'active' : '' }}">
+        <a href="{{ route('user.profile.address') }}">
+            <h3 class="{{ (request()->is('user/profile-address')) ? 'active' : '' }}">Address</h3>
         </a>
     </li>
     <li class="menu_list_inner1">

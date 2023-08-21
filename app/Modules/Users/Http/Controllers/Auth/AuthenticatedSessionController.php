@@ -4,6 +4,7 @@ namespace App\Modules\Users\Http\Controllers\Auth;
 
 use App\Modules\Users\Http\Controllers\Controller;
 use App\Modules\Users\Http\Requests\Auth\LoginRequest;
+use http\Url;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+
+
+        session()->put('url_session',url()->previous());
         return view('user.auth.login');
     }
 
@@ -24,9 +28,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+
         $request->authenticate();
         $request->session()->regenerate();
-        return redirect()->intended('/')->withToastSuccess('Login Successfully');
+        session()->put('url_session',url()->previous());
+        return redirect()->intended('/')->withToastSuccess(' User Login Successfully');
+
     }
 
     /**

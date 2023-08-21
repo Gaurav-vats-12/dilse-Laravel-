@@ -46,8 +46,10 @@
                    <div class="contact_form_btn">
                     <button class="theme_btn">  {{ __('Log in') }}</button>
                   </div>
+                      @if(strpos(URL::previous(),'cart'))
+                          <a  href="{{route('checkout.view')}}"> Proceed to checkout As a Guest </a>
+                      @endif
                   <p>Don’t have an account?<span><a href="{{ route('user.register') }}">sign-up</a></span></p>
-
                 </form>
               </div>
           </div>

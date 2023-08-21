@@ -12,7 +12,7 @@
                     @include('user.layouts.partials.user_sidebar')
                 </div>
                 <div class="col-lg-9">
-                    <form method="post" action="{{ route('user.profile.update') }}" class="form profile-info-form">@csrf @method('patch')
+                    <form method="post" action="{{ route('user.profile.update') }}" class="mt-6 space-y-6">@csrf @method('patch')
                         <div class="cusstom_input">
                             <x-input-label for="name" :value="__('Name')" />
                             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"  autofocus autocomplete="name" />
