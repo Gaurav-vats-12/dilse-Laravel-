@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         @endforeach
-                        <div class="CustomPagination">
+                        <div class="CustomPagination"  id="menu_items">
                             {!! $FoodItem->links() !!}
                         </div>
 

@@ -11,10 +11,13 @@
 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="order_time_taken" class="col-form-label">Time Taken:</label>
+                        <label for="order_time_taken" class="col-form-label">Time Taken: (In Minute)</label>
                         <input type="hidden" name="order_id" id="order_id" value="{{ $order->id }}">
-                        <input type="text" class="form-control" minlength="1" maxlength="25" id="order_time_taken-{{ $order->id }}" name="order_time_taken" >
-                        <span id="order_time_taken-{{ $order->id }}-error" class="text-danger error"></span>
+                        <input min="0" max="3"   type="number" class="form-control"  id="order_time_taken-{{ $order->id }}" name="order_time_taken" >
+
+                        <span id="errorMessage" style="color: red;"></span>
+
+
                     </div>
 
             </div>
@@ -25,3 +28,20 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    jQuery(document).ready(function() {
+    jQuery('input[name="order_time_taken"]').on('keypress', function() {
+        console.log("Keypress detected!");
+        if (jQuery(this).val().length >= 3) {
+            console.log("Length exceeded!");
+            jQuery('#errorMessage').text('You can only enter a maximum of 3 characters.');
+            return false;
+        } else {
+            jQuery('#errorMessage').text('');
+        }
+    });
+});
+
+    </script>
