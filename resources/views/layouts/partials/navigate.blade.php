@@ -72,7 +72,7 @@
                   <option>Toronto</option>
                   <option >Bramptonn</option>
                </select></li>
-                 
+
               </ul>
             </div>
           </div>
@@ -80,15 +80,15 @@
         <div class="right_text">
             <ul>  @if(Auth::guard('user')->check())
                   <li class="">
-                     
+
                           <a href="{{route('user.dashboard')}}">
                               <span>{{ Auth::guard('user')->user()->name }}</span>
                           </a>
-                     
-                 
+
+
                   <li class="logout">
-                  <a href="">Logout</a>
-                  </li>
+                        <form method="POST" action="{{ route('user.logout') }}"> @csrf  <x-responsive-nav-link :href="route('user.logout')"  class="dropdown-item"> {{ __('Log Out') }}</form>   </x-responsive-nav-link>
+                    </li>
 
                   @else
                   <li class="login_header">
@@ -98,7 +98,7 @@
                   @endif
                 </li>
 
-               
+
               </ul>
         </div>
       </div>
