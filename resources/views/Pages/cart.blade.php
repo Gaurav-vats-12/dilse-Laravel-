@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="cart_btn">
                                     @if(session('order_type'))
-                                        <a href="{{url('user/login?checkout=true')}}" class="theme_btn">Proceed To Checkout</a>
+                                        <a href="{{url('user/login')}}" class="theme_btn">Proceed To Checkout</a>
                                     @else
                                         <a href="javascript:void(0)" class="theme_btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Proceed To Checkout</a>
                                         @include('layouts.partials.order_popup')

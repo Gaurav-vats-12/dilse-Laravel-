@@ -15,10 +15,11 @@ class CheckUserLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-//
-//        if(strpos($url_session,'cart')){
-//            return redirect()->intended('/checkout');
-//        }
+        if(isset($request->server)){
+            if($request->server->all()['HTTP_REFERER'] == url('cart')){
+                return redirect()->intended('/checkout');
+            }
+        }
         return $next($request);
     }
 }
