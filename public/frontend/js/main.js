@@ -230,13 +230,9 @@ jQuery(document).ready(function () {
         });
         $("#payment-form").validate({
             rules: {
-                billing_first_name: {
+                billing_full_name: {
                     required: true,
                     maxlength: 50,
-                },
-                billing_last_name: {
-                    required: true,
-
                 }, billing_phone: {
                     required: true,
                 },billing_email: {

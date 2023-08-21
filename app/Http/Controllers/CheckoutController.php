@@ -72,7 +72,7 @@ class CheckoutController extends Controller
         $order_id = Order::insertGetId([
             'user_id' => $user_id,
             "order_date" => date("Y-m-d H:i:s"),
-            'full_name' => $request->billing_first_name .' '. $request->billing_last_name,
+            'full_name' => $request->billing_full_name,
             'company_name' => $request->billing_company,
             'email_address' => $request->billing_email,
             'phone_number' => $request->billing_phone,
