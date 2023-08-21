@@ -56,8 +56,9 @@ class CheckoutController extends Controller
     {
         $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
         if(AuthAlias::guard('user')->check()){
-            $user = AuthAlias::guard('user')->user();
-            $user->billing_company = $request->billing_company;
+        $user_id = AuthAlias::guard('user')->user()->id;
+
+          $user->phone = $request->phone;
             $user->save();
             $user_address = [
                 'user_id' => $user_id,
