@@ -82,6 +82,18 @@
         </div>
       </div>
     </footer>
+
   @include('layouts.partials.footer_scripts')
+  <script>
+
+jQuery(document).ready(function($) {
+    // $('#timepicker').timepicker();
+    $('#timepicker').timepicker({
+     'step': '15'
+});
+});
+
+
+    </script>
   </body>
 </html>

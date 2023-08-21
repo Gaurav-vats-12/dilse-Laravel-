@@ -110,4 +110,9 @@
           </div>
         </div>
       </section>
+      <style>
+        .custn_input {
+    margin-bottom: 22px;
+}
+        </style>
 @endsection

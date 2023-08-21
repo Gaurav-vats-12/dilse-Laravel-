@@ -12,7 +12,6 @@
                         @php  $subtotal = 0; @endphp
 {{--                        @dd(session('order_type'))--}}
                         @if(session('cart'))
-                            {{--                        @dd(session('cart'))--}}
                             @foreach(session('cart') as $id => $details)
                                 @php  $subtotal = $subtotal + $details["price"] *  $details["quantity"]@endphp
 
