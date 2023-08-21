@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserAddress\UpdateStroreRequest as UpdateStroreRequestAlias;
+use App\Models\Order\Order;
 use App\Models\User\UserAddressManage as UserAddressManageAlias;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
@@ -54,6 +55,9 @@ class UserController extends Controller
      */
     public function listingOrder(): View|ApplicationAlias1|FactoryAlias|Application
     {
-        return view('user.Pages.Order.view-order-list');
+        $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
+
+        $OrderDetails = Order::where('user_id',$user_id)->paginate(3);
+        return view('user.Pages.Order.view-order-list',compact('OrderDetails'));
     }
 }
