@@ -16,13 +16,10 @@
         <div class="cusstom_input">
             <label for="billing_company" class="">Company name&nbsp;<span
                     class="optional">(optional)</span></label>
-            <input type="text" placeholder="Enter  Company Name" name="billing_company"
-                   value=" {{ Auth::guard('user')->check() ?  old('billing_company' ,Auth::guard('user')->user()->addresses->billing_company)   : old('billing_company') }}">
+            <input type="text" placeholder="Enter  Company Name" name="billing_email" id="billing_email" value=" {{ Auth::guard('user')->check() ? old('billing_company' ,Auth::guard('user')->user()->billing_company)  : old('billing_company') }} ">
             @error('billing_company')
             <span class="text-danger">{{ $message }}</span>
             @enderror
-
-
         </div>
     </div>
     <div class="col-md-6">
