@@ -37,9 +37,9 @@
 }
 
 #card-element .group {
-  background: white;
+  /* background: white;
   box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
-  border-radius: 4px;
+  border-radius: 4px; */
   margin-bottom: 20px;
 }
 
@@ -60,7 +60,6 @@
 
 #card-element label > span {
   width: 120px;
-  text-align: right;
   margin-right: 30px;
 }
 
@@ -69,10 +68,9 @@
 }
 
 #card-element .field {
-  background: transparent;
   font-weight: 300;
   border: 0;
-  color: #31325F;
+  color: #0000!important;
   outline: none;
   flex: 1;
   padding-right: 10px;
