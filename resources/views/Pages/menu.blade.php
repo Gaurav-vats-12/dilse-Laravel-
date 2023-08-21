@@ -35,7 +35,6 @@
 
                     <div class="menu_main_box " id="menu_data_find">
                         @include('ajax.menufooditems')
-
                     </div>
                 </div>
             </div>
