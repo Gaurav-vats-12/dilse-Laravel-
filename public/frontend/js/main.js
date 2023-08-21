@@ -1,4 +1,5 @@
 jQuery(document).ready(function () {
+    jQuery( "#datepicker" ).datepicker();
 
     /**
      * Subscribe Our Newsletter Submission Form Ajax (Home Page)

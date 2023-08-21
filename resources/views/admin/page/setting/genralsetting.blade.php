@@ -70,9 +70,18 @@
                                     <label for="site_location">Location</label>
                                     <select name="site_location[]" id="site_location" class="form-control select2" multiple>
                                         <option value="">choose location</option>
-                                        <option value="chandigarh">Chandigarh</option>
-                                        <option value="mohali">Mohali</option>
+
+                                        @php
+                                            $selectedLocations = old('site_location', setting('site_location') ?: []);
+                                            if (!is_array($selectedLocations)) {
+                                                $selectedLocations = [$selectedLocations];  // Ensure we have an array
+                                            }
+                                        @endphp
+
+                                        <option value="chandigarh" {{ in_array('chandigarh', $selectedLocations) ? 'selected' : '' }}>Chandigarh</option>
+                                        <option value="mohali" {{ in_array('mohali', $selectedLocations) ? 'selected' : '' }}>Mohali</option>
                                     </select>
+
                                     @error('site_location')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
@@ -94,11 +103,7 @@
                                     <input type="file" name="footer_logo" id="footer_logo" class="dropify" data-max-file-size="1M" data-max-height="1000"  data-errors-position="outside" data-allowed-file-extensions="png jpg" data-default-file="{{ url('/storage/site/logo/'.setting('footer_logo').'') }}" >
                                     @error('logo')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                    <label for="footer_image_2"> Site Companies</label>
-                                    <input type="file" name="footer_image_2[]" id="footer_image_2" accept="image*" multiple >
-                                     @error('Favicon')  <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
+
                                 </div>
                                 <div class="row py-2">
                                 <div class="col-xl-6 col-lg-6 col-12 form-group">
