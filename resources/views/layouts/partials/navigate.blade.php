@@ -88,7 +88,7 @@
                         <a>Log Out</a>
                     </li>
                   @else
-                  </li>
+                  <li class="login_header">
                       <a href="{{route('user.login')}}">
                           <span>Login</span>
                       </a>
