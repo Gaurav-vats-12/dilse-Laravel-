@@ -150,7 +150,7 @@ function stripe_payment_intergation() {
         fontSize: '15px',
     
         '::placeholder': {
-          color: '#CFD7E0',
+          color: '#00000',
         },
       },
     };
