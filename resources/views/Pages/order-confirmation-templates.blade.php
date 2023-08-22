@@ -32,9 +32,17 @@
                     @endforeach
 
                 </table>
-                <p>If you want to order more : <a href="/">home</a></p>
+                <div class="login-content">If you want to order more. Click on the <a href="{{url('menu')}}">Menus</a></p>
                 {{-- <p>We'll send a confirmation email shortly.</p> --}}
             </div>
         </section>
 
 @endsection
+<style>
+    .login-content {
+        text-align: center;
+        margin-top: 50px;
+        font-size: 20px;
+    }
+    .login-content a{font-weight: 600;}
+</style>    
