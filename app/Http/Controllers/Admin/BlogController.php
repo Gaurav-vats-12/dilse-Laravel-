@@ -17,9 +17,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blog = Blog::all();
+        $blog = Blog::orderBy('id', 'DESC')->get();
         confirmDelete('Delete Blog!',"Are you sure you want to delete?");
-
         return view('admin.page.blog.index',compact('blog'));
     }
 
@@ -54,6 +53,7 @@ class BlogController extends Controller
     public function show(string $id)
     {
         $blog = Blog::findOrFail($id);
+
         return view('admin.page.blog.view',compact('blog'));
     }
 

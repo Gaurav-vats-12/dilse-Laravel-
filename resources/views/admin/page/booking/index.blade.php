@@ -33,25 +33,23 @@
                                 <th>BOOKING DATE AND TIME </th>
                                 <th>PART SIZE </th>
                                 <th>COMMENTS </th>
-                                 <th>STATUS</th>
-                                 <th>Action</th>
+                                 {{-- <th>STATUS</th>
+                                 <th>Action</th> --}}
                                  <!-- <th>STATUS</th>
                                  <th>Action</th> -->
                                     </tr>
                                 </thead>
                                 @foreach ($booking as $key => $bookings)
                                 <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $bookings->name }}</td>
-                                <td>{{ $bookings->email }}</td>
-                                <td>{{ $bookings->phone }}</td>
-                                <td>{{ $bookings->date }} ( {{ $bookings->time }})</td>
-                                <td>{{ $bookings->persons }}</td>
-                                <td>{!! \Illuminate\Support\Str::limit(strip_tags($bookings->comments)) !!}</td>
-                                <td> @if ($bookings->status == 0)<div class="mt-sm-1 d-block"> <span class="badge badge-warning">Pending</span>  </div> @elseif ($bookings->status == 1)<div class="mt-sm-1 d-block"> <span class="badge badge-success">Accept</span> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Rejact</span> </div> @endif </td>
-                                <td class="project-actions"><a class="btn btn-info btn-sm" href="{{ route('admin.booking.show', $bookings->id) }}"><i class="fa-solid fa-eye"></i>
+                                <td class="1">{{ $key + 1 }}</td>
+                                <td class="2">{{ $bookings->name }}</td>
+                                <td class="3">{{ $bookings->email }}</td>
+                                <td class="4">{{ $bookings->phone }}</td>
+                                <td class="5">{{ $bookings->date }} ( {{ $bookings->time }})</td>
+                                <td class="6">{{ $bookings->persons }}</td>
+                                <td class="7">{!! \Illuminate\Support\Str::limit(strip_tags($bookings->comments)) !!}</td>
+                                <td class="hidden" style="display:none"> @if ($bookings->status == 0)<div class="mt-sm-1 d-block"> <span class="badge badge-warning">Pending</span>  </div> @elseif ($bookings->status == 1)<div class="mt-sm-1 d-block"> <span class="badge badge-success">Accept</span> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Rejact</span> </div> @endif </td>
 
-                            </td>
                                 </tr>
 
 

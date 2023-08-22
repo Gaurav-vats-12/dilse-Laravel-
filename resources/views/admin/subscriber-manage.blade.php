@@ -8,7 +8,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-            <li class="breadcrumb-item active">All Customer</li>
+            <li class="breadcrumb-item active">All Subscriber</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,25 +27,21 @@
                                 <thead class="text-uppercase">
                                     <tr>
                                  <th>Sno </th>
-                                <th>FULL NAME</th>
                                 <th>EMAIL</th>
                                  <th>STATUS</th>
-                                 <th>Action</th>
                                     </tr>
                                 </thead>
 
-                                @foreach ($user as $key => $users)
+                                @foreach ($subscribers as $key => $users)
                                 <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $users->name }}</td>
-                                <td>{{ $users->email }}</td>
-                                <td> @if ($users->status == 1)<div class="mt-sm-1 d-block"> <span class="badge badge-success">Active</span>  </div> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Inactive</span> </div> @endif </td>
+                                <td>{{ $users->email_address }}</td>
+                                <td>{{ $users->status }}</td>
 
                                 <td class="project-actions">
-                                    <a class="btn btn-info btn-sm" href="{{ route('admin.manage-customer.view', $users->id) }}"><i class="fa-solid fa-eye"></i>  </a>
-                                    <a href="{{ route('admin.manage-customer.control', $users->id) }}" class="btn text-warning btn-sm" data-bs-toggle="tooltip" data-bs-original-title="inactive"><i class="fa-solid fa-user-large-slash"></i></a>
+                                    <a class="btn btn-info btn-sm" href="{{ route('admin.manage-subscriber.view', $users->id) }}">Unsubscribe </a>
                                 </tr>
-                                    @endforeach
+                                @endforeach
                                 <tbody>
 
                                 </tbody>

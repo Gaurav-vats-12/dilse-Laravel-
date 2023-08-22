@@ -1,6 +1,7 @@
 <x-admin-app-layout>
     <!-- Content Header (Page header) -->
     <div class="content-header">
+
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -23,14 +24,14 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
-
+                <h3>{{$orderCount}}
+                </h3>
                 <p>New Orders</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.order.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -38,7 +39,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{\App\Models\Admin\FoodItem::count()}}</h3>
+                <h3>{{ $foodItemCount }}</h3>
 
                 <p>Food Items</p>
               </div>
@@ -53,7 +54,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>{{\App\Modules\Users\Models\User::count()}}</h3>
+                <h3>{{$UserCount}}</h3>
 
                 <p>User Registrations</p>
               </div>
@@ -68,13 +69,13 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{\App\Models\Subscriber::count()}}</h3>
+                <h3>{{$SubsribeCount}}</h3>
                 <p>Subscribers</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('admin.manage-subsrciber.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -82,7 +83,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{\App\Models\Booking::count()}}</h3>
+                <h3>{{$totalBookings}}</h3>
                 <p>Total Booking </p>
               </div>
               <div class="icon">
