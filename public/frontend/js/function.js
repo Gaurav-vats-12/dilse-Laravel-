@@ -244,8 +244,6 @@ function stripe_payment_intergation() {
             hiddenInput.setAttribute('name', 'stripeToken');
             hiddenInput.setAttribute('value', token.id);
             form.appendChild(hiddenInput);
-            let payment_value = jQuery('input[name="payment_method"]:checked').val();
-            console.log(payment_value);
             form.submit();
         }
       });
