@@ -31,12 +31,8 @@
 
                     @endforeach
 
-
-
-
-
-
                 </table>
+                <p>If you want to order more : <a href="/">home</a></p>
                 {{-- <p>We'll send a confirmation email shortly.</p> --}}
             </div>
         </section>
