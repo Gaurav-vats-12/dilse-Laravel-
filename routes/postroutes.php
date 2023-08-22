@@ -7,7 +7,6 @@ use App\Http\Controllers\MenuController as MenuControllerAlias;
 use Illuminate\Support\Facades\Route as RouteAlias;
 
 //Contact Us
-RouteAlias::post('/submit-contact-form', [ContactUsControllerAlias::class, 'store'])->name('contact.submit');
 RouteAlias::post('/contact-us', [ContactUsControllerAlias::class, 'submitContactFormAjax'])->name('contact-us-form');
 //Email Subcriptiopn
 RouteAlias::post('/email-subscription', array(ContactUsControllerAlias::class, 'emailSubscription'))->name('emailSubscription');

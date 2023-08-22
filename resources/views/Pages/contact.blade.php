@@ -63,7 +63,8 @@
             </div>
 
             <div class="col-md-6">
-              <form action="{{ route('contact.submit') }}" class="contact_form" method="POST">
+              <form action="" class="contact_form" method="POST" id="conatact_cus_form">
+              <input type="hidden" name="contact_us_action_url" id="contact_us_action_url"  value="{{ route('contact-us-form') }}">
                @csrf
                 <div class="tittle_heading">
                   <h3>Reach US</h3>

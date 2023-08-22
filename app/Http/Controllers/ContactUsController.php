@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\ConntactUs\StoreContactUsAjaxRequest;
-use App\Http\Requests\ConntactUs\StoreContactUsRequest as StoreContactUsRequestAlias;
 use App\Http\Requests\ConntactUs\StoreEmailSubcriptionRequest;
 use App\Mail\ContactNotification;
 use App\Models\Subscriber;
@@ -18,17 +17,6 @@ class ContactUsController extends Controller
 
     }
 
-    public function store(StoreContactUsRequestAlias $request){
-        $contactData = [
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'message' => $request->message,
-        ];
-        Mail::to(setting('site_email'))->send(new ContactNotification($contactData));
-        return redirect()->back()->withToastSuccess('Your message has been sent successfully!');
-    }
 public function submitContactFormAjax(StoreContactUsAjaxRequest $request): \Illuminate\Http\JsonResponse
 {
     $contactData = [

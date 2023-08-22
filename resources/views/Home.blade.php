@@ -464,7 +464,7 @@
               </div>
               <div class="col-md-6">
                 <div class="custn_input">
-                  <input type="text"  placeholder="Phone number" name="phone" id="phone" maxlength="10" />
+                  <input type="tel"  placeholder="Phone number" name="phone" id="phone" maxlength="10" />
                   <span id="phone-error" class="text-danger error"></span>
 
                 </div>
