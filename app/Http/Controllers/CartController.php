@@ -57,7 +57,6 @@ public function viewcart(){
         try {
             $product = FoodItemAlias::findOrFail($request->product_oid);
             $cart = session()->get('cart');
-
             if ($request->qty > 0 || $request->qty  > '0'  ) {
                 $cart[$request->product_oid]["quantity"] = $request->qty;
                 session()->put('cart', $cart);

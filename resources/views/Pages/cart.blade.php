@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-7 col-lg-8" id="cart_messages">
                         @php  $subtotal = 0; @endphp
-{{--                        @dd(session('order_type'))--}}
+
                         @if(session('cart'))
                             @foreach(session('cart') as $id => $details)
                                 @php  $subtotal = $subtotal + $details["price"] *  $details["quantity"]@endphp
@@ -71,10 +71,30 @@
                                             </p>
                                         </div>
 
+
                                         <div class="s_total" id="subtotal">
                                             <p>${{ $subtotal }}</p>
                                         </div>
                                     </li>
+                                    @php
+                                    $orderType = session('order_type');
+
+                                    @endphp
+                                    @if($orderType == 'delivery')
+                                    <li>
+                                        <div class="s_subtotal">
+                                            <p>Delivery Charges :
+                                            </p>
+                                        </div>
+
+
+
+                                        <div class="s_total" id="subtotal">
+                                            <p>${{(setting('delivery_charge'))}}</p>
+                                        </div>
+                                    </li>
+                                    @endif
+
 
                                 </ul>
                                 <div class="order_totals d-flex align-items-center justify-content-between">
@@ -83,7 +103,7 @@
                                         </p>
                                     </div>
                                     <div class="order_totalse" id="total">
-                                        <p>$ {{ (session('order_type')) ? $subtotal +  4.25 : $subtotal + 0.00 }}
+                                        <p>$ {{ (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge') : $subtotal + 0.00 }}
                                         </p>
                                     </div>
                                 </div>
