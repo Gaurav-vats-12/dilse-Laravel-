@@ -4,7 +4,7 @@
 @section('frontcontent')
     <section class="checkout_page py_8">
         <div class="container">
-            <form action="{{ route('checkout.create') }}" method="post" class="woocommerce form require-validation payment_form" data-cc-on-file="false" id="" autocomplete="off" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" novalidate> @csrf
+            <form action="{{ route('checkout.create') }}" method="post" class="woocommerce form require-validation payment_form" data-cc-on-file="false" id="payment-form" autocomplete="off" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}"> @csrf
                 <div class="main_checkout">
                     <div class="checkout_form_details">
                         <div class="cart_head">
@@ -72,13 +72,9 @@
                                     </button>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
         </div>
     </section>
 @endsection

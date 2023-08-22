@@ -9,7 +9,7 @@
             <ul class="payment-metho-radio d-flex">
                 <li>
                     <div class="radio-item_1">
-                        <input id="pay_on_delivery" value="pay_on_delivery"  class="payment_option" name="payment_method" type="radio" {{ old('payment_method') == 'pay_on_delivery' ? 'checked' : '' }}>
+                        <input id="pay_on_delivery" value="pay_on_delivery"  class="payment_option" name="payment_method" type="radio" {{ old('payment_method') == 'pay_on_delivery' ? 'checked' : '' }} checked>
                         <label for="pay_on_delivery" class="radio-label_1">Pay In Delivery</label>
                     </div>
                 </li>
@@ -25,8 +25,9 @@
                         <label for="payonline" class="radio-label_1">Pay Online</label>
                     </div>
                 </li>
+                <span id="payment_method_error" class="text-danger"></span>
             </ul>
-            </form>
+
             <div class="payment">
             <div class="payment-meth" data-method="stripe" id="stripe_paymnet_form" >
                 @include('ajax.checkout.stripe_credit_card_form')

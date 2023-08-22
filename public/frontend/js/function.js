@@ -227,14 +227,17 @@ function stripe_payment_intergation() {
     const form = document.getElementById('stripe_form');
     document.querySelector('form').addEventListener('submit', async function(e) {
         e.preventDefault();
+
         var options = {
           address_zip: document.getElementById('postal-code').value,
         };
         const {token, error} = await stripe.createToken(cardNumberElement, options);
+        console.log(token,error);
 
 
         if (error) {
         } else {
+
             setOutcome(token);
             const hiddenInput = document.createElement('input');
             hiddenInput.setAttribute('type', 'hidden');
@@ -245,19 +248,6 @@ function stripe_payment_intergation() {
         }
       });
 
-    /*const form = document.getElementById('payment-form');
-    jQuery(document).on("submit", ".stripe_form", async function (event) {
-        event.preventDefault();
-        const {token, error} = await stripe.createToken(cardElement);
-        if (error) {
-        } else {
-            const hiddenInput = document.createElement('input');
-            hiddenInput.setAttribute('type', 'hidden');
-            hiddenInput.setAttribute('name', 'stripeToken');
-            hiddenInput.setAttribute('value', token.id);
-            form.appendChild(hiddenInput);
-            form.submit();
-        }
-    });*/
+
 
 }

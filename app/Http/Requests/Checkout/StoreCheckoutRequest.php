@@ -3,7 +3,8 @@
 namespace App\Http\Requests\Checkout;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 class StoreCheckoutRequest extends FormRequest
 {
     /**
@@ -31,15 +32,16 @@ class StoreCheckoutRequest extends FormRequest
             'billing_state' => 'required',
             'billing_city' => 'required',
             'billing_postcode' => 'required|min:1|max:7',
-//            'payment_method' => 'required|in:pay_on_delivery,pay_on_store,payonline',
-            // 'full_name' => 'required_if:payment_method,==,payonline|min:1|max:255',
-            // 'full_name' => 'required_if:payment_method,==,payonline|min:1|max:255',
-            // 'card_number' => 'required_if:payment_method,==,payonline|numeric|min:1|max:12',
-            // 'cvc' => 'required_if:payment_method,==,payonline|numeric|min:1|max:4',
-            // 'exp_month' => 'required_if:payment_method,==,payonline',
-            // 'exp_year' => 'required_if:payment_method,==,payonline',
+           'payment_method' => 'required|in:pay_on_delivery,pay_on_store,payonline',
         ];
     }
 
+    public function failedValidation(Validator $validator){
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'errors'      =>$validator->messages()
+        ]));
+    }
 
 }
