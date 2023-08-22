@@ -40,8 +40,9 @@
                         <span class="value">${{ $subtotal }}</span>
                     </li>
                     <li class="charges">
+
                         <span class="key">Delivery Charges :</span>
-                        <span class="value"  data-value ="{{ (session('order_type') && session('order_type') == "delivery") ? 4.25: 0.00 }}" >${{ (session('order_type') && session('order_type') == "delivery") ? 4.25: 0.00 }}</span>
+                        <span class="value"  data-value ="{{ (session('order_type') && session('order_type') == "delivery") ? setting('delivery_charge') != null ? __(setting('delivery_charge')) : '' : 0.00 }}" >${{ (session('order_type') && session('order_type') == "delivery") ? setting('delivery_charge') != null ? __(setting('delivery_charge')) : '': 0.00 }}</span>
                     </li>
                     <li class="grand-total">
                         <span class="key">GRAND TOTAL:</span>
