@@ -30,7 +30,7 @@ RouteAlias::prefix('admin')->name('admin.')->group(callback: function(){
         //RouteAlias::get('manage-subsrciber', AdminControllerAlias::class);
         ///Route::get('/admin/manage-subsrciber', [AdminControllerName::class, 'showDashboard']);
         //Route::get('/admin/manage-subsrciber', [App\Http\Controllers\Admin\AdminControllerName::class, 'showDashboard'])->name('/admin/manage-subsrciber');
-        Route::get('manage-subsrciber.index', [App\Http\Controllers\Admin\AdminController::class, 'showOrderCount'])->name('manage-subsrciber.index');
+        Route::get('manage-subscribers', [App\Http\Controllers\Admin\AdminController::class, 'showOrderCount'])->name('manage-subsrciber.index');
         Route::get('manage-subscriber/view/{id}', [App\Http\Controllers\Admin\AdminController::class, 'show'])->name('manage-subscriber.view');
 
         // food items

@@ -97,7 +97,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.manage-subsrciber.index') }}" class="nav-link {{ (request()->is('admin/booking*')) ? 'active' : '' }}">
+            <a href="{{ route('admin.manage-subsrciber.index') }}" class="nav-link {{ (request()->is('admin/manage-subscribers*')) ? 'active' : '' }}">
                 <p>
                 {{ __('Manage Subscriber ') }}
                 </p>

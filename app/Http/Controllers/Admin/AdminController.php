@@ -31,9 +31,11 @@ class AdminController extends Controller
     return view('admin.subscriber-manage', ['subscribers' => $subscribers]);
   }
   public function show($id ){
-    $email_address = Subscriber::findOrFail($id)->Subscriber;
+    $email_addresss = Subscriber::findOrFail($id);
+    $email_address = $email_addresss->email_address;
     $mailchimp = new MailchimpService();
-    $UserCount = $mailchimp->UnsubscribeToList($email_address, config('services.mailchimp.list_key'));
+    $UserCount = $mailchimp->UnsubscribeToList($email_address, env('MAILCHIMP_API_KEY'));
+
     return view('admin.manage-subscriber-view', ['id' => $id]);
  }
 }
