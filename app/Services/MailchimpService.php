@@ -24,7 +24,6 @@ class MailchimpService
 
     public function UnsubscribeToList( $email, $listId)
     {
-
         return $this->mailchimp->lists->addListMember($listId, [
             'email_address' => $email,
             'status' => 'unsubscribed',
