@@ -274,10 +274,10 @@ jQuery(document).ready(function () {
         jQuery(document).on("click", ".payment_option", async function (event) {
             let payment_value = jQuery('input[name="payment_method"]:checked').val();
             if (payment_value ==='payonline') {
+                stripe_payment_intergation(jQuery(`#StripeKey`).val());
                 jQuery('#payment-form').addClass('stripe_form');
                 jQuery('.payment_form'). attr('id', 'stripe_form');
                 jQuery('#stripe_paymnet_form').css('display','block');
-                stripe_payment_intergation(jQuery(`#StripeKey`).val());
             } else {
                 jQuery('.payment_form'). attr('id', 'payment-form');
                 jQuery('#stripe_paymnet_form').css('display','none');
@@ -290,7 +290,6 @@ jQuery(document).ready(function () {
                     maxlength: 50,
                 }, billing_phone: {
                     required: true,
-                    maxlength: 15,
                 }, billing_email: {
                     required: true,
                     email: true,
@@ -302,7 +301,6 @@ jQuery(document).ready(function () {
                     maxlength: 100,
                 }, billing_postcode: {
                     required: true,
-                    maxlength: 8,
                 }
             },
             messages: {
@@ -311,7 +309,6 @@ jQuery(document).ready(function () {
                     maxlength: "Billig Full Name must be max 50 letter"
                 }, billing_phone: {
                     required: "Please Enter the Billing Phone Number",
-                    maxlength: "Billig Phone Number must be max 15 letter"
                 }, billing_email: {
                     required: "Please Enter the Billing Email Address",
                     maxlength: "Billing Email Address Must be Email address"
@@ -323,10 +320,15 @@ jQuery(document).ready(function () {
                     maxlength: "Billig Phone Number must be max 100 letter"
                 }, billing_postcode: {
                     required: "Please Enter the Billing Pin Code",
-                    maxlength: "Billig Pin Code must be max 8 letter"
                 }
             },
-            submitHandler: function (form) {
+            submitHandler: function (form ,e) {
+                let payment_value = jQuery('input[name="payment_method"]:checked').val();
+                if(payment_value ==='payonline'){
+                    jQuery('#stripe_form').submit();
+                }else{
+                    jQuery('#payment-form').submit();
+                }
             }
         });
     }else if(url.indexOf("/profile-address") > -1){

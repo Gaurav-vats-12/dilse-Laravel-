@@ -10,6 +10,8 @@ use Illuminate\Contracts\View\View as ViewAlias;
 use Illuminate\Foundation\Application as ApplicationAlias;
 use Illuminate\Http\RedirectResponse as RedirectResponseAlias;
 use Illuminate\Support\Facades\Auth;
+use Notification;
+use App\Notifications\Admin\Order\OrderPermissionNotificationToAdmin;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -54,6 +56,7 @@ class CheckoutController extends Controller
      */
     public function create (StoreCheckoutRequest $request): Application|RedirectResponseAlias|\Illuminate\Routing\Redirector|ApplicationAlias
     {
+
         $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
         if(AuthAlias::guard('user')->check()){
         $user = AuthAlias::guard('user')->user();
@@ -92,7 +95,6 @@ class CheckoutController extends Controller
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
         $cart = session()->get('cart', []);
         foreach ($cart as $key => $details) {
             $cart_datals[] = [
@@ -118,6 +120,11 @@ class CheckoutController extends Controller
             ];
             Payments::insert($paymnet_status);
             Session::forget('cart');
+
+            // $notification = \Notification::send('bheemexoticait@gmail.com', new OrderPermissionNotificationToAdmin(['type' => 'New Booking','body' => 'A new order has been placed with the following details: Order ID: #'.$order_id.' Customer Name: '.$request->billing_full_name.' Customer Email: '.$request->billing_email.' Please log in to the admin panel to view and process the order.' , 'thanks' => 'Thank you', 'notification_url' => url('/admin/order/view/'.$order_id.''),'notification_uuid' => \Str::random(10),'notification_date'=>date('Y-m-d H:i:s')]));
+
+            // dd('pay_on_delivery',$notification);
+
             return redirect(route('order_confirm' ,$order_id))->withToastSuccess('Order Placed Successfully');
         }elseif ($request->payment_method == 'pay_on_store'){
             $paymnet_status = [
