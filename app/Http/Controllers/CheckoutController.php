@@ -54,14 +54,17 @@ class CheckoutController extends Controller
      */
     public function create (StoreCheckoutRequest $request): Application|RedirectResponseAlias|\Illuminate\Routing\Redirector|ApplicationAlias
     {
-        $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
+        $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
         if(AuthAlias::guard('user')->check()){
-        $user_id = AuthAlias::guard('user')->user()->id;
-
-          $user->phone = $request->phone;
-            $user->save();
+        $user = AuthAlias::guard('user')->user();
+          $user->phone = $request->billing_phone;
+          $user->save();
             $user_address = [
                 'user_id' => $user_id,
+                'billing_full_name' => $request->billing_full_name,
+                'billing_company' => $request->billing_company,
+                'billing_phone' => $request->billing_phone,
+                'billing_email' => $request->billing_email,
                 'billing_address1' => $request->billing_address_1,
                 'billing_address2' => $request->billing_address_2,
                 'countryId' => $request->billing_country,
@@ -73,6 +76,7 @@ class CheckoutController extends Controller
             ];
             UserAddressManageAlias::updateOrCreate(['user_id'=>$request->login_uer_id],$user_address );
         }
+
         $order_id = Order::insertGetId([
             'user_id' => $user_id,
             "order_date" => date("Y-m-d H:i:s"),
@@ -90,14 +94,16 @@ class CheckoutController extends Controller
         ]);
 
         $cart = session()->get('cart', []);
-        foreach ($cart as $key => $details) $cart_datals[] = [
-            'order_id' => $order_id,
-            'product_id' => $details['id'],
-            'quantity' => $details['quantity'],
-            'price' => $details['price'],
-            'created_at' => now(),
-            'updated_at' => now()
-        ];
+        foreach ($cart as $key => $details) {
+            $cart_datals[] = [
+                'order_id' => $order_id,
+                'product_id' => $details['id'],
+                'quantity' => $details['quantity'],
+                'price' => $details['price'],
+                'created_at' => now(),
+                'updated_at' => now()
+            ];
+        }
         OrderItemsAlias::insert($cart_datals);
         if($request->payment_method == 'pay_on_delivery') {
             $paymnet_status = [

@@ -22,7 +22,6 @@ return new class extends Migration
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes(); // <-- This will add a deleted_at field
-
         });
     }
 

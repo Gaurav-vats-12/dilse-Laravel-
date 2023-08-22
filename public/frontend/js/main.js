@@ -62,6 +62,8 @@ jQuery(document).ready(function () {
             setTimeout(function() { window.location.reload()}, 1000);
         }
     });
+
+
     /**
      *  testimonial_slider   (Home Page)
      */
@@ -213,52 +215,51 @@ jQuery(document).ready(function () {
          */
         let payment_value = jQuery('input[name="payment_method"]:checked').val();
         (`payonline` == payment_value) ? jQuery(`#stripe_paymnet_form`).css(`display`, `block`) : jQuery(`#stripe_paymnet_form`).css(`display`, `none`);
-        jQuery('#payment-form').removeClass('stripe_form');
+        jQuery('.payment_form'). attr('id', 'payment-form');
         jQuery('#stripe_paymnet_form').css('display','none');
         jQuery(document).on("click", ".payment_option", async function (event) {
             let payment_value = jQuery('input[name="payment_method"]:checked').val();
             if (payment_value ==='payonline') {
-
                 jQuery('#payment-form').addClass('stripe_form');
+                jQuery('.payment_form'). attr('id', 'stripe_form');
                 jQuery('#stripe_paymnet_form').css('display','block');
-                stripe_payment_intergation();
-
+                stripe_payment_intergation(jQuery(`#StripeKey`).val());
             } else {
-                jQuery('#payment-form').removeClass('stripe_form');
+                jQuery('.payment_form'). attr('id', 'payment-form');
                 jQuery('#stripe_paymnet_form').css('display','none');
             }
         });
-        $("#payment-form").validate({
-            rules: {
-                billing_full_name: {
-                    required: true,
-                    maxlength: 50,
-                }, billing_phone: {
-                    required: true,
-                },billing_email: {
-                    required: true,
-                },billing_address_1: {
-                    required: true,
-                },billing_address_2: {
-                    required: true,
-                },billing_city: {
-                    required: true,
-                },billing_postcode: {
-                    required: true,
-                },payment_method: {
-                    required: true,
-                }
-            },
-            messages: {
-                billing_first_name: {
-                    required:  "Please enter First  name",
-                },
-                email: {
-                    required: "Please enter your email",
-                    email: "Please enter a valid email address"
-                }
-            }
-        });
+        // $("#payment-form").validate({
+        //     rules: {
+        //         billing_full_name: {
+        //             required: true,
+        //             maxlength: 50,
+        //         }, billing_phone: {
+        //             required: true,
+        //         },billing_email: {
+        //             required: true,
+        //         },billing_address_1: {
+        //             required: true,
+        //         },billing_address_2: {
+        //             required: true,
+        //         },billing_city: {
+        //             required: true,
+        //         },billing_postcode: {
+        //             required: true,
+        //         },payment_method: {
+        //             required: true,
+        //         }
+        //     },
+        //     messages: {
+        //         billing_first_name: {
+        //             required:  "Please enter First  name",
+        //         },
+        //         email: {
+        //             required: "Please enter your email",
+        //             email: "Please enter a valid email address"
+        //         }
+        //     }
+        // });
     }else if(url.indexOf("/profile-address") > -1){
         /**
          * State Dependency In Checkout Page

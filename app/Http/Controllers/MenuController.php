@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Admin\{FoodItem,Menu};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth as AuthAlias;
+
 class MenuController extends Controller
 {
     public function menu(Request $request){
@@ -17,8 +19,11 @@ class MenuController extends Controller
                 $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);
                 return view('Pages.menu',compact('FoodItem','slug'));
             }else if ($current_url =='cart.view'){
+               $authType =  AuthAlias::guard('user')->check();
+                $loginroute = AuthAlias::guard('user')->check() ? route('checkout.view') : route('user.login');
+
                 session()->put('order_type', $request->type);
-                return response()->json(['code' => 200 , 'status' =>'success','url'=> route('checkout.view')]);
+                return response()->json(['code' => 200 , 'status' =>'success','url'=> $loginroute]);
             }else{
                 $menu_id = Menu::where('menu_slug',$slug)->first()->id;
                 $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);

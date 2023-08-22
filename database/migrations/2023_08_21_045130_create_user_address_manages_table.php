@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('user_address_manages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
-            $table->string('billing_company', 255);
-            $table->string('billing_address1', 255);
-            $table->string('billing_address2', 255);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->nullable()->default(Null);
+            $table->string('billing_full_name', 255)->nullable();
+            $table->string('billing_company', 255)->nullable();
+            $table->string('billing_phone', 15)->nullable();
+            $table->string('billing_email', 15)->nullable();
+            $table->string('billing_address1', 255)->nullable();
+            $table->string('billing_address2', 255)->nullable();
             $table->foreignId('countryId')->constrained()->on('countries')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->foreignId('statesid')->constrained()->on('states')->onUpdate('cascade')->onDelete('cascade')->nullable();
-            $table->string('city', 255);
-            $table->string('pincode', 15);
+            $table->string('city', 255)->nullable();
+            $table->string('pincode', 15)->nullable();
             $table->timestamps();
         });
     }
