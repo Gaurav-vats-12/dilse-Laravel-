@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div class="row py-2">
-                                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                    <div class="col-xl-12 col-lg-12 col-12 form-group">
                                     <label for="footer_logo"> Footer Logo</label>
                                     <input type="file" name="footer_logo" id="footer_logo" class="dropify" data-max-file-size="1M" data-max-height="1000"  data-errors-position="outside" data-allowed-file-extensions="png jpg" data-default-file="{{ url('/storage/site/logo/'.setting('footer_logo').'') }}" >
                                     @error('logo')  <span class="text-danger">{{ $message }}</span> @enderror
@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="row py-2">
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                    <label for="blogto_url"> 'Blog To Url'</label>
+                                    <label for="blogto_url"> Blog To Url</label>
                                     <input type="url" name="blogto_url" id="blogto_url"  class="form-control" value="{{ old('blogto_url',setting('blogto_url'))}}">
                                     @error('blogto_url')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
@@ -140,6 +140,14 @@
                                     <input type="url" name="instagram_url" id="instagram_url"  class="form-control" value="{{ old('instagram_url',setting('instagram_url'))}}">
 
                                      @error('instagram_url')  <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row py-2">
+                                    <div class="col-xl-12 col-lg-12 col-12 form-group">
+                                    <label for="blogto_url"> Delivery Charge</label>
+                                    <input type="text" name="delivery_charge" id="delivery_charge"  class="form-control" value="{{ old('delivery_charge',setting('delivery_charge'))}}">
+                                    @error('delivery_charge')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-12 form-group mg-t-8 mt-2">
