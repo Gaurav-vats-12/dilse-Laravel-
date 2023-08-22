@@ -97,7 +97,7 @@
 }
 
 .success,
-.error {
+ {
   display: none;
   font-size: 13px;
 }

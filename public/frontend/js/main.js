@@ -229,8 +229,72 @@ jQuery(document).ready(function () {
                 jQuery('#stripe_paymnet_form').css('display','none');
             }
         });
-        // $("#payment-form").validate({
-        //     rules: {
+
+        // jQuery(document).on("submit", ".payment_form", async function (event) {
+        //     event.preventDefault();
+        //     let ajax_value_list = jQuery(this).serialize(), ajx_url =  jQuery(this).attr("action");
+        //     const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
+        //     console.log(resPose);
+        //     if(resPose.status === 'success'){
+        //         // Toast.fire({ icon: 'success',title: resPose.message, })
+        //         // jQuery("#conatact_cus_form")[0].reset();
+        //     }else{
+        //         jQuery.each(resPose.errors, function (key, value) {
+        //             jQuery(`#${key}_error`).text(value);
+        //         });
+        //     }
+
+        // });
+
+        jQuery(".payment_form").validate({
+            rules: {
+                billing_full_name: {
+                    required: true,
+                    maxlength: 50,
+                }, billing_phone: {
+                    required: true,
+                    maxlength: 15,
+                }, billing_email: {
+                    required: true,
+                    email: true,
+                }, billing_address_1: {
+                    required: true,
+                    maxlength: 200,
+                }, billing_city: {
+                    required: true,
+                    maxlength: 100,
+                }, billing_postcode: {
+                    required: true,
+                    maxlength: 8,
+                }
+
+            },
+            messages: {
+                billing_full_name: {
+                    required: "Please Enter the Billing Full Name",
+                    maxlength: "Billig Full Name must be max 50 letter"
+                }, billing_phone: {
+                    required: "Please Enter the Billing Phone Number",
+                    maxlength: "Billig Phone Number must be max 15 letter"
+                }, billing_email: {
+                    required: "Please Enter the Billing Email Address",
+                    maxlength: "Billing Email Address Must be Email address"
+                }, billing_address_1: {
+                    required: "Please Enter the Billing Address",
+                    maxlength: "Billig Phone Number must be max 200 letter"
+                }, billing_city: {
+                    required: "Please Enter the Billing City",
+                    maxlength: "Billig Phone Number must be max 100 letter"
+                }, billing_postcode: {
+                    required: "Please Enter the Billing Pin Code",
+                    maxlength: "Billig Pin Code must be max 8 letter"
+                }
+            },
+            submitHandler: function (form) {
+            }
+        });
+
+        // //     rules: {
         //         billing_full_name: {
         //             required: true,
         //             maxlength: 50,
