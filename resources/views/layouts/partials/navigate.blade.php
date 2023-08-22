@@ -67,7 +67,6 @@
                <li><a href="{{url('gallery')}}">Gallery</a></li>
                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
                <li><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
-               <!--li><a href="{{url('book-a-reservation')}}" class="theme_btn">Book a table</a></li-->
                <li><select class="select_location" name="select_location">
                   <option>Toronto</option>
                   <option >Bramptonn</option>
@@ -82,7 +81,9 @@
                   <li class="">
 
                           <a href="{{route('user.dashboard')}}">
-                              <span>{{ Auth::guard('user')->user()->name }}</span>
+                              <span>
+                              {!! \Illuminate\Support\Str::limit(strip_tags(Auth::guard('user')->user()->name), 8) !!}
+                            </span>
                           </a>
                   <li class="logout">
                         <form method="POST" action="{{ route('user.logout') }}">  @csrf
