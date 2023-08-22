@@ -62,6 +62,8 @@ jQuery(document).ready(function () {
             setTimeout(function() { window.location.reload()}, 1000);
         }
     });
+
+
     /**
      *  testimonial_slider   (Home Page)
      */
@@ -213,16 +215,17 @@ jQuery(document).ready(function () {
          */
         let payment_value = jQuery('input[name="payment_method"]:checked').val();
         (`payonline` == payment_value) ? jQuery(`#stripe_paymnet_form`).css(`display`, `block`) : jQuery(`#stripe_paymnet_form`).css(`display`, `none`);
-        jQuery('#payment-form').removeClass('stripe_form');
+        jQuery('.payment_form'). attr('id', 'payment-form');
         jQuery('#stripe_paymnet_form').css('display','none');
         jQuery(document).on("click", ".payment_option", async function (event) {
             let payment_value = jQuery('input[name="payment_method"]:checked').val();
             if (payment_value ==='payonline') {
                 jQuery('#payment-form').addClass('stripe_form');
+                jQuery('.payment_form'). attr('id', 'stripe_form');
                 jQuery('#stripe_paymnet_form').css('display','block');
                 stripe_payment_intergation(jQuery(`#StripeKey`).val());
             } else {
-                jQuery('#payment-form').removeClass('stripe_form');
+                jQuery('.payment_form'). attr('id', 'payment-form');
                 jQuery('#stripe_paymnet_form').css('display','none');
             }
         });
