@@ -1,6 +1,5 @@
-
-
-    <div id="card-element">
+<input type="hidden" name="StripeKey" id="StripeKey" value="pk_test_51Ng3mqJhLKjdolzELxiiUuoQAeIh37PT6KR6QFkiSVF7thLp85BG0oN0t4INLtwW0X0ggOC1dZE2uUq8FEE1t2a200WqliAM32">
+<div id="card-element">
         <!-- A Stripe Element will be inserted here. -->
    <input type="hidden" name="stripeToken" />
     <div class="group">
@@ -17,19 +16,15 @@
         <span>CVC</span>
         <div id="card-cvc-element" class="field"></div>
       </label>
-      <label>
-        <span>Postal code</span>
-        <input id="postal-code" name="postal_code" class="field" placeholder="90210" />
-      </label>
-    </div>
+
     <div class="outcome">
       <div class="error"></div>
       <div class="success">
         Success! Your Stripe token is <span class="token"></span>
       </div>
     </div>
-    </div> 
-    </div> 
+    </div>
+    </div>
 <style>
 #card-element form {
   width: 480px;
