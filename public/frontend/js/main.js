@@ -62,6 +62,8 @@ jQuery(document).ready(function () {
             setTimeout(function() { window.location.reload()}, 1000);
         }
     });
+
+
     /**
      *  testimonial_slider   (Home Page)
      */
@@ -213,52 +215,115 @@ jQuery(document).ready(function () {
          */
         let payment_value = jQuery('input[name="payment_method"]:checked').val();
         (`payonline` == payment_value) ? jQuery(`#stripe_paymnet_form`).css(`display`, `block`) : jQuery(`#stripe_paymnet_form`).css(`display`, `none`);
-        jQuery('#payment-form').removeClass('stripe_form');
+        jQuery('.payment_form'). attr('id', 'payment-form');
         jQuery('#stripe_paymnet_form').css('display','none');
         jQuery(document).on("click", ".payment_option", async function (event) {
             let payment_value = jQuery('input[name="payment_method"]:checked').val();
             if (payment_value ==='payonline') {
-
                 jQuery('#payment-form').addClass('stripe_form');
+                jQuery('.payment_form'). attr('id', 'stripe_form');
                 jQuery('#stripe_paymnet_form').css('display','block');
-                stripe_payment_intergation();
-
+                stripe_payment_intergation(jQuery(`#StripeKey`).val());
             } else {
-                jQuery('#payment-form').removeClass('stripe_form');
+                jQuery('.payment_form'). attr('id', 'payment-form');
                 jQuery('#stripe_paymnet_form').css('display','none');
             }
         });
-        $("#payment-form").validate({
+
+        // jQuery(document).on("submit", ".payment_form", async function (event) {
+        //     event.preventDefault();
+        //     let ajax_value_list = jQuery(this).serialize(), ajx_url =  jQuery(this).attr("action");
+        //     const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
+        //     console.log(resPose);
+        //     if(resPose.status === 'success'){
+        //         // Toast.fire({ icon: 'success',title: resPose.message, })
+        //         // jQuery("#conatact_cus_form")[0].reset();
+        //     }else{
+        //         jQuery.each(resPose.errors, function (key, value) {
+        //             jQuery(`#${key}_error`).text(value);
+        //         });
+        //     }
+
+        // });
+
+        jQuery(".payment_form").validate({
             rules: {
                 billing_full_name: {
                     required: true,
                     maxlength: 50,
                 }, billing_phone: {
                     required: true,
-                },billing_email: {
+                    maxlength: 15,
+                }, billing_email: {
                     required: true,
-                },billing_address_1: {
+                    email: true,
+                }, billing_address_1: {
                     required: true,
-                },billing_address_2: {
+                    maxlength: 200,
+                }, billing_city: {
                     required: true,
-                },billing_city: {
+                    maxlength: 100,
+                }, billing_postcode: {
                     required: true,
-                },billing_postcode: {
-                    required: true,
-                },payment_method: {
-                    required: true,
+                    maxlength: 8,
                 }
+
             },
             messages: {
-                billing_first_name: {
-                    required:  "Please enter First  name",
-                },
-                email: {
-                    required: "Please enter your email",
-                    email: "Please enter a valid email address"
+                billing_full_name: {
+                    required: "Please Enter the Billing Full Name",
+                    maxlength: "Billig Full Name must be max 50 letter"
+                }, billing_phone: {
+                    required: "Please Enter the Billing Phone Number",
+                    maxlength: "Billig Phone Number must be max 15 letter"
+                }, billing_email: {
+                    required: "Please Enter the Billing Email Address",
+                    maxlength: "Billing Email Address Must be Email address"
+                }, billing_address_1: {
+                    required: "Please Enter the Billing Address",
+                    maxlength: "Billig Phone Number must be max 200 letter"
+                }, billing_city: {
+                    required: "Please Enter the Billing City",
+                    maxlength: "Billig Phone Number must be max 100 letter"
+                }, billing_postcode: {
+                    required: "Please Enter the Billing Pin Code",
+                    maxlength: "Billig Pin Code must be max 8 letter"
                 }
+            },
+            submitHandler: function (form) {
             }
         });
+
+        // //     rules: {
+        //         billing_full_name: {
+        //             required: true,
+        //             maxlength: 50,
+        //         }, billing_phone: {
+        //             required: true,
+        //         },billing_email: {
+        //             required: true,
+        //         },billing_address_1: {
+        //             required: true,
+        //         },billing_address_2: {
+        //             required: true,
+        //         },billing_city: {
+        //             required: true,
+        //         },billing_postcode: {
+        //             required: true,
+        //         },payment_method: {
+        //             required: true,
+        //         }
+        //     },
+        //     messages: {
+        //         billing_first_name: {
+        //             required:  "Please enter First  name",
+        //         },
+        //         email: {
+        //             required: "Please enter your email",
+        //             email: "Please enter a valid email address"
+        //         }
+        //     }
+        // });
     }else if(url.indexOf("/profile-address") > -1){
         /**
          * State Dependency In Checkout Page

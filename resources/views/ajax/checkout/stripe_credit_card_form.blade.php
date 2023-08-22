@@ -1,6 +1,7 @@
 
+<input type="hidden" name="StripeKey" id="StripeKey" value="pk_test_51Ng3mqJhLKjdolzELxiiUuoQAeIh37PT6KR6QFkiSVF7thLp85BG0oN0t4INLtwW0X0ggOC1dZE2uUq8FEE1t2a200WqliAM32">
 
-    <div id="card-element">
+<div id="card-element">
         <!-- A Stripe Element will be inserted here. -->
    <input type="hidden" name="stripeToken" />
     <div class="group">
@@ -28,8 +29,8 @@
         Success! Your Stripe token is <span class="token"></span>
       </div>
     </div>
-    </div> 
-    </div> 
+    </div>
+    </div>
 <style>
 #card-element form {
   width: 480px;
@@ -70,7 +71,7 @@
 #card-element .field {
   font-weight: 300;
   border: 0;
-  color: #0000!important;
+  /* color: #0000!important; */
   outline: none;
   flex: 1;
   padding-right: 10px;
@@ -96,7 +97,7 @@
 }
 
 .success,
-.error {
+ {
   display: none;
   font-size: 13px;
 }

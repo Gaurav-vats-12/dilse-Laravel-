@@ -148,7 +148,7 @@ function stripe_payment_intergation() {
         fontWeight: 300,
         fontFamily: 'Helvetica Neue',
         fontSize: '15px',
-    
+
         '::placeholder': {
           color: '#00000',
         },
@@ -159,12 +159,12 @@ function stripe_payment_intergation() {
         style: style
       });
       cardNumberElement.mount('#card-number-element');
-      
+
       var cardExpiryElement = elements.create('cardExpiry', {
         style: style
       });
       cardExpiryElement.mount('#card-expiry-element');
-      
+
       var cardCvcElement = elements.create('cardCvc', {
         style: style
       });
@@ -175,12 +175,12 @@ function stripe_payment_intergation() {
         var errorElement = document.querySelector('.error');
         successElement.classList.remove('visible');
         errorElement.classList.remove('visible');
-      
+
         if (result.token) {
           // In this example, we're simply displaying the token
           successElement.querySelector('.token').textContent = result.token.id;
           successElement.classList.add('visible');
-      
+
           // In a real integration, you'd submit the form with the token to your backend server
           //var form = document.querySelector('form');
           //form.querySelector('input[name="token"]').setAttribute('value', result.token.id);
@@ -190,7 +190,7 @@ function stripe_payment_intergation() {
           errorElement.classList.add('visible');
         }
       }
-      
+
       var cardBrandToPfClass = {
           'visa': 'pf-visa',
         'mastercard': 'pf-mastercard',
@@ -200,7 +200,7 @@ function stripe_payment_intergation() {
         'jcb': 'pf-jcb',
         'unknown': 'pf-credit-card',
       }
-      
+
       function setBrandIcon(brand) {
           var brandIconElement = document.getElementById('brand-icon');
         var pfClass = 'pf-credit-card';
@@ -213,31 +213,31 @@ function stripe_payment_intergation() {
         brandIconElement.classList.add('pf');
         brandIconElement.classList.add(pfClass);
       }
-      
+
       cardNumberElement.on('change', function(event) {
           // Switch brand logo
           if (event.brand) {
             setBrandIcon(event.brand);
         }
-      
+
           setOutcome(event);
       });
 
-    //let cardElement = elements.create('card');
 
-    //var cardElement = elements.create('card');
-    //cardElement.mount('#card-element');
-    const form = document.getElementById('payment-form');  
+    const form = document.getElementById('stripe_form');
     document.querySelector('form').addEventListener('submit', async function(e) {
         e.preventDefault();
+
         var options = {
           address_zip: document.getElementById('postal-code').value,
         };
         const {token, error} = await stripe.createToken(cardNumberElement, options);
+        console.log(token,error);
 
 
         if (error) {
         } else {
+
             setOutcome(token);
             const hiddenInput = document.createElement('input');
             hiddenInput.setAttribute('type', 'hidden');
@@ -248,20 +248,6 @@ function stripe_payment_intergation() {
         }
       });
 
-    /*const form = document.getElementById('payment-form');
-    jQuery(document).on("submit", ".stripe_form", async function (event) {
-        event.preventDefault();
-        const {token, error} = await stripe.createToken(cardElement);
-        if (error) {
-        } else {
-            const hiddenInput = document.createElement('input');
-            hiddenInput.setAttribute('type', 'hidden');
-            hiddenInput.setAttribute('name', 'stripeToken');
-            hiddenInput.setAttribute('value', token.id);
-            form.appendChild(hiddenInput);
-            form.submit();
-        }
-    });*/
+
 
 }
-
