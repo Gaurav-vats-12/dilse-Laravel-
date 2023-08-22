@@ -136,8 +136,8 @@ async function state_dependency_country_list(ajax_post, url) {
     jQuery(`#billing_state`).empty().html(response);
 }
 
-function stripe_payment_intergation() {
-    let stripe = Stripe('pk_test_51Ng3mqJhLKjdolzELxiiUuoQAeIh37PT6KR6QFkiSVF7thLp85BG0oN0t4INLtwW0X0ggOC1dZE2uUq8FEE1t2a200WqliAM32');
+function stripe_payment_intergation(StripekEY) {
+    let stripe = Stripe(StripekEY);
     var elements = stripe.elements();
 
     var style = {
@@ -224,7 +224,7 @@ function stripe_payment_intergation() {
       });
 
 
-    const form = document.getElementById('stripe_form');
+    let form = document.getElementById('stripe_form');
     document.querySelector('form').addEventListener('submit', async function(e) {
         e.preventDefault();
 
@@ -243,8 +243,8 @@ function stripe_payment_intergation() {
             hiddenInput.setAttribute('type', 'hidden');
             hiddenInput.setAttribute('name', 'stripeToken');
             hiddenInput.setAttribute('value', token.id);
-            form.appendChild(hiddenInput);
-            form.submit();
+            document.getElementById('stripe_form').appendChild(hiddenInput);
+            document.getElementById('stripe_form').submit();
         }
       });
 
