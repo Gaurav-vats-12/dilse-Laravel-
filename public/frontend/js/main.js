@@ -4,22 +4,37 @@ jQuery(document).ready(function () {
     /**
      * Subscribe Our Newsletter Submission Form Ajax (Home Page)
      */
-    jQuery(document).on("submit", "#emailSubscribeForm", async function (event) {
-        event.preventDefault();
-        let ajax_value_list = jQuery(this).serialize(), ajx_url = jQuery('#email_action_url').val();
-        const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
-        if (resPose.status === `success`) {
-            Toast.fire({icon: `success`, title: resPose.message})
-            $("#emailSubscribeForm")[0].reset();
-        }else if(resPose.status === `error`){
-            Toast.fire({icon: `warning`, title: resPose.message})
-            $("#emailSubscribeForm")[0].reset();
-        }else{
-            jQuery.each(resPose.errors, function (key, value) {
-                jQuery(`#${key}-error`).text(value);
-            });
+
+    jQuery("#emailSubscribeForm").validate({
+        rules: {
+            email_address: {
+                required: true,
+                email: true,
+            }
+        },
+        messages: {
+            email_address: {
+            required: "Please Enter the  email address",
+             maxlength: "Please Enter vaid email address"
+            }
+        },
+        submitHandler: async function (form,event) {
+            event.preventDefault();
+            let ajax_value_list = jQuery('form').serialize(), ajx_url = jQuery('#email_action_url').val();
+            const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
+            if (resPose.status === `success`) {
+                Toast.fire({icon: `success`, title: resPose.message})
+                  $("form")[0].reset();
+            }else if(resPose.status === `error`){
+                Toast.fire({icon: `warning`, title: resPose.message})
+                $("form")[0].reset();
+
+            }else{
+                jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
+            }
         }
     });
+
 
     /**
      * Order Type In Menu
@@ -52,6 +67,8 @@ jQuery(document).ready(function () {
     /**
      *  Add to Cart  In Website (Extra_Items)
      */
+
+
     jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
         jQuery(this).toggleClass(`added`);
         let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#extra_ajax_url').val();
@@ -75,20 +92,57 @@ jQuery(document).ready(function () {
     /**
      *     Contact us Form Submission  iN ajax  (Home Page)
      */
-    jQuery(document).on("submit","#conatact_cus_form",async function(e) {
-        e.preventDefault();
-        let ajax_value_list = $(this).serialize(), ajx_url = jQuery(`#contact_us_action_url`).val();
-        const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
-        if(resPose.status === 'success'){
-            Toast.fire({ icon: 'success',title: resPose.message, })
-            jQuery("#conatact_cus_form")[0].reset();
-        }else{
+    jQuery("#conatact_cus_form").validate({
+        rules: {
+            first_name: {
+                required: true,
+                maxlength: 50,
+            }, last_name: {
+                required: true,
+                maxlength: 50,
+            }, email: {
+                required: true,
+                email: true,
+            }, phone: {
+                required: true,
+                maxlength: 15,
+            }, message: {
+                required: true,
+                maxlength: 2000,
+            }
+        },
+        messages: {
+            first_name: {
+                required: "Please Enter the First Name",
+                maxlength: "First Name must be max 50 letter"
+            }, last_name: {
+                required: "Please Enter the Last name",
+                maxlength: "Last name must be max 50 letter"
+            }, email: {
+                required: "Please Enter the  email address",
+                maxlength: "Please Enter vaid email address"
+            }, phone: {
+                required: "Please Enter the phone number",
+                maxlength: "Phone Number must be max 15 letter"
+            }, message: {
+                required: "Please Enter the message",
+                maxlength: "message must be max 2000 letter"
+            }
+        },
+        submitHandler: async function (form,e) {
+            e.preventDefault();
+            let ajax_value_list = $('form').serialize(), ajx_url = jQuery(`#contact_us_action_url`).val();
+            const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
+            if(resPose.status === 'success'){
+                Toast.fire({ icon: 'success',title: resPose.message, })
+                jQuery("form")[0].reset();
+               }else{
             jQuery.each(resPose.errors, function (key, value) {
                 jQuery(`#${key}-error`).text(value);
             });
-        }
+     }
+   }
     });
-
     /**
      * Fetch Food Items via Menu (Menu  Page)
      */
@@ -229,23 +283,6 @@ jQuery(document).ready(function () {
                 jQuery('#stripe_paymnet_form').css('display','none');
             }
         });
-
-        // jQuery(document).on("submit", ".payment_form", async function (event) {
-        //     event.preventDefault();
-        //     let ajax_value_list = jQuery(this).serialize(), ajx_url =  jQuery(this).attr("action");
-        //     const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
-        //     console.log(resPose);
-        //     if(resPose.status === 'success'){
-        //         // Toast.fire({ icon: 'success',title: resPose.message, })
-        //         // jQuery("#conatact_cus_form")[0].reset();
-        //     }else{
-        //         jQuery.each(resPose.errors, function (key, value) {
-        //             jQuery(`#${key}_error`).text(value);
-        //         });
-        //     }
-
-        // });
-
         jQuery(".payment_form").validate({
             rules: {
                 billing_full_name: {
@@ -267,7 +304,6 @@ jQuery(document).ready(function () {
                     required: true,
                     maxlength: 8,
                 }
-
             },
             messages: {
                 billing_full_name: {
@@ -293,37 +329,6 @@ jQuery(document).ready(function () {
             submitHandler: function (form) {
             }
         });
-
-        // //     rules: {
-        //         billing_full_name: {
-        //             required: true,
-        //             maxlength: 50,
-        //         }, billing_phone: {
-        //             required: true,
-        //         },billing_email: {
-        //             required: true,
-        //         },billing_address_1: {
-        //             required: true,
-        //         },billing_address_2: {
-        //             required: true,
-        //         },billing_city: {
-        //             required: true,
-        //         },billing_postcode: {
-        //             required: true,
-        //         },payment_method: {
-        //             required: true,
-        //         }
-        //     },
-        //     messages: {
-        //         billing_first_name: {
-        //             required:  "Please enter First  name",
-        //         },
-        //         email: {
-        //             required: "Please enter your email",
-        //             email: "Please enter a valid email address"
-        //         }
-        //     }
-        // });
     }else if(url.indexOf("/profile-address") > -1){
         /**
          * State Dependency In Checkout Page

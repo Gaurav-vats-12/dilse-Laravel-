@@ -1463,6 +1463,12 @@ img.mfp-img {
     background-color: #fcebb9;
     padding-top: 120px;
 }
+a.proceed_ancho {
+    font-size: 22px;
+    margin-top: 20px;
+    text-align: center;
+}
+
 .tittle_heading span {
     color: #eb0029;
 }
@@ -1792,7 +1798,14 @@ form.contact_form a {
     background: #fff;
     color: #000;
 }
-
+.error {
+    color: #d90d0d !important;
+    font-weight: 100 !important;
+}
+.cart_head h3 {
+    font-size: 36px;
+    margin-bottom: 35px;
+}
 /* ---------------------
 product
 ------------------------ */
