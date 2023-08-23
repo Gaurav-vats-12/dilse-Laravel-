@@ -50,7 +50,7 @@ class PaymentFormServices{
         ];
         OrderItemsAlias::insert($cart_datals);
         if ($request->payment_method == 'Pay On  Delivery') {
-          $payment_method = 'Pay On  Delivery';
+          $payment_method = 'PayOnDelivery';
           $payment_status = 'pending';
           $payment_id = Str::random(10);
             $payment_json = null;
@@ -58,7 +58,7 @@ class PaymentFormServices{
 
 
         } elseif ($request->payment_method == 'Pay On Store') {
-            $payment_method = 'Pay On Store';
+            $payment_method = 'PayOnStore';
             $payment_status = 'pending';
             $payment_json = null;
             $payment_id = Str::random(10);
@@ -79,14 +79,14 @@ class PaymentFormServices{
                     ],
                 ]);
                 $payment_id = Str::random(10);
-                $payment_method = 'Pay On Online (Stripe)';
+                $payment_method = 'PayOnOnline';
                 $payment_json = json_encode($stripe_paymnet);
                 $payment_status = 'Paid';
                 $payment_message = "Payment  Successfully";
             } catch (ApiErrorException $e) {
                 return $e;
                 $payment_id = Str::random(10);
-                $payment_method = 'Pay On Online (Stripe)';
+                $payment_method = 'PayOnOnline';
                 $payment_json = null;
                 $payment_status = 'failed';
                 $payment_message = "Payment Not Successfully";
