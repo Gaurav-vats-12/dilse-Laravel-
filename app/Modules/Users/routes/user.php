@@ -2,19 +2,21 @@
 
 use App\Modules\Users\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController;
+use Illuminate\Support\Facades\Route as RouteAlias;
 
-use Illuminate\Support\Facades\Route;
-
-Route::prefix('user')->name('user.')->group(function(){
-    Route::middleware(['web', 'user.auth', 'user.verified'])->group(function(){
-        Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard')->middleware('checkUser');
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::get('/profile-address', [UserController::class, 'user_address'])->name('profile.address');
-        Route::patch('/profile-address', [UserController::class, 'update_address'])->name('profile.address.update');
-        Route::get('/order', [UserController::class, 'listingOrder'])->name('order');
-        Route::get('/order-cancelled/{id}', [UserController::class, 'OrderCancelled'])->name('order-cancelled');
-        Route::get('/order-reorder/{id}', [UserController::class, 'OrderReorder'])->name('OrderReorder');
+RouteAlias::prefix('user')->name('user.')->group(callback: function(){
+    RouteAlias::middleware(['web', 'user.auth', 'user.verified'])->group(callback: function(){
+        // User Dashboard
+        RouteAlias::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard')->middleware('checkUser');
+        // View and update Profile Routes
+        RouteAlias::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        RouteAlias::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        // View and update Profile Address  Routes
+        RouteAlias::get('/profile-address', [UserController::class, 'user_address'])->name('profile.address');
+        RouteAlias::patch('/profile-address', [UserController::class, 'update_address'])->name('profile.address.update');
+        RouteAlias::get('/order', [UserController::class, 'listingOrder'])->name('order');
+        RouteAlias::get('/order-cancelled/{id}', [UserController::class, 'OrderCancelled'])->name('order-cancelled');
+        RouteAlias::get('/order-reorder/{id}', [UserController::class, 'OrderReorder'])->name('OrderReorder');
 
     });
 });
