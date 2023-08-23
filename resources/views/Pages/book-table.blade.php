@@ -67,8 +67,8 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="custn_input">
-                      <input type="text" name="time" value="{{ old('time') }}" placeholder="Time" id="timepicker" />
+                    <div class="custn_input" id="inputWrapper">
+                      <input type="text"  name="time" value="{{ old('time') }}" placeholder="Time" id="timepicker" />
                       @error('time')
                       <div class="error">{{ $message }}</div>
                        @enderror
