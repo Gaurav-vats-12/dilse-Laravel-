@@ -275,64 +275,19 @@ jQuery(document).ready(function () {
         jQuery('#stripe_paymnet_form').css('display','none');
         jQuery(document).on("click", ".payment_option", async function (event) {
             let payment_value = jQuery('input[name="payment_method"]:checked').val();
-            if (payment_value ==='payonline') {
-                stripe_payment_intergation(jQuery(`#StripeKey`).val());
+            if (payment_value ==='Pay On Online (Stripe)') {
+                stripePayment_Form(jQuery(`#StripeKey`).val());
                 jQuery('#payment-form').addClass('stripe_form');
                 jQuery('.payment_form'). attr('id', 'stripe_form');
                 jQuery('#stripe_paymnet_form').css('display','block');
             } else {
+                payment_intergation(jQuery(`#StripeKey`).val());
                 jQuery('.payment_form'). attr('id', 'payment-form');
                 jQuery('#stripe_paymnet_form').css('display','none');
             }
         });
-        jQuery(".payment_form").validate({
-            rules: {
-                billing_full_name: {
-                    required: true,
-                    maxlength: 50,
-                }, billing_phone: {
-                    required: true,
-                }, billing_email: {
-                    required: true,
-                    email: true,
-                }, billing_address_1: {
-                    required: true,
-                    maxlength: 200,
-                }, billing_city: {
-                    required: true,
-                    maxlength: 100,
-                }, billing_postcode: {
-                    required: true,
-                }
-            },
-            messages: {
-                billing_full_name: {
-                    required: "Please Enter the Billing Full Name",
-                    maxlength: "Billig Full Name must be max 50 letter"
-                }, billing_phone: {
-                    required: "Please Enter the Billing Phone Number",
-                }, billing_email: {
-                    required: "Please Enter the Billing Email Address",
-                    maxlength: "Billing Email Address Must be Email address"
-                }, billing_address_1: {
-                    required: "Please Enter the Billing Address",
-                    maxlength: "Billig Phone Number must be max 200 letter"
-                }, billing_city: {
-                    required: "Please Enter the Billing City",
-                    maxlength: "Billig Phone Number must be max 100 letter"
-                }, billing_postcode: {
-                    required: "Please Enter the Billing Pin Code",
-                }
-            },
-            submitHandler: function (form ,e) {
-                let payment_value = jQuery('input[name="payment_method"]:checked').val();
-                if(payment_value ==='payonline'){
-                    jQuery('#stripe_form').submit();
-                }else{
-                    jQuery('#payment-form').submit();
-                }
-            }
-        });
+        payment_intergation(jQuery(`#StripeKey`).val());
+
     }else if(url.indexOf("/profile-address") > -1){
         /**
          * State Dependency In Checkout Page

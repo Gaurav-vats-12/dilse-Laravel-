@@ -12,11 +12,14 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @method static create(array $checkout_value)
+ * @method static findOrFail(int $order_id)
  */
 class Order extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+
 
     /**
      * @return BelongsToAlias

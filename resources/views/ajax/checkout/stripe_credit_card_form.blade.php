@@ -3,7 +3,6 @@
 
 <div id="card-element">
         <!-- A Stripe Element will be inserted here. -->
-   <input type="hidden" name="stripeToken" />
     <div class="group">
       <label>
         <span>Card number</span>
@@ -18,10 +17,7 @@
         <span>CVC</span>
         <div id="card-cvc-element" class="field"></div>
       </label>
-      <label>
-        <span>Postal code</span>
-        <input id="postal-code" name="postal_code" class="field" placeholder="90210" />
-      </label>
+     
     </div>
     <div class="outcome">
       <div class="error"></div>
@@ -113,6 +109,7 @@
 
 .success {
   color: #666EE8;
+    display: none;
 }
 
 .success .token {
