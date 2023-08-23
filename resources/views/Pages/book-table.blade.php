@@ -77,8 +77,8 @@
                   <div class="col-md-6">
                     <div class="custn_input">
                       <select name="select_part" class="form-control form-select">
-                        <option value="">Select Part Size</option>
-                        @for($i=1;$i <= 6;$i++)
+                        <option value="">Select Number Of Guest</option>
+                        @for($i=1;$i <= 20;$i++)
                           <option value="{{$i}}"  {{ old('select_part') == $i ? 'selected' : '' }} >{{$i}} Person </option>
                         @endfor
                       </select>
@@ -110,6 +110,7 @@
           </div>
         </div>
       </section>
+
       <style>
         .custn_input {
     margin-bottom: 22px;
