@@ -44,7 +44,7 @@
                <script>
                 Swal.fire({
     title: 'Success!',
-    text: 'Your Password is Saved.',
+    text: 'Password updated sucessfully.',
     icon: 'success',
     timer: 2000, // close after 2 seconds
     showConfirmButton: false
