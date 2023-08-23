@@ -87,11 +87,13 @@
   <script>
 
 jQuery(document).ready(function($) {
-    // $('#timepicker').timepicker();
     $('#timepicker').timepicker({
-     'step': '15'
+        'minTime': '11:30 AM',
+        'maxTime': '10:30 PM',
+        'showDuration': false
+    });
 });
-});
+
 
 
     </script>
