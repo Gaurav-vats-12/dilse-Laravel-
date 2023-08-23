@@ -97,29 +97,39 @@ jQuery(document).ready(function($) {
     var currentMinute = now.getMinutes();
 
     // Round down to the nearest hour if it's between two half hours
-    if (currentMinute < 30) {
-        currentMinute = 0;
-    } else {
-        currentMinute = 30;
-    }
+    if (currentMinute < 15) {
+    currentMinute = 0;
+} else if (currentMinute < 30) {
+    currentMinute = 15;
+} else if (currentMinute < 45) {
+    currentMinute = 30;
+} else {
+    currentMinute = 45;
+}
 
-    var currentTime = currentHour + ':' + (currentMinute === 0 ? '00' : '30');
+   // var currentTime = currentHour + ':' + (currentMinute === 0 ? '00' : '15');
 
     // Assuming you have a datepicker input
     $('#datepicker').on('change', function() {
-        var selectedDate = new Date($(this).val()); // assuming the date format is 'yyyy-mm-dd'
-        var minTimeValue = '11:30 AM'; // Default minimum time
-        if (selectedDate.toDateString() === now.toDateString()) {
-            minTimeValue = currentTime;
-        }
-        $('#timepicker').timepicker('option', 'minTime', minTimeValue);
-    });
+    var selectedDate = new Date($(this).val()); // Assuming the date format is 'yyyy-mm-dd'
 
-    $('#timepicker').timepicker({
-        'minTime': '11:30 AM', // default value
-        'maxTime': '10:30 PM',
-        'showDuration': false
-    });
+    if (selectedDate.toDateString() === now.toDateString()) {
+        var minTimeValue = (currentHour < 10 ? '0' : '') + currentHour + ':' + (currentMinute < 10 ? '0' : '') + currentMinute;
+        $('#timepicker').timepicker('option', 'minTime', minTimeValue);
+    } else {
+        $('#timepicker').timepicker('option', 'minTime', '11:30 AM');
+    }
+});
+
+
+var initialMinTime = now.toDateString() === (new Date($('#datepicker').val()).toDateString()) ? currentTime : '11:30 AM';
+
+$('#timepicker').timepicker({
+    'minTime': initialMinTime,
+    'maxTime': '10:30 PM',
+    'step': 15,  // to show every 15-minute interval
+    'showDuration': false
+});
 
     $('#timepicker').on('keypress', function() {
         $(this).prop('readonly', true);
