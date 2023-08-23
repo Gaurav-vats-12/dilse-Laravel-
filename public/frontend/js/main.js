@@ -3,6 +3,28 @@ jQuery(document).ready(function () {
    $('#datepicker').datepicker({
     minDate: 0 // 0 will disable all past dates
 });
+$('i.fa-solid.fa-eye.user_pass').click(function() {
+    // Check the current type of password input
+    if ($('#password').attr('type') === 'password') {
+        $('#password').attr('type', 'text');
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
+    } else {
+        $('#password').attr('type', 'password');
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
+    }
+});
+
+$('i.fa-solid.fa-eye.confirm_pass').click(function() {
+    var $passwordField = $('#password_confirmation');
+
+    if ($passwordField.attr('type') === 'password') {
+        $passwordField.attr('type', 'text');
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
+    } else {
+        $passwordField.attr('type', 'password');
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
+    }
+});
     /**
      * Subscribe Our Newsletter Submission Form Ajax (Home Page)
      */
@@ -156,6 +178,7 @@ jQuery(document).ready(function () {
         const response = await Ajax_response('', "GET", ajax_value, '', '');
         if (response) {
             jQuery(`.loader`).toggleClass('display');
+            window.history.pushState(null, '', "/menu/"+slug);
             jQuery(`#menu_data_find`).empty().html(response);
         }
     });
@@ -169,8 +192,10 @@ jQuery(document).ready(function () {
         jQuery(`#menu_data_find`).empty();
         jQuery(`li`).removeClass('active');
         let slug = jQuery('#slug').val(), page = jQuery(this).attr('href').split('page=')[1],
-            ajax_value = {slug, page};
+        ajax_value = {slug, page};
+        console.log('page',page);
         const response = await Ajax_response('', "GET", ajax_value, '', '');
+        console.log('display',response);
         if (response) {
             jQuery(`.loader`).toggleClass('display');
             jQuery(`#menu_data_find`).empty().html(response);

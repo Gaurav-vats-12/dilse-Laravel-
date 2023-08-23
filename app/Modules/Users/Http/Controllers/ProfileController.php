@@ -54,4 +54,10 @@ class ProfileController extends Controller
 
         return Redirect::to('/user');
     }
+    public function confirmPass(){
+        //return view('user.update-password-form');
+        return view('user.profile.partials.update-password-form');
+
+
+    }
 }

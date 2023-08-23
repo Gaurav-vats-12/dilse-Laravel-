@@ -30,6 +30,20 @@ class HomeController extends Controller
         return view('Pages.gift-card');
     }
 
+    public function sendEmail() {
+
+        $recipientEmail = 'shaurya.dograexoticait@gmail.com';
+        $subject = 'Subject of the Email';
+        $message = 'This is the content of the email.';
+    
+        Mail::raw($message, function ($mail) use ($recipientEmail, $subject) {
+            $mail->to($recipientEmail);
+            $mail->subject($subject);
+        });
+    
+        return "Email sent successfully!";
+     }
+
     /**
      * @param $id
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
