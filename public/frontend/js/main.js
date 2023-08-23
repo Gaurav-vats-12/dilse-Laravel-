@@ -156,6 +156,7 @@ jQuery(document).ready(function () {
         const response = await Ajax_response('', "GET", ajax_value, '', '');
         if (response) {
             jQuery(`.loader`).toggleClass('display');
+            window.history.pushState(null, '', "/menu/"+slug);
             jQuery(`#menu_data_find`).empty().html(response);
         }
     });
@@ -169,8 +170,10 @@ jQuery(document).ready(function () {
         jQuery(`#menu_data_find`).empty();
         jQuery(`li`).removeClass('active');
         let slug = jQuery('#slug').val(), page = jQuery(this).attr('href').split('page=')[1],
-            ajax_value = {slug, page};
+        ajax_value = {slug, page};
+        console.log('page',page);
         const response = await Ajax_response('', "GET", ajax_value, '', '');
+        console.log('display',response);
         if (response) {
             jQuery(`.loader`).toggleClass('display');
             jQuery(`#menu_data_find`).empty().html(response);

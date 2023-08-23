@@ -26,7 +26,7 @@
               <ul>
             @foreach ( Menuhelper() as $key => $menu )
             @if ($key < 5)
-            <li><a href="#" menu_slug ="{{ __(ucfirst( $menu->menu_slug)) }}">{{ __(ucfirst( $menu->menu_name)) }}</a></li>
+            <li><a href="{{url('menu',$menu->menu_slug)}}" menu_slug ="{{ __(ucfirst( $menu->menu_slug)) }}">{{ __(ucfirst( $menu->menu_name)) }}</a></li>
             @endif
             @endforeach
             </ul>
@@ -85,55 +85,13 @@
 
   @include('layouts.partials.footer_scripts')
   <script>
-
-jQuery(document).ready(function($) {
-    setTimeout(function() {
-        $('.swal2-container.swal2-top-end.swal2-backdrop-show').hide();
-    }, 5000); // 5000 milliseconds or 5 seconds
-
-
-    var now = new Date();
-    var currentHour = now.getHours();
-    var currentMinute = now.getMinutes();
-
-    // Round down to the nearest hour if it's between two half hours
-    if (currentMinute < 30) {
-        currentMinute = 0;
-    } else {
-        currentMinute = 30;
-    }
-
-    var currentTime = currentHour + ':' + (currentMinute === 0 ? '00' : '30');
-
-    // Assuming you have a datepicker input
-    $('#datepicker').on('change', function() {
-        var selectedDate = new Date($(this).val()); // assuming the date format is 'yyyy-mm-dd'
-        var minTimeValue = '11:30 AM'; // Default minimum time
-        if (selectedDate.toDateString() === now.toDateString()) {
-            minTimeValue = currentTime;
-        }
-        $('#timepicker').timepicker('option', 'minTime', minTimeValue);
-    });
-
-    $('#timepicker').timepicker({
-        'minTime': '11:30 AM', // default value
-        'maxTime': '10:30 PM',
-        'showDuration': false
-    });
-
-    $('#timepicker').on('keypress', function() {
-        $(this).prop('readonly', true);
-        $(this).css('pointer-events', 'none');
-    });
-
-    $('#inputWrapper').on('click', function() {
-        $('#timepicker').prop('readonly', false);
-        $('#timepicker').css('pointer-events', 'auto');
-    });
-});
-
-
-
+      jQuery(document).ready(function($) {
+          $('#timepicker').timepicker({
+              'minTime': '11:30 AM',
+              'maxTime': '10:30 PM',
+              'showDuration': false
+          });
+      });
     </script>
   </body>
 </html>
