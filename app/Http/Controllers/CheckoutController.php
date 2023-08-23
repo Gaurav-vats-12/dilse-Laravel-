@@ -77,7 +77,7 @@ class CheckoutController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ];
-            UserAddressManageAlias::updateOrCreate(['user_id'=>$request->login_uer_id],$user_address );
+            UserAddressManageAlias::updateOrCreate(['user_id'=>$user_id],$user_address );
         }
 
         $order_id = Order::insertGetId([
@@ -120,10 +120,6 @@ class CheckoutController extends Controller
             ];
             Payments::insert($paymnet_status);
             Session::forget('cart');
-
-            // $notification = \Notification::send('bheemexoticait@gmail.com', new OrderPermissionNotificationToAdmin(['type' => 'New Booking','body' => 'A new order has been placed with the following details: Order ID: #'.$order_id.' Customer Name: '.$request->billing_full_name.' Customer Email: '.$request->billing_email.' Please log in to the admin panel to view and process the order.' , 'thanks' => 'Thank you', 'notification_url' => url('/admin/order/view/'.$order_id.''),'notification_uuid' => \Str::random(10),'notification_date'=>date('Y-m-d H:i:s')]));
-
-            // dd('pay_on_delivery',$notification);
 
             return redirect(route('order_confirm' ,$order_id))->withToastSuccess('Order Placed Successfully');
         }elseif ($request->payment_method == 'pay_on_store'){
