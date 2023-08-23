@@ -43,7 +43,7 @@
               <div class="location">
                 <div class="under_location">
                   <div class="location_img">
-                    <img src="{{asset('frontend/img/location.png')}}" alt="" />
+                    <img src="{{asset('frontend/img/mobile.png')}}" alt="" />
                   </div>
                   <p>{{ setting('phone') != null ? setting('phone') : '' }}</p>
                 </div>

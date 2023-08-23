@@ -14,14 +14,15 @@
             <h3 class="{{ (request()->is('user/profile')) ? 'active' : '' }}">profile</h3>
         </a>
     </li>
-    <li class="menu_list_inner1 {{ (request()->is('user/profile')) ? 'active' : '' }}">
-        <a href="{{ route('user.profile.edit') }}">
-            <h3 class="{{ (request()->is('user/profile')) ? 'active' : '' }}">Change Password</h3>
-        </a>
-    </li>
+
     <li class="menu_list_inner1 {{ (request()->is('user/profile-address')) ? 'active' : '' }}">
         <a href="{{ route('user.profile.address') }}">
             <h3 class="{{ (request()->is('user/profile-address')) ? 'active' : '' }}">Address</h3>
+        </a>
+    </li>
+    <li class="menu_list_inner1 {{ (request()->is('user/confirm-passwords')) ? 'active' : '' }}">
+        <a href="{{ route('user.confirm-passwords') }}">
+            <h3 class="{{ (request()->is('user/confirm-passwords')) ? 'active' : '' }}">Change Password</h3>
         </a>
     </li>
     <li class="menu_list_inner1">

@@ -179,12 +179,12 @@ header.main_header {
     display: inline-block;
 }
 
-.site_logo {
+/* .site_logo {
     position: absolute;
     left: 0;
     right: 0;
     text-align: center;
-}
+} */
 .wraper {
     min-height: 100vh;
 }
@@ -1495,7 +1495,7 @@ form.contact_form p {
     margin-bottom: 0;
 }
 form.contact_form a {
-    color: #eb0029;
+    /* color: #eb0029; */
     font-family: "Kalam";
     font-weight: 600;
 }
@@ -2356,7 +2356,7 @@ box-shadow: 3px 3px 5px #eb0029 !important;
 }
 .right_text {
       position: absolute;
-    right: 0;
+    right: 0px;
     top: 92px;
 }
 .right_text a {
@@ -2383,5 +2383,128 @@ li.logout {
 .login_header a {
     background: none;
     font-weight: 700;
-    margin-right: 60px;
+    /* margin-right: 60px; */
+}
+/* 23-8-23 */
+
+.custn_input{
+    position: relative;
+}
+.custn_input {
+    position: relative;
+}
+.custn_input  i.fa-solid.user_pass.fa-eye ,.custn_input  i.fa-solid.fa-eye.confirm_pass{
+    position: absolute;
+    top: 68%;
+    transform: translateY(-50%);
+    right: 15px;
+}
+.custn_input  i.fa-solid.user_pass.fa-eye-slash,.custn_input  i.fa-solid.confirm_pass.fa-eye-slash{
+    position: absolute;
+    top: 68%;
+    transform: translateY(-50%);
+    right: 15px;
+}
+
+div#staticBackdrop {
+    height: unset !important;
+}
+.verify_btn_email.underline {
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px 33px;
+    background: #eb0029;
+    border: 1px solid #eb0029;
+    text-align: center;
+    border-radius: 7px;
+    transition: all 0.3s;
+}
+button.inline-flex {
+    /* margin-top: 0px; */
+}
+.resend_second {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    gap: 20px;
+}
+.right_text:hover li.logout {
+    display: block;
+    position: absolute;
+    right: 0px;
+}
+.cart_btn .theme_btn {
+    padding: 20px;
+    padding: 11px 38px;
+    width: 100%;
+}
+
+li.admin_logot > a {
+    background: #d90d0d;
+    padding: 9px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 17px;
+}
+
+.logout  {
+position: absolute;
+}
+/* .logout a {
+    background: #fff !important;
+    color: #000 !important;
+    position: absolute;
+    width: 135px;
+    padding: 11px !important;
+    display: inline-block !important;
+} */
+li.admin_logot {
+    position: relative;
+}
+.logout a span {
+    color: #000;
+}
+.logout a  {
+    color: #000;
+    padding: 0px;
+}
+.logout {
+    position: absolute;
+    bottom: -35px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 5px;
+    width: 100px;
+    opacity: 0;
+    visibility: hidden;
+}
+li.admin_logot:hover .logout{
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5 ease-in all;
+}
+li.admin_logot a {
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+}
+li.admin_logot {
+    position: absolute;
+    right: 50px;
+    bottom: 38px;
+}
+
+button.inline-flex.items-center.px-4.py-2.bg-gray-800.border.border-transparent.rounded-md.font-semibold.text-xs.text-white.uppercase.tracking-widest.hover\:bg-gray-700.focus\:bg-gray-700.active\:bg-gray-900.focus\:outline-none.focus\:ring-2.focus\:ring-indigo-500.focus\:ring-offset-2.transition.ease-in-out.duration-150 {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 13px 38px;
+    background: #eb0029;
+    border: 1px solid #eb0029;
+    text-align: center;
+    border-radius: 7px;
+    transition: all 0.3s;
 }
