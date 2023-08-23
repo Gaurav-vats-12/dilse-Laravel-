@@ -8,6 +8,7 @@ use Illuminate\Foundation\Application;
 use App\Models\Order\Order;
 use Illuminate\Http\Request;
 use App\Models\Order\OrderItem;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -30,6 +31,20 @@ class HomeController extends Controller
     public function giftCard(){
         return view('Pages.gift-card');
     }
+
+    public function sendEmail() {
+
+        $recipientEmail = 'shaurya.dograexoticait@gmail.com';
+        $subject = 'Subject of the Email';
+        $message = 'This is the content of the email.';
+    
+        Mail::raw($message, function ($mail) use ($recipientEmail, $subject) {
+            $mail->to($recipientEmail);
+            $mail->subject($subject);
+        });
+    
+        return "Email sent successfully!";
+     }
 
     /**
      * @param $id
