@@ -22,7 +22,7 @@ class StoreBookingTable extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50',
+            'name' => 'required|max:20',
             'email' => 'required|email',
             'date' => 'required',
             'time' => 'required',

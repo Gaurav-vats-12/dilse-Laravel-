@@ -87,6 +87,11 @@
   <script>
 
 jQuery(document).ready(function($) {
+    setTimeout(function() {
+        $('.swal2-container.swal2-top-end.swal2-backdrop-show').hide();
+    }, 5000); // 5000 milliseconds or 5 seconds
+
+
     $('#timepicker').timepicker({
         'minTime': '11:30 AM',
         'maxTime': '10:30 PM',
