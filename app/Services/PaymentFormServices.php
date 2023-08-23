@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use Stripe\Charge;
+use Stripe\Charge as ChargeAlias;
 use Stripe\Exception\ApiErrorException;
 use Stripe\Stripe;
 
@@ -18,6 +18,7 @@ class PaymentFormServices{
     protected $paymentForm;
 
     public function PaymentForm($request){
+
         $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
         if(AuthAlias::guard('user')->check()){
 
@@ -61,13 +62,14 @@ class PaymentFormServices{
             $payment_json = null;
             $payment_id = Str::random(10);
         }else{
+
             Stripe::setApiKey(Config::get('stripe.api_keys.secret_key', ''));
             try {
-                $stripe_paymnet = Charge::create([
+                $stripe_paymnet = ChargeAlias::create([
                     "amount" => round($request->tototal_amount * 100, 2),
                     "currency" => "usd",
                     "description" => "Dilse Payment",
-                    "source" => $request->stripeToken,
+                    "source" =>$request->stripeToken,
                     'metadata' => [
                         'customer_name' => $request->billing_first_name . ' ' . $request->billing_last_name,
                         'customer_address' => $request->billing_address_1 . ',' . $request->billing_address_2 . ',' . $request->billing_country . ',' . $request->billing_state . ',' . $request->billing_city . ',' . $request->billing_postcode,
@@ -78,12 +80,12 @@ class PaymentFormServices{
                 $payment_json = json_encode($stripe_paymnet);
                 $payment_status = 'Paid';
             } catch (ApiErrorException $e) {
+                return $e;
                 $payment_id = Str::random(10);
                 $payment_method = 'Pay On Online (Stripe)';
                 $payment_json = null;
                 $payment_status = 'failed';
             }
-
         }
 
         $payment_status = [

@@ -230,6 +230,7 @@ function stripePayment_Form(StripekEY){
         jQuery(".theme_btn").attr("disabled", true);
         jQuery(".btn-txt").text("Processing ...");
         const {token, error} = await stripe.createToken(cardNumberElement);
+        console.log(token)
        try {
            setOutcome(token);
            const hiddenInput = document.createElement('input');
