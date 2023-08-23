@@ -46,6 +46,7 @@ RouteAlias::get('/thank-you/{id}', [HomeControllerAlias::class, 'order_confirm']
 // Booking  a Reservation
 RouteAlias::get('/book-a-reservation', [BookingControllerAlias::class, 'bookATable'])->name('booktable');
 
+RouteAlias::get('/send', [HomeControllerAlias::class, 'sendEmail']);
 
 
 
