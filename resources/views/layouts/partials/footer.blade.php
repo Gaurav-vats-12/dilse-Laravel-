@@ -26,7 +26,7 @@
               <ul>
             @foreach ( Menuhelper() as $key => $menu )
             @if ($key < 5)
-            <li><a href="#" menu_slug ="{{ __(ucfirst( $menu->menu_slug)) }}">{{ __(ucfirst( $menu->menu_name)) }}</a></li>
+            <li><a href="{{url('menu',$menu->menu_slug)}}" menu_slug ="{{ __(ucfirst( $menu->menu_slug)) }}">{{ __(ucfirst( $menu->menu_name)) }}</a></li>
             @endif
             @endforeach
             </ul>
@@ -85,6 +85,13 @@
 
   @include('layouts.partials.footer_scripts')
   <script>
+      jQuery(document).ready(function($) {
+          $('#timepicker').timepicker({
+              'minTime': '11:30 AM',
+              'maxTime': '10:30 PM',
+              'showDuration': false
+          });
+      });
 
 jQuery(document).ready(function($) {
     setTimeout(function() {
@@ -141,8 +148,6 @@ $('#timepicker').timepicker({
         $('#timepicker').css('pointer-events', 'auto');
     });
 });
-
-
 
     </script>
   </body>
