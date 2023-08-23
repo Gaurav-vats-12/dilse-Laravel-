@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Booking;
 
 use Illuminate\Foundation\Http\FormRequest;
+//use Carbon\Carbon;
 
 class StoreBookingTable extends FormRequest
 {
@@ -24,10 +25,15 @@ class StoreBookingTable extends FormRequest
         return [
             'name' => 'required|max:20',
             'email' => 'required|email',
-            'date' => 'required|date|after:today',
+            'date' => 'required|date|after:yesterday',
             'time' => 'required',
             'phone' => 'required|min:10|max:10',
             'select_part' => 'required',
         ];
     }
 }
+
+
+
+
+
