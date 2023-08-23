@@ -229,7 +229,6 @@ function stripePayment_Form(StripekEY){
         jQuery(".spinner-border").removeClass("d-none");
         jQuery(".theme_btn").attr("disabled", true);
         jQuery(".btn-txt").text("Processing ...");
- 
         const {token, error} = await stripe.createToken(cardNumberElement);
        try {
            setOutcome(token);
