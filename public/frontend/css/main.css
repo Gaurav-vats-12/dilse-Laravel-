@@ -2494,3 +2494,17 @@ li.admin_logot {
     right: 50px;
     bottom: 38px;
 }
+
+button.inline-flex.items-center.px-4.py-2.bg-gray-800.border.border-transparent.rounded-md.font-semibold.text-xs.text-white.uppercase.tracking-widest.hover\:bg-gray-700.focus\:bg-gray-700.active\:bg-gray-900.focus\:outline-none.focus\:ring-2.focus\:ring-indigo-500.focus\:ring-offset-2.transition.ease-in-out.duration-150 {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 13px 38px;
+    background: #eb0029;
+    border: 1px solid #eb0029;
+    text-align: center;
+    border-radius: 7px;
+    transition: all 0.3s;
+}
