@@ -1,6 +1,8 @@
 jQuery(document).ready(function () {
-    jQuery( "#datepicker" ).datepicker();
-
+   // jQuery( "#datepicker" ).datepicker();
+   $('#datepicker').datepicker({
+    minDate: 0 // 0 will disable all past dates
+});
     /**
      * Subscribe Our Newsletter Submission Form Ajax (Home Page)
      */
