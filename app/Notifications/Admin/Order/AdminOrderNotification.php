@@ -20,7 +20,6 @@ class AdminOrderNotification extends Notification
     {
         $this->adminOrderNotification = $adminOrderNotification;
     }
-
     /**
      * Get the notification's delivery channels.
      *
@@ -28,7 +27,7 @@ class AdminOrderNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database' ,'mail'];
+        return ['database'];
     }
 
     /**

@@ -53,8 +53,8 @@ class ContactNotification extends Mailable
 
     public function build()
     {
-        return $this->from($this->contactData['email'])
-                    ->subject('New Contact Form Submission')
+        return $this->from('noreply@mailsender.ca')
+            ->subject('New Contact Form Submission')
                     ->with('contactData', $this->contactData);
     }
 }

@@ -7,7 +7,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use App\Models\Order\Order;
 use Illuminate\Http\Request;
-use App\Models\Order\OrderItem;
 
 class HomeController extends Controller
 {
