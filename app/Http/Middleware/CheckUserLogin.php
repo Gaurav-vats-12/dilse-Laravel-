@@ -16,7 +16,7 @@ class CheckUserLogin
     public function handle(Request $request, Closure $next): Response
     {
         if(isset($request->server)){
-            if($request->server->all()['HTTP_REFERER'] == url('cart')){
+            if(isset($request->server->all()['HTTP_REFERER']) && $request->server->all()['HTTP_REFERER'] == url('cart') ){
                 return redirect()->intended('/checkout');
             }
         }
