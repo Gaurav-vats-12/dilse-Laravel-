@@ -39,13 +39,18 @@
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'password-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('You Password is Saved.') }}</p>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+               <script>
+                Swal.fire({
+    title: 'Success!',
+    text: 'Your Password is Saved.',
+    icon: 'success',
+    timer: 2000, // close after 2 seconds
+    showConfirmButton: false
+});
+
+                </script>
             @endif
         </div>
     </form>
