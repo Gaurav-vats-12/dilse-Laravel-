@@ -9,19 +9,19 @@
             <ul class="payment-metho-radio d-flex">
                 <li>
                     <div class="radio-item_1">
-                        <input id="pay_on_delivery" value="Pay On  Delivery"  class="payment_option" name="payment_method" type="radio" {{ old('payment_method') == 'pay_on_delivery' ? 'checked' : '' }} checked>
+                        <input id="pay_on_delivery"  paymentType = "Pay On  Delivery"  value="PayOnDelivery"  class="payment_option" name="payment_method" type="radio" {{ old('payment_method') == 'pay_on_delivery' ? 'checked' : '' }} checked>
                         <label for="pay_on_delivery" class="radio-label_1">Pay In Delivery</label>
                     </div>
                 </li>
                 <li>
                     <div class="radio-item_1">
-                        <input id="pay_on_store" value="Pay On Store"  class="payment_option" name="payment_method" type="radio" {{ old('payment_method') == 'pay_on_store' ? 'checked' : '' }}>
+                        <input id="pay_on_store" paymentType = "Pay On Store"  value="PayOnStore"  class="payment_option" name="payment_method" type="radio" {{ old('payment_method') == 'pay_on_store' ? 'checked' : '' }}>
                         <label for="pay_on_store" class="radio-label_1">Pay In Store</label>
                     </div>
                 </li>
                 <li>
                     <div class="radio-item_1">
-                        <input id="payonline" value="Pay On Online (Stripe)" class="payment_option"  name="payment_method" type="radio" {{ old('payment_method') == 'payonline' ? 'checked' : '' }}>
+                        <input id="payonline" paymentType = "Pay On Online (Stripe)" value="PayOnOnline" class="payment_option"  name="payment_method" type="radio" {{ old('payment_method') == 'payonline' ? 'checked' : '' }}>
                         <label for="payonline" class="radio-label_1">Pay Online</label>
                     </div>
                 </li>
