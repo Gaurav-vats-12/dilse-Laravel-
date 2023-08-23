@@ -17,7 +17,6 @@
         <span>CVC</span>
         <div id="card-cvc-element" class="field"></div>
       </label>
-     
     </div>
     <div class="outcome">
       <div class="error"></div>

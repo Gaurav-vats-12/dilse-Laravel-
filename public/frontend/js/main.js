@@ -274,7 +274,8 @@ jQuery(document).ready(function () {
         jQuery('.payment_form'). attr('id', 'payment-form');
         jQuery('#stripe_paymnet_form').css('display','none');
         jQuery(document).on("click", ".payment_option", async function (event) {
-            let payment_value = jQuery('input[name="payment_method"]:checked').val();
+            let payment_value = jQuery('input[name="payment_method"]:checked').attr('paymentType');
+            console.log(payment_value)
             if (payment_value ==='Pay On Online (Stripe)') {
                 stripePayment_Form(jQuery(`#StripeKey`).val());
                 jQuery('#payment-form').addClass('stripe_form');

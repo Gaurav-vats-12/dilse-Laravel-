@@ -18,6 +18,7 @@ class PaymentFormServices{
     protected $paymentForm;
 
     public function PaymentForm($request){
+        return $request->all();
 
         $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
         if(AuthAlias::guard('user')->check()){
@@ -50,7 +51,7 @@ class PaymentFormServices{
         ];
         OrderItemsAlias::insert($cart_datals);
         if ($request->payment_method == 'Pay On  Delivery') {
-          $payment_method = 'Pay On  Delivery';
+          $payment_method = 'PayOnDelivery';
           $payment_status = 'pending';
           $payment_id = Str::random(10);
             $payment_json = null;
@@ -58,12 +59,11 @@ class PaymentFormServices{
 
 
         } elseif ($request->payment_method == 'Pay On Store') {
-            $payment_method = 'Pay On Store';
+            $payment_method = 'PayOnStore';
             $payment_status = 'pending';
             $payment_json = null;
             $payment_id = Str::random(10);
             $payment_message = "Payment  Successfully";
-
         }else{
 
             Stripe::setApiKey(Config::get('stripe.api_keys.secret_key', ''));
@@ -79,7 +79,7 @@ class PaymentFormServices{
                     ],
                 ]);
                 $payment_id = Str::random(10);
-                $payment_method = 'Pay On Online (Stripe)';
+                $payment_method = 'PayOnOnline';
                 $payment_json = json_encode($stripe_paymnet);
                 $payment_status = 'Paid';
                 $payment_message = "Payment  Successfully";
