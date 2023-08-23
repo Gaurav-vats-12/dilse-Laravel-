@@ -3,6 +3,28 @@ jQuery(document).ready(function () {
    $('#datepicker').datepicker({
     minDate: 0 // 0 will disable all past dates
 });
+$('i.fa-solid.fa-eye.user_pass').click(function() {
+    // Check the current type of password input
+    if ($('#password').attr('type') === 'password') {
+        $('#password').attr('type', 'text');
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
+    } else {
+        $('#password').attr('type', 'password');
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
+    }
+});
+
+$('i.fa-solid.fa-eye.confirm_pass').click(function() {
+    var $passwordField = $('#password_confirmation');
+
+    if ($passwordField.attr('type') === 'password') {
+        $passwordField.attr('type', 'text');
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
+    } else {
+        $passwordField.attr('type', 'password');
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
+    }
+});
     /**
      * Subscribe Our Newsletter Submission Form Ajax (Home Page)
      */
