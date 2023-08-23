@@ -37,9 +37,9 @@
     </div>
 </div>
 <div class="col-md-12">
-    <div class="cusstom_input">
+    <div class="cusstom_input 53454">
     <label for="billing_postcode" class="">Postal code&nbsp;<span class="required" title="required">*</span></label>
-        <input type="text" placeholder="10000"  maxleangh = "8" id="billing_postcode" name="billing_postcode"  value="{{ (Auth::guard('user')->check() && Auth::guard('user')->user()->addresses )? old('billing_postcode',Auth::guard('user')->user()->addresses->pincode)  : old('billing_postcode') }}" >
+        <input type="text" placeholder="10000" maxlength="7"  id="billing_postcode" name="billing_postcode"  value="{{ (Auth::guard('user')->check() && Auth::guard('user')->user()->addresses )? old('billing_postcode',Auth::guard('user')->user()->addresses->pincode)  : old('billing_postcode') }}" >
     </div>
 </div>
 

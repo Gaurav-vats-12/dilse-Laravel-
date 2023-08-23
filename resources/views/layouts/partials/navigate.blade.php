@@ -71,12 +71,37 @@
                   <option>Toronto</option>
                   <option >Bramptonn</option>
                </select></li>
+               @if(Auth::guard('user')->check())
+               <li class="admin_logot">
 
+                       <a href="{{route('user.dashboard')}}">
+                           <span>
+                           {!! \Illuminate\Support\Str::limit(strip_tags(Auth::guard('user')->user()->name), 8) !!}
+                         </span>
+                       </a>
+                       <div class="logout">
+                       <form method="POST" action="{{ route('user.logout') }}">  @csrf
+                        <x-responsive-nav-link  :href="route('user.logout')"
+                                                onclick="event.preventDefault();
+                    this.closest('form').submit();" class="dropdown-item py-1 d-flex align-items-center justify-content-between">
+                            <span> {{ __('Log Out') }}</span>
+                    </form>
+                    </x-responsive-nav-link>
+                </div>
+                    </li>
+
+               @else
+               <li class="login_header">
+                   <a href="{{route('user.login')}}">
+                       <span>Login</span>
+                   </a>
+               @endif
+             </li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="right_text">
+        {{-- <div class="right_text">
             <ul>  @if(Auth::guard('user')->check())
                   <li class="">
 
@@ -105,6 +130,6 @@
 
 
               </ul>
-        </div>
+        </div> --}}
       </div>
     </header>

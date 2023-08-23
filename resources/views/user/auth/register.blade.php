@@ -36,6 +36,7 @@
                     <div class="custn_input">
                     <x-input-label for="password" :value="__('Password')" />
                     <x-text-input id="password"  placeholder="Enter your password" class="block mt-1 w-full" type="password" name="password"   autocomplete="new-password" />
+                    <i class="fa-solid fa-eye user_pass"></i>
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                       </div>
                     </div>
@@ -43,6 +44,7 @@
                     <div class="custn_input">
                     <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
                     <x-text-input id="password_confirmation" placeholder="Enter your confirm password" class="block mt-1 w-full" type="password"  name="password_confirmation" required autocomplete="new-password" />
+                    <i class="fa-solid fa-eye confirm_pass"></i>
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                       </div>
                     </div>
