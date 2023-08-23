@@ -287,7 +287,8 @@ function payment_intergation(StripekEY) {
             }
         },
         submitHandler: async function (form, event) {
-            let payment_value = jQuery('input[name="payment_method"]:checked').val();
+            let payment_value = jQuery('input[name="payment_method"]:checked').attr('paymentType');
+            console.log(payment_value)
             event.preventDefault();
             if (payment_value ==='Pay On Online (Stripe)') {
             }else{
@@ -295,7 +296,7 @@ function payment_intergation(StripekEY) {
                 jQuery(".theme_btn").attr("disabled", true);
                 jQuery(".btn-txt").text("Processing ...");
                 event.preventDefault();
-                document.getElementById('payment-form').submit();
+                 document.getElementById('payment-form').submit();
             }
         }
     });
