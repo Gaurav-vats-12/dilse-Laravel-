@@ -52,7 +52,7 @@
             <div class="menu_left">
               <ul>
                 <li><a href="{{ url('/')}}">Home</a></li>
-                <li><a href="{{ route('menu') }}">Menu</a></li>
+                <li><a href="{{ route('menu','appetizers') }}">Menu</a></li>
                 <li><a href="{{url('about-us')}}">About Us</a></li>
                <li><a href="{{url('blog')}}">Blog</a></li>
               </ul>

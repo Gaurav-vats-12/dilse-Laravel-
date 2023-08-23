@@ -36,9 +36,9 @@ RouteAlias::get('/discount-and-coupons', [HomeControllerAlias::class, 'giftCard'
 RouteAlias::get('/blog', [BlogControllerAlias::class, 'blog'])->name('blog');
 RouteAlias::get('/blog/{slug}', [BlogControllerAlias::class, 'blogdetails'])->name('blogdetails');
 // Menu Page
-RouteAlias::get('/menu', [MenuControllerAlias::class, 'menu'])->name('menu');
+RouteAlias::get('/menu/{slug}', [MenuControllerAlias::class, 'menu'])->name('menu');
 
-RouteAlias::get('/menu/{slug}', [MenuControllerAlias::class, 'menudetails'])->name('menudetails');
+RouteAlias::get('/product/{slug}', [MenuControllerAlias::class, 'menudetails'])->name('menudetails');
 
 //Thank You, Page
 RouteAlias::get('/thank-you/{id}', [HomeControllerAlias::class, 'order_confirm'])->name('order_confirm');

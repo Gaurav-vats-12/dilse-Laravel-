@@ -136,73 +136,75 @@ async function state_dependency_country_list(ajax_post, url) {
     jQuery(`#billing_state`).empty().html(response);
 }
 
-function stripe_payment_intergation(StripekEY) {
+function stripePayment_Form(StripekEY){
+    localStorage.clear();
     let stripe = Stripe(StripekEY);
-    var elements = stripe.elements();
 
-    var style = {
-      base: {
-        iconColor: '#666EE8',
-        color: '#31325F',
-        lineHeight: '40px',
-        fontWeight: 300,
-        fontFamily: 'Helvetica Neue',
-        fontSize: '15px',
+    let elements = stripe.elements();
 
-        '::placeholder': {
-          color: '#00000',
+    let style = {
+        base: {
+            iconColor: '#666EE8',
+            color: '#31325F',
+            lineHeight: '40px',
+            fontWeight: 300,
+            fontFamily: 'Helvetica Neue',
+            fontSize: '15px',
+
+            '::placeholder': {
+                color: '#00000',
+            },
         },
-      },
     };
 
-    var cardNumberElement = elements.create('cardNumber', {
+    let cardNumberElement = elements.create('cardNumber', {
         style: style
-      });
-      cardNumberElement.mount('#card-number-element');
+    });
+    cardNumberElement.mount('#card-number-element');
 
-      var cardExpiryElement = elements.create('cardExpiry', {
+    let cardExpiryElement = elements.create('cardExpiry', {
         style: style
-      });
-      cardExpiryElement.mount('#card-expiry-element');
+    });
+    cardExpiryElement.mount('#card-expiry-element');
 
-      var cardCvcElement = elements.create('cardCvc', {
+    let cardCvcElement = elements.create('cardCvc', {
         style: style
-      });
-      cardCvcElement.mount('#card-cvc-element');
+    });
+    cardCvcElement.mount('#card-cvc-element');
 
-      function setOutcome(result) {
-        var successElement = document.querySelector('.success');
-        var errorElement = document.querySelector('.error');
+    function setOutcome(result) {
+        let successElement = document.querySelector('.success');
+        let errorElement = document.querySelector('.error');
         successElement.classList.remove('visible');
         errorElement.classList.remove('visible');
 
         if (result.token) {
-          // In this example, we're simply displaying the token
-          successElement.querySelector('.token').textContent = result.token.id;
-          successElement.classList.add('visible');
+            // In this example, we're simply displaying the token
+            successElement.querySelector('.token').textContent = result.token.id;
+            successElement.classList.add('visible');
 
-          // In a real integration, you'd submit the form with the token to your backend server
-          //var form = document.querySelector('form');
-          //form.querySelector('input[name="token"]').setAttribute('value', result.token.id);
-          //form.submit();
+            // In a real integration, you'd submit the form with the token to your backend server
+            //var form = document.querySelector('form');
+            //form.querySelector('input[name="token"]').setAttribute('value', result.token.id);
+            //form.submit();
         } else if (result.error) {
-          errorElement.textContent = result.error.message;
-          errorElement.classList.add('visible');
+            errorElement.textContent = result.error.message;
+            errorElement.classList.add('visible');
         }
-      }
+    }
 
-      var cardBrandToPfClass = {
-          'visa': 'pf-visa',
+    let cardBrandToPfClass = {
+        'visa': 'pf-visa',
         'mastercard': 'pf-mastercard',
         'amex': 'pf-american-express',
         'discover': 'pf-discover',
         'diners': 'pf-diners',
         'jcb': 'pf-jcb',
         'unknown': 'pf-credit-card',
-      }
+    }
 
-      function setBrandIcon(brand) {
-          var brandIconElement = document.getElementById('brand-icon');
+    function setBrandIcon(brand) {
+        var brandIconElement = document.getElementById('brand-icon');
         var pfClass = 'pf-credit-card';
         if (brand in cardBrandToPfClass) {
             pfClass = cardBrandToPfClass[brand];
@@ -212,42 +214,89 @@ function stripe_payment_intergation(StripekEY) {
         }
         brandIconElement.classList.add('pf');
         brandIconElement.classList.add(pfClass);
-      }
+    }
 
-      cardNumberElement.on('change', function(event) {
-          // Switch brand logo
-          if (event.brand) {
+    cardNumberElement.on('change', function(event) {
+        // Switch brand logo
+        if (event.brand) {
             setBrandIcon(event.brand);
         }
 
-          setOutcome(event);
-      });
-
-
+        setOutcome(event);
+    });
     let form = document.getElementById('stripe_form');
-    document.querySelector('form').addEventListener('submit', async function(e) {
-        e.preventDefault();
+    jQuery(document).on("submit","#stripe_form",async function(e) {
+        jQuery(".spinner-border").removeClass("d-none");
+        jQuery(".theme_btn").attr("disabled", true);
+        jQuery(".btn-txt").text("Processing ...");
+        const {token, error} = await stripe.createToken(cardNumberElement);
+        console.log(token)
+       try {
+           setOutcome(token);
+           const hiddenInput = document.createElement('input');
+           hiddenInput.setAttribute('type', 'hidden');
+           hiddenInput.setAttribute('name', 'stripeToken');
+           hiddenInput.setAttribute('id', 'stripeToken');
+           hiddenInput.setAttribute('value', token.id);
+           document.getElementById('stripe_form').appendChild(hiddenInput);
+           document.getElementById('stripe_form').submit();
+       }catch (error) {
 
-        var options = {
-          address_zip: document.getElementById('postal-code').value,
-        };
-        const {token, error} = await stripe.createToken(cardNumberElement, options);
-        console.log(token,error);
 
-
-        if (error) {
-        } else {
-
-            setOutcome(token);
-            const hiddenInput = document.createElement('input');
-            hiddenInput.setAttribute('type', 'hidden');
-            hiddenInput.setAttribute('name', 'stripeToken');
-            hiddenInput.setAttribute('value', token.id);
-            document.getElementById('stripe_form').appendChild(hiddenInput);
-            document.getElementById('stripe_form').submit();
+       }
+    });
+}
+function payment_intergation(StripekEY) {
+    jQuery(".payment_form").validate({
+        rules: {
+            billing_full_name: {
+                required: true,
+                maxlength: 50,
+            }, billing_phone: {
+                required: true,
+            }, billing_email: {
+                required: true,
+                email: true,
+            }, billing_address_1: {
+                required: true,
+                maxlength: 200,
+            }, billing_city: {
+                required: true,
+                maxlength: 100,
+            }, billing_postcode: {
+                required: true,
+            }
+        },
+        messages: {
+            billing_full_name: {
+                required: "Please Enter the Billing Full Name",
+                maxlength: "Billig Full Name must be max 50 letter"
+            }, billing_phone: {
+                required: "Please Enter the Billing Phone Number",
+            }, billing_email: {
+                required: "Please Enter the Billing Email Address",
+                maxlength: "Billing Email Address Must be Email address"
+            }, billing_address_1: {
+                required: "Please Enter the Billing Address",
+                maxlength: "Billig Phone Number must be max 200 letter"
+            }, billing_city: {
+                required: "Please Enter the Billing City",
+                maxlength: "Billig Phone Number must be max 100 letter"
+            }, billing_postcode: {
+                required: "Please Enter the Billing Pin Code",
+            }
+        },
+        submitHandler: async function (form, event) {
+            let payment_value = jQuery('input[name="payment_method"]:checked').val();
+            event.preventDefault();
+            if (payment_value ==='Pay On Online (Stripe)') {
+            }else{
+                jQuery(".spinner-border").removeClass("d-none");
+                jQuery(".theme_btn").attr("disabled", true);
+                jQuery(".btn-txt").text("Processing ...");
+                event.preventDefault();
+                document.getElementById('payment-form').submit();
+            }
         }
-      });
-
-
-
+    });
 }
