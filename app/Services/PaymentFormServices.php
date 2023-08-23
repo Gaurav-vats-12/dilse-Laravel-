@@ -29,7 +29,6 @@ class PaymentFormServices{
             'full_name' => $request->billing_full_name,
             'email_address' => $request->billing_email,
             'phone_number' => $request->billing_phone,
-             'delivery_charge' => $request->delivery_charge,
             'shipping_address' => $request->billing_address_1 .','. $request->billing_address_2.','. $request->billing_country.','. $request->billing_state.','. $request->billing_city.','. $request->billing_postcode,
             'billing_address' => $request->billing_address_1 .','. $request->billing_address_2.','. $request->billing_country.','. $request->billing_state.','. $request->billing_city.','. $request->billing_postcode,
             'total_amount' => round($request->tototal_amount ,2),
@@ -93,7 +92,8 @@ class PaymentFormServices{
                 $payment_message = "Payment Not Successfully";
             }
         }
-        $payment_status = [
+
+        Payments::insert([
             'payment_id'=>$payment_id,
             'order_id'=>$order_id,
             'payment_amount'=>round($request->tototal_amount ,2),
@@ -103,8 +103,7 @@ class PaymentFormServices{
             'payment_date'=> date("Y-m-d H:i:s"),
             'created_at' => now(),
             'updated_at' => now()
-        ];
-        Payments::insert($payment_status);
+        ]);
         Session::forget('cart');
         Session::forget('order_type');
        return  ['code' => 200 , 'order_id'=>$order_id ,'payment_id'=>$payment_id, 'status' =>true, "message"=> $payment_message];

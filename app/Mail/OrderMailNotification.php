@@ -53,7 +53,8 @@ class OrderMailNotification extends Mailable
 
     public function build()
     {
-        return $this->from($this->orderMail['Response']->billing_email)
+
+        return $this->from('noreply@mailsender.ca')
             ->subject('Booking Confirmation')
             ->with('orderMail', $this->orderMail);
     }

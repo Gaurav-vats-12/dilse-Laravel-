@@ -48,7 +48,7 @@
 
                                                     <div class="remove_price">
                                                         <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
-                                                        <a class="theme_btn" href="javascript:void(0)" id ="remove_add_to_Cart" produc_id ="{{ $id }}">remove</a>
+                                                        <a class="theme_btn" href="javascript:void(0)" id ="remove_add_to_Cart" produc_id ="{{ $id }}">Remove</a>
                                                     </div>
                                                 </div>
                                             </li>

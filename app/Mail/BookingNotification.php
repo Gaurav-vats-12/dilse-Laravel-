@@ -53,7 +53,7 @@ class BookingNotification extends Mailable
 
     public function build()
     {
-        return $this->from($this->bookingData['email'])
+        return $this->from('noreply@mailsender.ca')
                     ->subject('Booking Confirmation')
                     ->with('bookingData', $this->bookingData);
     }
