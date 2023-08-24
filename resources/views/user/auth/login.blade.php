@@ -47,7 +47,7 @@
                     <button class="theme_btn">  {{ __('Log in') }}</button>
                   </div>
                       @if(strpos(URL::previous(),'cart'))
-                          <a class="proceed_ancho" href="{{route('checkout.view')}}"> Proceed to checkout As a Guest </a>
+                         <P class="proceed_ancho" >OR <a  href="{{route('checkout.view')}}"> As a Guest </a></P> 
                       @endif
                   <p>Don’t have an account?<span><a href="{{ route('user.register') }}">sign-up</a></span></p>
                 </form>
