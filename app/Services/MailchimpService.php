@@ -1,52 +1,59 @@
 <?php
 namespace App\Services;
-use DrewM\MailChimp\MailChimp;
-use MailchimpMarketing\ApiClient;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Http\JsonResponse;
 
 class MailchimpService
 {
-    protected $mailchimp;
+    protected $client;
+    protected $apiKey;
+    protected $dataCenter;
 
     public function __construct()
     {
-        $this->mailchimp = new MailChimp(config('services.mailchimp.api_key'));
+        $this->apiKey = config('services.mailchimp.api_key');
+        $this->dataCenter = substr($this->apiKey, strpos($this->apiKey, '-') + 1);
+        $this->client = new Client([
+            'base_uri' => "https://{$this->dataCenter}.api.mailchimp.com/3.0/",
+            'headers' => [
+                'Authorization' => 'Basic ' . base64_encode("username:{$this->apiKey}"),
+                'Content-Type' => 'application/json',
+            ],
+        ]);
 
-//        $this->mailchimp = new ApiClient();
-//       $mail =  $this->mailchimp->setConfig([
-//            'apiKey' => config('services.mailchimp.api_key'),
-//            'server' => config('services.mailchimp.server'), // Replace with your Mailchimp server prefix
-//        ]);
     }
 
-    public function subscribeToList($email, $listId)
+    public function subscribeToList($email, $listId): array
     {
-        if (!empty($this->mailchimp)) {
-            return  $this->mailchimp->post('lists/' . $listId . '/members', [
-                'email_address' => $email,
-                'status' => 'subscribed',
+        try {
+            $response = $this->client->post("lists/{$listId}/members", [
+                'json' => [
+                    'email_address' => $email,
+                    'status' => 'subscribed',
+                ],
             ]);
+            return ['code' => $response->getStatusCode() ,  'status' =>'success', "message"=>"Email Subscribe Successfully"];
+        } catch (GuzzleException $e) {
+            return  ['code' => $e->getCode() ,  'status' =>'error', "message"=>$e->getMessage()];
         }
-
-
-
-
-//        return $this->mailchimp->lists->addListMember($listId, [
-//            'email_address' => $email,
-//            'status' => 'subscribed',
-//        ]);
     }
 
     public function UnsubscribeToList( $email, $listId)
     {
-        if (!empty($this->mailchimp)) {
+        if (!empty($this->client)) {
             $subscriberHash = md5(strtolower($email));
-           return  $this->mailchimp->put("lists/$listId/members/$subscriberHash", [
-                'status' => 'unsubscribed',
-            ]);
+            try {
+                $resPonse =  $this->client->put("lists/$listId/members/$subscriberHash", [
+                    'status' => 'unsubscribed',
+                ]);
+                return ['code' => $resPonse->getStatusCode() ,  'status' =>'success', "message"=>"Email Subscribe UnSubScribed"];
+
+            } catch (GuzzleException $e) {
+                return  ['code' => $e->getCode() ,  'status' =>'error', "message"=>$e->getMessage()];
+            }
         }
     }
-
-
 
 }
 

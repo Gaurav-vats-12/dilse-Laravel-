@@ -18,7 +18,7 @@ class BookingNotification extends Mailable
      */
     public function __construct($bookingData)
     {
-        
+
         $this->bookingData = $bookingData;
     }
 
