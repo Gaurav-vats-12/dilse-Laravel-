@@ -3,7 +3,7 @@
 @section('title', 'User Verify Email')
 @section('frontcontent')
 <div class="login_wrapper">
-      <section class="about_se about_left_image py_8">
+      <section class="about_se about_left_image">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-md-6">
@@ -12,6 +12,7 @@
               </div>
             </div>
             <div class="col-md-6">
+              @if(Auth::guard('user')->check())<h6>Email: {{Auth::guard('user')->user()->email}}</h6> @endif
             <form method="POST" action="{{ route('user.verification.send') }}" class="contact_form">  @csrf
                   <div class="tittle_heading">
                   {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
