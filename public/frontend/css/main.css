@@ -2483,17 +2483,17 @@ li.admin_logot {
 li.admin_logot:hover .logout{
     visibility: visible;
     opacity: 1;
-    transition: 0.5 ease-in all;
+    transition: 0.5s ease-in all;
 }
 li.admin_logot a {
     padding: 8px 16px !important;
     font-size: 13px !important;
 }
-li.admin_logot {
+/* li.admin_logot {
     position: absolute;
     right: 50px;
     bottom: 38px;
-}
+} */
 
 button.inline-flex.items-center.px-4.py-2.bg-gray-800.border.border-transparent.rounded-md.font-semibold.text-xs.text-white.uppercase.tracking-widest.hover\:bg-gray-700.focus\:bg-gray-700.active\:bg-gray-900.focus\:outline-none.focus\:ring-2.focus\:ring-indigo-500.focus\:ring-offset-2.transition.ease-in-out.duration-150 {
     position: relative;
@@ -2507,4 +2507,10 @@ button.inline-flex.items-center.px-4.py-2.bg-gray-800.border.border-transparent.
     text-align: center;
     border-radius: 7px;
     transition: all 0.3s;
+}
+.error {
+    color: #d90d0d !important;
+    font-family: 'Abel', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
 }
