@@ -181,21 +181,22 @@ jQuery( function () {
         ]
         });
     }else if(url.indexOf("/booking") > -1){
-        var booking_ajx_file = jQuery('#booking_ajx_file').val();
         new DataTable('#manage_bookign_table',{
             "processing": true,
             "responsive": true,
             "serverSide": true,
             "searching": true,
-            "ajax": booking_ajx_file, // URL to fetch paginated data
+            "ajax": jQuery('#booking_ajx_file').val(), // URL to fetch paginated data
             "columns": [
+                { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                 { "data": "name" },
                 { "data": "email" },
                 { "data": "phone" },
                 { "data": "date" },
                 { "data": "persons" },
                 { "data": "comments" },
-            ],
+            ]
+
 
 
         });

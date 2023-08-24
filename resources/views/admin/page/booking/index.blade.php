@@ -27,6 +27,7 @@
                             <table id="manage_bookign_table" class="table table-bordered table-hover " >
                                 <thead>
                                     <tr>
+                               <th>S No </th>
                                 <th>FULL NAME</th>
                                 <th>EMAIL</th>
                                 <th>PHONE NUMBER </th>
