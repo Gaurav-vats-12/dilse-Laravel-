@@ -103,27 +103,20 @@
                                                 <strong>Sub Total :</strong>
                                             </div>
                                             <div class="col-8">
-                                                ${{$orders->total_amount}}
+                                                ${{$orders->sub_total}}
                                             </div>
                                         </div>
-{{--                                        <div class="row mt-3">--}}
-{{--                                            <div class="col-4">--}}
-{{--                                                <strong>Shipping Fees :</strong>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="col-8">--}}
-{{--                                                $300.00--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
+                                        <div class="row mt-3">
+                                          <div class="col-4">
+                                        <strong>Shipping Fees :</strong>
+                                      </div>
+                                <div class="col-8">
+                             ${{$orders->shipping_charge  }}
+                           </div>
+                        </div>
+                                  
 
-{{--                                        <div class="row mt-3">--}}
 
-{{--                                            <div class="col-4">--}}
-{{--                                                <strong>Coupon Discount :</strong>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="col-8">--}}
-{{--                                                $0.00--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
                                         <div class="row mt-3">
 
                                             <div class="col-4">

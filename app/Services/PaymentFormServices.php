@@ -19,7 +19,6 @@ class PaymentFormServices{
 
     /** @noinspection PhpUnreachableStatementInspection */
     public function PaymentForm($request){
-
         $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
         if(AuthAlias::guard('user')->check()){
             $user = AuthAlias::guard('user')->user();
@@ -29,6 +28,7 @@ class PaymentFormServices{
 //        $add =   $addressObject->Change_user_address($request ,$user_id);
 //        return $add;
         }
+
         $order_id = Order::insertGetId([
             'user_id' => $user_id,
             "order_date" => date("Y-m-d H:i:s"),
@@ -37,13 +37,15 @@ class PaymentFormServices{
             'phone_number' => $request->billing_phone,
             'shipping_address' => $request->billing_address_1 .','. $request->billing_address_2.','. $request->billing_country.','. $request->billing_state.','. $request->billing_city.','. $request->billing_postcode,
             'billing_address' => $request->billing_address_1 .','. $request->billing_address_2.','. $request->billing_country.','. $request->billing_state.','. $request->billing_city.','. $request->billing_postcode,
-            'total_amount' => round($request->tototal_amount ,2),
             'status'=> 'Pending',
             'order_type' => $request->order_type,
-            'shipping_charge' => round($request->shipping_charge ,2),
+            'sub_total' => round($request->sub_total ,2),
+            'shipping_charge' => round($request->delivery_charge ,2),
+            'total_amount' => round($request->tototal_amount ,2),
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
         $cart_datals = [];
         $cart = session()->get('cart', []);
         foreach ($cart as $key => $details) $cart_datals[] = [
