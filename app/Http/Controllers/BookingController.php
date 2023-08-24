@@ -5,6 +5,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Str;
 use Notification;
 use App\Modules\Admins\Models\Admin;
 use App\Notifications\BookingNotificationToAdmin;
@@ -14,7 +15,6 @@ use App\Models\Booking;
 use Carbon\Carbon;
 use App\Mail\BookingNotification;
 use Illuminate\Http\Request;
-use Str;
 use Yajra\DataTables\Facades\DataTables;
 
 class BookingController extends Controller
@@ -44,7 +44,9 @@ class BookingController extends Controller
     {
         if ($request->ajax()) {
             $users =  Booking::orderBy("id", "ASC"); // Replace 'User' with your model
-            return DataTables::of($users)->make(true);
+            return DataTables::of($users)->editColumn('comments', function ($users) {
+                return Str::limit($users->comments, 50);
+            })->addIndexColumn()->make(true);
         }
         return view('admin.page.booking.index');
     }
