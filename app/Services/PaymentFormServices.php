@@ -18,8 +18,6 @@ class PaymentFormServices{
     protected $paymentForm;
 
     public function PaymentForm($request){
-//        return $request->all();
-
         $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
         if(AuthAlias::guard('user')->check()){
 
