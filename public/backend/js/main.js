@@ -188,7 +188,7 @@ jQuery( function () {
             "searching": true,
             "ajax": jQuery('#booking_ajx_file').val(), // URL to fetch paginated data
             "columns": [
-                { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+                { "data": "id" },
                 { "data": "name" },
                 { "data": "email" },
                 { "data": "phone" },
@@ -196,6 +196,7 @@ jQuery( function () {
                 { "data": "persons" },
                 { "data": "comments" },
             ]
+
 
 
 
