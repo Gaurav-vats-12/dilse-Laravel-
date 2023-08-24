@@ -14,26 +14,15 @@ class AdminController extends Controller
 {
 
     public function dashboard(){
-        $orderCount = Order::count();
-        $foodItemCount = FoodItem::count();
-        $UserCount = User::count();
-        $SubsribeCount = Subscriber::count();
-        $totalBookings = Booking::count();
+
 
     return view('admin.dashboard', [
-        'orderCount' => $orderCount,
-        'foodItemCount' => $foodItemCount,
-        'UserCount' => $UserCount,
-        'SubsribeCount' =>$SubsribeCount,
-        'totalBookings' => $totalBookings
+        'orderCount' =>Order::count(),
+        'foodItemCount' => FoodItem::count(),
+        'UserCount' =>  User::count(),
+        'SubsribeCount' =>Subscriber::where('status','subscribed')->count(),
+        'totalBookings' =>  Booking::count()
     ]);
     }
 
-  public function show($id ){
-    $email_addresss = Subscriber::findOrFail($id);
-    $email_address = $email_addresss->email_address;
-    $mailchimp = new MailchimpService();
-    $UserCount = $mailchimp->UnsubscribeToList($email_address, env('MAILCHIMP_API_KEY'));
-    return view('admin.manage-subscriber-view', ['id' => $id]);
- }
 }
