@@ -1463,10 +1463,8 @@ img.mfp-img {
     background-color: #fcebb9;
     padding-top: 120px;
 }
-a.proceed_ancho {
+.proceed_ancho {
     font-size: 22px;
-    margin-top: 20px;
-    text-align: center;
 }
 
 .tittle_heading span {
