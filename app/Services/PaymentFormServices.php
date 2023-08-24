@@ -86,7 +86,7 @@ class PaymentFormServices{
             } catch (ApiErrorException $e) {
                 return $e;
                 $payment_id = Str::random(10);
-                $payment_method = 'Pay On Online (Stripe)';
+                $payment_method = 'PayOnOnline';
                 $payment_json = null;
                 $payment_status = 'failed';
                 $payment_message = "Payment Not Successfully";
