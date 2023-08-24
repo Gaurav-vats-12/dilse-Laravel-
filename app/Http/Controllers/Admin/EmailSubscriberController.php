@@ -28,7 +28,8 @@ class EmailSubscriberController extends Controller
             'status'=>'unsubscribed',
             'updated_at' => now()
         ]);
-        return redirect()->back()->withToastSuccess('Unsubscribe Successfully');
+            return redirect(route('admin.manage-subscribers.index' ))->withToastSuccess('Unsubscribe Successfully');
+
     }
     }
 
