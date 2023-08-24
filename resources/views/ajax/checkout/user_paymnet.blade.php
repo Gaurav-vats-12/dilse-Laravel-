@@ -46,8 +46,9 @@
                     </li>
                     <li class="grand-total">
                         <span class="key">GRAND TOTAL:</span>
-                        <input type="hidden" name="tototal_amount" value="{{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + 4.25:  $subtotal + 0.00 }}">
-                        <span class="value">${{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + 4.25:  $subtotal + 0.00 }}</span>
+                        <input type="hidden" name="sub_total" value="{{  $subtotal }}">
+                        <input type="hidden" name="tototal_amount" value="{{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + setting('delivery_charge'):  $subtotal + 0.00 }}">
+                        <span class="value">${{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + setting('delivery_charge'):  $subtotal + 0.00 }}</span>
                     </li>
 
                 </ul>

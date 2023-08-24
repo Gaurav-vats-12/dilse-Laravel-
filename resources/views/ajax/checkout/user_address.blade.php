@@ -1,7 +1,8 @@
 
 <div class="row">
 <input type="hidden" name="order_type" value="{{ session('order_type') }}">
-<input type="hidden" name="delivery_charge" value="{{ (session('order_type') && session('order_type') == "delivery") ? 4.25: 0.00 }}">
+
+<input type="hidden" name="delivery_charge" value="{{ (session('order_type') && session('order_type') == "delivery") ? setting('delivery_charge'): 0.00 }}">
     <div class="col-md-12">
         <div class="cusstom_input">
             <label for="billing_full_name" class="">Full name <span class="required" title="required">*</span></label>

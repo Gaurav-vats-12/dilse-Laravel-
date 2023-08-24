@@ -39,6 +39,7 @@
 
                                     @foreach ($orders as $key=>  $order)
 
+
                                         <tr order_uid ="{{ $order->id }}">
                                             <td  >{{ $key + 1 }}</td>
                                             <td>{{ $order->full_name }}</td>
@@ -49,10 +50,13 @@
                                                     Not Available
                                                 @endif
                                             </td>
-
                                             <td>@if($order->status){{ $order->status }}@else  @endif</td>
-                                            <td>@if($order->payment_status){{ $order->payment_status }}@else @endif </td>
 
+                                            <td>
+                                                @if(isset($order) && isset($order->payment) && isset($order->payment->payment_amount))
+                                                    {{ $order->payment->payment_method }}
+                                                @endif
+                                            </td>
                                             <td class="project-actions">
                                                 <a class="btn btn-info btn-sm" href="{{ route('admin.order.show' , $order->id) }}"><i class="fa-solid fa-eye"></i>  </a>
 
