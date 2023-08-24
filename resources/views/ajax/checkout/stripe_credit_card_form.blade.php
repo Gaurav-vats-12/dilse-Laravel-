@@ -6,12 +6,12 @@
     <div class="group">
       <label>
         <span>Card number</span>
-        <div id="card-number-element" class="field"></div>
+        <div id="card-number-element" class="field cusstom_input"></div>
         <span class="brand"><i class="pf pf-credit-card" id="brand-icon"></i></span>
       </label>
       <label>
         <span>Expiry date</span>
-        <div id="card-expiry-element" class="field"></div>
+        <div id="card-expiry-element" class="field cusstom_input"></div>
       </label>
       <label>
         <span>CVC</span>

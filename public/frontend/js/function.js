@@ -182,11 +182,6 @@ function stripePayment_Form(StripekEY){
             // In this example, we're simply displaying the token
             successElement.querySelector('.token').textContent = result.token.id;
             successElement.classList.add('visible');
-
-            // In a real integration, you'd submit the form with the token to your backend server
-            //var form = document.querySelector('form');
-            //form.querySelector('input[name="token"]').setAttribute('value', result.token.id);
-            //form.submit();
         } else if (result.error) {
             errorElement.textContent = result.error.message;
             errorElement.classList.add('visible');
@@ -287,10 +282,9 @@ function payment_intergation(StripekEY) {
             }
         },
         submitHandler: async function (form, event) {
-            let payment_value = jQuery('input[name="payment_method"]:checked').attr('paymentType');
-            console.log(payment_value)
             event.preventDefault();
-            if (payment_value ==='Pay On Online (Stripe)') {
+            let payment_value = jQuery('input[name="payment_method"]:checked').val();
+            if (payment_value ==='PayOnOnline') {
             }else{
                 jQuery(".spinner-border").removeClass("d-none");
                 jQuery(".theme_btn").attr("disabled", true);

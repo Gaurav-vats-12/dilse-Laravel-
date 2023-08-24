@@ -299,17 +299,15 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
         jQuery('.payment_form'). attr('id', 'payment-form');
         jQuery('#stripe_paymnet_form').css('display','none');
         jQuery(document).on("click", ".payment_option", async function (event) {
-            let payment_value = jQuery('input[name="payment_method"]:checked').attr('paymentType');
-            console.log(payment_value)
+            let payment_value = jQuery('input[name="payment_method"]:checked').val();
             if (payment_value ==='Pay On Online (Stripe)') {
-                stripePayment_Form(jQuery(`#StripeKey`).val());
-                jQuery('#payment-form').addClass('stripe_form');
                 jQuery('.payment_form'). attr('id', 'stripe_form');
                 jQuery('#stripe_paymnet_form').css('display','block');
-            } else {
-                payment_intergation(jQuery(`#StripeKey`).val());
+                stripePayment_Form(jQuery(`#StripeKey`).val());
+            }else{
                 jQuery('.payment_form'). attr('id', 'payment-form');
                 jQuery('#stripe_paymnet_form').css('display','none');
+                payment_intergation(jQuery(`#StripeKey`).val());
             }
         });
         payment_intergation(jQuery(`#StripeKey`).val());
