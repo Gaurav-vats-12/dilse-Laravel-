@@ -23,14 +23,13 @@ class EmailSubscriberController extends Controller
     public function unsubscribe_mail($id ){
         $mailchimp = new MailchimpService();
         $unsubscribed = $mailchimp->UnsubscribeToList(Subscriber::findOrFail($id)->email_address, config('services.mailchimp.list_key'));
-    if($unsubscribed['status'] =='unsubscribed'){
+        if ($unsubscribed['status'] == 'success') {
         Subscriber::findOrFail($id)->update([
             'status'=>'unsubscribed',
             'updated_at' => now()
         ]);
         return redirect()->back()->withToastSuccess('Unsubscribe Successfully');
     }
-
     }
 
     }
