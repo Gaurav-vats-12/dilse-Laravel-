@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
     public function Homepage(){
-        $recipientEmail = 'shaurya.dograexoticait@gmail.com';
+        $recipientEmail = 'bheemexoticait@gmail.com';
         $subject = 'Subject of the Email';
         $message = 'This is the content of the email.';
         Mail::raw($message, function ($mail) use ($recipientEmail, $subject) {
