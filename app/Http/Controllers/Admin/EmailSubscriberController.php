@@ -17,7 +17,7 @@ class EmailSubscriberController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('admin.page.manage-subscribe.index', ['subscribers' => Subscriber::where('status','subscribed')->orderBy('email_address')->get()]);
+        return view('admin.page.manage-subscribe.index', ['subscribers' => Subscriber::where('status','subscribed')->orderBy('id','DESC')->get()]);
     }
 
     public function unsubscribe_mail($id ){
