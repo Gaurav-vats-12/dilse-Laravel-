@@ -1463,10 +1463,8 @@ img.mfp-img {
     background-color: #fcebb9;
     padding-top: 120px;
 }
-a.proceed_ancho {
+.proceed_ancho {
     font-size: 22px;
-    margin-top: 20px;
-    text-align: center;
 }
 
 .tittle_heading span {
@@ -2508,6 +2506,7 @@ button.inline-flex.items-center.px-4.py-2.bg-gray-800.border.border-transparent.
     border-radius: 7px;
     transition: all 0.3s;
 }
+
 .error {
     color: #d90d0d !important;
     font-family: 'Abel', sans-serif !important;
