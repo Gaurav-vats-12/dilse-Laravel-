@@ -3,6 +3,7 @@ use App\Http\Controllers\Admin\AdminController as AdminControllerAlias;
 use App\Http\Controllers\Admin\BannerController as BannerControllerAlias;
 use App\Http\Controllers\Admin\BlogController as BlogControllerAlias;
 use App\Http\Controllers\Admin\CustomerController as CustomerControllerAlias;
+use App\Http\Controllers\Admin\EmailSubscriberController;
 use App\Http\Controllers\Admin\GalleryController as GalleryControllerAlias;
 use App\Http\Controllers\Admin\MenuController as MenuControllerAlias;
 use App\Http\Controllers\Admin\OrderController;
@@ -27,11 +28,13 @@ RouteAlias::prefix('admin')->name('admin.')->group(callback: function(){
             RouteAlias::get('/footer-setting', [SettingControllerAlias::class, 'footersetting'])->name('footersetting');
         });
         RouteAlias::resource('manage-pages', PageManagementControllerAlias::class);
-        //RouteAlias::get('manage-subsrciber', AdminControllerAlias::class);
-        ///Route::get('/admin/manage-subsrciber', [AdminControllerName::class, 'showDashboard']);
-        //Route::get('/admin/manage-subsrciber', [App\Http\Controllers\Admin\AdminControllerName::class, 'showDashboard'])->name('/admin/manage-subsrciber');
-        Route::get('manage-subscribers', [App\Http\Controllers\Admin\AdminController::class, 'showOrderCount'])->name('manage-subsrciber.index');
-        Route::get('manage-subscriber/view/{id}', [App\Http\Controllers\Admin\AdminController::class, 'show'])->name('manage-subscriber.view');
+    // Manage Subscriber
+        RouteAlias::prefix('manage-subscribers')->name('manage-subscribers.')->group(callback: function(){
+            RouteAlias::get('/', [EmailSubscriberController::class, 'index'])->name('index');
+            RouteAlias::get('unsubscribe/{id}', [EmailSubscriberController::class, 'unsubscribe_mail'])->name('view');
+        });
+
+
 
         // food items
         RouteAlias::resource('food-items', FoodItemControllerAlias::class);
@@ -54,8 +57,6 @@ RouteAlias::prefix('admin')->name('admin.')->group(callback: function(){
             RouteAlias::get('/', [BookingControllerAlias::class, 'fetchBooking'])->name('index');
             RouteAlias::get('/view/{id}', [BookingControllerAlias::class, 'show'])->name('show');
         });
-
-
 
         RouteAlias::prefix('order')->name('order.')->group(function(){
             RouteAlias::get('/', [OrderManagemnetControllerAlias::class, 'index'])->name('index');

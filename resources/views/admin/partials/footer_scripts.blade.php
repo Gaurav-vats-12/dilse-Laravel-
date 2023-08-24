@@ -40,19 +40,32 @@
 
 <script src="{{asset('plugins/toastr/toastr.min.js') }}"></script>
 <!-- Toast Alert -->
-<script src="{{asset('plugins/toastr/toastr.min.js') }}"></script>
+<script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
 <!-- DataTables  & Plugins -->
-<script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 
-<script src="{{asset('backend/js/app.js') }}"></script>
-<script src="{{asset('backend/js/custom.js') }}"></script>
-<script src="{{asset('backend/js/main.js') }}"></script>
-<script src="{{asset('backend/js/adminlte.js') }}"></script>
 <!-- Jquery  Validations  -->
 <script src="{{asset('plugins/jquery-validation/jquery.validate.min.js') }}"></script>
 <script src="{{asset('plugins/jquery-validation/additional-methods.min.js') }}"></script>
 {{--Comman Js--}}
 <script src="{{asset('plugins/commonFunction/js/function.js') }}"></script>
+
+
+<script src="{{asset('backend/js/app.js') }}"></script>
+<script src="{{asset('backend/js/custom.js') }}"></script>
+<script src="{{asset('backend/js/main.js') }}"></script>
+<script src="{{asset('backend/js/adminlte.js') }}"></script>
+
 
 @include('sweetalert::alert')
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])

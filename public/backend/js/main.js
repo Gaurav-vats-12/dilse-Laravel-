@@ -1,4 +1,11 @@
+
 jQuery( function () {
+
+    jQuery.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
     jQuery('.summernote').summernote({
         tabsize: 2,
         height: 100
@@ -10,18 +17,6 @@ jQuery( function () {
     $("#site_location").select2({
         maximumSelectionLength: 2
       });
-
-    //   let table = new DataTable('#datatable',{
-    //     "responsive": true,
-    //     "lengthMenu": [10, 20],
-    //     "searching": true,
-    //       "columnDefs": [
-    //   { orderable: true, className: 'reorder', targets: 0 },
-    //   { orderable: true, className: 'reorder', targets: 2 },
-    //   { orderable: true, className: 'reorder', targets: 4 },
-    //   { orderable: false, targets: '_all' }
-    // ]
-    // });
 
     var url = window.location.pathname;
     if (url.indexOf("/banner") > -1) {
@@ -186,22 +181,44 @@ jQuery( function () {
         ]
         });
     }else if(url.indexOf("/booking") > -1){
+        var booking_ajx_file = jQuery('#booking_ajx_file').val();
         new DataTable('#manage_bookign_table',{
+            "processing": true,
             "responsive": true,
-            "lengthMenu": [10, 20],
+            "serverSide": true,
             "searching": true,
-              "columnDefs": [
-          { orderable: true, className: 'reorder', targets: 0 },
-          { orderable: true, className: 'reorder', targets: 1 },
-          { orderable: true, className: 'reorder', targets: 2 },
-          { orderable: true, className: 'reorder', targets: 3 },
-          { orderable: true, className: 'reorder', targets: 4 },
-          { orderable: true, className: 'reorder', targets: 5 },
-          { orderable: true, className: 'reorder', targets: 6 },
-          { orderable: true, className: 'reorder', targets: 7 },
-          { orderable: false, targets: '_all' }
-        ]
+            "ajax": booking_ajx_file, // URL to fetch paginated data
+            "columns": [
+                { "data": "name" },
+                { "data": "email" },
+                { "data": "phone" },
+                { "data": "date" },
+                { "data": "persons" },
+                { "data": "comments" },
+            ],
+
+
         });
+
+        // fetch_data_form_api_via_ajax();
+
+        //
+        // new DataTable('#manage_bookign_table',{
+        //     "responsive": true,
+        //     "lengthMenu": [10, 20],
+        //     "searching": true,
+        //       "columnDefs": [
+        //   { orderable: true, className: 'reorder', targets: 0 },
+        //   { orderable: true, className: 'reorder', targets: 1 },
+        //   { orderable: true, className: 'reorder', targets: 2 },
+        //   { orderable: true, className: 'reorder', targets: 3 },
+        //   { orderable: true, className: 'reorder', targets: 4 },
+        //   { orderable: true, className: 'reorder', targets: 5 },
+        //   { orderable: true, className: 'reorder', targets: 6 },
+        //   { orderable: true, className: 'reorder', targets: 7 },
+        //   { orderable: false, targets: '_all' }
+        // ]
+        // });
     }else if(url.indexOf("/order") > -1){
         new DataTable('#manage_orders',{
             "responsive": true,
@@ -263,6 +280,22 @@ jQuery( function () {
 
 
         });
+    }else if(url.indexOf("/manage-subscribers") > -1){
+        new DataTable('#view_subscribe_table',{
+            "responsive": true,
+            "lengthMenu": [10, 20],
+            "searching": true,
+            "columnDefs": [
+                { orderable: true, className: 'reorder', targets: 0 },
+                { orderable: true, className: 'reorder', targets: 1 },
+                { orderable: true, className: 'reorder', targets: 2 },
+                { orderable: false, targets: '_all' }
+            ]
+        });
+
+
+    }else{
+
     }
 
 });

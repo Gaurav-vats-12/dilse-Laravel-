@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Notification;
 use App\Modules\Admins\Models\Admin;
 use App\Notifications\BookingNotificationToAdmin;
@@ -10,6 +14,8 @@ use App\Models\Booking;
 use Carbon\Carbon;
 use App\Mail\BookingNotification;
 use Illuminate\Http\Request;
+use Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class BookingController extends Controller
 {
@@ -30,18 +36,19 @@ class BookingController extends Controller
         ];
         Booking::create($bookingData);
         Mail::to($request->email)->send(new BookingNotification($bookingData));
-        Notification::send(Admin::all(), new BookingNotificationToAdmin(['type' => 'New Booking','body' => 'A new booking has been made for '.$request->date.' at '.$request->time.'. The following information is available for the booking:.Name: '.$request->name.'.Email: '.$request->email.'.Phone number: '.$request->phone.'.Notes: '.$request->comments.' Please review the booking' , 'thanks' => 'Thank you', 'notification_url' => url('/admin/booking'),'notification_uuid' => \Str::random(10),'notification_date'=>date('Y-m-d H:i:s')]));
+        Notification::send(Admin::all(), new BookingNotificationToAdmin(['type' => 'New Booking','body' => 'A new booking has been made for '.$request->date.' at '.$request->time.'. The following information is available for the booking:.Name: '.$request->name.'.Email: '.$request->email.'.Phone number: '.$request->phone.'.Notes: '.$request->comments.' Please review the booking' , 'thanks' => 'Thank you', 'notification_url' => url('/admin/booking'),'notification_uuid' => Str::random(10),'notification_date'=>date('Y-m-d H:i:s')]));
         return redirect()->back()->withToastSuccess('You booking requested has been sent! We will update you shortly');
     }
 
-    public function fetchBooking(){
-        return view('admin.page.booking.index')->with('booking',Booking::orderBy("id", "ASC")->get());
+    public function fetchBooking(Request $request): View|\Illuminate\Foundation\Application|Factory|JsonResponse|Application
+    {
+        if ($request->ajax()) {
+            $users =  Booking::orderBy("id", "ASC"); // Replace 'User' with your model
+            return DataTables::of($users)->make(true);
+        }
+        return view('admin.page.booking.index');
     }
 
-    public function show(string $id){
 
-
-
-    }
 
 }
