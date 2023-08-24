@@ -12,14 +12,6 @@ use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
     public function Homepage(){
-        $recipientEmail = 'shaurya.dograexoticait@gmail.com';
-        $subject = 'Subject of the Email';
-        $message = 'This is the content of the email.';
-        Mail::raw($message, function ($mail) use ($recipientEmail, $subject) {
-            $mail->to($recipientEmail);
-            $mail->subject($subject);
-        });
-        dd('Mail Send');
         $banner = Banner::where(['banner_type' => 'home'])->where('status','active')->get();
         $FoodItem = FoodItem::where('extra_items',0)->where('featured',1)->where('status',1)->limit(3)->get();
         $Testimonial = Testimonial::where('status','active')->get();
