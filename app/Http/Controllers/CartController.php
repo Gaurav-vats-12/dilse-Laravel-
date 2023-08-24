@@ -12,7 +12,6 @@ class CartController extends Controller
 
 public function viewcart(){
     $extra_items = FoodItemAlias::whereIn('menu_id',[7,6,5,9])->where('status',1)->get();
-    // $cart = session()->get('cart');
     return view('Pages.cart',compact('extra_items'));
 }
 

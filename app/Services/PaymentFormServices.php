@@ -1,10 +1,10 @@
 <?php
 namespace App\Services;
 
-
 use App\Models\Order\Order;
 use App\Models\Order\OrderItems as OrderItemsAlias;
 use App\Models\Order\Payments;
+use App\Services\User_addressServices as User_addressServicesAlias;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
@@ -17,10 +17,17 @@ class PaymentFormServices{
 
     protected $paymentForm;
 
+    /** @noinspection PhpUnreachableStatementInspection */
     public function PaymentForm($request){
+
         $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
         if(AuthAlias::guard('user')->check()){
-
+            $user = AuthAlias::guard('user')->user();
+            $user->phone = $request->billing_phone;
+            $user->save();
+            $addressObject = new User_addressServicesAlias();
+//        $add =   $addressObject->Change_user_address($request ,$user_id);
+//        return $add;
         }
         $order_id = Order::insertGetId([
             'user_id' => $user_id,

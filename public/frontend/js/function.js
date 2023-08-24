@@ -27,7 +27,7 @@ var Toast = Swal.mixin({
     position: 'bottom-end',
     showConfirmButton: false,
     showCloseButton: true,
-    timer: 10000
+    timer: 1500
 });
 
 jQuery("#phone").on("keypress keyup blur",function (event) {

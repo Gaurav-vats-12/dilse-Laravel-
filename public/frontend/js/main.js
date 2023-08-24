@@ -44,18 +44,24 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
         },
         submitHandler: async function (form,event) {
             event.preventDefault();
-            let ajax_value_list = jQuery('form').serialize(), ajx_url = jQuery('#email_action_url').val();
+            // let email_address = jQuery('#email_address').val();
+            // let ajax_value_list ={email_address};
+            // console.log(ajax_value_list)
+          let ajax_value_list = jQuery('#emailSubscribeForm').serialize(), ajx_url = jQuery('#email_action_url').val();
             const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
             if (resPose.status === `success`) {
                 Toast.fire({icon: `success`, title: resPose.message})
-                  $("form")[0].reset();
+                $("form")[0].reset();
             }else if(resPose.status === `error`){
                 Toast.fire({icon: `warning`, title: resPose.message})
                 $("form")[0].reset();
-
+            }else if(resPose.status === `error_message`){
+                Toast.fire({icon: `danger`, title: resPose.message})
+                $("form")[0].reset();
             }else{
                 jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
             }
+
         }
     });
 
@@ -324,8 +330,5 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
         let ajax_value = {country_uid,'type':'country',selected_billing_state};
         state_dependency_country_list(ajax_value, ajax_url);
     }
-
-
-
 
 });

@@ -421,7 +421,7 @@
               <input type="hidden" name="email_action_url" id="email_action_url"  value="{{ route('emailSubscription') }}">
 
                 <div class="custn_input">
-                  <input type="text" placeholder="Enter your email"  name="email_address" id=""/>
+                  <input type="text" placeholder="Enter your email"  id="email_address" name="email_address" />
                   <span id="email_address-error" class="text-danger error"></span>
                 </div>
                 <div class="sub_scribe_form_btn">

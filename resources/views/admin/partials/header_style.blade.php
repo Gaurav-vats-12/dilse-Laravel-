@@ -39,6 +39,8 @@
 
   <link rel="stylesheet" href="{{ asset('plugins/Dropify/css/dropify.min.css') }}">
  <!-- DataTables -->
- <link rel="stylesheet" href="//cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href=".{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
   <link rel="stylesheet" href="{{asset('backend/css/app.css')}}">

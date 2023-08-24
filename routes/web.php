@@ -53,7 +53,6 @@ RouteAlias::get('/send', [HomeControllerAlias::class, 'sendEmail']);
 // Add to Cart
 RouteAlias::prefix('cart')->name('cart.')->group(function(){
     RouteAlias::get('/', [CartControllerAlias::class, 'viewcart'])->name('view');
-    RouteAlias::get('/create/{id}', [CartControllerAlias::class, 'addtocart'])->name('add');
 });
 
 RouteAlias::prefix('checkout')->name('checkout.')->group(callback: function(){
