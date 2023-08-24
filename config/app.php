@@ -171,10 +171,6 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         browner12\helpers\HelperServiceProvider::class,
         App\Modules\Users\UserServiceProvider::class,
-        Yajra\DataTables\DataTablesServiceProvider::class,
-
-
-
     ])->toArray(),
 
     /*
