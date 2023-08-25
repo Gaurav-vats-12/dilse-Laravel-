@@ -114,7 +114,7 @@
                              ${{$orders->shipping_charge  }}
                            </div>
                         </div>
-                                  
+
 
 
                                         <div class="row mt-3">
