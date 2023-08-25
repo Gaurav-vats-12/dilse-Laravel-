@@ -53,18 +53,30 @@ class HomeController extends Controller
     {
         $orderWithItems = Order::with('OrderItems')->find($id);
         $productIds = $orderWithItems->OrderItems->pluck('id')->all();
-
-$product = FoodItem::whereIn('id', $productIds)->get();
-
-      //  $product = FoodItem::find($productIds[0]);
-       // dd($product->id) ;
-    // If you want to dump and die the $product variable, do it here:
-    // dd($product);
-
+        $product = FoodItem::whereIn('id', $productIds)->get();
     return view('Pages.order-confirmation-templates', [
         'orderItem' => $orderWithItems,
         'product' => $product
     ]);
+
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return Application|Factory|\Illuminate\Contracts\Foundation\Application|View
+     */
+    public function  order_cancelled(Request $request , $id): View|Factory|Application|\Illuminate\Contracts\Foundation\Application
+    {
+        $orderWithItems = Order::with('OrderItems')->find($id);
+        $productIds = $orderWithItems->OrderItems->pluck('id')->all();
+        $product = FoodItem::whereIn('id', $productIds)->get();
+        return view('Pages.orderCancelled', [
+            'orderItem' => $orderWithItems,
+            'product' => $product
+        ]);
+
+
 
     }
 

@@ -62,7 +62,10 @@ class PaymentFormServices{
           $payment_status = 'pending';
           $payment_id = Str::random(10);
             $payment_json = null;
+            $statusMessage = 'success';
             $payment_message = "Payment  Successfully";
+            $url = route('order_confirm', $order_id);
+
 
 
         } elseif ($request->payment_method == 'Pay On Store') {
@@ -70,7 +73,9 @@ class PaymentFormServices{
             $payment_status = 'pending';
             $payment_json = null;
             $payment_id = Str::random(10);
+            $statusMessage = 'success';
             $payment_message = "Payment  Successfully";
+            $url = route('order_confirm', $order_id);
         }else{
 
             Stripe::setApiKey(Config::get('stripe.api_keys.secret_key', ''));
@@ -89,16 +94,23 @@ class PaymentFormServices{
                 $payment_method = 'PayOnOnline';
                 $payment_json = json_encode($stripe_paymnet);
                 $payment_status = 'Paid';
+                $statusMessage = 'success';
                 $payment_message = "Payment  Successfully";
+                $url = route('order_confirm', $order_id);
             } catch (ApiErrorException $e) {
-                return $e;
+
+                $error = $e->getError();
                 $payment_id = Str::random(10);
                 $payment_method = 'PayOnOnline';
-                $payment_json = null;
-                $payment_status = 'failed';
-                $payment_message = "Payment Not Successfully";
+                $payment_json = json_encode($error);
+                $payment_status = $error['code'];
+                $payment_message = $error['message'];
+                $statusMessage = 'error';
+                $url = route('order_cancelled', $order_id);
+                Order::findOrFail($order_id)->update(['status' => 'Cancelled','updated_at' => now() ]);
             }
         }
+
 
         Payments::insert([
             'payment_id'=>$payment_id,
@@ -113,7 +125,7 @@ class PaymentFormServices{
         ]);
         Session::forget('cart');
         Session::forget('order_type');
-       return  ['code' => 200 , 'order_id'=>$order_id ,'payment_id'=>$payment_id, 'status' =>true, "message"=> $payment_message];
+       return  ['code' => 200 , 'order_id'=>$order_id , 'url'=>  $url , 'statusMessage'=> $statusMessage,'payment_id'=>$payment_id, 'status' =>true, "message"=> $payment_message];
     }
 }
 ?>

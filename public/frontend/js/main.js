@@ -246,7 +246,6 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
         }
         if(newVal === 0){
             console.log('No Cahnage')
-
         }else{
         $button.closest('.update-cart-qty').find("input.product-qty").attr('value',newVal);
         let qty = newVal;

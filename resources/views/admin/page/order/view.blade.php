@@ -134,6 +134,7 @@
                                                 {{ $orders->status }}
                                             </div>
                                         </div>
+                                        @if ($orders->status == 'Cancelled')
                                         <div class="row mt-3">
                                             <div class="col-4">
                                                 <strong>Change Order Status :</strong>
@@ -156,6 +157,7 @@
                                                 @endif
                                             </div>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div><!-- /.container-fluid -->
