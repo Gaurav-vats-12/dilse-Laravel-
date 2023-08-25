@@ -42,6 +42,8 @@ RouteAlias::get('/product/{slug}', [MenuControllerAlias::class, 'menudetails'])-
 
 //Thank You, Page
 RouteAlias::get('/thank-you/{id}', [HomeControllerAlias::class, 'order_confirm'])->name('order_confirm');
+//Cancelled Page
+RouteAlias::get('/cancelled-order/{id}', [HomeControllerAlias::class, 'order_cancelled'])->name('order_cancelled');
 
 // Booking  a Reservation
 RouteAlias::get('/book-a-reservation', [BookingControllerAlias::class, 'bookATable'])->name('booktable');

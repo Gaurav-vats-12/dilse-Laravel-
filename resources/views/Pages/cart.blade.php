@@ -103,6 +103,7 @@
                                         </p>
                                     </div>
                                     <div class="order_totalse" id="total">
+                                        <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{ (session('order_type') == 'delivery') ? setting('delivery_charge' ,0.00) : $subtotal + 0.00 }}">
                                         <p>$ {{ (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) : $subtotal + 0.00 }}
                                         </p>
                                     </div>

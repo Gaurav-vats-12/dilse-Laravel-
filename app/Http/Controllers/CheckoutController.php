@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\Checkout\StoreCheckoutRequest;
-use App\Mail\OrderMailNotification;
+use App\Mail\Order\EmailOrderCencelledConfirmation;
+use App\Mail\Order\EmailOrderConfirmation;
 use App\Models\Order\Order;
 use App\Modules\Admins\Models\Admin;
 use App\Notifications\Admin\Order\AdminOrderNotification;
@@ -18,7 +19,6 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-
 
 class CheckoutController extends Controller
 {
@@ -46,11 +46,14 @@ class CheckoutController extends Controller
     public function create (StoreCheckoutRequest $request)
     {
         $payment = new PaymentFormServices();
-        $resPonse = $payment->PaymentForm($request);
-        if ($resPonse['status']) {
-             Mail::to($request->billing_email)->send(new OrderMailNotification(['PaymentResponse'=> $resPonse, 'CartDetails'=> Order::findOrFail($resPonse['order_id']),'Response'=> $request]));
+          $resPonse = $payment->PaymentForm($request);
         Notification::send(Admin::all(), new AdminOrderNotification(['type' => 'Order Notification', 'body' => 'You have received a new order with the following details Order Information:- Order ID: ' . $resPonse['order_id'] . '- Customer Name: ' . $request->billing_full_name . ' - Customer Email: ' . $request->billing_email . ' - Order Date: ' . Order::findOrFail($resPonse['order_id'])->order_date . ' ', 'thanks' => 'Thank you', 'notification_url' => url('/admin/order/view/' . $resPonse['order_id'] . ''), 'notification_uuid' => Str::random(10), 'notification_date' => date('Y-m-d H:i:s')]));
-            return redirect(route('order_confirm',$resPonse['order_id'] ))->withToastSuccess('Order Placed Successfully');
-        }
+       if ($resPonse['statusMessage'] ==='error'){
+         Mail::to($request->billing_email)->send(new EmailOrderCencelledConfirmation(['PaymentResponse'=> $resPonse, 'CartDetails'=> Order::findOrFail($resPonse['order_id']),'Response'=> $request]));
+       }else{
+        Mail::to($request->billing_email)->send(new EmailOrderConfirmation(['PaymentResponse'=> $resPonse, 'CartDetails'=> Order::findOrFail($resPonse['order_id']),'Response'=> $request]));
+       }
+        return  redirect( $resPonse['url'])->withToastSuccess($resPonse['message']);
+
     }
 }

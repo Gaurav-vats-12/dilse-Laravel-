@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Order;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class OrderMailNotification extends Mailable
+class EmailOrderConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -27,7 +27,7 @@ class OrderMailNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Order Mail Notification',
+            subject: 'Email Order Confirmation',
         );
     }
 
@@ -37,8 +37,15 @@ class OrderMailNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.OrderNotification',
+            view: 'emails.Order.OrderEmailConfirmation',
         );
+    }
+
+    public function build()
+    {
+        return $this->from('noreply@mailsender.ca')
+            ->subject('Order Cancelled Confirmation')
+            ->with('orderMail', $this->orderMail);
     }
 
     /**
@@ -51,11 +58,4 @@ class OrderMailNotification extends Mailable
         return [];
     }
 
-    public function build()
-    {
-
-        return $this->from('noreply@mailsender.ca')
-            ->subject('Booking Confirmation')
-            ->with('orderMail', $this->orderMail);
-    }
 }
