@@ -48,7 +48,7 @@
 
     <tr>
         <td>Shipping/Delivery  Cost:</td>
-        <td>{{ __($orderMail['CartDetails']->shipping_charge) }}</td>
+        <td>${{ __($orderMail['CartDetails']->shipping_charge) }}</td>
     </tr>
 </table>
 
@@ -79,7 +79,7 @@
     <!-- Add more rows for additional order items as needed -->
 </table>
 
-<p><strong>Order Total: ${{$subtotal  }}</strong></p>
+<p><strong>Order Total: ${{$total_amount  }}</strong></p>
 
 <p>Thank you for placing your order with us. We will process your order as soon as possible.</p>
 

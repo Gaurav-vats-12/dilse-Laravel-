@@ -158,6 +158,9 @@ function stripePayment_Form(StripekEY){
     };
 
     let cardNumberElement = elements.create('cardNumber', {
+        showIcon: true,
+        placeholder: 'Card Number',
+        hidePostalCode: true,
         style: style
     });
     cardNumberElement.mount('#card-number-element');

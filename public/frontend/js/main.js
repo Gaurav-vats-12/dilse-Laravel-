@@ -120,6 +120,18 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
         dots: false,
     });
     /**
+     * Related Product Slider On Product Details Page
+     */
+
+    $('.row.Product_slider').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 1
+    });
+
+    /**
      *     Contact us Form Submission  iN ajax  (Home Page)
      */
     jQuery("#conatact_cus_form").validate({
