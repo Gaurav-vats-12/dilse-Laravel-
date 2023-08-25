@@ -144,10 +144,17 @@
                                 </div>
 
                                 <div class="row py-2">
-                                    <div class="col-xl-12 col-lg-12 col-12 form-group">
+                                    <div class="col-xl-12 col-lg-6 col-6 form-group">
                                     <label for="blogto_url"> Delivery Charge</label>
                                     <input type="text" name="delivery_charge" id="delivery_charge"  class="form-control" value="{{ old('delivery_charge',setting('delivery_charge'))}}">
                                     @error('delivery_charge')  <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+                                <div class="row py-2">
+                                    <div class="col-xl-12 col-lg-6 col-6 form-group">
+                                        <label for="tax"> Tax ( %)</label>
+                                        <input type="text" name="tax" id="tax"  class="form-control" value="{{ old('tax',setting('tax'))}}">
+                                        @error('tax')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="col-12 form-group mg-t-8 mt-2">
