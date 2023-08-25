@@ -8,6 +8,9 @@ use Illuminate\Support\Str;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @method static findOrFail(string $id)
+ */
 class Blog extends Model
 {
     use HasFactory, SoftDeletes;

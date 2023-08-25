@@ -35,7 +35,7 @@ class MenuController extends Controller
             return view('Pages.menu',compact('FoodItem','slug'));
         }
     }
-    
+
     public function menudetails( string $id){
         $food_details = FoodItem::where('slug',$id)->first();
         $related_product = FoodItem::where('menu_id',$food_details->menu_id )->where('extra_items',0)->where('status',1)->get();
@@ -43,6 +43,5 @@ class MenuController extends Controller
     }
     public function post_menu_data(Request $request){
         dd($request->all());
-
     }
 }

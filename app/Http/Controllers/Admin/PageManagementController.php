@@ -30,7 +30,7 @@ class PageManagementController extends Controller
     public function store(StorepagesRequest $request)
     {
            Page::insert(['pagesuuid' => $request->pagesuuid, 'page_title' => $request->page_title, 'page_slug' => $request->page_slug,'page_content' => $request->page_content,'page_meta_title' => $request->page_meta_title,'page_meta_description' => $request->page_meta_description,'status' => $request->status,'created_at' => now(), 'updated_at' => now() ]);
-        return redirect()->route('admin.manage-pages.index')->withSuccess('Page Successfully Created');
+        return redirect()->route('admin.manage-pages.index')->withSuccess('Page Successfully Created',500);
     }
 
     /**
@@ -57,7 +57,7 @@ class PageManagementController extends Controller
     public function update(UpdatePagesRequest $request, string $id)
     {
         Page::findOrFail($id)->update(['page_title' => $request->page_title,'page_slug' => Page::findOrFail($id)->page_slug,'page_meta_title' => $request->page_meta_title,'page_meta_description' => $request->page_meta_description,'status' => $request->status, 'updated_at' => now() ]);
-        return redirect()->route('admin.manage-pages.index')->withSuccess('Page Successfully Updated');
+        return redirect()->route('admin.manage-pages.index')->withSuccess('Page Successfully Updated',500);
 
     }
 
@@ -68,7 +68,7 @@ class PageManagementController extends Controller
     {
         $page =  Page::findOrFail($id);
         $page->delete();
-        return redirect()->route('admin.manage-pages.index')->withSuccess('Page Successfully Deleted');
+        return redirect()->route('admin.manage-pages.index')->withSuccess('Page Successfully Deleted',500);
 
     }
 

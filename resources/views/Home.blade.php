@@ -309,7 +309,7 @@
         <div class="container">
           <div class="tittle_heading">
             <h3>Best Food Items</h3>
-            <h2>Our Popular Food Items</h2>
+            <h2>Popular deals</h2>
           </div>
           <div class="row">
           @if (isset($FoodItem) && count($FoodItem) >0)
@@ -414,7 +414,7 @@
             </div>
             <div class="col-md-6">
               <div class="sub_scribe_txt">
-                <h2>Subscribe Our Newsletter</h2>
+                <h2>for special offers and newsletters</h2>
                 <p>Stay up-to-date with our latest news and updates by subscribing to our newsletter today!</p>
               </div>
               <form  class="sub_scribe_form" id="emailSubscribeForm" method="POST">

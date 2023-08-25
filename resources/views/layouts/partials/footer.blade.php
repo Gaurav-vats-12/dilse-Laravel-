@@ -27,7 +27,7 @@
               <h3>Menu</h3>
               <ul>
             @foreach ( Menuhelper() as $key => $menu )
-            @if ($key < 5)
+            @if ($key < 6)
             <li><a href="{{url('menu',$menu->menu_slug)}}" menu_slug ="{{ __(ucfirst( $menu->menu_slug)) }}">{{ __(ucfirst( $menu->menu_name)) }}</a></li>
             @endif
             @endforeach

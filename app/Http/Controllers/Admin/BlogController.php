@@ -44,7 +44,7 @@ class BlogController extends Controller
         }
         $slug = Str::slug($request->blog_title, '-').'-'.mt_rand(0,20);
         Blog::insert(['blog_title' => $request->blog_title, 'blog_image' => $blogImage,'slug' => $slug,'blog_content' => $request->blog_content,'blog_meta_title' => $request->blog_meta_title,'blog_meta_description' => $request->blog_meta_description,'status' => $request->status,'created_at' => now(), 'updated_at' => now() ]);
-        return redirect()->route('admin.blog.index')->withSuccess('Blog  Successfully Created');
+        return redirect()->route('admin.blog.index')->withSuccess('Blog  Successfully Created',500);
     }
 
     /**
@@ -86,7 +86,7 @@ class BlogController extends Controller
         $slug = Str::slug($request->blog_title, '-').' '.\Str::random(4).'';
 
         Blog::findOrFail($id)->update(['blog_title' => $request->blog_title,'blog_image' => $blogImage, 'slug' =>$slug,'blog_content' => $request->blog_content,'blog_meta_title' => $request->blog_meta_title,'blog_meta_description' => $request->blog_meta_description,'status' => $request->status,'updated_at' => now() ]);
-        return redirect()->route('admin.blog.index')->withSuccess('Blog  Successfully Updated');
+        return redirect()->route('admin.blog.index')->withSuccess('Blog  Successfully Updated',500);
 
     }
 
@@ -96,7 +96,7 @@ class BlogController extends Controller
     public function destroy(string $id)
     {
         Blog::findOrFail($id)->delete();
-        return redirect()->route('admin.blog.index')->withSuccess('Blog Successfully Deleted');
+        return redirect()->route('admin.blog.index')->withSuccess('Blog Successfully Deleted',500);
 
     }
 

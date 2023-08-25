@@ -39,7 +39,7 @@ class ExtraFoodItemController extends Controller
             'created_at' => now(),
                 'updated_at' => now()
             ]);
-        return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Created Successfully');
+        return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Created Successfully',500);
     }
 
     public function edit($id)
@@ -74,7 +74,7 @@ class ExtraFoodItemController extends Controller
         'status'=> (isset($request->status)) ? 1 : 0,
          'updated_at' => now()
      ]);
-     return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Updated Successfully');
+     return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Updated Successfully',500);
     }
 
     public function destroy(Request $request,$id)
@@ -82,7 +82,7 @@ class ExtraFoodItemController extends Controller
         try{
             $user_id =$request->user_id;
             ExtraItem::findOrFail($id)->delete();
-            return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Deleted!');
+            return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Deleted!',500);
         }catch(Exception $e){
             return $e->getMessage();
         }

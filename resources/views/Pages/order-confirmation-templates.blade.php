@@ -1,14 +1,13 @@
 @extends('layouts.app')
 @section('title', 'Thank You')
 @section('frontcontent')
+
     <div class="wraper">
         <section class="about_se py_8">
             <div class="thank-you-container">
                 <h2>Thank you for your purchase!</h2>
                 <p>Your order details: {{$orderItem->id}}</p>
                 <table>
-
-
                     <tr>
                         <th>Image</th>
                         <th>Product  ID</th>
@@ -32,7 +31,7 @@
                     @endforeach
 
                 </table>
-                <div class="login-content">If you want to order more. Click on the <a href="{{url('menu')}}">Menus</a></p>
+                <div class="login-content">If you want to order more. Click on the <a href="{{ route('menu','appetizers') }}">Menus</a></p>
                 {{-- <p>We'll send a confirmation email shortly.</p> --}}
             </div>
         </section>
@@ -45,4 +44,4 @@
         font-size: 20px;
     }
     .login-content a{font-weight: 600;}
-</style>    
+</style>

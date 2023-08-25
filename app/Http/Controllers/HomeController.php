@@ -6,7 +6,9 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use App\Models\Order\Order;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -45,19 +47,21 @@ class HomeController extends Controller
         return "Email sent successfully!";
      }
 
+
     /**
+     * @param Request $request
      * @param $id
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     * @return Application|View|Factory|Redirector|\Illuminate\Contracts\Foundation\Application|RedirectResponse
      */
-    public function  order_confirm(Request $request , $id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function  order_confirm(Request $request , $id): Application|View|Factory|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
         $orderWithItems = Order::with('OrderItems')->find($id);
-        $productIds = $orderWithItems->OrderItems->pluck('id')->all();
-        $product = FoodItem::whereIn('id', $productIds)->get();
-    return view('Pages.order-confirmation-templates', [
-        'orderItem' => $orderWithItems,
-        'product' => $product
-    ]);
+        if($orderWithItems){
+            return view('Pages.order-confirmation-templates', ['orderItem' => $orderWithItems]);
+        }else{
+            return redirect(route('home'));
+        }
+
 
     }
 
