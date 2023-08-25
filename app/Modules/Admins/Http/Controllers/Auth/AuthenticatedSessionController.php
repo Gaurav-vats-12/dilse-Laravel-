@@ -6,7 +6,7 @@ use App\Modules\Admins\Http\Controllers\Controller;
 use App\Modules\Admins\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -35,7 +35,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('admin')->logout();
+        AuthAlias::guard('admin')->logout();
 
         $request->session()->invalidate();
 
