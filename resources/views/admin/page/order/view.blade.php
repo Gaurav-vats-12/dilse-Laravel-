@@ -23,7 +23,7 @@
                     <div class="card card-primary">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('admin.blog.index') }}" type="button"
+                                <a href="{{ route('admin.order.index') }}" type="button"
                                    class="btn btn-success float-left">Back </a>
                                 <a href="javascript:void(0)" id="print_order" type="button"
                                    class="btn btn-success float-right">Print </a>

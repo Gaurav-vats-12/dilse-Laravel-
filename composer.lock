@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fcee30a043b4e1fb20447c734d3789b8",
+    "content-hash": "1c0132f22f968431eef02e7e23dc154d",
     "packages": [
         {
             "name": "bmatovu/multi-auth",

@@ -14,7 +14,7 @@ class FoodItemController extends Controller
 {
     public function index()
     {
-        $foodItems = FoodItem::with(['menu'])->get();
+        $foodItems = FoodItem::with(['menu'])->orderBy('id', 'DESC')->get();
         return view(view: 'admin.page.food_items.index', data: compact('foodItems'));
     }
 

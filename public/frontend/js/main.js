@@ -1,73 +1,7 @@
 jQuery(document).ready(function () {
-   // jQuery( "#datepicker" ).datepicker();
-   $('#datepicker').datepicker({
-    minDate: 0 // 0 will disable all past dates
-});
-$('i.fa-solid.fa-eye.user_pass').click(function() {
-    // Check the current type of password input
-    if ($('#password').attr('type') === 'password') {
-        $('#password').attr('type', 'text');
-        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
-    } else {
-        $('#password').attr('type', 'password');
-        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
-    }
-});
-
-$('i.fa-solid.fa-eye.confirm_pass').click(function() {
-    var $passwordField = $('#password_confirmation');
-
-    if ($passwordField.attr('type') === 'password') {
-        $passwordField.attr('type', 'text');
-        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
-    } else {
-        $passwordField.attr('type', 'password');
-        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
-    }
-});
-    /**
-     * Subscribe Our Newsletter Submission Form Ajax (Home Page)
-     */
-
-    jQuery("#emailSubscribeForm").validate({
-        rules: {
-            email_address: {
-                required: true,
-                email: true,
-            }
-        },
-        messages: {
-            email_address: {
-            required: "Please Enter the  email address",
-             maxlength: "Please Enter vaid email address"
-            }
-        },
-        submitHandler: async function (form,event) {
-            event.preventDefault();
-            // let email_address = jQuery('#email_address').val();
-            // let ajax_value_list ={email_address};
-            // console.log(ajax_value_list)
-          let ajax_value_list = jQuery('#emailSubscribeForm').serialize(), ajx_url = jQuery('#email_action_url').val();
-            const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
-            if (resPose.status === `success`) {
-                Toast.fire({icon: `success`, title: resPose.message})
-                $("form")[0].reset();
-            }else if(resPose.status === `error`){
-                Toast.fire({icon: `warning`, title: resPose.message})
-                $("form")[0].reset();
-            }else if(resPose.status === `error_message`){
-                Toast.fire({icon: `danger`, title: resPose.message})
-                $("form")[0].reset();
-            }else{
-                jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
-            }
-
-        }
-    });
-
 
     /**
-     * Order Type In Menu
+     * Order Type In Home and Checkout page
      */
     jQuery(document).on("click", ".thumbnail", async function (event) {
         event.preventDefault();
@@ -80,6 +14,7 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
             window.location.href = AjaxForm;
         }
     });
+
     /**
      *  Add to Cart  In Website (Home Page ,Menu page,Product Details Pages)
      */
@@ -95,23 +30,6 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
     });
 
     /**
-     *  Add to Cart  In Website (Extra_Items)
-     */
-
-
-    jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
-        jQuery(this).toggleClass(`added`);
-        let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#extra_ajax_url').val();
-        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-        if (resPose.status === `success`) {
-            Toast.fire({icon: `success`, title: resPose.message})
-            jQuery(`.cart_count`).html(resPose.cart_total);
-            setTimeout(function() { window.location.reload()}, 1000);
-        }
-    });
-
-
-    /**
      *  testimonial_slider   (Home Page)
      */
     jQuery('.testimonial_slider').slick({
@@ -119,20 +37,43 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
         arrows: false,
         dots: false,
     });
+
     /**
-     * Related Product Slider On Product Details Page
+     * Subscribe Our Newsletter Submission Form Ajax (Home Page)
      */
-
-    $('.row.Product_slider').slick({
-        dots: false,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 1
+    jQuery("#emailSubscribeForm").validate({
+        rules: {
+            email_address: {
+                required: true,
+                email: true,
+            }
+        },
+        messages: {
+            email_address: {
+                required: "Please Enter the  email address",
+                maxlength: "Please Enter vaid email address"
+            }
+        },
+        submitHandler: async function (form,event) {
+            event.preventDefault();
+            let ajax_value_list = jQuery('#emailSubscribeForm').serialize(), ajx_url = jQuery('#email_action_url').val();
+            const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
+            if (resPose.status === `success`) {
+                Toast.fire({icon: `success`, title: resPose.message})
+                $("form")[0].reset();
+            }else if(resPose.status === `error`){
+                Toast.fire({icon: `warning`, title: resPose.message})
+                $("form")[0].reset();
+            }else if(resPose.status === `error_message`){
+                Toast.fire({icon: `danger`, title: resPose.message})
+                $("form")[0].reset();
+            }else{
+                jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
+            }
+        }
     });
-
     /**
-     *     Contact us Form Submission  iN ajax  (Home Page)
+     *     Contact us Form Submission  iN ajax   (Home Page ,Contact Us Page)
      */
     jQuery("#conatact_cus_form").validate({
         rules: {
@@ -178,13 +119,14 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
             if(resPose.status === 'success'){
                 Toast.fire({ icon: 'success',title: resPose.message, })
                 jQuery("form")[0].reset();
-               }else{
-            jQuery.each(resPose.errors, function (key, value) {
-                jQuery(`#${key}-error`).text(value);
-            });
-     }
-   }
+            }else{
+                jQuery.each(resPose.errors, function (key, value) {
+                    jQuery(`#${key}-error`).text(value);
+                });
+            }
+        }
     });
+
     /**
      * Fetch Food Items via Menu (Menu  Page)
      */
@@ -210,15 +152,33 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
         jQuery(`#menu_data_find`).empty();
         jQuery(`li`).removeClass('active');
         let slug = jQuery('#slug').val(), page = jQuery(this).attr('href').split('page=')[1],
-        ajax_value = {slug, page};
-        console.log('page',page);
+            ajax_value = {slug, page};
         const response = await Ajax_response('', "GET", ajax_value, '', '');
-        console.log('display',response);
         if (response) {
             jQuery(`.loader`).toggleClass('display');
             jQuery(`#menu_data_find`).empty().html(response);
         }
     });
+    /**
+     * magnificPopup In Gallery Page
+     */
+    jQuery('.image-popup-vertical-fit').magnificPopup({
+        type: 'image',
+        mainClass: 'mfp-with-zoom',
+        gallery:{ enabled:true },
+        zoom: { enabled: true,
+            duration: 300,
+            easing: 'ease-in-out',
+            opener: openerElement => openerElement.is('img') ? openerElement : openerElement.find('img')
+        }
+    });
+
+
+
+    // jQuery( "#datepicker" ).datepicker();
+   $('#datepicker').datepicker({
+    minDate: 0 // 0 will disable all past dates
+});
 
     /**
      *  Update the quantity According to plus and minus in cart page (Cart page )
@@ -245,21 +205,36 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
             }
         }
         if(newVal === 0){
-            console.log('No Cahnage')
+
         }else{
-        $button.closest('.update-cart-qty').find("input.product-qty").attr('value',newVal);
-        let qty = newVal;
-        let counterproductive = parseFloat(newVal * product__price), ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
-        jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive.toFixed(2)}`);
-        jQuery(`#product_quntity__${product_oid}`).val(qty);
-        jQuery(`#product_price__${product_oid}`).val(`$${counterproductive.toFixed(2)}`);
-        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-        if (resPose.status === `success`) {
-            jQuery(`#subtotal`).html(`<p>$${resPose.subtotal}</p>`);
-            jQuery(`#total`).html(`<p>$${resPose.total}</p>`);
-        }
+            $button.closest('.update-cart-qty').find("input.product-qty").attr('value',newVal);
+            let qty = newVal;
+            let counterproductive = parseFloat(newVal * product__price), ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
+            jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive.toFixed(2)}`);
+            jQuery(`#product_quntity__${product_oid}`).val(qty);
+            jQuery(`#product_price__${product_oid}`).val(`$${counterproductive.toFixed(2)}`);
+            const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+            if (resPose.status === `success`) {
+                jQuery(`#subtotal`).html(`<p>$${resPose.subtotal}</p>`);
+                jQuery(`#total`).html(`<p>$${resPose.total}</p>`);
+            }
         }
     });
+
+    /**
+     *  Add to Cart  In Website (Extra_Items)
+     */
+    jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
+        jQuery(this).toggleClass(`added`);
+        let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#extra_ajax_url').val();
+        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+        if (resPose.status === `success`) {
+            Toast.fire({icon: `success`, title: resPose.message})
+            jQuery(`.cart_count`).html(resPose.cart_total);
+            setTimeout(function() { window.location.reload()}, 1000);
+        }
+    });
+
 
     /**
      *     Remove  The Cart in Cart page (Cart Page)
@@ -298,6 +273,59 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
             }
         });
     });
+
+    /**
+     *   Extra Items Sliders On Cart Page
+     */
+
+
+
+
+
+
+$('i.fa-solid.fa-eye.user_pass').click(function() {
+    // Check the current type of password input
+    if ($('#password').attr('type') === 'password') {
+        $('#password').attr('type', 'text');
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
+    } else {
+        $('#password').attr('type', 'password');
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
+    }
+});
+
+$('i.fa-solid.fa-eye.confirm_pass').click(function() {
+    var $passwordField = $('#password_confirmation');
+
+    if ($passwordField.attr('type') === 'password') {
+        $passwordField.attr('type', 'text');
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
+    } else {
+        $passwordField.attr('type', 'password');
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
+    }
+});
+
+
+
+
+
+
+
+    /**
+     * Related Product Slider On Product Details Page
+     */
+
+    $('.row.Product_slider').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 1
+    });
+
+
+
     if (url.indexOf("/checkout") > -1) {
         /**
          * State Dependency In Checkout Page
@@ -337,7 +365,6 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
 
         let ajax_url = jQuery('#state_ajax').val();
         let selected_billing_state = jQuery('#selected_billing_state').val();
-        console.log(selected_billing_state)
         let ajax_value = {country_uid,'type':'country',selected_billing_state};
         state_dependency_country_list(ajax_value, ajax_url);
     }

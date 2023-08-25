@@ -5,7 +5,7 @@
         <section class="about_se py_8">
             <div class="thank-you-container">
                 <h2>Your Order Has been  Cancelled  ! </h2>
-                <div class="login-content">If you want to order more. Click on the <a href="{{url('menu')}}">Menus</a></p>
+                <div class="login-content">If you want to order more. Click on the <a href="{{ route('menu','appetizers') }}">Menus</a></p>
                 </div>                <p>Your order details: {{$orderItem->id}}</p>
                 <table>
 

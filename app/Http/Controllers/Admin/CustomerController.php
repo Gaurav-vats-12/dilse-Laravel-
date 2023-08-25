@@ -22,10 +22,10 @@ class CustomerController extends Controller
         $staus = $User->status;
         if($staus ==1){
             User::where('id',  $id)->where('status',1)->update([ 'status' =>0]);
-          return redirect()->route('admin.manage-customer.index')->withWarning('Customer successfully banned');
+          return redirect()->route('admin.manage-customer.index')->withWarning('Customer successfully banned',500);
          }else{
             User::where('id',  $id)->where('status',0)->update([ 'status' =>1]);
-            return redirect()->route('admin.manage-customer.index')->withSuccess('Customer successfully unbanned');
+            return redirect()->route('admin.manage-customer.index')->withSuccess('Customer successfully unbanned',500);
              }
     }
 }

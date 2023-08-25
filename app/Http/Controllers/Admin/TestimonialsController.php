@@ -45,7 +45,7 @@ class TestimonialsController extends Controller
         }
 
         Testimonial::insertGetId(['custumber_name'=>$request->custumber_name,'testimonial_description'=>$request->testimonial_description,'testonomailsImage'=>$testonomailsImage,'rating'=>$request->rating,'status'=>$request->status,'created_at' => now(),'updated_at' => now() ]);
-        return redirect()->route('admin.testimonial.index')->withSuccess('Testimonial Successfully Created');
+        return redirect()->route('admin.testimonial.index')->withSuccess('Testimonial Successfully Created',500);
 
     }
 
@@ -82,7 +82,7 @@ class TestimonialsController extends Controller
             $testonomailsImage = $Testimonial->testonomailsImage;
         }
         Testimonial::findOrFail($id)->update(['custumber_name'=>$request->custumber_name,'testimonial_description'=>$request->testimonial_description,'testonomailsImage'=>$testonomailsImage,'rating'=>$request->rating,'status'=>$request->status,'updated_at' => now() ]);
-        return redirect()->route('admin.testimonial.index')->withSuccess('Testimonial Successfully Updated');
+        return redirect()->route('admin.testimonial.index')->withSuccess('Testimonial Successfully Updated',500);
 
 
     }
@@ -93,7 +93,7 @@ class TestimonialsController extends Controller
     public function destroy(string $id)
     {
         $Testimonial =  Testimonial::findOrFail($id)->delete();
-        return redirect()->route('admin.testimonial.index')->withSuccess('Testimonial Successfully Deleted');
+        return redirect()->route('admin.testimonial.index')->withSuccess('Testimonial Successfully Deleted',500);
 
     }
 }

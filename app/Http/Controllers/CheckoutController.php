@@ -53,7 +53,7 @@ class CheckoutController extends Controller
        }else{
         Mail::to($request->billing_email)->send(new EmailOrderConfirmation(['PaymentResponse'=> $resPonse, 'CartDetails'=> Order::findOrFail($resPonse['order_id']),'Response'=> $request]));
        }
-        return  redirect( $resPonse['url'])->withToastSuccess($resPonse['message']);
+        return  redirect( $resPonse['url'])->withToastSuccess($resPonse['message'],500);
 
     }
 }

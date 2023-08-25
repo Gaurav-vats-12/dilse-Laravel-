@@ -35,7 +35,7 @@ class MenuController extends Controller
     public function store(StoreMenuRequest $request)
     {
         Menu::insert(['menu_name' => $request->menu_name, 'menu_slug' => $request->menu_slug,'status' => $request->status,'created_at' => now(), 'updated_at' => now() ]);
-        return redirect()->route('admin.menu.index')->withSuccess('Menu Successfully Created');
+        return redirect()->route('admin.menu.index')->withSuccess('Menu Successfully Created',500);
     }
 
     /**
@@ -61,7 +61,7 @@ class MenuController extends Controller
     public function update(StoreMenuRequest $request, string $id)
     {
         Menu::findOrFail($id)->update(['menu_name' => $request->menu_name, 'menu_slug' => $request->menu_slug,'status' => $request->status,'updated_at' => now() ]);
-        return redirect()->route('admin.menu.index')->withSuccess('Menu Successfully Updated');
+        return redirect()->route('admin.menu.index')->withSuccess('Menu Successfully Updated',500);
 
     }
 
@@ -71,7 +71,7 @@ class MenuController extends Controller
     public function destroy(string $id)
     {
         Menu::findOrFail($id)->delete();
-        return redirect()->route('admin.menu.index')->withSuccess('Menu Successfully Deleted');
+        return redirect()->route('admin.menu.index')->withSuccess('Menu Successfully Deleted',500);
 
     }
 }
