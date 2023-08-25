@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="{{ route('admin.dashboard') }}" class="brand-link">
       <img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}" alt="Dil Se" class="brand-image" style="opacity: .8">
-      <span class="brand-text font-weight-light">{{ setting('site_title') != null ? setting('site_title') : '' }}</span>
+      <span class="brand-text font-weight-light">Admin Panel</span>
     </a>
 
     <!-- Sidebar -->

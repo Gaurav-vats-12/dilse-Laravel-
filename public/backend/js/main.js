@@ -196,32 +196,10 @@ jQuery( function () {
                 { "data": "persons" },
                 { "data": "comments" },
             ]
-
-
-
-
         });
-
-        // fetch_data_form_api_via_ajax();
-
-        //
-        // new DataTable('#manage_bookign_table',{
-        //     "responsive": true,
-        //     "lengthMenu": [10, 20],
-        //     "searching": true,
-        //       "columnDefs": [
-        //   { orderable: true, className: 'reorder', targets: 0 },
-        //   { orderable: true, className: 'reorder', targets: 1 },
-        //   { orderable: true, className: 'reorder', targets: 2 },
-        //   { orderable: true, className: 'reorder', targets: 3 },
-        //   { orderable: true, className: 'reorder', targets: 4 },
-        //   { orderable: true, className: 'reorder', targets: 5 },
-        //   { orderable: true, className: 'reorder', targets: 6 },
-        //   { orderable: true, className: 'reorder', targets: 7 },
-        //   { orderable: false, targets: '_all' }
-        // ]
-        // });
     }else if(url.indexOf("/order") > -1){
+
+
         new DataTable('#manage_orders',{
             "responsive": true,
             "lengthMenu": [10, 20],
@@ -233,7 +211,17 @@ jQuery( function () {
                 { orderable: false, targets: '_all' }
             ]
         });
-        jQuery(document).on("click", "#append_pop_ups" ,function (event) {
+        jQuery('input[name="order_time_taken"]').on('keypress', function() {
+        if (jQuery(this).val().length >= 3) {
+            jQuery('#errorMessage').text('You can only enter a maximum of 3 characters.');
+            return false;
+        } else {
+            jQuery('#errorMessage').text('');
+        }
+        });
+
+
+            jQuery(document).on("click", "#append_pop_ups" ,function (event) {
             jQuery(`#order_time_taken-${jQuery(this).attr('order_uid')}-error`).text();
             jQuery(`#Order_model-${jQuery(this).attr('order_uid')}`).modal('show')
             localStorage.setItem('order_id', jQuery(this).attr('order_uid'));
@@ -257,7 +245,6 @@ jQuery( function () {
                 jQuery(`#order_time_taken-${order_id}-error`).text('The order time taken field is required.');
             }
         });
-        // jQuery(document).on("click",`#ChangeOrderStatus`,async function(event) {
         jQuery(document).on("click", "#ChangeOrderStatus" ,function (event) {
             event.preventDefault();
                 Swal.fire({
@@ -279,8 +266,6 @@ jQuery( function () {
 
         jQuery(document).on("click", "#print_order" ,function (event) {
             window.print();
-
-
         });
     }else if(url.indexOf("/manage-subscribers") > -1){
         new DataTable('#view_subscribe_table',{

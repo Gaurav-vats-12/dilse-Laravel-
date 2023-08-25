@@ -78,9 +78,10 @@
             <div class="menu_left">
               <ul>
                 <li><a href="{{ url('/')}}">Home</a></li>
-                <li><a href="{{ route('menu','appetizers') }}">Menu</a></li>
-                <li><a href="{{url('about-us')}}">About Us</a></li>
-               <li><a href="{{url('blog')}}">Blog</a></li>
+                  <li><a href="{{url('about-us')}}">About Us</a></li>
+                  <li><a href="{{url('blog')}}">Blog</a></li>
+
+                  <li><a href="{{ route('menu','appetizers') }}">Menu</a></li>
               </ul>
             </div>
             <div class="site_logo">
@@ -97,7 +98,7 @@
                   <option>Toronto</option>
                   <option >Bramptonn</option>
                </select></li>
-              
+
               </ul>
             </div>
           </div>
