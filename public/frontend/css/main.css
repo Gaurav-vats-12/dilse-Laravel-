@@ -2084,6 +2084,19 @@ span.required {
 .total-summary-list li.grand-total .value {
     color: #FF5A60;
 }
+.payment_form {
+    display: flex;
+}
+
+.payment_form .secure_image {
+    flex: 0 0 30%;
+    max-width: 30%;
+}
+
+.payment_form ul.payment-metho-radio.d-flex {
+    flex: 0 0 70%;
+    max-width: 70%;
+}
 
 p {
     margin-bottom: 15px;
