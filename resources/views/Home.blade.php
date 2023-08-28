@@ -69,12 +69,12 @@
       <section class="about_se py_8">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
               <div class="about_img">
                 <img src="{{asset('frontend/img/about-img.png')}}" alt="" />
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
               <div class="about_cntnt">
                 <h3>About us Dil Se Indian Restaurant & BaR Testing Hello  </h3>
                 <h2>Bringing You An Authentic Indian Taste</h2>
@@ -225,7 +225,7 @@
                 </li>
               </ul>
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
               <div class="our_servics_img">
                 <img src="{{asset('frontend/img/services-img.png')}}" alt="" />
               </div>
@@ -346,12 +346,12 @@
       <section class="meet_chef py_8">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
               <div class="meet_chef_img">
                 <img src="{{asset('frontend/img/chef-1.png')}}" alt="" />
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
               <div class="meet_chef_cntnt">
                 <div class="tittle_heading">
                   <h3>Our Expert Chef</h3>
@@ -407,12 +407,12 @@
       <section class="sub_scribe py_8">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
               <div class="sub_scribe_img">
                 <img src="{{asset('frontend/img/subscribe_img.png')}}" alt="" />
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
               <div class="sub_scribe_txt">
                 <h2>for special offers and newsletters</h2>
                 <p>Stay up-to-date with our latest news and updates by subscribing to our newsletter today!</p>
@@ -441,28 +441,28 @@
               <h2>Contact Us</h2>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
                 <div class="custn_input">
                   <input type="text" placeholder="First name"  name="first_name"/>
                   <span id="first_name-error" class="text-danger error"></span>
 
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
                 <div class="custn_input">
                   <input type="text" placeholder="Last name" name="last_name" />
                   <span id="last_name-error" class="text-danger error"></span>
 
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
                 <div class="custn_input">
                   <input type="email" placeholder="E-mail"   name="email"/>
                   <span id="email-error" class="text-danger error"></span>
 
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
                 <div class="custn_input">
                   <input type="tel"  placeholder="Phone number" name="phone" id="phone" maxlength="10" />
                   <span id="phone-error" class="text-danger error"></span>

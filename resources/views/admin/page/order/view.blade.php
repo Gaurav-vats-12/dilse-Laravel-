@@ -83,13 +83,15 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
+                                                        @php  $subtotal = 0; @endphp
                                                         @foreach ($orders->orderItems as $key => $items)
+                                                            @php  $subtotal = $subtotal + $items["price"] *  $items["quantity"]@endphp
                                                             <tr>
                                                                 <td>{{ $key + 1 }}</td>
                                                                 <td>{{ $items->product->name }}</td>
                                                                 <td>{{ setting('site_currency')}}{{ $items->product->price }}</td>
                                                                 <td>{{ $items->quantity }}</td>
-                                                                <td>{{ setting('site_currency')}}{{ $items->price }}</td>
+                                                                <td>{{ setting('site_currency')}}{{ $subtotal }}</td>
                                                             </tr>
                                                         @endforeach
                                                         </tbody>
