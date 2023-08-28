@@ -16,7 +16,6 @@ use Stripe\Stripe;
 class PaymentFormServices{
 
     protected $paymentForm;
-
     /** @noinspection PhpUnreachableStatementInspection */
     public function PaymentForm($request){
         $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
@@ -40,6 +39,7 @@ class PaymentFormServices{
             'status'=> 'Pending',
             'order_type' => $request->order_type,
             'sub_total' => round($request->sub_total ,2),
+            'tax' => round($request->tax_total ,2),
             'shipping_charge' => round($request->delivery_charge ,2),
             'total_amount' => round($request->tototal_amount ,2),
             'created_at' => now(),

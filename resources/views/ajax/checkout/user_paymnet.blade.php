@@ -55,6 +55,8 @@
                             $subTotal_Tax = (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) : $subtotal + 0.00;
                             $tax_total = round(($subTotal_Tax * setting('tax' ,0.00)) / 100 ,2);
                         @endphp
+                        <input type="hidden" name="tax_total" id="tax_total" value="{{ $tax_total }}">
+
                         <span class="key">Tax ({{setting('tax' ,0.00)}}%)</span>
                         <span class="value"  data-value ="{{ $tax_total }}" >{{ setting('site_currency')}}{{ $tax_total }}</span>
                     </li>
