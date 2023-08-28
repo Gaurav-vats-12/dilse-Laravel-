@@ -182,8 +182,10 @@ jQuery(document).ready(function () {
     });
     // jQuery( "#datepicker" ).datepicker();
    $('#datepicker').datepicker({
-    minDate: 0 // 0 will disable all past dates
-});
+       minDate: 1, // Set the minimum date to tomorrow
+       defaultDate: "+1", // Set the default date to tomorrow
+       dateFormat: 'yy-mm-dd' // Set the date format (optional)
+   });
     /**
      *  Update the quantity According to plus and minus in cart page (Cart page )
      */
@@ -365,6 +367,12 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
             }
         });
         payment_intergation(jQuery(`#StripeKey`).val());
+        $('#billing_phone').inputmask('(999) 999-9999');
+        $('#billing_postcode').inputmask('A9A 9A9', {
+            placeholder: 'K1N 8W5\n',
+            clearMaskOnLostFocus: false,
+        })
+
 
     }else if(url.indexOf("/profile-address") > -1){
         /**

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 @props(['title'])
-
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -15,6 +14,7 @@
     @include('admin.partials.navigation')
     @include('admin.partials.sidebar')
 </div>
+
 <div class="content-wrapper">
 {{ $slot }}
 </div>

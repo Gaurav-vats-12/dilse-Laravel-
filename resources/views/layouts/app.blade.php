@@ -14,8 +14,6 @@
 <body>
     @include('layouts.partials.navigate')
 <div class="wrapper">
-
   @yield('frontcontent')
   </div>
 @include('layouts.partials.footer')
-

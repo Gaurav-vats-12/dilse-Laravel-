@@ -18,6 +18,8 @@ jQuery( function () {
         maximumSelectionLength: 2
       });
 
+
+
     var url = window.location.pathname;
     if (url.indexOf("/banner") > -1) {
         jQuery(document).on("change","#banner_type", function(e) {
@@ -97,8 +99,7 @@ jQuery( function () {
           { orderable: false, targets: '_all' }
         ]
         });
-
-
+        jQuery('#orderstatus').select2();
     }else if(url.indexOf("/testimonial") > -1){
         new DataTable('#testonomails_table',{
             "responsive": true,
