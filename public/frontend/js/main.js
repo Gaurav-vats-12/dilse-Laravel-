@@ -264,12 +264,16 @@ jQuery(document).ready(function () {
                     if (uid === 0) {
                         jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                         jQuery('#order_details').empty();
+                        jQuery('.product_c_main').empty();
+
                     } else {
                         let product_oid = parseInt(jQuery(this).attr("produc_id"));
                         jQuery(`#cart_products-${product_oid}`).empty();
                         if (uid - 1 === 0) {
                             jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                             jQuery('#order_details').empty();
+                            jQuery('.product_c_main').empty();
+
                         }
                     }
                 }
