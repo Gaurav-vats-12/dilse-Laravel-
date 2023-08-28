@@ -27,4 +27,3 @@ RouteAlias::prefix('cart')->name('cart.')->group(callback: function (){
 RouteAlias::prefix('checkout')->name('checkout.')->group(callback: function (){
     RouteAlias::POST('/create', [CheckoutControllerAlias::class, 'create'])->name('create');
 });
-

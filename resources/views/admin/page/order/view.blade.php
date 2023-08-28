@@ -77,9 +77,9 @@
                                                         <tr>
                                                             <th style="width:130px">S.N.</th>
                                                             <th>Item Name</th>
-                                                            <th style="width:150px" class="text-center">Price</th>
-                                                            <th style="width:150px" class="text-center">Qty</th>
-                                                            <th style="width:100px" class="text-center">Total</th>
+                                                            <th style=>Price</th>
+                                                            <th >Qty</th>
+                                                            <th >Total</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -87,9 +87,9 @@
                                                             <tr>
                                                                 <td>{{ $key + 1 }}</td>
                                                                 <td>{{ $items->product->name }}</td>
-                                                                <td>{{ $items->product->price }}</td>
+                                                                <td>{{ setting('site_currency')}}{{ $items->product->price }}</td>
                                                                 <td>{{ $items->quantity }}</td>
-                                                                <td>{{ $items->price }}</td>
+                                                                <td>{{ setting('site_currency')}}{{ $items->price }}</td>
                                                             </tr>
                                                         @endforeach
                                                         </tbody>
@@ -106,7 +106,7 @@
                                                 <strong>Sub Total :</strong>
                                             </div>
                                             <div class="col-8">
-                                                ${{ $orders->sub_total }}
+                                                {{ setting('site_currency')}}{{ $orders->sub_total }}
                                             </div>
                                         </div>
                                         <div class="row mt-3">
@@ -114,7 +114,15 @@
                                                 <strong>Shipping Fees :</strong>
                                             </div>
                                             <div class="col-8">
-                                                ${{ $orders->shipping_charge }}
+                                                {{ setting('site_currency')}}{{ $orders->shipping_charge }}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <strong>Tax ({{setting('tax' ,0.00)}}%) :</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                {{ setting('site_currency')}}{{ $orders->tax }}
                                             </div>
                                         </div>
                                         <div class="row mt-3">

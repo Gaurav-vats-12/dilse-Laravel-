@@ -131,15 +131,23 @@ jQuery(document).ready(function () {
      */
     jQuery(document).on("click", "#menu", async function (e) {
         e.preventDefault();
+
         jQuery(`.loader`).toggleClass('display');
         jQuery(`#menu_data_find`).empty();
-        let slug = jQuery(this).attr("menu-slug"), page = 1, ajax_value = {slug, page};
-        const response = await Ajax_response('', "GET", ajax_value, '', '');
 
+        let slug = jQuery(this).attr("menu-slug");
+        let page = 1;
+        let ajax_value = {slug, page};
+
+        let pageUrl = `${location.hostname}/menu/${slug}?page=${page +1}`;
+        const response = await Ajax_response('', "GET", ajax_value, '', '');
         if (response) {
             jQuery(`.loader`).toggleClass('display');
             window.history.pushState(null, '', "/menu/"+slug);
             jQuery(`#menu_data_find`).empty().html(response);
+            jQuery('.pagination a').attr('href',pageUrl);
+            // window.location.reload(true);
+
         }
     });
 
