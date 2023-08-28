@@ -7,6 +7,7 @@ use App\Modules\Admins\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as AuthAlias;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -21,13 +22,15 @@ class AuthenticatedSessionController extends Controller
 
     /**
      * Handle an incoming authentication request.
+     * @throws ValidationException
      */
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
 
         $request->session()->regenerate();
-        return redirect()->intended('/admin/dashboard');
+        return redirect()->intended('/admin/dashboard')->withToastSuccess('Admin Login Successfully ',500);
+
     }
 
     /**
@@ -36,6 +39,7 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         AuthAlias::guard('admin')->logout();
+
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
