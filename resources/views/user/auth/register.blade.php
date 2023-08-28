@@ -53,6 +53,17 @@
                       </div>
                     </div>
                     </div>
+                <div class="col-12 mb-4">
+                    <div class="form-check d-flex align-items-center">
+                        <input type="checkbox" name="privacyPolicy" class="form-check-input me-2" id="remember" required value="1">
+                        <label class="form-check-label" for="remember">
+                            By signing up you agree to our
+                            <a href="{{url('terms-and-conditions')}}" target="_blank">Terms &amp; Conditions</a>
+                            &amp;
+                            <a href="{{url('privacy-policy')}}" target="_blank">Privacy Policy</a>.
+                        </label>
+                    </div>
+                </div>
                   <div class="contact_form_btn">
                     <button class="theme_btn">Sign UP</button>
                   </div>

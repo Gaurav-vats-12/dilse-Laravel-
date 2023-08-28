@@ -27,7 +27,7 @@ class StoreBookingTable extends FormRequest
             'email' => 'required|email',
             'date' => 'required|date|after:yesterday',
             'time' => 'required',
-            'phone' => 'required|min:10|max:10',
+            'phone' => 'required|min:10|max:15',
             'select_part' => 'required',
         ];
     }

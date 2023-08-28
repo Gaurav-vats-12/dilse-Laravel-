@@ -1,5 +1,7 @@
 jQuery(document).ready(function () {
-
+    setTimeout(function() {
+        $('.swal2-container.swal2-top-end.swal2-backdrop-show').hide();
+    }, 5000); // 5000 milliseconds or 5 seconds
     /**
      * Order Type In Home and Checkout page
      */
@@ -146,8 +148,7 @@ jQuery(document).ready(function () {
             window.history.pushState(null, '', "/menu/"+slug);
             jQuery(`#menu_data_find`).empty().html(response);
             jQuery('.pagination a').attr('href',pageUrl);
-            // window.location.reload(true);
-
+            window.location.reload(true);
         }
     });
 
@@ -181,11 +182,7 @@ jQuery(document).ready(function () {
         }
     });
     // jQuery( "#datepicker" ).datepicker();
-   $('#datepicker').datepicker({
-       minDate: 1, // Set the minimum date to tomorrow
-       defaultDate: "+1", // Set the default date to tomorrow
-       dateFormat: 'yy-mm-dd' // Set the date format (optional)
-   });
+
     /**
      *  Update the quantity According to plus and minus in cart page (Cart page )
      */
@@ -267,12 +264,16 @@ jQuery(document).ready(function () {
                     if (uid === 0) {
                         jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                         jQuery('#order_details').empty();
+                        jQuery('.product_c_main').empty();
+
                     } else {
                         let product_oid = parseInt(jQuery(this).attr("produc_id"));
                         jQuery(`#cart_products-${product_oid}`).empty();
                         if (uid - 1 === 0) {
                             jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                             jQuery('#order_details').empty();
+                            jQuery('.product_c_main').empty();
+
                         }
                     }
                 }
@@ -310,14 +311,6 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
     /**
      * Extra Items Sliders
      */
-    // jQuery('.product_checkout').slick({
-    //     dots: false,
-    //     infinite: true,
-    //     arrows: true,
-    //     speed: 300,
-    //     slidesToShow: 4,
-    //     slidesToScroll: 1
-    // });
 
 
 
@@ -367,8 +360,8 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
             }
         });
         payment_intergation(jQuery(`#StripeKey`).val());
-        $('#billing_phone').inputmask('(999) 999-9999');
-        $('#billing_postcode').inputmask('A9A 9A9', {
+        jQuery('#billing_phone').inputmask('(999) 999-9999');
+        jQuery('#billing_postcode').inputmask('A9A 9A9', {
             placeholder: 'K1N 8W5\n',
             clearMaskOnLostFocus: false,
         })
@@ -384,6 +377,56 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
         let selected_billing_state = jQuery('#selected_billing_state').val();
         let ajax_value = {country_uid,'type':'country',selected_billing_state};
         state_dependency_country_list(ajax_value, ajax_url);
+    }else if(url.indexOf("/book-a-reservation") > -1) {
+        jQuery('#datepicker').datepicker({
+            minDate: 1,
+            defaultDate: "+1",
+            dateFormat: 'yy-mm-dd'
+        });
+        jQuery('#timepicker').timepicker({
+            'minTime': '11:30 AM',
+            'maxTime': '10:30 PM',
+            'showDuration': false
+        });
+        let now = new Date(), currentHour = now.getHours(), currentMinute = now.getMinutes();
+        if (currentMinute < 15) {
+            currentMinute = 0;
+        } else if (currentMinute < 30) {
+            currentMinute = 15;
+        } else if (currentMinute < 45) {
+            currentMinute = 30;
+        } else {
+            currentMinute = 45;
+        }
+        let currentTime = currentHour + ':' + (currentMinute === 0 ? '00' : '15');
+
+        jQuery(document).on("change", "#datepicker", async function (event) {
+            let selectedDate = new Date($(this).val()); // Assuming the date format is 'yyyy-mm-dd'
+            if (selectedDate.toDateString() === now.toDateString()) {
+                var minTimeValue = (currentHour < 10 ? '0' : '') + currentHour + ':' + (currentMinute < 10 ? '0' : '') + currentMinute;
+                jQuery('#timepicker').timepicker('option', 'minTime', minTimeValue);
+            } else {
+                jQuery('#timepicker').timepicker('option', 'minTime', '11:30 AM');
+            }
+        });
+
+        let initialMinTime = now.toDateString() === (new Date($('#datepicker').val()).toDateString()) ? currentTime : '11:30 AM';
+        jQuery('#timepicker').timepicker({
+            'minTime': initialMinTime,
+            'maxTime': '10:30 PM',
+            'step': 15,
+            'showDuration': false
+        });
+        jQuery(document).on("keypress", "#timepicker", async function (event) {
+            jQuery(this).prop('readonly', true);
+            jQuery(this).css('pointer-events', 'none');
+        });
+        jQuery(document).on("click", "#inputWrapper", async function (event) {
+            jQuery('#timepicker').prop('readonly', false);
+            jQuery('#timepicker').css('pointer-events', 'auto');
+
+        });
+        jQuery('#phone').inputmask('(999) 999-9999');
     }
 
 });

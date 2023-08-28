@@ -43,11 +43,12 @@
                 @endif
                     </div>
 
+
                    <div class="contact_form_btn">
                     <button class="theme_btn">  {{ __('Log in') }}</button>
                   </div>
                       @if(strpos(URL::previous(),'cart'))
-                         <P class="proceed_ancho" >OR <a  href="{{route('checkout.view')}}"> As a Guest </a></P> 
+                         <P class="proceed_ancho" >OR <a  href="{{route('checkout.view')}}"> As a Guest </a></P>
                       @endif
                   <p>Don’t have an account?<span><a href="{{ route('user.register') }}">sign-up</a></span></p>
                 </form>

@@ -6,8 +6,8 @@
    <!-- Jquery  Validations  -->
    <script src="{{asset('plugins/jquery-validation/jquery.validate.min.js') }}"></script>
    <script src="{{asset('plugins/jquery-validation/additional-methods.min.js') }}"></script>
-   <!-- Jquery UI  -->
-    <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+   <!-- jQuery UI 1.11.4 -->
+   <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <!-- magnific Pop Ups -->
     <script src="{{asset('plugins/magnific-popup/js/magnific-popup.min.js')}}"></script>
     <!-- Bootstrap Bundle (includes Popper) -->
@@ -20,7 +20,6 @@
    <script src="{{asset('plugins/timepicker/js/jquery.timepicker.min.js') }}"></script>
     <!-- Toast Alert -->
     <script src="{{asset('plugins/toastr/toastr.min.js') }}"></script>
-
    <!-- InputMask -->
    <script src="{{asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
    <!-- main.js -->
