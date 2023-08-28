@@ -63,11 +63,13 @@ public function viewcart(){
                     $subtotal =  $subtotal + round($details["price"]  * $details["quantity"], 2) ;
                 }
                 if(session('order_type') == 'delivery'){
-                    $total =   $subtotal + setting('delivery_charge');
+                    $total_before_Tex =   $subtotal + setting('delivery_charge');
                 }else{
-                    $total =  $subtotal ;
+                    $total_before_Tex =  $subtotal ;
                 }
-             return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product add to cart successfully"]);
+                $total_tax = round(($total_before_Tex * setting('tax' ,0.00)) / 100 ,2);
+                $total = $total_before_Tex+$total_tax;
+                 return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total_tax'=>$total_tax,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product add to cart successfully"]);
             }else{
                 if(isset($request->product_oid)) {
                     unset($request->product_oid);
@@ -77,15 +79,17 @@ public function viewcart(){
                     $subtotal =  $subtotal + round($details["price"] ,2) ;
                 }
                 if(session('order_type') == 'delivery'){
-                    $total =   $subtotal + setting('delivery_charge' ,0.00);
+                    $total_before_Tex =   $subtotal + setting('delivery_charge' ,0.00);
                 }else{
-                    $total =  $subtotal ;
+                    $total_before_Tex =  $subtotal ;
                 }
-                return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total'=>round($total,2) ,'status' =>'success', "message"=>" Product Remove from add  to cart successfully"]);
+                $total_tax = round(($total_before_Tex * setting('tax' ,0.00)) / 100 ,2);
+                $total = $total_before_Tex+$total_tax;
+                return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total_tax'=>$total_tax,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product add to cart successfully"]);
 
             }
         } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
-            return response()->json(['code' => 400 , 'cart_total'=>'Null', 'subtotal'=>nullOrEmptyString() ,'total'=>nullOrEmptyString() , 'status' =>'error', "message"=>"Something Wrong"]);
+            return response()->json(['code' => 400 , 'cart_total'=>'Null', 'subtotal'=>nullOrEmptyString() ,'total_tax'=>nullOrEmptyString(), 'total'=>nullOrEmptyString() , 'status' =>'error', "message"=>"Something Wrong"]);
         }
     }
 
@@ -109,11 +113,13 @@ public function viewcart(){
                     $subtotal =  $subtotal + round($details["price"] ,2) ;
                 }
                 if(session('order_type') == 'delivery'){
-                    $total =   $subtotal + setting('delivery_charge' ,0.00);
+                    $total_before_Tex =   $subtotal + setting('delivery_charge' ,0.00);
                 }else{
-                    $total =  $subtotal = 0.00;
+                    $total_before_Tex =  $subtotal ;
                 }
-                return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product add to cart successfully"]);
+                $total_tax = round(($total_before_Tex * setting('tax' ,0.00)) / 100 ,2);
+                $total = $total_before_Tex+$total_tax;
+                return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total_tax'=>$total_tax,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product  Remove from add to cart  successfully"]);
             }else{
                 return response()->json(['code' => 203 ,  'cart_total'=>nullValue(),'status' =>'error', "message"=>"Product Id Not Found"]);
             }

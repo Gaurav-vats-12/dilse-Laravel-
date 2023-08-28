@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Auth as AuthAlias;
 class MenuController extends Controller
 {
     public function menu(Request $request, $slug = ''){
+
+
         $order_type = session()->get('order_type');
         if ($request->ajax()) {
+
             $slug = $request->slug;
             $current_url = $request->current_url;
             if($current_url =='home'){
@@ -17,22 +20,21 @@ class MenuController extends Controller
                 $slug = 'appetizers';
                 $menu_id = Menu::where('menu_slug',$slug)->first()->id;
                 $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);
-                return view('Pages.menu',compact('FoodItem','slug'));
+                return view('Pages.menu',['FoodItem'=>$FoodItem ,'slug'=>$slug]);
             }else if ($current_url =='cart.view'){
                $authType =  AuthAlias::guard('user')->check();
                 $loginroute = AuthAlias::guard('user')->check() ? route('checkout.view') : route('user.login');
-
                 session()->put('order_type', $request->type);
                 return response()->json(['code' => 200 , 'status' =>'success','url'=> $loginroute]);
             }else{
                 $menu_id = Menu::where('menu_slug',$slug)->first()->id;
                 $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);
-                return view('ajax.menufooditems',compact('FoodItem','slug'));
+                return view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug]);
             }
         }else{
             $menu_id = Menu::where('menu_slug',$slug)->first()->id;
             $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);
-            return view('Pages.menu',compact('FoodItem','slug'));
+            return view('Pages.menu',['FoodItem'=>$FoodItem ,'slug'=>$slug]);
         }
     }
 

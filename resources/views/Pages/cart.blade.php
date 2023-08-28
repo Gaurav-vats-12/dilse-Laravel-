@@ -42,9 +42,9 @@
                                             </li>
                                             <li>
                                                 <div class="shope_price">
-                                                    <div class="shope_p_tag"><span class="text-green-500 !leading-none"> $ {{ $details['productdetails']->price}}</span>
+                                                    <div class="shope_p_tag"><span class="text-green-500 !leading-none">{{setting('site_currency')}}{{ $details['productdetails']->price}}</span>
                                                     </div>
-                                                    <div class="price"><h6> <span id="product_quantity_price__{{$id}}">$ {{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
+                                                    <div class="price"><h6> <span id="product_quantity_price__{{$id}}">{{setting('site_currency')}}{{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
 
                                                     <div class="remove_price">
                                                         <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
@@ -57,7 +57,6 @@
                                 </div>
                             @endforeach @else <h4> No Cart  Items Found</h4>  @endif
                     </div>
-
                     <div class="col-sm-12 col-md-7 col-lg-4" id="order_details">
                         @if(session('cart'))
                             <div class="order_summary">
@@ -70,15 +69,12 @@
                                             <p>Subtotal
                                             </p>
                                         </div>
-
-
                                         <div class="s_total" id="subtotal">
-                                            <p>${{ $subtotal }}</p>
+                                            <p>{{ setting('site_currency')}}{{ $subtotal }}</p>
                                         </div>
                                     </li>
                                     @php
                                     $orderType = session('order_type');
-
                                     @endphp
                                     @if($orderType == 'delivery')
                                     <li>
@@ -86,16 +82,25 @@
                                             <p>Delivery Charges :
                                             </p>
                                         </div>
-
-
-
                                         <div class="s_total" id="subtotal">
-                                            <p>${{(setting('delivery_charge'))}}</p>
+                                            <p>{{ setting('site_currency')}}{{(setting('delivery_charge'))}}</p>
                                         </div>
                                     </li>
                                     @endif
+                                    <li>
 
-
+                                        <div class="s_subtotal">
+                                            <p>Tax ({{setting('tax' ,0.00)}}%)
+                                            </p>
+                                        </div>
+                                        <div class="s_total" id="tax_total">
+                                            @php
+                                                $subTotal_Tax = (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) : $subtotal + 0.00;
+                                                $tax_total = round(($subTotal_Tax * setting('tax' ,0.00)) / 100 ,2);
+                                            @endphp
+                                            <p>{{ setting('site_currency')}}{{ $tax_total }}</p>
+                                        </div>
+                                    </li>
                                 </ul>
                                 <div class="order_totals d-flex align-items-center justify-content-between">
                                     <div class="order_totalses">
@@ -104,7 +109,7 @@
                                     </div>
                                     <div class="order_totalse" id="total">
                                         <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{ (session('order_type') == 'delivery') ? setting('delivery_charge' ,0.00) : $subtotal + 0.00 }}">
-                                        <p>$ {{ (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) : $subtotal + 0.00 }}
+                                        <p>{{ setting('site_currency')}}{{ (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) +  $tax_total : $subtotal + 0.00 +  $tax_total }}
                                         </p>
                                     </div>
                                 </div>
@@ -160,7 +165,7 @@
                                                         <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
                                                         <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
                                                         <div class="cost_p">
-                                                        <h6>     $ {{ $extra_item->price }}</h6>
+                                                        <h6>    {{ setting('site_currency')}}{{ $extra_item->price }}</h6>
                                                         <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
                                                             <span class="added-to-cart">Added to cart</span>
                                                         </a>
@@ -189,7 +194,7 @@
                                                         <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
                                                         <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
                                                         <div class="cost_p">
-                                                        <h6>     $ {{ $extra_item->price }}</h6>
+                                                        <h6>   {{ setting('site_currency')}}{{ $extra_item->price }}</h6>
                                                         <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
                                                             <span class="added-to-cart">Added to cart</span>
                                                         </a>
@@ -221,7 +226,7 @@
                                                         <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
                                                         <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
                                                         <div class="cost_p">
-                                                        <h6>     $ {{ $extra_item->price }}</h6>
+                                                        <h6>    {{ setting('site_currency')}}{{ $extra_item->price }}</h6>
                                                         <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
                                                             <span class="added-to-cart">Added to cart</span>
                                                         </a>
@@ -251,7 +256,7 @@
                                         <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
                                         <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
                                         <div class="cost_p">
-                                        <h6>     $ {{ $extra_item->price }}</h6>
+                                        <h6>    {{ setting('site_currency')}}{{ $extra_item->price }}</h6>
                                         <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
                                             <span class="added-to-cart">Added to cart</span>
                                         </a>

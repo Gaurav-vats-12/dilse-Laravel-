@@ -12,9 +12,8 @@ return new class extends Migration
     public function up()
 {
     Schema::table('settings', function (Blueprint $table) {
-        $table->decimal('delivery_charge', 8, 2)->nullable()->default(null)->after('blogto_url');
-        $table->decimal('tax', 8, 2)->nullable()->default(null)->after('blogto_url');
-
+        $table->decimal('delivery_charge', 10, 2)->nullable()->default(null)->after('blogto_url');
+        $table->decimal('tax', 10, 2)->nullable()->default(null)->after('blogto_url');
     });
 }
 

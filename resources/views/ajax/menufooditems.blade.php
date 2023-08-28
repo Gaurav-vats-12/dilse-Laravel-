@@ -9,9 +9,7 @@
                             <div class="best_food_cntnt">
                                 <div class="best_food_txt">
                                     <a href="{{ route('menudetails' , $FoodItems->slug)}}"><h3> {{ $FoodItems->name}}</h3></a>
-
-
-                                    <h2>${{ $FoodItems->price}}</h2>
+                                    <h2>{{setting('site_currency')}}{{ $FoodItems->price}}</h2>
                                 </div>
                                 <div class="best_btn_food">
                                 <input type="hidden" name="ajax_url" id="ajax_url" value="{{ route('cart.add') }}" >
@@ -27,10 +25,6 @@
                         <div class="CustomPagination"  id="menu_items">
                             {!! $FoodItem->links() !!}
                         </div>
-
-{{--                        <div class="d-flex justify-content-center CustomPagination">--}}
-
-{{--            </div>--}}
                     @else
                     <h4>No Food Item  Found</h4>
                     @endif

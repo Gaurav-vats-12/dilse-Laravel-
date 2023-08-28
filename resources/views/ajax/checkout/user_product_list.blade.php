@@ -22,8 +22,8 @@
                     <h6>{{ $details['productdetails']->name }}</h6>
                 </td>
                 <td>{{ $details['quantity'] }}</td>
-                <td>${{ round($details['productdetails']->price, 2) }}</td>
-                <td>${{ round($details['productdetails']->price * $details['quantity'], 2) }}</td>
+                <td>{{setting('site_currency')}}{{ round($details['productdetails']->price, 2) }}</td>
+                <td>{{setting('site_currency')}}{{ round($details['productdetails']->price * $details['quantity'], 2) }}</td>
             </tr>
         @endforeach
         </tbody>
