@@ -5,19 +5,16 @@
       <img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}" alt="Dil Se" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light">Admin Panel</span>
     </a>
-    <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ (request()->is('admin')) ? 'active' : '' }}">
+            <a href="javascript:void(0)" ajax_url ="{{ route('admin.dashboard') }}" class="nav-link {{ (request()->is('admin/dashboard')) ? 'active' : '' }} ajax_redirect_url" type="desktop">
               <p>
               {{ __('Dashboard') }}
               </p>
             </a>
           </li>
-
             <li class="nav-item">
                 <a href="{{ route('admin.order.index') }}" class="nav-link {{ (request()->is('admin/order*')) ? 'active' : '' }}">
                     <p>

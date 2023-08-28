@@ -20,7 +20,10 @@
    <script src="{{asset('plugins/timepicker/js/jquery.timepicker.min.js') }}"></script>
     <!-- Toast Alert -->
     <script src="{{asset('plugins/toastr/toastr.min.js') }}"></script>
-    <!-- main.js -->
+
+   <!-- InputMask -->
+   <script src="{{asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+   <!-- main.js -->
     <script src="{{asset('frontend/js/main.js') }}"></script>
     <!-- Function.js -->
     <script src="{{asset('frontend/js/function.js') }}"></script>
