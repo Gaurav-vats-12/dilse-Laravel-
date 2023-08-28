@@ -54,7 +54,7 @@
                     </div>
                     </div>
                   <div class="contact_form_btn">
-                    <button class="theme_btn">Send</button>
+                    <button class="theme_btn">Sign UP</button>
                   </div>
                   <p>Already have an account? <a href="{{ route('user.login') }}">sign-In </a></p>
                 </form>
