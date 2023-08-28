@@ -10,7 +10,6 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-7 col-lg-8" id="cart_messages">
                         @php  $subtotal = 0; @endphp
-
                         @if(session('cart'))
                             @foreach(session('cart') as $id => $details)
                                 @php  $subtotal = $subtotal + $details["price"] *  $details["quantity"]@endphp
