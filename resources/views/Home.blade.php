@@ -322,7 +322,7 @@
                 <div class="best_food_cntnt home_best_food_cntnt">
                   <div class="best_food_txt">
                   <a href="{{ route('menudetails' , $FoodItemValue->slug)}}"><h3> {{ $FoodItemValue->name}}</h3></a>
-                  <h2>${{ $FoodItemValue->price}}</h2>
+                  <h2>{{setting('site_currency')}}{{ $FoodItemValue->price}}</h2>
                   </div>
                   <div class="best_food_btn">
                   <input type="hidden" name="ajax_url" id="ajax_url" value="{{ route('cart.add') }}" >

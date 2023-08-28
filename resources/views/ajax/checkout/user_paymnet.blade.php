@@ -44,20 +44,26 @@
                 <ul class="total-summary-list">
                     <li class="subtotal">
                         <span class="key">SUBTOTAL (1 ITEMS): </span>
-                        <span class="value">${{ $subtotal }}</span>
+                        <span class="value">{{setting('site_currency')}}{{ $subtotal }}</span>
                     </li>
                     <li class="charges">
-
                         <span class="key">Delivery Charges :</span>
-                        <span class="value"  data-value ="{{ (session('order_type') && session('order_type') == "delivery") ? setting('delivery_charge') != null ? __(setting('delivery_charge')) : '' : 0.00 }}" >${{ (session('order_type') && session('order_type') == "delivery") ? setting('delivery_charge') != null ? __(setting('delivery_charge')) : '': 0.00 }}</span>
+                        <span class="value"  data-value ="{{ (session('order_type') && session('order_type') == "delivery") ? setting('delivery_charge') != null ? __(setting('delivery_charge')) : '' : 0.00 }}" >{{setting('site_currency')}}{{ (session('order_type') && session('order_type') == "delivery") ? setting('delivery_charge') != null ? __(setting('delivery_charge')) : '': 0.00 }}</span>
+                    </li>
+                    <li class="charges">
+                        @php
+                            $subTotal_Tax = (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) : $subtotal + 0.00;
+                            $tax_total = round(($subTotal_Tax * setting('tax' ,0.00)) / 100 ,2);
+                        @endphp
+                        <span class="key">Tax ({{setting('tax' ,0.00)}}%)</span>
+                        <span class="value"  data-value ="{{ $tax_total }}" >{{ setting('site_currency')}}{{ $tax_total }}</span>
                     </li>
                     <li class="grand-total">
                         <span class="key">GRAND TOTAL:</span>
                         <input type="hidden" name="sub_total" value="{{  $subtotal }}">
-                        <input type="hidden" name="tototal_amount" value="{{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + setting('delivery_charge'):  $subtotal + 0.00 }}">
-                        <span class="value">${{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + setting('delivery_charge'):  $subtotal + 0.00 }}</span>
+                        <input type="hidden" name="tototal_amount" value="{{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + setting('delivery_charge') +  $tax_total:  $subtotal + 0.00 +  $tax_total }}">
+                        <span class="value">{{setting('site_currency')}}{{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + setting('delivery_charge') +  $tax_total:  $subtotal + 0.00 +  $tax_total }}</span>
                     </li>
-
                 </ul>
             </div>
         </div>

@@ -14,7 +14,6 @@ jQuery(document).ready(function () {
             window.location.href = AjaxForm;
         }
     });
-
     /**
      *  Add to Cart  In Website (Home Page ,Menu page,Product Details Pages)
      */
@@ -136,6 +135,7 @@ jQuery(document).ready(function () {
         jQuery(`#menu_data_find`).empty();
         let slug = jQuery(this).attr("menu-slug"), page = 1, ajax_value = {slug, page};
         const response = await Ajax_response('', "GET", ajax_value, '', '');
+
         if (response) {
             jQuery(`.loader`).toggleClass('display');
             window.history.pushState(null, '', "/menu/"+slug);
@@ -172,18 +172,15 @@ jQuery(document).ready(function () {
             opener: openerElement => openerElement.is('img') ? openerElement : openerElement.find('img')
         }
     });
-
-
-
     // jQuery( "#datepicker" ).datepicker();
    $('#datepicker').datepicker({
     minDate: 0 // 0 will disable all past dates
 });
-
     /**
      *  Update the quantity According to plus and minus in cart page (Cart page )
      */
     jQuery(document).on("click", ".update-qty", async function (e) {
+        let site_currency = jQuery('meta[name="site_currency"]').attr('content');
         let newVal;
         let $button = jQuery(this), oldValue = $button.closest('.update-cart-qty').find("input.product-qty").val(),
             quantity = jQuery(this).parent().find(`.product-qty`), ajax_url = jQuery(`#ajax_url`).val(),
@@ -193,8 +190,6 @@ jQuery(document).ready(function () {
         if ($button.text() == "+") {
             newVal = parseFloat(oldValue) + 1;
         }else {
-            // Don't allow decrementing below zero
-
             if (oldValue > 0) {
                 newVal = parseFloat(oldValue) - 1;
             } else {
@@ -210,13 +205,14 @@ jQuery(document).ready(function () {
             $button.closest('.update-cart-qty').find("input.product-qty").attr('value',newVal);
             let qty = newVal;
             let counterproductive = parseFloat(newVal * product__price), ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
-            jQuery(`#product_quantity_price__${product_oid}`).text(`$${counterproductive.toFixed(2)}`);
+            jQuery(`#product_quantity_price__${product_oid}`).text(`${site_currency}${counterproductive.toFixed(2)}`);
             jQuery(`#product_quntity__${product_oid}`).val(qty);
-            jQuery(`#product_price__${product_oid}`).val(`$${counterproductive.toFixed(2)}`);
+            jQuery(`#product_price__${product_oid}`).val(`${site_currency}${counterproductive.toFixed(2)}`);
             const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
             if (resPose.status === `success`) {
-                jQuery(`#subtotal`).html(`<p>$${resPose.subtotal}</p>`);
-                jQuery(`#total`).html(`<p>$${resPose.total}</p>`);
+                jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
+                jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
+                jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
             }
         }
     });
@@ -234,13 +230,12 @@ jQuery(document).ready(function () {
             setTimeout(function() { window.location.reload()}, 1000);
         }
     });
-
-
     /**
      *     Remove  The Cart in Cart page (Cart Page)
      */
-
     jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
+        let site_currency = jQuery('meta[name="site_currency"]').attr('content');
+
         event.preventDefault();
         Swal.fire({
             title: `Are you sure you want to delete this Item?`,
@@ -256,8 +251,9 @@ jQuery(document).ready(function () {
                 [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
                 if (resPose.status === 'success') {
                     jQuery(`.cart_count`).html(resPose.cart_total);
-                    jQuery('#subtotal').text(resPose.subtotal);
-                    jQuery('#total').text(resPose.total);
+                    jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
+                    jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
+                    jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
                     if (uid === 0) {
                         jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                         jQuery('#order_details').empty();
@@ -277,11 +273,6 @@ jQuery(document).ready(function () {
     /**
      *   Extra Items Sliders On Cart Page
      */
-
-
-
-
-
 
 $('i.fa-solid.fa-eye.user_pass').click(function() {
     // Check the current type of password input
@@ -306,7 +297,17 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
     }
 });
 
-
+    /**
+     * Extra Items Sliders
+     */
+    // jQuery('.product_checkout').slick({
+    //     dots: false,
+    //     infinite: true,
+    //     arrows: true,
+    //     speed: 300,
+    //     slidesToShow: 4,
+    //     slidesToScroll: 1
+    // });
 
 
 

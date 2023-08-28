@@ -2139,12 +2139,91 @@ p {
     height: 200px;
 }
 
-/*.menu_main_box .best_food_crd{*/
-/*    position: relative;*/
-/*}*/
-/*.menu_main_box {*/
-/*    position: relative;*/
-/*}*/
+/*Stripe css*/
+#card-element form {
+    width: 480px;
+    margin: 20px 0;
+}
+
+#card-element .group {
+    margin-bottom: 20px;
+}
+
+#card-element label {
+    position: relative;
+    color: #8898AA;
+    font-weight: 300;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+#card-element .group label:not(:last-child) {
+    border-bottom: 1px solid #F0F5FA;
+}
+
+#card-element label > span {
+    width: 120px;
+    margin-right: 30px;
+}
+
+#card-element label > span.brand {
+    width: 30px;
+}
+
+#card-element .field {
+    font-weight: 300;
+    border: 0;
+    outline: none;
+    flex: 1;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: text;
+}
+
+#card-element .field::-webkit-input-placeholder {
+    color: #CFD7E0;
+}
+
+#card-element .field::-moz-placeholder {
+    color: #CFD7E0;
+}
+
+
+.outcome {
+    float: left;
+    width: 100%;
+    padding-top: 8px;
+    min-height: 24px;
+    text-align: center;
+}
+
+.success,
+{
+    display: none;
+    font-size: 13px;
+}
+
+.success.visible,
+.error.visible {
+    display: inline;
+}
+
+.error {
+    color: #E4584C;
+}
+
+.success {
+    color: #666EE8;
+    display: none;
+}
+
+.success .token {
+    font-weight: 500;
+    font-size: 13px;
+}
 
 /* 16-8-23 */
 a.qtyminus.minus.qty-count.qty-count--minus.update-qty,a.qty-plus.plus.qty-count.qty-count--add.update-qty {
@@ -2450,6 +2529,9 @@ button.inline-flex {
     padding: 20px;
     padding: 11px 38px;
     width: 100%;
+}
+ .product_box {
+    padding: 0 15px;
 }
 
 li.admin_logot > a {

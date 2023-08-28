@@ -22,9 +22,10 @@ return new class extends Migration
             $table->string('shipping_address', 255);
             $table->string('billing_address', 255);
             $table->decimal('sub_total', 10, 2);
+            $table->decimal('shipping_charge', 10, 2)->nullable();
+            $table->decimal('tax', 10, 2)->nullable();
             $table->decimal('total_amount', 10, 2);
             $table->enum('order_type', ['take_out','delivery', 'dinein'])->nullable();
-            $table->decimal('shipping_charge', 10, 2)->nullable();
             $table->enum('status', ['Pending','Processing', 'Shipped', 'Delivered','Cancelled']);
             $table->timestamps();
         });

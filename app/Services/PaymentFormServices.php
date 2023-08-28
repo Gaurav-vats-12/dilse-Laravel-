@@ -63,7 +63,7 @@ class PaymentFormServices{
           $payment_id = Str::random(10);
             $payment_json = null;
             $statusMessage = 'success';
-            $payment_message = "Payment  Successfully";
+            $payment_message = "Order Placed Successfully ";
             $url = route('order_confirm', $order_id);
 
 
@@ -74,7 +74,7 @@ class PaymentFormServices{
             $payment_json = null;
             $payment_id = Str::random(10);
             $statusMessage = 'success';
-            $payment_message = "Payment  Successfully";
+            $payment_message = "Order Placed Successfully ";
             $url = route('order_confirm', $order_id);
         }else{
 
@@ -95,7 +95,7 @@ class PaymentFormServices{
                 $payment_json = json_encode($stripe_paymnet);
                 $payment_status = 'Paid';
                 $statusMessage = 'success';
-                $payment_message = "Payment  Successfully";
+                $payment_message = "Order Placed Successfully ";
                 $url = route('order_confirm', $order_id);
             } catch (ApiErrorException $e) {
 
@@ -110,7 +110,6 @@ class PaymentFormServices{
                 Order::findOrFail($order_id)->update(['status' => 'Cancelled','updated_at' => now() ]);
             }
         }
-
 
         Payments::insert([
             'payment_id'=>$payment_id,
