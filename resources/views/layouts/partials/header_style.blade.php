@@ -21,6 +21,9 @@
 
     <!-- main.css -->
     <link rel="stylesheet" href="{{asset('frontend/css/main.css') }}" />
+  <!-- mediaQueryCss.css -->
+  <link rel="stylesheet" href="{{asset('frontend/css/mediaQuery-css.css') }}" />
+
 
 
 
