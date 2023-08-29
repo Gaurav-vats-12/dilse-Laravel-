@@ -71,7 +71,7 @@
                <li><a href="{{url('gallery')}}">Gallery</a></li>
                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
                <li><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
-                  <li><a href="{{url('contact-us')}}">Contact Us</a></li>
+                  @if(Auth::guard('user')->check())
                   <li class="dropdown">
                       <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                       <ul class="dropdown-menu">
@@ -84,6 +84,12 @@
                           <li><a href="https://getbootstrap.com/examples/theme/#">One more separated link</a></li>
                       </ul>
                   </li>
+                  @else
+                      <li class="login_header">
+                          <a href="{{route('user.login')}}">
+                              <img src="{{asset('frontend/img/user_icon.png') }}" alt="" />
+                          </a>
+                  @endif
 
               </ul>
             </div>
