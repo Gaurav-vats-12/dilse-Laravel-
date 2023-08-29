@@ -1501,6 +1501,11 @@ form.contact_form a {
     display: flex;
     justify-content: space-between;
 }
+.read-more {
+    color: red;
+    font-size: 21px;
+    font-weight: 900;
+}
 .contact_form_btn {
     margin-top: 13px;
 }

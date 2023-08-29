@@ -42,7 +42,6 @@ jQuery(document).ready(function () {
     jQuery(".testimonial_slider_cntnt .content").each(function () {
         const content = $(this).text();
         const charLimit = 200; // Adjust to your preferred character limit
-
         if (content.length > charLimit) {
             const truncatedContent = content.substring(0, charLimit);
             jQuery(this).text(truncatedContent);
