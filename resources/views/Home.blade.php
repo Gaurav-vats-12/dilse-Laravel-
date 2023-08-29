@@ -385,7 +385,8 @@
                 @foreach ($Testimonial as $key => $TestimonialValue )
             <div class="testimonial_slider_cntnt">
                 <div class="testimonial_slider_txt">
-                    <p>{!! __($TestimonialValue->testimonial_description) !!}</p>
+                    <p class="content"  id="post-content">{!! __($TestimonialValue->testimonial_description) !!}</p>
+                    <a href="javascript:void(0)" class="read-more">Read More</a>
                     <div class="testimonial_user">
                         <div class="testimonial_user_img">
                             <img src="{{ url('/storage/testimonial/'.$TestimonialValue->testonomailsImage.'')}}" alt="" />
@@ -400,8 +401,10 @@
                 </div>
             </div>
                 @endforeach
+
             @endif
         </div>
+
     </div>
 </section>
       <section class="sub_scribe py_8">

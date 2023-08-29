@@ -39,6 +39,37 @@ jQuery(document).ready(function () {
         dots: false,
     });
 
+    jQuery(".testimonial_slider_cntnt .content").each(function () {
+        const content = $(this).text();
+        const charLimit = 200; // Adjust to your preferred character limit
+
+        if (content.length > charLimit) {
+            const truncatedContent = content.substring(0, charLimit);
+            jQuery(this).text(truncatedContent);
+            jQuery(this).addClass("collapsed");
+
+            jQuery(this)
+                .siblings(".read-more")
+                .click(function (e) {
+                    e.preventDefault();
+                    const isCollapsed = jQuery(this).siblings(".content").hasClass("collapsed");
+                    if (isCollapsed) {
+                        jQuery(this).siblings(".content").text(content);
+                        jQuery(this).siblings(".content").removeClass("collapsed");
+                        jQuery(this).text("Read Less");
+                    } else {
+                        jQuery(this).siblings(".content").text(truncatedContent);
+                        jQuery(this).siblings(".content").addClass("collapsed");
+                        jQuery(this).text("Read More");
+                    }
+                });
+        } else {
+            jQuery(this).removeClass("collapsed");
+            jQuery(this).siblings(".read-more").hide();
+        }
+    });
+
+
     /**
      * Subscribe Our Newsletter Submission Form Ajax (Home Page)
      */
@@ -328,7 +359,9 @@ jQuery(document).ready(function () {
 
 
 
-    if (url.indexOf("/checkout") > -1) {
+
+
+   if (url.indexOf("/checkout") > -1) {
         /**
          * State Dependency In Checkout Page
          */
