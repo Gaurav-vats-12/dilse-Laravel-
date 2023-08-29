@@ -30,7 +30,7 @@
                             @error('menu_name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
-                        </div>
+                    </div>
                         <div class="form-group">
                             <label for="menu_slug">Slug</label>
                             <input type="text" readonly name="menu_slug" id="menu_slug"  class="form-control" value="{{ old('menu_slug')}}">

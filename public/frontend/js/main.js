@@ -39,6 +39,8 @@ jQuery(document).ready(function () {
         dots: false,
     });
 
+
+
     jQuery(".testimonial_slider_cntnt .content").each(function () {
         const content = $(this).text();
         const charLimit = 200; // Adjust to your preferred character limit
@@ -333,7 +335,12 @@ jQuery(document).ready(function () {
         slidesToShow: 4,
         slidesToScroll: 1
     });
-
+        // jQuery('.product_checkout').slick({
+        //     infinite: true,
+        //     speed: 300,
+        //     slidesToShow: 4,
+        //     slidesToScroll: 1
+        // });
 
 
 
