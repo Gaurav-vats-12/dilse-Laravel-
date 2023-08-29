@@ -78,9 +78,17 @@
                               {!! \Illuminate\Support\Str::limit(strip_tags(Auth::guard('user')->user()->name), 12) !!}
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              <li><a class="dropdown-item" href="#">Action</a></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                              <li><a class="dropdown-item" href="#"> Profile </a></li>
+                              <li><a class="dropdown-item" href="#">Setting</a></li>
+                              <li>
+                                  <form method="POST" action="{{ route('user.logout') }}">  @csrf
+                                      <x-responsive-nav-link  :href="route('user.logout')"
+                                                              onclick="event.preventDefault();
+                    this.closest('form').submit();" class="dropdown-item">
+                                          <span> {{ __('Log Out') }}</span>
+                                  </form>
+                                  </x-responsive-nav-link>
+                              </li>
                           </ul>
                       </div>
                       </ul>
