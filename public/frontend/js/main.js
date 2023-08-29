@@ -313,28 +313,27 @@ jQuery(document).ready(function () {
      *   Extra Items Sliders On Cart Page
      */
 
-//     jQuery('i.fa-solid.fa-eye.user_pass').click(function() {
-//     // Check the current type of password input
-//     if ($('#password').attr('type') === 'password') {
-//         $('#password').attr('type', 'text');
-//         $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
-//     } else {
-//         $('#password').attr('type', 'password');
-//         $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
-//     }
-// });
-//
-//     jQuery('i.fa-solid.fa-eye.confirm_pass').click(function() {
-//     var $passwordField = $('#password_confirmation');
-//
-//     if ($passwordField.attr('type') === 'password') {
-//         $passwordField.attr('type', 'text');
-//         $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
-//     } else {
-//         $passwordField.attr('type', 'password');
-//         $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
-//     }
-// });
+    jQuery('i.fa-solid.fa-eye.user_pass').click(function() {
+    if ($('#password').attr('type') === 'password') {
+        $('#password').attr('type', 'text');
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
+    } else {
+        $('#password').attr('type', 'password');
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
+    }
+});
+
+    jQuery('i.fa-solid.fa-eye.confirm_pass').click(function() {
+    var $passwordField = $('#password_confirmation');
+
+    if ($passwordField.attr('type') === 'password') {
+        $passwordField.attr('type', 'text');
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
+    } else {
+        $passwordField.attr('type', 'password');
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
+    }
+});
 
     /**
      * Extra Items Sliders
@@ -389,7 +388,7 @@ jQuery(document).ready(function () {
                 payment_intergation(jQuery(`#StripeKey`).val());
             }
         });
-        payment_intergation(jQuery(`#StripeKey`).val());
+       payment_intergation(jQuery(`#StripeKey`).val());
         jQuery('#billing_phone').inputmask('(999) 999-9999');
         jQuery('#billing_postcode').inputmask('A9A 9A9', {
             placeholder: 'K1N 8W5\n',
@@ -464,6 +463,33 @@ jQuery(document).ready(function () {
 
         });
         jQuery('#phone').inputmask('(999) 999-9999');
-    }
+    }else if(url.indexOf("/about-us") > -1) {
+       const counters = document.querySelectorAll('.counter');
+       const speed = 2000;
+       counters.forEach((counter) => {
+           const updateCount = () => {
+               const target = parseInt(counter.getAttribute('data-value'));
+               const count = parseInt(counter.innerText);
+               const increment = Math.trunc(target / speed);
+               if (count < target) {
+                   counter.innerText = `${count + increment}+`;
+                   setTimeout(updateCount, 1);
+               } else {
+                   counter.innerText = `${target}+`;
+               }
+           };
+           updateCount();
+       });
+       let text1 = document.getElementById('counter1');
+       animate(text1, 0, 200, 7000);
+
+
+   }
+
+    $('ul.nav li.dropdown').hover(function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+    }, function() {
+        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+    });
 
 });
