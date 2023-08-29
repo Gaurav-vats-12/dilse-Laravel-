@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\Blog\{StoreBannerRequest,UpdateBlogRequest};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -35,6 +36,7 @@ class BlogController extends Controller
      */
     public function store(StoreBannerRequest $request)
     {
+        $author = Auth::guard('admin')->check() ? Auth::guard('admin')->user()->name : '';
         if($request->hasFile(trim('blog_image'))){
             $blog_image = $request->file(trim('blog_image'));
             $blogImage = time().'-'.$blog_image->getClientOriginalName();
@@ -43,7 +45,7 @@ class BlogController extends Controller
             ResizeImage::make($request->file('blog_image'))->save($destinationPath.'/'. $blogImage);
         }
         $slug = Str::slug($request->blog_title, '-').'-'.mt_rand(0,20);
-        Blog::insert(['blog_title' => $request->blog_title, 'blog_image' => $blogImage,'slug' => $slug,'blog_content' => $request->blog_content,'blog_meta_title' => $request->blog_meta_title,'blog_meta_description' => $request->blog_meta_description,'status' => $request->status,'created_at' => now(), 'updated_at' => now() ]);
+        Blog::insert(['blog_title' => $request->blog_title, 'blog_image' => $blogImage,'slug' => $slug,'blog_content' => $request->blog_content,'blog_meta_title' => $request->blog_meta_title,'blog_meta_description' => $request->blog_meta_description,'author' => $author,'status' => $request->status,'created_at' => now(), 'updated_at' => now() ]);
         return redirect()->route('admin.blog.index')->withSuccess('Blog  Successfully Created',500);
     }
 
