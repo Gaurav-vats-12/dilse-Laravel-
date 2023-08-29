@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('blog_meta_title');
             $table->text('blog_meta_description');
             $table->string('blog_image');
+            $table->string('author')->nullable();
             $table->enum('status',['none','published','inactive','draft'])->default('draft');
             $table->timestamps();
             $table->softDeletes(); // <-- This will add a deleted_at field
