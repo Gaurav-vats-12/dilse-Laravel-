@@ -2529,3 +2529,7 @@ button.inline-flex.items-center.px-4.py-2.bg-gray-800.border.border-transparent.
     font-size: 15px !important;
     font-weight: 500 !important;
 }
+nav{
+    margin: 20px;
+    position: relative;
+}

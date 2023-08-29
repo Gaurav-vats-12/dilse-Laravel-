@@ -41,32 +41,10 @@
                 <li>
                   <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target ="_blank" ><img src="{{asset('frontend/img/blogto.png') }}" alt="" /></a>
                 </li>
-
-                @if(Auth::guard('user')->check())
-               <li class="admin_logot">
-                       <a href="{{route('user.dashboard')}}">
-                           <span>
-                           {!! \Illuminate\Support\Str::limit(strip_tags(Auth::guard('user')->user()->name), 8) !!}
-                         </span>
-                       </a>
-                       <div class="logout">
-                       <form method="POST" action="{{ route('user.logout') }}">  @csrf
-                        <x-responsive-nav-link  :href="route('user.logout')"
-                                                onclick="event.preventDefault();
-                    this.closest('form').submit();" class="dropdown-item py-1 d-flex align-items-center justify-content-between">
-                            <span> {{ __('Log Out') }}</span>
-                    </form>
-                    </x-responsive-nav-link>
-                </div>
-                    </li>
-
-               @else
-               <li class="login_header">
-                   <a href="{{route('user.login')}}">
-                   <img src="{{asset('frontend/img/user_icon.png') }}" alt="" />
-                   </a>
-               @endif
-             </li>
+                  <li><select class="select_location" name="select_location">
+                          <option>Toronto</option>
+                          <option >Bramptonn</option>
+                      </select></li>
               </ul>
             </div>
           </div>
@@ -85,7 +63,6 @@
               </ul>
             </div>
             <div class="site_logo">
-                <!--<img src="assets/img/site-logo-dil.png" alt="">-->
                 <a href="{{ url('/')}}"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}" alt="">
                 </a>
             </div>
@@ -94,44 +71,23 @@
                <li><a href="{{url('gallery')}}">Gallery</a></li>
                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
                <li><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
-               <li><select class="select_location" name="select_location">
-                  <option>Toronto</option>
-                  <option >Bramptonn</option>
-               </select></li>
+                  <li><a href="{{url('contact-us')}}">Contact Us</a></li>
+                  <li class="dropdown">
+                      <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="https://getbootstrap.com/examples/theme/#">Action</a></li>
+                          <li><a href="https://getbootstrap.com/examples/theme/#">Another action</a></li>
+                          <li><a href="https://getbootstrap.com/examples/theme/#">Something else here</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li class="dropdown-header">Nav header</li>
+                          <li><a href="https://getbootstrap.com/examples/theme/#">Separated link</a></li>
+                          <li><a href="https://getbootstrap.com/examples/theme/#">One more separated link</a></li>
+                      </ul>
+                  </li>
 
               </ul>
             </div>
           </div>
         </div>
-        {{-- <div class="right_text">
-            <ul>  @if(Auth::guard('user')->check())
-                  <li class="">
-
-                          <a href="{{route('user.dashboard')}}">
-                              <span>
-                              {!! \Illuminate\Support\Str::limit(strip_tags(Auth::guard('user')->user()->name), 8) !!}
-                            </span>
-                          </a>
-                  <li class="logout">
-                        <form method="POST" action="{{ route('user.logout') }}">  @csrf
-                            <x-responsive-nav-link  :href="route('user.logout')"
-                                                    onclick="event.preventDefault();
-                        this.closest('form').submit();" class="dropdown-item py-1 d-flex align-items-center justify-content-between">
-                                <span> {{ __('Log Out') }}</span>
-                        </form>
-                        </x-responsive-nav-link>
-
-                    </li>
-                  @else
-                  <li class="login_header">
-                      <a href="{{route('user.login')}}">
-                     <img src="{{asset('frontend/img/user_icon.png') }}" alt="" />
-                      </a>
-                  @endif
-                </li>
-
-
-              </ul>
-        </div> --}}
       </div>
     </header>
