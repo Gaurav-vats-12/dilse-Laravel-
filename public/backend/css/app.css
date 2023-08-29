@@ -121,4 +121,14 @@ td.project-actions {
 
   }
 
-
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.error {
+    color: #d90d0d !important;
+    font-family: "Abel", sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+}

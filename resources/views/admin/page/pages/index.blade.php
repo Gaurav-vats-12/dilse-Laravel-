@@ -28,9 +28,8 @@
                                 <thead class="text-uppercase">
                                     <tr>
                                         <th>Sno</th>
-                                        <th>Page Title </th>
-                                        <th>Page Slug </th>
-                                        <th>Page Content </th>
+                                        <th> Title </th>
+                                        <th> Content </th>
                                         <th>Status </th>
                                         <th>Action</th>
                                     </tr>
@@ -40,8 +39,7 @@
                                 <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $pageValue->page_title }}</td>
-                                <td>{{ $pageValue->page_slug }}</td>
-                                <td>{!! \Illuminate\Support\Str::limit(strip_tags($pageValue->page_content)) !!}</td>
+                                <td>{!! \Illuminate\Support\Str::limit(strip_tags($pageValue->page_content) ,50) !!}</td>
                                 <td> @if ($pageValue->status == 'active')<div class="mt-sm-1 d-block"> <span class="badge badge-success">Active</span>  </div> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Inactive</span> </div> @endif </td>
                                 <td class="project-actions">
                           <a class="btn btn-info btn-sm" href="{{ route('admin.manage-pages.edit', $pageValue->id) }}">

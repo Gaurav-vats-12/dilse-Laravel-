@@ -109,7 +109,7 @@
               <li class="nav-item">
                 <a href="{{ route('admin.setting.genral') }}" class="nav-link {{ (request()->is('admin/setting/genral')) ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>{{ __('Genral Setting') }}</p>
+                  <p>{{ __('General Setting') }}</p>
                 </a>
               </li>
         </ul>

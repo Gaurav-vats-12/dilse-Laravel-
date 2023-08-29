@@ -26,12 +26,12 @@
                             <table id="manage_orders" class="table table-bordered table-hover">
                                 <thead class="text-uppercase">
                                     <tr>
-                                 <th>Order Id </th>
-                                <th>Order Date</th>
-                                 <th>Order Types</th>
+                                 <th>Id </th>
+                                <th>Date</th>
+                                 <th>Types</th>
                                  <th>Payment status</th>
-                             <th>Customer</th>
-                                 <th>Order Status</th>
+                                 <th>Customer</th>
+                                 <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -54,20 +54,22 @@
                                                 @endif
                                             </td>
                                             <td class="">
+
                                                 <div class="d-flex align-items-center">
                                                     <div class="d-flex flex-column">
-                                                        {{ (Auth::guard('user')->check()) ?'xzcxzcxzc' :$order->full_name }}
+                                                        {{ $order->full_name }}
 
-                                                        <span class="mb-1 text-decoration-none fs-6">                                                            {{ (Auth::guard('user')->check()) ?'xzcxzcxzc' :$order->email_address }}</span>
+                                                        <span class="mb-1 text-decoration-none fs-6">
+                                                           {{ $order->email_address }}</span>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="project-actions">
-                                                <a class="btn btn-info btn-sm" href="{{ route('admin.order.show' , $order->id) }}"><i class="fa-solid fa-eye"></i>  </a>
+                                                <a class="btn btn-info btn-sm" href="{{ route('admin.order.show' , $order->id) }}"><i class="fa-solid fa-eye"  title="View"></i>  </a>
 
                                                 @if( $order->status =='Pending')
                                                     <a href="javascript:void(0)" id="append_pop_ups"  class="btn btn-info btn-sm" order_uid = "{{ $order->id }}">
-                                                        <i class="fa-solid fa-plus" title="Accept" ></i>
+                                                        <i class="fa-solid fa-plus" title="Pnding" ></i>
                                                     </a>
                                                 @endif
                                                 @if( $order->status =='Processing')

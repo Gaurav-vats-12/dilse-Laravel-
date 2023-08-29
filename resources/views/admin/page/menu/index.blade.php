@@ -29,7 +29,6 @@
                                     <tr>
                                         <th>Sno</th>
                                         <th>Name</th>
-                                        <th>Slug </th>
                                         <th>Status </th>
                                         <th>Action</th>
                                     </tr>
@@ -38,7 +37,6 @@
                                 <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{!! $value->menu_name !!}</td>
-                                <td>{!! $value->menu_slug !!}</td>
                                 <td> @if ($value->status == 'active')<div class="mt-sm-1 d-block"> <span class="badge badge-success">Active</span>  </div> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Inactive</span> </div> @endif </td>
                                 <td class="project-actions"><a class="btn btn-info btn-sm" href="{{ route('admin.menu.edit', $value->id) }}"> <i class="fas fa-pencil-alt"></i> </a><form method="POST" action="{{ route('admin.menu.destroy', $value->id) }}">  @csrf @method('DELETE') <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button> </form></td>
 

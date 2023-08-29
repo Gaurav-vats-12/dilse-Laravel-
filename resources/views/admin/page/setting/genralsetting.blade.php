@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="row py-2">
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                    <label for="site_currency">Default Currency </label>
+                                    <label for="site_currency">Default Currency (In Symbol)</label>
                                     <input type="text" name="site_currency" id="site_currency"  class="form-control" value="{{ old('site_currency',setting('site_currency'))}}">
                                     <small><i class="fa-solid fa-circle-question"></i> Please Enter Site Currency</small>
                                     @error('site_currency')  <span class="text-danger">{{ $message }}</span> @enderror

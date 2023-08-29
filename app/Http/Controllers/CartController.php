@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Admin\FoodItem as FoodItemAlias;
+use App\Models\Admin\Menu;
+
 use Illuminate\Http\JsonResponse as JsonResponseAlias;
 use Illuminate\Http\Request;
 use Psr\Container\ContainerExceptionInterface;
@@ -11,6 +13,8 @@ class CartController extends Controller
 
 
 public function viewcart(){
+    $menus = Menu::whereIn('id',[7,6,5,9])->where('status','active')->get();
+//    dd($menus);
     $extra_items = FoodItemAlias::whereIn('menu_id',[7,6,5,9])->where('status',1)->get();
     return view('Pages.cart',compact('extra_items'));
 }

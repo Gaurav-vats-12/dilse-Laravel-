@@ -11,7 +11,8 @@
                         <div class="form-group">
                         <x-input-label for="current_password" :value="__('Current Password')" />
                         <x-text-input id="current_password" name="current_password" type="password" class="form-control" autocomplete="current-password" />
-                        <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
+
+                            <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
                         </div>
                         <div class="form-group">
                         <x-input-label for="password" :value="__('New Password')" />

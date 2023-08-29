@@ -28,10 +28,9 @@
                                 <thead class="text-uppercase">
                                     <tr>
                                         <th>Sno</th>
-                                        <th>Blog  Image </th>
-                                        <th>Blog  Title </th>
-                                        <th>Blog Slug </th>
-                                        <th>Blog  Content </th>
+                                        <th>Image </th>
+                                        <th> Title </th>
+                                        <th>Content </th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -42,7 +41,6 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td> <img src="{{ url('/storage/blog/'.$value->blog_image.'') }}" alt="" width="100px"></td>
                                 <td>{{ $value->blog_title }}</td>
-                                <td>{{ $value->slug }}</td>
                                 <td>{!! \Illuminate\Support\Str::limit(strip_tags($value->blog_content)) !!}</td>
                                 <td>{{ $value->status}}</td>
                                 <td class="project-actions"><a class="btn btn-info btn-sm" href="{{ route('admin.blog.show', $value->id) }}"><i class="fa-solid fa-eye"></i> </a><a class="btn btn-info btn-sm" href="{{ route('admin.blog.edit', $value->id) }}"> <i class="fas fa-pencil-alt"></i> </a>
