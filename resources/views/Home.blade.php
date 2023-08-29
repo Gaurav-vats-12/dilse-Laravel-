@@ -385,7 +385,7 @@
                 @foreach ($Testimonial as $key => $TestimonialValue )
             <div class="testimonial_slider_cntnt">
                 <div class="testimonial_slider_txt">
-                    {!! __($TestimonialValue->testimonial_description) !!}
+                    <p>{!! __($TestimonialValue->testimonial_description) !!}</p>
                     <div class="testimonial_user">
                         <div class="testimonial_user_img">
                             <img src="{{ url('/storage/testimonial/'.$TestimonialValue->testonomailsImage.'')}}" alt="" />
