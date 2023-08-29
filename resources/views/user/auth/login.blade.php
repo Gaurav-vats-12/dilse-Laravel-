@@ -2,8 +2,8 @@
 @extends('layouts.app')
 @section('title', 'User Login')
 @section('frontcontent')
-<div class="login_wrapper">
-      <section class="about_se about_left_image py_8">
+<div class="login_wrapper py_8">
+      <section class="about_se about_left_image ">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-md-6">
@@ -48,7 +48,8 @@
                     <button class="theme_btn">  {{ __('Log in') }}</button>
                   </div>
                       @if(strpos(URL::previous(),'cart'))
-                         <P class="proceed_ancho" >OR <a  href="{{route('checkout.view')}}"> As a Guest </a></P>
+                         <P class="proceed_ancho" >OR </P>
+                          <a  class="checkout_link_guest" href="{{route('checkout.view')}}"> As a Guest </a>
                       @endif
                   <p>Don’t have an account?<span><a href="{{ route('user.register') }}">sign-up</a></span></p>
                 </form>

@@ -82,8 +82,7 @@
                               <li><a class="dropdown-item" href="#">Setting</a></li>
                               <li>
                                   <form method="POST" action="{{ route('user.logout') }}">  @csrf
-                                      <x-responsive-nav-link  :href="route('user.logout')"
-                                                              onclick="event.preventDefault();
+                                      <x-responsive-nav-link  :href="route('user.logout')" onclick="event.preventDefault();
                     this.closest('form').submit();" class="dropdown-item">
                                           <span> {{ __('Log Out') }}</span>
                                   </form>
@@ -94,12 +93,8 @@
                       </ul>
                   </li>
                   @else
-                      <li class="login_header">
-                          <a href="{{route('user.login')}}">
-                              <img src="{{asset('frontend/img/user_icon.png') }}" alt="" />
-                          </a>
+                    <li><a class="login_header" href="{{route('user.login')}}"> Login </a></li>
                   @endif
-
               </ul>
             </div>
           </div>
