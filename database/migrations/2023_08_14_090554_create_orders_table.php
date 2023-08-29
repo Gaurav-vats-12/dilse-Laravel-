@@ -27,7 +27,6 @@ return new class extends Migration
             $table->decimal('total_amount', 10, 2);
             $table->enum('order_type', ['take_out','delivery', 'dinein'])->nullable();
             $table->enum('status', ['Pending','Processing', 'Shipped', 'Delivered','Cancelled']);
-            $table->string('store_location', 255)->nullable();
             $table->timestamps();
         });
     }
