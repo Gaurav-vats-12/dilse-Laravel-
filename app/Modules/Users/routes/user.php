@@ -17,7 +17,7 @@ RouteAlias::prefix('user')->name('user.')->group(callback: function(){
         RouteAlias::get('/order', [UserController::class, 'listingOrder'])->name('order');
         RouteAlias::get('/order-cancelled/{id}', [UserController::class, 'OrderCancelled'])->name('order-cancelled');
         RouteAlias::get('/order-reorder/{id}', [UserController::class, 'OrderReorder'])->name('OrderReorder');
-        Route::get('/confirm-passwords', [ProfileController::class, 'confirmPass'])->name('confirm-passwords');
+        RouteAlias::get('/confirm-passwords', [ProfileController::class, 'confirmPass'])->name('confirm-passwords');
 
     });
 });

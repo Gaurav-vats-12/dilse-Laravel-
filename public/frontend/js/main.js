@@ -313,27 +313,6 @@ jQuery(document).ready(function () {
      *   Extra Items Sliders On Cart Page
      */
 
-    jQuery('i.fa-solid.fa-eye.user_pass').click(function() {
-    if ($('#password').attr('type') === 'password') {
-        $('#password').attr('type', 'text');
-        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
-    } else {
-        $('#password').attr('type', 'password');
-        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
-    }
-});
-
-    jQuery('i.fa-solid.fa-eye.confirm_pass').click(function() {
-    var $passwordField = $('#password_confirmation');
-
-    if ($passwordField.attr('type') === 'password') {
-        $passwordField.attr('type', 'text');
-        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
-    } else {
-        $passwordField.attr('type', 'password');
-        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
-    }
-});
 
     /**
      * Extra Items Sliders
@@ -484,12 +463,20 @@ jQuery(document).ready(function () {
        animate(text1, 0, 200, 7000);
 
 
-   }
+   }else if(url.indexOf("/register") > -1 || url.indexOf("/login") > -1 ) {
 
-    $('ul.nav li.dropdown').hover(function() {
-        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-    }, function() {
-        $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-    });
+       jQuery(document).on("click", ".toggle-password", function (event) {
+           jQuery(this).toggleClass("fa-eye fa-eye-slash");
+           let input = jQuery($(this).attr("toggle"));
+           if (input.attr("type") === "password") { input.attr("type", "text");} else {input.attr("type", "password");}
+       });
+
+       }
+
+    // $('ul.nav li.dropdown').hover(function() {
+    //     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+    // }, function() {
+    //     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+    // });
 
 });

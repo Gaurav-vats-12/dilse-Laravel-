@@ -2,7 +2,6 @@
 @extends('layouts.app')
 @section('title', 'User Register')
 @section('frontcontent')
-
     <div class="login_wrapper py_8">
         <section class="about_se about_left_image">
             <div class="container">
@@ -31,20 +30,16 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="custn_input">
-                                        <x-text-input id="password"  placeholder="Your password" class="block mt-1 w-full" type="password" name="password"   autocomplete="new-password" />
-                                        <div class="user_pass_eye">
-                                            <i class="fa-solid fa-eye user_pass"></i>
-                                        </div>
-                                        <meter max="4" id="password-strength"></meter>
-                                        <p id="password-feedback"></p>
+                                    <div class="custn_input pass_show">
+                                        <x-text-input id="password"  placeholder="Your password" class="block mt-1 w-full password" type="password" name="password"   autocomplete="new-password" />
+                                        <div class="user_pass_eye"> <i toggle="#password" class="fa-solid fa-eye toggle-password"></i></div>
                                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <div class="custn_input">
-                                        <x-text-input id="password_confirmation" placeholder="Confirm password" class="block mt-1 w-full" type="password"  name="password_confirmation"  autocomplete="new-password" />
-                                        <i class="fa-solid fa-eye confirm_pass"></i>
+                                    <div class="custn_input pass_show">
+                                        <x-text-input id="password_confirmation" placeholder="Confirm password" class="block mt-1 w-full password" type="password"  name="password_confirmation"  autocomplete="new-password" />
+                                        <div class="user_pass_eye"> <i toggle="#password_confirmation" class="fa-solid fa-eye toggle-password"></i></div>
                                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                     </div>
                                 </div>
@@ -61,7 +56,7 @@
                                 </div>
                             </div>
                             <div class="contact_form_btn">
-                                <button class="theme_btn">Sign UP</button>
+                                <button class="theme_btn">Sign Up</button>
                             </div>
                             <p>Already have an account? <a href="{{ route('user.login') }}">sign-In </a></p>
                         </form>
