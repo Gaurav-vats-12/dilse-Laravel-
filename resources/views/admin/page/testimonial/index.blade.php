@@ -28,8 +28,8 @@
                                 <thead class="text-uppercase">
                                     <tr>
                                         <th>Sno</th>
-                                        <th>Customber Name</th>
-                                        <th>Customber image </th>
+                                        <th>Customer Name</th>
+                                        <th>Customer image </th>
                                         <th>Description</th>
                                         <th>Rating </th>
                                         <th>Status </th>
@@ -41,9 +41,7 @@
                                     <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{!! $value->custumber_name !!}</td>
-                                <td><img src="{{ url('/storage/testimonial/'.$value->testonomailsImage.'')}}" style="height: 34px; width: auto;"></td>
-                                <td class="">{!! $value->testimonial_description !!}</td>
-                                <td class="testimonial_user_txt "> <ul>@for($i=1; $i<=$value->rating; $i++)  <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li> @endfor</ul></td>
+                                <td><img src="{{ url('/storage/testimonial/'.$value->testonomailsImage.'')}}" style="height: 34px; width: auto;"></td><td>{!! \Illuminate\Support\Str::limit(strip_tags($value->testimonial_description)) !!}</td><td class="testimonial_user_txt "> <ul>@for($i=1; $i<=$value->rating; $i++)  <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li> @endfor</ul></td>
                                 <td> @if ($value->status == 'active')<div class="mt-sm-1 d-block"> <span class="badge badge-success">Active</span>  </div> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Inactive</span> </div> @endif </td>
                                 <td class="project-actions"><a class="btn btn-info btn-sm" href="{{ route('admin.testimonial.edit', $value->id) }}"> <i class="fas fa-pencil-alt"></i> </a><form method="POST" action="{{ route('admin.testimonial.destroy', $value->id) }}">  @csrf @method('DELETE') <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button> </form></td>
                                     </tr>

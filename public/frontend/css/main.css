@@ -1796,10 +1796,8 @@ form.contact_form a {
     background: #fff;
     color: #000;
 }
-.error {
-    color: #d90d0d !important;
-    font-weight: 100 !important;
-}
+
+
 .cart_head h3 {
     font-size: 36px;
     margin-bottom: 35px;

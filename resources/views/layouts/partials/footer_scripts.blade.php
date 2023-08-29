@@ -17,7 +17,7 @@
     <!-- Sweet Alert  -->
     <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
    <!-- TimePicker  -->
-   <script src="{{asset('plugins/timepicker/js/jquery.timepicker.min.js') }}"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <!-- Toast Alert -->
     <script src="{{asset('plugins/toastr/toastr.min.js') }}"></script>
    <!-- InputMask -->
