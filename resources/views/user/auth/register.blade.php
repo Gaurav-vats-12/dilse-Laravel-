@@ -3,7 +3,7 @@
 @section('title', 'User Register')
 @section('frontcontent')
 
-    <div class="login_wrapper">
+    <div class="login_wrapper py_8">
         <section class="about_se about_left_image">
             <div class="container">
                 <div class="row align-items-center">
