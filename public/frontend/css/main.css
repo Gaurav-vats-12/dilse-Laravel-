@@ -2625,12 +2625,11 @@ a.checkout_link_guest {
 
 
 .no-order-message {
-    font-size: 1.5rem;
+    font-size: 3.5rem;
     color: #555;
-    margin-top: 10px;
+    margin-top: 85px;
     text-align: center;
 }
-
 .back-to-home {
     margin-top: 30px;
     text-align: -webkit-center;

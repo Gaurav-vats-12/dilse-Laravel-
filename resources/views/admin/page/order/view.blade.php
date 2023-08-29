@@ -52,6 +52,8 @@
                                             <strong>Date:</strong> <span
                                                 class="text-bold ">{{ $orders->order_date }}</span> <br>
                                             <strong>Status:</strong> {{ $orders->status }}
+                                            <br>
+                                            <strong>Store Location:</strong> {{ $orders->store_location }}
                                         </div>
                                     </div>
                                     <div class="col-md-4">

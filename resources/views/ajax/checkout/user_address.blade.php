@@ -1,14 +1,13 @@
 
 <div class="row">
 <input type="hidden" name="order_type" value="{{ session('order_type') }}">
-
+    <input type="hidden" name="store_location" id="store_location" value="">
 <input type="hidden" name="delivery_charge" value="{{ (session('order_type') && session('order_type') == "delivery") ? setting('delivery_charge'): 0.00 }}">
     <div class="col-md-12">
         <div class="cusstom_input">
             <label for="billing_full_name" class="">Full name <span class="required" title="required">*</span></label>
             <input type="text" placeholder="Full  Name"  name="billing_full_name" value="{{ Auth::guard('user')->check() ? old('billing_full_name' ,Auth::guard('user')->user()->name)   : old('billing_full_name') }}" >
             <span id="billing_full_name_error" class="text-danger"></span>
-
         </div>
     </div>
     <div class="col-md-12">
@@ -22,8 +21,7 @@
     <div class="col-md-12">
         <div class="cusstom_input">
             <label for="billing_full_name" class="">Phone Number <span class="required" title="required">*</span></label>
-            <input type="text" class="form-control" name="billing_phone" id="billing_phone" data-inputmask='"mask": "(999) 999-9999"' data-mask>
-            {{--            <input type="text" placeholder="Phone Number"  name="billing_phone" id="billing_phone" data-inputmask='"mask": "(999) 999-9999"' data-mask  value="{{ Auth::guard('user')->check() ? old('billing_phone' ,Auth::guard('user')->user()->phone)   : old('billing_phone') }}" >--}}
+            <input type="text" placeholder="Full  Name"  id="billing_phone" name="billing_phone" value="{{ Auth::guard('user')->check() ? old('billing_phone' ,Auth::guard('user')->user()->phone)   : old('billing_phone') }}"  data-inputmask='"mask": "(999) 999-9999"' data-mask >
         </div>
     </div>
     <div class="col-md-12">

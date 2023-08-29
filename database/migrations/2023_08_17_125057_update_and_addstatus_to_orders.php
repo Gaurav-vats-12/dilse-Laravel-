@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('time_taken', 255)->nullable()->default(null);
-
+            $table->string('time_taken', 255)->nullable()->default(null)->after('total_amount');
+            $table->string('store_location', 255)->nullable()->after('total_amount');
         });
     }
 

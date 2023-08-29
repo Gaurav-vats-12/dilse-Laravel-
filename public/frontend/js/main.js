@@ -339,6 +339,14 @@ jQuery(document).ready(function () {
 
 
    if (url.indexOf("/checkout") > -1) {
+
+       /**
+        * Update the Store Location
+        */
+       jQuery('#store_location').val(jQuery('#select_location').find(":selected").val());
+       jQuery(document).on("change", "#select_location",  function (event) {
+           jQuery('#store_location').val(jQuery(this).find(":selected").val());
+       });
         /**
          * State Dependency In Checkout Page
          */
@@ -377,10 +385,9 @@ jQuery(document).ready(function () {
 
     }else if(url.indexOf("/profile-address") > -1){
         /**
-         * State Dependency In Checkout Page
+         * State Dependency In profile   Page
          */
         let country_uid = parseInt(jQuery('#billing_country').find(":selected").attr('country_uid'));
-
         let ajax_url = jQuery('#state_ajax').val();
         let selected_billing_state = jQuery('#selected_billing_state').val();
         let ajax_value = {country_uid,'type':'country',selected_billing_state};

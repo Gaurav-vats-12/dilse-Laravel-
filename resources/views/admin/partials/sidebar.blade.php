@@ -9,7 +9,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-            <a href="javascript:void(0)" ajax_url ="{{ route('admin.dashboard') }}" class="nav-link {{ (request()->is('admin/dashboard')) ? 'active' : '' }} ajax_redirect_url" type="desktop">
+            <a href="{{ route('admin.dashboard') }}" ajax_url ="{{ route('admin.dashboard') }}" class="nav-link {{ (request()->is('admin/dashboard')) ? 'active' : '' }} ajax_redirect_url" type="desktop">
               <p>
               {{ __('Dashboard') }}
               </p>
