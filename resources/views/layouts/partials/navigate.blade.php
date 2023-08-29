@@ -41,7 +41,7 @@
                 <li>
                   <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target ="_blank" ><img src="{{asset('frontend/img/blogto.png') }}" alt="" /></a>
                 </li>
-                  <li><select class="select_location" name="select_location">
+                  <li><select class="select_location" name="select_location" id="select_location">
                           <option>Toronto</option>
                           <option >Bramptonn</option>
                       </select></li>

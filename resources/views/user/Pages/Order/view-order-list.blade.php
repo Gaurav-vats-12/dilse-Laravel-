@@ -52,7 +52,7 @@
                                                     <td>{{ $items->quantity }}</td>
                                                     <td>{{ $items->price    }}</td>
                                                 </tr>
-                                            @endforeach
+                                                @endforeach
                                             <div class="subtotal_Order">
                                                 <tr class="last-tqab">
                                                     <td><span class="do">Sub Total: </span></td>
@@ -80,11 +80,10 @@
                                     </div>
                                 </div>
                             @endforeach
-
                         @else
                             <div class="no-order-message taxt-center">No Orders Found</div>
                             <div class="back-to-home">
-                                <a href="/">Back to Menu</a>
+                                <a href="{{ route('menu','appetizers') }}">Back to Menu</a>
                             </div>
                         @endif
                     </div>

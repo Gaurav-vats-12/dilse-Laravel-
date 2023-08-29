@@ -20,12 +20,12 @@ class PaymentFormServices{
     public function PaymentForm($request){
         $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
         if(AuthAlias::guard('user')->check()){
+
             $user = AuthAlias::guard('user')->user();
             $user->phone = $request->billing_phone;
             $user->save();
             $addressObject = new User_addressServicesAlias();
-//        $add =   $addressObject->Change_user_address($request ,$user_id);
-//        return $add;
+           $addressObject->Change_user_address($request ,$user_id);
         }
 
         $order_id = Order::insertGetId([
@@ -42,6 +42,7 @@ class PaymentFormServices{
             'tax' => round($request->tax_total ,2),
             'shipping_charge' => round($request->delivery_charge ,2),
             'total_amount' => round($request->tototal_amount ,2),
+            'store_location' => $request->store_location,
             'created_at' => now(),
             'updated_at' => now()
         ]);
