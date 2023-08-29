@@ -12,7 +12,7 @@
     <!-- Jquery UI  -->
     <link rel="stylesheet" href="{{asset('plugins/jquery-ui/jquery-ui.min.css') }}">
   <!-- Time Picker CSS  -->
-  <link rel="stylesheet" href="{{asset('plugins/timepicker/css/jquery.timepicker.min.css')}}">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
   <!-- Sweet Alert -->
     <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">

@@ -8,7 +8,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Genral Setting</li>
+                        <li class="breadcrumb-item active">General Setting</li>
                     </ol>
                 </div>
             </div>
@@ -19,7 +19,7 @@
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">Genral Setting </h3>
+                    <h3 class="card-title">General Setting </h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">

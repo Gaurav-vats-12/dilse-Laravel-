@@ -374,36 +374,36 @@
           </div>
         </div>
       </section>
-      <section class="testimonial_sec bg_style py_8" style="background-image: url('{{asset('frontend/img/testi_monial.png')}}')" >
-        <div class="container">
-          <div class="tittle_heading">
+<section class="testimonial_sec bg_style py_8" style="background-image: url('{{asset('frontend/img/testi_monial.png')}}')" >
+    <div class="container">
+        <div class="tittle_heading">
             <h3>Testimonials</h3>
-            <h2>What’s our Client say about Us test</h2>
-          </div>
-          <div class="testimonial_slider">
-            @if ($Testimonial)
-            @foreach ($Testimonial as $key => $TestimonialValue )
-            <div class="testimonial_slider_cntnt">
-              <div class="testimonial_slider_txt">
-              {!! __($TestimonialValue->testimonial_description) !!}
-                <div class="testimonial_user">
-                  <div class="testimonial_user_img">
-                    <img src="{{ url('/storage/testimonial/'.$TestimonialValue->testonomailsImage.'')}}" alt="" />
-                  </div>
-                  <div class="testimonial_user_txt">
-                    <h3>{!! __($TestimonialValue->custumber_name) !!}</h3>
-                    <ul>
-                    @for($i=1; $i<=$TestimonialValue->rating; $i++)  <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li> @endfor
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            @endforeach
-            @endif
-          </div>
+            <h2>What’s our Client say about Us</h2>
         </div>
-      </section>
+        <div class="testimonial_slider">
+            @if ($Testimonial)
+                @foreach ($Testimonial as $key => $TestimonialValue )
+            <div class="testimonial_slider_cntnt">
+                <div class="testimonial_slider_txt">
+                    {!! __($TestimonialValue->testimonial_description) !!}
+                    <div class="testimonial_user">
+                        <div class="testimonial_user_img">
+                            <img src="{{ url('/storage/testimonial/'.$TestimonialValue->testonomailsImage.'')}}" alt="" />
+                        </div>
+                        <div class="testimonial_user_txt">
+                            <h3>{!! __($TestimonialValue->custumber_name) !!}</h3>
+                            <ul>
+                                @for($i=1; $i<=$TestimonialValue->rating; $i++)  <li><img src="{{asset('frontend/img/stars-1.png')}}" alt="" /></li> @endfor
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                @endforeach
+            @endif
+        </div>
+    </div>
+</section>
       <section class="sub_scribe py_8">
         <div class="container">
           <div class="row">
@@ -465,6 +465,7 @@
               <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
                 <div class="custn_input">
                   <input type="tel"  placeholder="Phone number" name="phone" id="phone" maxlength="10" />
+                  <span id="phone-error" class="text-danger error"></span>
                   <span id="phone-error" class="text-danger error"></span>
 
                 </div>

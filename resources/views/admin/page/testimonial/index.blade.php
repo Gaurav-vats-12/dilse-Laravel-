@@ -28,8 +28,8 @@
                                 <thead class="text-uppercase">
                                     <tr>
                                         <th>Sno</th>
-                                        <th>Customber Name</th>
-                                        <th>Customber image </th>
+                                        <th>Customer Name</th>
+                                        <th>Customer image </th>
                                         <th>Description</th>
                                         <th>Rating </th>
                                         <th>Status </th>

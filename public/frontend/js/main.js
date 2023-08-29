@@ -265,7 +265,6 @@ jQuery(document).ready(function () {
                         jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                         jQuery('#order_details').empty();
                         jQuery('.product_c_main').empty();
-
                     } else {
                         let product_oid = parseInt(jQuery(this).attr("produc_id"));
                         jQuery(`#cart_products-${product_oid}`).empty();
@@ -273,7 +272,6 @@ jQuery(document).ready(function () {
                             jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                             jQuery('#order_details').empty();
                             jQuery('.product_c_main').empty();
-
                         }
                     }
                 }
@@ -285,28 +283,28 @@ jQuery(document).ready(function () {
      *   Extra Items Sliders On Cart Page
      */
 
-$('i.fa-solid.fa-eye.user_pass').click(function() {
-    // Check the current type of password input
-    if ($('#password').attr('type') === 'password') {
-        $('#password').attr('type', 'text');
-        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
-    } else {
-        $('#password').attr('type', 'password');
-        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
-    }
-});
-
-$('i.fa-solid.fa-eye.confirm_pass').click(function() {
-    var $passwordField = $('#password_confirmation');
-
-    if ($passwordField.attr('type') === 'password') {
-        $passwordField.attr('type', 'text');
-        $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
-    } else {
-        $passwordField.attr('type', 'password');
-        $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
-    }
-});
+//     jQuery('i.fa-solid.fa-eye.user_pass').click(function() {
+//     // Check the current type of password input
+//     if ($('#password').attr('type') === 'password') {
+//         $('#password').attr('type', 'text');
+//         $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
+//     } else {
+//         $('#password').attr('type', 'password');
+//         $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
+//     }
+// });
+//
+//     jQuery('i.fa-solid.fa-eye.confirm_pass').click(function() {
+//     var $passwordField = $('#password_confirmation');
+//
+//     if ($passwordField.attr('type') === 'password') {
+//         $passwordField.attr('type', 'text');
+//         $(this).removeClass('fa-eye').addClass('fa-eye-slash'); // Toggle icon to 'eye-slash'
+//     } else {
+//         $passwordField.attr('type', 'password');
+//         $(this).removeClass('fa-eye-slash').addClass('fa-eye'); // Toggle icon back to 'eye'
+//     }
+// });
 
     /**
      * Extra Items Sliders
@@ -384,9 +382,16 @@ $('i.fa-solid.fa-eye.confirm_pass').click(function() {
             dateFormat: 'yy-mm-dd'
         });
         jQuery('#timepicker').timepicker({
-            'minTime': '11:30 AM',
-            'maxTime': '10:30 PM',
-            'showDuration': false
+            timeFormat: 'h:mm p',
+            interval: 15,
+            minTime: '11:30 AM',
+            maxTime: '10:30 PM',
+            defaultTime: '11',
+            startTime: '10:00',
+            dynamic: true,
+            dropdown: true,
+            scrollbar: true,
+            showDuration: true
         });
         let now = new Date(), currentHour = now.getHours(), currentMinute = now.getMinutes();
         if (currentMinute < 15) {
