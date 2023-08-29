@@ -72,16 +72,17 @@
                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
                <li><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
                   @if(Auth::guard('user')->check())
-                  <li class="dropdown">
-                      <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                          <li><a href="https://getbootstrap.com/examples/theme/#">Action</a></li>
-                          <li><a href="https://getbootstrap.com/examples/theme/#">Another action</a></li>
-                          <li><a href="https://getbootstrap.com/examples/theme/#">Something else here</a></li>
-                          <li role="separator" class="divider"></li>
-                          <li class="dropdown-header">Nav header</li>
-                          <li><a href="https://getbootstrap.com/examples/theme/#">Separated link</a></li>
-                          <li><a href="https://getbootstrap.com/examples/theme/#">One more separated link</a></li>
+                  <li class="">
+                      <div class="dropdown">
+                          <a class="dropdown-toggle" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                              {!! \Illuminate\Support\Str::limit(strip_tags(Auth::guard('user')->user()->name), 12) !!}
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          </ul>
+                      </div>
                       </ul>
                   </li>
                   @else
