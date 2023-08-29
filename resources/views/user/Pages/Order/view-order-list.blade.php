@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', 'User Order List')
 @section('frontcontent')
-
     <section class="menu_main1 py_8">
         <div class="container">
             <div class="tittle_heading">
@@ -14,7 +13,7 @@
                 <div class="col-lg-9">
                     <div class="wap-order">
                         <h5 class="order-head">My <span class="primary-text"> Orders </span></h5>
-                        @if($OrderDetails)
+                        @if (isset($OrderDetails) && count($OrderDetails) >0)
                             @foreach($OrderDetails as $key => $orders)
                                 <div class="wap-lis" order_uiod = {{ $orders->id }}>
                                     <div class="stat d-flex justify-content-between">
@@ -52,7 +51,7 @@
                                                     <td>{{ $items->product->price }}</td>
                                                     <td>{{ $items->quantity }}</td>
                                                     <td>{{ $items->price    }}</td>
-                                            </tr>
+                                                </tr>
                                             @endforeach
                                             <div class="subtotal_Order">
                                                 <tr class="last-tqab">
@@ -81,15 +80,17 @@
                                     </div>
                                 </div>
                             @endforeach
-                                <div class="CustomPagination" id="orderItemsDetails">
-{{--                                    {!! $OrderDetails->links() !!}--}}
-                                </div>
+
                         @else
-                            <h4> No Order Found</h4>
+                            <div class="no-order-message taxt-center">No Orders Found</div>
+                            <div class="back-to-home">
+                                <a href="/">Back to Menu</a>
+                            </div>
                         @endif
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 @endsection

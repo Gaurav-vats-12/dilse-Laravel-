@@ -26,8 +26,11 @@
         </a>
     </li>
     <li class="menu_list_inner1">
-        <a href="">
-            <h3>Logout</h3>
-        </a>
+        <form method="POST" action="{{ route('user.logout') }}">  @csrf
+            <a href="{{ route('user.logout') }}"  onclick="event.preventDefault(); this.closest('form').submit();">
+                <h3> {{ __('Log Out') }}</h3>
+            </a>
+        </form>
+
     </li>
 </ul>
