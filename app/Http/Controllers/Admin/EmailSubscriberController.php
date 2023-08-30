@@ -28,7 +28,8 @@ class EmailSubscriberController extends Controller
             'status'=>'unsubscribed',
             'updated_at' => now()
         ]);
-            return redirect(route('admin.manage-subscribers.index' ))->withSuccess('Unsubscribe Successfully',100);
+            return redirect()->route('admin.manage-subscribers.index')->with('message','Emailo successfully Unsubscribe');
+
 
     }
     }

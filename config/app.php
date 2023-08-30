@@ -168,9 +168,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Modules\Admins\AdminServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         browner12\helpers\HelperServiceProvider::class,
         App\Modules\Users\UserServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -183,12 +183,5 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-
-    'aliases' => Facade::defaultAliases()->merge([
-        'Image' => Intervention\Image\Facades\Image::class,
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
-
-    ])->toArray(),
-
+    'aliases' => Facade::defaultAliases()->merge(['Image' => Intervention\Image\Facades\Image::class, 'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class, 'PDF' => Barryvdh\DomPDF\Facade::class,])->toArray(),
 ];

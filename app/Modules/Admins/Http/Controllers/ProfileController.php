@@ -33,7 +33,7 @@ class ProfileController extends Controller
         }
 
         $request->user('admin')->save();
-        return redirect()->route('admin.profile.edit')->withSuccess('Profile Update Successfully',100);
+        return redirect()->route('admin.profile.edit')->with('message','Profile Update Successfully');
     }
 
     /**

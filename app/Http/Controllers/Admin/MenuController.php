@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Menu\StoreMenuRequest;
 use App\Models\Admin\Menu;
-use RealRashid\SweetAlert\Facades\Alert;
-
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -35,7 +33,7 @@ class MenuController extends Controller
     public function store(StoreMenuRequest $request)
     {
         Menu::insert(['menu_name' => $request->menu_name, 'menu_slug' => $request->menu_slug,'status' => $request->status,'created_at' => now(), 'updated_at' => now() ]);
-        return redirect()->route('admin.menu.index')->withSuccess('Menu Successfully Created',500);
+        return redirect()->route('admin.menu.index')->with('message','Menu  Created Successfully');
     }
 
     /**
@@ -61,7 +59,8 @@ class MenuController extends Controller
     public function update(StoreMenuRequest $request, string $id)
     {
         Menu::findOrFail($id)->update(['menu_name' => $request->menu_name, 'menu_slug' => $request->menu_slug,'status' => $request->status,'updated_at' => now() ]);
-        return redirect()->route('admin.menu.index')->withSuccess('Menu Successfully Updated',500);
+        return redirect()->route('admin.menu.index')->with('message','Menu  Updated Successfully');
+
 
     }
 
@@ -71,7 +70,8 @@ class MenuController extends Controller
     public function destroy(string $id)
     {
         Menu::findOrFail($id)->delete();
-        return redirect()->route('admin.menu.index')->withSuccess('Menu Successfully Deleted',500);
+        return redirect()->route('admin.menu.index')->with('message','Menu  Deleted Successfully');
+
 
     }
 }

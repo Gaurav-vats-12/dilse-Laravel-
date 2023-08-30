@@ -6,7 +6,6 @@ use App\Models\Admin\{FoodItem,Menu,ExtraItem,ExtraFoodItems};
 use App\Http\Requests\Admin\FoodItems\{StoreFoodItemRequest,UpdateFoodItemRequest};
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as ResizeImage;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 
@@ -44,7 +43,9 @@ class FoodItemController extends Controller
         //         ExtraFoodItems::create(['food_item_id' => $restaurant->id, 'extra_item_id' => $value]);
         //     }
         // }
-        return redirect(route('admin.food-items.index'))->withSuccess('Food Item Added Successfully');
+
+        return redirect()->route('admin.food-items.index')->with('message','Food Item  Added Successfully');
+
     }
 
 
@@ -101,11 +102,12 @@ class FoodItemController extends Controller
         //     $newItems[$key]['extra_item_id'] = $extraItem;
         // };
         // ExtraFoodItems::insert($newItems);
-        return redirect()->route('admin.food-items.index')->withSuccess('Details Successfully Updated');
+        return redirect()->route('admin.food-items.index')->with('message','Food Item  Updated Successfully');
+
     }
 
     public function destroy(Request $request,$id){
         FoodItem::findOrFail($id)->delete();
-        return redirect(route('admin.food-items.index'))->withSuccess('Food Item Deleted Successfully');
+        return redirect()->route('admin.food-items.index')->with('message','Food Item  Deleted Successfully');
     }
 }

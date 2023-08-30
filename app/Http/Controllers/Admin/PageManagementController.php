@@ -11,7 +11,6 @@ class PageManagementController extends Controller
 {
     public function index()
     {
-        confirmDelete('Delete Page!',"Are you sure you want to delete?");
         $page    = Page::get();
          return view('admin.page.pages.index',compact('page'));
     }
@@ -57,8 +56,7 @@ class PageManagementController extends Controller
     public function update(UpdatePagesRequest $request, string $id)
     {
         Page::findOrFail($id)->update(['page_title' => $request->page_title,'page_slug' => Page::findOrFail($id)->page_slug,'page_meta_title' => $request->page_meta_title,'page_meta_description' => $request->page_meta_description,'status' => $request->status, 'updated_at' => now() ]);
-        return redirect()->route('admin.manage-pages.index')->withSuccess('Page Successfully Updated',500);
-
+        return redirect()->route('admin.manage-pages.index')->with('message','Page Successfully Updated');
     }
 
     /**
@@ -68,8 +66,7 @@ class PageManagementController extends Controller
     {
         $page =  Page::findOrFail($id);
         $page->delete();
-        return redirect()->route('admin.manage-pages.index')->withSuccess('Page Successfully Deleted',500);
-
+        return redirect()->route('admin.manage-pages.index')->with('message','Page  Deleted Successfully');
     }
 
 }
