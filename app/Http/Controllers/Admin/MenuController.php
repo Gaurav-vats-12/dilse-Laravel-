@@ -15,7 +15,6 @@ class MenuController extends Controller
     public function index()
     {
         $Menu    = Menu::all();
-        confirmDelete('Delete Menu!',"Are you sure you want to delete?");
        return view('admin.page.menu.index',compact('Menu'));
     }
 

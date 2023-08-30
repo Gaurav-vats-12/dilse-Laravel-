@@ -2483,12 +2483,8 @@ input[type="password"]::-ms-reveal {
     z-index: 9;
 }
 
-
-
-
-
 .fa {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 div#staticBackdrop {
@@ -2665,3 +2661,9 @@ a.checkout_link_guest {
     border-top: 1px solid #00000026;
     padding: 29px 0;
 }
+.Notification_email {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+

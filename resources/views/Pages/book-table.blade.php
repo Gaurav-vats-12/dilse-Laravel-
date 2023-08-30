@@ -76,7 +76,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="custn_input">
-                      <select name="select_part" class="form-control form-select">
+                      <select name="select_part" class="form-select" id="select_part">
                         <option value="">Select Guests</option>
                         @for($i=1;$i <= 20;$i++)
                           <option value="{{$i}}"  {{ old('select_part') == $i ? 'selected' : '' }} >{{$i}}  </option>

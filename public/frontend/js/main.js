@@ -456,7 +456,9 @@ jQuery(document).ready(function () {
 
         });
         jQuery('#phone').inputmask('(999) 999-9999');
-    }else if(url.indexOf("/about-us") > -1) {
+
+
+   }else if(url.indexOf("/about-us") > -1) {
        const counters = document.querySelectorAll('.counter');
        const speed = 2000;
        counters.forEach((counter) => {

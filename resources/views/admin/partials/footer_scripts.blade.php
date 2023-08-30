@@ -65,41 +65,43 @@
 <script src="{{asset('backend/js/main.js') }}"></script>
 <script src="{{asset('backend/js/adminlte.js') }}"></script>
 <script>
+
     @if(Session::has('message'))
-        toastr.options =
-        {
-            "closeButton" : true,
-            "progressBar" : true,
-        }
-    toastr.success("{{ session('message') }}");
+    Swal.fire({
+        text: "{{ session('message') }}",
+        icon: 'success',
+        timer: 2000, // close after 2 seconds
+        showConfirmButton: false
+    });
+
     @endif
 
-        @if(Session::has('error'))
-        toastr.options =
-        {
-            "closeButton" : true,
-            "progressBar" : true
-        }
-    toastr.error("{{ session('error') }}");
+    @if(Session::has('error'))
+    Swal.fire({
+        text: "{{ session('message') }}",
+        icon: 'error',
+        timer: 2000, // close after 2 seconds
+        showConfirmButton: false
+    });
+
     @endif
 
-        @if(Session::has('info'))
-        toastr.options =
-        {
-            "closeButton" : true,
-            "progressBar" : true
-        }
-    toastr.info("{{ session('info') }}");
+    @if(Session::has('info'))
+    Swal.fire({
+        text: "{{ session('message') }}",
+        icon: 'info',
+        timer: 2000, // close after 2 seconds
+        showConfirmButton: false
+    });
     @endif
 
-        @if(Session::has('warning'))
-        toastr.options =
-        {
-            "closeButton" : true,
-            "progressBar" : true
-        }
-    toastr.warning("{{ session('warning') }}");
+    @if(Session::has('warning'))
+    Swal.fire({
+        text: "{{ session('message') }}",
+        icon: 'info',
+        timer: 2000, // close after 2 seconds
+        showConfirmButton: false
+    });
     @endif
 </script>
-
 
