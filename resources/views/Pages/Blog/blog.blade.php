@@ -22,9 +22,12 @@
             @foreach ($blog  as $blog )
             <div class="col-md-4">
               <div class="featured_card">
+                  <a href="{{route('blogdetails' ,$blog->slug)}}">
                 <div class="post_img">
                   <img src="{{ url('/storage/blog/'.$blog->blog_image.'') }}" alt="{{ $blog->blog_image}}" />
                 </div>
+                  </a>
+                  
                 <div class="post_txt">
                   <h3>
                     {{ $blog->blog_title}}
@@ -33,7 +36,7 @@
                   {!! \Illuminate\Support\Str::limit(strip_tags($blog->blog_content)) !!}
                   </p>
                   <div class="post_btn">
-                    <a href="{{route('blogdetails' ,$blog->slug)}}" class="theme_btn">READ MORE</a>
+                    <a href="{{route('blogdetails' ,$blog->slug)}}">READ MORE</a>
                   </div>
                 </div>
               </div>
