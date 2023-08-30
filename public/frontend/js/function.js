@@ -1,5 +1,5 @@
 let url = window.location.pathname, ajaxResult = null;
-async   function Ajax_response(url, method, values, beforetask, success, callback){
+const Ajax_response = async (url, method, values, beforetask, success, callback) => {
     jQuery.ajaxSetup({headers: { 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')  } });
     return jQuery.ajax({
         beforeSend(msg) {},
@@ -9,7 +9,7 @@ async   function Ajax_response(url, method, values, beforetask, success, callbac
         type: method,
         url: url
     });
-}
+};
 
 
 let Toast = Swal.mixin({
@@ -20,7 +20,15 @@ let Toast = Swal.mixin({
     toast: true
 });
 
+  const togglePassword = () => {
+      // if (jQuery('.password').attr('type') === 'password'){
+      //     jQuery('.password').attr('type','text')
+      // }else{
+      //     jQuery('.password').attr('type','password')
+      // }
 
+
+};
 
 function animate(obj, initVal, lastVal, duration) {
     let startTime = null;

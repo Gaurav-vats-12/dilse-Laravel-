@@ -81,7 +81,9 @@
                                 </div>
                             @endforeach
                         @else
-                            <div class="no-order-message taxt-center">No Orders Found</div>
+                            <div class="no-order-message taxt-center">
+                                <h2>No Orders Found</h2>
+                                </div>
                             <div class="back-to-home">
                                 <a href="{{ route('menu','appetizers') }}">Back to Menu</a>
                             </div>

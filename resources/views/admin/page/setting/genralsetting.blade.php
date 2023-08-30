@@ -49,7 +49,7 @@
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                     <label for="phone">Phone Number *</label>
                                     <input type="text" name="phone" id="phone"  class="form-control" value="{{ old('phone',setting('phone'))}}">
-                                    <small><i class="fa-solid fa-circle-question"></i> Please Enter the vaid phone number</small>
+                                    <small><i class="fa-solid fa-circle-question"></i> Please Enter the valid phone number</small>
                                     @error('phone')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="col-xl-6 col-lg-6 form-group">

@@ -2462,21 +2462,33 @@ li.logout {
 .custn_input {
     position: relative;
 }
-.custn_input i.fa-solid.toggle-password.fa-eye,
-.custn_input i.fa-solid.fa-eye.confirm_pass {
+/* suppress IE >= 10 native functionality that can show password */
+input[type="password"]::-ms-reveal {
+    display: none;
+}
+.btn {
+    margin-top: 1.75em;
+}
+.input-group {
+    position: relative;
+    width: 100%;
+}
+.toggle {
+    background: none;
+    border: none;
+    color: #337ab7;
     position: absolute;
-    top: 0;
-    transform: translateY(34%);
-    right: 15px;
-    bottom: 0;
+    right: .75em;
+    top: 1.25em;
+    z-index: 9;
 }
 
-.custn_input i.fa-solid.toggle-password.fa-eye-slash,
-.custn_input i.fa-solid.confirm_pass.fa-eye-slash {
-    position: absolute;
-    top: 68%;
-    transform: translateY(-50%);
-    right: 15px;
+
+
+
+
+.fa {
+    font-size: 2rem;
 }
 
 div#staticBackdrop {

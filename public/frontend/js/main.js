@@ -475,22 +475,19 @@ jQuery(document).ready(function () {
        });
        let text1 = document.getElementById('counter1');
        animate(text1, 0, 200, 7000);
-
-
    }else if(url.indexOf("/register") > -1 || url.indexOf("/login") > -1 ) {
+       jQuery(document).on("click", "#btnToggle", function (event) {
 
-       jQuery(document).on("click", ".toggle-password", function (event) {
-           jQuery(this).toggleClass("fa-eye fa-eye-slash");
-           let input = jQuery($(this).attr("toggle"));
-           if (input.attr("type") === "password") { input.attr("type", "text");} else {input.attr("type", "password");}
+           let passwordItd =  (jQuery(this).attr('passwordType') ==='password')?jQuery('#password'):jQuery('#password_confirmation');
+           jQuery(this).find("#eyeIcon").toggleClass("fa-eye fa-eye-slash");
+           if (passwordItd.attr('type') === 'password'){
+               passwordItd.attr('type','text');
+           }else{
+               passwordItd.attr('type','password')
+           }
        });
-
        }
 
-    // $('ul.nav li.dropdown').hover(function() {
-    //     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-    // }, function() {
-    //     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-    // });
+
 
 });
