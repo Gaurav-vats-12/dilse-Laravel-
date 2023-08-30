@@ -27,10 +27,8 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
-        return redirect()->intended('/admin/dashboard')->withToastSuccess('Admin Login Successfully ',500);
-
+        return redirect()->intended('/admin/dashboard')->with('message','Admin Login Successfully');
     }
 
     /**
@@ -39,11 +37,8 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         AuthAlias::guard('admin')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.dashboard')->with('message','Log Out Successfully');
     }
 }

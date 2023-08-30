@@ -41,7 +41,7 @@ class GalleryController extends Controller
             ResizeImage::make($request->file('gallery_image'))->save($sitelogopath.'/'. $galleryImage);
         }
         Gallery::insert(['name' => $request->image_title, 'image' => $galleryImage,'image_postion' => (int) $request->image_postion, 'status' => ($request->status =='1') ? 1 : 0,'created_at' => now(), 'updated_at' => now() ]);
-        return redirect()->route('admin.manage-gallery.index')->withSuccess('Gallery Successfully Created',500);
+        return redirect()->route('admin.manage-gallery.index')->with('message','Gallery  Created Successfully');
 
     }
 
@@ -78,7 +78,7 @@ class GalleryController extends Controller
             $galleryImage = $Gallery->image;
         }
         $gallery::findOrFail($id)->update(['name' => $request->image_title, 'image' => $galleryImage, 'image_postion' =>(int) $request->image_postion,  'status' => ($request->status =='1') ? 1 : 0, 'updated_at' => now() ]);
-        return redirect()->route('admin.manage-gallery.index')->withSuccess('Gallery Successfully Updated',500);
+        return redirect()->route('admin.manage-gallery.index')->with('message','Gallery  Update Successfully');
     }
 
     /**
@@ -88,8 +88,6 @@ class GalleryController extends Controller
     {
         $gallery::findOrFail($id)->delete();
         return redirect()->route('admin.manage-gallery.index')->withSuccess('Gallery Successfully Deleted',500);
-
-
     }
 
     protected function deleteIamge($imagePath){

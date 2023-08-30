@@ -25,8 +25,14 @@
                             <div class="card-header">
                                 <a href="{{ route('admin.order.index') }}" type="button"
                                    class="btn btn-success float-left">Back </a>
+
+                                <a href="{{route('admin.order.download', $orders->id)}}"  type="button"
+                                   class="btn btn-success float-right ml-2">Download </a>
+
                                 <a href="javascript:void(0)" id="print_order" type="button"
                                    class="btn btn-success float-right">Print </a>
+
+
 
                             </div>
                             <div class="card-body">
@@ -91,7 +97,7 @@
                                                             <tr>
                                                                 <td>{{ $key + 1 }}</td>
                                                                 <td>{{ $items->product->name }}</td>
-                                                                <td>{{ setting('site_currency')}}{{ $items->product->price }}</td>
+                                                                <td>{{ setting('site_currency')}} {{ $items->product->price }}</td>
                                                                 <td>{{ $items->quantity }}</td>
                                                                 <td>{{ setting('site_currency')}}{{ $subtotal }}</td>
                                                             </tr>
@@ -110,7 +116,7 @@
                                                 <strong>Sub Total :</strong>
                                             </div>
                                             <div class="col-8">
-                                                {{ setting('site_currency')}}{{ $orders->sub_total }}
+                                                {{ setting('site_currency')}} {{ $orders->sub_total }}
                                             </div>
                                         </div>
                                         <div class="row mt-3">
@@ -135,7 +141,7 @@
                                                 <strong>Total Amount :</strong>
                                             </div>
                                             <div class="col-8">
-                                                ${{ $orders->total_amount }}
+                                                {{ setting('site_currency')}} {{ $orders->total_amount }}
                                             </div>
                                         </div>
                                         <div class="row mt-3">

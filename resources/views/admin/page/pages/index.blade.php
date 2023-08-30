@@ -21,7 +21,7 @@
                 <div class="col-12">
                     <div class="card">
                     <div class="card-header">
-                <a href="{{ route('admin.manage-pages.create')}}" type ="button" class="btn btn-success float-right" >Add Pages</a>
+{{--                <a href="{{ route('admin.manage-pages.create')}}" type ="button" class="btn btn-success float-right" >Add Pages</a>--}}
               </div>
                         <div class="card-body">
                             <table id="manage_pages_datatable" class="table table-bordered table-hover">

@@ -32,15 +32,14 @@
 <!-- SweetAlert2 -->
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 <!-- Toastr -->
+<script  src="{{asset('plugins/toastr/js/toastr.min.js')}}"></script>
+
+
 <script src="{{asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{asset('plugins/Dropify/js/dropify.min.js') }}"></script>
 <script src="{{asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
 <!-- Bootstrap4 Duallistbox -->
 <script src="{{asset('plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
-
-<script src="{{asset('plugins/toastr/toastr.min.js') }}"></script>
-<!-- Toast Alert -->
-<script src="{{asset('plugins/toastr/toastr.min.js')}}"></script>
 <!-- DataTables  & Plugins -->
 <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -65,8 +64,42 @@
 <script src="{{asset('backend/js/custom.js') }}"></script>
 <script src="{{asset('backend/js/main.js') }}"></script>
 <script src="{{asset('backend/js/adminlte.js') }}"></script>
+<script>
+    @if(Session::has('message'))
+        toastr.options =
+        {
+            "closeButton" : true,
+            "progressBar" : true,
+        }
+    toastr.success("{{ session('message') }}");
+    @endif
 
+        @if(Session::has('error'))
+        toastr.options =
+        {
+            "closeButton" : true,
+            "progressBar" : true
+        }
+    toastr.error("{{ session('error') }}");
+    @endif
 
-@include('sweetalert::alert')
-@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+        @if(Session::has('info'))
+        toastr.options =
+        {
+            "closeButton" : true,
+            "progressBar" : true
+        }
+    toastr.info("{{ session('info') }}");
+    @endif
+
+        @if(Session::has('warning'))
+        toastr.options =
+        {
+            "closeButton" : true,
+            "progressBar" : true
+        }
+    toastr.warning("{{ session('warning') }}");
+    @endif
+</script>
+
 
