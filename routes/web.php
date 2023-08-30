@@ -3,7 +3,7 @@
 // use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BlogController as BlogControllerAlias;
 use App\Http\Controllers\BookingController as BookingControllerAlias;
-use App\Http\Controllers\CartController as CartControllerAlias;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController as CheckoutControllerAlias;
 use App\Http\Controllers\ContactUsController as ContactUsControllerAlias;
 use App\Http\Controllers\HomeController as HomeControllerAlias;
@@ -53,8 +53,9 @@ RouteAlias::get('/send', [HomeControllerAlias::class, 'sendEmail']);
 
 
 // Add to Cart
-RouteAlias::prefix('cart')->name('cart.')->group(function(){
-    RouteAlias::get('/', [CartControllerAlias::class, 'viewcart'])->name('view');
+RouteAlias::prefix('cart')->name('cart.')->group(callback: function(){
+    RouteAlias::get('/', [CartController::class, 'viewcart'])->name('view');
+
 });
 
 RouteAlias::prefix('checkout')->name('checkout.')->group(callback: function(){

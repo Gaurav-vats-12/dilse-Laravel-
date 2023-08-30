@@ -20,15 +20,18 @@ let Toast = Swal.mixin({
     toast: true
 });
 
-  const togglePassword = () => {
-      // if (jQuery('.password').attr('type') === 'password'){
-      //     jQuery('.password').attr('type','text')
-      // }else{
-      //     jQuery('.password').attr('type','password')
-      // }
-
-
-};
+  const fetch_extra_items_data = async (ajax_value) => {
+      let cart_ajx_url = jQuery('#cart_ajx_url').val();
+      const resPose = await Ajax_response(cart_ajx_url, "POST", ajax_value, '');
+      jQuery(`#myTabContent`).empty().html(resPose);
+      jQuery('.product_checkout').slick({
+          arrows: true,
+          dots: false,
+          slidesToShow: 4,
+          prevArrow: '<button class="slide-arrow prev-arrow"></button>',
+          nextArrow: '<button class="slide-arrow next-arrow"></button>'
+      });
+  };
 
 function animate(obj, initVal, lastVal, duration) {
     let startTime = null;

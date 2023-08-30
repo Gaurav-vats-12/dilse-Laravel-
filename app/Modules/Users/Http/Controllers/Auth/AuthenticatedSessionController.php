@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
         session()->put('url_session',url()->previous());
-        return redirect()->intended('/')->with('message',' User Login Successfully');
+        return redirect()->intended('/');
     }
 
     /**
@@ -45,6 +45,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-        return redirect()->route('user.dashboard')->with('message','Logout SuccessFully');
+        return redirect()->route('user.dashboard');
     }
 }

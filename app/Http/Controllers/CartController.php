@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin\FoodItem as FoodItemAlias;
 use App\Models\Admin\Menu;
 
+use App\Models\Admin\Page;
 use Illuminate\Http\JsonResponse as JsonResponseAlias;
 use Illuminate\Http\Request;
 use Psr\Container\ContainerExceptionInterface;
@@ -18,6 +19,16 @@ public function viewcart(){
     $extra_items = FoodItemAlias::whereIn('menu_id',[7,6,5,9])->where('status',1)->get();
     return view('Pages.cart',compact('extra_items'));
 }
+public function extra_items(Request $request ){
+    $menu_id = $request->menu_id;
+    $extra_items = FoodItemAlias::where('menu_id',$menu_id)->where('status',1)->get();
+    return view('ajax.extra_items',compact('extra_items'));
+
+
+
+
+}
+
 
     /**
      * @param Request $request

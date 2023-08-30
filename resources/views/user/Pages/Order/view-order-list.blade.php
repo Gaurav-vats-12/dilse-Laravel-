@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="wap-order">
-                        <h5 class="order-head">My <span class="primary-text"> Orders </span></h5>
+                        <h5 class="order-head">My Orders</h5>
                         @if (isset($OrderDetails) && count($OrderDetails) >0)
                             @foreach($OrderDetails as $key => $orders)
                                 <div class="wap-lis" order_uiod = {{ $orders->id }}>

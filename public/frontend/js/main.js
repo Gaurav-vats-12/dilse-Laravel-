@@ -215,101 +215,6 @@ jQuery(document).ready(function () {
     });
     // jQuery( "#datepicker" ).datepicker();
 
-    /**
-     *  Update the quantity According to plus and minus in cart page (Cart page )
-     */
-    jQuery(document).on("click", ".update-qty", async function (e) {
-        let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-        let newVal;
-        let $button = jQuery(this), oldValue = $button.closest('.update-cart-qty').find("input.product-qty").val(),
-            quantity = jQuery(this).parent().find(`.product-qty`), ajax_url = jQuery(`#ajax_url`).val(),
-            dilavery_charge = jQuery(`#dilavery_charge`).val(),
-            product__price = parseFloat(quantity.attr(`product__price`)),
-            product_oid = parseInt(jQuery(this).attr(`productoid`));
-        if ($button.text() == "+") {
-            newVal = parseFloat(oldValue) + 1;
-        }else {
-            if (oldValue > 0) {
-                newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
-            if(newVal === 0){
-                $button.closest('.shopping_items').find('#remove_add_to_Cart').trigger('click');
-            }
-        }
-        if(newVal === 0){
-
-        }else{
-            $button.closest('.update-cart-qty').find("input.product-qty").attr('value',newVal);
-            let qty = newVal;
-            let counterproductive = parseFloat(newVal * product__price), ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
-            jQuery(`#product_quantity_price__${product_oid}`).text(`${site_currency}${counterproductive.toFixed(2)}`);
-            jQuery(`#product_quntity__${product_oid}`).val(qty);
-            jQuery(`#product_price__${product_oid}`).val(`${site_currency}${counterproductive.toFixed(2)}`);
-            const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-            if (resPose.status === `success`) {
-                jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
-                jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
-            }
-        }
-    });
-
-    /**
-     *  Add to Cart  In Website (Extra_Items)
-     */
-    jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
-        jQuery(this).toggleClass(`added`);
-        let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#extra_ajax_url').val();
-        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-        if (resPose.status === `success`) {
-            Toast.fire({icon: `success`, title: resPose.message})
-            jQuery(`.cart_count`).html(resPose.cart_total);
-            setTimeout(function() { window.location.reload()}, 1000);
-        }
-    });
-    /**
-     *     Remove  The Cart in Cart page (Cart Page)
-     */
-    jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
-        let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-
-        event.preventDefault();
-        Swal.fire({
-            title: `Are you sure you want to delete this Item?`,
-            showCancelButton: true,
-            confirmButtonText: 'Ok',
-        }).then(async (result) => {
-            let uid = jQuery('.shopping_items_main').length;
-            if (result.isConfirmed) {
-                let ajax_url = jQuery('#delete_ajax_url').val();
-                let dilavery_charge = jQuery('#dilavery_charge').val();
-                let ajax_value = {dilavery_charge};
-                let resPose;
-                [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
-                if (resPose.status === 'success') {
-                    jQuery(`.cart_count`).html(resPose.cart_total);
-                    jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
-                    jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                    jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
-                    if (uid === 0) {
-                        jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                        jQuery('#order_details').empty();
-                        jQuery('.product_c_main').empty();
-                    } else {
-                        let product_oid = parseInt(jQuery(this).attr("produc_id"));
-                        jQuery(`#cart_products-${product_oid}`).empty();
-                        if (uid - 1 === 0) {
-                            jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                            jQuery('#order_details').empty();
-                            jQuery('.product_c_main').empty();
-                        }
-                    }
-                }
-            }
-        });
-    });
 
     /**
      *   Extra Items Sliders On Cart Page
@@ -335,6 +240,8 @@ jQuery(document).ready(function () {
         slidesToShow: 4,
         slidesToScroll: 1
     });
+
+        //
         // jQuery('.product_checkout').slick({
         //     infinite: true,
         //     speed: 300,
@@ -477,22 +384,155 @@ jQuery(document).ready(function () {
        });
        let text1 = document.getElementById('counter1');
        animate(text1, 0, 200, 7000);
-   }else if(url.indexOf("/register") > -1 || url.indexOf("/login") > -1 ) {
+   }else if (url.indexOf("/register") > -1) {
        jQuery(document).on("click", "#btnToggle", function (event) {
 
-           let passwordItd =  (jQuery(this).attr('passwordType') ==='password')?jQuery('#password'):jQuery('#password_confirmation');
+           let passwordItd = (jQuery(this).attr('passwordType') === 'password') ? jQuery('#password') : jQuery('#password_confirmation');
            jQuery(this).find("#eyeIcon").toggleClass("fa-eye fa-eye-slash");
-           if (passwordItd.attr('type') === 'password'){
-               passwordItd.attr('type','text');
-           }else{
-               passwordItd.attr('type','password')
+           if (passwordItd.attr('type') === 'password') {
+               passwordItd.attr('type', 'text');
+           } else {
+               passwordItd.attr('type', 'password')
            }
        });
-       }else if(url.indexOf("/profile") > -1 ) {
+   } else if (url.indexOf("/login") > -1) {
+       jQuery(document).on("click", "#btnToggle", function (event) {
+
+           let passwordItd = (jQuery(this).attr('passwordType') === 'password') ? jQuery('#password') : jQuery('#password_confirmation');
+           jQuery(this).find("#eyeIcon").toggleClass("fa-eye fa-eye-slash");
+           if (passwordItd.attr('type') === 'password') {
+               passwordItd.attr('type', 'text');
+           } else {
+               passwordItd.attr('type', 'password')
+           }
+       });
+   } else if (url.indexOf("/profile") > -1) {
        jQuery('#phone').inputmask('(999) 999-9999');
 
-   }
+   } else if (url.indexOf("/cart") > -1) {
+       /**
+        *  Update the quantity According to plus and minus in cart page (Cart page )
+        */
+       jQuery(document).on("click", ".update-qty", async function (e) {
+           let site_currency = jQuery('meta[name="site_currency"]').attr('content');
+           let newVal;
+           let $button = jQuery(this), oldValue = $button.closest('.update-cart-qty').find("input.product-qty").val(),
+               quantity = jQuery(this).parent().find(`.product-qty`), ajax_url = jQuery(`#ajax_url`).val(),
+               dilavery_charge = jQuery(`#dilavery_charge`).val(),
+               product__price = parseFloat(quantity.attr(`product__price`)),
+               product_oid = parseInt(jQuery(this).attr(`productoid`));
+           if ($button.text() === "+") {
+               newVal = parseFloat(oldValue) + 1;
+           } else {
+               if (oldValue > 0) {
+                   newVal = parseFloat(oldValue) - 1;
+               } else {
+                   newVal = 0;
+               }
+               if (newVal === 0) {
+                   $button.closest('.shopping_items').find('#remove_add_to_Cart').trigger('click');
+               }
+           }
+           if (newVal === 0) {
 
+           } else {
+               $button.closest('.update-cart-qty').find("input.product-qty").attr('value', newVal);
+               let qty = newVal;
+               let counterproductive = parseFloat(newVal * product__price),
+                   ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
+               jQuery(`#product_quantity_price__${product_oid}`).text(`${site_currency}${counterproductive.toFixed(2)}`);
+               jQuery(`#product_quntity__${product_oid}`).val(qty);
+               jQuery(`#product_price__${product_oid}`).val(`${site_currency}${counterproductive.toFixed(2)}`);
+               const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+               if (resPose.status === `success`) {
+                   jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
+                   jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
+                   jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
+               }
+           }
+       });
+
+       /**
+        *  Add to Cart  In Website (Extra_Items)
+        */
+       jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
+           jQuery(this).toggleClass(`added`);
+           let product_oid = jQuery(this).attr("product_uid"),
+               product_quntity = jQuery(`#product_quntity_${product_oid}`).val(),
+               product_price = jQuery(`#product_price__${product_oid}`).val(),
+               ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#extra_ajax_url').val();
+           const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+           if (resPose.status === `success`) {
+               Toast.fire({icon: `success`, title: resPose.message})
+               jQuery(`.cart_count`).html(resPose.cart_total);
+               setTimeout(function () {
+                   window.location.reload()
+               }, 1000);
+           }
+       });
+       /**
+        *     Remove  The Cart in Cart page (Cart Page)
+        */
+       jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
+           let site_currency = jQuery('meta[name="site_currency"]').attr('content');
+           event.preventDefault();
+           Swal.fire({
+               title: `Are you sure you want to delete this Item?`,
+               showCancelButton: true,
+               confirmButtonText: 'Ok',
+           }).then(async (result) => {
+               let uid = jQuery('.shopping_items_main').length;
+               if (result.isConfirmed) {
+                   let ajax_url = jQuery('#delete_ajax_url').val();
+                   let dilavery_charge = jQuery('#dilavery_charge').val();
+                   let ajax_value = {dilavery_charge};
+                   let resPose;
+                   [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
+                   if (resPose.status === 'success') {
+                       jQuery(`.cart_count`).html(resPose.cart_total);
+                       jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
+                       jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
+                       jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
+                       if (uid === 0) {
+                           jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
+                           jQuery('#order_details').empty();
+                           jQuery('.product_c_main').empty();
+                       } else {
+                           let product_oid = parseInt(jQuery(this).attr("produc_id"));
+                           jQuery(`#cart_products-${product_oid}`).empty();
+                           if (uid - 1 === 0) {
+                               jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
+                               jQuery('#order_details').empty();
+                               jQuery('.product_c_main').empty();
+                           }
+                       }
+                   }
+               }
+           });
+       });
+
+
+       // console.log(jQuery('.active').not(jQuery('#Bread-tab')));
+       if(jQuery('.active').not(jQuery('#Bread-tab'))){
+           let menu_id = jQuery(jQuery('#Bread-tab')).attr('menu_id');
+           let ajax_value = {menu_id};
+           fetch_extra_items_data(ajax_value);
+
+       }
+        // jQuery('.extra_items').trigger('click');
+
+       jQuery(document).on("click", ".extra_items", async function (event) {
+           jQuery('.active').not(this).removeClass('active');
+           jQuery(this).toggleClass('active');
+           let menu_id = jQuery(this).attr('menu_id');
+           let ajax_value = {menu_id};
+           fetch_extra_items_data(ajax_value);
+       });
+
+
+
+
+   }
 
 
 });
