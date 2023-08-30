@@ -2759,3 +2759,41 @@ button{
     -moz-appearance: none;
     appearance: none;
 }
+section.menu_main1 form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 6px;
+}
+button.inline-flex.items-center {
+    background: #000;
+}
+section.menu_main1 .cusstom_input input, .cusstom_input select{
+    background: #f4f4f4;
+    color: #6f6f6f;
+    border: none;
+    border-radius: 4px;
+}
+.menu_main1 form.form.profile-info-form {
+    background: #fff;
+    padding: 25px;
+}
+.menu_main1 .cusstom_input input, .cusstom_input select {
+    background: #f4f4f4;
+    border:none;
+}
+.menu_main1 button.inline-flex {
+    background: #000;
+    border: 1px solid #eb0029;
+}
+.menu_main1 .cusstom_input {
+    margin-bottom: 17px;
+}
+.wap-order form {
+    border-radius: 6px;
+    background: #ffff;
+    padding: 20px;
+}
+.menu_main1 button.inline-flex {
+    background: #000 !important;
+    border: 1px solid #eb0029;
+}
