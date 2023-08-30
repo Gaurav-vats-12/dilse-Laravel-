@@ -55,12 +55,12 @@ class UserController extends Controller
     public function listingOrder(): View|ApplicationAlias1|FactoryAlias|Application
     {
         $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
-        $OrderDetails = Order::where('user_id',$user_id)->get();
+        $OrderDetails = Order::where('user_id',$user_id)->orderBy('id', 'DESC')->get();
         return view('user.Pages.Order.view-order-list',compact('OrderDetails'));
     }
     public  function OrderCancelled( $id ){
         Order::findOrFail($id)->update(['status' => 'Cancelled','updated_at' => now() ]);
-        return Redirect::back()->withToastSuccess('Order Cancelled SuccessFully');
+        return Redirect::back()->with( 'message','Order Cancelled SuccessFully');
     }
 
     public function OrderReorder($id){

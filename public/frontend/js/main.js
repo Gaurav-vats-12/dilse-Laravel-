@@ -93,13 +93,13 @@ jQuery(document).ready(function () {
             const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
             if (resPose.status === `success`) {
                 Toast.fire({icon: `success`, title: resPose.message})
-                $("form")[0].reset();
+                jQuery("#emailSubscribeForm")[0].reset();
             }else if(resPose.status === `error`){
                 Toast.fire({icon: `warning`, title: resPose.message})
-                $("form")[0].reset();
+                jQuery("#emailSubscribeForm")[0].reset();
             }else if(resPose.status === `error_message`){
                 Toast.fire({icon: `danger`, title: resPose.message})
-                $("form")[0].reset();
+                jQuery("#emailSubscribeForm")[0].reset();
             }else{
                 jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
             }
@@ -298,6 +298,7 @@ jQuery(document).ready(function () {
 
 
     }else if(url.indexOf("/profile-address") > -1){
+
         /**
          * State Dependency In profile   Page
          */
@@ -306,6 +307,10 @@ jQuery(document).ready(function () {
         let selected_billing_state = jQuery('#selected_billing_state').val();
         let ajax_value = {country_uid,'type':'country',selected_billing_state};
         state_dependency_country_list(ajax_value, ajax_url);
+       jQuery('#billing_postcode').inputmask('A9A 9A9', {
+           placeholder: 'K1N 8W5\n',
+           clearMaskOnLostFocus: false,
+       })
     }else if(url.indexOf("/book-a-reservation") > -1) {
         jQuery('#datepicker').datepicker({
             minDate: 1,
@@ -345,7 +350,6 @@ jQuery(document).ready(function () {
                 jQuery('#timepicker').timepicker('option', 'minTime', '11:30 AM');
             }
         });
-
         let initialMinTime = now.toDateString() === (new Date($('#datepicker').val()).toDateString()) ? currentTime : '11:30 AM';
         jQuery('#timepicker').timepicker({
             'minTime': initialMinTime,
