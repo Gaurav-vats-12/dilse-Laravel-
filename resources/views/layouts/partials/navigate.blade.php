@@ -80,7 +80,6 @@
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               <li><a class="dropdown-item" href="{{ route('user.profile.edit') }}">Profile</a></li>
                               <li><a class="dropdown-item" href="{{ route('user.order') }}"> Order </a></li>
-
                               <li>
                                   <form method="POST" action="{{ route('user.logout') }}">  @csrf
                                       <x-responsive-nav-link  :href="route('user.logout')" onclick="event.preventDefault();
