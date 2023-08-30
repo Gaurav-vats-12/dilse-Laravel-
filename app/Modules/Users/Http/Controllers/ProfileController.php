@@ -3,6 +3,7 @@
 namespace App\Modules\Users\Http\Controllers;
 
 use App\Modules\Users\Http\Requests\ProfileUpdateRequest;
+use App\Modules\Users\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,11 +27,14 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+
+
+
+
         $user = Auth::guard('user')->user();
-        $user->display_name = $request->display_name;
+        $user->name = $request->name;
         $user->phone = $request->phone;
         $user->save();
-
         return redirect()->route('user.profile.edit')->with('message','Profile Update Successfully');
     }
 
