@@ -12,7 +12,7 @@
         </div>
         <div class="col-lg-9">
 
-
+            <div class="wap-order">
     <form method="post" action="{{ route('user.password.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('put')
@@ -39,8 +39,7 @@
             <x-primary-button>{{ __('Update Password') }}</x-primary-button>
         </div>
     </form>
-
-
+            </div>
 </div>
 </section>
 

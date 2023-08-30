@@ -12,6 +12,7 @@
                     @include('user.layouts.partials.user_sidebar')
                 </div>
                 <div class="col-lg-9">
+                    <div class="wap-order">
                     <form method="post" action="{{ route('user.profile.update') }}" class="mt-6 space-y-6">@csrf @method('patch')
                         <input type="hidden" name="login_user_id" id="login_user_id" value="{{ $user->id }}">
                         <div class="cusstom_input">
@@ -32,6 +33,8 @@
                         </div>
                         <x-primary-button class="theme_btn">{{ __('Save') }}</x-primary-button>
                     </form>
+                </div>
+
                 </div>
             </div>
         </div>

@@ -76,7 +76,7 @@
             </div>
             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
               <div class="about_cntnt">
-                <h3>About us Dil Se Indian Restaurant & BaR Testing Hello  </h3>
+                <h3>About us Dil Se Indian Restaurant & Bar</h3>
                 <h2>Bringing You An Authentic Indian Taste</h2>
                 <p>
                   Craving for homemade Indian food? Dil Se brings you the taste

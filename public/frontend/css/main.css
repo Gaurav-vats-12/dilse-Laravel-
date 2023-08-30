@@ -1806,6 +1806,8 @@ form.contact_form a {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 10px;
+
 }
 .product_cont {
     /* padding: 10px 20px; */
@@ -2359,10 +2361,11 @@ a.qty-plus.plus.qty-count.qty-count--add.update-qty {
 
 .orders-table-wrapper {
     /*border-radius: 4px;*/
-    padding: 1rem;
-    margin-bottom: 2rem;
+    /*padding: 1rem;*/
+    /*margin-bottom: 2rem;*/
     border: none;
 }
+
 .orders-table thead {
     background: red;
 }
@@ -2667,3 +2670,92 @@ a.checkout_link_guest {
     margin-top: 10px;
 }
 
+.my-account-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+}
+.my-account-content p:first-child {
+    font-family: "ThePretender-ExpSansBoldPress";
+    font-size: 20px;
+}
+.wap-order {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+}
+.orders-table thead {
+    background: #000;
+    color: #fff;
+}
+.wap-order .btn-danger {
+    color: #fff;
+    background-color: #000;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 15px;
+}
+.table-borderless>:not(caption)>*>* {
+    border-bottom-width: 1px;
+}
+.wap-order h5.order-head {
+    border-bottom: 1px solid #0000004a;
+    padding: 0 0 11px;
+}
+.wap-lis .stat {
+    padding: 30px 0;
+}
+.franchies-wap hr:not([size]) {
+    height: 1px;
+    display: none;
+}
+.franchies-wap {
+    border-bottom: 1px solid #0000004a;
+}
+.Reorder_Class a {
+    background: #000;
+    padding: 13px;
+    color: #fff;
+}
+
+.Reorder_Class {
+    text-align: right;
+    margin-bottom: 20px;
+}
+.product_box {
+    padding: 15px;
+}
+.slide-arrow{
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+}
+.prev-arrow{
+    left: -40px;
+    width: 0;
+    height: 0;
+    border-left: 0 solid transparent;
+    border-right: 15px solid #113463;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+.next-arrow{
+    right: -40px;
+    width: 0;
+    height: 0;
+    border-right: 0 solid transparent;
+    border-left: 15px solid #113463;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+button{
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}

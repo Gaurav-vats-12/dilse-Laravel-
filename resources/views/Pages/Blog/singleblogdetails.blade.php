@@ -16,6 +16,9 @@
       <section class="featured_posts">
         <div class="container">
             <main>
+                <div class="post_img">
+                    <img src="{{ url('/storage/blog/'.$blog->blog_image.'') }}" alt="{{ $blog->blog_image}}" />
+                </div>
                 <article>
                     {!!$blog->blog_content !!}
                 </article>
