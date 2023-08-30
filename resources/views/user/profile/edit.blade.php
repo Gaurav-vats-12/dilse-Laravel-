@@ -13,23 +13,20 @@
                 </div>
                 <div class="col-lg-9">
                     <form method="post" action="{{ route('user.profile.update') }}" class="mt-6 space-y-6">@csrf @method('patch')
+                        <input type="hidden" name="login_user_id" id="login_user_id" value="{{ $user->id }}">
                         <div class="cusstom_input">
                             <x-input-label for="name" :value="__('Name')" />
                             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"  autofocus autocomplete="name" />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
+
                         <div class="cusstom_input">
-                            <x-input-label for="display_name" :value="__('Display Name')" />
-                            <x-text-input id="display_name" name="display_name" type="text" class="mt-1 block w-full" :value="old('display_name', $user->name)"  autofocus autocomplete="name" />
-                            <x-input-error class="mt-2" :messages="$errors->get('display_name')" />
-                        </div>
-                        <div class="cusstom_input">
-                            <x-input-label for="email" :value="__('Email')" />
+                            <x-input-label for="email" :value="__('Email Address')" />
                             <x-text-input id="email" name="email" readonly="" type="email" class="mt-1 block w-full" :value="old('email', $user->email)"  autocomplete="username" />
                             <x-input-error class="mt-2" :messages="$errors->get('email')" />
                         </div>
                         <div class="cusstom_input">
-                            <x-input-label for="email" :value="__('Phone')" />
+                            <x-input-label for="email" :value="__('Phone Number')" />
                             <x-text-input id="phone" name="phone"  type="tel" class="mt-1 block w-full" :value="old('phone', $user->phone)"  autocomplete="username" />
                             <x-input-error class="mt-2" :messages="$errors->get('phone')" />
                         </div>

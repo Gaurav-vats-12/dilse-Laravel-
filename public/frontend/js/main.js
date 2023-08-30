@@ -488,7 +488,10 @@ jQuery(document).ready(function () {
                passwordItd.attr('type','password')
            }
        });
-       }
+       }else if(url.indexOf("/profile") > -1 ) {
+       jQuery('#phone').inputmask('(999) 999-9999');
+
+   }
 
 
 
