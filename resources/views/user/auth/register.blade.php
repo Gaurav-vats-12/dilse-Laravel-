@@ -32,7 +32,7 @@
                                 <div class="col-md-12">
                                     <div class="custn_input pass_show">
                                         <x-text-input id="password"  placeholder="Your password" class="block mt-1 w-full password" type="password" name="password"   autocomplete="new-password" />
-                                        <button type="button" id="btnToggle" class="toggle" passwordType="password"><i id="eyeIcon" passwordType="password" class="fa fa-eye"></i></button>
+                                        <button type="button" id="btnToggle" class="toggle" passwordType="password"><i id="eyeIcon" passwordType="password" class="fa fa-eye "></i></button>
                                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                             <div class="col-12 mb-4">
                                 <div class="form-check d-flex align-items-center">
                                     <input type="checkbox" name="privacyPolicy" class="form-check-input me-2" id="remember"  value="1">
-                                    <label class="form-check-label" for="remember">
+                                    <label class="form-check-label mt-2" for="remember">
                                         By signing up you agree to our
                                         <a href="{{url('terms-and-conditions')}}" target="_blank">Terms &amp; Conditions</a>
                                         &amp;

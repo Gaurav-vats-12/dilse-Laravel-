@@ -46,7 +46,8 @@ class UserController extends Controller
             'updated_at' => now()
         ];
         UserAddressManageAlias::updateOrCreate(['user_id'=>$request->login_uer_id],$user_address );
-        return Redirect::back()->withToastSuccess('User  Address Updated');
+
+        return Redirect::back()->with('message','User  Address Updated');
     }
 
     /**

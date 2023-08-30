@@ -16,7 +16,7 @@
                         <input type="hidden"  class="form-control" name="login_uer_id" value="{{ Auth::guard('user')->check() ? Auth::guard('user')->user()->id  : old('login_user_id') }}">
 
                         @include('ajax.user_address_form')
-                        <x-primary-button class="theme_btn">{{ __('Update') }}</x-primary-button>
+                        <x-primary-button class="theme_btn">{{ __('Update Address ') }}</x-primary-button>
                     </form>
                 </div>
             </div>

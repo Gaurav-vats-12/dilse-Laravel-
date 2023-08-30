@@ -49,12 +49,11 @@ class OrderManagemnetController extends Controller
         Payments::where('order_id',$request->order_uid)->update(['payment_status' => 'paid','updated_at' => now() ]);
         return response()->json(['code' => 200 ,  'status' =>'success', "message"=>"Order Change to Delivered Successfully"]);
     }
-
     public function downloadOrderInPDF(Request $request,string $id): \Illuminate\Http\Response
     {
         $orders= OrderAlias::with('orderItems.product', 'payment')->find($id);
         $pdf = PDF::loadView('admin.page.order.downloadOrderTemplate', compact('orders'))->setOptions(['defaultFont' => 'sans-serif']);
-        return $pdf->download('Dilse-Order-'.$id.'.pdf');
+        return $pdf->download('Dilse-Order-'.$orders->full_name.'-'.$id.'.pdf');
     }
 
 }

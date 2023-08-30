@@ -20,6 +20,8 @@
    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
    <!-- Toastr -->
    <script  src="{{asset('plugins/toastr/js/toastr.min.js')}}"></script>
+   <!-- jqueryscripttop -->
+   <script src="{{asset('plugins/jqueryscripttop/js/jquery-editable-select.js')}}"></script>
    <!-- InputMask -->
    <script src="{{asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
    <!-- main.js -->
@@ -27,39 +29,42 @@
     <!-- Function.js -->
     <script src="{{asset('frontend/js/function.js') }}"></script>
    <script>
+
        @if(Session::has('message'))
-           toastr.options =
-           {
-               "closeButton" : true,
-               "progressBar" : true,
-           }
-       toastr.success("{{ session('message') }}");
+       Swal.fire({
+           text: "{{ session('message') }}",
+           icon: 'success',
+           timer: 2000, // close after 2 seconds
+           showConfirmButton: false
+       });
+
        @endif
 
            @if(Session::has('error'))
-           toastr.options =
-           {
-               "closeButton" : true,
-               "progressBar" : true
-           }
-       toastr.error("{{ session('error') }}");
+       Swal.fire({
+           text: "{{ session('message') }}",
+           icon: 'error',
+           timer: 2000, // close after 2 seconds
+           showConfirmButton: false
+       });
+
        @endif
 
            @if(Session::has('info'))
-           toastr.options =
-           {
-               "closeButton" : true,
-               "progressBar" : true
-           }
-       toastr.info("{{ session('info') }}");
+       Swal.fire({
+           text: "{{ session('message') }}",
+           icon: 'info',
+           timer: 2000, // close after 2 seconds
+           showConfirmButton: false
+       });
        @endif
 
            @if(Session::has('warning'))
-           toastr.options =
-           {
-               "closeButton" : true,
-               "progressBar" : true
-           }
-       toastr.warning("{{ session('warning') }}");
+       Swal.fire({
+           text: "{{ session('message') }}",
+           icon: 'info',
+           timer: 2000, // close after 2 seconds
+           showConfirmButton: false
+       });
        @endif
    </script>

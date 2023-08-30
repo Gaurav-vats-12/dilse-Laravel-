@@ -31,7 +31,7 @@ class ProfileController extends Controller
         $user->phone = $request->phone;
         $user->save();
 
-        return redirect()->route('user.profile.edit')->withToastSuccess('Profile Update Successfully');
+        return redirect()->route('user.profile.edit')->with('message','Profile Update Successfully');
     }
 
     /**
