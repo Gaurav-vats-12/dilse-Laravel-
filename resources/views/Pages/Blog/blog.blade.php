@@ -13,7 +13,7 @@
           </div>
         </div>
       </section>
-      <section class="featured_posts">
+      <section class="featured_posts py_8">
         <div class="container">
           <div class="tittle_heading">
           </div>
@@ -27,7 +27,7 @@
                   <img src="{{ url('/storage/blog/'.$blog->blog_image.'') }}" alt="{{ $blog->blog_image}}" />
                 </div>
                   </a>
-                  
+
                 <div class="post_txt">
                   <h3>
                     {{ $blog->blog_title}}

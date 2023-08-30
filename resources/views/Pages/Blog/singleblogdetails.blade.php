@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', $blog->blog_title)
 @section('frontcontent')
-    <section class="about_se py_8">
+    <section class="featured_posts py_8">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
