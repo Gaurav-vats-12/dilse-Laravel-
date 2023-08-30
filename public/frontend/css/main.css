@@ -2645,3 +2645,11 @@ a.checkout_link_guest {
 .back-to-home a:hover {
     color: #2980b9;
 }
+#dropdownMenuLink.dropdown-item:focus, .dropdown-item:hover {
+    color: #1e2125;
+    background-color: inherit;
+}
+.shoping_main_top:last-child {
+    border-top: 1px solid #00000026;
+    padding: 29px 0;
+}
