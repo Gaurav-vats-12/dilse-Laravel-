@@ -400,6 +400,27 @@ jQuery(document).ready(function () {
            }
        });
    } else if (url.indexOf("/login") > -1) {
+
+       jQuery(document).on("click", "#remember_me", function (event) {
+
+           if (jQuery(this).prop('checked')==true){
+               let  email = jQuery('#email').val();
+               let password = jQuery('#password').val();
+               localStorage.setItem("email", email);
+               localStorage.setItem("password", password);
+           }else{
+               let  email = jQuery('#email').val();
+               let password = jQuery('#password').val();
+               localStorage.setItem("email", email);
+               localStorage.setItem("password", password);
+           }
+
+       });
+
+   
+       jQuery('#email').val(localStorage.getItem("email"));
+       jQuery('#password').val(localStorage.getItem("password"))
+
        jQuery(document).on("click", "#btnToggle", function (event) {
 
            let passwordItd = (jQuery(this).attr('passwordType') === 'password') ? jQuery('#password') : jQuery('#password_confirmation');
