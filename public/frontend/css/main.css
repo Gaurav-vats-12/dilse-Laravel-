@@ -2816,3 +2816,12 @@ section.menu_main1 .cusstom_input input, .cusstom_input select{
 .best_food_crd {
     padding: 10px;
 }
+.best_food_crd_img {
+    height: 300px;
+}
+
+.best_food_crd_img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
