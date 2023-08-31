@@ -72,14 +72,16 @@
                                         <option value="">choose location</option>
 
                                         @php
-                                            $selectedLocations = old('site_location', setting('site_location') ?: []);
+                                            $selectedLocations = old('site_location', explode(',', setting('site_location'))  ?: []);
+
+
                                             if (!is_array($selectedLocations)) {
                                                 $selectedLocations = [$selectedLocations];  // Ensure we have an array
                                             }
                                         @endphp
 
-                                        <option value="chandigarh" {{ in_array('chandigarh', $selectedLocations) ? 'selected' : '' }}>Chandigarh</option>
-                                        <option value="mohali" {{ in_array('mohali', $selectedLocations) ? 'selected' : '' }}>Mohali</option>
+                                        <option value="Toronto" {{ in_array('Toronto', $selectedLocations) ? 'selected' : '' }}>Toronto</option>
+                                        <option value="Bramptonn" {{ in_array('Bramptonn', $selectedLocations) ? 'selected' : '' }}>Bramptonn</option>
                                     </select>
 
                                     @error('site_location')  <span class="text-danger">{{ $message }}</span> @enderror

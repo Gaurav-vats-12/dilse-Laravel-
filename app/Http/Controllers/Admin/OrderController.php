@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Order\StoreOrderRequest as StoreOrderRequestAlias;
+use App\Models\Order\Order as OrderAlias;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\Order\Order;
 
@@ -12,9 +16,9 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
-        return view(view: 'admin.page.order.index')->with('orders', value: Order::latest()->get());
+        return view(view: 'admin.page.order.index')->with('orders', value: OrderAlias::latest()->get());
     }
 
     /**
