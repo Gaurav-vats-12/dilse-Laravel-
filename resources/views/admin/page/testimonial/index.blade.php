@@ -3,12 +3,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">All testimonial</h1>
+            <h1 class="m-0">All Testimonial</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-            <li class="breadcrumb-item active">All testimonial</li>
+            <li class="breadcrumb-item active">All Testimonial</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -21,7 +21,7 @@
                 <div class="col-12">
                     <div class="card">
                     <div class="card-header">
-                    <a href="{{ route('admin.testimonial.create')}}" type ="button" class="btn btn-success float-right" >Add testimonial</a>
+                    <a href="{{ route('admin.testimonial.create')}}" type ="button" class="btn btn-success float-right" >Add Testimonial</a>
               </div>
                         <div class="card-body">
                             <table id="testonomails_table" class="table table-bordered table-hover">
