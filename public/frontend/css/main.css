@@ -2479,11 +2479,12 @@ input[type="password"]::-ms-reveal {
 .toggle {
     background: none;
     border: none;
-    color: #337ab7;
     position: absolute;
     right: .75em;
     top: 1.25em;
     z-index: 9;
+    margin: 6px 0 0 0;
+    font-size: 16px;
 }
 
 .fa {
