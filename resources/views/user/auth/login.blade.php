@@ -26,7 +26,7 @@
                       <div class="col-md-12">
                           <div class="custn_input">
                               <x-text-input id="password"  placeholder="Your password" class="block mt-1 w-full password" type="password" name="password"   autocomplete="new-password" />
-                              <button type="button" id="btnToggle" class="toggle" passwordType="password"><i id="eyeIcon" passwordType="password" class="fa fa-eye "></i></button>
+                              <button type="button" id="btnToggle" class="toggle" passwordType="password"><i id="eyeIcon" passwordType="password" class="fa fa-eye " style="font-size: 16px;"></i></button>
                               <x-input-error :messages="$errors->get('password')" class="mt-2" />
                           </div>
                       </div>
