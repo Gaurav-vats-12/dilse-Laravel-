@@ -316,9 +316,11 @@
           @foreach ( $FoodItem as $key => $FoodItemValue )
             <div class="col-md-4">
               <div class="best_food_crd">
+                  <a href="{{ route('menudetails' , $FoodItemValue->slug)}}">
                 <div class="best_food_crd_img">
                 <img src="{{ url('/storage/products/'.$FoodItemValue->image.'') }}" alt="{{ $FoodItemValue->image}}">
                 </div>
+                  </a>
                 <div class="best_food_cntnt home_best_food_cntnt">
                   <div class="best_food_txt">
                   <a href="{{ route('menudetails' , $FoodItemValue->slug)}}"><h3> {{ $FoodItemValue->name}}</h3></a>

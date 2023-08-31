@@ -1468,7 +1468,6 @@ screen and (max-height: 300px) {
 .menu_main_box {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     padding-left: 10px;
 }
 
@@ -2209,9 +2208,10 @@ p {
 /* 16-8-23 */
 a.qtyminus.minus.qty-count.qty-count--minus.update-qty,
 a.qty-plus.plus.qty-count.qty-count--add.update-qty {
-    border: 1px solid #7c7676;
+    border: 1px solid rgb(124, 118, 118);
     padding: 0px 11px;
     border-radius: 5px;
+    color: rgb(0, 0, 0) !important;
 }
 
 .product_cont a.view_product {
@@ -2759,11 +2759,7 @@ button{
     -moz-appearance: none;
     appearance: none;
 }
-section.menu_main1 form {
-    background: #fff;
-    padding: 30px;
-    border-radius: 6px;
-}
+
 button.inline-flex.items-center {
     background: #000;
 }
@@ -2808,4 +2804,15 @@ section.menu_main1 .cusstom_input input, .cusstom_input select{
     text-align: center;
     border-radius: 7px;
     transition: all 0.3s;
+}
+.product_title h1 {
+    text-align: left;
+    font-weight: 600;
+    font-family: "ThePretender-ExpSansBoldPress";
+}
+.product_discription {
+    padding: 20px 0;
+}
+.best_food_crd {
+    padding: 10px;
 }
