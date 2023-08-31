@@ -41,9 +41,9 @@
                                             </li>
                                             <li>
                                                 <div class="shope_price">
-                                                    <div class="shope_p_tag"><span class="text-green-500 !leading-none">{{setting('site_currency')}}{{ $details['productdetails']->price}}</span>
+                                                    <div class="shope_p_tag"><span class="text-green-500 !leading-none">{{setting('site_currency')}} {{ $details['productdetails']->price}}</span>
                                                     </div>
-                                                    <div class="price"><h6> <span id="product_quantity_price__{{$id}}">{{setting('site_currency')}}{{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
+                                                    <div class="price"><h6> <span id="product_quantity_price__{{$id}}">{{setting('site_currency')}} {{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
 
                                                     <div class="remove_price">
                                                         <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
@@ -60,7 +60,7 @@
                         @if(session('cart'))
                             <div class="order_summary">
                                 <div class="tittle_heading">
-                                    <h6> Order Summary </h6>
+                                    <h2> Order Summary </h2>
                                 </div>
                                 <ul class="summary_main">
                                     <li>
@@ -69,7 +69,7 @@
                                             </p>
                                         </div>
                                         <div class="s_total" id="subtotal">
-                                            <p>{{ setting('site_currency')}}{{ $subtotal }}</p>
+                                            <p>{{ setting('site_currency')}} {{ $subtotal }}</p>
                                         </div>
                                     </li>
                                     @php
@@ -82,7 +82,7 @@
                                                 </p>
                                             </div>
                                             <div class="s_total" id="subtotal">
-                                                <p>{{ setting('site_currency')}}{{(setting('delivery_charge'))}}</p>
+                                                <p>{{ setting('site_currency')}} {{(setting('delivery_charge'))}}</p>
                                             </div>
                                         </li>
                                     @endif
@@ -97,7 +97,7 @@
                                                 $subTotal_Tax = (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) : $subtotal + 0.00;
                                                 $tax_total = round(($subTotal_Tax * setting('tax' ,0.00)) / 100 ,2);
                                             @endphp
-                                            <p>{{ setting('site_currency')}}{{ $tax_total }}</p>
+                                            <p>{{ setting('site_currency')}} {{ $tax_total }}</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="order_totalse" id="total">
                                         <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{ (session('order_type') == 'delivery') ? setting('delivery_charge' ,0.00) : $subtotal + 0.00 }}">
-                                        <p>{{ setting('site_currency')}}{{ (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) +  $tax_total : $subtotal + 0.00 +  $tax_total }}
+                                        <p>{{ setting('site_currency')}} {{ (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) +  $tax_total : $subtotal + 0.00 +  $tax_total }}
                                         </p>
                                     </div>
                                 </div>
