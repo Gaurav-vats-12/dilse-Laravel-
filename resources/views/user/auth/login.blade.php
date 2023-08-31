@@ -19,7 +19,7 @@
                   <div class="row">
                       <div class="col-md-12">
                           <div class="custn_input">
-                              <x-text-input id="email"  placeholder="test@gmail.com" class="block mt-1 w-full" type="email" name="email" :value="old('email')"  autocomplete="username" />
+                              <x-text-input id="email"  placeholder="Email Address " class="block mt-1 w-full" type="email" name="email" :value="old('email')"  autocomplete="username" />
                               <x-input-error :messages="$errors->get('email')" class="mt-2" />
                           </div>
                       </div>
