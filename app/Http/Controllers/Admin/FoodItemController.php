@@ -32,7 +32,9 @@ class FoodItemController extends Controller
             $product_image = $request->file('product_image');
             $ProductImage = time().'-'.$product_image->getClientOriginalName();
             $sitepath = public_path('storage/products'); !is_dir($sitepath) &&  mkdir($sitepath, 0777, true);
-            ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
+            ResizeImage::make( $product_image)->save($sitepath.'/'. $ProductImage);
+
+            //            ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
         }
           $restaurant = FoodItem::create(['name' => $request->name, 'menu_id' => $request->menu, 'description' => $request->description, 'price' => $request->price, 'image' => $ProductImage,'extra_items'=> (isset($request->extra_items)) ? 1 : 0,'featured'=> (isset($request->featured)) ? 1 : 0,'status'=> (isset($request->status)) ? 1 : 0,'created_at' => now(),'updated_at' => now()]);
         //   if(isset($request->extra_items)){
@@ -70,8 +72,8 @@ class FoodItemController extends Controller
             $product_image = $request->file('product_image');
             $ProductImage = time().'-'.$product_image->getClientOriginalName();
             DeleteOldImage($sitepath.'/'.$FoodItem->image);
-            ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
-
+            //ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
+            ResizeImage::make( $product_image)->save($sitepath.'/'. $ProductImage);
             }else{
             $ProductImage = $FoodItem->image;
         }
