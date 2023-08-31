@@ -41,11 +41,10 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td> <img src="{{ url('/storage/blog/'.$value->blog_image.'') }}" alt="" width="100px"></td>
                                 <td>{{ $value->blog_title }}</td>
-                                <td>{!! \Illuminate\Support\Str::limit(strip_tags($value->blog_content)) !!}</td>
+                                <td>{!! \Illuminate\Support\Str::limit(strip_tags($value->blog_content) ,30) !!}</td>
                                 <td>{{ $value->status}}</td>
                                 <td class="project-actions"><a class="btn btn-info btn-sm" href="{{ route('admin.blog.show', $value->id) }}"><i class="fa-solid fa-eye"></i> </a><a class="btn btn-info btn-sm" href="{{ route('admin.blog.edit', $value->id) }}"> <i class="fas fa-pencil-alt"></i> </a>
-                                <form method="POST" action="{{ route('admin.blog.destroy', $value->id) }}">  @csrf
-                                    @method('DELETE')
+                                <form method="POST" action="{{ route('admin.blog.destroy', $value->id) }}">  @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'><i class="fas fa-trash"></i></button>
                                 </form>
                             </td>

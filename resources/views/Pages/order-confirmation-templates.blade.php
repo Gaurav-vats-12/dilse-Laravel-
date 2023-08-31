@@ -20,7 +20,7 @@
                         <tr>
                             <td><img src="{{Storage::url('products/'.$items->product->image )}}"></td>
                             <td>{{$items->id}}</td>
-                            <td><a href="/menu/{{$items->product->slug}}">{{$items->product->name}}</a></td>
+                            <td><a href="/product/{{$items->product->slug}}">{{$items->product->name}}</a></td>
                             <td>${{$items->product->price}}</td>
                             <td>{{$items->quantity}}</td>
                             <td>{{$orderItem->order_type}}</td>
