@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         $request->session()->regenerate();
-        return redirect()->intended('/admin/dashboard')->with('message','Admin Login Successfully');
+        return redirect()->intended('/admin/dashboard');
     }
 
     /**
@@ -39,6 +39,6 @@ class AuthenticatedSessionController extends Controller
         AuthAlias::guard('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('admin.dashboard')->with('message','Log Out Successfully');
+        return redirect()->route('admin.dashboard');
     }
 }
