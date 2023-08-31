@@ -70,8 +70,8 @@ class FoodItemController extends Controller
             $product_image = $request->file('product_image');
             $ProductImage = time().'-'.$product_image->getClientOriginalName();
             DeleteOldImage($sitepath.'/'.$FoodItem->image);
-            ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
-
+            //ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
+            ResizeImage::make( $product_image)->save($sitepath.'/'. $ProductImage);
             }else{
             $ProductImage = $FoodItem->image;
         }
