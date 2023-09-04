@@ -49,5 +49,13 @@ class Order extends Model
         return $this->hasOne(Payments::class);
     }
 
+    /**
+     * @return HasOne
+     */
+    public function fetchPaymentDetails($status): HasOne
+    {
+        return "ASdsadsa";
+//        return $this->hasOne(Payments::class)->where('payment_status', $status);
+    }
 
 }

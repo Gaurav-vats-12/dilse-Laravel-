@@ -567,7 +567,7 @@ jQuery(document).ready(function () {
            ajax_value = {filterType, filterValue};
            orderedajax = jQuery('orderedajax').val();
            const resPose = await Ajax_response(orderedajax, "GET", ajax_value, '');
-           jQuery(`#OrderStatus`).empty().html(resPose);
+            jQuery(`#OrderStatus`).empty().html(resPose);
        });
 
 
