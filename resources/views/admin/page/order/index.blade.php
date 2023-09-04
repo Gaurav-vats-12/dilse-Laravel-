@@ -39,8 +39,8 @@
                                     @foreach ($orders as $key=>  $order)
                                         <tr order_uid ="{{ $order->id }}">
                                             <td class="">
-                                                <div class="badge bg-primary">
-                                                    <a href="https://restaurant-management.infyom.com/restaurant/order-details/52" class="text-decoration-none text-white ">{{ $order->id }}</a>
+                                                <div class="">
+                                                    {{ $order->id }}
                                                 </div>
                                             </td>
                                             <td>   {{ __( date("d M ,Y", strtotime($order->order_date)) ) }} ({{ __( DateTime::createFromFormat('H:i:s',explode(' ', $order->order_date )[1])->format('h:i:s A') ) }} )</td>
