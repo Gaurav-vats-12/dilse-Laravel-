@@ -54,33 +54,8 @@ class HomeController extends Controller
     }
 
 
-    /**
-     * @param Request $request
-     * @param $id
-     * @return Application|View|Factory|Redirector|\Illuminate\Contracts\Foundation\Application|RedirectResponse
-     */
-    public function  order_confirm(Request $request, $id): Application|View|Factory|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
-    {
-        $orderWithItems = Order::with('OrderItems')->find($id);
-        if ($orderWithItems) {
-            return view('Pages.order-confirmation-templates', ['orderItem' => $orderWithItems]);
-        } else {
-            return redirect(route('home'));
-        }
-    }
 
-    /**
-     * @param Request $request
-     * @param $id
-     * @return Application|Factory|\Illuminate\Contracts\Foundation\Application|View
-     */
-    public function  order_cancelled(Request $request, $id): View|Factory|Application|\Illuminate\Contracts\Foundation\Application
-    {
-        $orderWithItems = Order::with('OrderItems')->find($id);
-        $productIds = $orderWithItems->OrderItems->pluck('id')->all();
-        $product = FoodItem::whereIn('id', $productIds)->get();
-        return view('Pages.orderCancelled', ['orderItem' => $orderWithItems, 'product' => $product]);
-    }
+
 
     #[NoReturn] public  function update_location(Request $request): void
     {

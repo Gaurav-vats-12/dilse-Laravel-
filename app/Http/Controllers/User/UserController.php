@@ -52,11 +52,30 @@ class UserController extends Controller
     /**
      * @return View|ApplicationAlias1|FactoryAlias|Application
      */
-    public function listingOrder(): View|ApplicationAlias1|FactoryAlias|Application
-    {
-        $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
-        $OrderDetails = Order::where('user_id',$user_id)->orderBy('id', 'DESC')->get();
-        return view('user.Pages.Order.view-order-list',compact('OrderDetails'));
+    public function listingOrder(Request $request): View|ApplicationAlias1|FactoryAlias|Application
+    {        $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id(): null;
+
+        if ($request->ajax()) {
+            $filterType = $request->filterType;
+            if ($filterType ==='order'){
+                if ($request->filterValue ==='all'){
+                    $OrderDetails = Order::where('user_id',$user_id)->whereIn('status',['Pending','Processing','Shipped','Delivered','Cancelled'])->orderBy('id', 'DESC')->get();
+                    return view('user.ajax.OrderDetails',['OrderDetails'=>$OrderDetails]);
+                }else{
+                    $OrderDetails = Order::where('user_id',$user_id)->where('status',$request->filterValue)->orderBy('id', 'DESC')->get();
+                    return view('user.ajax.OrderDetails',['OrderDetails'=>$OrderDetails]);
+                }
+            }else{
+
+            }
+//            dd('sadsad');
+
+
+        }else{
+            $OrderDetails = Order::where('user_id',$user_id)->orderBy('id', 'DESC')->get();
+            return view('user.Pages.Order.view-order-list',compact('OrderDetails'));
+        }
+
     }
     public  function OrderCancelled( $id ){
         Order::findOrFail($id)->update(['status' => 'Cancelled','updated_at' => now() ]);

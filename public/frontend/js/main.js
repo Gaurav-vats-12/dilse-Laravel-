@@ -541,13 +541,10 @@ jQuery(document).ready(function () {
            });
        });
 
-
-       // console.log(jQuery('.active').not(jQuery('#Bread-tab')));
        if(jQuery('.active').not(jQuery('#Bread-tab'))){
            let menu_id = jQuery(jQuery('#Bread-tab')).attr('menu_id');
            let ajax_value = {menu_id};
            fetch_extra_items_data(ajax_value);
-
        }
         // jQuery('.extra_items').trigger('click');
 
@@ -559,6 +556,19 @@ jQuery(document).ready(function () {
            fetch_extra_items_data(ajax_value);
        });
 
+   }else if (url.indexOf("/user/order") > -1) {
+
+       jQuery(document).on("change", ".manage_by_order", async function (event) {
+           jQuery(`#OrderStatus`).empty().html('<h2 class="text-center"> Processing</h2>');
+           let element, filterType, filterValue, ajax_value, orderedajax;
+           element = jQuery(this);
+           filterType = element.attr("type");
+           filterValue = element.val();
+           ajax_value = {filterType, filterValue};
+           orderedajax = jQuery('orderedajax').val();
+           const resPose = await Ajax_response(orderedajax, "GET", ajax_value, '');
+           jQuery(`#OrderStatus`).empty().html(resPose);
+       });
 
 
 

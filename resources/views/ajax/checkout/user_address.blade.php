@@ -30,6 +30,4 @@
             <input type="email" placeholder="Enter Email Address" name="billing_email" id="billing_email" value=" {{ Auth::guard('user')->check() ? old('billing_email' ,Auth::guard('user')->user()->email)  : old('billing_email') }} ">
         </div>
     </div>   @include('ajax.user_address_form')
-
-
 </div>
