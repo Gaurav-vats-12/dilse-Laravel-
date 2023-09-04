@@ -16,7 +16,7 @@
                         <h5 class="order-head">My Orders</h5>
                         <div class="filter">
                             <h6 for="manage_by_order">Filter By Order  Status:</h6>
-                            <select id="manage_by_order"  type="order" class=" form-control manage_by_order">
+                            <select id="manage_by_order"  type="order" class="manage_by_order">
                                 <option value="all">All</option>
                                 <option value="Pending">Pending</option>
                                 <option value="Processing">Processing</option>
