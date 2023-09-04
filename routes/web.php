@@ -75,7 +75,7 @@ RouteAlias::get('{slug}', function ($slug) {
         $pagdata= Page::where('page_slug',$slug)->first();
         return view('Pages.dynamic-page-genrate',compact('pagdata'));
     }else{
-        return abort(404);
+//        return abort(404);
 
     }
 });
