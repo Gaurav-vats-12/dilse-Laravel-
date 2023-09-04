@@ -151,7 +151,7 @@ jQuery(document).ready(function () {
             const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
             if(resPose.status === 'success'){
                 Toast.fire({ icon: 'success',title: resPose.message, })
-                jQuery("form")[0].reset();
+                jQuery("#conatact_cus_form")[0].reset();
             }else{
                 jQuery.each(resPose.errors, function (key, value) {
                     jQuery(`#${key}-error`).text(value);
