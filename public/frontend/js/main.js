@@ -108,25 +108,8 @@ jQuery(document).ready(function () {
     /**
      *     Contact us Form Submission  iN ajax   (Home Page ,Contact Us Page)
      */
+
     jQuery("#conatact_cus_form").validate({
-        rules: {
-            first_name: {
-                required: true,
-                maxlength: 50,
-            }, last_name: {
-                required: true,
-                maxlength: 50,
-            }, email: {
-                required: true,
-                email: true,
-            }, phone: {
-                required: true,
-                maxlength: 15,
-            }, message: {
-                required: true,
-                maxlength: 2000,
-            }
-        },
         messages: {
             first_name: {
                 required: "Please Enter the First Name",
@@ -145,14 +128,32 @@ jQuery(document).ready(function () {
                 maxlength: "message must be max 2000 letter"
             }
         },
-        submitHandler: async function (form,e) {
+        rules: {
+            first_name: {
+                required: true,
+                maxlength: 50,
+            }, last_name: {
+                required: true,
+                maxlength: 50,
+            }, email: {
+                required: true,
+                email: true,
+            }, phone: {
+                required: true,
+                maxlength: 20,
+            }, message: {
+                required: true,
+                maxlength: 2000,
+            }
+        },
+        submitHandler: async function (form, e) {
             e.preventDefault();
             let ajax_value_list = $('form').serialize(), ajx_url = jQuery(`#contact_us_action_url`).val();
             const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
-            if(resPose.status === 'success'){
-                Toast.fire({ icon: 'success',title: resPose.message, })
+            if (resPose.status === 'success') {
+                Toast.fire({icon: 'success', title: resPose.message,})
                 jQuery("#conatact_cus_form")[0].reset();
-            }else{
+            } else {
                 jQuery.each(resPose.errors, function (key, value) {
                     jQuery(`#${key}-error`).text(value);
                 });
