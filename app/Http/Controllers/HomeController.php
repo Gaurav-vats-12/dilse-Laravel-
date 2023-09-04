@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Admin\{Banner,Testimonial,Page,FoodItem,Gallery};
+
+use App\Models\Admin\{Banner, Testimonial, Page, FoodItem, Gallery};
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -14,27 +15,31 @@ use JetBrains\PhpStorm\NoReturn;
 
 class HomeController extends Controller
 {
-    public function Homepage(){
-        $banner = Banner::where(['banner_type' => 'home'])->where('status','active')->get();
-        $FoodItem = FoodItem::where('extra_items',0)->where('featured',1)->where('status',1)->limit(3)->get();
-        $Testimonial = Testimonial::where('status','active')->get();
+    public function Homepage()
+    {
+        $banner = Banner::where(['banner_type' => 'home'])->where('status', 'active')->get();
+        $FoodItem = FoodItem::where('extra_items', 0)->where('featured', 1)->where('status', 1)->limit(3)->get();
+        $Testimonial = Testimonial::where('status', 'active')->get();
 
-        return view('Home',compact('banner','Testimonial','FoodItem'));
+        return view('Home', compact('banner', 'Testimonial', 'FoodItem'));
     }
 
-    public function aboutus(){
+    public function aboutus()
+    {
         return view('Pages.about');
     }
-    public function gallery(){
-        return view('Pages.gallery')->with('gallery',Gallery::where('status',1)->orderBy('image_postion', 'desc')->get());
-
+    public function gallery()
+    {
+        return view('Pages.gallery')->with('gallery', Gallery::where('status', 1)->orderBy('image_postion', 'desc')->get());
     }
 
-    public function giftCard(){
+    public function giftCard()
+    {
         return view('Pages.gift-card');
     }
 
-    public function sendEmail() {
+    public function sendEmail()
+    {
 
         $recipientEmail = 'shaurya.dograexoticait@gmail.com';
         $subject = 'Subject of the Email';
@@ -46,7 +51,7 @@ class HomeController extends Controller
         });
 
         return "Email sent successfully!";
-     }
+    }
 
 
     /**
@@ -54,16 +59,14 @@ class HomeController extends Controller
      * @param $id
      * @return Application|View|Factory|Redirector|\Illuminate\Contracts\Foundation\Application|RedirectResponse
      */
-    public function  order_confirm(Request $request , $id): Application|View|Factory|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
+    public function  order_confirm(Request $request, $id): Application|View|Factory|\Illuminate\Routing\Redirector|\Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse
     {
         $orderWithItems = Order::with('OrderItems')->find($id);
-        if($orderWithItems){
+        if ($orderWithItems) {
             return view('Pages.order-confirmation-templates', ['orderItem' => $orderWithItems]);
-        }else{
+        } else {
             return redirect(route('home'));
         }
-
-
     }
 
     /**
@@ -71,7 +74,7 @@ class HomeController extends Controller
      * @param $id
      * @return Application|Factory|\Illuminate\Contracts\Foundation\Application|View
      */
-    public function  order_cancelled(Request $request , $id): View|Factory|Application|\Illuminate\Contracts\Foundation\Application
+    public function  order_cancelled(Request $request, $id): View|Factory|Application|\Illuminate\Contracts\Foundation\Application
     {
         $orderWithItems = Order::with('OrderItems')->find($id);
         $productIds = $orderWithItems->OrderItems->pluck('id')->all();
@@ -82,8 +85,5 @@ class HomeController extends Controller
     #[NoReturn] public  function update_location(Request $request): void
     {
         dd($request->all());
-
     }
-
-
 }
