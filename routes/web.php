@@ -74,6 +74,9 @@ RouteAlias::get('{slug}', function ($slug) {
     }elseif($slug =='terms-and-conditions' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-policy'){
         $pagdata= Page::where('page_slug',$slug)->first();
         return view('Pages.dynamic-page-genrate',compact('pagdata'));
+    }else{
+        return abort(404);
+
     }
 });
 require __DIR__.'/postroutes.php';
