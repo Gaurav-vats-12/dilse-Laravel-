@@ -23,7 +23,7 @@ class Adminseeder extends Seeder
         'admins_uuid'=>\Str::random(10),
         'name'  => 'Superadmin',
         'email' =>'admin@dlse.com',
-        'password' =>bcrypt('Jwz4sivpkPBBLUPOphe'),
+        'password' =>bcrypt('cryPOtiver'),
         'email_verified_at' => now(),
         'created_at' => now(),
         'updated_at' => now(),
