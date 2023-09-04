@@ -12,14 +12,12 @@
     <!-- Jquery UI  -->
     <link rel="stylesheet" href="{{asset('plugins/jquery-ui/jquery-ui.min.css') }}">
   <!-- Time Picker CSS  -->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+  <link rel="stylesheet" href="{{asset('plugins/timepicker/css/jquery.timepicker.css')}}">
+  <link rel="stylesheet" href="{{asset('plugins/timepicker/css/jquery.timepicker.min.css')}}">
   <!-- Sweet Alert -->
     <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
-  <!-- Toastr -->
-  <link rel="stylesheet" href="{{asset('plugins/toastr/css/toastr.min.css')}}">
-
-  <!-- jqueryscripttop -->
-  <link rel="stylesheet" href="{{asset('plugins/jqueryscripttop/css/jquery-editable-select.min.css')}}">
+  <!-- Toaster -->
+  <link rel="stylesheet" href="{{asset('plugins/toast/css/toast.min.css')}}">
     <!-- main.css -->
     <link rel="stylesheet" href="{{asset('frontend/css/main.css') }}" />
   <!-- mediaQueryCss.css -->

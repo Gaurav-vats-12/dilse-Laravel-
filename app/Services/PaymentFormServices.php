@@ -65,9 +65,7 @@ class PaymentFormServices{
             $payment_json = null;
             $statusMessage = 'success';
             $payment_message = "Order Placed Successfully ";
-            $url = route('order_confirm', $order_id);
-
-
+             $url = route('thank-you.orderStatus',['order_id' =>  $order_id, 'PaymentStatus' => 'pending', 'payment_id' =>$payment_id]);
 
         } elseif ($request->payment_method == 'Pay On Store') {
             $payment_method = 'PayOnStore';
@@ -76,7 +74,7 @@ class PaymentFormServices{
             $payment_id = Str::random(10);
             $statusMessage = 'success';
             $payment_message = "Order Placed Successfully ";
-            $url = route('order_confirm', $order_id);
+            $url = route('thank-you.orderStatus',['order_id' =>  $order_id, 'PaymentStatus' => 'pending', 'payment_id' =>$payment_id]);
         }else{
 
             Stripe::setApiKey(Config::get('stripe.api_keys.secret_key', ''));
@@ -91,27 +89,28 @@ class PaymentFormServices{
                         'customer_address' => $request->billing_address_1 . ',' . $request->billing_address_2 . ',' . $request->billing_country . ',' . $request->billing_state . ',' . $request->billing_city . ',' . $request->billing_postcode,
                     ],
                 ]);
-                $payment_id = Str::random(10);
+
+                $payment_id = $stripe_paymnet->id;
                 $payment_method = 'PayOnOnline';
                 $payment_json = json_encode($stripe_paymnet);
-                $payment_status = 'Paid';
+                $payment_status = 'paid';
                 $statusMessage = 'success';
                 $payment_message = "Order Placed Successfully ";
-                $url = route('order_confirm', $order_id);
+                $url = route('thank-you.orderStatus',['order_id' =>  $order_id, 'PaymentStatus' => 'Paid', 'payment_id' =>$payment_id]);
+
             } catch (ApiErrorException $e) {
 
                 $error = $e->getError();
                 $payment_id = Str::random(10);
                 $payment_method = 'PayOnOnline';
                 $payment_json = json_encode($error);
-                $payment_status = $error['code'];
+                $payment_status = 'failed';
                 $payment_message = $error['message'];
                 $statusMessage = 'error';
-                $url = route('order_cancelled', $order_id);
+                $url = route('thank-you.orderStatus',['order_id' =>  $order_id, 'PaymentStatus' => $error['code'], 'payment_id' =>$payment_id]);
                 Order::findOrFail($order_id)->update(['status' => 'Cancelled','updated_at' => now() ]);
             }
         }
-
         Payments::insert([
             'payment_id'=>$payment_id,
             'order_id'=>$order_id,

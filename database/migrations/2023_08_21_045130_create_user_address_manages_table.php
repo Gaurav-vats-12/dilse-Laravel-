@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('billing_full_name', 255)->nullable();
             $table->string('billing_company', 255)->nullable();
             $table->string('billing_phone', 15)->nullable();
-            $table->string('billing_email', 15)->nullable();
+            $table->string('billing_email', 255)->nullable();
             $table->string('billing_address1', 255)->nullable();
             $table->string('billing_address2', 255)->nullable();
             $table->foreignId('countryId')->constrained()->on('countries')->onUpdate('cascade')->onDelete('cascade')->nullable();

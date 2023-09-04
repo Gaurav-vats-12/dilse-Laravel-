@@ -6,9 +6,10 @@ use App\Http\Controllers\BookingController as BookingControllerAlias;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController as CheckoutControllerAlias;
 use App\Http\Controllers\ContactUsController as ContactUsControllerAlias;
-use App\Http\Controllers\HomeController as HomeControllerAlias;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController as MenuControllerAlias;
-use Illuminate\Support\Facades\Route as RouteAlias;
+use App\Http\Controllers\PaymentStatusController;
+use Illuminate\Support\Facades\Route;
 use App\Models\Admin\Page;
 use Illuminate\Support\Facades\URL;
 
@@ -22,51 +23,54 @@ use Illuminate\Support\Facades\URL;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 // Home Page
-RouteAlias::get('/', [HomeControllerAlias::class, 'Homepage'])->name('home');
+Route::get('/', [HomeController::class, 'Homepage'])->name('home');
 // Contact Us
-RouteAlias::get('/contact-us', [ContactUsControllerAlias::class, 'index'])->name('contact');
+Route::get('/contact-us', [ContactUsControllerAlias::class, 'index'])->name('contact');
 // About Us
-RouteAlias::get('/about-us', [HomeControllerAlias::class, 'aboutus'])->name('aboutus');
+Route::get('/about-us', [HomeController::class, 'aboutus'])->name('aboutus');
 // Gallery Page
-RouteAlias::get('/gallery', [HomeControllerAlias::class, 'gallery'])->name('gallery');
+Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 // Discount and Coupons
-RouteAlias::get('/discount-and-coupons', [HomeControllerAlias::class, 'giftCard'])->name('discountandcoupons');
+Route::get('/discount-and-coupons', [HomeController::class, 'giftCard'])->name('discountandcoupons');
 // Bolg Page
-RouteAlias::get('/blog', [BlogControllerAlias::class, 'blog'])->name('blog');
-RouteAlias::get('/blog/{slug}', [BlogControllerAlias::class, 'blogdetails'])->name('blogdetails');
+Route::get('/blog', [BlogControllerAlias::class, 'blog'])->name('blog');
+Route::get('/blog/{slug}', [BlogControllerAlias::class, 'blogdetails'])->name('blogdetails');
 // Menu Page
-RouteAlias::get('/menu/{slug}', [MenuControllerAlias::class, 'menu'])->name('menu');
+Route::get('/menu/{slug}', [MenuControllerAlias::class, 'menu'])->name('menu');
 
-RouteAlias::get('/product/{slug}', [MenuControllerAlias::class, 'menudetails'])->name('menudetails');
+Route::get('/product/{slug}', [MenuControllerAlias::class, 'menudetails'])->name('menudetails');
 
-//Thank You, Page
-RouteAlias::get('/thank-you/{id}', [HomeControllerAlias::class, 'order_confirm'])->name('order_confirm');
-//Cancelled Page
-RouteAlias::get('/cancelled-order/{id}', [HomeControllerAlias::class, 'order_cancelled'])->name('order_cancelled');
 
 // Booking  a Reservation
-RouteAlias::get('/book-a-reservation', [BookingControllerAlias::class, 'bookATable'])->name('booktable');
+Route::get('/book-a-reservation', [BookingControllerAlias::class, 'bookATable'])->name('booktable');
 
-RouteAlias::get('/send', [HomeControllerAlias::class, 'sendEmail']);
+Route::get('/send', [HomeController::class, 'sendEmail']);
 
 
 
 // Add to Cart
-RouteAlias::prefix('cart')->name('cart.')->group(callback: function(){
-    RouteAlias::get('/', [CartController::class, 'viewcart'])->name('view');
+Route::prefix('cart')->name('cart.')->group(callback: function(){
+    Route::get('/', [CartController::class, 'viewcart'])->name('view');
 
 });
 
-RouteAlias::prefix('checkout')->name('checkout.')->group(callback: function(){
-        RouteAlias::get('/', [CheckoutControllerAlias::class, 'index'])->name('view');
-        RouteAlias::get('/user_address', [CheckoutControllerAlias::class, 'user_address'])->name('user_address');
-        RouteAlias::post('/payment', [CheckoutControllerAlias::class, 'makePayment'])->name('payment');
+Route::prefix('checkout')->name('checkout.')->group(callback: function(){
+        Route::get('/', [CheckoutControllerAlias::class, 'index'])->name('view');
+        Route::get('/user_address', [CheckoutControllerAlias::class, 'user_address'])->name('user_address');
+        Route::post('/payment', [CheckoutControllerAlias::class, 'makePayment'])->name('payment');
 });
 
+// Thank You Pages DDependency
+Route::prefix('thank-you')->name('thank-you.')->group(callback: function(){
+    Route::get('/', [PaymentStatusController::class, 'OrderPaymentStatus'])->name('orderStatus');
+
+
+});
 
 //  Slug Dependency
-RouteAlias::get('{slug}', function ($slug) {
+Route::get('{slug}', function ($slug) {
     if ($slug === 'admin') {
         return redirect()->route('admin.dashboard');
     }elseif ($slug === 'user') {
@@ -74,6 +78,8 @@ RouteAlias::get('{slug}', function ($slug) {
     }elseif($slug =='terms-and-conditions' || $slug =='dilse-foundation-and-donation' || $slug =='privacy-policy'){
         $pagdata= Page::where('page_slug',$slug)->first();
         return view('Pages.dynamic-page-genrate',compact('pagdata'));
+    }else{
+      abort(404, 'Not found');
     }
 });
 require __DIR__.'/postroutes.php';

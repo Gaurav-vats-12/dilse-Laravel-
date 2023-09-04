@@ -4,9 +4,17 @@
     <div class="wraper">
         <section class="about_se py_8">
             <div class="thank-you-container">
-                <h2>Your Order Has been  Cancelled  ! </h2>
-                <div class="login-content">If you want to order more. Click on the <a href="{{ route('menu','appetizers') }}">Menus</a></p>
-                </div>                <p>Your order details: {{$orderItem->id}}</p>
+                  @if($orderItem->status ==='Cancelled')
+                    <h2>Order Cancelled with {{json_decode($orderItem->payment->paymnet_json,true)['message']}}</h2>
+                    <p>We are sorry, but your payment was not successful. Please try again later or contact customer support for assistance.</p>
+
+                @else
+                    <h2>Thank you for your purchase!</h2>
+                    <p>Thank you for your order. Your payment was successful, and your order has been confirmed. We will process your order shortly.</p>
+                @endif
+
+
+                <p>Your order details: {{$orderItem->id}}</p>
                 <table>
 
 
@@ -27,9 +35,6 @@
                             <td>{{$items->quantity}}</td>
                             <td>{{$orderItem->order_type}}</td>
                         </tr>
-
-
-
                     @endforeach
 
                 </table>

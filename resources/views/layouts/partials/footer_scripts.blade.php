@@ -17,9 +17,10 @@
     <!-- Sweet Alert  -->
     <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
    <!-- TimePicker  -->
-   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+   <script src="{{asset('plugins/timepicker/js/jquery.timepicker.js') }}"></script>
+   <script src="{{asset('plugins/timepicker/js/jquery.timepicker.min.js') }}"></script>
    <!-- Toastr -->
-   <script  src="{{asset('plugins/toastr/js/toastr.min.js')}}"></script>
+   <script  src="{{asset('plugins/toast/js/toast.min.js')}}"></script>
    <!-- jqueryscripttop -->
    <script src="{{asset('plugins/jqueryscripttop/js/jquery-editable-select.js')}}"></script>
    <!-- InputMask -->
@@ -30,7 +31,6 @@
     <script src="{{asset('frontend/js/function.js') }}"></script>
    <script src="{{asset('frontend/js/mediaQuery.js') }}"></script>
    <script>
-
        @if(Session::has('message'))
        Swal.fire({
            text: "{{ session('message') }}",
