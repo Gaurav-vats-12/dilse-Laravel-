@@ -59,6 +59,7 @@ class PaymentFormServices{
         ];
         OrderItemsAlias::insert($cart_datals);
         if ($request->payment_method == 'Pay On  Delivery') {
+            dd('sdsadsad');
           $payment_method = 'PayOnDelivery';
           $payment_status = 'pending';
           $payment_id = Str::random(10);

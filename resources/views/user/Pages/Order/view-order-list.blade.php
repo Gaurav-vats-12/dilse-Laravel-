@@ -14,17 +14,32 @@
                     <div class="wap-order">
                         <input type="hidden" name="orderedajax" id="orderedajax" value="{{ route('user.order') }}">
                         <h5 class="order-head">My Orders</h5>
-                        <div class="filter">
-                            <h6 for="manage_by_order">Filter By Order  Status:</h6>
-                            <select id="manage_by_order"  type="order" class="manage_by_order">
-                                <option value="all">All</option>
-                                <option value="Pending">Pending</option>
-                                <option value="Processing">Processing</option>
-                                <option value="Shipped">Shipped</option>
-                                <option value="Delivered">Delivered</option>
-                                <option value="Cancelled">Cancelled</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-md-6">  <div class="filter">
+                                    <h6 for="manage_by_order">Filter By Order  Status:</h6>
+                                    <select id="manage_by_order"  type="order" class="manage_by_order">
+                                        <option value="all">All</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Processing">Processing</option>
+                                        <option value="Shipped">Shipped</option>
+                                        <option value="Delivered">Delivered</option>
+                                        <option value="Cancelled">Cancelled</option>
+                                    </select>
+                                </div></div>
+                            <div class="col-md-6">
+{{--                                <div class="filterList">--}}
+{{--                                    <h6 for="manage_by_order">Filter By Payment   Status:</h6>--}}
+{{--                                    <select id="manage_by_order"  type="payment" class="manage_by_order">--}}
+{{--                                        <option value="all">All</option>--}}
+{{--                                        <option value="pending">Pending</option>--}}
+{{--                                        <option value="paid">Paid</option>--}}
+{{--                                        <option value="Failed">failed</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+                            </div>
+
                         </div>
+
                         <div id="loader" class="loader-container">
                             <div class="loader"></div>
                         </div>

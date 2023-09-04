@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo as BelongsToAlias;
 
 /**
  * @method static insert(array $payment_status)
+ * @method static where(string $string, mixed $filterValue)
  */
 class Payments extends Model
 {

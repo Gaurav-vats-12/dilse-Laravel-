@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserAddress\UpdateStroreRequest as UpdateStroreRequestAlias;
 use App\Models\Admin\FoodItem as FoodItemAlias;
 use App\Models\Order\Order;
+use App\Models\Order\Payments;
 use App\Models\User\UserAddressManage as UserAddressManageAlias;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application as ApplicationAlias1;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Redirect;
@@ -66,10 +68,17 @@ class UserController extends Controller
                     return view('user.ajax.OrderDetails',['OrderDetails'=>$OrderDetails]);
                 }
             }else{
+                if ($request->filterValue ==='all'){
 
+                    $OrderDetails = Payments::whereIn('payment_status',['pending','paid','failed'])->with('order')->orderBy('id', 'DESC')->get()->first()->order;
+                    return view('user.ajax.OrderDetails',['OrderDetails'=>$OrderDetails]);
+                }else{
+                    $OrderDetails = Order::with('payment')->where('payment_status', $request->filterValue)->get();
+
+                    dd($OrderDetails);
+                    return view('user.ajax.OrderDetails',['OrderDetails'=>$OrderDetails]);
+                }
             }
-//            dd('sadsad');
-
 
         }else{
             $OrderDetails = Order::where('user_id',$user_id)->orderBy('id', 'DESC')->get();
@@ -77,11 +86,21 @@ class UserController extends Controller
         }
 
     }
-    public  function OrderCancelled( $id ){
+
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
+    public  function OrderCancelled($id ): \Illuminate\Http\RedirectResponse
+    {
         Order::findOrFail($id)->update(['status' => 'Cancelled','updated_at' => now() ]);
         return Redirect::back()->with( 'message','Order Cancelled SuccessFully');
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function OrderReorder($id){
         $order_details = Order::findOrFail($id)->orderItems;
         if (session('cart')) Session::forget('cart');
