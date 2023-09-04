@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Mail;
+use JetBrains\PhpStorm\NoReturn;
 
 class HomeController extends Controller
 {
@@ -75,15 +76,14 @@ class HomeController extends Controller
         $orderWithItems = Order::with('OrderItems')->find($id);
         $productIds = $orderWithItems->OrderItems->pluck('id')->all();
         $product = FoodItem::whereIn('id', $productIds)->get();
-        return view('Pages.orderCancelled', [
-            'orderItem' => $orderWithItems,
-            'product' => $product
-        ]);
-
-
-
+        return view('Pages.orderCancelled', ['orderItem' => $orderWithItems, 'product' => $product]);
     }
 
+    #[NoReturn] public  function update_location(Request $request): void
+    {
+        dd($request->all());
+
+    }
 
 
 }
