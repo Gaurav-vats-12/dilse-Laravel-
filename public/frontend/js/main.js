@@ -259,8 +259,12 @@ jQuery(document).ready(function () {
         * Update the Store Location
         */
        jQuery('#store_location').val(jQuery('#select_location').find(":selected").val());
+
        jQuery(document).on("change", "#select_location",  function (event) {
-           jQuery('#store_location').val(jQuery(this).find(":selected").val());
+           event.preventDefault();
+           const store_location = jQuery(this).find(":selected").val();
+           localStorage.setItem('store_location', store_location);
+           jQuery('#store_location').val(store_location);
        });
         /**
          * State Dependency In Checkout Page
