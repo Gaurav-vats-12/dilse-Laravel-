@@ -2873,14 +2873,14 @@ section.menu_main1 .cusstom_input input, .cusstom_input select{
     color: #6c767a;
     line-height: 1.9;
   }
-  @media (min-width: 500px) {
+  /* @media (min-width: 500px) {
     .content {
       width: 43%;
     }
     #button {
       margin: 30px;
     }
-  }
+  } */
   .content h1 {
     margin-bottom: -10px;
     color: #03a9f4;
