@@ -193,7 +193,7 @@
       <h3>Order Online</h3>
       <h2>Our Service PArtner</h2>
     </div>
-    <div class="row">
+    <div class="row ourServices">
       <div class="col-md-3">
         <div class="order_online_crd">
           <div class="order_online_img">
@@ -223,6 +223,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </section>
 <section class="best_food py_8">
@@ -298,7 +299,7 @@
     </div>
   </div>
 </section>
-<section class="testimonial_sec bg_style py_8" style="background-image: url('{{asset('frontend/img/testi_monial.png')}}')">
+<section class="testimonial_sec bg_style py_8" style="background-image: url('{{asset('frontend/img/IMG_7771.jpeg')}}')">
   <div class="container">
     <div class="tittle_heading">
       <h3>Testimonials</h3>
