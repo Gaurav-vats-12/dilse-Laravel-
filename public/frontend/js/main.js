@@ -387,6 +387,54 @@ jQuery(document).ready(function () {
         });
     });
 
+ } else  if (url.indexOf("/checkout") > -1) {
+    jQuery('#store_location').val(jQuery('#select_location').find(":selected").val());
+    jQuery(document).on("change", "#select_location",  function (event) {
+        event.preventDefault();
+        const store_location = jQuery(this).find(":selected").val();
+        localStorage.setItem('store_location', store_location);
+        jQuery('#store_location').val(store_location);
+    });
+
+
+     /**
+         * State Dependency In Checkout Page
+         */
+     let country_uid = parseInt(jQuery('#billing_country').find(":selected").attr('country_uid'));
+     let ajax_url = jQuery('#state_ajax').val();
+
+     let selected_billing_state = jQuery('#selected_billing_state').val();
+     let ajax_value = {country_uid,'type':'country',selected_billing_state};
+     state_dependency_country_list(ajax_value, ajax_url);
+     /**
+      * Payment Option
+      */
+     let payment_value = jQuery('input[name="payment_method"]:checked').val();
+     (`payonline` == payment_value) ? jQuery(`#stripe_paymnet_form`).css(`display`, `block`) : jQuery(`#stripe_paymnet_form`).css(`display`, `none`);
+     jQuery('.payment_form'). attr('id', 'payment-form');
+     jQuery('#stripe_paymnet_form').css('display','none');
+     jQuery(document).on("click", ".payment_option", async function (event) {
+         let payment_value = jQuery('input[name="payment_method"]:checked').val();
+         if (payment_value ==='Pay On Online (Stripe)') {
+             jQuery('.payment_form'). attr('id', 'stripe_form');
+             jQuery('#stripe_paymnet_form').css('display','block');
+             stripePayment_Form(jQuery(`#StripeKey`).val());
+         }else{
+             jQuery('.payment_form'). attr('id', 'payment-form');
+             jQuery('#stripe_paymnet_form').css('display','none');
+             payment_intergation(jQuery(`#StripeKey`).val());
+         }
+     });
+    payment_intergation(jQuery(`#StripeKey`).val());
+     jQuery('#billing_phone').inputmask('(999) 999-9999');
+     jQuery('#billing_postcode').inputmask('A9A 9A9', {
+         placeholder: 'K1N 8W5\n',
+         clearMaskOnLostFocus: false,
+     })
+
+
+
+
     }else if (url.indexOf("/user/order") > -1) {
         jQuery(document).on("change", ".manage_by_order", async function (event) {
             jQuery(`#OrderStatus`).empty().html('<h2 class="text-center"> Processing</h2>');
