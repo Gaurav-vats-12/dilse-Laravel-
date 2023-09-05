@@ -187,23 +187,44 @@ jQuery(document).ready(function () {
 * Fetch Food Items via Menu (Menu  Page)
 */
         jQuery(document).on("click", "#menu", async function (e) {
-            var form =  jQuery(this).closest("form");
-            form.submit();
+            e.preventDefault();
+
+            jQuery(`.loader`).toggleClass('display');
+            jQuery(`#menu_data_find`).empty();
+
+            let slug = jQuery(this).attr("menu-slug");
+            let page = 1;
+            let ajax_value = { slug, page };
+
+            let pageUrl = `${location.hostname}/menu/${slug}?page=${page + 1}`;
+            const response = await Ajax_response('', "GET", ajax_value, '', '');
+            if (response) {
+                jQuery(`.loader`).toggleClass('display');
+                window.history.pushState(null, '', "/menu/" + slug);
+                jQuery(`#menu_data_find`).empty().html(response);
+                jQuery('.pagination a').attr('href', pageUrl);
+                window.location.reload(true);
+            }
+        });
+        /**
+     *   Fetch Food Items via Menu Pagination(Menu Page)
+     */
+        jQuery(document).on('click', '.pagination a', async function (event) {
+            event.preventDefault();
+            jQuery(`.loader`).toggleClass('display');
+            jQuery(`#menu_data_find`).empty();
+            jQuery(`li`).removeClass('active');
+            let slug = jQuery('#slug').val(), page = jQuery(this).attr('href').split('page=')[1],
+                ajax_value = { slug, page };
+            const response = await Ajax_response('', "GET", ajax_value, '', '');
+            if (response) {
+                window.history.pushState(null, '',jQuery(this).attr('href'));
+                jQuery(`.loader`).toggleClass('display');
+                jQuery(`#menu_data_find`).empty().html(response);
+            }
         });
 
-        // jQuery(document).on('click', '.pagination a', async function (event) {
-        //     event.preventDefault();
-        //     jQuery(`.loader`).toggleClass('display');
-        //     jQuery(`#menu_data_find`).empty();
-        //     jQuery(`li`).removeClass('active');
-        //     let slug = jQuery('#slug').val(), page = jQuery(this).attr('href').split('page=')[1],
-        //         ajax_value = { slug, page };
-        //     const response = await Ajax_response('', "GET", ajax_value, '', '');
-        //     if (response) {
-        //         jQuery(`.loader`).toggleClass('display');
-        //         jQuery(`#menu_data_find`).empty().html(response);
-        //     }
-        // });
+
 
     } else if (url.indexOf("/product") > -1) {
                 /**

@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $users->email_address }}</td>
-                                        <td>{{ $users->status }}</td>
+                                        <td class="text-capitalize">{{ $users->status }}</td>
 
                                         <td class="project-actions">
                                             <a class="btn btn-info btn-sm" href="{{ route('admin.manage-subscribers.view', $users->id) }}">Unsubscribe </a>
