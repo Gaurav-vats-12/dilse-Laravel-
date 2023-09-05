@@ -239,6 +239,42 @@ jQuery(document).ready(function () {
         });
 
     }else if (url.indexOf("/about-us") > -1) {
+
+        jQuery('#about_us_page').slick({
+            dots: false,
+            infinite: true,
+            speed: 200,
+            lazyLoad: 'ondemand',
+            slidesToShow: 1,
+            slidesToScroll: 1, responsive: [
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                  }
+                },
+                {
+                  breakpoint: 600,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                  }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+              ]
+        });
         const counters = document.querySelectorAll('.counter');
         const speed = 2000;
         counters.forEach((counter) => {
