@@ -30,42 +30,5 @@
     <!-- Function.js -->
     <script src="{{asset('frontend/js/function.js') }}"></script>
    <script src="{{asset('frontend/js/mediaQuery.js') }}"></script>
-   <script>
-       @if(Session::has('message'))
-       Swal.fire({
-           text: "{{ session('message') }}",
-           icon: 'success',
-           timer: 2000, // close after 2 seconds
-           showConfirmButton: false
-       });
 
-       @endif
-
-           @if(Session::has('error'))
-       Swal.fire({
-           text: "{{ session('message') }}",
-           icon: 'error',
-           timer: 2000, // close after 2 seconds
-           showConfirmButton: false
-       });
-
-       @endif
-
-           @if(Session::has('info'))
-       Swal.fire({
-           text: "{{ session('message') }}",
-           icon: 'info',
-           timer: 2000, // close after 2 seconds
-           showConfirmButton: false
-       });
-       @endif
-
-           @if(Session::has('warning'))
-       Swal.fire({
-           text: "{{ session('message') }}",
-           icon: 'info',
-           timer: 2000, // close after 2 seconds
-           showConfirmButton: false
-       });
-       @endif
-   </script>
+   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>

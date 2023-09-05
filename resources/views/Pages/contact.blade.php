@@ -107,7 +107,7 @@
                   </div>
                 </div>
                 <div class="contact_form_btn">
-                  <button type="submit" class="theme_btn">Send</button>
+                  <button type="submit" class="theme_btn btn-txt">Send</button>
                 </div>
               </form>
             </div>

@@ -353,7 +353,7 @@
             <span id="email_address-error" class="text-danger error"></span>
           </div>
           <div class="sub_scribe_form_btn">
-            <button class="theme_btn">Subscribe Now</button>
+            <button class="theme_btn btn-txt">Subscribe Now</button>
           </div>
         </form>
       </div>
@@ -407,7 +407,7 @@
         </div>
       </div>
       <div class="contact_form_btn">
-        <button class="theme_btn">Send</button>
+        <button class="theme_btn btn-txt">Send</button>
       </div>
     </form>
   </div>

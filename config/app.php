@@ -171,6 +171,8 @@ return [
         browner12\helpers\HelperServiceProvider::class,
         App\Modules\Users\UserServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Flasher\Laravel\FlasherServiceProvider::class,
+
         
     ])->toArray(),
 
@@ -184,5 +186,8 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-    'aliases' => Facade::defaultAliases()->merge(['Image' => Intervention\Image\Facades\Image::class, 'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class, 'PDF' => Barryvdh\DomPDF\Facade::class,])->toArray(),
+    'aliases' => Facade::defaultAliases()->merge(['Image' => Intervention\Image\Facades\Image::class, 'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class, 'PDF' => Barryvdh\DomPDF\Facade::class,
+    'Flasher' => Flasher\Laravel\Facade\Flasher::class,
+
+    ])->toArray(),
 ];

@@ -34,7 +34,8 @@ class BookingController extends Controller
         Booking::create($bookingData);
         Mail::to($request->email)->send(new BookingNotification($bookingData));
         Notification::send(Admin::all(), new BookingNotificationToAdmin(['type' => 'New Booking','body' => 'A new booking has been made for '.$request->date.' at '.$request->time.'. The following information is available for the booking:.Name: '.$request->name.'.Email: '.$request->email.'.Phone number: '.$request->phone.'.Notes: '.$request->comments.' Please review the booking' , 'thanks' => 'Thank you', 'notification_url' => url('/admin/booking'),'notification_uuid' => Str::random(10),'notification_date'=>date('Y-m-d H:i:s')]));
-        return redirect()->back()->with('You booking requested has been sent! We will update you shortly');
+        notyf()->duration(2000) ->addSuccess('You booking requested has been sent! We will update you shortly');
+        return redirect()->back();
     }
     public function fetchBooking(Request $request): View|\Illuminate\Foundation\Application|Factory|JsonResponse|Application
     {
