@@ -299,7 +299,7 @@
     </div>
   </div>
 </section>
-<section class="testimonial_sec bg_style py_8" style="background-image: url('{{asset('frontend/img/IMG_7771.jpeg')}}')">
+<section class="testimonial_sec bg_style py_8" style="background-image: url('{{asset('frontend/img/testi_monial.png')}}')">
   <div class="container">
     <div class="tittle_heading">
       <h3>Testimonials</h3>
