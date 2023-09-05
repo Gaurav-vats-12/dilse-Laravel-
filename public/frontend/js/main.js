@@ -1,4 +1,20 @@
 jQuery(document).ready(function () {
+
+    var btn = $('#button');
+
+$(window).scroll(function() {
+  if ($(window).scrollTop() > 300) {
+    btn.addClass('show');
+  } else {
+    btn.removeClass('show');
+  }
+});
+
+btn.on('click', function(e) {
+  e.preventDefault();
+  $('html, body').animate({scrollTop:0}, '300');
+});
+
     setTimeout(function() {
         $('.swal2-container.swal2-top-end.swal2-backdrop-show').hide();
     }, 5000); // 5000 milliseconds or 5 seconds
