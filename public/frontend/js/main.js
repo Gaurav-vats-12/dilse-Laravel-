@@ -44,7 +44,7 @@ btn.on('click', function(e) {
         const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
             setTimeout(function() { jQuery('.add-to-cart-button').removeClass(`added`)}, 2000);
-            Toast.fire({icon: `success`, title: resPose.message})
+            NotyfMessage(resPose.message,'success');
             jQuery(`.cart_count`).html(resPose.cart_total);
         }
     });
@@ -112,17 +112,21 @@ btn.on('click', function(e) {
             }
         },
         submitHandler: async function (form,event) {
+            jQuery(".theme_btn").attr("disabled", true);
+            jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
             event.preventDefault();
             let ajax_value_list = jQuery('#emailSubscribeForm').serialize(), ajx_url = jQuery('#email_action_url').val();
             const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
+            jQuery(".theme_btn").attr("disabled", false);
+            jQuery(".btn-txt").text("Subscribe Now");
             if (resPose.status === `success`) {
-                Toast.fire({icon: `success`, title: resPose.message})
+                NotyfMessage(resPose.message,'success');
                 jQuery("#emailSubscribeForm")[0].reset();
             }else if(resPose.status === `error`){
-                Toast.fire({icon: `warning`, title: resPose.message})
+                NotyfMessage(resPose.message,'warning');
                 jQuery("#emailSubscribeForm")[0].reset();
             }else if(resPose.status === `error_message`){
-                Toast.fire({icon: `danger`, title: resPose.message})
+                NotyfMessage(resPose.message,'warning');
                 jQuery("#emailSubscribeForm")[0].reset();
             }else{
                 jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
@@ -172,10 +176,14 @@ btn.on('click', function(e) {
         },
         submitHandler: async function (form, e) {
             e.preventDefault();
+            jQuery(".theme_btn").attr("disabled", true);
+            jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
             let ajax_value_list = $('form').serialize(), ajx_url = jQuery(`#contact_us_action_url`).val();
             const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
             if (resPose.status === 'success') {
-                Toast.fire({icon: 'success', title: resPose.message,})
+                jQuery(".theme_btn").attr("disabled", false);
+                jQuery(".btn-txt").text("Send");
+                NotyfMessage(resPose.message,'success');
                 jQuery("#conatact_cus_form")[0].reset();
             } else {
                 jQuery.each(resPose.errors, function (key, value) {
@@ -238,21 +246,6 @@ btn.on('click', function(e) {
             opener: openerElement => openerElement.is('img') ? openerElement : openerElement.find('img')
         }
     });
-    // jQuery( "#datepicker" ).datepicker();
-
-
-    /**
-     *   Extra Items Sliders On Cart Page
-     */
-
-
-    /**
-     * Extra Items Sliders
-     */
-
-
-
-
 
     /**
      * Related Product Slider On Product Details Page
@@ -398,6 +391,61 @@ btn.on('click', function(e) {
         jQuery('#phone').inputmask('(999) 999-9999');
 
 
+        jQuery("#book-a-reservation").validate({
+            messages: {
+                name: {
+                    required: "The name field is required",
+                    maxlength: "First Name must be max 50 letter"
+                }, email: {
+                    required: "The email field is required.",
+                    maxlength: "Please Enter vaid email address"
+                }, phone: {
+                    required: "The phone field is required.",
+                    maxlength: "Phone Number must be max 20 letter"
+                }, date: {
+                    required: "The date field is required.",
+                }, time: {
+                    required: "The time field is required",
+                }, select_part: {
+                    required: "The select part field is required.",
+                }, comments: {
+                    required: "The comments field is required.",
+                }
+            },
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: 50,
+                }, last_name: {
+                    required: true,
+                    maxlength: 50,
+                }, email: {
+                    required: true,
+                    email: true,
+                }, phone: {
+                    required: true,
+                    maxlength: 20,
+                },date: {
+                    required: true,
+                
+                },time: {
+                    required: true,
+                
+                }, select_part: {
+                    required: true,
+                
+                }, select_part: {
+                    required: true,
+                    maxlength: 2000,
+                }
+            },
+            submitHandler: async function (form, e) {
+                jQuery(".theme_btn").attr("disabled", true);
+                jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
+            }
+        });
+
+
    }else if(url.indexOf("/about-us") > -1) {
        const counters = document.querySelectorAll('.counter');
        const speed = 2000;
@@ -517,7 +565,7 @@ btn.on('click', function(e) {
                ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#extra_ajax_url').val();
            const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
            if (resPose.status === `success`) {
-               Toast.fire({icon: `success`, title: resPose.message})
+              NotyfMessage(resPose.message,'success');
                jQuery(`.cart_count`).html(resPose.cart_total);
                setTimeout(function () {
                    window.location.reload()
@@ -581,7 +629,6 @@ btn.on('click', function(e) {
        });
 
    }else if (url.indexOf("/user/order") > -1) {
-
        jQuery(document).on("change", ".manage_by_order", async function (event) {
            jQuery(`#OrderStatus`).empty().html('<h2 class="text-center"> Processing</h2>');
            let element, filterType, filterValue, ajax_value, orderedajax;

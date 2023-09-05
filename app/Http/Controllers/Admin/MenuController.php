@@ -61,7 +61,8 @@ class MenuController extends Controller
     public function update(StoreMenuRequest $request, string $id)
     {
         Menu::findOrFail($id)->update(['menu_name' => $request->menu_name, 'menu_slug' => $request->menu_slug,'status' => $request->status,'updated_at' => now() ]);
-        return redirect()->route('admin.menu.index')->with('message','Menu  Updated Successfully');
+        notyf()->duration(2000) ->addSuccess('Menu  Updated Successfully.');
+         return redirect()->route('admin.menu.index');
     }
 
     /**
@@ -70,6 +71,7 @@ class MenuController extends Controller
     public function destroy(string $id)
     {
         Menu::findOrFail($id)->delete();
-        return redirect()->route('admin.menu.index')->with('message','Menu  Deleted Successfully');
+        notyf()->duration(2000) ->addSuccess('Menu  Deleted Successfully.');
+        return redirect()->route('admin.menu.index');
     }
 }

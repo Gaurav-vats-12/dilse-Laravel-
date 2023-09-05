@@ -43,7 +43,8 @@ class FoodItemController extends Controller
         //         ExtraFoodItems::create(['food_item_id' => $restaurant->id, 'extra_item_id' => $value]);
         //     }
         // }
-        return redirect()->route('admin.food-items.index')->with('message','Food Item  Added Successfully');
+        notyf()->duration(2000) ->addSuccess('Food Item  Added Successfully.');
+        return redirect()->route('admin.food-items.index');
     }
 
 
@@ -100,12 +101,15 @@ class FoodItemController extends Controller
         //     $newItems[$key]['extra_item_id'] = $extraItem;
         // };
         // ExtraFoodItems::insert($newItems);
-        return redirect()->route('admin.food-items.index')->with('message','Food Item  Updated Successfully');
+        notyf()->duration(2000) ->addSuccess('Food Item  Updated Successfully.');
+
+        return redirect()->route('admin.food-items.index');
 
     }
 
     public function destroy(Request $request,$id){
         FoodItem::findOrFail($id)->delete();
-        return redirect()->route('admin.food-items.index')->with('message','Food Item  Deleted Successfully');
+        notyf()->duration(2000) ->addSuccess('Food Item  Deleted Successfully.');
+        return redirect()->route('admin.food-items.index');
     }
 }

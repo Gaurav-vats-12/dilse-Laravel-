@@ -2891,4 +2891,7 @@ section.menu_main1 .cusstom_input input, .cusstom_input select{
     color: #96a2a7;
   }iframe {
     max-width: 100%;
-}
+}.fa {
+    margin-left: -12px;
+    margin-right: 8px;
+  }

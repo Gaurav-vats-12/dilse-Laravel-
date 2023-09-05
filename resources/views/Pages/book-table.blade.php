@@ -27,7 +27,7 @@
             </div>
 
             <div class="col-md-6">
-              <form action="{{ route('booktable.submit') }}" class="contact_form" method="POST">
+              <form action="{{ route('booktable.submit') }}" class="contact_form" method="POST" id="book-a-reservation">
                @csrf
                 <div class="tittle_heading">
                   <h2>Book A Table</h2>

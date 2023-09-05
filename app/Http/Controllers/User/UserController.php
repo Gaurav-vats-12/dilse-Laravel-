@@ -48,7 +48,8 @@ class UserController extends Controller
             'updated_at' => now()
         ];
         UserAddressManageAlias::updateOrCreate(['user_id'=>$request->login_uer_id],$user_address );
-        return Redirect::back()->with('message','User  Address Updated');
+        notyf()->duration(2000) ->addSuccess('User  Address Updated');
+        return Redirect::back();
     }
 
     /**
@@ -94,7 +95,8 @@ class UserController extends Controller
     public  function OrderCancelled($id ): \Illuminate\Http\RedirectResponse
     {
         Order::findOrFail($id)->update(['status' => 'Cancelled','updated_at' => now() ]);
-        return Redirect::back()->with( 'message','Order Cancelled SuccessFully');
+        notyf()->duration(2000) ->addSuccess('This Order Cancelled SuccessFully');
+        return Redirect::back();
     }
 
     /**
@@ -113,6 +115,7 @@ class UserController extends Controller
             ];
         }
         session()->put('cart', $cart);
-        return redirect(route('checkout.view'))->withToastSuccess('ItemS Added to Card Successfully');
+        notyf()->duration(2000) ->addSuccess('ItemS Added to Card Successfully');
+        return redirect(route('checkout.view'));
     }
 }

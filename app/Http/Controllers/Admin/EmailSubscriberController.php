@@ -28,7 +28,9 @@ class EmailSubscriberController extends Controller
             'status'=>'unsubscribed',
             'updated_at' => now()
         ]);
-            return redirect()->route('admin.manage-subscribers.index')->with('message','Email successfully Unsubscribe');
+        notyf()->duration(2000) ->addSuccess('Email successfully Unsubscribe');
+
+            return redirect()->route('admin.manage-subscribers.index');
 
 
     }

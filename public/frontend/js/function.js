@@ -12,13 +12,6 @@ const Ajax_response = async (url, method, values, beforetask, success, callback)
 };
 
 
-let Toast = Swal.mixin({
-    position: 'bottom-end',
-    showCloseButton: true,
-    showConfirmButton: false,
-    timer: 1500,
-    toast: true
-});
 
   const fetch_extra_items_data = async (ajax_value) => {
       let cart_ajx_url = jQuery('#cart_ajx_url').val();
@@ -218,4 +211,15 @@ function payment_intergation(StripekEY) {
             }
         }
     });
+}
+
+function NotyfMessage(message ,type){
+    var notyf = new Notyf();
+    if(type ==='success'){
+        notyf.success(message);
+    }else if(type ==='error'){
+        notyf.error(message);
+    }else if(type ==='warning'){
+        notyf.error(message);
+    }
 }

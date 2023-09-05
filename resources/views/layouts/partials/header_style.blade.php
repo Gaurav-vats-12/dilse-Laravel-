@@ -23,6 +23,7 @@
   <!-- mediaQueryCss.css -->
   <link rel="stylesheet" href="{{asset('frontend/css/mediaQuery-css.css') }}" />
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
 
 

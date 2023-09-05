@@ -58,50 +58,9 @@
 <script src="{{asset('plugins/jquery-validation/additional-methods.min.js') }}"></script>
 {{--Comman Js--}}
 <script src="{{asset('plugins/commonFunction/js/function.js') }}"></script>
-
-
 <script src="{{asset('backend/js/app.js') }}"></script>
 <script src="{{asset('backend/js/custom.js') }}"></script>
 <script src="{{asset('backend/js/main.js') }}"></script>
 <script src="{{asset('backend/js/adminlte.js') }}"></script>
-<script>
 
-    @if(Session::has('message'))
-    Swal.fire({
-        text: "{{ session('message') }}",
-        icon: 'success',
-        timer: 2000, // close after 2 seconds
-        showConfirmButton: false
-    });
-
-    @endif
-
-    @if(Session::has('error'))
-    Swal.fire({
-        text: "{{ session('message') }}",
-        icon: 'error',
-        timer: 2000, // close after 2 seconds
-        showConfirmButton: false
-    });
-
-    @endif
-
-    @if(Session::has('info'))
-    Swal.fire({
-        text: "{{ session('message') }}",
-        icon: 'info',
-        timer: 2000, // close after 2 seconds
-        showConfirmButton: false
-    });
-    @endif
-
-    @if(Session::has('warning'))
-    Swal.fire({
-        text: "{{ session('message') }}",
-        icon: 'info',
-        timer: 2000, // close after 2 seconds
-        showConfirmButton: false
-    });
-    @endif
-</script>
 

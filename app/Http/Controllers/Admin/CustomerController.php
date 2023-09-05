@@ -26,12 +26,14 @@ class CustomerController extends Controller
             User::where('id',  $id)->where('status',1)->update([ 'status' =>0]);
             Auth::guard('user')->logout();
 
-//            Auth::guard('user')->logoutUsingId($id);
-            return redirect()->route('admin.manage-customer.index')->with('message','Customer successfully banned');
+            notyf()->duration(2000) ->addSuccess('Customer successfully banned');
+
+            return redirect()->route('admin.manage-customer.index');
 
          }else{
             User::where('id',  $id)->where('status',0)->update([ 'status' =>1]);
-            return redirect()->route('admin.manage-customer.index')->with('message','Customer successfully unbanned');
+            notyf()->duration(2000) ->addSuccess('Customer successfully unbanned');
+            return redirect()->route('admin.manage-customer.index');
 
              }
     }
