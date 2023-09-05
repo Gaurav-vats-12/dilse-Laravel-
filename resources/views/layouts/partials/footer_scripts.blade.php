@@ -27,8 +27,11 @@
    <script src="{{asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
    <!-- main.js -->
     <script src="{{asset('frontend/js/main.js') }}"></script>
+    <!-- Common.js -->
+<script src="{{asset('plugins/commonFunction/js/common.js') }}"></script>
     <!-- Function.js -->
-    <script src="{{asset('frontend/js/function.js') }}"></script>
+    <script src="{{asset('frontend/js/script.js') }}"></script>
+    <script src="{{asset('frontend/js/stripe.js') }}"></script>
    <script src="{{asset('frontend/js/mediaQuery.js') }}"></script>
 
    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
