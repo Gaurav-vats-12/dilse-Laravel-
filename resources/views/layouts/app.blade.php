@@ -12,6 +12,8 @@
     @include('layouts.partials.header_style')
 </head>
 <body>
+<a id="button"></a>
+
     @include('layouts.partials.navigate')
 <div class="wrapper">
   @yield('frontcontent')

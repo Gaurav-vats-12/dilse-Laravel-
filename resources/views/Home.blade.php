@@ -38,7 +38,7 @@
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
         <div class="about_img">
-          <img src="{{asset('frontend/img/about-img.png')}}" alt="" />
+          <img src="{{asset('frontend/img/IMG_7794.jpeg')}}" alt="" />
         </div>
       </div>
       <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">

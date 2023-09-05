@@ -58,7 +58,8 @@
           <div class="row">
             <div class="col-md-6">
               <div class="contact_img_us">
-                <img src="{{asset('frontend/img/contactimg.png')}}" alt="" />
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d65301131.98038571!2d-87.91986629730727!3d2.6146120148738166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b35487c6d8901%3A0xd40d12d1bb3c682!2sDil%20Se%20Indian%20Restaurant%20%26%20Bar!5e0!3m2!1sen!2sin!4v1693892472690!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="max-width: 100%;"></iframe>
+                <!-- <img src="{{asset('frontend/img/contactimg.png')}}" alt="" /> -->
               </div>
             </div>
 
