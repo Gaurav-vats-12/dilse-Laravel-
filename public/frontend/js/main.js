@@ -1,23 +1,25 @@
 jQuery(document).ready(function () {
-
-    var btn = $('#button');
-
-$(window).scroll(function() {
-  if ($(window).scrollTop() > 300) {
-    btn.addClass('show');
-  } else {
-    btn.removeClass('show');
-  }
-});
-
+     /**
+     * Scroller 
+     */
+   let btn = jQuery('#button');
+        jQuery(window).scroll(function() {
+    if (jQuery(window).scrollTop() > 300) {
+        btn.addClass('show');
+    } else {
+        btn.removeClass('show');
+    }
+    });
 btn.on('click', function(e) {
-  e.preventDefault();
-  $('html, body').animate({scrollTop:0}, '300');
-});
+    e.preventDefault();
+    jQuery('html, body').animate({scrollTop:0}, '300');
+    });
+
 
     setTimeout(function() {
         $('.swal2-container.swal2-top-end.swal2-backdrop-show').hide();
-    }, 5000); // 5000 milliseconds or 5 seconds
+    }, 5000); 
+
     /**
      * Order Type In Home and Checkout page
      */
@@ -32,6 +34,7 @@ btn.on('click', function(e) {
             window.location.href = AjaxForm;
         }
     });
+
     /**
      *  Add to Cart  In Website (Home Page ,Menu page,Product Details Pages)
      */
@@ -54,6 +57,11 @@ btn.on('click', function(e) {
         arrows: false,
         dots: false,
     });
+//   jQuery('.ourServices').slick({
+//         infinite: true,
+//         arrows: false,
+//         dots: false,
+//     });
 
 
 
