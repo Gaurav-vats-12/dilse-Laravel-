@@ -17,16 +17,26 @@
           <div class="row">
             <div class="col-md-5" id="about_us_page">
               <div class="about_img">
-                <img src="{{asset('frontend/img/IMG_7924.jpg') }}" alt="" />
+                <img src="{{asset('frontend/img/DSC_1330.jpg') }}" alt="" />
               </div>
               <div class="about_img">
-                <img src="{{asset('frontend/img/about-us_img.png') }}" alt="" />
+                <img src="{{asset('frontend/img/DSC_1331.jpg') }}" alt="" />
+              </div>
+
+              <div class="about_img">
+                <img src="{{asset('frontend/img/DSC_1333.jpg') }}" alt="" />
               </div>
               <div class="about_img">
-                <img src="{{asset('frontend/img/IMG_7750.jpeg') }}" alt="" />
+                <img src="{{asset('frontend/img/DSC_1336.jpg') }}" alt="" />
               </div>
               <div class="about_img">
-                <img src="{{asset('frontend/img/IMG_7924.jpg') }}" alt="" />
+                <img src="{{asset('frontend/img/DSC_1339.jpg') }}" alt="" />
+              </div>
+              <div class="about_img">
+                <img src="{{asset('frontend/img/DSC_1345.jpg') }}" alt="" />
+              </div>
+              <div class="about_img">
+                <img src="{{asset('frontend/img/DSC_1352.jpg') }}" alt="" />
               </div>
             </div>
             <div class="col-md-7">
