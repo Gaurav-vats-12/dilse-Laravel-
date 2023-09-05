@@ -171,6 +171,7 @@ return [
         browner12\helpers\HelperServiceProvider::class,
         App\Modules\Users\UserServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        
     ])->toArray(),
 
     /*
