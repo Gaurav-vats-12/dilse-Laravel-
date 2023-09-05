@@ -104,7 +104,7 @@
     </div>
   </div>
 </section>
-<section class="our_servics py_8 col-lg-3 col-md-12">
+<section class="our_servics py_8">
   <div class="container">
     <div class="tittle_heading">
       <h3>Our services</h3>
