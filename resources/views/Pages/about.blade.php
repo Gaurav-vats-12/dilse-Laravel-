@@ -6,7 +6,7 @@
           <div class="home-slider-main">
             <div class="container">
               <div class="home-slider-content">
-                <h1>ABOUT US</h1>
+                <h1 class="text-dark fw-bold text-decoration-underline">ABOUT US</h1>
               </div>
             </div>
           </div>
@@ -17,7 +17,7 @@
           <div class="row">
             <div class="col-md-5">
               <div class="about_img">
-                <img src="{{asset('frontend/img/about-img.png') }}" alt="" />
+                <img src="{{asset('frontend/img/IMG_7924.jpg') }}" alt="" />
               </div>
             </div>
             <div class="col-md-7">
