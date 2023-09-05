@@ -36,6 +36,7 @@
                 <img src="{{asset('frontend/img/DSC_1345.jpg') }}" alt="" />
               </div>
               <div class="about_img">
+
                 <img src="{{asset('frontend/img/DSC_1352.jpg') }}" alt="" />
               </div>
             </div>
