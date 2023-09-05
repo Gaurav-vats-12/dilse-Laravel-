@@ -57,7 +57,8 @@
 <script src="{{asset('plugins/jquery-validation/jquery.validate.min.js') }}"></script>
 <script src="{{asset('plugins/jquery-validation/additional-methods.min.js') }}"></script>
 {{--Comman Js--}}
-<script src="{{asset('plugins/commonFunction/js/function.js') }}"></script>
+<script src="{{asset('plugins/commonFunction/js/common.js') }}"></script>
+
 <script src="{{asset('backend/js/app.js') }}"></script>
 <script src="{{asset('backend/js/custom.js') }}"></script>
 <script src="{{asset('backend/js/main.js') }}"></script>

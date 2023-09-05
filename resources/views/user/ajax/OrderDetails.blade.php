@@ -7,13 +7,13 @@
                 <h6 class="ser-infh pla"> <b>Order Date</b>
                     :{{   date("d/m/Y", strtotime($orders->order_date))  }} ({{  DateTime::createFromFormat('H:i:s',explode(' ', $orders->order_date)[1])->format('h:i:s A')  }})
                     &nbsp;| &nbsp; <b>Status:</b>
-                    <span>{{ $orders->status }}</span>
-
+                    <span id="OrderStatus">{{ $orders->status }}</span>
                     @if($orders->status =='Pending')|
-                    <a href="{{ route('user.order-cancelled' ,$orders->id) }}" onclick="return confirm('Are you sure?');" class="btn-danger">Cancel Order</a>
-
+                    <form method="POST" id="OrderCencelled_Form" action="{{ route('user.order-cancelled', $orders->id) }}">  @csrf @method('PUT')
+                    <a href="javascript:void(0)"  ajax_url ="{{ route('user.order-cancelled' ,$orders->id) }}" class="btn-danger show_confirm">Cancel Order</a>
+</form>
+                        <!-- <a href="javascript:void(0)" id="OrderCencelled" ajax_url ="{{ route('user.order-cancelled' ,$orders->id) }}" class="btn-danger">Cancel Order</a> -->
                     @endif
-
                 </h6>
 
             </div>

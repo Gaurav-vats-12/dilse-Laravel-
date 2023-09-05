@@ -15,10 +15,9 @@ RouteAlias::prefix('user')->name('user.')->group(callback: function(){
         RouteAlias::get('/profile-address', [UserController::class, 'user_address'])->name('profile.address');
         RouteAlias::patch('/profile-address', [UserController::class, 'update_address'])->name('profile.address.update');
         RouteAlias::get('/order', [UserController::class, 'listingOrder'])->name('order');
-        RouteAlias::get('/order-cancelled/{id}', [UserController::class, 'OrderCancelled'])->name('order-cancelled');
+        RouteAlias::PUT('/order-cancelled/{id}', [UserController::class, 'OrderCancelled'])->name('order-cancelled');
         RouteAlias::get('/order-reorder/{id}', [UserController::class, 'OrderReorder'])->name('OrderReorder');
         RouteAlias::get('/confirm-passwords', [ProfileController::class, 'confirmPass'])->name('confirm-passwords');
-
     });
 });
 

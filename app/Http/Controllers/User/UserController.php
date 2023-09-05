@@ -115,7 +115,7 @@ class UserController extends Controller
             ];
         }
         session()->put('cart', $cart);
-        notyf()->duration(2000) ->addSuccess('ItemS Added to Card Successfully');
+        notyf()->duration(2000) ->addSuccess('Items Added to Card Successfully');
         return redirect(route('checkout.view'));
     }
 }
