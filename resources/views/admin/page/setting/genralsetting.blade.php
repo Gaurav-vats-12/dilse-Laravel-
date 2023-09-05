@@ -49,7 +49,7 @@
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                     <label for="phone">Phone Number *</label>
                                     <input type="text" name="phone" id="phone"  class="form-control" value="{{ old('phone',setting('phone'))}}">
-                                    <small><i class="fa-solid fa-circle-question"></i> Please Enter the vaid phone number</small>
+                                    <small><i class="fa-solid fa-circle-question"></i> Please Enter the valid phone number</small>
                                     @error('phone')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="col-xl-6 col-lg-6 form-group">
@@ -72,14 +72,16 @@
                                         <option value="">choose location</option>
 
                                         @php
-                                            $selectedLocations = old('site_location', setting('site_location') ?: []);
+                                            $selectedLocations = old('site_location', explode(',', setting('site_location'))  ?: []);
+
+
                                             if (!is_array($selectedLocations)) {
                                                 $selectedLocations = [$selectedLocations];  // Ensure we have an array
                                             }
                                         @endphp
 
-                                        <option value="chandigarh" {{ in_array('chandigarh', $selectedLocations) ? 'selected' : '' }}>Chandigarh</option>
-                                        <option value="mohali" {{ in_array('mohali', $selectedLocations) ? 'selected' : '' }}>Mohali</option>
+                                        <option value="Toronto" {{ in_array('Toronto', $selectedLocations) ? 'selected' : '' }}>Toronto</option>
+                                        <option value="Bramptonn" {{ in_array('Bramptonn', $selectedLocations) ? 'selected' : '' }}>Bramptonn</option>
                                     </select>
 
                                     @error('site_location')  <span class="text-danger">{{ $message }}</span> @enderror

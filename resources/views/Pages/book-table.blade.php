@@ -27,7 +27,7 @@
             </div>
 
             <div class="col-md-6">
-              <form action="{{ route('booktable.submit') }}" class="contact_form" method="POST">
+              <form action="{{ route('booktable.submit') }}" class="contact_form" method="POST" id="book-a-reservation">
                @csrf
                 <div class="tittle_heading">
                   <h2>Book A Table</h2>
@@ -76,7 +76,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="custn_input">
-                      <select name="select_part" class="form-control form-select">
+                      <select name="select_part" class="form-select" id="select_part">
                         <option value="">Select Guests</option>
                         @for($i=1;$i <= 20;$i++)
                           <option value="{{$i}}"  {{ old('select_part') == $i ? 'selected' : '' }} >{{$i}}  </option>

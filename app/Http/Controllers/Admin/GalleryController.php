@@ -41,7 +41,9 @@ class GalleryController extends Controller
             ResizeImage::make($request->file('gallery_image'))->save($sitelogopath.'/'. $galleryImage);
         }
         Gallery::insert(['name' => $request->image_title, 'image' => $galleryImage,'image_postion' => (int) $request->image_postion, 'status' => ($request->status =='1') ? 1 : 0,'created_at' => now(), 'updated_at' => now() ]);
-        return redirect()->route('admin.manage-gallery.index')->with('message','Gallery  Created Successfully');
+        notyf()->duration(2000) ->addSuccess('Gallery Image Created Successfully.');
+
+        return redirect()->route('admin.manage-gallery.index');
 
     }
 
@@ -72,13 +74,14 @@ class GalleryController extends Controller
             $image_pasth = public_path('storage/gallery'); !is_dir($image_pasth) &&  mkdir($image_pasth, 0777, true);
             $gallery_image = $request->file('gallery_image');
             $galleryImage = time().'-'.$gallery_image->getClientOriginalName();
-             $this->deleteIamge($image_pasth.'/'.$Gallery->image);
+            DeleteOldImage($image_pasth.'/'.$Gallery->image);
             ResizeImage::make($request->file('gallery_image'))->save($image_pasth.'/'. $galleryImage);
             }else{
             $galleryImage = $Gallery->image;
         }
         $gallery::findOrFail($id)->update(['name' => $request->image_title, 'image' => $galleryImage, 'image_postion' =>(int) $request->image_postion,  'status' => ($request->status =='1') ? 1 : 0, 'updated_at' => now() ]);
-        return redirect()->route('admin.manage-gallery.index')->with('message','Gallery  Update Successfully');
+        notyf()->duration(2000) ->addSuccess('Gallery  Image Update Successfully.');
+        return redirect()->route('admin.manage-gallery.index');
     }
 
     /**
@@ -87,11 +90,9 @@ class GalleryController extends Controller
     public function destroy(string $id ,Gallery $gallery)
     {
         $gallery::findOrFail($id)->delete();
-        return redirect()->route('admin.manage-gallery.index')->withSuccess('Gallery Successfully Deleted',500);
+        notyf()->duration(2000) ->addSuccess('Gallery Image Deleted Successfully.');
+
+        return redirect()->route('admin.manage-gallery.index');
     }
 
-    protected function deleteIamge($imagePath){
-   if(File::exists($imagePath)) { File::delete($imagePath); return true;  }  return false;
-
-    }
 }

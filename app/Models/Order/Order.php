@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 /**
  * @method static create(array $checkout_value)
  * @method static findOrFail(int $order_id)
+ * @method static where(string $string, int|string|null $user_id)
  */
 class Order extends Model
 {
@@ -48,5 +49,13 @@ class Order extends Model
         return $this->hasOne(Payments::class);
     }
 
+    /**
+     * @return HasOne
+     */
+    public function fetchPaymentDetails($status): HasOne
+    {
+        return "ASdsadsa";
+//        return $this->hasOne(Payments::class)->where('payment_status', $status);
+    }
 
 }

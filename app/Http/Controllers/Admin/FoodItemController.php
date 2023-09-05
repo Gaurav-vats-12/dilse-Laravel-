@@ -32,10 +32,10 @@ class FoodItemController extends Controller
             $product_image = $request->file('product_image');
             $ProductImage = time().'-'.$product_image->getClientOriginalName();
             $sitepath = public_path('storage/products'); !is_dir($sitepath) &&  mkdir($sitepath, 0777, true);
-            ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
+            ResizeImage::make( $product_image)->save($sitepath.'/'. $ProductImage);
+
+            //            ResizeImage::make( $product_image)->resize(303, 287)->save($sitepath.'/'. $ProductImage);
         }
-
-
           $restaurant = FoodItem::create(['name' => $request->name, 'menu_id' => $request->menu, 'description' => $request->description, 'price' => $request->price, 'image' => $ProductImage,'extra_items'=> (isset($request->extra_items)) ? 1 : 0,'featured'=> (isset($request->featured)) ? 1 : 0,'status'=> (isset($request->status)) ? 1 : 0,'created_at' => now(),'updated_at' => now()]);
         //   if(isset($request->extra_items)){
         //     $extra_items = $request->extra_items;
@@ -43,9 +43,8 @@ class FoodItemController extends Controller
         //         ExtraFoodItems::create(['food_item_id' => $restaurant->id, 'extra_item_id' => $value]);
         //     }
         // }
-
-        return redirect()->route('admin.food-items.index')->with('message','Food Item  Added Successfully');
-
+        notyf()->duration(2000) ->addSuccess('Food Item  Added Successfully.');
+        return redirect()->route('admin.food-items.index');
     }
 
 
@@ -102,12 +101,15 @@ class FoodItemController extends Controller
         //     $newItems[$key]['extra_item_id'] = $extraItem;
         // };
         // ExtraFoodItems::insert($newItems);
-        return redirect()->route('admin.food-items.index')->with('message','Food Item  Updated Successfully');
+        notyf()->duration(2000) ->addSuccess('Food Item  Updated Successfully.');
+
+        return redirect()->route('admin.food-items.index');
 
     }
 
     public function destroy(Request $request,$id){
         FoodItem::findOrFail($id)->delete();
-        return redirect()->route('admin.food-items.index')->with('message','Food Item  Deleted Successfully');
+        notyf()->duration(2000) ->addSuccess('Food Item  Deleted Successfully.');
+        return redirect()->route('admin.food-items.index');
     }
 }

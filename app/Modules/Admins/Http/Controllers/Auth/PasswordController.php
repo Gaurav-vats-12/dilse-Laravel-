@@ -25,7 +25,9 @@ class PasswordController extends Controller
         $request->user('admin')->update([
             'password' => Hash::make($validated['password']),
         ]);
-        \Auth::guard('admin')->logout();
-        return redirect()->route('admin.login')->withToastSuccess('Password Update Successfully');
+        // \Auth::guard('admin')->logout();
+        notyf()->duration(2000) ->addSuccess('Password Update Successfully');
+
+        return redirect()->route('admin.login');
     }
 }

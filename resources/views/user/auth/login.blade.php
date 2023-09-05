@@ -17,20 +17,20 @@
                     <h2>SIGN IN TO YOUR <span>ACCOUNT</span></h2>  </div>
                     @if (session()->has('success'))<p>{!! session()->get('success') !!} </p>@endif
                   <div class="row">
-                    <div class="col-md-12">
-                      <div class="custn_input">
-                      <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')"  autofocus autocomplete="username" />
-                        <x-input-error :messages="$errors->get('email')" class="mt-2 taxt-danger" />
+                      <div class="col-md-12">
+                          <div class="custn_input">
+                              <x-text-input id="email"  placeholder="Email Address " class="block mt-1 w-full" type="email" name="email" :value="old('email')"  autocomplete="username" />
+                              <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                          </div>
                       </div>
-                    </div>
-                     <div class="col-md-12">
-                     <div class="custn_input">
-                     <x-input-label for="password" :value="__('Password')" />
-                    <x-text-input id="password" class="block mt-1 w-full" type="password"  name="password"  autocomplete="current-password" />
-                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                      <div class="col-md-12">
+                          <div class="custn_input">
+                              <x-text-input id="password"  placeholder="Your password" class="block mt-1 w-full password" type="password" name="password"   autocomplete="new-password" />
+                              <button type="button" id="btnToggle" class="toggle" passwordType="password"><i id="eyeIcon" passwordType="password" class="fa fa-eye " style="font-size: 16px;"></i></button>
+                              <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                          </div>
                       </div>
-                    </div>
+
                     <div class="forget_passcode">
                      <div class="under_section-form">
                      <input id="remember_me" type="checkbox"  class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">

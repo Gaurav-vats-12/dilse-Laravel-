@@ -41,9 +41,9 @@
                                             </li>
                                             <li>
                                                 <div class="shope_price">
-                                                    <div class="shope_p_tag"><span class="text-green-500 !leading-none">{{setting('site_currency')}}{{ $details['productdetails']->price}}</span>
+                                                    <div class="shope_p_tag"><span class="text-green-500 !leading-none">{{setting('site_currency')}} {{ $details['productdetails']->price}}</span>
                                                     </div>
-                                                    <div class="price"><h6> <span id="product_quantity_price__{{$id}}">{{setting('site_currency')}}{{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
+                                                    <div class="price"><h6> <span id="product_quantity_price__{{$id}}">{{setting('site_currency')}} {{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
 
                                                     <div class="remove_price">
                                                         <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
@@ -60,7 +60,7 @@
                         @if(session('cart'))
                             <div class="order_summary">
                                 <div class="tittle_heading">
-                                    <h6> Order Summary </h6>
+                                    <h2> Order Summary </h2>
                                 </div>
                                 <ul class="summary_main">
                                     <li>
@@ -69,22 +69,22 @@
                                             </p>
                                         </div>
                                         <div class="s_total" id="subtotal">
-                                            <p>{{ setting('site_currency')}}{{ $subtotal }}</p>
+                                            <p>{{ setting('site_currency')}} {{ $subtotal }}</p>
                                         </div>
                                     </li>
                                     @php
-                                    $orderType = session('order_type');
+                                        $orderType = session('order_type');
                                     @endphp
                                     @if($orderType == 'delivery')
-                                    <li>
-                                        <div class="s_subtotal">
-                                            <p>Delivery Charges :
-                                            </p>
-                                        </div>
-                                        <div class="s_total" id="subtotal">
-                                            <p>{{ setting('site_currency')}}{{(setting('delivery_charge'))}}</p>
-                                        </div>
-                                    </li>
+                                        <li>
+                                            <div class="s_subtotal">
+                                                <p>Delivery Charges :
+                                                </p>
+                                            </div>
+                                            <div class="s_total" id="subtotal">
+                                                <p>{{ setting('site_currency')}} {{(setting('delivery_charge'))}}</p>
+                                            </div>
+                                        </li>
                                     @endif
                                     <li>
 
@@ -97,7 +97,7 @@
                                                 $subTotal_Tax = (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) : $subtotal + 0.00;
                                                 $tax_total = round(($subTotal_Tax * setting('tax' ,0.00)) / 100 ,2);
                                             @endphp
-                                            <p>{{ setting('site_currency')}}{{ $tax_total }}</p>
+                                            <p>{{ setting('site_currency')}} {{ $tax_total }}</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="order_totalse" id="total">
                                         <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{ (session('order_type') == 'delivery') ? setting('delivery_charge' ,0.00) : $subtotal + 0.00 }}">
-                                        <p>{{ setting('site_currency')}}{{ (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) +  $tax_total : $subtotal + 0.00 +  $tax_total }}
+                                        <p>{{ setting('site_currency')}} {{ (session('order_type') == 'delivery') ? $subtotal + setting('delivery_charge' ,0.00) +  $tax_total : $subtotal + 0.00 +  $tax_total }}
                                         </p>
                                     </div>
                                 </div>
@@ -125,154 +125,31 @@
                     @endif
                 </div>
                 @if(session('cart'))
-                @if (isset($extra_items) && count($extra_items) >0)
-                    <div class="product_c_main">
-                        <div class="tittle_heading">
-                            <h6>Extra Items</h6>
-                        </div>
+                    @if (isset($extra_items) && count($extra_items) >0)
+                        <input type="hidden" name="cart_ajx_url" id="cart_ajx_url" value="{{ route('cart.extra_items') }}">
 
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="Bread-tab" data-bs-toggle="tab" data-bs-target="#Bread" type="button" role="tab" aria-controls="home" aria-selected="true">Bread</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="Rice-tab" data-bs-toggle="tab" data-bs-target="#Rice" type="button" role="tab" aria-controls="profile" aria-selected="false">Rice</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="Drinks-tab" data-bs-toggle="tab" data-bs-target="#Drinks" type="button" role="tab" aria-controls="contact" aria-selected="false">Drinks</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="Chutney-tab" data-bs-toggle="tab" data-bs-target="#Chutney" type="button" role="tab" aria-controls="contact" aria-selected="false">Chutney</button>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-
-                            <div class="tab-pane fade show active" id="Bread" role="tabpanel" aria-labelledby="Bread-tab">
-                                <div class="product_checkout">
-                                    @foreach ( $extra_items as $key => $extra_item )
-                                        @if($extra_item->menu_id == 6)
-                                                <div class="product_box">
-                                                    <div class="product_img">
-                                                        <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
-                                                    </div>
-                                                    <div class="product_cont">
-                                                        <div class="title_cost">
-                                                          <h3>{{$extra_item->name}}</h3>
-                                                        </div>
-
-                                                        <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
-                                                        <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
-                                                        <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
-                                                        <div class="cost_p">
-                                                        <h6>    {{ setting('site_currency')}}{{ $extra_item->price }}</h6>
-                                                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
-                                                            <span class="added-to-cart">Added to cart</span>
-                                                        </a>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                        @endif
-                                    @endforeach
-                                </div>
+                        <div class="product_c_main">
+                            <div class="tittle_heading">
+                                <h6>Extra Items</h6>
                             </div>
-                            <div class="tab-pane fade show " id="Rice" role="tabpanel" aria-labelledby="Rice-tab">
-                                <div class="product_checkout">
-                                    @foreach ( $extra_items as $key => $extra_item )
-                                        @if($extra_item->menu_id == 5)
-                                        <div class="product_box">
-                                                    <div class="product_img">
-                                                        <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
-                                                    </div>
-                                                    <div class="product_cont">
-                                                        <div class="title_cost">
-                                                          <h3>{{$extra_item->name}}</h3>
-                                                        </div>
 
-                                                        <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
-                                                        <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
-                                                        <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
-                                                        <div class="cost_p">
-                                                        <h6>   {{ setting('site_currency')}}{{ $extra_item->price }}</h6>
-                                                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
-                                                            <span class="added-to-cart">Added to cart</span>
-                                                        </a>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="Drinks" role="tabpanel" aria-labelledby="Drinks-tab">
-
-                            <div class="product_checkout">
-                                @foreach ( $extra_items as $key => $extra_item )
-
-                                    @if($extra_item->menu_id == 9)
-                                    <div class="product_box">
-                                                    <div class="product_img">
-                                                        <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
-                                                    </div>
-                                                    <div class="product_cont">
-                                                        <div class="title_cost">
-                                                          <h3>{{$extra_item->name}}</h3>
-                                                        </div>
-
-                                                        <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
-                                                        <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
-                                                        <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
-                                                        <div class="cost_p">
-                                                        <h6>    {{ setting('site_currency')}}{{ $extra_item->price }}</h6>
-                                                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
-                                                            <span class="added-to-cart">Added to cart</span>
-                                                        </a>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                    @endif
-                                @endforeach</div>
-                                </div>
-                            <div class="tab-pane fade" id="Chutney" role="tabpanel" aria-labelledby="Chutney-tab">
-
-                            <div class="product_checkout">
-                            @foreach ( $extra_items as $key => $extra_item )
-                                @if($extra_item->menu_id == 7)
-                                <div class="product_box">
-                                    <div class="product_img">
-                                        <img src="{{ url('/storage/products/'.$extra_item->image.'') }}" alt="{{ $extra_item->name}}">
-                                    </div>
-                                    <div class="product_cont">
-                                        <div class="title_cost">
-                                            <h3>{{$extra_item->name}}</h3>
-                                        </div>
-
-                                        <input type="hidden" name="ajax_url" id="extra_ajax_url" value="{{ route('cart.add') }}" >
-                                        <input type="hidden" name="product_price" id="product_price__{{$extra_item->id}}" value="{{ $extra_item->price }}">
-                                        <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
-                                        <div class="cost_p">
-                                        <h6>    {{ setting('site_currency')}}{{ $extra_item->price }}</h6>
-                                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
-                                            <span class="added-to-cart">Added to cart</span>
-                                        </a>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                @endif
-                                @endforeach
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="extra_items nav-link active" id="Bread-tab" menu_id = "6">Bread</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="extra_items nav-link" id="Rice-tab"  menu_id = "5">Rice</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="extra_items nav-link" id="Drinks-tab"  menu_id = "9" >Drinks</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="extra_items nav-link" id="Chutney-tab" menu_id = "7" >Chutney</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
                             </div>
                         </div>
-                        </div>
-
-
-                    </div>
-
             </div>
     </div>
     @endif

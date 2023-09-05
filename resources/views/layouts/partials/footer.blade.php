@@ -83,6 +83,7 @@
         </div>
         </div>
       </div>
+      
     </footer>
 
   @include('layouts.partials.footer_scripts')

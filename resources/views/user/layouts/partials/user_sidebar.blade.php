@@ -4,9 +4,10 @@
             <h3 class="{{ (request()->is('user/dashboard')) ? 'active' : '' }}">Home</h3>
         </a>
     </li>
+
     <li class="menu_list_inner1 {{ (request()->is('user/order')) ? 'active' : '' }}">
         <a href="{{ route('user.order') }}">
-            <h3 {{ (request()->is('user/order')) ? 'active' : '' }}>Orders</h3>
+            <h3 class="{{ (request()->is('user/order')) ? 'active' : '' }}">Orders</h3>
         </a>
     </li>
     <li class="menu_list_inner1 {{ (request()->is('user/profile')) ? 'active' : '' }}">

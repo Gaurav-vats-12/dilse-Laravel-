@@ -17,49 +17,18 @@
     <!-- Sweet Alert  -->
     <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
    <!-- TimePicker  -->
-   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+   <script src="{{asset('plugins/timepicker/js/jquery.timepicker.js') }}"></script>
+   <script src="{{asset('plugins/timepicker/js/jquery.timepicker.min.js') }}"></script>
    <!-- Toastr -->
-   <script  src="{{asset('plugins/toastr/js/toastr.min.js')}}"></script>
+   <script  src="{{asset('plugins/toast/js/toast.min.js')}}"></script>
+   <!-- jqueryscripttop -->
+   <script src="{{asset('plugins/jqueryscripttop/js/jquery-editable-select.js')}}"></script>
    <!-- InputMask -->
    <script src="{{asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
    <!-- main.js -->
     <script src="{{asset('frontend/js/main.js') }}"></script>
     <!-- Function.js -->
     <script src="{{asset('frontend/js/function.js') }}"></script>
-   <script>
-       @if(Session::has('message'))
-           toastr.options =
-           {
-               "closeButton" : true,
-               "progressBar" : true,
-           }
-       toastr.success("{{ session('message') }}");
-       @endif
+   <script src="{{asset('frontend/js/mediaQuery.js') }}"></script>
 
-           @if(Session::has('error'))
-           toastr.options =
-           {
-               "closeButton" : true,
-               "progressBar" : true
-           }
-       toastr.error("{{ session('error') }}");
-       @endif
-
-           @if(Session::has('info'))
-           toastr.options =
-           {
-               "closeButton" : true,
-               "progressBar" : true
-           }
-       toastr.info("{{ session('info') }}");
-       @endif
-
-           @if(Session::has('warning'))
-           toastr.options =
-           {
-               "closeButton" : true,
-               "progressBar" : true
-           }
-       toastr.warning("{{ session('warning') }}");
-       @endif
-   </script>
+   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>

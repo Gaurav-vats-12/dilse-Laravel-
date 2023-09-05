@@ -923,16 +923,16 @@ section.sight_food_location {
     padding: 80px 0 80px;
 }
 
-.gallery_crd_img {
-a {
-    display: inline-block;
-    width: 25%;
-img {
-    height: auto;
-    width: 100%;
-}
-}
-}
+/*.gallery_crd_img {*/
+/*a {*/
+/*    display: inline-block;*/
+/*    width: 25%;*/
+/*img {*/
+/*    height: auto;*/
+/*    width: 100%;*/
+/*}*/
+/*}*/
+/*}*/
 
 @import url("https://fonts.googleapis.com/css?family=Abel");
 h1 {
@@ -1468,7 +1468,6 @@ screen and (max-height: 300px) {
 .menu_main_box {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     padding-left: 10px;
 }
 
@@ -1806,6 +1805,8 @@ form.contact_form a {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 10px;
+
 }
 .product_cont {
     /* padding: 10px 20px; */
@@ -2207,9 +2208,10 @@ p {
 /* 16-8-23 */
 a.qtyminus.minus.qty-count.qty-count--minus.update-qty,
 a.qty-plus.plus.qty-count.qty-count--add.update-qty {
-    border: 1px solid #7c7676;
+    border: 1px solid rgb(124, 118, 118);
     padding: 0px 11px;
     border-radius: 5px;
+    color: rgb(0, 0, 0) !important;
 }
 
 .product_cont a.view_product {
@@ -2359,10 +2361,11 @@ a.qty-plus.plus.qty-count.qty-count--add.update-qty {
 
 .orders-table-wrapper {
     /*border-radius: 4px;*/
-    padding: 1rem;
-    margin-bottom: 2rem;
+    /*padding: 1rem;*/
+    /*margin-bottom: 2rem;*/
     border: none;
 }
+
 .orders-table thead {
     background: red;
 }
@@ -2462,21 +2465,30 @@ li.logout {
 .custn_input {
     position: relative;
 }
-.custn_input i.fa-solid.toggle-password.fa-eye,
-.custn_input i.fa-solid.fa-eye.confirm_pass {
+/* suppress IE >= 10 native functionality that can show password */
+input[type="password"]::-ms-reveal {
+    display: none;
+}
+.btn {
+    margin-top: 1.75em;
+}
+.input-group {
+    position: relative;
+    width: 100%;
+}
+.toggle {
+    background: none;
+    border: none;
     position: absolute;
-    top: 0;
-    transform: translateY(34%);
-    right: 15px;
-    bottom: 0;
+    right: .75em;
+    top: 1.25em;
+    z-index: 9;
+    margin: 6px 0 0 0;
+    font-size: 16px;
 }
 
-.custn_input i.fa-solid.toggle-password.fa-eye-slash,
-.custn_input i.fa-solid.confirm_pass.fa-eye-slash {
-    position: absolute;
-    top: 68%;
-    transform: translateY(-50%);
-    right: 15px;
+.fa {
+    font-size: 1.5rem;
 }
 
 div#staticBackdrop {
@@ -2653,3 +2665,233 @@ a.checkout_link_guest {
     border-top: 1px solid #00000026;
     padding: 29px 0;
 }
+.Notification_email {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.my-account-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+}
+.my-account-content p:first-child {
+    font-family: "ThePretender-ExpSansBoldPress";
+    font-size: 20px;
+}
+.wap-order {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+}
+.orders-table thead {
+    background: #000;
+    color: #fff;
+}
+.wap-order .btn-danger {
+    color: #fff;
+    background-color: #000;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 15px;
+}
+.table-borderless>:not(caption)>*>* {
+    border-bottom-width: 1px;
+}
+.wap-order h5.order-head {
+    border-bottom: 1px solid #0000004a;
+    padding: 0 0 11px;
+}
+.wap-lis .stat {
+    padding: 30px 0;
+}
+.franchies-wap hr:not([size]) {
+    height: 1px;
+    display: none;
+}
+.franchies-wap {
+    border-bottom: 1px solid #0000004a;
+}
+.Reorder_Class a {
+    background: #000;
+    padding: 13px;
+    color: #fff;
+}
+
+.Reorder_Class {
+    text-align: right;
+    margin-bottom: 20px;
+}
+.product_box {
+    padding: 15px;
+}
+.slide-arrow{
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+}
+.prev-arrow{
+    left: -40px;
+    width: 0;
+    height: 0;
+    border-left: 0 solid transparent;
+    border-right: 15px solid #113463;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+.next-arrow{
+    right: -40px;
+    width: 0;
+    height: 0;
+    border-right: 0 solid transparent;
+    border-left: 15px solid #113463;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+button{
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+button.inline-flex.items-center {
+    background: #000;
+}
+section.menu_main1 .cusstom_input input, .cusstom_input select{
+    background: #f4f4f4;
+    color: #6f6f6f;
+    border: none;
+    border-radius: 4px;
+}
+.menu_main1 form.form.profile-info-form {
+    background: #fff;
+    padding: 25px;
+}
+.menu_main1 .cusstom_input input, .cusstom_input select {
+    background: #f4f4f4;
+    border:none;
+}
+.menu_main1 button.inline-flex {
+    background: #000;
+    border: 1px solid #eb0029;
+}
+.menu_main1 .cusstom_input {
+    margin-bottom: 17px;
+}
+.wap-order form {
+    border-radius: 6px;
+    background: #ffff;
+    padding: 20px;
+}
+.menu_main1 button.inline-flex {
+    background: #000 !important;
+    border: 1px solid #eb0029;
+}
+.post_btn a {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    font-weight: 900;
+    padding: 8px 38px;
+    background: #eb0029;
+    border: 1px solid #eb0029;
+    text-align: center;
+    border-radius: 7px;
+    transition: all 0.3s;
+}
+.product_title h1 {
+    text-align: left;
+    font-weight: 600;
+    font-family: "ThePretender-ExpSansBoldPress";
+}
+.product_discription {
+    padding: 20px 0;
+}
+.best_food_crd {
+    padding: 10px;
+}
+.best_food_crd_img {
+    height: 300px;
+}
+
+.best_food_crd_img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+#button {
+    display: inline-block;
+    background-color: red;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, 
+      opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+  }
+  #button::after {
+    content: "\f077";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 50px;
+    color: #fff;
+  }
+  #button:hover {
+    cursor: pointer;
+    background-color: #333;
+  }
+  #button:active {
+    background-color: #555;
+  }
+  #button.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Styles for the content section */
+  
+  .content {
+    width: 77%;
+    margin: 50px auto;
+    font-family: 'Merriweather', serif;
+    font-size: 17px;
+    color: #6c767a;
+    line-height: 1.9;
+  }
+  @media (min-width: 500px) {
+    .content {
+      width: 43%;
+    }
+    #button {
+      margin: 30px;
+    }
+  }
+  .content h1 {
+    margin-bottom: -10px;
+    color: #03a9f4;
+    line-height: 1.5;
+  }
+  .content h3 {
+    font-style: italic;
+    color: #96a2a7;
+  }iframe {
+    max-width: 100%;
+}.fa {
+    margin-left: -12px;
+    margin-right: 8px;
+  }

@@ -1,7 +1,25 @@
 jQuery(document).ready(function () {
+     /**
+     * Scroller 
+     */
+   let btn = jQuery('#button');
+        jQuery(window).scroll(function() {
+    if (jQuery(window).scrollTop() > 300) {
+        btn.addClass('show');
+    } else {
+        btn.removeClass('show');
+    }
+    });
+btn.on('click', function(e) {
+    e.preventDefault();
+    jQuery('html, body').animate({scrollTop:0}, '300');
+    });
+
+
     setTimeout(function() {
         $('.swal2-container.swal2-top-end.swal2-backdrop-show').hide();
-    }, 5000); // 5000 milliseconds or 5 seconds
+    }, 5000); 
+
     /**
      * Order Type In Home and Checkout page
      */
@@ -16,6 +34,7 @@ jQuery(document).ready(function () {
             window.location.href = AjaxForm;
         }
     });
+
     /**
      *  Add to Cart  In Website (Home Page ,Menu page,Product Details Pages)
      */
@@ -25,7 +44,7 @@ jQuery(document).ready(function () {
         const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
             setTimeout(function() { jQuery('.add-to-cart-button').removeClass(`added`)}, 2000);
-            Toast.fire({icon: `success`, title: resPose.message})
+            NotyfMessage(resPose.message,'success');
             jQuery(`.cart_count`).html(resPose.cart_total);
         }
     });
@@ -38,6 +57,11 @@ jQuery(document).ready(function () {
         arrows: false,
         dots: false,
     });
+//   jQuery('.ourServices').slick({
+//         infinite: true,
+//         arrows: false,
+//         dots: false,
+//     });
 
 
 
@@ -88,18 +112,22 @@ jQuery(document).ready(function () {
             }
         },
         submitHandler: async function (form,event) {
+            jQuery(".theme_btn").attr("disabled", true);
+            jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
             event.preventDefault();
             let ajax_value_list = jQuery('#emailSubscribeForm').serialize(), ajx_url = jQuery('#email_action_url').val();
             const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
+            jQuery(".theme_btn").attr("disabled", false);
+            jQuery(".btn-txt").text("Subscribe Now");
             if (resPose.status === `success`) {
-                Toast.fire({icon: `success`, title: resPose.message})
-                $("form")[0].reset();
+                NotyfMessage(resPose.message,'success');
+                jQuery("#emailSubscribeForm")[0].reset();
             }else if(resPose.status === `error`){
-                Toast.fire({icon: `warning`, title: resPose.message})
-                $("form")[0].reset();
+                NotyfMessage(resPose.message,'warning');
+                jQuery("#emailSubscribeForm")[0].reset();
             }else if(resPose.status === `error_message`){
-                Toast.fire({icon: `danger`, title: resPose.message})
-                $("form")[0].reset();
+                NotyfMessage(resPose.message,'warning');
+                jQuery("#emailSubscribeForm")[0].reset();
             }else{
                 jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
             }
@@ -108,25 +136,8 @@ jQuery(document).ready(function () {
     /**
      *     Contact us Form Submission  iN ajax   (Home Page ,Contact Us Page)
      */
+
     jQuery("#conatact_cus_form").validate({
-        rules: {
-            first_name: {
-                required: true,
-                maxlength: 50,
-            }, last_name: {
-                required: true,
-                maxlength: 50,
-            }, email: {
-                required: true,
-                email: true,
-            }, phone: {
-                required: true,
-                maxlength: 15,
-            }, message: {
-                required: true,
-                maxlength: 2000,
-            }
-        },
         messages: {
             first_name: {
                 required: "Please Enter the First Name",
@@ -145,14 +156,36 @@ jQuery(document).ready(function () {
                 maxlength: "message must be max 2000 letter"
             }
         },
-        submitHandler: async function (form,e) {
+        rules: {
+            first_name: {
+                required: true,
+                maxlength: 50,
+            }, last_name: {
+                required: true,
+                maxlength: 50,
+            }, email: {
+                required: true,
+                email: true,
+            }, phone: {
+                required: true,
+                maxlength: 20,
+            }, message: {
+                required: true,
+                maxlength: 2000,
+            }
+        },
+        submitHandler: async function (form, e) {
             e.preventDefault();
+            jQuery(".theme_btn").attr("disabled", true);
+            jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
             let ajax_value_list = $('form').serialize(), ajx_url = jQuery(`#contact_us_action_url`).val();
             const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
-            if(resPose.status === 'success'){
-                Toast.fire({ icon: 'success',title: resPose.message, })
-                jQuery("form")[0].reset();
-            }else{
+            if (resPose.status === 'success') {
+                jQuery(".theme_btn").attr("disabled", false);
+                jQuery(".btn-txt").text("Send");
+                NotyfMessage(resPose.message,'success');
+                jQuery("#conatact_cus_form")[0].reset();
+            } else {
                 jQuery.each(resPose.errors, function (key, value) {
                     jQuery(`#${key}-error`).text(value);
                 });
@@ -213,116 +246,6 @@ jQuery(document).ready(function () {
             opener: openerElement => openerElement.is('img') ? openerElement : openerElement.find('img')
         }
     });
-    // jQuery( "#datepicker" ).datepicker();
-
-    /**
-     *  Update the quantity According to plus and minus in cart page (Cart page )
-     */
-    jQuery(document).on("click", ".update-qty", async function (e) {
-        let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-        let newVal;
-        let $button = jQuery(this), oldValue = $button.closest('.update-cart-qty').find("input.product-qty").val(),
-            quantity = jQuery(this).parent().find(`.product-qty`), ajax_url = jQuery(`#ajax_url`).val(),
-            dilavery_charge = jQuery(`#dilavery_charge`).val(),
-            product__price = parseFloat(quantity.attr(`product__price`)),
-            product_oid = parseInt(jQuery(this).attr(`productoid`));
-        if ($button.text() == "+") {
-            newVal = parseFloat(oldValue) + 1;
-        }else {
-            if (oldValue > 0) {
-                newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
-            if(newVal === 0){
-                $button.closest('.shopping_items').find('#remove_add_to_Cart').trigger('click');
-            }
-        }
-        if(newVal === 0){
-
-        }else{
-            $button.closest('.update-cart-qty').find("input.product-qty").attr('value',newVal);
-            let qty = newVal;
-            let counterproductive = parseFloat(newVal * product__price), ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
-            jQuery(`#product_quantity_price__${product_oid}`).text(`${site_currency}${counterproductive.toFixed(2)}`);
-            jQuery(`#product_quntity__${product_oid}`).val(qty);
-            jQuery(`#product_price__${product_oid}`).val(`${site_currency}${counterproductive.toFixed(2)}`);
-            const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-            if (resPose.status === `success`) {
-                jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
-                jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
-            }
-        }
-    });
-
-    /**
-     *  Add to Cart  In Website (Extra_Items)
-     */
-    jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
-        jQuery(this).toggleClass(`added`);
-        let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#extra_ajax_url').val();
-        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-        if (resPose.status === `success`) {
-            Toast.fire({icon: `success`, title: resPose.message})
-            jQuery(`.cart_count`).html(resPose.cart_total);
-            setTimeout(function() { window.location.reload()}, 1000);
-        }
-    });
-    /**
-     *     Remove  The Cart in Cart page (Cart Page)
-     */
-    jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
-        let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-
-        event.preventDefault();
-        Swal.fire({
-            title: `Are you sure you want to delete this Item?`,
-            showCancelButton: true,
-            confirmButtonText: 'Ok',
-        }).then(async (result) => {
-            let uid = jQuery('.shopping_items_main').length;
-            if (result.isConfirmed) {
-                let ajax_url = jQuery('#delete_ajax_url').val();
-                let dilavery_charge = jQuery('#dilavery_charge').val();
-                let ajax_value = {dilavery_charge};
-                let resPose;
-                [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
-                if (resPose.status === 'success') {
-                    jQuery(`.cart_count`).html(resPose.cart_total);
-                    jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
-                    jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                    jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
-                    if (uid === 0) {
-                        jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                        jQuery('#order_details').empty();
-                        jQuery('.product_c_main').empty();
-                    } else {
-                        let product_oid = parseInt(jQuery(this).attr("produc_id"));
-                        jQuery(`#cart_products-${product_oid}`).empty();
-                        if (uid - 1 === 0) {
-                            jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                            jQuery('#order_details').empty();
-                            jQuery('.product_c_main').empty();
-                        }
-                    }
-                }
-            }
-        });
-    });
-
-    /**
-     *   Extra Items Sliders On Cart Page
-     */
-
-
-    /**
-     * Extra Items Sliders
-     */
-
-
-
-
 
     /**
      * Related Product Slider On Product Details Page
@@ -335,6 +258,8 @@ jQuery(document).ready(function () {
         slidesToShow: 4,
         slidesToScroll: 1
     });
+
+        //
         // jQuery('.product_checkout').slick({
         //     infinite: true,
         //     speed: 300,
@@ -351,8 +276,12 @@ jQuery(document).ready(function () {
         * Update the Store Location
         */
        jQuery('#store_location').val(jQuery('#select_location').find(":selected").val());
+
        jQuery(document).on("change", "#select_location",  function (event) {
-           jQuery('#store_location').val(jQuery(this).find(":selected").val());
+           event.preventDefault();
+           const store_location = jQuery(this).find(":selected").val();
+           localStorage.setItem('store_location', store_location);
+           jQuery('#store_location').val(store_location);
        });
         /**
          * State Dependency In Checkout Page
@@ -391,6 +320,7 @@ jQuery(document).ready(function () {
 
 
     }else if(url.indexOf("/profile-address") > -1){
+
         /**
          * State Dependency In profile   Page
          */
@@ -399,6 +329,10 @@ jQuery(document).ready(function () {
         let selected_billing_state = jQuery('#selected_billing_state').val();
         let ajax_value = {country_uid,'type':'country',selected_billing_state};
         state_dependency_country_list(ajax_value, ajax_url);
+       jQuery('#billing_postcode').inputmask('A9A 9A9', {
+           placeholder: 'K1N 8W5\n',
+           clearMaskOnLostFocus: false,
+       })
     }else if(url.indexOf("/book-a-reservation") > -1) {
         jQuery('#datepicker').datepicker({
             minDate: 1,
@@ -438,7 +372,6 @@ jQuery(document).ready(function () {
                 jQuery('#timepicker').timepicker('option', 'minTime', '11:30 AM');
             }
         });
-
         let initialMinTime = now.toDateString() === (new Date($('#datepicker').val()).toDateString()) ? currentTime : '11:30 AM';
         jQuery('#timepicker').timepicker({
             'minTime': initialMinTime,
@@ -456,7 +389,64 @@ jQuery(document).ready(function () {
 
         });
         jQuery('#phone').inputmask('(999) 999-9999');
-    }else if(url.indexOf("/about-us") > -1) {
+
+
+        jQuery("#book-a-reservation").validate({
+            messages: {
+                name: {
+                    required: "The name field is required",
+                    maxlength: "First Name must be max 50 letter"
+                }, email: {
+                    required: "The email field is required.",
+                    maxlength: "Please Enter vaid email address"
+                }, phone: {
+                    required: "The phone field is required.",
+                    maxlength: "Phone Number must be max 20 letter"
+                }, date: {
+                    required: "The date field is required.",
+                }, time: {
+                    required: "The time field is required",
+                }, select_part: {
+                    required: "The select part field is required.",
+                }, comments: {
+                    required: "The comments field is required.",
+                }
+            },
+            rules: {
+                name: {
+                    required: true,
+                    maxlength: 50,
+                }, last_name: {
+                    required: true,
+                    maxlength: 50,
+                }, email: {
+                    required: true,
+                    email: true,
+                }, phone: {
+                    required: true,
+                    maxlength: 20,
+                },date: {
+                    required: true,
+                
+                },time: {
+                    required: true,
+                
+                }, select_part: {
+                    required: true,
+                
+                }, select_part: {
+                    required: true,
+                    maxlength: 2000,
+                }
+            },
+            submitHandler: async function (form, e) {
+                jQuery(".theme_btn").attr("disabled", true);
+                jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
+            }
+        });
+
+
+   }else if(url.indexOf("/about-us") > -1) {
        const counters = document.querySelectorAll('.counter');
        const speed = 2000;
        counters.forEach((counter) => {
@@ -475,22 +465,185 @@ jQuery(document).ready(function () {
        });
        let text1 = document.getElementById('counter1');
        animate(text1, 0, 200, 7000);
+   }else if (url.indexOf("/register") > -1) {
+       jQuery(document).on("click", "#btnToggle", function (event) {
 
+           let passwordItd = (jQuery(this).attr('passwordType') === 'password') ? jQuery('#password') : jQuery('#password_confirmation');
+           jQuery(this).find("#eyeIcon").toggleClass("fa-eye fa-eye-slash");
+           if (passwordItd.attr('type') === 'password') {
+               passwordItd.attr('type', 'text');
+           } else {
+               passwordItd.attr('type', 'password')
+           }
+       });
+   } else if (url.indexOf("/login") > -1) {
 
-   }else if(url.indexOf("/register") > -1 || url.indexOf("/login") > -1 ) {
+       jQuery(document).on("click", "#remember_me", function (event) {
 
-       jQuery(document).on("click", ".toggle-password", function (event) {
-           jQuery(this).toggleClass("fa-eye fa-eye-slash");
-           let input = jQuery($(this).attr("toggle"));
-           if (input.attr("type") === "password") { input.attr("type", "text");} else {input.attr("type", "password");}
+           if (jQuery(this).prop('checked')==true){
+               let  email = jQuery('#email').val();
+               let password = jQuery('#password').val();
+               localStorage.setItem("email", email);
+               localStorage.setItem("password", password);
+           }else{
+               let  email = jQuery('#email').val();
+               let password = jQuery('#password').val();
+               localStorage.setItem("email", email);
+               localStorage.setItem("password", password);
+           }
+
        });
 
-       }
 
-    // $('ul.nav li.dropdown').hover(function() {
-    //     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-    // }, function() {
-    //     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-    // });
+       jQuery('#email').val(localStorage.getItem("email"));
+       jQuery('#password').val(localStorage.getItem("password"))
+
+       jQuery(document).on("click", "#btnToggle", function (event) {
+
+           let passwordItd = (jQuery(this).attr('passwordType') === 'password') ? jQuery('#password') : jQuery('#password_confirmation');
+           jQuery(this).find("#eyeIcon").toggleClass("fa-eye fa-eye-slash");
+           if (passwordItd.attr('type') === 'password') {
+               passwordItd.attr('type', 'text');
+           } else {
+               passwordItd.attr('type', 'password')
+           }
+       });
+   } else if (url.indexOf("/profile") > -1) {
+       jQuery('#phone').inputmask('(999) 999-9999');
+
+   } else if (url.indexOf("/cart") > -1) {
+       /**
+        *  Update the quantity According to plus and minus in cart page (Cart page )
+        */
+       jQuery(document).on("click", ".update-qty", async function (e) {
+           let site_currency = jQuery('meta[name="site_currency"]').attr('content');
+           let newVal;
+           let $button = jQuery(this), oldValue = $button.closest('.update-cart-qty').find("input.product-qty").val(),
+               quantity = jQuery(this).parent().find(`.product-qty`), ajax_url = jQuery(`#ajax_url`).val(),
+               dilavery_charge = jQuery(`#dilavery_charge`).val(),
+               product__price = parseFloat(quantity.attr(`product__price`)),
+               product_oid = parseInt(jQuery(this).attr(`productoid`));
+           if ($button.text() === "+") {
+               newVal = parseFloat(oldValue) + 1;
+           } else {
+               if (oldValue > 0) {
+                   newVal = parseFloat(oldValue) - 1;
+               } else {
+                   newVal = 0;
+               }
+               if (newVal === 0) {
+                   $button.closest('.shopping_items').find('#remove_add_to_Cart').trigger('click');
+               }
+           }
+           if (newVal === 0) {
+
+           } else {
+               $button.closest('.update-cart-qty').find("input.product-qty").attr('value', newVal);
+               let qty = newVal;
+               let counterproductive = parseFloat(newVal * product__price),
+                   ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
+               jQuery(`#product_quantity_price__${product_oid}`).text(`${site_currency}${counterproductive.toFixed(2)}`);
+               jQuery(`#product_quntity__${product_oid}`).val(qty);
+               jQuery(`#product_price__${product_oid}`).val(`${site_currency}${counterproductive.toFixed(2)}`);
+               const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+               if (resPose.status === `success`) {
+                   jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
+                   jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
+                   jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
+               }
+           }
+       });
+
+       /**
+        *  Add to Cart  In Website (Extra_Items)
+        */
+       jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
+           jQuery(this).toggleClass(`added`);
+           let product_oid = jQuery(this).attr("product_uid"),
+               product_quntity = jQuery(`#product_quntity_${product_oid}`).val(),
+               product_price = jQuery(`#product_price__${product_oid}`).val(),
+               ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#extra_ajax_url').val();
+           const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+           if (resPose.status === `success`) {
+              NotyfMessage(resPose.message,'success');
+               jQuery(`.cart_count`).html(resPose.cart_total);
+               setTimeout(function () {
+                   window.location.reload()
+               }, 1000);
+           }
+       });
+       /**
+        *     Remove  The Cart in Cart page (Cart Page)
+        */
+       jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
+           let site_currency = jQuery('meta[name="site_currency"]').attr('content');
+           event.preventDefault();
+           Swal.fire({
+               title: `Are you sure you want to delete this Item?`,
+               showCancelButton: true,
+               confirmButtonText: 'Ok',
+           }).then(async (result) => {
+               let uid = jQuery('.shopping_items_main').length;
+               if (result.isConfirmed) {
+                   let ajax_url = jQuery('#delete_ajax_url').val();
+                   let dilavery_charge = jQuery('#dilavery_charge').val();
+                   let ajax_value = {dilavery_charge};
+                   let resPose;
+                   [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
+                   if (resPose.status === 'success') {
+                       jQuery(`.cart_count`).html(resPose.cart_total);
+                       jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
+                       jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
+                       jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
+                       if (uid === 0) {
+                           jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
+                           jQuery('#order_details').empty();
+                           jQuery('.product_c_main').empty();
+                       } else {
+                           let product_oid = parseInt(jQuery(this).attr("produc_id"));
+                           jQuery(`#cart_products-${product_oid}`).empty();
+                           if (uid - 1 === 0) {
+                               jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
+                               jQuery('#order_details').empty();
+                               jQuery('.product_c_main').empty();
+                           }
+                       }
+                   }
+               }
+           });
+       });
+
+       if(jQuery('.active').not(jQuery('#Bread-tab'))){
+           let menu_id = jQuery(jQuery('#Bread-tab')).attr('menu_id');
+           let ajax_value = {menu_id};
+           fetch_extra_items_data(ajax_value);
+       }
+        // jQuery('.extra_items').trigger('click');
+
+       jQuery(document).on("click", ".extra_items", async function (event) {
+           jQuery('.active').not(this).removeClass('active');
+           jQuery(this).toggleClass('active');
+           let menu_id = jQuery(this).attr('menu_id');
+           let ajax_value = {menu_id};
+           fetch_extra_items_data(ajax_value);
+       });
+
+   }else if (url.indexOf("/user/order") > -1) {
+       jQuery(document).on("change", ".manage_by_order", async function (event) {
+           jQuery(`#OrderStatus`).empty().html('<h2 class="text-center"> Processing</h2>');
+           let element, filterType, filterValue, ajax_value, orderedajax;
+           element = jQuery(this);
+           filterType = element.attr("type");
+           filterValue = element.val();
+           ajax_value = {filterType, filterValue};
+           orderedajax = jQuery('orderedajax').val();
+           const resPose = await Ajax_response(orderedajax, "GET", ajax_value, '');
+            jQuery(`#OrderStatus`).empty().html(resPose);
+       });
+
+
+
+   }
+
 
 });

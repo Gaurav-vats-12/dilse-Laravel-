@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('title', 'About Us')
 @section('frontcontent')
-<section class="inner_bannner bg_style" style="background-image: url('{{asset('frontend/img/about_banner-image.png') }}')">
+<section class="inner_bannner bg_style" style="background-image: url('{{asset('frontend/img/IMG_7750.jpeg') }}')">
         <div class="about_banner_section">
           <div class="home-slider-main">
             <div class="container">
               <div class="home-slider-content">
-                <h1>ABOUT US</h1>
+                <h1 class="text-dark fw-bold text-decoration-underline">ABOUT US</h1>
               </div>
             </div>
           </div>
@@ -17,7 +17,7 @@
           <div class="row">
             <div class="col-md-5">
               <div class="about_img">
-                <img src="{{asset('frontend/img/about-img.png') }}" alt="" />
+                <img src="{{asset('frontend/img/IMG_7924.jpg') }}" alt="" />
               </div>
             </div>
             <div class="col-md-7">
@@ -57,7 +57,7 @@
           <div class="row">
             <div class="col-md-5">
               <div class="meet_chef_img">
-                <img src="{{asset('frontend/img/chef.png') }}" alt="" />
+                <img src="{{asset('frontend/img/chef-1.png') }}" alt="" />
               </div>
             </div>
             <div class="col-md-7">
@@ -118,7 +118,7 @@
           <div class="row">
             <div class="col-md-5">
               <div class="our_acheive_image">
-                <img src="{{asset('frontend/img/foodi.png') }}" alt="" />
+                <img src="{{asset('frontend/img/IMG_7783.jpg') }}" alt="" />
               </div>
             </div>
             <div class="col-md-7">

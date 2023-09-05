@@ -9,6 +9,9 @@ use App\Models\Admin\ExtraFoodItems;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
+/**
+ * @method static whereIn(string $string, array $productIds)
+ */
 class FoodItem extends Model
 {
     use HasFactory, SoftDeletes;

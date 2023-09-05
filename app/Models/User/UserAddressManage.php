@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo as BelongsToAlias;
 
+/**
+ * @method static updateOrCreate(array $array, array $user_address)
+ */
 class UserAddressManage extends Model
 {
     use HasFactory;

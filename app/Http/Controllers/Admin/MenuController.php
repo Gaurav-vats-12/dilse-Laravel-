@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Menu\StoreMenuRequest;
 use App\Models\Admin\Menu;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -15,7 +18,6 @@ class MenuController extends Controller
     public function index()
     {
         $Menu    = Menu::all();
-        confirmDelete('Delete Menu!',"Are you sure you want to delete?");
        return view('admin.page.menu.index',compact('Menu'));
     }
 
@@ -24,7 +26,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('admin.page.menu.create');
+        return view('admin.page.menu.create_and_edit');
     }
 
     /**
@@ -47,10 +49,10 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View|\Illuminate\Foundation\Application|Factory|Application
     {
         $Menu = Menu::findOrFail($id);
-        return view('admin.page.menu.edit',compact('Menu'));
+        return view('admin.page.menu.create_and_edit',compact('Menu'));
     }
 
     /**
@@ -59,9 +61,8 @@ class MenuController extends Controller
     public function update(StoreMenuRequest $request, string $id)
     {
         Menu::findOrFail($id)->update(['menu_name' => $request->menu_name, 'menu_slug' => $request->menu_slug,'status' => $request->status,'updated_at' => now() ]);
-        return redirect()->route('admin.menu.index')->with('message','Menu  Updated Successfully');
-
-
+        notyf()->duration(2000) ->addSuccess('Menu  Updated Successfully.');
+         return redirect()->route('admin.menu.index');
     }
 
     /**
@@ -70,8 +71,7 @@ class MenuController extends Controller
     public function destroy(string $id)
     {
         Menu::findOrFail($id)->delete();
-        return redirect()->route('admin.menu.index')->with('message','Menu  Deleted Successfully');
-
-
+        notyf()->duration(2000) ->addSuccess('Menu  Deleted Successfully.');
+        return redirect()->route('admin.menu.index');
     }
 }

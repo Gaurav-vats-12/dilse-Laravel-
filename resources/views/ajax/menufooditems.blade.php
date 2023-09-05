@@ -1,11 +1,12 @@
 
-
                     @if (isset($FoodItem) && count($FoodItem) >0)
                         @foreach ( $FoodItem as $key => $FoodItems)
                         <div class="best_food_crd">
+                            <a href="{{ route('menudetails' , $FoodItems->slug)}}">
                             <div class="best_food_crd_img">
                             <img src="{{ url('/storage/products/'.$FoodItems->image.'') }}" alt="{{ $FoodItems->name}}">
                             </div>
+                            </a>
                             <div class="best_food_cntnt">
                                 <div class="best_food_txt">
                                     <a href="{{ route('menudetails' , $FoodItems->slug)}}"><h3> {{ $FoodItems->name}}</h3></a>

@@ -3,7 +3,7 @@
 @section('frontcontent')
 <section class="single_product py_8">
     <div class="container">
-      <div class="row">
+      <div class="row align-items-center">
         <div class="col-md-5">
           <div class="product_image">
           <img src="{{ url('/storage/products/'.$food_details->image.'') }}" alt="{{ $food_details->name}}">

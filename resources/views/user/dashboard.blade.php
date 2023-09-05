@@ -17,7 +17,7 @@
 
                             <div class="tab-pane fade  show active " id="home" role="tabpanel" aria-labelledby="home-tab">
                                 <div class="my-account-content mb-50">
-                                    <p>Hello <strong>{{ Auth::guard('user')->user()->name }} !</strong> </p>
+                                    <p>Hello <strong>{{ Auth::guard('user')->user()->name }} </strong> </p>
                                     <p>From your account dashboard you can view your recent orders, manage your shipping and
                                         billing addresses, and <a href="/user/confirm-passwords">edit your password</a> and <a href="/user/profile">account details</a>.</p>
                                 </div>

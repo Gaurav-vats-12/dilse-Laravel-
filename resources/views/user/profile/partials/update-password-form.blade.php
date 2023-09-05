@@ -12,7 +12,7 @@
         </div>
         <div class="col-lg-9">
 
-
+            <div class="wap-order">
     <form method="post" action="{{ route('user.password.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('put')
@@ -36,26 +36,10 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-            @if (session('status') === 'password-updated')
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-
-               <script>
-                Swal.fire({
-    title: 'Success!',
-    text: 'Password updated sucessfully.',
-    icon: 'success',
-    timer: 2000, // close after 2 seconds
-    showConfirmButton: false
-});
-
-                </script>
-            @endif
+            <x-primary-button>{{ __('Update Password') }}</x-primary-button>
         </div>
     </form>
-
-
+            </div>
 </div>
 </section>
 

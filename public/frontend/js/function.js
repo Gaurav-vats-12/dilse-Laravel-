@@ -1,5 +1,5 @@
 let url = window.location.pathname, ajaxResult = null;
-async   function Ajax_response(url, method, values, beforetask, success, callback){
+const Ajax_response = async (url, method, values, beforetask, success, callback) => {
     jQuery.ajaxSetup({headers: { 'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')  } });
     return jQuery.ajax({
         beforeSend(msg) {},
@@ -9,18 +9,22 @@ async   function Ajax_response(url, method, values, beforetask, success, callbac
         type: method,
         url: url
     });
-}
+};
 
 
-let Toast = Swal.mixin({
-    position: 'bottom-end',
-    showCloseButton: true,
-    showConfirmButton: false,
-    timer: 1500,
-    toast: true
-});
 
-
+  const fetch_extra_items_data = async (ajax_value) => {
+      let cart_ajx_url = jQuery('#cart_ajx_url').val();
+      const resPose = await Ajax_response(cart_ajx_url, "POST", ajax_value, '');
+      jQuery(`#myTabContent`).empty().html(resPose);
+      jQuery('.product_checkout').slick({
+          arrows: true,
+          dots: false,
+          slidesToShow: 4,
+          prevArrow: '<button class="slide-arrow prev-arrow"></button>',
+          nextArrow: '<button class="slide-arrow next-arrow"></button>'
+      });
+  };
 
 function animate(obj, initVal, lastVal, duration) {
     let startTime = null;
@@ -207,4 +211,15 @@ function payment_intergation(StripekEY) {
             }
         }
     });
+}
+
+function NotyfMessage(message ,type){
+    var notyf = new Notyf();
+    if(type ==='success'){
+        notyf.success(message);
+    }else if(type ==='error'){
+        notyf.error(message);
+    }else if(type ==='warning'){
+        notyf.error(message);
+    }
 }
