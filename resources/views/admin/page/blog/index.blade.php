@@ -45,7 +45,7 @@
                                                  width="100px"></td>
                                         <td>{{ $value->blog_title }}</td>
                                         <td>{!! Str::limit(strip_tags($value->blog_content) ,30) !!}</td>
-                                        <td>{{ $value->status}}</td>
+                                        <td class="text-capitalize">{{ $value->status}}</td>
                                         <td class="project-actions"><a class="btn btn-info btn-sm"
                                                                        href="{{ route('admin.blog.show', $value->id) }}"><i
                                                         class="fa-solid fa-eye"></i> </a><a class="btn btn-info btn-sm"

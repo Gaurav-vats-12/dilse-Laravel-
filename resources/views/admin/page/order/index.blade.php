@@ -45,7 +45,7 @@
                                             </td>
                                             <td>   {{ __( date("d M ,Y", strtotime($order->order_date)) ) }} ({{ __( DateTime::createFromFormat('H:i:s',explode(' ', $order->order_date )[1])->format('h:i:s A') ) }} )</td>
 
-                                            <td class="" >
+                                            <td class="text-capitalize">
                                                 {{ $order->order_type }}
                                             </td>
                                             <td class="" >

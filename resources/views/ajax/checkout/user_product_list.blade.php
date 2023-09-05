@@ -2,7 +2,7 @@
     <table class="table table-bordered table-responsive">
         <thead class="text-left">
         <tr>
-            <th>Sno </th>
+            <th>S.no </th>
             <th>Product</th>
             <th>Qty</th>
             <th>Price</th>
