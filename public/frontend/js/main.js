@@ -241,11 +241,13 @@ jQuery(document).ready(function () {
     }else if (url.indexOf("/about-us") > -1) {
 
         jQuery('#about_us_page').slick({
-            dots: false,
+            dots: true,
             infinite: true,
             speed: 200,
+            arrows: true,
             lazyLoad: 'ondemand',
             slidesToShow: 1,
+
             slidesToScroll: 1, responsive: [
                 {
                   breakpoint: 1024,
