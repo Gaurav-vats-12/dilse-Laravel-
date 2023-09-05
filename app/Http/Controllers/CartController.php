@@ -51,7 +51,7 @@ public function extra_items(Request $request ){
                         ];
                 }
                 session()->put('cart', $cart);
-                return response()->json(['code' => 200 ,  'cart_total'=>count((array) $cart), 'status' =>'success', "message"=>"Product add to cart successfully"]);
+                return response()->json(['code' => 200 ,  'cart_total'=>count((array) $cart), 'status' =>'success', "message"=>"Product added to cart successfully."]);
             }else{
                 return response()->json(['code' => 203 ,  'cart_total'=>nullValue(),'status' =>'error', "message"=>"Product Id Not Found"]);
             }

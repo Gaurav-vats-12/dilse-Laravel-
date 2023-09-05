@@ -15,7 +15,16 @@
       <section class="about_se py_8">
         <div class="container">
           <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5" id="about_us_page">
+              <div class="about_img">
+                <img src="{{asset('frontend/img/IMG_7924.jpg') }}" alt="" />
+              </div>
+              <div class="about_img">
+                <img src="{{asset('frontend/img/about-us_img.png') }}" alt="" />
+              </div>
+              <div class="about_img">
+                <img src="{{asset('frontend/img/IMG_7750.jpeg') }}" alt="" />
+              </div>
               <div class="about_img">
                 <img src="{{asset('frontend/img/IMG_7924.jpg') }}" alt="" />
               </div>

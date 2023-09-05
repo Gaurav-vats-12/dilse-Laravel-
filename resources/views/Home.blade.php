@@ -43,18 +43,13 @@
       </div>
       <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
         <div class="about_cntnt">
-          <h3>About us Dil Se Indian Restaurant & Bar</h3>
+          <h3>Welcome to Dil Se Indian Restaurant & Bar</h3>
           <h2>Bringing You An Authentic Indian Taste</h2>
-          <p>
-            Craving for homemade Indian food? Dil Se brings you the taste
-            you’ve been missing living away from home. Our dine-in
-            restaurant in Toronto offers a menu of authentic and freshly
-            prepared North Indian delicacies. With great Punjabi Dhaba
-            style cooking, our chef uses seasonal herbs and rich spices to
-            create a culinary delight that satisfies your taste buds.
-          </p>
+          <p>Craving for homemade Indian food? Dil Se brings you the taste you’ve been missing living away from home. Our dine-in restaurant in Toronto offers a menu of authentic and freshly prepared North Indian delicacies. With great Punjabi Dhaba style cooking, our chef uses seasonal herbs and rich spices to create a culinary delight that satisfies your taste buds.
+
+We provide dine-in, take-out, delivery, and catering service for popular Indian dishes and homemade desserts. With a relishing and fresh aroma, we are sure once you sit inside our restaurant, you’ll keep ordering more and more.</p>
           <div class="about_cntnt_bn">
-            <a href="{{url('about-us')}}" class="theme_btn">Read More</a>
+            <a href="{{url('about-us')}}" class="theme_btn">About Us</a>
           </div>
         </div>
       </div>
@@ -204,14 +199,15 @@
       <div class="col-md-3">
         <div class="order_online_crd">
           <div class="order_online_img">
-            <img src="{{asset('frontend/img/skip-1.png')}}" alt="" />
+            <img src="{{asset('frontend/img/skip-1.png')}}" alt="UberEates" title="UberEates" />
           </div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="order_online_crd">
           <div class="order_online_img">
-            <img src="{{asset('frontend/img/ritual-1.png')}}" alt="" />
+
+            <img src="{{asset('frontend/img/ritual-1.png')}}" alt="skipthedishes"  title ="skipthedishes"/>
           </div>
         </div>
       </div>

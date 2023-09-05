@@ -2836,7 +2836,7 @@ section.menu_main1 .cusstom_input input, .cusstom_input select{
     position: fixed;
     bottom: 30px;
     right: 30px;
-    transition: background-color .3s, 
+    transition: background-color .3s,
       opacity .5s, visibility .5s;
     opacity: 0;
     visibility: hidden;
@@ -2862,9 +2862,9 @@ section.menu_main1 .cusstom_input input, .cusstom_input select{
     opacity: 1;
     visibility: visible;
   }
-  
+
   /* Styles for the content section */
-  
+
   .content {
     width: 77%;
     margin: 50px auto;
@@ -2894,4 +2894,7 @@ section.menu_main1 .cusstom_input input, .cusstom_input select{
 }.fa {
     margin-left: -12px;
     margin-right: 8px;
-  }
+  }.about_img img {
+    border-radius: 60px;
+}
+
