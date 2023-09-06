@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'About Us')
 @section('frontcontent')
-<section class="inner_bannner bg_style" style="background-image: url('{{asset('frontend/img/IMG_7750.jpeg') }}')">
+<section class="inner_bannner bg_style" style="background-image: url('{{asset('frontend/img/about_banner-image.png') }}')">
         <div class="about_banner_section">
           <div class="home-slider-main">
             <div class="container">
@@ -143,7 +143,7 @@
           <div class="row">
             <div class="col-md-5">
               <div class="our_acheive_image">
-                <img src="{{asset('frontend/img/IMG_7783.jpg') }}" alt="" />
+                <img src="{{asset('frontend/img/restudent_wine.png') }}" alt="" />
               </div>
             </div>
             <div class="col-md-7">
