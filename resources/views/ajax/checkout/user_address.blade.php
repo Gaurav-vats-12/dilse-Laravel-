@@ -21,7 +21,7 @@
     <div class="col-md-12">
         <div class="cusstom_input">
             <label for="billing_full_name" class="">Phone Number <span class="required" title="required">*</span></label>
-            <input type="text" placeholder="Full  Name"  id="billing_phone" name="billing_phone" value="{{ Auth::guard('user')->check() ? old('billing_phone' ,Auth::guard('user')->user()->phone)   : old('billing_phone') }}"  data-inputmask='"mask": "(999) 999-9999"' data-mask >
+            <input type="text" placeholder="Enter phone number"  id="billing_phone" name="billing_phone" value="{{ Auth::guard('user')->check() ? old('billing_phone' ,Auth::guard('user')->user()->phone)   : old('billing_phone') }}"  >
         </div>
     </div>
     <div class="col-md-12">

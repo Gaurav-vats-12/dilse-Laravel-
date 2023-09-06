@@ -45,11 +45,23 @@ jQuery('.show_confirm').click(function(event) {
       })
 });
 
-function toggal_passwords(ids){
-    if (ids.attr('type') === 'password') {
-        ids.attr('type', 'text');
-    } else {
-        ids.attr('type', 'password')
-    }
+function updateCountryCode(countryCode ,) {
+    phoneInput.val(phoneInput.val().replace(/^\+9/, countryCode));
+  }
 
-}
+  jQuery(document).on("click", "#btnToggle", function (event) {3
+    let passwordItd;
+    jQuery(this).find("#eyeIcon").toggleClass("fa-eye fa-eye-slash");
+    if (jQuery(this).attr('passwordType') === 'password') {
+ passwordItd = jQuery('#password');
+    } else  if(jQuery(this).attr('passwordType') === 'password_confirmation'){
+         passwordItd = jQuery('#password_confirmation');
+    }else if(jQuery(this).attr('passwordType') === 'current_password'){
+         passwordItd = jQuery('#current_password');
+    }
+    if (passwordItd.attr('type') === 'password') {
+        passwordItd.attr('type', 'text');
+    } else {
+        passwordItd.attr('type', 'password')
+    }
+});

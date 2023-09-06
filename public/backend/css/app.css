@@ -132,3 +132,25 @@ ul {
     font-size: 15px !important;
     font-weight: 500 !important;
 }
+/* suppress IE >= 10 native functionality that can show password */
+input[type="password"]::-ms-reveal {
+    display: none;
+}
+.btn {
+    margin-top: 1.75em;
+}
+.input-group {
+    position: relative;
+    width: 100%;
+}
+.toggle_button {
+    float: right;
+    cursor: pointer;
+    margin-right: 7px;
+    margin-top: -31px;
+    background: none;
+    border: none;
+}
+.fa {
+    font-size: 1.5rem;
+}
