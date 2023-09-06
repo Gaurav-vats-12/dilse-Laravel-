@@ -315,6 +315,44 @@ header.main_header {
     text-align: center;
 }
 
+
+.certified_crd {
+    background: #fcebb9;
+  }
+  .certified_crd_img img {
+    margin-bottom: 24px;
+  }
+  .certified_crd_cntnt .tittle_heading h2 {
+    font-size: 49px;
+    line-height: 70px;
+    margin-bottom: 0;
+  }
+  .certified_crd_cntnt .tittle_heading h2 span {
+    color: #eb0029;
+  }
+  .certified_crd_cntnt .tittle_heading p {
+    font-size: 26px;
+    color: #716b6d;
+    line-height: 44px;
+    margin-bottom: 44px;
+  }
+  .certified_crd_cntnt .tittle_heading h4 {
+    font-size: 33px;
+    line-height: 59px;
+  }
+  .certified_crd_cntnt .tittle_heading h4 span {
+    color: #eb0029;
+  }
+  .certified_img_cntnt {
+    text-align: center;
+    padding-top: 30px;
+  }
+  .certified_img_cntnt h3 {
+    font-size: 24px;
+    color: #eb0029;
+    margin-bottom: 4px;
+  }
+
 .contact_form .custn_input select {
     width: 100%;
     font-size: 16px;
