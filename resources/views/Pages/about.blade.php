@@ -43,10 +43,9 @@
               <div class="our_achievement">
                 <h2>Our Achievements</h2>
                 <ul>
-                  <li>Impressive Achievements Awards</li>
+                <li> Highly Searched Restaurant on Google (Organically)</li>
                   <li>Consistent 5+ Ratings</li>
                   <li> Remarkable Single-Day Record of 500+ Orders Completed</li>
-                  <li> Highly Searched Restaurant on Google</li>
                   <li> Featured on BlogTO</li>
                   <li> In 2023 We Are Award Winning Best Restaurant</li>
                 </ul>
