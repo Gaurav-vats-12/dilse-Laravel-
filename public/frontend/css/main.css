@@ -283,6 +283,10 @@ header.main_header {
 }
 .video_dilse_play-tw {
     position: relative;
+    height: 100vh;
+
+
+
 }
 /* .video_dilse_play-tw::before {
   content: '';
@@ -329,6 +333,10 @@ header.main_header {
   }
   .certified_crd_cntnt .tittle_heading h2 span {
     color: #eb0029;
+    font-family: "ThePretender-ExpSansBoldPress";
+
+
+
   }
   .certified_crd_cntnt .tittle_heading p {
     font-size: 26px;
@@ -341,6 +349,7 @@ header.main_header {
     line-height: 59px;
   }
   .certified_crd_cntnt .tittle_heading h4 span {
+    font-family: "ThePretender-ExpSansBoldPress";
     color: #eb0029;
   }
   .certified_img_cntnt {
