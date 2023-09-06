@@ -6,7 +6,7 @@
           <div class="home-slider-main">
             <div class="container">
               <div class="home-slider-content">
-                <h1 class="text-dark fw-bold text-decoration-underline">ABOUT US</h1>
+                <h1 class="">ABOUT US</h1>
               </div>
             </div>
           </div>
