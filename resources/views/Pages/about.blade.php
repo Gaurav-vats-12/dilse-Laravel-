@@ -13,6 +13,46 @@
         </div>
       </section>
       @include('layouts.partials.michelin_certificate')
+      <section class="award_winning py_8">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <div class="award_winning_txt">
+                <h2>Our 2023<br>
+                 <span>Award Winning</span> Best Restaurant</h2>
+                 <p>2023's Best Restaurant Award Winner: A culinary masterpiece that defines excellence through exceptional flavors and unforgettable experiences.</p>
+              </div>
+            </div>
+            <div class="col-md-6 text-center">
+              <div class="award_winning_img">
+                <img src="{{asset('frontend/img/awrd.png') }}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="our_achievement py_8">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <div class="our_achievement_img">
+                <img src="{{asset('frontend/img/achievements.png') }}" alt="">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="our_achievement">
+                <h2>Our Achievements</h2>
+                <ul>
+                  <li>Impressive Achievements Awards</li>
+                  <li>Consistent 5+ Ratings</li>
+                  <li> Remarkable Single-Day Record of 500+ Orders Completed</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
       <section class="about_se py_8">
         <div class="container">
           <div class="row">

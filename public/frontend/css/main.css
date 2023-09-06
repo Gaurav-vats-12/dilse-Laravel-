@@ -395,6 +395,22 @@ header.main_header {
 .about_se {
     position: relative;
 }
+
+.award_winning_txt h2 {
+    font-size: 50px;
+    line-height: 70px;
+  }
+  .award_winning_txt h2 span {
+    color: #eb0029;
+    font-family: "ThePretender-ExpSansBoldPress";
+
+  }
+  .award_winning_txt p {
+    font-size: 22px;
+    color: #716b6d;
+    line-height: 43px;
+    margin-bottom: 0;
+  }
 .about_se::before {
     /* content: url("../img/about-leaf.png"); */
     position: absolute;
