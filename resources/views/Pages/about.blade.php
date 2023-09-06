@@ -12,6 +12,7 @@
           </div>
         </div>
       </section>
+      @include('layouts.partials.michelin_certificate')
       <section class="about_se py_8">
         <div class="container">
           <div class="row">
