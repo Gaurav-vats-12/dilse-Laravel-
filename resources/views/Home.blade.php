@@ -333,7 +333,7 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
         <div class="sub_scribe_img">
-          <img src="{{asset('frontend/img/Dilsemichelincertificate.jpeg')}}" alt="" />
+          <img src="{{asset('frontend/img/subscribe_img.png')}}" alt="" />
         </div>
       </div>
       <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
