@@ -46,10 +46,12 @@
                   <li>Impressive Achievements Awards</li>
                   <li>Consistent 5+ Ratings</li>
                   <li> Remarkable Single-Day Record of 500+ Orders Completed</li>
+                  <li> Highly Searched Restaurant on Google</li>
+                  <li> Featured on BlogTO</li>
+                  <li> In 2023 We Are Award Winning Best Restaurant</li>
                 </ul>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -72,18 +74,6 @@
               <div class="about_img">
                 <img src="{{asset('frontend/img/DSC_1331.jpg') }}" alt="" />
               </div>
-              <!-- <div class="about_img">
-                <img src="{{asset('frontend/img/DSC_1336.jpg') }}" alt="" />
-              </div>
-              <div class="about_img">
-                <img src="{{asset('frontend/img/DSC_1339.jpg') }}" alt="" />
-              </div>
-              <div class="about_img">
-                <img src="{{asset('frontend/img/DSC_1345.jpg') }}" alt="" />
-              </div>
-              <div class="about_img">
-                <img src="{{asset('frontend/img/DSC_1352.jpg') }}" alt="" />
-              </div> -->
             </div>
             <div class="col-md-7">
               <div class="about_cntnt about_under_text">
@@ -183,12 +173,12 @@
           <div class="row">
             <div class="col-md-5">
               <div class="our_acheive_image">
-                <img src="{{asset('frontend/img/restudent_wine.png') }}" alt="" />
+                <img src="{{asset('frontend/img/food-01.png') }}" alt="" />
               </div>
             </div>
             <div class="col-md-7">
               <div class="about_cntnt about_under_text">
-                <h3>Our achievements</h3>
+                <h3>Our Best Services</h3>
                 <h2 class="bringing">We Provide Best In Class Services</h2>
                 <p>
                   It is a long established fact that a reader will be distracted

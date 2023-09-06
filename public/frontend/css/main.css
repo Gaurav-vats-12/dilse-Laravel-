@@ -411,6 +411,35 @@ header.main_header {
     line-height: 43px;
     margin-bottom: 0;
   }
+
+  .our_achievement {
+    background: #fcebb9;
+  }
+  .our_achievement h2 {
+    font-size: 46px;
+    margin-bottom: 20px;
+  }
+
+  .our_achievement li::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    background: #eb0029;
+    border-radius: 50%;
+  }
+
+  .our_achievement li {
+    position: relative;
+    padding-left: 36px;
+    font-size: 23px;
+    color: #716b6d;
+    margin-bottom: 12px;
+  }
+
+
 .about_se::before {
     /* content: url("../img/about-leaf.png"); */
     position: absolute;
@@ -438,6 +467,15 @@ header.main_header {
     position: relative;
     z-index: 9;
 }
+
+.about_se .about_img.slick-slide {
+    height: 410px;
+  }
+  .about_se .about_img.slick-slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 .taste_the::before {
     content: url(../img/taste_the_bg.png);
     position: absolute;
