@@ -3,12 +3,15 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Create Menu</h1>
+            <h1 class="m-0"> {{ isset($Menu) ?  'Update Pages' : 'Create Pages' }}</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-            <li class="breadcrumb-item active">Create Pages</li>
+            <li class="breadcrumb-item active">
+            {{ isset($Menu) ?  'Update Pages' : 'Create Pages' }}
+
+           </li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -56,7 +59,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-primary me-2"> {{ isset($Menu) ?  'Update' : 'Create' }}</button>
                         </form>
                     </div>
                 </div>

@@ -28,7 +28,7 @@
                         </div>
                         <div class="cusstom_input">
                             <x-input-label for="email" :value="__('Phone Number')" />
-                            <x-text-input id="phone" name="phone"  type="tel" class="mt-1 block w-full" :value="old('phone', $user->phone)"  autocomplete="username" />
+                            <x-text-input id="phone" name="phone"  placeholder="Enter Phone Number" type="tel" class="mt-1 block w-full" :value="old('phone', $user->phone)"  autocomplete="username" />
                             <x-input-error class="mt-2" :messages="$errors->get('phone')" />
                         </div>
                         <x-primary-button class="theme_btn">{{ __('Save') }}</x-primary-button>

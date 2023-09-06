@@ -464,7 +464,10 @@ jQuery(document).ready(function () {
          }
      });
     payment_intergation(jQuery(`#StripeKey`).val());
-     jQuery('#billing_phone').inputmask('(999) 999-9999');
+
+    jQuery('#billing_phone').inputmask('+1 (999) 999-9999');
+
+
      jQuery('#billing_postcode').inputmask('A9A 9A9', {
          placeholder: 'K1N 8W5\n',
          clearMaskOnLostFocus: false,
@@ -493,23 +496,16 @@ jQuery(document).ready(function () {
           let ajax_url = jQuery('#state_ajax').val();
           let selected_billing_state = jQuery('#selected_billing_state').val();
           let ajax_value = {country_uid,'type':'country',selected_billing_state};
+
           state_dependency_country_list(ajax_value, ajax_url);
          jQuery('#billing_postcode').inputmask('A9A 9A9', {
              placeholder: 'K1N 8W5\n',
              clearMaskOnLostFocus: false,
          })
 
-    }else if ( url.indexOf("/user/register") > -1) {
-        jQuery(document).on("click", "#btnToggle", function (event) {
-            jQuery(this).find("#eyeIcon").toggleClass("fa-eye fa-eye-slash");
-            let passwordItd = (jQuery(this).attr('passwordType') === 'password') ? jQuery('#password') : jQuery('#password_confirmation');
-            toggal_passwords(passwordItd);
-        });
-    }else if (url.indexOf("/user/login") > -1) {
-        jQuery(document).on("click", "#btnToggle", function (event) {
-            jQuery(this).find("#eyeIcon").toggleClass("fa-eye fa-eye-slash");
-            toggal_passwords(jQuery('#password'));
-        });
+    }else if (url.indexOf("/user/profile") > -1) {
+        jQuery('#phone').inputmask('+1 (999) 999-9999');
+
     }
 
 });
