@@ -38,8 +38,7 @@
                     @endforeach
 
                 </table>
-                <div class="login-content">If you want to order more. Click on the <a href="{{url('menu')}}">Menus</a></p>
-                    {{-- <p>We'll send a confirmation email shortly.</p> --}}
+                <div class="login-content">If you want to order more. Click on the <a href="{{ route('menu','appetizers') }}">Menus</a></p>
                 </div>
         </section>
 
