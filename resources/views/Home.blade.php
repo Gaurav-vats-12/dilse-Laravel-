@@ -6,9 +6,7 @@
 <section class="video_dilse-tw">
   <div class="video_dilse_play-tw">
     <video id="home_banner_vd" width="" height="" autoplay loop muted>
-      <source src="{{asset('frontend/vedio/dilSEok.mp4#t=13.8')}}" type="video/mp4" />
-
-
+      <source src="{{asset('frontend/vedio/DilSe Home.mp4#t=13.8')}}" type="video/mp4" />
     </video>
     <div class="home-slider-main-tw">
       <div class="container">
@@ -29,9 +27,7 @@
 
     </div>
     @include('layouts.partials.order_popup')
-
   </div>
-
 </section>
 @include('layouts.partials.michelin_certificate')
 <section class="about_se py_8">

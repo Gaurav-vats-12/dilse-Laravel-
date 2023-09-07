@@ -478,6 +478,65 @@ jQuery(document).ready(function () {
     }else if (url.indexOf("/user/profile") > -1) {
         jQuery('#phone').inputmask('+1 (999) 999-9999');
 
+    }else if (url.indexOf("/book-a-reservation") > -1) {
+        jQuery('#datepicker').datepicker({
+            minDate: 1,
+            defaultDate: "+1",
+            dateFormat: 'yy-mm-dd'
+        });
+        jQuery('#timepicker').timepicker({
+            timeFormat: 'h:mm p',
+            interval: 15,
+            minTime: '11:30 AM',
+            maxTime: '10:30 PM',
+            defaultTime: '11',
+            startTime: '10:00',
+            dynamic: true,
+            dropdown: true,
+            scrollbar: true,
+            showDuration: true
+        });
+        let now = new Date(), currentHour = now.getHours(), currentMinute = now.getMinutes();
+        if (currentMinute < 15) {
+            currentMinute = 0;
+        } else if (currentMinute < 30) {
+            currentMinute = 15;
+        } else if (currentMinute < 45) {
+            currentMinute = 30;
+        } else {
+            currentMinute = 45;
+        }
+        let currentTime = currentHour + ':' + (currentMinute === 0 ? '00' : '15');
+
+        jQuery(document).on("change", "#datepicker", async function (event) {
+            let selectedDate = new Date($(this).val()); // Assuming the date format is 'yyyy-mm-dd'
+            if (selectedDate.toDateString() === now.toDateString()) {
+                var minTimeValue = (currentHour < 10 ? '0' : '') + currentHour + ':' + (currentMinute < 10 ? '0' : '') + currentMinute;
+                jQuery('#timepicker').timepicker('option', 'minTime', minTimeValue);
+            } else {
+                jQuery('#timepicker').timepicker('option', 'minTime', '11:30 AM');
+            }
+        });
+        let initialMinTime = now.toDateString() === (new Date($('#datepicker').val()).toDateString()) ? currentTime : '11:30 AM';
+        jQuery('#timepicker').timepicker({
+            'minTime': initialMinTime,
+            'maxTime': '10:30 PM',
+            'step': 15,
+            'showDuration': false
+        });
+        jQuery(document).on("keypress", "#timepicker", async function (event) {
+            jQuery(this).prop('readonly', true);
+            jQuery(this).css('pointer-events', 'none');
+        });
+        jQuery(document).on("click", "#inputWrapper", async function (event) {
+            jQuery('#timepicker').prop('readonly', false);
+            jQuery('#timepicker').css('pointer-events', 'auto');
+
+        });
+
+        jQuery('#phone').inputmask('+1 (999) 999-9999');
+
+
     }
 
 });

@@ -57,7 +57,7 @@
       <section class="about_se py_8">
         <div class="container">
           <div class="row">
-            <div class="col-md-5" id="about_us_page">
+            <div class="col-md-5 my-slider" id="about_us_page">
               <div class="about_img">
                 <img src="{{asset('frontend/img/DSC_1336.jpg') }}" alt="" />
               </div>
