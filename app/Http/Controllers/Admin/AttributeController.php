@@ -24,6 +24,9 @@ class AttributeController extends Controller
      */
     public function create()
     {
+
+
+
        return view('admin.page.attributes.create');
     }
 

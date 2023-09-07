@@ -28,6 +28,11 @@ class FoodItem extends Model
         return $this->hasMany(ExtraFoodItems::class, 'food_item_id', 'id');
     }
 
+    public function attributes()
+    {
+        return $this->hasMany(FoodAttribute::class);
+    }
+
 
     protected static function booted()
     {
@@ -35,6 +40,7 @@ class FoodItem extends Model
             $footItem->slug = self::createUniqueSlug($footItem->name);
         });
     }
+
 
     // Method to generate a unique slug from the given title
     protected static function createUniqueSlug($title, $id = null)

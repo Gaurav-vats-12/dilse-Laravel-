@@ -45,7 +45,18 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-
+                        <!-- <div class="form-group">
+                        <label for="spicy_lavel">   {{ __('Spice level') }}</label>
+                        <select name="spicy_lavel[]" id="spicy_lavel" class="form-control select2" multiple>
+                        <option value=""> Select Spice Lavel</option>
+                           @foreach( $attribuite as  $key=> $attribuite)
+                            <option value="{{$attribuite->id}}"  >{{ $attribuite->attributes_name}}</option>
+                              @endforeach
+                            </select>
+                            @error('spicy_lavel')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div> -->
                         <div class="form-group">
                         <label for="product_image">   {{ __('Logo Image') }}</label>
                             <input type="file" name="product_image" id="product_image"  class="form-control dropify" >

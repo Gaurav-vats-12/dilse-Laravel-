@@ -143,6 +143,7 @@ jQuery( function () {
 
 
     }else if(url.indexOf("/food-items") > -1){
+        jQuery("#spicy_lavel").select2({  });
         new DataTable('#food_items',{
             "responsive": true,
             "lengthMenu": [10, 20],
@@ -283,6 +284,7 @@ jQuery( function () {
 
 
     }else if(url.indexOf("/manage-attributes") > -1){
+
         new DataTable('#attribute_bootrapp_ytable',{
             "responsive": true,
             "lengthMenu": [10, 20],
