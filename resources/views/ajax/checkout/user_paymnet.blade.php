@@ -57,7 +57,7 @@
                         @endphp
                         <input type="hidden" name="tax_total" id="tax_total" value="{{ $tax_total }}">
 
-                        <span class="key">Tax ({{setting('tax' ,0.00)}}%)</span>
+                        <span class="key">Tax </span>
                         <span class="value"  data-value ="{{ $tax_total }}" >{{ setting('site_currency')}}{{ $tax_total }}</span>
                     </li>
                     <li class="grand-total">
