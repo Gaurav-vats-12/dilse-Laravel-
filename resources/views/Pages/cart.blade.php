@@ -89,7 +89,7 @@
                                     <li>
 
                                         <div class="s_subtotal">
-                                            <p>Tax ({{setting('tax' ,0.00)}}%)
+                                            <p>Tax
                                             </p>
                                         </div>
                                         <div class="s_total" id="tax_total">
