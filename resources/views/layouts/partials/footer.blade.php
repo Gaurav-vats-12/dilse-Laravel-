@@ -17,7 +17,7 @@
             <div class="footer_cntnt">
               <div class="footer_logo">
                 <a href="/">
-                <img src="{{ setting('footer_logo') != null ? url('/storage/site/logo/'.setting('footer_logo').'') : asset('frontend/img/footer_logo-1.png') }}" alt="" />
+                <img src="{{ setting('footer_logo') != null ? url('/storage/site/logo/'.setting('footer_logo').'') : asset('frontend/img/footer-logo.svg') }}" alt="" />
                 </a>
               </div>
             </div>
@@ -83,7 +83,7 @@
         </div>
         </div>
       </div>
-      
+
     </footer>
 
   @include('layouts.partials.footer_scripts')

@@ -124,6 +124,7 @@
                     </div>
                     @endif
                 </div>
+
                 @if(session('cart'))
                     @if (isset($extra_items) && count($extra_items) >0)
                         <input type="hidden" name="cart_ajx_url" id="cart_ajx_url" value="{{ route('cart.extra_items') }}">
