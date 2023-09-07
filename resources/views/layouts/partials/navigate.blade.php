@@ -65,10 +65,7 @@
                     </ul>
                 </div>
                 <div class="site_logo">
-                    <a href="{{ url('/')}}"><img
-                                src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}"
-                                alt="">
-                    </a>
+                    <a href="{{ url('/')}}"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/white-logo.svg')  }}"  alt=""> </a>
                 </div>
                 <div class="menu_left menu_right">
                     <ul>

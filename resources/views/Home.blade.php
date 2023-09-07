@@ -29,6 +29,47 @@
     @include('layouts.partials.order_popup')
   </div>
 </section>
+<section class="available_on py_8">
+        <div class="container">
+          <div class="tittle_heading">
+            <h2>
+              available on <span>your personal</span> request
+            </h2>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="available_on_crd">
+                <div class="available_on_img">
+                  <img src="{{asset('frontend/img/glutan.png') }}" alt="">
+                </div>
+                <div class="available_on_txt">
+                  <h5>Gluten Free</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="available_on_crd">
+                <div class="available_on_img">
+                  <img src="{{asset('frontend/img/vegan-2.png') }}" alt="">
+                </div>
+                <div class="available_on_txt">
+                  <h5>Vegan</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="available_on_crd">
+                <div class="available_on_img">
+                  <img src="{{asset('frontend/img/jain.png') }}" alt="">
+                </div>
+                <div class="available_on_txt">
+                  <h5>Jain Food</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 @include('layouts.partials.michelin_certificate')
 <section class="about_se py_8">
   <div class="container">
