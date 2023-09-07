@@ -74,7 +74,6 @@
                                         @php
                                             $selectedLocations = old('site_location', explode(',', setting('site_location'))  ?: []);
 
-
                                             if (!is_array($selectedLocations)) {
                                                 $selectedLocations = [$selectedLocations];  // Ensure we have an array
                                             }
@@ -90,7 +89,7 @@
                                 <div class="row py-2">
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                     <label for="logo">Logo</label>
-                                    <input type="file" name="logo" id="logo" class="dropify" data-max-file-size="1M" data-max-height="1000"  data-errors-position="outside" data-allowed-file-extensions="png jpg svg" data-default-file="{{ url('/storage/site/logo/'.setting('logo').'') }}" >
+                                    <input type="file" name="logo" id="logo" class="dropify" data-max-file-size="1M" data-max-height="1000"  data-errors-position="outside" data-allowed-file-extensions="png jpg svg" data-default-file="{{ url('/storage/site/logo/'.setting('logo').'')  }}" >
                                     @error('logo')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
@@ -145,27 +144,25 @@
                                     </div>
                                 </div>
                                 <div class="row py-2">
-                                    <div class="col-xl-6 col-lg-6 col-6 form-group">
-                                    <label for="blogto_url"> Delivery Charge</label>
-                                    <input type="text" name="delivery_charge" id="delivery_charge"  class="form-control" value="{{ old('delivery_charge',setting('delivery_charge'))}}">
-                                    @error('delivery_charge')  <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
-
-                                <!-- <div class="row py-2">
-                                    <div class="col-xl-6  form-group">
-                                    <label for="blogto_url"> Delivery Charge</label>
-                                    <input type="text" name="delivery_charge" id="delivery_charge"  class="form-control" value="{{ old('delivery_charge',setting('delivery_charge'))}}">
-                                    @error('delivery_charge')  <span class="text-danger">{{ $message }}</span> @enderror
+                                    <div class="col-xl-12 col-lg-6 col-6 form-group">
+                                        <label for="tax">Minimum Order for Delivery</label>
+                                        <input type="text" name="minimum_order_for_delivery" id="minimum_order_for_delivery"  class="form-control" value="{{ old('minimum_order_for_delivery',setting('minimum_order_for_delivery'))}}">
+                                        @error('minimum_order_for_delivery')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
                                 <div class="row py-2">
                                     <div class="col-xl-6 col-lg-6 col-6 form-group">
-                                    <label for="blogto_url"> Delivery Charge</label>
-                                    <input type="text" name="delivery_charge" id="delivery_charge"  class="form-control" value="{{ old('delivery_charge',setting('delivery_charge'))}}">
-                                    @error('delivery_charge')  <span class="text-danger">{{ $message }}</span> @enderror
+                                    <label for="delivery_charge_within_5km"> Delivery Charge (Within 5 km)</label>
+                                    <input type="text" name="delivery_charge_within_5km" id="delivery_charge_within_5km"  class="form-control" value="{{ old('delivery_charge_within_5km',setting('delivery_charge_within_5km'))}}">
+                                     @error('delivery_charge_within_5km')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
-                                </div> -->
+                                    <div class="col-xl-6 col-lg-6 col-6 form-group">
+                                    <label for="delivery_charge_outside_5km"> Delivery Charge (Outside 5 km-15km)</label>
+                                    <input type="text" name="delivery_charge_outside_5km" id="delivery_charge_outside_5km"  class="form-control" value="{{ old('delivery_charge_outside_5km',setting('delivery_charge_outside_5km'))}}">
+                                     @error('delivery_charge_outside_5km')  <span class="text-danger">{{ $message }}</span> @enderror
+                                    </div>
+                                </div>
+
                                 <div class="row py-2">
                                     <div class="col-xl-12 col-lg-6 col-6 form-group">
                                         <label for="tax"> Tax ( %)</label>
