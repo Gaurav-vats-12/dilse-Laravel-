@@ -289,6 +289,15 @@ jQuery(document).ready(function () {
             let ajax_value = {menu_id};
             fetch_extra_items_data(ajax_value);
         }
+        jQuery(document).on("change", ".delivery", async function (event) {
+            let site_currency = jQuery('meta[name="site_currency"]').attr('content');
+            jQuery(`#dilevery_total`).html(`<p>${site_currency}${jQuery('input[name="delivery"]:checked').val()}</p>`);
+
+            // jQuery('');
+            // console.log($('input[name="delivery"]:checked').val());
+
+
+        });
 
 
        jQuery(document).on("click", ".extra_items", async function (event) {
