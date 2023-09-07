@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\EmailSubscriberController;
 use App\Http\Controllers\Admin\GalleryController as GalleryControllerAlias;
 use App\Http\Controllers\Admin\MenuController as MenuControllerAlias;
 use App\Http\Controllers\Admin\OrderManagemnetController;
+use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\PageManagementController as PageManagementControllerAlias;
 use App\Http\Controllers\Admin\SettingController as SettingControllerAlias;
 use App\Http\Controllers\Admin\TestimonialsController as TestimonialsControllerAlias;
@@ -33,7 +34,8 @@ Route::prefix('admin')->name('admin.')->group(callback: function(){
             Route::get('unsubscribe/{id}', [EmailSubscriberController::class, 'unsubscribe_mail'])->name('view');
         });
 
-
+        // Manage Attributes
+        Route::resource('manage-attributes', AttributeController::class);
 
         // food items
         Route::resource('food-items', FoodItemControllerAlias::class);

@@ -154,3 +154,10 @@ input[type="password"]::-ms-reveal {
 .fa {
     font-size: 1.5rem;
 }
+.required:after {
+    color: #f62947;
+    content: "*";
+    font-size: inherit;
+    font-weight: 700;
+    position: relative;
+}
