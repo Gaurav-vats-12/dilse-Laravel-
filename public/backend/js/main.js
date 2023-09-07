@@ -282,7 +282,17 @@ jQuery( function () {
         });
 
 
-    }else{
+    }else if(url.indexOf("/manage-attributes") > -1){
+        new DataTable('#attribute_bootrapp_ytable',{
+            "responsive": true,
+            "lengthMenu": [10, 20],
+            "searching": true,
+            "columnDefs": [
+                { orderable: true, className: 'reorder', targets: 0 },
+                { orderable: true, className: 'reorder', targets: 1 },
+                { orderable: false, targets: '_all' }
+            ]
+        });
 
     }
 
