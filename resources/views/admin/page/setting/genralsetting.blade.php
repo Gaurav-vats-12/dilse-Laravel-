@@ -102,7 +102,7 @@
                                 <div class="row py-2">
                                     <div class="col-xl-12 col-lg-12 col-12 form-group">
                                     <label for="footer_logo"> Footer Logo</label>
-                                    <input type="file" name="footer_logo" id="footer_logo" class="dropify" data-max-file-size="1M" data-max-height="1000"  data-errors-position="outside" data-allowed-file-extensions="png jpg" data-default-file="{{ url('/storage/site/logo/'.setting('footer_logo').'') }}" >
+                                    <input type="file" name="footer_logo" id="footer_logo" class="dropify" data-max-file-size="1M" data-max-height="1000"  data-errors-position="outside" data-allowed-file-extensions="png jpg svg" data-default-file="{{ url('/storage/site/logo/'.setting('footer_logo').'') }}" >
                                     @error('logo')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
 
