@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <select name="spicy_lavel" id="spicy_lavel" class="form-control" ajax_value ="{{ route('cart.update_other')}}">
-                                        <option value="">Choose Spice Lavel</option>
+                                        <option value="">Choose Spice level</option>
                                         @foreach(getattribute('other') as $key=> $attribuite)
                                         <option value="{{$attribuite->attributes_name}}" {{ $attribuite->attributes_name == session('spicy_lavel')? 'selected' : '' }}>{{ $attribuite->attributes_name}}</option>
                                         @endforeach
