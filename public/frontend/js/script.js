@@ -50,8 +50,9 @@ const updateTotals = async (deliveryCost) => {
 
     if(resPose.code =='200' || resPose.code ==200){
         if(trypelist==='cart'){
-            jQuery(`#dilevery_total`).html(`<p>${site_currency}${deliveryCost.toFixed(2)}</p>`);
-            jQuery(`#grandTotal`).html(`<p>${site_currency}${grandTotal.toFixed(2)}</p>`);
+            location.reload(true);
+            // jQuery(`#dilevery_total`).html(`<p>${site_currency}${deliveryCost.toFixed(2)}</p>`);
+            // jQuery(`#grandTotal`).html(`<p>${site_currency}${grandTotal.toFixed(2)}</p>`);
         }else{
             jQuery(`#deliveryCost`).empty();
             jQuery(`#dilevery_total`).html(`<p>${site_currency}${deliveryCost.toFixed(2)}</p>`);

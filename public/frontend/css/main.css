@@ -3429,3 +3429,8 @@ p#message {
   display:none;
 
 }
+input#delivery_typecx {
+    position: relative;
+    bottom: -26px;
+    right: 17px;
+}
