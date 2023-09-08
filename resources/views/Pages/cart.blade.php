@@ -82,7 +82,7 @@
                             <div class="order_summary">
                                 <div class="tittle_heading">
                                     <h4> Order Summary </h4>
-                                    <p id="message"  mimimum_ammout= "{{  round(( setting('minimum_order_for_delivery' ,0.00)) ,2) }}">Minimum order amount is {{ setting('site_currency')}}{{ round(( setting('minimum_order_for_delivery' ,0.00)) ,2) }}.</p>
+                                    <p id="message"  mimimum_ammout= "{{  round(( setting('minimum_order_for_delivery' ,0.00)) ,2) }}">Minimum order amount is {{ setting('site_currency')}}{{ round(( setting('minimum_order_for_delivery',0.00)) ,2) }}.00</p>
                                 <ul class="summary_main">
                                     <li>
                                         <div class="s_subtotal">
