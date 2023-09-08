@@ -62,9 +62,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="input-group">
-
                                     <select name="spicy_lavel" id="spicy_lavel" class="form-control" ajax_value ="{{ route('cart.update_other')}}">
-
                                         <option value="">Choose Spice Lavel</option>
                                         @foreach(getattribute('other') as $key=> $attribuite)
                                         <option value="{{$attribuite->attributes_name}}" {{ $attribuite->attributes_name == session('spicy_lavel')? 'selected' : '' }}>{{ $attribuite->attributes_name}}</option>
@@ -122,7 +120,7 @@
                                                 <input type="radio" type="cart"  id="delivery_typecx"  class="delivery" name="delivery_type" value="{{ round(setting('delivery_charge_outside_5km' ,0.00),2) }}" {{ setting('delivery_charge_outside_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }} > <label for="delivery_typecx">Delivery Charge (Outside 5 km-15km)</label> <br>
                                             </div>
                                             <div class="s_total" id="dilevery_total">
-                                                <p>{{ setting('site_currency')}}{{  session('deliveryCost') }}</p>
+                                                <p>{{ setting('site_currency')}}{{  session('deliveryCost' ,0.00) }}</p>
                                             </div>
                                         </li>
                                     @endif
