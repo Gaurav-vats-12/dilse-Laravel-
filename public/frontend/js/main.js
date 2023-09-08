@@ -290,13 +290,26 @@ jQuery(document).ready(function () {
             fetch_extra_items_data(ajax_value);
         }
         jQuery(document).on("change", ".delivery", async function (event) {
+            let deliveryCost = parseFloat(jQuery('input[name="delivery_type"]:checked').val());
+            updateTotals(deliveryCost);
+        });
+
+
+        jQuery(document).on("click", "#checkout_btn", async function (event) {
             let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-            jQuery(`#dilevery_total`).html(`<p>${site_currency}${jQuery('input[name="delivery"]:checked').val()}</p>`);
-
-            // jQuery('');
-            // console.log($('input[name="delivery"]:checked').val());
-
-
+            let type = jQuery(this).attr('type');
+            let subtotal = parseFloat(jQuery('#subtotal').attr('subtotal'));
+            let mimimum_ammout = parseFloat(jQuery('#message').attr('mimimum_ammout'));
+            if (subtotal < mimimum_ammout) {
+                jQuery('#minimum_order_message').html(`<div class="auto-close alert alert-warning d-flex align-items-center" role="alert" id ="auto-close-alert"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><div id="alert_message">Your current order is <b>${site_currency}${subtotal}</b> --You must have an order with minimum of ${site_currency}${mimimum_ammout} to place the order </div></div>`);
+                 setTimeout(function() {  jQuery('#auto-close-alert').alert('close'); }, 5000);
+            }else{
+                if (type ==='order_type') {
+                    window.location.href = jQuery(this).attr('login_url');
+                } else {
+                    jQuery(`#staticBackdrop`).modal('show')
+                }
+            }
         });
 
 
@@ -343,8 +356,9 @@ jQuery(document).ready(function () {
                     const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
                     if (resPose.status === `success`) {
                         jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
+                        jQuery('#subtotal').attr('subtotal',resPose.subtotal)
                         jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                        jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
+                        jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
                     }
                 }
             });
@@ -385,9 +399,10 @@ jQuery(document).ready(function () {
                 [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
                 if (resPose.status === 'success') {
                     jQuery(`.cart_count`).html(resPose.cart_total);
+                    jQuery('#subtotal').attr('subtotal',resPose.subtotal)
                     jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
                     jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                    jQuery(`#total`).html(`<p>${site_currency}${resPose.total}</p>`);
+                    jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
                     if (uid === 0) {
                         jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                         jQuery('#order_details').empty();
@@ -418,7 +433,7 @@ jQuery(document).ready(function () {
 
      /**
          * State Dependency In Checkout Page
-         */
+    */
      let country_uid = parseInt(jQuery('#billing_country').find(":selected").attr('country_uid'));
      let ajax_url = jQuery('#state_ajax').val();
 

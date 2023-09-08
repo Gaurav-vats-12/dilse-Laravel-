@@ -53,7 +53,7 @@ Route::get('/send', [HomeController::class, 'sendEmail']);
 // Add to Cart
 Route::prefix('cart')->name('cart.')->group(callback: function(){
     Route::get('/', [CartController::class, 'viewcart'])->name('view');
-
+    Route::get('/update-delivery-charges', [CartController::class, 'update_delivery'])->name('update_delivery');
 });
 
 Route::prefix('checkout')->name('checkout.')->group(callback: function(){

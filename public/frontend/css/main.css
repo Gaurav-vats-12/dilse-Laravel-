@@ -3420,3 +3420,12 @@ label {
     display: inline-block;
     margin-right: 10px;
 }
+
+p#message {
+    font-weight: bold;
+    font-size: 20px;
+}
+.alert{
+  display:none;
+
+}
