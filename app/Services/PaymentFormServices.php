@@ -125,6 +125,8 @@ class PaymentFormServices{
         ]);
         Session::forget('cart');
         Session::forget('order_type');
+        Session::forget('deliveryCost');
+        Session::forget('spicy_lavel');
        return  ['code' => 200 , 'order_id'=>$order_id , 'url'=>  $url , 'statusMessage'=> $statusMessage,'payment_id'=>$payment_id, 'status' =>true, "message"=> $payment_message];
     }
 }
