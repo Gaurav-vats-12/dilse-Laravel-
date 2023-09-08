@@ -15,6 +15,7 @@
 <a id="button"></a>
 
     @include('layouts.partials.navigate')
+    @include('layouts.partials.responsive_header')
 <div class="wrapper">
   @yield('frontcontent')
   </div>
