@@ -182,6 +182,12 @@ jQuery(document).ready(function () {
         }
     });
 
+    jQuery(document).on("change", ".delivery", async function (event) {
+        let deliveryCost = parseFloat(jQuery('input[name="delivery_type"]:checked').val());
+        updateTotals(deliveryCost);
+    });
+
+
     if (url.indexOf("/menu") > -1) {
         /**
 * Fetch Food Items via Menu (Menu  Page)
@@ -289,10 +295,14 @@ jQuery(document).ready(function () {
             let ajax_value = {menu_id};
             fetch_extra_items_data(ajax_value);
         }
-        jQuery(document).on("change", ".delivery", async function (event) {
-            let deliveryCost = parseFloat(jQuery('input[name="delivery_type"]:checked').val());
-            updateTotals(deliveryCost);
+        jQuery(document).on("change", "#spicy_lavel", async function (event) {
+            event.preventDefault();
+            let spicy_lavel = jQuery(this).find(":selected").val();
+            let ajax_Url = jQuery(this).attr('ajax_value');
+            const resPose = await Ajax_response(ajax_Url, "POST", {spicy_lavel}, '');
+            console.log(resPose);
         });
+
 
 
         jQuery(document).on("click", "#checkout_btn", async function (event) {
