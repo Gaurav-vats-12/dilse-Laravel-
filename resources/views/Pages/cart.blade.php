@@ -55,8 +55,30 @@
                                         </ul>
                                     </div>
                                 </div>
-                            @endforeach @else <h4> No Cart  Items Found</h4>  @endif
+                            @endforeach
+                            <div class="row">
+                    <div class="col-md-6">
+                        <h3>Add spice level</h3>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="input-group">
+
+                                    <select name="spicy_lavel" id="spicy_lavel" class="form-control" ajax_value ="{{ route('cart.update_other')}}">
+
+                                        <option value="">Choose Spice Lavel</option>
+                                        @foreach(getattribute('other') as $key=> $attribuite)
+                                        <option value="{{$attribuite->attributes_name}}" {{ $attribuite->attributes_name == session('spicy_lavel')? 'selected' : '' }}>{{ $attribuite->attributes_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                            @else
+                            <h4> No Cart  Items Found</h4>  @endif
+                    </div>
+
                     <div class="col-sm-12 col-md-7 col-lg-4" id="order_details">
                         @if(session('cart'))
                             <div class="order_summary">
@@ -69,7 +91,7 @@
                                             <p>Subtotal
                                             </p>
                                         </div>
-                                        <div class="s_total" id="subtotal" subtotal ="{{ $subtotal }}"  tax="{{ round(( setting('tax' ,0.00)) ,2) }}" updated_route="{{route('cart.update_delivery') }}">
+                                        <div class="s_total" id="subtotal" subtotal ="{{ $subtotal }}"  tax="{{ round(( setting('tax' ,0.00)) ,2) }}" updated_route="{{route('cart.update_delivery') }}" trypeList="cart">
                                             <p id="subtotal" >{{ setting('site_currency')}} {{ $subtotal }}</p>
                                         </div>
                                     </li>
@@ -83,8 +105,8 @@
                                 $subTotal_Tax = $subtotal + 0.00;
                                 $tax_total = round(($subTotal_Tax * setting('tax' ,0.00)) / 100 ,2);
                             @endphp
-                            <input type="hidden" name="subTotal_Tax" id="subTotal_Tax" value="{{ $tax_total }}">
-                            <p>{{ setting('site_currency')}} {{ $tax_total }}</p>
+                            <input type="hidden" name="tax_total" id="tax_total" value="{{ $tax_total }}">
+                            <p id="totaltax"  totaltax ="{{ $tax_total }}">{{ setting('site_currency')}} {{ $tax_total }}</p>
                         </div>
                         </li>
                                     @php
@@ -92,30 +114,27 @@
                                     @endphp
                                     @if($orderType == 'delivery')
                                         <li>
+
                                             <div class="s_subtotal">
                                                 <p>Delivery Charges :
                                                 </p>
-                                                <input type="radio" id="delivery_type" class="delivery"  name="delivery_type" value="{{ round(setting('delivery_charge_within_5km' ,0.00),2) }}"> <label for="delivery_type">Delivery Charge (Within 5 km)</label><br>
-                                                <input type="radio"  id="delivery_typecx"  class="delivery" name="delivery_type" value="{{ round(setting('delivery_charge_outside_5km' ,0.00),2) }}"> <label for="delivery_typecx">Delivery Charge (Outside 5 km-15km)</label> <br>
+                                                <input type="radio" type="cart" id="delivery_type" class="delivery"  name="delivery_type" value="{{ round(setting('delivery_charge_within_5km' ,0.00),2) }}" {{ setting('delivery_charge_within_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }}  > <label for="delivery_type" >Delivery Charge (Within 5 km)</label><br>
+                                                <input type="radio" type="cart"  id="delivery_typecx"  class="delivery" name="delivery_type" value="{{ round(setting('delivery_charge_outside_5km' ,0.00),2) }}" {{ setting('delivery_charge_outside_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }} > <label for="delivery_typecx">Delivery Charge (Outside 5 km-15km)</label> <br>
                                             </div>
-
-
                                             <div class="s_total" id="dilevery_total">
-                                                <p>{{ setting('site_currency')}}0.00</p>
+                                                <p>{{ setting('site_currency')}}{{  session('deliveryCost') }}</p>
                                             </div>
                                         </li>
                                     @endif
-
                                 </ul>
                                 <div class="order_totals d-flex align-items-center justify-content-between">
                                     <div class="order_totalses">
                                         <p>Total
                                         </p>
                                     </div>
-                                    <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{ (session('order_type') == 'delivery') ? 0.00 :  0.00 }}">
-
+                                    <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{ (session('order_type') == 'delivery') ? session('deliveryCost') :  '' }}">
                                     <div class="order_totalse" id="grandTotal">
-                                        <p>{{ setting('site_currency')}} {{ (session('order_type') == 'delivery') ? $subtotal + 0.00 +  $tax_total : $subtotal + 0.00 +  $tax_total }}
+                                        <p>{{ setting('site_currency')}}{{ (session('order_type') == 'delivery') ? $subtotal + session('deliveryCost') +  $tax_total : $subtotal + 0.00 +  $tax_total }}
                                         </p>
                                     </div>
                                 </div>

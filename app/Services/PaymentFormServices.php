@@ -43,6 +43,7 @@ class PaymentFormServices{
             'shipping_charge' => round($request->delivery_charge ,2),
             'total_amount' => round($request->tototal_amount ,2),
             'store_location' => $request->store_location,
+            'spice_lavel' => $request->spice_lavel,
             'created_at' => now(),
             'updated_at' => now()
         ]);

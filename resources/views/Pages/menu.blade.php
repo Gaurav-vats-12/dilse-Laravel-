@@ -4,21 +4,8 @@
 <section class="video_dilse-tw">
   <div class="video_dilse_play-tw">
     <video id="home_banner_vd" width="" height="" autoplay loop muted>
-      <source src="{{asset('frontend/vedio/Dil se Menu.mp4')}}" type="video/mp4" />
+      <source src="{{asset('frontend/vedio/Dil se Menu.mp4#t=13.8')}}" type="video/mp4" />
     </video>
-    <div class="home-slider-main-tw">
-      <div class="container">
-      <div class="home-slider-main">
-                <div class="container">
-                    <div class="home-slider-content">
-                        <h1>Menu</h1>
-                    </div>
-                </div>
-            </div>
-      </div>
-
-    </div>
-    @include('layouts.partials.order_popup')
   </div>
 </section>
 
