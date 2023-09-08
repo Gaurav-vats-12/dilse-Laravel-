@@ -19,6 +19,7 @@ jQuery( function () {
       });
 
 
+      
 
     var url = window.location.pathname;
     if (url.indexOf("/banner") > -1) {
