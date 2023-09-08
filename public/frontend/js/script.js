@@ -45,6 +45,7 @@ const updateTotals = async (deliveryCost) => {
     let tax =parseFloat(jQuery('#totaltax').attr('totaltax'));
     let trypelist =jQuery('#subtotal').attr('trypelist');
     let grandTotal = subtotal + deliveryCost + tax;
+
     const resPose = await Ajax_response(updated_route, "POST", {deliveryCost}, '');
 
     if(resPose.code =='200' || resPose.code ==200){
