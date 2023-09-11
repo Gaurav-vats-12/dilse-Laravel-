@@ -31,10 +31,6 @@
 
 <!-- SweetAlert2 -->
 <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-<!-- Toastr -->
-<script  src="{{asset('plugins/toastr/js/toastr.min.js')}}"></script>
-
-
 <script src="{{asset('plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{asset('plugins/Dropify/js/dropify.min.js') }}"></script>
 <script src="{{asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
@@ -60,7 +56,6 @@
 <script src="{{asset('plugins/commonFunction/js/common.js') }}"></script>
 
 <script src="{{asset('backend/js/app.js') }}"></script>
-<script src="{{asset('backend/js/custom.js') }}"></script>
 <script src="{{asset('backend/js/main.js') }}"></script>
 <script src="{{asset('backend/js/adminlte.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>

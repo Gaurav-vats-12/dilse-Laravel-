@@ -31,13 +31,27 @@
                                 <th>FULL NAME</th>
                                 <th>EMAIL</th>
                                 <th>PHONE NUMBER </th>
-                                <th>BOOKING DATE AND TIME </th>
-                                <th>PART SIZE </th>
+                                <th>EXPECTED PERSON </th>
+                                <th>BOOKING DATE </th>
+                                <th>BOOKING Time </th>
                                 <th>COMMENTS </th>
-                                    </tr>
+                                <!-- <th>Status </th> -->
+                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                @foreach($booking as $key=> $bookings)
+                                <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{$bookings->name}}</td>
+                                <td>{{$bookings->email}}</td>
+                                <td>{{$bookings->phone}}</td>
+                                <td>{{$bookings->persons}}</td>
+                                <td>{{ __( date("d-M-Y", strtotime($bookings->date)) ) }}</td>
+                                <td>{{ __($bookings->time) }}</td>
+                                <td>{!! Str::limit(strip_tags($bookings->comments) ,30) !!}</td>
+                                <!-- <td> <form method="POST" action="{{ route('admin.booking.updateStatus',) }}"> @csrf  <label class="switch" for="status"> <input type="checkbox" name="status" id="status" value="1" booking_id ="{{ $bookings->id}}"><span class="slider round"></span>  </label> </form></td> -->
+                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
 

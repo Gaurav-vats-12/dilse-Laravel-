@@ -39,53 +39,17 @@ class BookingController extends Controller
     }
     public function fetchBooking(Request $request): View|\Illuminate\Foundation\Application|Factory|JsonResponse|Application
     {
-        if ($request->ajax()) {
-            $draw = $request->get('draw');
-            $start = $request->get("start");
-            $rowperpage = $request->get("length"); // Rows display per page
-            $columnIndex_arr = $request->get('order');
-            $columnName_arr = $request->get('columns');
-            $order_arr = $request->get('order');
-            $search_arr = $request->get('search');
-            $columnIndex = $columnIndex_arr[0]['column']; // Column index
-            $columnName = $columnName_arr[$columnIndex]['data']; // Column name
-            $columnSortOrder = $order_arr[0]['dir']; // asc or desc
-            $searchValue = $search_arr['value']; // Search value
-            // Total records
-            $totalRecords = Booking::select('count(*) as allcount')->count();
-            $totalRecordswithFilter = Booking::select('count(*) as allcount')->where('name', 'like', '%' .$searchValue . '%')->count();
-            // Fetch records
-            $records = Booking::orderBy($columnName,$columnSortOrder)
-                ->where('bookings.name', 'like', '%' .$searchValue . '%')
-                ->select('bookings.*')
-                ->skip($start)
-                ->take($rowperpage)
-                ->get();
-            $data_arr = array();
-            foreach($records as  $key =>  $bookings){
-                $data_arr[] = array(
-                    "id" => $key + 1 ,
-                    "name" =>$bookings->name,
-                    "email" => $bookings->email,
-                    "phone" => $bookings->phone,
-                     "date"=>"".date("d M ,Y", strtotime($bookings->date))." (".$bookings->time.") ",
-                    "persons" =>  $bookings->persons ,
-                    "comments" =>  Str::limit(strip_tags($bookings->comments)) ,
-                );
-            }
-            $response = array(
-                "draw" => intval($draw),
-                "iTotalRecords" => $totalRecords,
-                "iTotalDisplayRecords" => $totalRecordswithFilter,
-                "aaData" => $data_arr
-            );
-
-            return response()->json($response);
-
-        }
-        return view('admin.page.booking.index');
+        return view(view: 'admin.page.booking.index')->with('booking', value: Booking::latest()->get());
     }
 
+
+    public function updateStatus(Request $request)
+    {
+        $booking_email = Booking::findOrFail($request->booking_id)->email;
+
+
+        dd('asdsadsa',$booking);
+    }
 
 
 }
