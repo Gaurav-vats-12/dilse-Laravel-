@@ -43,6 +43,20 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
+                        <!-- <div class="form-group">
+                        <label for="spicy_lavel">   {{ __('Spice level') }}</label>
+                        <select name="spicy_lavel[]" id="spicy_lavel" class="form-control" multiple>
+                        <option value=""> Select Spice Lavel</option>
+                           @foreach( $attribuite as  $key=> $attribuite)
+                            <option value="{{$attribuite->id}}" {{ in_array($attribuite->id, $food_attribute_id) ? 'selected' : '' }} >{{ $attribuite->attributes_name}}</option>
+                              @endforeach
+                            </select>
+                            @error('menu')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div> -->
+
+
 
                         <div class="form-group">
                         <label for="product_image">   {{ __('Logo Image') }}</label>

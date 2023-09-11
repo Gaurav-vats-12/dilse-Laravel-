@@ -1,12 +1,54 @@
 @extends('layouts.app')
 @section('title', 'About Us')
 @section('frontcontent')
-<section class="inner_bannner bg_style" style="background-image: url('{{asset('frontend/img/IMG_7750.jpeg') }}')">
+<section class="inner_bannner bg_style" style="background-image: url('{{asset('frontend/img/about_banner-image.png') }}')">
         <div class="about_banner_section">
           <div class="home-slider-main">
             <div class="container">
               <div class="home-slider-content">
-                <h1 class="text-dark fw-bold text-decoration-underline">ABOUT US</h1>
+                <h1 class="">ABOUT US</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      @include('layouts.partials.michelin_certificate')
+      <section class="award_winning py_8">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <div class="award_winning_txt">
+                <h2>Our 2023<br>
+                 <span>Award Winning</span> Best Restaurant</h2>
+                 <p>2023's Best Restaurant Award Winner: A culinary masterpiece that defines excellence through exceptional flavors and unforgettable experiences.</p>
+              </div>
+            </div>
+            <div class="col-md-6 text-center">
+              <div class="award_winning_img">
+                <img src="{{asset('frontend/img/awrd.png') }}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="our_achievement py_8">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <div class="our_achievement_img">
+                <img src="{{asset('frontend/img/achievements.png') }}" alt="">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="our_achievement">
+                <h2>Our Achievements</h2>
+                <ul>
+                <li> Highly Searched Restaurant on Google (Organically)</li>
+                  <li>Consistent 5+ Ratings</li>
+                  <li> Remarkable Single-Day Record of 500+ Orders Completed</li>
+                  <li> Featured on BlogTO</li>
+                  <li> In 2023 We Are Award Winning Best Restaurant</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -15,17 +57,7 @@
       <section class="about_se py_8">
         <div class="container">
           <div class="row">
-            <div class="col-md-5" id="about_us_page">
-              <div class="about_img">
-                <img src="{{asset('frontend/img/DSC_1330.jpg') }}" alt="" />
-              </div>
-              <div class="about_img">
-                <img src="{{asset('frontend/img/DSC_1331.jpg') }}" alt="" />
-              </div>
-
-              <div class="about_img">
-                <img src="{{asset('frontend/img/DSC_1333.jpg') }}" alt="" />
-              </div>
+            <div class="col-md-5 my-slider" id="about_us_page">
               <div class="about_img">
                 <img src="{{asset('frontend/img/DSC_1336.jpg') }}" alt="" />
               </div>
@@ -36,8 +68,10 @@
                 <img src="{{asset('frontend/img/DSC_1345.jpg') }}" alt="" />
               </div>
               <div class="about_img">
-
                 <img src="{{asset('frontend/img/DSC_1352.jpg') }}" alt="" />
+              </div>
+              <div class="about_img">
+                <img src="{{asset('frontend/img/DSC_1331.jpg') }}" alt="" />
               </div>
             </div>
             <div class="col-md-7">
@@ -138,12 +172,12 @@
           <div class="row">
             <div class="col-md-5">
               <div class="our_acheive_image">
-                <img src="{{asset('frontend/img/IMG_7783.jpg') }}" alt="" />
+                <img src="{{asset('frontend/img/food-01.png') }}" alt="" />
               </div>
             </div>
             <div class="col-md-7">
               <div class="about_cntnt about_under_text">
-                <h3>Our achievements</h3>
+                <h3>Our Best Services</h3>
                 <h2 class="bringing">We Provide Best In Class Services</h2>
                 <p>
                   It is a long established fact that a reader will be distracted

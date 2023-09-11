@@ -21,6 +21,7 @@ class VerifyEmailController extends Controller
         if ($request->user('user')->markEmailAsVerified()) {
             event(new Verified($request->user('user')));
         }
+        notyf()->duration(2000) ->addSuccess('Your email has been verified successfully. Thank you for confirming your email address.');
 
         return redirect()->intended('/user?verified=1');
     }

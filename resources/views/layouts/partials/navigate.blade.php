@@ -38,10 +38,7 @@
                             <a href="{{ setting('instagram_url') != null ? setting('instagram_url') : '' }}"
                                target="_blank"><img src="{{asset('frontend/img/insta-1.png') }}" alt=""/></a>
                         </li>
-                        <li>
-                            <a href="{{ setting('twitter_url') != null ? setting('twitter_url') : '' }}"
-                               target="_blank"><img src="{{asset('frontend/img/twi.png') }}" alt=""/></a>
-                        </li>
+
                         <li>
                             <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target="_blank"><img
                                         src="{{asset('frontend/img/blogto.png') }}" alt=""/></a>
@@ -68,37 +65,21 @@
                     </ul>
                 </div>
                 <div class="site_logo">
-                    <a href="{{ url('/')}}"><img
-                                src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}"
-                                alt="">
-                    </a>
+                    <a href="{{ url('/')}}"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/white-logo.svg')  }}"  alt=""> </a>
                 </div>
                 <div class="menu_left menu_right">
                     <ul>
                         <li><a href="{{url('gallery')}}">Gallery</a></li>
                         <li><a href="{{url('contact-us')}}">Contact Us</a></li>
-                        <li><a href="{{url('cart')}}" class="cart_item"><img
-                                        src="{{asset('frontend/img/carts__icon.svg')}}"/><span
-                                        class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
+                        <li><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
                         @if(Auth::guard('user')->check())
                             <li class="">
                                 <div class="dropdown">
-                                    <a class="dropdown-toggle" href="javascript:void(0)" role="button"
-                                       id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {!! Str::limit(strip_tags(Auth::guard('user')->user()->name), 12) !!}
-                                    </a>
+                                    <a class="dropdown-toggle" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> {!! Str::limit(strip_tags(Auth::guard('user')->user()->name), 12) !!} </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="{{ route('user.profile.edit') }}">Profile</a>
-                                        </li>
+                                        <li><a class="dropdown-item" href="{{ route('user.profile.edit') }}">Profile</a> </li>
                                         <li><a class="dropdown-item" href="{{ route('user.order') }}"> Order </a></li>
-                                        <li>
-                                            <form method="POST" action="{{ route('user.logout') }}">  @csrf
-                                                <x-responsive-nav-link :href="route('user.logout')" onclick="event.preventDefault();
-                    this.closest('form').submit();" class="dropdown-item">
-                                                    <span> {{ __('Log Out') }}</span>
-                                            </form>
-                                            </x-responsive-nav-link>
-                                        </li>
+                                        <li> <form method="POST" action="{{ route('user.logout') }}">  @csrf <x-responsive-nav-link :href="route('user.logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item"> <span> {{ __('Log Out') }}</span>  </form> </x-responsive-nav-link></li>
                                     </ul>
                                 </div>
                     </ul>

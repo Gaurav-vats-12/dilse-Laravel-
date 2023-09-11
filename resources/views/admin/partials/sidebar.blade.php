@@ -30,6 +30,13 @@
             </a>
           </li>
           <li class="nav-item">
+          <a href="{{ route('admin.manage-attributes.index') }}" class="nav-link {{ (request()->is('admin/manage-attributes*')) ? 'active' : '' }}">
+              <p>
+              {{ __('Manage Attributes ') }}
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
           <a href="{{ route('admin.food-items.index') }}" class="nav-link {{ (request()->is('admin/food-items*')) ? 'active' : '' }}">
               <p>
               {{ __('Manage Food Items ') }}

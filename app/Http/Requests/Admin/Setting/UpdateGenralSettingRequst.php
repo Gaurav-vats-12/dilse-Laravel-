@@ -29,7 +29,9 @@ class UpdateGenralSettingRequst extends FormRequest
             'site_currency' =>  'required',
             'site_location' =>  'required',
             'address' =>  'required',
-            'site_currency' =>  'required',
+            'minimum_order_for_delivery' =>  'required',
+            'delivery_charge_within_5km' =>  'required',
+            'delivery_charge_outside_5km' =>  'required',
         ];
     }
 }

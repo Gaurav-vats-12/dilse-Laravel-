@@ -43,6 +43,7 @@ class PaymentFormServices{
             'shipping_charge' => round($request->delivery_charge ,2),
             'total_amount' => round($request->tototal_amount ,2),
             'store_location' => $request->store_location,
+            'spice_lavel' => $request->spice_lavel,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -59,7 +60,6 @@ class PaymentFormServices{
         ];
         OrderItemsAlias::insert($cart_datals);
         if ($request->payment_method == 'Pay On  Delivery') {
-            dd('sdsadsad');
           $payment_method = 'PayOnDelivery';
           $payment_status = 'pending';
           $payment_id = Str::random(10);
@@ -125,6 +125,8 @@ class PaymentFormServices{
         ]);
         Session::forget('cart');
         Session::forget('order_type');
+        Session::forget('deliveryCost');
+        Session::forget('spicy_lavel');
        return  ['code' => 200 , 'order_id'=>$order_id , 'url'=>  $url , 'statusMessage'=> $statusMessage,'payment_id'=>$payment_id, 'status' =>true, "message"=> $payment_message];
     }
 }
