@@ -72,23 +72,21 @@ li.page-item.active span.page-link {
 li.page-item.disabled span.page-link {
     padding: 10px 20px;
 }
+
 @media screen and (max-width: 1024px) {
     header.main_header {
-=======
-@media screen and (max-width:1024px) {
-  header.main_header{
-    display: none;
+        display: none;
+    }
+    header.responsi_header {
+        display: block;
+    }
+    .certified_crd_cntnt .tittle_heading h2 {
+        font-size: 37px;
+        line-height: 53px;
+    }
 }
-header.responsi_header{
-    display: block;
-}
-.certified_crd_cntnt .tittle_heading h2 {
-  font-size: 37px;
-  line-height: 53px;
-}
-}
-  @media screen and (max-width: 991px) {
-    header.main_header{
+@media screen and (max-width: 991px) {
+    header.main_header {
         display: none;
     }
     header.responsi_header {
@@ -114,7 +112,7 @@ header.responsi_header{
     .sub_scribe_txt h2 {
         font-size: 32px;
     }
-   
+
     .available_on_txt h5 {
         font-size: 24px;
     }
@@ -419,7 +417,6 @@ header.responsi_header{
     }
     .copyright_links ul {
         flex-direction: column;
-
     }
     .testimonial_slider_txt p {
         font-size: 17px;
@@ -452,44 +449,48 @@ header.responsi_header{
 @media screen and (max-width: 375px) {
     .tittle_heading h2,
     .sub_scribe_txt h2 {
-      font-size: 16px;
-      line-height: 28px;
-      padding: 0 20px;
-  }
-  .restudent_text h3 {
-    padding: 0 20px;
-}
+        font-size: 16px;
+        line-height: 28px;
+        padding: 0 20px;
+    }
+    .restudent_text h3 {
+        padding: 0 20px;
+    }
     .inner_bannner {
-      padding: 83px 0 83px;
-  }
-  .our_achievement li {
-      font-size: 14px;
+        padding: 83px 0 83px;
+    }
+    .our_achievement li {
+        font-size: 14px;
+    }
+    .certified_crd_cntnt .tittle_heading p {
+        font-size: 14px;
+        line-height: 32px;
+    }
+    .certified_crd_cntnt .tittle_heading h2 {
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .certified_crd_cntnt .tittle_heading h4 {
+        font-size: 16px;
+    }
+    .award_winning_txt h2,
+    .our_achievement h2,
+    .about_cntnt h2,
+    .about_cntnt h2 {
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .award_winning_txt p {
+        font-size: 14px;
+        line-height: 32px;
+    }
+    .about_under_text p {
+        font-size: 14px;
+    }
 }
-.certified_crd_cntnt .tittle_heading p {
-  font-size: 14px;
-  line-height: 32px;
-}
-.certified_crd_cntnt .tittle_heading h2 {
-  font-size: 16px;
-  line-height: 26px;
-}
-.certified_crd_cntnt .tittle_heading h4 {
-  font-size: 16px;
-}
-.award_winning_txt h2, .our_achievement h2, .about_cntnt h2, .about_cntnt h2 {
-  font-size: 16px;
-  line-height: 26px;
-}
-.award_winning_txt p {
-  font-size: 14px;
-  line-height: 32px;
-}
-.about_under_text p {
-  font-size: 14px;
-}
-  }
-  @media screen and (max-width: 375px) {
-    .tittle_heading h2, .sub_scribe_txt h2 {
+@media screen and (max-width: 375px) {
+    .tittle_heading h2,
+    .sub_scribe_txt h2 {
         font-size: 15px;
         line-height: 29px;
     }
@@ -497,14 +498,9 @@ header.responsi_header{
         width: 300px;
     }
 }
-           width: 300px;
-          }
-  }
 
-  @media screen and (max-width: 320px) {
+@media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
-
-      padding: 0;
-
-  }
-  }
+        padding: 0;
+    }
+}
