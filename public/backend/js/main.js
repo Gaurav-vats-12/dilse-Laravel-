@@ -19,7 +19,7 @@ jQuery( function () {
       });
 
 
-      
+
 
     var url = window.location.pathname;
     if (url.indexOf("/banner") > -1) {
@@ -184,22 +184,27 @@ jQuery( function () {
         ]
         });
     }else if(url.indexOf("/booking") > -1){
-        new DataTable('#manage_bookign_table',{
-            "processing": true,
-            "responsive": true,
-            "serverSide": true,
-            "searching": true,
-            "ajax": jQuery('#booking_ajx_file').val(), // URL to fetch paginated data
-            "columns": [
-                { "data": "id" },
-                { "data": "name" },
-                { "data": "email" },
-                { "data": "phone" },
-                { "data": "date" },
-                { "data": "persons" },
-                { "data": "comments" },
-            ]
+        jQuery(document).on("change", "#status", async function (event) {
+            let statusValue  = (jQuery(this).is(":checked") ) ? jQuery(this).val() : 0 ;
+            var AjaxUrl = jQuery(this).closest("form").attr('action');
+            console.log(AjaxUrl);
         });
+        // new DataTable('#manage_bookign_table',{
+        //     "processing": true,
+        //     "responsive": true,
+        //     "serverSide": true,
+        //     "searching": true,
+        //     "ajax": jQuery('#booking_ajx_file').val(), // URL to fetch paginated data
+        //     "columns": [
+        //         { "data": "id" },
+        //         { "data": "name" },
+        //         { "data": "email" },
+        //         { "data": "phone" },
+        //         { "data": "date" },
+        //         { "data": "persons" },
+        //         { "data": "comments" },
+        //     ]
+        // });
     }else if(url.indexOf("/order") > -1){
 
 
