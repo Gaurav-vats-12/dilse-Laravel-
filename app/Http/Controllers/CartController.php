@@ -23,12 +23,23 @@ public function extra_items(Request $request ){
     $menu_id = $request->menu_id;
     $extra_items = FoodItemAlias::where('menu_id',$menu_id)->where('status',1)->get();
     return view('ajax.extra_items',compact('extra_items'));
-
-
-
-
 }
 
+public function update_delivery(Request $request){
+    if ($request->ajax()) {
+        session()->put('deliveryCost', $request->deliveryCost);
+        return response()->json(['code' => 200 , 'status' =>'success','message'=> 'deliveryCost']);
+    }
+}
+
+public function update_other(Request $request){
+    if ($request->ajax()) {
+        $cart = session()->get('cart', []);
+        session()->put('spicy_lavel', $request->spicy_lavel);
+        return response()->json(['code' => 200 , 'status' =>'success','message'=> 'Spice lavel Successfully Added in the order ']);
+    }
+
+}
 
     /**
      * @param Request $request

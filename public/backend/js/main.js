@@ -239,7 +239,7 @@ jQuery( function () {
                 let AjaxValue ={order_id ,order_time_taken};
                 const resPose = await Ajax_response(Url, "POST", AjaxValue, '');
                 if(resPose.status === 'success'){
-                    Toast.fire({ icon: 'success',title: resPose.message, });
+                    NotyfMessage(resPose.message, 'success');
                     jQuery(`#Order_model-${order_id}`).modal('hide')
                     $("#update_order_status")[0].reset();
                     location.reload();
@@ -259,7 +259,7 @@ jQuery( function () {
                         let order_uid = jQuery(this).attr('order_uid'), url = jQuery('#ajax_value').val(),  AjaxValue = {order_uid};
                         const resPose = await Ajax_response(url, "POST", AjaxValue, '');
                         if(resPose.status === 'success'){
-                            Toast.fire({ icon: 'success',title: resPose.message, });
+                            NotyfMessage(resPose.message, 'success');
                             location.reload();
                         }
                     } else {

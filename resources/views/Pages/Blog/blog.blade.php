@@ -21,7 +21,7 @@
             <div class="row">
                 @if (isset($blog) && count($blog) >0)
                     @foreach ($blog  as $blog )
-                        <div class="col-md-4">
+                        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
                             <div class="featured_card">
                                 <a href="{{route('blogdetails' ,$blog->slug)}}" class="">
                                     <div class="post_img">

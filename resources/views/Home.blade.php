@@ -144,7 +144,7 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
       <h2>We Provide Best In Class Services</h2>
     </div>
     <div class="row">
-      <div class="col-md-3">
+      <div class=" col-md-12 col-lg-3">
         <ul class="_service_list">
           <li>
             <div class="our_servics_crd">
@@ -183,7 +183,7 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
           <img src="{{asset('frontend/img/services-img.png')}}" alt="" />
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-12 col-lg-3">
         <ul class="_service_list">
           <li>
             <div class="our_servics_crd">

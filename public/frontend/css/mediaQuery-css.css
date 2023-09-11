@@ -1,0 +1,391 @@
+.responsi_header .hamburger {
+    background-color: #eb0029;
+    padding: 12px 12px;
+    border-radius: 5px;
+  }
+  .responsi_header .hamburger .bar {
+    display: block;
+    background-color: #fff;
+    width: 28px;
+    height: 6px;
+    margin-bottom: 4px;
+  }
+  .responsi_header .hamburger .bar :last-child {
+    margin-bottom: 0px;
+  }
+
+  .responsi_header .contact_info {
+    width: 100%;
+  }
+  .responsi_header .contact_info ul {
+    justify-content: space-between;
+  }
+
+  .responsi_header .menu_right {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 400px;
+    background: #000;
+    height: 100%;
+    padding-left: 20px;
+    padding-top: 50px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 500ms ease-in all;
+  }
+  .responsi_header .menu_right ul li {
+    display: block;
+  }
+  .responsi_header .menu_right .social_icons ul li {
+    display: inline !important;
+  }
+
+  .responsi_header .hamburger.is_active span.bar:nth-child(2) {
+    transform: rotate(-45deg) translate(1px, -1px);
+  }
+  .responsi_header .hamburger.is_active span.bar:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 7px);
+  }
+  .responsi_header .hamburger.is_active span.bar:nth-child(3) {
+    display: none;
+  }
+
+  .responsi_header .menu_right.is_active {
+    opacity: 1;
+    visibility: visible;
+    transition: 500ms ease-in all;
+  }/*# sourceMappingURL=index.css.map */
+  .responsi_header {
+    display: none;
+}
+  @media screen and (max-width: 991px) {
+    header.main_header{
+        display: none;
+    }
+    header.responsi_header{
+        display: block;
+    }
+    .py_8,
+    .contact_sec {
+      padding: 70px 0px;
+    }
+    .top_header {
+        display: none;
+    }
+    .tittle_heading h2,
+    .sub_scribe_txt h2 {
+      font-size: 32px;
+    }
+
+    .available_on_txt h5 {
+      font-size: 24px;
+    }
+    .certified_crd_cntnt .tittle_heading h2 {
+      font-size: 40px;
+      line-height: 55px;
+    }
+    .certified_crd_cntnt .tittle_heading h4 {
+      font-size: 28px;
+      line-height: 46px;
+    }
+    .certified_crd_cntnt .tittle_heading p {
+      font-size: 24px;
+      line-height: 42px;
+    }
+    .about_cntnt h2 {
+      font-size: 32px;
+    }
+    .custm_nav_pills button.nav-link {
+      font-size: 28px;
+    }
+    ul._service_list {
+      display: flex;
+      justify-content: space-between;
+    }
+    ul._service_list li {
+      max-width: 49%;
+    }
+    .best_food_btn .theme_btn {
+      padding: 7px 10px;
+      font-size: 15px;
+    }
+    .best_food_txt h2 {
+      font-size: 22px;
+    }
+    .meet_chef_img img {
+      display: block;
+      margin: auto;
+    }
+    .testimonial_slider_txt {
+      padding-top: 100px;
+    }
+    .testimonial_slider_txt p {
+      font-size: 20px;
+      line-height: 40px;
+    }
+    .sub_scribe_img img {
+      display: block;
+      margin: auto;
+    }
+    .custn_input {
+      margin-bottom: 0px;
+    }
+    .award_winning_txt h2 {
+      font-size: 32px;
+      line-height: 46px;
+    }
+    .our_achievement h2 {
+      font-size: 32px;
+    }
+    .our_achievement li {
+      padding-left: 36px;
+      font-size: 19px;
+    }
+    .about_cntnt h2 {
+      font-size: 32px;
+      line-height: 44px;
+    }
+
+  }
+  @media screen and (max-width: 767px) {
+    .py_8,
+    .contact_sec {
+      padding: 60px 0px;
+    }
+    .tittle_heading h2,
+    .sub_scribe_txt h2 {
+      font-size: 26px;
+    }
+    .available_on {
+      padding-bottom: 0px;
+    }
+    .available_on_txt h5 {
+      font-size: 20px;
+    }
+    .available_on_txt {
+      position: static;
+      margin-top: 25px;
+      margin-bottom: 20px;
+    }
+    .certified_crd_cntnt .tittle_heading h2 {
+      font-size: 30px;
+      line-height: 48px;
+    }
+    .certified_crd_cntnt .tittle_heading p {
+      font-size: 22px;
+      line-height: 40px;
+      margin-bottom: 20px;
+    }
+    .certified_crd_cntnt .tittle_heading h4 {
+      font-size: 22px;
+      line-height: 32px;
+    }
+    .about_cntnt h2 {
+      font-size: 28px;
+      line-height: 41px;
+    }
+    .custm_nav_pills button.nav-link {
+      padding: 14px 0;
+      font-size: 24px;
+    }
+    .row.ourServices {
+      gap: 30px;
+    }
+    .testimonial_slider_txt::before {
+      content: none;
+    }
+    .testimonial_slider_txt::after {
+      content: none;
+    }
+    .testimonial_slider_txt {
+      padding-top: 39px;
+    }
+    .sub_scribe_txt h2 {
+      font-size: 26px;
+    }
+    .main_footer {
+      position: relative;
+    }
+    .footer_logo img {
+      width: 149px;
+      margin-bottom: 30px;
+    }
+    .quick_links ul li {
+      margin-bottom: 0px;
+    }
+    .open_hr {
+      margin: 30px auto 30px;
+    }
+    .copy_right_txt {
+      text-align: center;
+      display: block;
+    }
+    .open_hr h3 {
+      font-size: 28px;
+    }
+    .open_hr p {
+      font-size: 19px;
+    }
+    .footer_logo {
+      position: absolute;
+      top: 5%;
+      right: 14%;
+    }
+    .award_winning_txt h2 {
+      font-size: 26px;
+      line-height: 36px;
+    }
+    .award_winning_txt p {
+      font-size: 18px;
+      line-height: 32px;
+    }
+    .our_achievement h2 {
+      font-size: 26px;
+    }
+    .our_achievement {
+      margin-top: 30px;
+    }
+    .about_cntnt h2 {
+      font-size: 26px;
+      line-height: 36px;
+    }
+    .restudent_text {
+      margin-top: 30px;
+    }
+    .restudent_text h2 {
+      color: #fff;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 40px;
+    }
+    .about_cntnt.about_under_text {
+      margin-top: 30px;
+    }
+    .about_cntnt h2 {
+      font-size: 26px;
+      line-height: 35px;
+    }
+    section.counter_im.py_8 .row {
+      gap: 30px;
+    }
+    .counter_crd h2 {
+      font-size: 30px;
+    }
+    .counter_crd h3 {
+      font-size: 20px;
+      color: #eb0029;
+      margin-bottom: 2px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .container {
+      width: 97%;
+    }
+    .py_8,
+    .contact_sec {
+      padding: 40px 0;
+    }
+    .tittle_heading h2,
+    .sub_scribe_txt h2 {
+      font-size: 22px;
+      line-height: 32px;
+    }
+    .home-slider-content h1 {
+      text-align: center;
+      font-size: 19px !important;
+      line-height: 33px !important;
+    }
+    .home_slider_btn {
+      display: block;
+    }
+    .home_slider_btn a {
+      font-size: 16px;
+    }
+    .available_on_txt h5 {
+      font-size: 16px;
+    }
+    .certified_crd_cntnt .tittle_heading h2 {
+      font-size: 22px;
+      line-height: 32px;
+    }
+    .certified_crd_cntnt .tittle_heading p {
+      font-size: 18px;
+      line-height: 32px;
+    }
+    .certified_crd_cntnt .tittle_heading h4 {
+      font-size: 18px;
+      line-height: 28px;
+    }
+    .certified_img_cntnt h3 {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    .about_cntnt h2 {
+      font-size: 22px;
+      line-height: 32px;
+      margin-bottom: 4px;
+    }
+    .taste_the::before {
+      content: none;
+    }
+    .custm_nav_pills button.nav-link {
+      font-size: 20px;
+    }
+    .our_servics_txt h2 {
+      font-size: 20px;
+    }
+    ul._service_list {
+      display: block;
+    }
+    ul._service_list li {
+      max-width: 100%;
+    }
+    .order_online_img img {
+      height: 30px;
+    }
+    .order_online_crd {
+      min-height: 106px;
+    }
+    .footer_logo img {
+      width: 90px;
+      margin-bottom: 30px;
+    }
+    .footer_logo {
+      position: absolute;
+      top: 4%;
+      right: 10%;
+    }
+    .open_hr {
+      flex-direction: column;
+    }
+    .open_hr p {
+      font-size: 15px;
+    }
+    .copyright_links ul {
+      flex-direction: column;
+      
+    }
+    .testimonial_slider_txt p {
+      font-size: 17px;
+      line-height: 32px;
+    }
+    .award_winning_txt h2, .our_achievement h2, .about_cntnt h2, .about_cntnt h2 {
+      font-size: 20px;
+      line-height: 32px;
+    }
+    .restudent_text h2 {
+      font-size: 18px;
+    }
+  }
+  @media screen and (max-width: 375px) {
+    .tittle_heading h2, .sub_scribe_txt h2 {
+        font-size: 15px;
+        line-height: 29px;
+    }
+    .responsi_header .menu_right {
+           width: 300px;
+          }
+  }
+  
