@@ -365,6 +365,7 @@
     }
     .copyright_links ul {
       flex-direction: column;
+      
     }
     .testimonial_slider_txt p {
       font-size: 17px;
