@@ -72,7 +72,12 @@ header.responsi_header{
 }
 }
   @media screen and (max-width: 991px) {
-  
+    header.main_header{
+        display: none;
+    }
+    header.responsi_header{
+        display: block;
+    }
     .py_8,
     .contact_sec {
       padding: 70px 0px;
