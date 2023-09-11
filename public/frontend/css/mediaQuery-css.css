@@ -310,6 +310,13 @@ li.page-item.disabled span.page-link {
         margin-bottom: 0;
         margin-top: 20px;
     }
+    .order_summary {
+        padding: 0;
+        border-left: 1px solid #efefef;
+    }
+    .card-body {
+        padding: 1rem 0rem;
+    }
 }
 @media screen and (max-width: 480px) {
     .container {

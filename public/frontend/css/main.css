@@ -223,8 +223,6 @@ header.main_header {
     background: rgb(0 0 0 / 62%);
 }
 
-
-
 .home-slider-content h3 {
     font-size: 20px;
     color: #fff;
@@ -322,9 +320,6 @@ header.main_header {
 .video_dilse_play-tw {
     position: relative;
     height: 100vh;
-
-
-
 }
 
 /* .video_dilse_play-tw::before {
@@ -360,41 +355,38 @@ header.main_header {
     text-align: center;
 }
 
-
 .available_on {
     background: #0b0708;
     padding-bottom: 129px;
-  }
+}
 
-  .available_on_crd {
+.available_on_crd {
     position: relative;
     text-align: center;
-  }
+}
 
-  .available_on_txt h5 {
+.available_on_txt h5 {
     color: #fff;
     font-size: 28px;
-  }
+}
 
-  .available_on_txt {
+.available_on_txt {
     position: absolute;
     left: 0;
     right: 0;
     bottom: -62px;
-  }
-  .available_on .tittle_heading {
+}
+.available_on .tittle_heading {
     max-width: 900px;
     margin: 0 auto 46px;
-  }
-  .available_on .tittle_heading h2 {
+}
+.available_on .tittle_heading h2 {
     color: #fff;
-  }
-  .available_on .tittle_heading h2 span {
+}
+.available_on .tittle_heading h2 span {
     color: #eb0029;
     font-family: "ThePretender-ExpSansBoldPress";
-
-  }
-
+}
 
 .certified_crd {
     background: #fcebb9;
@@ -413,9 +405,6 @@ header.main_header {
 .certified_crd_cntnt .tittle_heading h2 span {
     color: #eb0029;
     font-family: "ThePretender-ExpSansBoldPress";
-
-
-
 }
 
 .certified_crd_cntnt .tittle_heading p {
@@ -489,7 +478,6 @@ header.main_header {
 .award_winning_txt h2 span {
     color: #eb0029;
     font-family: "ThePretender-ExpSansBoldPress";
-
 }
 
 .award_winning_txt p {
@@ -526,7 +514,6 @@ header.main_header {
     color: #716b6d;
     margin-bottom: 12px;
 }
-
 
 .about_se::before {
     /* content: url("../img/about-leaf.png"); */
@@ -1686,8 +1673,7 @@ img.mfp-img {
 }
 
 @media screen and (max-width: 800px) and (orientation: landscape),
-screen and (max-height: 300px) {
-
+    screen and (max-height: 300px) {
     /**
            * Remove all paddings around the image on small screen
            */
@@ -2035,10 +2021,9 @@ form.contact_form a {
     border: 1px dotted #ccc;
     margin: 2%;
 }
-
 .shop_item_quantity .qty {
     width: 40px;
-    height: 25px;
+    height: 30px;
     text-align: center;
 }
 
@@ -2076,7 +2061,7 @@ form.contact_form a {
 
 .shope_price .shope_p_tag {
     border: 1px solid #eb0029;
-    padding: 4px 10px;
+    padding: 6px 16px;
     color: #eb0029;
     font-weight: 700;
     border-radius: 7px;
@@ -2098,13 +2083,13 @@ form.contact_form a {
 
 .order_summary .tittle_heading {
     text-align: left;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
 
 .summary_main li {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     margin-bottom: 15px;
     border-bottom: 1px solid #efefef;
 }
@@ -2113,7 +2098,9 @@ form.contact_form a {
     margin-bottom: 0px;
     border-bottom: 0px;
 }
-
+.tittle_heading h4 {
+    margin-bottom: 0;
+}
 .summary_main .s_total p {
     font-weight: 800;
     margin-bottom: 0px;
@@ -2121,8 +2108,10 @@ form.contact_form a {
 }
 
 .order_summary {
-    padding: 0 37px;
+    padding: 40px 36px;
     border-left: 1px solid #efefef;
+    background: #fff;
+    border-radius: 6px;
 }
 
 .order_totalses p,
@@ -2163,7 +2152,6 @@ form.contact_form a {
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
-
 }
 
 .product_cont {
@@ -2311,7 +2299,8 @@ product
 }
 
 .add-to-cart,
-.added-to-cart {}
+.added-to-cart {
+}
 
 .added-to-cart {
     display: none;
@@ -2619,11 +2608,10 @@ p {
 a.qtyminus.minus.qty-count.qty-count--minus.update-qty,
 a.qty-plus.plus.qty-count.qty-count--add.update-qty {
     border: 1px solid rgb(124, 118, 118);
-    padding: 0px 11px;
+    padding: 2px 15px;
     border-radius: 5px;
     color: rgb(0, 0, 0) !important;
 }
-
 .product_cont a.view_product {
     padding: 4px 10px;
 }
@@ -2922,7 +2910,7 @@ input[type="password"]::-ms-reveal {
     background: none;
     border: none;
     position: absolute;
-    right: .75em;
+    right: 0.75em;
     top: 1.25em;
     z-index: 9;
     margin: 6px 0 0 0;
@@ -2973,7 +2961,7 @@ button.inline-flex {
     width: 100%;
 }
 
-li.admin_logot>a {
+li.admin_logot > a {
     background: #d90d0d;
     padding: 9px 8px;
     border-radius: 4px;
@@ -3070,11 +3058,10 @@ a.checkout_link_guest {
 
 /* Register and login  page css */
 .pass_show {
-    position: relative
+    position: relative;
 }
 
 .pass_show .ptxt {
-
     position: absolute;
 
     top: 50%;
@@ -3083,16 +3070,12 @@ a.checkout_link_guest {
 
     z-index: 1;
 
-
     margin-top: -10px;
 
     cursor: pointer;
 
-    transition: .3s ease all;
-
+    transition: 0.3s ease all;
 }
-
-
 
 .no-order-message {
     font-size: 3.5rem;
@@ -3164,7 +3147,7 @@ a.checkout_link_guest {
     font-size: 15px;
 }
 
-.table-borderless>:not(caption)>*>* {
+.table-borderless > :not(caption) > * > * {
     border-bottom-width: 1px;
 }
 
@@ -3329,8 +3312,7 @@ section.menu_main1 .cusstom_input input,
     position: fixed;
     bottom: 30px;
     right: 30px;
-    transition: background-color .3s,
-        opacity .5s, visibility .5s;
+    transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
     opacity: 0;
     visibility: hidden;
     z-index: 1000;
@@ -3362,11 +3344,10 @@ section.menu_main1 .cusstom_input input,
 
 /* Styles for the content section */
 
-
 .content {
     width: 77%;
     margin: 50px auto;
-    font-family: 'Merriweather', serif;
+    font-family: "Merriweather", serif;
     font-size: 17px;
     color: #6c767a;
     line-height: 1.9;
@@ -3425,7 +3406,14 @@ p#message {
     font-weight: bold;
     font-size: 20px;
 }
-.alert{
-  display:none;
-
+.alert {
+    display: none;
+}
+section.shopping_cart {
+    background: #fcebb9;
+}
+.input-group select#spicy_lavel {
+    padding: 10px;
+    font-size: 13px;
+    border-radius: 6px;
 }
