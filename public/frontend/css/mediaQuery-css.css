@@ -59,14 +59,20 @@
   .responsi_header {
     display: none;
 }
+@media screen and (max-width:1024px) {
+  header.main_header{
+    display: none;
+}
+header.responsi_header{
+    display: block;
+}
+.certified_crd_cntnt .tittle_heading h2 {
+  font-size: 37px;
+  line-height: 53px;
+}
+}
   @media screen and (max-width: 991px) {
-    header.main_header{
-        display: none;
-    }
-    header.responsi_header{
-        display: block;
-    }
-    .py_8,
+      .py_8,
     .contact_sec {
       padding: 70px 0px;
     }
@@ -365,7 +371,7 @@
     }
     .copyright_links ul {
       flex-direction: column;
-      
+
     }
     .testimonial_slider_txt p {
       font-size: 17px;
@@ -376,8 +382,41 @@
       line-height: 32px;
     }
     .restudent_text h2 {
-      font-size: 18px;
-    }
+      font-size: 16px;
+      line-height: 28px;
+      padding: 0 20px;
+  }
+  .restudent_text h3 {
+    padding: 0 20px;
+}
+    .inner_bannner {
+      padding: 83px 0 83px;
+  }
+  .our_achievement li {
+      font-size: 14px;
+}
+.certified_crd_cntnt .tittle_heading p {
+  font-size: 14px;
+  line-height: 32px;
+}
+.certified_crd_cntnt .tittle_heading h2 {
+  font-size: 16px;
+  line-height: 26px;
+}
+.certified_crd_cntnt .tittle_heading h4 {
+  font-size: 16px;
+}
+.award_winning_txt h2, .our_achievement h2, .about_cntnt h2, .about_cntnt h2 {
+  font-size: 16px;
+  line-height: 26px;
+}
+.award_winning_txt p {
+  font-size: 14px;
+  line-height: 32px;
+}
+.about_under_text p {
+  font-size: 14px;
+}
   }
   @media screen and (max-width: 375px) {
     .tittle_heading h2, .sub_scribe_txt h2 {
@@ -387,4 +426,12 @@
     .responsi_header .menu_right {
            width: 300px;
           }
+  }
+
+  @media screen and (max-width: 320px) {
+    .video_dilse_play-tw .home-slider-content {
+
+      padding: 0;
+
+  }
   }
