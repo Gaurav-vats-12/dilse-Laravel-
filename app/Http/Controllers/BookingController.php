@@ -43,9 +43,12 @@ class BookingController extends Controller
     }
 
 
-    public function updateStatus(Request $request ,$id)
+    public function updateStatus(Request $request)
     {
-        dd('asdsadsa');
+        $booking_email = Booking::findOrFail($request->booking_id)->email;
+
+
+        dd('asdsadsa',$booking);
     }
 
 

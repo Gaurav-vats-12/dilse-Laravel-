@@ -184,27 +184,27 @@ jQuery( function () {
         ]
         });
     }else if(url.indexOf("/booking") > -1){
-        jQuery(document).on("change", "#status", async function (event) {
-            let statusValue  = (jQuery(this).is(":checked") ) ? jQuery(this).val() : 0 ;
-            var AjaxUrl = jQuery(this).closest("form").attr('action');
-            console.log(AjaxUrl);
-        });
-        // new DataTable('#manage_bookign_table',{
-        //     "processing": true,
-        //     "responsive": true,
-        //     "serverSide": true,
-        //     "searching": true,
-        //     "ajax": jQuery('#booking_ajx_file').val(), // URL to fetch paginated data
-        //     "columns": [
-        //         { "data": "id" },
-        //         { "data": "name" },
-        //         { "data": "email" },
-        //         { "data": "phone" },
-        //         { "data": "date" },
-        //         { "data": "persons" },
-        //         { "data": "comments" },
-        //     ]
+        // jQuery(document).on("change", "#status", async function (event) {
+        //     let statusValue  = (jQuery(this).is(":checked") ) ? parseInt(jQuery(this).val()) : 0 ;
+        //     let booking_id = parseInt(jQuery(this).attr('booking_id'));
+        //     let ajax_value = {statusValue,booking_id};
+        //     let  ajax_url =  jQuery(this).closest("form").attr('action');
+        //     const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+        //     console.log(resPose,ajax_url);
+
+        //     // console.log(ajax_value);
         // });
+        new DataTable('#manage_bookign_table',{
+            "responsive": true,
+            "lengthMenu": [10, 20],
+            "searching": true,
+            "columnDefs": [
+                { orderable: true, className: 'reorder', targets: 0 },
+                { orderable: true, className: 'reorder', targets: 1 },
+                { orderable: true, className: 'reorder', targets: 2 },
+                { orderable: false, targets: '_all' }
+            ]
+        });
     }else if(url.indexOf("/order") > -1){
 
 

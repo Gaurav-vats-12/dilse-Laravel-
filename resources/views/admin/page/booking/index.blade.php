@@ -34,7 +34,8 @@
                                 <th>EXPECTED PERSON </th>
                                 <th>BOOKING DATE </th>
                                 <th>BOOKING Time </th>
-                                <th>Status </th>
+                                <th>COMMENTS </th>
+                                <!-- <th>Status </th> -->
                                  </tr>
                                 </thead>
                                 <tbody>
@@ -47,7 +48,8 @@
                                 <td>{{$bookings->persons}}</td>
                                 <td>{{ __( date("d-M-Y", strtotime($bookings->date)) ) }}</td>
                                 <td>{{ __($bookings->time) }}</td>
-                                <td> <form method="POST" action="{{ route('admin.booking.updateStatus', $bookings->id) }}">  @csrf @method('PUT')  <label class="switch" for="status"> <input type="checkbox" name="status" id="status" value="1"><span class="slider round"></span>  </label> </form></td>
+                                <td>{!! Str::limit(strip_tags($bookings->comments) ,30) !!}</td>
+                                <!-- <td> <form method="POST" action="{{ route('admin.booking.updateStatus',) }}"> @csrf  <label class="switch" for="status"> <input type="checkbox" name="status" id="status" value="1" booking_id ="{{ $bookings->id}}"><span class="slider round"></span>  </label> </form></td> -->
                                 </tr>
                                 @endforeach
                                 </tbody>
