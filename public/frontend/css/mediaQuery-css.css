@@ -55,35 +55,45 @@
     opacity: 1;
     visibility: visible;
     transition: 500ms ease-in all;
-  }/*# sourceMappingURL=index.css.map */
+  } /*# sourceMappingURL=index.css.map */
   .responsi_header {
     display: none;
-}
-@media screen and (max-width:1024px) {
-  header.main_header{
-    display: none;
-}
-header.responsi_header{
-    display: block;
-}
-.certified_crd_cntnt .tittle_heading h2 {
-  font-size: 37px;
-  line-height: 53px;
-}
-}
+  }
+  .login_wrapper {
+    background-color: #fcebb9;
+    padding-top: 0;
+  }
+  a.page-link {
+    padding: 10px 20px;
+  }
+  li.page-item.active span.page-link {
+    padding: 10px 20px;
+  }
+  li.page-item.disabled span.page-link {
+    padding: 10px 20px;
+  }
+  @media screen and (max-width: 1024px) {
+    header.main_header {
+      display: none;
+    }
+    header.responsi_header {
+      display: block;
+    }
+    .certified_crd_cntnt .tittle_heading h2 {
+      font-size: 37px;
+      line-height: 57px;
+    }
+    .location {
+      padding: 26px 0px;
+    }
+  }
   @media screen and (max-width: 991px) {
-    header.main_header{
-        display: none;
-    }
-    header.responsi_header{
-        display: block;
-    }
     .py_8,
     .contact_sec {
       padding: 70px 0px;
     }
     .top_header {
-        display: none;
+      display: none;
     }
     .tittle_heading h2,
     .sub_scribe_txt h2 {
@@ -94,7 +104,7 @@ header.responsi_header{
       font-size: 24px;
     }
     .certified_crd_cntnt .tittle_heading h2 {
-      font-size: 40px;
+      font-size: 35px;
       line-height: 55px;
     }
     .certified_crd_cntnt .tittle_heading h4 {
@@ -158,7 +168,6 @@ header.responsi_header{
       font-size: 32px;
       line-height: 44px;
     }
-
   }
   @media screen and (max-width: 767px) {
     .py_8,
@@ -290,6 +299,17 @@ header.responsi_header{
       color: #eb0029;
       margin-bottom: 2px;
     }
+    .menu_main_box {
+      display: block;
+    }
+    .login_wrapper {
+      padding-top: 16px;
+    }
+    .contact_form .tittle_heading {
+      text-align: left;
+      margin-bottom: 0;
+      margin-top: 20px;
+    }
   }
   @media screen and (max-width: 480px) {
     .container {
@@ -377,67 +397,42 @@ header.responsi_header{
     }
     .copyright_links ul {
       flex-direction: column;
-
     }
     .testimonial_slider_txt p {
       font-size: 17px;
       line-height: 32px;
     }
-    .award_winning_txt h2, .our_achievement h2, .about_cntnt h2, .about_cntnt h2 {
+    .award_winning_txt h2,
+    .our_achievement h2,
+    .about_cntnt h2,
+    .about_cntnt h2 {
       font-size: 20px;
       line-height: 32px;
     }
     .restudent_text h2 {
-      font-size: 16px;
-      line-height: 28px;
-      padding: 0 20px;
-  }
-  .restudent_text h3 {
-    padding: 0 20px;
-}
+      font-size: 18px;
+    }
     .inner_bannner {
       padding: 83px 0 83px;
-  }
-  .our_achievement li {
-      font-size: 14px;
-}
-.certified_crd_cntnt .tittle_heading p {
-  font-size: 14px;
-  line-height: 32px;
-}
-.certified_crd_cntnt .tittle_heading h2 {
-  font-size: 16px;
-  line-height: 26px;
-}
-.certified_crd_cntnt .tittle_heading h4 {
-  font-size: 16px;
-}
-.award_winning_txt h2, .our_achievement h2, .about_cntnt h2, .about_cntnt h2 {
-  font-size: 16px;
-  line-height: 26px;
-}
-.award_winning_txt p {
-  font-size: 14px;
-  line-height: 32px;
-}
-.about_under_text p {
-  font-size: 14px;
-}
+    }
+    .restudent_text h3 {
+      padding: 0 20px;
+    }
+    .restudent_text h2 {
+      line-height: 33px;
+      padding: 0 20px;
+    }
+    .location {
+      padding: 26px 28px;
+    }
   }
   @media screen and (max-width: 375px) {
-    .tittle_heading h2, .sub_scribe_txt h2 {
-        font-size: 15px;
-        line-height: 29px;
+    .tittle_heading h2,
+    .sub_scribe_txt h2 {
+      font-size: 15px;
+      line-height: 29px;
     }
     .responsi_header .menu_right {
-           width: 300px;
-          }
-  }
-
-  @media screen and (max-width: 320px) {
-    .video_dilse_play-tw .home-slider-content {
-
-      padding: 0;
-
-  }
+      width: 300px;
+    }
   }
