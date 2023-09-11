@@ -34,9 +34,6 @@
      <!-- Select2 -->
   <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
-  <!-- Toastr -->
-  <link rel="stylesheet" href="{{asset('plugins/toastr/css/toastr.min.css')}}">
-
   <link rel="stylesheet" href="{{ asset('plugins/Dropify/css/dropify.min.css') }}">
  <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
