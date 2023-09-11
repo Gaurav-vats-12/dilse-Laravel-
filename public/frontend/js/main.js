@@ -182,6 +182,12 @@ jQuery(document).ready(function () {
         }
     });
 
+    jQuery(document).on("change", ".delivery", async function (event) {
+        let deliveryCost = parseFloat(jQuery('input[name="delivery_type"]:checked').val());
+        updateTotals(deliveryCost);
+    });
+
+
     if (url.indexOf("/menu") > -1) {
         /**
 * Fetch Food Items via Menu (Menu  Page)
@@ -289,10 +295,14 @@ jQuery(document).ready(function () {
             let ajax_value = {menu_id};
             fetch_extra_items_data(ajax_value);
         }
-        jQuery(document).on("change", ".delivery", async function (event) {
-            let deliveryCost = parseFloat(jQuery('input[name="delivery_type"]:checked').val());
-            updateTotals(deliveryCost);
+        jQuery(document).on("change", "#spicy_lavel", async function (event) {
+            event.preventDefault();
+            let spicy_lavel = jQuery(this).find(":selected").val();
+            let ajax_Url = jQuery(this).attr('ajax_value');
+            const resPose = await Ajax_response(ajax_Url, "POST", {spicy_lavel}, '');
+            console.log(resPose);
         });
+
 
 
         jQuery(document).on("click", "#checkout_btn", async function (event) {
@@ -301,7 +311,7 @@ jQuery(document).ready(function () {
             let subtotal = parseFloat(jQuery('#subtotal').attr('subtotal'));
             let mimimum_ammout = parseFloat(jQuery('#message').attr('mimimum_ammout'));
             if (subtotal < mimimum_ammout) {
-                jQuery('#minimum_order_message').html(`<div class="auto-close alert alert-warning d-flex align-items-center" role="alert" id ="auto-close-alert"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><div id="alert_message">Your current order is <b>${site_currency}${subtotal}</b> --You must have an order with minimum of ${site_currency}${mimimum_ammout} to place the order </div></div>`);
+                jQuery('#minimum_order_message').html(`<div class="auto-close alert alert-warning d-flex align-items-center" role="alert" id ="auto-close-alert"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><div id="alert_message">Your current order is <b>${site_currency}${subtotal}</b> --You must have an order with minimum of ${site_currency}${mimimum_ammout}.00 to place the order </div></div>`);
                  setTimeout(function() {  jQuery('#auto-close-alert').alert('close'); }, 5000);
             }else{
                 if (type ==='order_type') {

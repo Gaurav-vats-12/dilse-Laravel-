@@ -35,22 +35,28 @@ async function state_dependency_country_list(ajax_post, url) {
 }
 
 const updateTotals = async (deliveryCost) => {
+    console.log(deliveryCost);
+
+
     let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-    let subtotalValue = parseFloat(jQuery('#subtotal').attr('subtotal'));
-    let updated_route =jQuery('#subtotal').attr('updated_route');
     let subtotal = parseFloat(jQuery('#subtotal').attr('subtotal'));
-    let taxRate =jQuery('#subtotal').attr('tax');
-    let SubTotal = subtotalValue + deliveryCost  ;
-    let tax = (SubTotal * taxRate)/ 100 ;
+    let updated_route =jQuery('#subtotal').attr('updated_route');
+    let SubTotal = subtotal + deliveryCost  ;
+    let tax =parseFloat(jQuery('#totaltax').attr('totaltax'));
+    let trypelist =jQuery('#subtotal').attr('trypelist');
     let grandTotal = subtotal + deliveryCost + tax;
-    let ajaxVALUE ={deliveryCost,grandTotal}
-    console.log(ajaxVALUE);
-    //
-    //
-    //
-    //
-    // let grandTotal = subtotal + deliveryCost + tax;
-    //     jQuery(`#grandTotal`).html(`<p>${site_currency}${grandTotal.toFixed(2)}</p>`);
-    //     jQuery(`#dilevery_total`).html(`<p>${site_currency}${deliveryCost}</p>`);
-    //     jQuery('#dilavery_charge').val(deliveryCost);
+
+    const resPose = await Ajax_response(updated_route, "POST", {deliveryCost}, '');
+
+    if(resPose.code =='200' || resPose.code ==200){
+        if(trypelist==='cart'){
+            location.reload(true);
+            // jQuery(`#dilevery_total`).html(`<p>${site_currency}${deliveryCost.toFixed(2)}</p>`);
+            // jQuery(`#grandTotal`).html(`<p>${site_currency}${grandTotal.toFixed(2)}</p>`);
+        }else{
+            jQuery(`#deliveryCost`).empty();
+            jQuery(`#dilevery_total`).html(`<p>${site_currency}${deliveryCost.toFixed(2)}</p>`);
+            jQuery(`#deliveryCost`).css('display','none');
+        }
+    }
 }
