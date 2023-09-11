@@ -57,6 +57,7 @@ Route::prefix('admin')->name('admin.')->group(callback: function(){
         Route::prefix('booking')->name('booking.')->group(callback: function(){
             Route::get('/', [BookingControllerAlias::class, 'fetchBooking'])->name('index');
             Route::get('/view/{id}', [BookingControllerAlias::class, 'show'])->name('show');
+            Route::POST('/update-status', [BookingControllerAlias::class, 'updateStatus'])->name('updateStatus');
         });
 
         Route::prefix('order')->name('order.')->group(callback: function(){
