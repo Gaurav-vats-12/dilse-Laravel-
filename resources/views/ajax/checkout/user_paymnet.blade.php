@@ -14,12 +14,12 @@
                             <label for="pay_on_delivery" class="radio-label_1">Pay In Delivery</label>
                         </div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="radio-item_1">
                             <input id="pay_on_store"   value="Pay On Store"  class="payment_option" name="payment_method" type="radio" {{ old('payment_method') == 'pay_on_store' ? 'checked' : '' }}>
                             <label for="pay_on_store" class="radio-label_1">Pay In Store</label>
                         </div>
-                    </li>
+                    </li> -->
                     <li>
                         <div class="radio-item_1">
                             <input id="payonline"   value="Pay On Online (Stripe)" class="payment_option"  name="payment_method" type="radio" {{ old('payment_method') == 'payonline' ? 'checked' : '' }}>
@@ -65,7 +65,6 @@
              <input type="radio"  id="delivery_typecx"  class="delivery" name="delivery_type" value="{{ round(setting('delivery_charge_outside_5km' ,0.00),2) }}" {{ setting('delivery_charge_outside_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }} type="checkout" > <label for="delivery_typecx">Delivery Charge (Outside 5 km-15km)</label> <br>
              </div>
         <span class="value" id="dilevery_total" ></span>
-
             @endif
             </li>
             <li class="grand-total">
@@ -74,7 +73,6 @@
             <span class="value" id="grandTotal">{{setting('site_currency')}}{{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + session('deliveryCost') +  $tax_total:  $subtotal + 0.00 +  $tax_total }}</span>
             </li>
             @endif
-
             </ul>
             </div>
         </div>
