@@ -4,29 +4,22 @@
 <section class="video_dilse-tw">
   <div class="video_dilse_play-tw">
     <video id="home_banner_vd" width="" height="" autoplay loop muted>
-      <source src="{{asset('frontend/vedio/Dil se Menu.mp4#t=13.8')}}" type="video/mp4" />
+      <source src="{{asset('frontend/vedio/Dil se Menu.mp4#t=13.8')}}" type="video/mp4"/>
     </video>
   </div>
 </section>
-
     <section class="menu_main py_8">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
                     <ul class="menu_list">
                         @foreach (Menuhelper() as $key => $menu)
-
                             <li class="menu_list_inner">
                             <form method="POST" action="{{ route('menu', $menu->menu_slug) }}">  @csrf @method('GET')
                             <a href="javascript:void(0)" id="menu" menu-slug ="{{ $menu->menu_slug}}" default ="6">
                             </form>
-
-
-
                                     <h3 class="active">{{ __($menu->menu_name) }}</h3>
-                                    <div class="menu_icon_img">
-                                        <img src="{{ asset('frontend/img/menu_icon.png') }}" alt="">
-                                    </div>
+                                    <div class="menu_icon_img"> <img src="{{ asset('frontend/img/menu_icon.png') }}" alt=""> </div>
                                 </a>
                             </li>
                         @endforeach
@@ -42,5 +35,4 @@
             </div>
         </div>
     </section>
-
 @endsection
