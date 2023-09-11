@@ -2,6 +2,7 @@
 <div class="row">
 <input type="hidden" name="order_type" value="{{ session('order_type') }}">
     <input type="hidden" name="store_location" id="store_location" value="">
+    <input type="hidden" name="spice_lavel" id="spice_lavel" value="{{ session('spicy_lavel')}}">
 <input type="hidden" name="delivery_charge" value="{{ (session('order_type') && session('order_type') == "delivery") ? setting('delivery_charge'): 0.00 }}">
     <div class="col-md-12">
         <div class="cusstom_input">

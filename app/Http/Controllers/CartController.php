@@ -26,14 +26,20 @@ public function extra_items(Request $request ){
 }
 
 public function update_delivery(Request $request){
-
     if ($request->ajax()) {
-        dd($request->all());
+        session()->put('deliveryCost', $request->deliveryCost);
+        return response()->json(['code' => 200 , 'status' =>'success','message'=> 'deliveryCost']);
+    }
+}
 
+public function update_other(Request $request){
+    if ($request->ajax()) {
+        $cart = session()->get('cart', []);
+        session()->put('spicy_lavel', $request->spicy_lavel);
+        return response()->json(['code' => 200 , 'status' =>'success','message'=> 'Spice lavel Successfully Added in the order ']);
     }
 
 }
-
 
     /**
      * @param Request $request
