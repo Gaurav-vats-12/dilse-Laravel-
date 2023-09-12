@@ -22,7 +22,7 @@ class OrderManagemnetController extends Controller
      */
     public function index(): ViewAlias|ApplicationAlias|FactoryAlias|ApplicationAlias1
     {
-        return view(view: 'admin.page.order.index')->with('orders', value: OrderAlias::latest()->get());
+        return view(view: 'admin.page.order.index')->with('orders', value: OrderAlias::orderBy('id', 'DESC')->get());
     }
 
     /**
