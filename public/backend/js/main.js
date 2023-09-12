@@ -212,6 +212,7 @@ jQuery( function () {
             "responsive": true,
             "lengthMenu": [10, 20],
             "searching": true,
+            "autoWidth": true,
             "columnDefs": [
                 { orderable: true, className: 'reorder', targets: 0 },
                 { orderable: true, className: 'reorder', targets: 1 },
