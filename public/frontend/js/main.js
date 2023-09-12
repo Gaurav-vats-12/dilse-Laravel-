@@ -309,59 +309,15 @@ jQuery(document).ready(function () {
             event.preventDefault();
             let spicy_lavel = jQuery(this).find(":selected").val();
             let location_type = jQuery(this).attr('location_type');
-            if(spicy_lavel){
                 const resPose = await Ajax_response(jQuery(this).attr('ajax_value'), "POST", {spicy_lavel,location_type}, '');
                 if (resPose.status === 'success') {
                     NotyfMessage(resPose.message, 'success');
+                    jQuery('#spicy_lavel').val(spicy_lavel);
                 } else {
                     jQuery.each(resPose.errors, function (key, value) {
                         jQuery(`#${key}-error`).text(value);
                     });
                 }
-            }else{
-                NotyfMessage('Please Select the SPICE LEVEL for order ', 'error');
-            }
-        });
-
-
-
-        jQuery(document).on("click", "#checkout_btn", async function (event) {
-            if (jQuery('#order_type').val()) {
-                if(jQuery('#shipping_charge').val()){
-                    if(jQuery('#spicy_lavel').find(":selected").val()){
-                        if (parseFloat(jQuery('#subtotal').attr('subtotal')) < parseFloat(jQuery('#message').attr('mimimum_ammout'))) {
-                            jQuery('#minimum_order_message').html(`<div class="auto-close alert alert-warning d-flex align-items-center" role="alert" id ="auto-close-alert"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><div id="alert_message">Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> --You must have an order with minimum of ${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 to place the order </div></div>`);
-                            setTimeout(function() {  jQuery('#auto-close-alert').alert('close'); }, 5000);
-                        }else{
-                            if (jQuery(this).attr('type') ==='order_type') {
-                                window.location.href = jQuery(this).attr('login_url');
-                            }else{
-                                jQuery(`#staticBackdrop`).modal('show')
-                            }
-                        }
-                    }else{
-                        NotyfMessage('Please Select the SPICE LEVEL for order ', 'error');
-                    }
-
-                }else{
-                    NotyfMessage('Please Choose Delivery Charges', 'error');
-                }
-            }else{
-                if(jQuery('#spicy_lavel').find(":selected").val()){
-                    if (parseFloat(jQuery('#subtotal').attr('subtotal')) < parseFloat(jQuery('#message').attr('mimimum_ammout'))) {
-                        jQuery('#minimum_order_message').html(`<div class="auto-close alert alert-warning d-flex align-items-center" role="alert" id ="auto-close-alert"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><div id="alert_message">Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> --You must have an order with minimum of ${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 to place the order </div></div>`);
-                        setTimeout(function() {  jQuery('#auto-close-alert').alert('close'); }, 5000);
-                    }else{
-                        if (jQuery(this).attr('type') ==='order_type') {
-                            window.location.href = jQuery(this).attr('login_url');
-                        }else{
-                            jQuery(`#staticBackdrop`).modal('show')
-                        }
-                    }
-                }else{
-                    NotyfMessage('Please Select the SPICE LEVEL for order ', 'error');
-                }
-            }
         });
 
 
@@ -372,6 +328,36 @@ jQuery(document).ready(function () {
         let ajax_value = {menu_id};
         fetch_extra_items_data(ajax_value);
     });
+
+    jQuery(document).on("click", "#checkout_btn", async function (event) {
+        let shipping_charge= jQuery('#shipping_charge').val();
+        let spicy_lavel= jQuery('#spicy_lavel').val();
+        let subtotal=  parseFloat(jQuery('#subtotal').attr('subtotal'));
+        let mimimum_ammout= parseFloat(jQuery('#message').attr('mimimum_ammout'));
+        let type =  jQuery(this).attr('type');
+        if(spicy_lavel){
+            if (subtotal < mimimum_ammout) {
+                jQuery('#minimum_order_message').html(`<div class="auto-close alert alert-warning d-flex align-items-center" role="alert" id ="auto-close-alert"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><div id="alert_message">Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> --You must have an order with minimum of ${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 to place the order </div></div>`);
+                setTimeout(function() {  jQuery('#auto-close-alert').alert('close'); }, 2000);
+            }else{
+                if(type =='null'){
+                    jQuery(`#staticBackdrop`).modal('show')
+                }else if(type =='take_out') {
+                    window.location.href = jQuery(this).attr('login_url');
+                }else{
+                    if(shipping_charge){
+                        window.location.href = jQuery(this).attr('login_url');
+                    }else{
+                        NotyfMessage('Please Choose Delivery Charges', 'error');
+                    }
+                }
+            }
+        }else{
+            NotyfMessage('Please Select the Spice  Level  for order ', 'error');
+        }
+
+    });
+
               /**
         *  Update the quantity According to plus and minus in cart page (Cart page )
         */
@@ -410,10 +396,13 @@ jQuery(document).ready(function () {
                         jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
                         jQuery('#subtotal').attr('subtotal',resPose.subtotal)
                         jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                        jQuery(`#grandTotal`).load(`<p>${site_currency}${resPose.total}</p>`);
+                        jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
                     }
                 }
             });
+
+
+
 
                  /**
         *  Add to Cart  In Website (Extra_Items)

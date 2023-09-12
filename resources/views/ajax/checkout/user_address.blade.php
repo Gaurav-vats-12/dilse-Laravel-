@@ -1,6 +1,6 @@
 
 <div class="row">
-<input type="hidden" name="order_type" value="{{ session('order_type') }}">
+<input type="hidden" name="order_type" id="order_type" value="{{ session('order_type') }}">
     <input type="hidden" name="store_location" id="store_location" value="{{ session('update_location')}}">
     <input type="hidden" name="spice_lavel" id="spice_lavel" value="{{ session('spicy_lavel')}}">
     <input type="hidden" name="shipping_charge" id="shipping_charge" value="{{ session('deliveryCost') }}" >

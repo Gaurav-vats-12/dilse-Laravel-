@@ -6,6 +6,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 
 class MenuController extends Controller
@@ -17,6 +18,7 @@ class MenuController extends Controller
             $current_url = $request->current_url;
             if($current_url =='home'){
                 session()->put('order_type', $request->type);
+                Session::forget('deliveryCost');
                 $slug = 'appetizers';
                 $menu_id = Menu::where('menu_slug',$slug)->first()->id;
                 $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);
