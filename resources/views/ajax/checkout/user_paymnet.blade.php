@@ -65,7 +65,7 @@
              </div>
              <span class="value" id="dilevery_total" >{{setting('site_currency')}}0.00</span>
 
-            @endif
+
 
         </li>
         @endif
