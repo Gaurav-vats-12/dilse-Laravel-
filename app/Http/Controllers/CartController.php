@@ -34,12 +34,25 @@ public function update_delivery(Request $request){
 
 public function update_other(Request $request){
     if ($request->ajax()) {
-        $cart = session()->get('cart', []);
+        $spicy_lavel = session()->get('spicy_lavel', []);
+        if($spicy_lavel ){
+            Session::forget('spicy_lavel');
+        }
         session()->put('spicy_lavel', $request->spicy_lavel);
         return response()->json(['code' => 200 , 'status' =>'success','message'=> 'Spice lavel Successfully Added in the order ']);
     }
-
 }
+public function update_location(Request $request){
+    if ($request->ajax()) {
+        $update_location = session()->get('update_location', []);
+        if($update_location ){
+            Session::forget('update_location');
+        }
+        session()->put('update_location', $request->store_location);
+        return response()->json(['code' => 200 , 'status' =>'success','message'=> 'Location Is Set Successfully']);
+    }
+}
+
 
     /**
      * @param Request $request

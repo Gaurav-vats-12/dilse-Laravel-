@@ -1,4 +1,18 @@
 jQuery(document).ready(function () {
+    jQuery('#store_location').val(jQuery('#select_location').find(":selected").val());
+    jQuery(document).on("change", "#select_location",  async function (event) {
+        event.preventDefault();
+         let store_location = jQuery(this).find(":selected").val();
+        const resPose = await Ajax_response(jQuery(this).attr('ajax_value'), "POST", {store_location}, '');
+        if (resPose.status === 'success') {
+            NotyfMessage(resPose.message, 'success');
+        } else {
+            jQuery.each(resPose.errors, function (key, value) {
+                jQuery(`#${key}-error`).text(value);
+            });
+        }
+        jQuery('#store_location').val(store_location);
+    });
     let url = window.location.pathname;
 
     /**
@@ -462,13 +476,7 @@ jQuery(document).ready(function () {
     });
 
  } else  if (url.indexOf("/checkout") > -1) {
-    jQuery('#store_location').val(jQuery('#select_location').find(":selected").val());
-    jQuery(document).on("change", "#select_location",  function (event) {
-        event.preventDefault();
-        const store_location = jQuery(this).find(":selected").val();
-        localStorage.setItem('store_location', store_location);
-        jQuery('#store_location').val(store_location);
-    });
+
      /**
          * State Dependency In Checkout Page
     */
