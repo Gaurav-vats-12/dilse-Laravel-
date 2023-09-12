@@ -25,7 +25,30 @@ let url = window.location.pathname;
           dots: false,
           slidesToShow: 4,
           prevArrow: '<button class="slide-arrow prev-arrow"></button>',
-          nextArrow: '<button class="slide-arrow next-arrow"></button>'
+          nextArrow: '<button class="slide-arrow next-arrow"></button>',
+          responsive: [
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true
+              }
+            },
+            {
+              breakpoint: 575,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true
+              }
+            },
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+          ]
       });
   };
 

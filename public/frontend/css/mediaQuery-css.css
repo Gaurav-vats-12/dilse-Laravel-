@@ -339,6 +339,20 @@ li.page-item.disabled span.page-link {
     .contact_sec {
         padding: 40px 0;
     }
+    .shopping_items_main .shopping_items {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        }
+        ul.shopping_items li {
+        margin-bottom: 20px;
+        }
+        .shope_price{
+        width:100%;
+        }
+        .order_summary {
+            padding: 20px;
+        }
     .tittle_heading h2,
     .sub_scribe_txt h2 {
         font-size: 22px;
