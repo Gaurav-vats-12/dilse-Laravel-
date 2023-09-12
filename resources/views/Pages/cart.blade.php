@@ -12,6 +12,7 @@
                     <div class="col-sm-12 col-md-7 col-lg-8" id="cart_messages">
                         @php  $subtotal = 0; @endphp
                         @if(session('cart'))
+
                             @foreach(session('cart') as $id => $details)
                                 @php  $subtotal = $subtotal + $details["price"] *  $details["quantity"]@endphp
 
@@ -56,12 +57,13 @@
                                     </div>
                                 </div>
                             @endforeach
-                            <div class="row">
-                    <div class="col-md-6">
+              <div class="row">
+              @if (cart_functionalty('false',session('cart')) > 0)
+              <div class="col-md-6">
                         <h3>Add spice level</h3>
                         <div class="card-body">
                             <div class="form-group">
-                                <input type="hidden" name="spicy_lavel" id="spicy_lavel" value="{{ session('spicy_lavel')}}">
+                                <input type="hidden" name="spicy_lavel" id="spicy_lavel" value="{{ session('spicy_lavel')}}" show_form= "true">
                                 <div class="input-group">
                                     <select name="spicy_lavel" id="spicy_lavel" class="form-control" ajax_value ="{{ route('cart.update_details')}}" location_Type="spicy">
                                         <option value="">Choose Spice level</option>
@@ -73,6 +75,12 @@
                             </div>
                         </div>
                     </div>
+                    @else
+                    <input type="hidden" name="spicy_lavel" id="spicy_lavel" value="" show_form= "false">
+
+
+                    @endif
+
                 </div>
                             @else
                             <h4> No Cart  Items Found</h4>  @endif
