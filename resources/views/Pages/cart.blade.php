@@ -125,8 +125,6 @@
                                                 <p>{{ setting('site_currency')}}{{  session('deliveryCost' ,0.00) }}</p>
                                             </div>
                                         </li>
-
-
                                     @endif
                                 </ul>
                                 <div class="order_totals d-flex align-items-center justify-content-between">
