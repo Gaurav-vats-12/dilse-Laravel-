@@ -61,6 +61,7 @@
                         <h3>Add spice level</h3>
                         <div class="card-body">
                             <div class="form-group">
+                                <input type="hidden" name="spicy_lavel" id="spicy_lavel" value="{{ session('spicy_lavel')}}">
                                 <div class="input-group">
                                     <select name="spicy_lavel" id="spicy_lavel" class="form-control" ajax_value ="{{ route('cart.update_details')}}" location_Type="spicy">
                                         <option value="">Choose Spice level</option>
@@ -139,7 +140,7 @@
                                 </div>
                                 <div class="cart_btn">
                                     @if(session('order_type'))
-                                        <a href="javascript:void(0)" id="checkout_btn" class="theme_btn" login_url="{{url('user/login')}}" type="order_type" >Proceed To Checkout</a>
+                                        <a href="javascript:void(0)" id="checkout_btn" class="theme_btn" login_url="{{url('user/login')}}" type="{{ session('order_type') }}" >Proceed To Checkout</a>
                                     @else
                                         <a href="javascript:void(0)"  id="checkout_btn" class="theme_btn" login_url="null" type=null>Proceed To Checkout</a>
                                         @include('layouts.partials.order_popup')

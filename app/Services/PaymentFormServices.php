@@ -28,6 +28,8 @@ class PaymentFormServices{
            $addressObject->Change_user_address($request ,$user_id);
         }
 
+        $grand_Total = round($request->sub_total ,2) + round($request->tax_total ,2)+ round($request->shipping_charge ,2);
+
         $order_id = Order::insertGetId([
             'user_id' => $user_id,
             "order_date" => date("Y-m-d H:i:s"),
@@ -40,8 +42,8 @@ class PaymentFormServices{
             'order_type' => $request->order_type,
             'sub_total' => round($request->sub_total ,2),
             'tax' => round($request->tax_total ,2),
-            'shipping_charge' => round($request->delivery_charge ,2),
-            'total_amount' => round($request->tototal_amount ,2),
+            'shipping_charge' => round($request->shipping_charge ,2),
+            'total_amount' => round($grand_Total ,2),
             'store_location' => $request->store_location,
             'spice_lavel' => $request->spice_lavel,
             'created_at' => now(),
