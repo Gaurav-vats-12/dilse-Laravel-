@@ -51,6 +51,7 @@ public function update_details(Request $request){
     public function addtocart(Request $request ) : JsonResponseAlias {
         try {
             if (!empty($request->product_oid)) {
+
                 $product = FoodItemAlias::findOrFail($request->product_oid);
                 $cart = session()->get('cart', []);
                 if(isset($cart[$request->product_oid])) {
@@ -61,6 +62,7 @@ public function update_details(Request $request){
                         "price" =>  round($product->price ,2) ,
                         "quantity" => 1,
                         "productdetails" => $product,
+                        'is_spisy'=> $request->is_spisy
                         ];
                 }
                 session()->put('cart', $cart);
