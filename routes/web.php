@@ -54,10 +54,6 @@ Route::get('/send', [HomeController::class, 'sendEmail']);
 Route::prefix('cart')->name('cart.')->group(callback: function(){
     Route::get('/', [CartController::class, 'viewcart'])->name('view');
      Route::POST('/update-details', [CartController::class, 'update_details'])->name('update_details');
-    // Route::POST('/update-location', [CartController::class, 'update_location'])->name('update_location');
-
-    // Route::POST('/update-other_details', [CartController::class, 'update_other'])->name('update_other');
-
 });
 
 Route::prefix('checkout')->name('checkout.')->group(callback: function(){
