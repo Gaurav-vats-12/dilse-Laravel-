@@ -18,7 +18,7 @@
 
                                 <div class="shoping_main_top" id="cart_products-{{$id}}">
                                     <div class="shopping_items_main">
-                                        <ul class="shopping_items">
+                                        <ul class="shopping_items" data-custom-attr="{{ $details['is_spisy']}}">
                                             <li>
                                                 <div class="shoping_imge">
                                                     <img src="{{ url('/storage/products/'.$details['productdetails']->image.'') }}" alt="{{ $details['productdetails']->image}}">
@@ -46,20 +46,19 @@
                                                     <div class="shope_p_tag"><span class="text-green-500 !leading-none">{{setting('site_currency')}}{{ $details['productdetails']->price}}</span>
                                                     </div>
                                                     <div class="price"><h6> <span id="product_quantity_price__{{$id}}">{{setting('site_currency')}}{{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
-
                                                     <div class="remove_price">
                                                         <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
-                                                        <a class="theme_btn" href="javascript:void(0)" id ="remove_add_to_Cart" produc_id ="{{ $id }}">Remove</a>
+                                                        <a class="theme_btn" href="javascript:void(0)" id ="remove_add_to_Cart" produc_id ="{{ $id }}" is_spicy ="{{ $details['is_spisy']}}">Remove</a>
                                                     </div>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                            @endforeach
+                   @endforeach
               <div class="row">
               @if (cart_functionalty('false',session('cart')) > 0)
-              <div class="col-md-6">
+              <div class="col-md-6" id="cart_functionalty">
                         <h3>Add spice level</h3>
                         <div class="card-body">
                             <div class="form-group">
@@ -77,8 +76,6 @@
                     </div>
                     @else
                     <input type="hidden" name="spicy_lavel" id="spicy_lavel" value="" show_form= "false">
-
-
                     @endif
 
                 </div>
