@@ -110,6 +110,8 @@
                                     @php
                                         $orderType = session('order_type');
                                     @endphp
+                                    <input type="hidden" name="order_type" id="order_type" value="{{ session('order_type')}}">
+
                                     @if($orderType == 'delivery')
                                         <li>
 
@@ -119,10 +121,12 @@
                                                 <input type="radio" type="cart" id="delivery_type" class="delivery"  name="delivery_type" value="{{ round(setting('delivery_charge_within_5km' ,0.00),2) }}" {{ setting('delivery_charge_within_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }}  > <label for="delivery_type" >Delivery Charge (Within 5 km)</label><br>
                                                 <input type="radio" type="cart"  id="delivery_typecx"  class="delivery" name="delivery_type" value="{{ round(setting('delivery_charge_outside_5km' ,0.00),2) }}" {{ setting('delivery_charge_outside_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }} > <label for="delivery_typecx">Delivery Charge (Outside 5 km-15km)</label> <br>
                                             </div>
-                                            <div class="s_total" id="dilevery_total">
+                                            <div class="s_total" id="dilevery_total" >
                                                 <p>{{ setting('site_currency')}}{{  session('deliveryCost' ,0.00) }}</p>
                                             </div>
                                         </li>
+
+
                                     @endif
                                 </ul>
                                 <div class="order_totals d-flex align-items-center justify-content-between">
@@ -138,7 +142,7 @@
                                 </div>
                                 <div class="cart_btn">
                                     @if(session('order_type'))
-                                        <a href="javascript:void(0)" id="checkout_btn" class="theme_btn" login_url="{{url('user/login')}}" type="order_type">Proceed To Checkout</a>
+                                        <a href="javascript:void(0)" id="checkout_btn" class="theme_btn" login_url="{{url('user/login')}}" type="order_type" >Proceed To Checkout</a>
                                     @else
                                         <a href="javascript:void(0)"  id="checkout_btn" class="theme_btn" login_url="null" type=null>Proceed To Checkout</a>
                                         @include('layouts.partials.order_popup')

@@ -24,7 +24,9 @@
         class="text-bold ">{{ $orders->order_date }}</span> <br>
     <strong>Status:</strong> {{ $orders->status }}
     <br>
-    <strong>Store Location:</strong> {{ $orders->store_location }}
+    <strong>Store Location:</strong> {{ $orders->store_location }}<br>
+    <strong>Spice Level:</strong> {{ $orders->spice_lavel ?  $orders->spice_lavel : 'Not Found' }}
+
 </div>
 
 <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">

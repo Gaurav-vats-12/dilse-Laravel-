@@ -50,16 +50,15 @@
                                                 class="">{{ $orders->shipping_address }}</span><br>
                                         </div>
                                     </div>
-
                                     <div class="col-md-4">
                                         <h4>Order Details</h4>
                                         <div class="order-item">
                                             <strong>Order Number:</strong> #{{ $orders->id }}<br>
                                             <strong>Date:</strong> <span
                                                 class="text-bold ">{{ $orders->order_date }}</span> <br>
-                                            <strong>Status:</strong> {{ $orders->status }}
-                                            <br>
-                                            <strong>Store Location:</strong> {{ $orders->store_location }}
+                                            <strong>Status:</strong> {{ $orders->status }} <br>
+                                            <strong>Store Location:</strong> {{ $orders->store_location }}<br>
+                                            <strong>Spice Level:</strong> {{ $orders->spice_lavel ?  $orders->spice_lavel : 'Not Found' }}<br>
                                         </div>
                                     </div>
                                     <div class="col-md-4">

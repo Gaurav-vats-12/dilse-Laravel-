@@ -29,6 +29,10 @@
         <td>Payment Method:</td>
         <td> {{ __($orderMail['CartDetails']->payment->payment_method) }} </td>
     </tr>
+    <tr>
+        <td>Spice Level:</td>
+        <td> {{ __(  $orderMail['CartDetails']->spice_lavel ?  $orderMail['CartDetails']->spice_lavel : 'Not Found') }} </td>
+    </tr>
 </table>
 
 <table width="100%" cellpadding="10" cellspacing="0" border="1" style="border-collapse: collapse;">

@@ -60,3 +60,4 @@ const updateTotals = async (deliveryCost) => {
         }
     }
 }
+

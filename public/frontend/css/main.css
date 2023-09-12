@@ -3429,3 +3429,9 @@ p#message {
   display:none;
 
 }
+.login-content {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 20px;
+}
+.login-content a{font-weight: 600;}
