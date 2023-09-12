@@ -69,11 +69,9 @@ const updateTotals = async (deliveryCost) => {
         if(trypelist==='cart'){
             location.reload(true);
         }else{
-            jQuery(`#deliveryCost`).empty();
             jQuery(`#dilevery_total`).html(`<p>${site_currency}${deliveryCost.toFixed(2)}</p>`);
             jQuery(`#grandTotal`).html(`${site_currency}${grandTotal.toFixed(2)}`);
             jQuery('#grandTotal').addClass('grandTotal');
-            jQuery(`#deliveryCost`).css('display','none');
         }
     }
 }

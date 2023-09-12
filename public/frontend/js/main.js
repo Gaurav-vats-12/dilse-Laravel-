@@ -503,7 +503,6 @@ jQuery(document).ready(function () {
                     // console.log(falseCount);
                     if(falseCount ===0){
                         location.reload(true);
-                        // jQuery('#cart_functionalty').empty().html('<input type="hidden" name="spicy_lavel" id="spicy_lavel" value="" show_form= "false">');
                     }
                         if (uid - 1 === 0) {
                             jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
