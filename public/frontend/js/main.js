@@ -386,11 +386,13 @@ jQuery(document).ready(function () {
               jQuery(document).on("click", ".update-qty", async function (e) {
                 let site_currency = jQuery('meta[name="site_currency"]').attr('content');
                 let newVal;
+
                 let $button = jQuery(this), oldValue = $button.closest('.update-cart-qty').find("input.product-qty").val(),
                     quantity = jQuery(this).parent().find(`.product-qty`), ajax_url = jQuery(`#ajax_url`).val(),
                     dilavery_charge = jQuery(`#dilavery_charge`).val(),
                     product__price = parseFloat(quantity.attr(`product__price`)),
                     product_oid = parseInt(jQuery(this).attr(`productoid`));
+                    is_spicy = jQuery(this).attr('is_spicy');
                 if ($button.text() === "+") {
                     newVal = parseFloat(oldValue) + 1;
                 } else {
@@ -408,13 +410,16 @@ jQuery(document).ready(function () {
                 } else {
                     $button.closest('.update-cart-qty').find("input.product-qty").attr('value', newVal);
                     let qty = newVal;
+
                     let counterproductive = parseFloat(newVal * product__price),
                         ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
                     jQuery(`#product_quantity_price__${product_oid}`).text(`${site_currency}${counterproductive.toFixed(2)}`);
                     jQuery(`#product_quntity__${product_oid}`).val(qty);
                     jQuery(`#product_price__${product_oid}`).val(`${site_currency}${counterproductive.toFixed(2)}`);
+
                     const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
                     if (resPose.status === `success`) {
+                        jQuery('#order_details').empty();
                         jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
                         jQuery('#subtotal').attr('subtotal',resPose.subtotal)
                         jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
@@ -447,6 +452,7 @@ jQuery(document).ready(function () {
 
     jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
         let site_currency = jQuery('meta[name="site_currency"]').attr('content');
+
         event.preventDefault();
         Swal.fire({
             title: `Are you sure you want to delete this Item?`,
@@ -459,8 +465,12 @@ jQuery(document).ready(function () {
                 let dilavery_charge = jQuery('#dilavery_charge').val();
                 let ajax_value = {dilavery_charge};
                 let resPose;
+
+
+
                 [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
                 if (resPose.status === 'success') {
+
                     jQuery(`.cart_count`).html(resPose.cart_total);
                     jQuery('#subtotal').attr('subtotal',resPose.subtotal)
                     jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
@@ -471,8 +481,33 @@ jQuery(document).ready(function () {
                         jQuery('#order_details').empty();
                         jQuery('.product_c_main').empty();
                     } else {
+                        var myArray = [];
                         let product_oid = parseInt(jQuery(this).attr("produc_id"));
-                        jQuery(`#cart_products-${product_oid}`).empty();
+                        var falseCount = 0;
+
+                         jQuery(`#cart_products-${product_oid}`).empty();
+                        let allUlElements = $("ul");
+                        if (allUlElements.length > 0) { //
+                            allUlElements.each(function() {
+                                var customAttrValue = $(this).data("custom-attr"); // Get the data-custom-attr attribute value
+                                if (customAttrValue !== undefined) {
+                                    myArray.push(customAttrValue);
+                                } else {
+                                    myArray.push(null);
+                                }
+                            });
+                        }
+
+                        jQuery.each(myArray, function(index, value) {
+                            if (value === false) {
+                                falseCount++;
+                            }
+                        });
+                    // console.log(falseCount);
+                    if(falseCount ===0){
+                        jQuery('#cart_functionalty').empty().html('<input type="hidden" name="spicy_lavel" id="spicy_lavel" value="" show_form= "false">');
+                    }
+
                         if (uid - 1 === 0) {
                             jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                             jQuery('#order_details').empty();
