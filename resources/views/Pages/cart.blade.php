@@ -57,10 +57,6 @@
                                     </div>
                                 </div>
                             @endforeach
-
-
-
-
               <div class="row">
               @if (cart_functionalty('false',session('cart')) > 0)
               <div class="col-md-6">
