@@ -31,7 +31,7 @@
 
                 <div class="secure_image">
 
-                    <img class ="images"src="https://scanlonspharmacy.com/wp-content/uploads/2018/04/secure-stripe-payment-logo.png">
+                    <img class ="images"src="{{ asset('frontend/img/secure-stripe-payment-logo.png')}}">
                 </div>
             </div>
 
