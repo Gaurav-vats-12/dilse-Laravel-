@@ -3423,3 +3423,6 @@ section.shopping_cart {
     font-size: 20px;
 }
 .login-content a{font-weight: 600;}
+span.grandTotal {
+    margin: 0px -38px 0 0;
+}

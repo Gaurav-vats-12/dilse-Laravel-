@@ -183,8 +183,8 @@ jQuery(document).ready(function () {
     });
 
     jQuery(document).on("change", ".delivery", async function (event) {
-        let deliveryCost = parseFloat(jQuery('input[name="delivery_type"]:checked').val());
-        updateTotals(deliveryCost);
+        jQuery('#shipping_charge').val(parseFloat(jQuery('input[name="delivery_type"]:checked').val()));
+        updateTotals(parseFloat(jQuery('input[name="delivery_type"]:checked').val()));
     });
 
 
@@ -194,14 +194,11 @@ jQuery(document).ready(function () {
 */
         jQuery(document).on("click", "#menu", async function (e) {
             e.preventDefault();
-
             jQuery(`.loader`).toggleClass('display');
             jQuery(`#menu_data_find`).empty();
-
             let slug = jQuery(this).attr("menu-slug");
             let page = 1;
             let ajax_value = { slug, page };
-
             let pageUrl = `${location.hostname}/menu/${slug}?page=${page + 1}`;
             const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
@@ -318,9 +315,7 @@ jQuery(document).ready(function () {
 
         jQuery(document).on("click", "#checkout_btn", async function (event) {
             if (jQuery('#order_type').val()) {
-                if (jQuery('input[name="delivery_type"]:checked').val() ===undefined) {
-                    NotyfMessage('Please Choose Delivery Charges', 'error');
-                }else{
+                if(jQuery('#shipping_charge').val()){
                     if(jQuery('#spicy_lavel').find(":selected").val()){
                         if (parseFloat(jQuery('#subtotal').attr('subtotal')) < parseFloat(jQuery('#message').attr('mimimum_ammout'))) {
                             jQuery('#minimum_order_message').html(`<div class="auto-close alert alert-warning d-flex align-items-center" role="alert" id ="auto-close-alert"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><div id="alert_message">Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> --You must have an order with minimum of ${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 to place the order </div></div>`);
@@ -335,6 +330,9 @@ jQuery(document).ready(function () {
                     }else{
                         NotyfMessage('Please Select the SPICE LEVEL for order ', 'error');
                     }
+
+                }else{
+                    NotyfMessage('Please Choose Delivery Charges', 'error');
                 }
             }else{
                 if(jQuery('#spicy_lavel').find(":selected").val()){
@@ -400,7 +398,7 @@ jQuery(document).ready(function () {
                         jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
                         jQuery('#subtotal').attr('subtotal',resPose.subtotal)
                         jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                        jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
+                        jQuery(`#grandTotal`).load(`<p>${site_currency}${resPose.total}</p>`);
                     }
                 }
             });
@@ -471,8 +469,6 @@ jQuery(document).ready(function () {
         localStorage.setItem('store_location', store_location);
         jQuery('#store_location').val(store_location);
     });
-
-
      /**
          * State Dependency In Checkout Page
     */

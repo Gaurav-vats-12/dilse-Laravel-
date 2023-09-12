@@ -111,10 +111,9 @@
                                         $orderType = session('order_type');
                                     @endphp
                                     <input type="hidden" name="order_type" id="order_type" value="{{ session('order_type')}}">
-
+                                    <input type="hidden" name="shipping_charge" id="shipping_charge" value="{{ session('deliveryCost') }}" >
                                     @if($orderType == 'delivery')
                                         <li>
-
                                             <div class="s_subtotal">
                                                 <p>Delivery Charges :
                                                 </p>

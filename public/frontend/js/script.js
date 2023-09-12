@@ -35,9 +35,6 @@ async function state_dependency_country_list(ajax_post, url) {
 }
 
 const updateTotals = async (deliveryCost) => {
-    console.log(deliveryCost);
-
-
     let site_currency = jQuery('meta[name="site_currency"]').attr('content');
     let subtotal = parseFloat(jQuery('#subtotal').attr('subtotal'));
     let updated_route =jQuery('#subtotal').attr('updated_route');
@@ -51,11 +48,11 @@ const updateTotals = async (deliveryCost) => {
     if(resPose.code =='200' || resPose.code ==200){
         if(trypelist==='cart'){
             location.reload(true);
-            // jQuery(`#dilevery_total`).html(`<p>${site_currency}${deliveryCost.toFixed(2)}</p>`);
-            // jQuery(`#grandTotal`).html(`<p>${site_currency}${grandTotal.toFixed(2)}</p>`);
         }else{
             jQuery(`#deliveryCost`).empty();
             jQuery(`#dilevery_total`).html(`<p>${site_currency}${deliveryCost.toFixed(2)}</p>`);
+            jQuery(`#grandTotal`).html(`${site_currency}${grandTotal.toFixed(2)}`);
+            jQuery('#grandTotal').addClass('grandTotal');
             jQuery(`#deliveryCost`).css('display','none');
         }
     }
