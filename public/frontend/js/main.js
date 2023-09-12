@@ -410,16 +410,13 @@ jQuery(document).ready(function () {
                 } else {
                     $button.closest('.update-cart-qty').find("input.product-qty").attr('value', newVal);
                     let qty = newVal;
-
                     let counterproductive = parseFloat(newVal * product__price),
                         ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
                     jQuery(`#product_quantity_price__${product_oid}`).text(`${site_currency}${counterproductive.toFixed(2)}`);
                     jQuery(`#product_quntity__${product_oid}`).val(qty);
                     jQuery(`#product_price__${product_oid}`).val(`${site_currency}${counterproductive.toFixed(2)}`);
-
                     const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
                     if (resPose.status === `success`) {
-                        jQuery('#order_details').empty();
                         jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
                         jQuery('#subtotal').attr('subtotal',resPose.subtotal)
                         jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
@@ -508,7 +505,6 @@ jQuery(document).ready(function () {
                         location.reload(true);
                         // jQuery('#cart_functionalty').empty().html('<input type="hidden" name="spicy_lavel" id="spicy_lavel" value="" show_form= "false">');
                     }
-
                         if (uid - 1 === 0) {
                             jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
                             jQuery('#order_details').empty();
