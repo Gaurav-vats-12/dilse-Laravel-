@@ -25,6 +25,7 @@ class OrderManagemnetController extends Controller
         return view(view: 'admin.page.order.index')->with('orders', value: OrderAlias::orderBy('id', 'DESC')->get());
     }
 
+
     /**
      * @param string $id
      * @return ApplicationAlias1|FactoryAlias|ViewAlias|ApplicationAlias
