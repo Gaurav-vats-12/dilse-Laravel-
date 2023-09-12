@@ -3417,3 +3417,9 @@ section.shopping_cart {
     font-size: 13px;
     border-radius: 6px;
 }
+.login-content {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 20px;
+}
+.login-content a{font-weight: 600;}

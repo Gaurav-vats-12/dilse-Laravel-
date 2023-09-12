@@ -87,12 +87,13 @@ function stripePayment_Form(StripekEY){
     });
     let form = document.getElementById('stripe_form');
     jQuery(document).on("submit","#stripe_form",async function(e) {
+        if (jQuery('input[name="delivery_type"]:checked').val() ===undefined) {
+            NotyfMessage('Please Choose Delivery Charges', 'error');
+        }else{
         jQuery(".spinner-border").removeClass("d-none");
         jQuery(".theme_btn").attr("disabled", true);
         jQuery(".btn-txt").text("Processing ...");
-        const {token, error} = await stripe.createToken(cardNumberElement);
-        console.log(token)
-       try {
+        const {token, error} = await stripe.createToken(cardNumberElement);       try {
            setOutcome(token);
            const hiddenInput = document.createElement('input');
            hiddenInput.setAttribute('type', 'hidden');
@@ -102,9 +103,8 @@ function stripePayment_Form(StripekEY){
            document.getElementById('stripe_form').appendChild(hiddenInput);
            document.getElementById('stripe_form').submit();
        }catch (error) {
-
-
        }
+    }
     });
 }
 
@@ -150,14 +150,17 @@ function payment_intergation(StripekEY) {
         },
         submitHandler: async function (form, event) {
             event.preventDefault();
-            let payment_value = jQuery('input[name="payment_method"]:checked').val();
-            if (payment_value ==='PayOnOnline') {
+            if (jQuery('input[name="delivery_type"]:checked').val() ===undefined) {
+                NotyfMessage('Please Choose Delivery Charges', 'error');
+            }else{
+              if (jQuery('input[name="payment_method"]:checked').val() ==='PayOnOnline') {
             }else{
                 jQuery(".spinner-border").removeClass("d-none");
                 jQuery(".theme_btn").attr("disabled", true);
                 jQuery(".btn-txt").text("Processing ...");
                 event.preventDefault();
                  document.getElementById('payment-form').submit();
+            }
             }
         }
     });
