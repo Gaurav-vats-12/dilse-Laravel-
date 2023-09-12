@@ -511,6 +511,12 @@ li.page-item.disabled span.page-link {
     .responsi_header .menu_right {
         width: 300px;
     }
+    .shopping_cart .tittle_heading {
+        margin-bottom: 40px;
+    }
+    .order_summary {
+        padding: 25px;
+    }
 }
 
 @media screen and (max-width: 320px) {
