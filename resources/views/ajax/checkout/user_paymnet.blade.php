@@ -63,7 +63,7 @@
             <input type="radio" id="delivery_type" class="delivery"  name="delivery_type" value="{{ round(setting('delivery_charge_within_5km' ,0.00),2) }}" {{ setting('delivery_charge_within_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }} type="checkout" > <label for="delivery_type" >Delivery Charge (Within 5 km)</label><br>
              <input type="radio"  id="delivery_typecx"  class="delivery" name="delivery_type" value="{{ round(setting('delivery_charge_outside_5km' ,0.00),2) }}" {{ setting('delivery_charge_outside_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }} type="checkout" > <label for="delivery_typecx">Delivery Charge (Outside 5 km-15km)</label> <br>
              </div>
-             <span class="value" id="dilevery_total" >{{setting('site_currency')}}0.00</span>
+             <span class="value" id="dilevery_total" >{{setting('site_currency')}}{{  session('deliveryCost' ,0.00) }}</span>
 
 
 
