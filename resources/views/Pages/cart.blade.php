@@ -42,9 +42,9 @@
                                             </li>
                                             <li>
                                                 <div class="shope_price">
-                                                    <div class="shope_p_tag"><span class="text-green-500 !leading-none">{{setting('site_currency')}} {{ $details['productdetails']->price}}</span>
+                                                    <div class="shope_p_tag"><span class="text-green-500 !leading-none">{{setting('site_currency')}}{{ $details['productdetails']->price}}</span>
                                                     </div>
-                                                    <div class="price"><h6> <span id="product_quantity_price__{{$id}}">{{setting('site_currency')}} {{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
+                                                    <div class="price"><h6> <span id="product_quantity_price__{{$id}}">{{setting('site_currency')}}{{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
 
                                                     <div class="remove_price">
                                                         <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
@@ -62,7 +62,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <select name="spicy_lavel" id="spicy_lavel" class="form-control" ajax_value ="{{ route('cart.update_other')}}">
+                                    <select name="spicy_lavel" id="spicy_lavel" class="form-control" ajax_value ="{{ route('cart.update_details')}}" location_Type="spicy">
                                         <option value="">Choose Spice level</option>
                                         @foreach(getattribute('other') as $key=> $attribuite)
                                         <option value="{{$attribuite->attributes_name}}" {{ $attribuite->attributes_name == session('spicy_lavel')? 'selected' : '' }}>{{ $attribuite->attributes_name}}</option>
@@ -89,7 +89,7 @@
                                             <p>Subtotal
                                             </p>
                                         </div>
-                                        <div class="s_total" id="subtotal" subtotal ="{{ $subtotal }}"  tax="{{ round(( setting('tax' ,0.00)) ,2) }}" updated_route="{{route('cart.update_delivery') }}" trypeList="cart">
+                                        <div class="s_total" id="subtotal" subtotal ="{{ $subtotal }}"  tax="{{ round(( setting('tax' ,0.00)) ,2) }}" updated_route="{{route('cart.update_details') }}" trypeList="cart">
                                             <p id="subtotal" >{{ setting('site_currency')}} {{ $subtotal }}</p>
                                         </div>
                                     </li>
@@ -117,8 +117,8 @@
                                             <div class="s_subtotal">
                                                 <p>Delivery Charges :
                                                 </p>
-                                                <input type="radio" type="cart" id="delivery_type" class="delivery"  name="delivery_type" value="{{ round(setting('delivery_charge_within_5km' ,0.00),2) }}" {{ setting('delivery_charge_within_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }}  > <label for="delivery_type" >Delivery Charge (Within 5 km)</label><br>
-                                                <input type="radio" type="cart"  id="delivery_typecx"  class="delivery" name="delivery_type" value="{{ round(setting('delivery_charge_outside_5km' ,0.00),2) }}" {{ setting('delivery_charge_outside_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }} > <label for="delivery_typecx">Delivery Charge (Outside 5 km-15km)</label> <br>
+                                                <input type="radio" type="cart" id="delivery_type" class="delivery"  name="delivery_type" value="{{ round(setting('delivery_charge_within_5km' ,0.00),2) }}" {{ setting('delivery_charge_within_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }}  location_Type="delivery" > <label for="delivery_type" >Delivery Charge (Within 5 km)</label><br>
+                                                <input type="radio" type="cart"  id="delivery_typecx"  class="delivery" name="delivery_type" value="{{ round(setting('delivery_charge_outside_5km' ,0.00),2) }}" {{ setting('delivery_charge_outside_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }}  location_Type="delivery" > <label for="delivery_typecx">Delivery Charge (Outside 5 km-15km)</label> <br>
                                             </div>
                                             <div class="s_total" id="dilevery_total" >
                                                 <p>{{ setting('site_currency')}}{{  session('deliveryCost' ,0.00) }}</p>

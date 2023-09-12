@@ -24,36 +24,25 @@ public function extra_items(Request $request ){
     $extra_items = FoodItemAlias::where('menu_id',$menu_id)->where('status',1)->get();
     return view('ajax.extra_items',compact('extra_items'));
 }
-
-public function update_delivery(Request $request){
+//
+public function update_details(Request $request){
     if ($request->ajax()) {
-        session()->put('deliveryCost', $request->deliveryCost);
-        return response()->json(['code' => 200 , 'status' =>'success','message'=> 'deliveryCost']);
-    }
-}
-
-public function update_other(Request $request){
-    if ($request->ajax()) {
-        $spicy_lavel = session()->get('spicy_lavel', []);
-        if($spicy_lavel ){
-            Session::forget('spicy_lavel');
+        if($request->location_type ==='location'){
+            $update_location = session()->get('update_location', []);
+                session()->put('update_location', $request->store_location);
+            return response()->json(['code' => 200 , 'status' =>'success','message'=> 'Location Is Set Successfully']);
+        }elseif ($request->location_type ==='spicy') {
+                 $spicy_lavel = session()->get('spicy_lavel', []);
+                session()->put('spicy_lavel', $request->spicy_lavel);
+            return response()->json(['code' => 200 , 'status' =>'success','message'=> 'Spice lavel Successfully Added in the order ']);
+        }else{
+            $deliveryCost = session()->get('deliveryCost', []);
+                session()->put('deliveryCost', $request->deliveryCost);
+            return response()->json(['code' => 200 , 'status' =>'success','message'=> 'deliveryCost']);
         }
-        session()->put('spicy_lavel', $request->spicy_lavel);
-        return response()->json(['code' => 200 , 'status' =>'success','message'=> 'Spice lavel Successfully Added in the order ']);
     }
-}
-public function update_location(Request $request){
-    if ($request->ajax()) {
-        $update_location = session()->get('update_location', []);
-        if($update_location ){
-            Session::forget('update_location');
-        }
-        session()->put('update_location', $request->store_location);
-        return response()->json(['code' => 200 , 'status' =>'success','message'=> 'Location Is Set Successfully']);
-    }
-}
 
-
+}
     /**
      * @param Request $request
      * @return JsonResponseAlias

@@ -2,16 +2,15 @@ jQuery(document).ready(function () {
     jQuery('#store_location').val(jQuery('#select_location').find(":selected").val());
     jQuery(document).on("change", "#select_location",  async function (event) {
         event.preventDefault();
-         let store_location = jQuery(this).find(":selected").val();
-        const resPose = await Ajax_response(jQuery(this).attr('ajax_value'), "POST", {store_location}, '');
+        let store_location = jQuery(this).find(":selected").val();
+        let location_type = jQuery(this).attr('location_type');
+        const resPose = await Ajax_response(jQuery(this).attr('ajax_value'), "POST", { store_location, location_type }, '');
         if (resPose.status === 'success') {
+            jQuery('#store_location').val(store_location);
             NotyfMessage(resPose.message, 'success');
-        } else {
-            jQuery.each(resPose.errors, function (key, value) {
-                jQuery(`#${key}-error`).text(value);
-            });
+        }else{
+         jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value);  });
         }
-        jQuery('#store_location').val(store_location);
     });
     let url = window.location.pathname;
 
@@ -308,11 +307,10 @@ jQuery(document).ready(function () {
         }
         jQuery(document).on("change", "#spicy_lavel", async function (event) {
             event.preventDefault();
-            let spicy_lavel = jQuery(this).find(":selected").val(),
-
-             ajax_Url = jQuery(this).attr('ajax_value');
+            let spicy_lavel = jQuery(this).find(":selected").val();
+            let location_type = jQuery(this).attr('location_type');
             if(spicy_lavel){
-                const resPose = await Ajax_response(ajax_Url, "POST", {spicy_lavel}, '');
+                const resPose = await Ajax_response(jQuery(this).attr('ajax_value'), "POST", {spicy_lavel,location_type}, '');
                 if (resPose.status === 'success') {
                     NotyfMessage(resPose.message, 'success');
                 } else {
