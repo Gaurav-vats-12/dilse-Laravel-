@@ -13,7 +13,7 @@
                       @endif
 
                 <p>Your order details: {{$orderItem->id}}</p>
-                <table class="table-responsive">
+                <table class="table table-responsive">
                     <tr>
                         <th>Image</th>
                         <th>Product  ID</th>
