@@ -522,8 +522,17 @@ li.page-item.disabled span.page-link {
     .product_c_main {
         padding-top: 40px;
     }
-
-
+    .shoping_imge {
+        max-width: 332px;
+        height: 202px;
+    }
+    .product_c_main ul#myTab {
+        margin-bottom: 3px !important;
+        border-bottom: none;
+    }
+    .shope_price .shope_p_tag {
+        margin-left: 10px;
+    }
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
         padding: 0;
