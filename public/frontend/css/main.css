@@ -3426,3 +3426,12 @@ section.shopping_cart {
 span.grandTotal {
     margin: 0px -38px 0 0;
 }
+.forget_passcode a {
+    color: #eb0029;
+}
+a.checkout_link_guest {
+    color: #eb0029;
+}
+span.sign_up_for a {
+    color: #eb0029;
+}

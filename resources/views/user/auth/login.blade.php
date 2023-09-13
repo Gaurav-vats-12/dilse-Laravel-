@@ -60,7 +60,7 @@
                             <P class="proceed_ancho">OR </P>
                             <a class="checkout_link_guest" href="{{route('checkout.view')}}"> As a Guest </a>
                             @endif
-                            <p>Don’t have an account?<span><a href="{{ route('user.register') }}">sign-up</a></span></p>
+                            <p>Don’t have an account?<span class="sign_up_for"><a href="{{ route('user.register') }}">sign-up</a></span></p>
                     </form>
                 </div>
             </div>
