@@ -546,6 +546,9 @@ li.page-item.disabled span.page-link {
         form.contact_form label {
             margin-top: 6px;
         }
+        .contcat_text h5 {
+                  font-size: 19px;
+             }
 
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
