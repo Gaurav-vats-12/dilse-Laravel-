@@ -14,15 +14,15 @@
                 <form method="POST" action="{{ route('user.password.email') }}" class="contact_form"> @csrf
                   <div class="tittle_heading">
                     <h2>FORGET YOUR <span>PASSWORD</span></h2>
-                    <div class="mb-4 text-sm text-gray-600">
+                    <div class="text-sm text-gray-600 forget_password_txt">
                     {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
                 </div>
-                <x-auth-session-status class="mb-4" :status="session('status')" />
+                <x-auth-session-status class="" :status="session('status')" />
 
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="custn_input">
+                      <div class="custn_input forget_input_email">
                       <x-input-label for="email" :value="__('Email')" />
                         <x-text-input id="email" class="block mt-1 w-full" placeholder="Enter your email" type="email" name="email" :value="old('email')"  autofocus />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
