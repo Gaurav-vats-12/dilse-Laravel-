@@ -62,18 +62,27 @@
             <div id="deliveryCost" class="delivery_cost_typ">
             <input type="radio" id="delivery_type" class="delivery"  name="delivery_type" value="{{ round(setting('delivery_charge_within_5km' ,0.00),2) }}" {{ setting('delivery_charge_within_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }} type="checkout" > <label for="delivery_type" >Delivery Charge (Within 5 km)</label><br>
              <input type="radio"  id="delivery_typecx"  class="delivery" name="delivery_type" value="{{ round(setting('delivery_charge_outside_5km' ,0.00),2) }}" {{ setting('delivery_charge_outside_5km' ,0.00)  == session('deliveryCost') ? 'checked' : '' }} type="checkout" > <label for="delivery_typecx">Delivery Charge (Outside 5 km-15km)</label>
-             <span class="value dilevery_total" id="dilevery_total" >{{setting('site_currency')}}{{  session('deliveryCost' ,0.00) }}</span>
+             <span class="value dilevery_total" id="dilevery_total"dilevery_total="{{  session('deliveryCost' ,0.00) }}" >{{setting('site_currency')}}{{  session('deliveryCost' ,0.00) }}</span>
              <br>
             </div>
         </li>
+        <li class="Delivery Tip">
+            <span class="key">Tip Tour Delivery Partner </span>
+            <span class="value" id="dilevery_tip">{{setting('site_currency')}} <input type="text"  class="" name="dilvery_tip" id="dilvery_tip" value="" maxlength="2" size="2"></span>
+     </li>
         @endif
+
         <li class="grand-total">
             <span class="key">GRAND TOTAL:</span>
             <span class="value" id="grandTotal">{{setting('site_currency')}}{{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + session('deliveryCost') +  $tax_total:  $subtotal + 0.00 +  $tax_total }}</span>
      </li>
             </ul>
+            <ul>
+
+            </ul>
             </div>
-            <input type="hidden" name="tototal_amount" value="{{ (session('order_type') && session('order_type') == "delivery") ? $subtotal + session('deliveryCost') +  $tax_total:  $subtotal + 0.00 +  $tax_total }}">
+
+
 
         </div>
     </div>

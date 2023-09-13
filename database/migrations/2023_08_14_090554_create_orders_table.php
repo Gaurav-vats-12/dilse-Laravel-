@@ -24,6 +24,7 @@ return new class extends Migration
             $table->decimal('sub_total', 10, 2);
             $table->decimal('shipping_charge', 10, 2)->nullable();
             $table->decimal('tax', 10, 2)->nullable();
+            $table->decimal('delivery_tip', 10, 2)->nullable();
             $table->decimal('total_amount', 10, 2);
             $table->string('spice_lavel', 255)->nullable();
             $table->text('CustomberNote')->nullable();

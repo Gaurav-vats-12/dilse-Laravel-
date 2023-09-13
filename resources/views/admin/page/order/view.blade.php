@@ -124,6 +124,7 @@
                                             </div>
                                             <div class="col-8">
                                                 {{ setting('site_currency')}}{{ $orders->shipping_charge }}
+                                                (Tip :{{setting('site_currency')}}{{ __($orders->delivery_tip) }} )
                                             </div>
                                         </div>
                                         <div class="row mt-3">

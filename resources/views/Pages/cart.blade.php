@@ -45,7 +45,7 @@
                                                 <div class="shope_price">
                                                     <div class="shope_p_tag"><span class="text-green-500 !leading-none">{{setting('site_currency')}}{{ $details['productdetails']->price}}</span>
                                                     </div>
-                                                    <div class="price"><h6> <span id="product_quantity_price__{{$id}}">{{setting('site_currency')}}{{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}.00</span></h6></div>
+                                                    <div class="price"><h6> <span id="product_quantity_price__{{$id}}">{{setting('site_currency')}}{{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
                                                     <div class="remove_price">
                                                         <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
                                                         <a class="theme_btn" href="javascript:void(0)" id ="remove_add_to_Cart" produc_id ="{{ $id }}" is_spicy ="{{ $details['is_spisy']}}">Remove</a>
@@ -88,7 +88,7 @@
                             <div class="order_summary">
                                 <div class="tittle_heading">
                                     <h4> Order Summary </h4>
-                                    <p id="message"  mimimum_ammout= "{{  round(( setting('minimum_order_for_delivery' ,0.00)) ,2) }}">Minimum order amount is {{ setting('site_currency')}}{{ round(( setting('minimum_order_for_delivery',0.00)) ,2) }}.00</p>
+                                    <p id="message"  mimimum_ammout= "{{  round(( setting('minimum_order_for_delivery' ,0.00)) ,2) }}">Minimum order amount is {{ setting('site_currency')}}{{ round(( setting('minimum_order_for_delivery',0.00)) ,2) }}</p>
                                 <ul class="summary_main">
                                     <li>
                                         <div class="s_subtotal">

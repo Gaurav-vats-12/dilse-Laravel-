@@ -49,10 +49,14 @@
         <td>Shipping Address:</td>
         <td>{{ __($orderMail['CartDetails']->shipping_address) }}</td>
     </tr>
-
+    <tr>
+        <td>Delivery  Type :</td>
+        <td>{{ __($orderMail['CartDetails']->order_type) }}  </td>
+    </tr>
     <tr>
         <td>Shipping/Delivery  Cost:</td>
-        <td>${{ __($orderMail['CartDetails']->shipping_charge) }}</td>
+        <td>{{setting('site_currency')}}{{ __($orderMail['CartDetails']->shipping_charge) }}
+             (Tip :{{setting('site_currency')}}{{ __($orderMail['CartDetails']->delivery_tip) }} ) </td>
     </tr>
 </table>
 

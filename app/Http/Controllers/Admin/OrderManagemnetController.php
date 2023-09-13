@@ -54,7 +54,7 @@ class OrderManagemnetController extends Controller
     {
         $orders= OrderAlias::with('orderItems.product', 'payment')->find($id);
         $pdf = PDF::loadView('admin.page.order.downloadOrderTemplate', compact('orders'))->setOptions(['defaultFont' => 'sans-serif']);
-        return $pdf->download('Dilse-Order-'.$orders->full_name.'-'.$id.'.pdf');
+        return $pdf->download('Dilse-Order-'.$orders->full_name.'-DilSe-'.$id.'.pdf');
     }
 
 }
