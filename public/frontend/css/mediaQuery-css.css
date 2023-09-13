@@ -536,6 +536,13 @@ li.page-item.disabled span.page-link {
     .swal2-styled.swal2-confirm {
               background-color: #eb0029 !important;
           }
+          .tittle_heading h2 {
+            margin-bottom: 10px;
+        }
+        .contact_form .tittle_heading {
+            margin-bottom: 19px;
+
+        }
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
         padding: 0;

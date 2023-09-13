@@ -13,11 +13,9 @@
             <div class="col-md-6">
                 <form method="POST" action="{{ route('user.password.store') }}" class="contact_form"> @csrf
                 <input type="hidden" name="token" value="{{ $request->route('token') }}">
-                  <div class="tittle_heading">
+                  <div class="tittle_heading reset_pass">
                     <h2>RESET YOUR <span>PASSWORD</span></h2>
-
-                <x-auth-session-status class="mb-4" :status="session('status')" />
-
+                    <x-auth-session-status class="mb-4" :status="session('status')" />
                   </div>
                   <div class="row">
                     <div class="col-md-12">
