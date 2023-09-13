@@ -33,7 +33,7 @@ let url = window.location.pathname;
                 slidesToShow: 2,
                 slidesToScroll: 1,
                 infinite: true,
-                dots: true
+                dots: false
               }
             },
             {
@@ -42,7 +42,7 @@ let url = window.location.pathname;
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 infinite: true,
-                dots: true
+                dots: false
               }
             },
             // You can unslick at a given breakpoint now by adding:
