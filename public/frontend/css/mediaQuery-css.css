@@ -430,7 +430,7 @@ li.page-item.disabled span.page-link {
         font-size: 15px;
     }
     .copyright_links ul {
-        flex-direction: column;
+        flex-direction: row;
     }
     .testimonial_slider_txt p {
         font-size: 17px;
@@ -465,8 +465,7 @@ li.page-item.disabled span.page-link {
     .sub_scribe_txt h2 {
         font-size: 16px;
         line-height: 28px;
-        padding: 0 20px;
-    }
+           }
     .restudent_text h3 {
         padding: 0 20px;
     }
@@ -516,6 +515,9 @@ li.page-item.disabled span.page-link {
     }
     .order_summary {
         padding: 25px;
+    }
+    .product_c_main {
+        padding-top: 40px;
     }
 }
 
