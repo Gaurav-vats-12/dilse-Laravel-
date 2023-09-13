@@ -504,7 +504,12 @@ li.page-item.disabled span.page-link {
         margin-top: 22px;
         font-size: 20px;
     }
-}
+    .payment_method {
+        display: block;
+        align-items: baseline;
+        margin-top: 10px;
+    }
+
     .tittle_heading h2,
     .sub_scribe_txt h2 {
         font-size: 15px;
@@ -553,7 +558,7 @@ li.page-item.disabled span.page-link {
                 font-size: 20px;
             }
 
-
+        }
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
         padding: 0;
