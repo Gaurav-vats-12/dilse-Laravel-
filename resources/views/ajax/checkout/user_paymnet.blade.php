@@ -6,7 +6,7 @@
     <div class="col-sm-12 text-left">
         <div class="payment accordion radio-type mt-3">
             <div class="summary-subtitle">Payment Methods</div>
-            <div class="payment_form">
+            <div class="payment_form payment_method">
                 <ul class="payment-metho-radio d-flex">
                     <li>
                         <div class="radio-item_1">
