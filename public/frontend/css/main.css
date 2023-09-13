@@ -3452,3 +3452,8 @@ span.sign_up_for a {
 .tittle_heading.reset_pass h2 {
     margin-bottom: -21px;
 }
+div#deliveryCost {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
