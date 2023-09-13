@@ -67,6 +67,7 @@ class FoodItemController extends Controller
 
     public function update(UpdateFoodItemRequest $request, string $id)
     {
+        dd($request->all);
 
         $FoodItem = FoodItem::findOrFail($id);
 
