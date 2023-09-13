@@ -2536,9 +2536,9 @@ span.required {
     color: #ff5a60;
 }
 
-.payment_form {
+/* .payment_form {
     display: flex;
-}
+} */
 
 .payment_form .secure_image {
     flex: 0 0 30%;
