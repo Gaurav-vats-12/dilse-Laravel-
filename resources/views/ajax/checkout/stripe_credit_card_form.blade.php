@@ -1,5 +1,6 @@
 
-<input type="hidden" name="StripeKey" id="StripeKey" value="pk_test_51Ng3mqJhLKjdolzELxiiUuoQAeIh37PT6KR6QFkiSVF7thLp85BG0oN0t4INLtwW0X0ggOC1dZE2uUq8FEE1t2a200WqliAM32">
+
+<input type="hidden" name="StripeKey" id="StripeKey" value="{{ Config::get('stripe.api_keys.key')}}">
 <div id="card-element">
         <!-- A Stripe Element will be inserted here. -->
     <div class="group">
