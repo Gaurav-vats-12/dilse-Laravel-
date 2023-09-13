@@ -533,6 +533,9 @@ li.page-item.disabled span.page-link {
     .shope_price .shope_p_tag {
         margin-left: 10px;
     }
+    .swal2-styled.swal2-confirm {
+              background-color: #eb0029 !important;
+          }
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
         padding: 0;
