@@ -383,13 +383,11 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
       <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
   <style type="text/css">
         #mc_embed_signup{background:#fff; false;clear:left; font:14px Helvetica,Arial,sans-serif; width: 600px;}
-        /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
-           We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
 </style>
     <div>
         <form action="https://dilse.us12.list-manage.com/subscribe/post?u=ef3584d822e3060c8cdb4139f&amp;id=f13100197e&amp;f_id=0078bce0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
             <div id="mc_embed_signup_scroll">
-                <div class="mc-field-group custn_input"><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""></div>
+                <div class="mc-field-group custn_input"><input type="email"  placeholder="Enter your email"  name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""></div>
             <div id="mce-responses" class="clear">
                 <div class="response" id="mce-error-response" style="display: none;"></div>
                 <div class="response" id="mce-success-response" style="display: none;"></div>
