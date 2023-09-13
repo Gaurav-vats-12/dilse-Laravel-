@@ -379,7 +379,31 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
           <h2>for special offers and newsletters</h2>
           <p>Stay up-to-date with our latest news and updates by subscribing to our newsletter today!</p>
         </div>
-        <form class="sub_scribe_form" id="emailSubscribeForm" method="POST">
+        <div id="mc_embed_shell">
+      <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+  <style type="text/css">
+        #mc_embed_signup{background:#fff; false;clear:left; font:14px Helvetica,Arial,sans-serif; width: 600px;}
+        /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+           We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+    <div>
+        <form action="https://dilse.us12.list-manage.com/subscribe/post?u=ef3584d822e3060c8cdb4139f&amp;id=f13100197e&amp;f_id=0078bce0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+            <div id="mc_embed_signup_scroll">
+                <div class="mc-field-group custn_input"><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""></div>
+            <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display: none;"></div>
+                <div class="response" id="mce-success-response" style="display: none;"></div>
+            </div><div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_ef3584d822e3060c8cdb4139f_f13100197e" tabindex="-1" value=""></div><div class="clear">
+            <div class="sub_scribe_form_btn">
+            <button class="theme_btn btn-txt">Subscribe Now</button>
+          </div>
+        </div>
+        </div>
+    </form>
+    </div>
+    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script></div>
+
+        <!-- <form class="sub_scribe_form" id="emailSubscribeForm" method="POST">
           <input type="hidden" name="email_action_url" id="email_action_url" value="{{ route('emailSubscription') }}">
 
           <div class="custn_input">
@@ -389,7 +413,7 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
           <div class="sub_scribe_form_btn">
             <button class="theme_btn btn-txt">Subscribe Now</button>
           </div>
-        </form>
+        </form> -->
       </div>
     </div>
   </div>
