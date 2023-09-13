@@ -500,8 +500,11 @@ li.page-item.disabled span.page-link {
     .about_under_text p {
         font-size: 14px;
     }
+    .product_title h1 {
+        margin-top: 22px;
+        font-size: 20px;
+    }
 }
-@media screen and (max-width: 375px) {
     .tittle_heading h2,
     .sub_scribe_txt h2 {
         font-size: 15px;
@@ -519,7 +522,7 @@ li.page-item.disabled span.page-link {
     .product_c_main {
         padding-top: 40px;
     }
-}
+
 
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
