@@ -18,6 +18,7 @@ class PaymentFormServices{
     protected $paymentForm;
     /** @noinspection PhpUnreachableStatementInspection */
     public function PaymentForm($request){
+
         $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
         if(AuthAlias::guard('user')->check()){
 
@@ -27,9 +28,8 @@ class PaymentFormServices{
             $addressObject = new User_addressServicesAlias();
            $addressObject->Change_user_address($request ,$user_id);
         }
-
-        $grand_Total = round($request->sub_total ,2) + round($request->tax_total ,2)+ round($request->shipping_charge ,2);
-
+        $dilvery_tip = ($request->dilvery_tip) ? round($request->dilvery_tip ,2) : 0.00 ;
+        $grand_Total = round($request->sub_total ,2) +  round($request->tax_total ,2)+ round($request->shipping_charge ,2) + $dilvery_tip;
         $order_id = Order::insertGetId([
             'user_id' => $user_id,
             "order_date" => date("Y-m-d H:i:s"),
@@ -42,6 +42,7 @@ class PaymentFormServices{
             'order_type' => $request->order_type,
             'sub_total' => round($request->sub_total ,2),
             'tax' => round($request->tax_total ,2),
+            'delivery_tip' => $dilvery_tip,
             'shipping_charge' => round($request->shipping_charge ,2),
             'total_amount' => round($grand_Total ,2),
             'store_location' => $request->store_location,
@@ -80,10 +81,12 @@ class PaymentFormServices{
             $url = route('thank-you.orderStatus',['order_id' =>  $order_id, 'PaymentStatus' => 'pending', 'payment_id' =>$payment_id]);
         }else{
 
+
             Stripe::setApiKey(Config::get('stripe.api_keys.secret_key', ''));
             try {
+
                 $stripe_paymnet = ChargeAlias::create([
-                    "amount" => round($request->tototal_amount * 100, 2),
+                    "amount" => $grand_Total *100 ,
                     "currency" => "usd",
                     "description" => "Dilse Payment",
                     "source" =>$request->stripeToken,
@@ -92,6 +95,7 @@ class PaymentFormServices{
                         'customer_address' => $request->billing_address_1 . ',' . $request->billing_address_2 . ',' . $request->billing_country . ',' . $request->billing_state . ',' . $request->billing_city . ',' . $request->billing_postcode,
                     ],
                 ]);
+
 
                 $payment_id = $stripe_paymnet->id;
                 $payment_method = 'PayOnOnline';
@@ -117,7 +121,7 @@ class PaymentFormServices{
         Payments::insert([
             'payment_id'=>$payment_id,
             'order_id'=>$order_id,
-            'payment_amount'=>round($request->tototal_amount ,2),
+            'payment_amount'=>$grand_Total ,
             'payment_method'=>$payment_method,
             'paymnet_json'=>$payment_json,
             'payment_status'=> $payment_status,

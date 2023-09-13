@@ -60,8 +60,8 @@
     @endforeach
 </table>
 
-<p><strong>Total:</strong> {{ setting('site_currency')}} {{ $orders->sub_total }}</p>
-<p><strong>Shipping Fees : </strong>   {{ setting('site_currency')}}{{ $orders->shipping_charge }}</p>
+<p><strong>Sub Total:</strong> {{ setting('site_currency')}} {{ $orders->sub_total }}</p>
+<p><strong>Shipping Fees : </strong>   {{ setting('site_currency')}}{{ $orders->shipping_charge }} (Tip :{{setting('site_currency')}}{{ __($orders->delivery_tip) }} )</p>
 <p><strong>Tax ({{setting('tax' ,0.00)}}%): </strong>  {{ setting('site_currency')}}{{ $orders->tax }}</p>
 <p><strong>Total Amount :</strong> {{ setting('site_currency')}} {{ $orders->total_amount }}</p>
 <p><strong>Status:</strong>   {{ $orders->status }}</p>
