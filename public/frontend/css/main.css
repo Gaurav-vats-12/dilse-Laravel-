@@ -2512,7 +2512,7 @@ span.required {
 }
 
 .total-summary-list {
-    padding-left: 30px;
+    padding-left: 0px;
     font-size: 14px;
     text-align: left;
     border-top: 1px dashed #c0c0c0;
