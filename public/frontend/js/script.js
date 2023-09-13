@@ -30,6 +30,7 @@ let url = window.location.pathname;
             {
               breakpoint: 767,
               settings: {
+                arrows: false,
                 slidesToShow: 2,
                 slidesToScroll: 1,
                 infinite: true,
@@ -39,6 +40,7 @@ let url = window.location.pathname;
             {
               breakpoint: 575,
               settings: {
+                arrows: false,
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 infinite: true,
