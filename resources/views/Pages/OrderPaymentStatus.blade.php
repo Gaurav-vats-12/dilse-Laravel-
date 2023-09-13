@@ -13,6 +13,8 @@
                       @endif
 
                 <p>Your order details: {{$orderItem->id}}</p>
+                <div class="table-responsive">
+
                 <table class="table table-responsive">
                     <tr>
                         <th>Image</th>
@@ -33,6 +35,7 @@
                         </tr>
                     @endforeach
                 </table>
+                </div>
                 <div class="login-content">If you want to order more. Click on the <a href="{{ route('menu','appetizers') }}">Menus</a></p>
                 </div>
         </section>
