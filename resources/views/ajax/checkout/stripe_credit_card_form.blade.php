@@ -1,7 +1,7 @@
 
 
 <input type="hidden" name="StripeKey" id="StripeKey" value="{{ Config::get('stripe.api_keys.key')}}">
-<div id="express-checkout-element">
+<div id="card-element">
         <!-- A Stripe Element will be inserted here. -->
     <!-- <div class="group">
       <label>
