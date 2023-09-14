@@ -83,7 +83,6 @@ function stripePayment_Form(StripekEY){
     jQuery(document).on("submit","#stripe_form",async function(e) {
         stripe.createToken(cardNumberElement).then(function (result) {
             if (result.error) {
-              // Display an error message to the user
               let errorElement = document.querySelector('.error');
               errorElement.classList.add('visible');
               errorElement.textContent = result.error.message;
@@ -105,9 +104,6 @@ function stripePayment_Form(StripekEY){
     });
 
 }
-
-
-
 function payment_intergation(StripekEY) {
     jQuery(".payment_form").validate({
         rules: {
@@ -155,39 +151,27 @@ function payment_intergation(StripekEY) {
                     if (jQuery('input[name="payment_method"]:checked').val() ==='Pay On Online (Stripe)') {
                         return false;
                     }else{
-
+                        jQuery(".spinner-border").removeClass("d-none");
+                        jQuery(".theme_btn").attr("disabled", true);
+                        jQuery(".btn-txt").text("Processing ...");
+                        event.preventDefault();
+                         document.getElementById('payment-form').submit();
                     }
 
                 }else{
                     NotyfMessage('Please Choose Delivery Charges', 'error');
                 }
             }else{
-                console.log('TakeDown');
+                if (jQuery('input[name="payment_method"]:checked').val() ==='Pay On Online (Stripe)') {
+                    return false;
+                }else{
+                    jQuery(".spinner-border").removeClass("d-none");
+                    jQuery(".theme_btn").attr("disabled", true);
+                    jQuery(".btn-txt").text("Processing ...");
+                    event.preventDefault();
+                     document.getElementById('payment-form').submit();
+                }
             }
-            // if(jQuery('#order_type').val() ==='delivery'){
-            //     if(jQuery('#shipping_charge').val()){
-            //         if (jQuery('input[name="payment_method"]:checked').val() ==='PayOnOnline') {
-
-            //         }else{
-            //             jQuery(".spinner-border").removeClass("d-none");
-            //             jQuery(".theme_btn").attr("disabled", true);
-            //             jQuery(".btn-txt").text("Processing ...");
-            //             event.preventDefault();
-            //              document.getElementById('payment-form').submit();
-            //         }
-            //     }else{
-            //         NotyfMessage('Please Choose Delivery Charges', 'error');
-            //     }
-            // }else{
-            //     if (jQuery('input[name="payment_method"]:checked').val() ==='Pay On Online (Stripe)') {
-            //     }else{
-            //         jQuery(".spinner-border").removeClass("d-none");
-            //         jQuery(".theme_btn").attr("disabled", true);
-            //         jQuery(".btn-txt").text("Processing ...");
-            //         event.preventDefault();
-            //          document.getElementById('payment-form').submit();
-            //     }
-            // }
         }
     });
 }
