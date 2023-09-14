@@ -455,11 +455,12 @@ jQuery(document).ready(function () {
         */
        jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
         jQuery(this).toggleClass(`added`);
+        let is_spisy= jQuery(this).attr('is_spisy');
         let product_oid = jQuery(this).attr("product_uid"),
             product_quntity = jQuery(`#product_quntity_${product_oid}`).val(),
             product_price = jQuery(`#product_price__${product_oid}`).val(),
-            ajax_value = {product_oid, product_quntity, product_price}, ajax_url = jQuery('#extra_ajax_url').val();
-        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+            ajax_value = {product_oid, product_quntity, product_price ,is_spisy}, ajax_url = jQuery('#extra_ajax_url').val();
+            const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
            NotyfMessage(resPose.message,'success');
             jQuery(`.cart_count`).html(resPose.cart_total);
