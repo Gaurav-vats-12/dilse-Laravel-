@@ -1,9 +1,7 @@
 function stripePayment_Form(StripekEY){
     localStorage.clear();
     let stripe = Stripe(StripekEY);
-
     let elements = stripe.elements();
-
     let style = {
         base: {
             iconColor: '#666EE8',
@@ -18,7 +16,6 @@ function stripePayment_Form(StripekEY){
             },
         },
     };
-
     let cardNumberElement = elements.create('cardNumber', {
         showIcon: true,
         placeholder: 'Card Number',
@@ -26,6 +23,8 @@ function stripePayment_Form(StripekEY){
         theme: 'stripe',
         style: style
     });
+
+
     cardNumberElement.mount('#card-number-element');
 
     let cardExpiryElement = elements.create('cardExpiry', {
@@ -61,8 +60,8 @@ function stripePayment_Form(StripekEY){
     }
 
     function setBrandIcon(brand) {
-        var brandIconElement = document.getElementById('brand-icon');
-        var pfClass = 'pf-credit-card';
+        let brandIconElement = document.getElementById('brand-icon');
+        let pfClass = 'pf-credit-card';
         if (brand in cardBrandToPfClass) {
             pfClass = cardBrandToPfClass[brand];
         }
@@ -88,24 +87,24 @@ function stripePayment_Form(StripekEY){
               errorElement.textContent = result.error.message;
               console.error(result.error.message);
             } else {
-                jQuery(".spinner-border").removeClass("d-none");
-                jQuery(".theme_btn").attr("disabled", true);
-                jQuery(".btn-txt").text("Processing ...");
+                jQuery(`.spinner-border`).removeClass(`d-none`);
+                jQuery(`.theme_btn`).attr(`disabled`, true);
+                jQuery(`.btn-txt`).text(`Processing ...`);
                 const hiddenInput = document.createElement('input');
-                hiddenInput.setAttribute('type', 'hidden');
-                hiddenInput.setAttribute('name', 'stripeToken');
-                hiddenInput.setAttribute('id', 'stripeToken');
+                hiddenInput.setAttribute(`type`, `hidden`);
+                hiddenInput.setAttribute(`name`, `stripeToken`);
+                hiddenInput.setAttribute(`id`, `stripeToken`);
                 hiddenInput.setAttribute('value', result.token.id);
-                document.getElementById('stripe_form').appendChild(hiddenInput);
-                document.getElementById('stripe_form').submit();
-              console.log('Card is valid:', result.token);
+                document.getElementById(`stripe_form`).appendChild(hiddenInput);
+                document.getElementById(`stripe_form`).submit();
+              console.log(`Card is valid:`, result.token);
             }
           })
     });
 
 }
-function payment_intergation(StripekEY) {
-    jQuery(".payment_form").validate({
+function payment_intergation() {
+    jQuery(`.payment_form`).validate({
         rules: {
             billing_full_name: {
                 required: true,
@@ -128,7 +127,7 @@ function payment_intergation(StripekEY) {
         messages: {
             billing_full_name: {
                 required: "Please Enter the Billing Full Name",
-                maxlength: "Billig Full Name must be max 50 letter"
+                maxlength: "Billing Full Name must be max 50 letter"
             }, billing_phone: {
                 required: "Please Enter the Billing Phone Number",
             }, billing_email: {
@@ -136,10 +135,10 @@ function payment_intergation(StripekEY) {
                 maxlength: "Billing Email Address Must be Email address"
             }, billing_address_1: {
                 required: "Please Enter the Billing Address",
-                maxlength: "Billig Phone Number must be max 200 letter"
+                maxlength: `Billing Phone Number must be max 200 letter`
             }, billing_city: {
                 required: "Please Enter the Billing City",
-                maxlength: "Billig Phone Number must be max 100 letter"
+                maxlength: "Billing Phone Number must be max 100 letter"
             }, billing_postcode: {
                 required: "Please Enter the Billing Pin Code",
             }
@@ -151,25 +150,25 @@ function payment_intergation(StripekEY) {
                     if (jQuery('input[name="payment_method"]:checked').val() ==='Pay On Online (Stripe)') {
                         return false;
                     }else{
-                        jQuery(".spinner-border").removeClass("d-none");
-                        jQuery(".theme_btn").attr("disabled", true);
-                        jQuery(".btn-txt").text("Processing ...");
+                        jQuery(".spinner-border").removeClass(`d-none`);
+                        jQuery(".theme_btn").attr(`disabled`, true);
+                        jQuery(".btn-txt").text(`Processing ...`);
                         event.preventDefault();
-                         document.getElementById('payment-form').submit();
+                         document.getElementById(`payment-form`).submit();
                     }
 
                 }else{
-                    NotyfMessage('Please Choose Delivery Charges', 'error');
+                    NotyfMessage(`Please Choose Delivery Charges`, `error`);
                 }
             }else{
                 if (jQuery('input[name="payment_method"]:checked').val() ==='Pay On Online (Stripe)') {
                     return false;
                 }else{
-                    jQuery(".spinner-border").removeClass("d-none");
-                    jQuery(".theme_btn").attr("disabled", true);
-                    jQuery(".btn-txt").text("Processing ...");
+                    jQuery(`.spinner-border`).removeClass(`d-none`);
+                    jQuery(`.theme_btn`).attr(`disabled`, true);
+                    jQuery(`.btn-txt`).text(`Processing ...`);
                     event.preventDefault();
-                     document.getElementById('payment-form').submit();
+                     document.getElementById(`payment-form`).submit();
                 }
             }
         }
