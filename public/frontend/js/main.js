@@ -101,41 +101,41 @@ jQuery(document).ready(function () {
     /**
      * Subscribe Our Newsletter Submission Form Ajax (Home Page)
      */
-    jQuery("#emailSubscribeForm").validate({
-        rules: {
-            email_address: {
-                required: true,
-                email: true,
-            }
-        },
-        messages: {
-            email_address: {
-                required: "Please Enter the  email address",
-                maxlength: "Please Enter vaid email address"
-            }
-        },
-        submitHandler: async function (form, event) {
-            jQuery(".theme_btn").attr("disabled", true);
-            jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
-            event.preventDefault();
-            let ajax_value_list = jQuery('#emailSubscribeForm').serialize(), ajx_url = jQuery('#email_action_url').val();
-            const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
-            jQuery(".theme_btn").attr("disabled", false);
-            jQuery(".btn-txt").text("Subscribe Now");
-            if (resPose.status === `success`) {
-                NotyfMessage(resPose.message, 'success');
-                jQuery("#emailSubscribeForm")[0].reset();
-            } else if (resPose.status === `error`) {
-                NotyfMessage(resPose.message, 'warning');
-                jQuery("#emailSubscribeForm")[0].reset();
-            } else if (resPose.status === `error_message`) {
-                NotyfMessage(resPose.message, 'warning');
-                jQuery("#emailSubscribeForm")[0].reset();
-            } else {
-                jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
-            }
-        }
-    });
+    // jQuery("#mc-embedded-subscribe-form").validate({
+    //     rules: {
+    //         EMAIL: {
+    //             required: true,
+    //             email: true,
+    //         }
+    //     },
+    //     messages: {
+    //         EMAIL: {
+    //             required: "Please Enter the  email address",
+    //             maxlength: "Please Enter vaid email address"
+    //         }
+    //     },
+    //     submitHandler: async function (form, event) {
+    //         // jQuery(".theme_btn").attr("disabled", true);
+    //         // jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
+    //         // event.preventDefault();
+    //         // let ajax_value_list = jQuery('#emailSubscribeForm').serialize(), ajx_url = jQuery('#email_action_url').val();
+    //         // const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
+    //         // jQuery(".theme_btn").attr("disabled", false);
+    //         // jQuery(".btn-txt").text("Subscribe Now");
+    //         // if (resPose.status === `success`) {
+    //         //     NotyfMessage(resPose.message, 'success');
+    //         //     jQuery("#emailSubscribeForm")[0].reset();
+    //         // } else if (resPose.status === `error`) {
+    //         //     NotyfMessage(resPose.message, 'warning');
+    //         //     jQuery("#emailSubscribeForm")[0].reset();
+    //         // } else if (resPose.status === `error_message`) {
+    //         //     NotyfMessage(resPose.message, 'warning');
+    //         //     jQuery("#emailSubscribeForm")[0].reset();
+    //         // } else {
+    //         //     jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
+    //         // }
+    //     }
+    // });
 
     /**
  *     Contact us Form Submission  iN ajax   (Home Page ,Contact Us Page)
@@ -184,6 +184,7 @@ jQuery(document).ready(function () {
             jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
             let ajax_value_list = $('form').serialize(), ajx_url = jQuery(`#contact_us_action_url`).val();
             const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
+            console.log(resPose);
             if (resPose.status === 'success') {
                 jQuery(".theme_btn").attr("disabled", false);
                 jQuery(".btn-txt").text("Send");
@@ -581,7 +582,7 @@ jQuery(document).ready(function () {
          if (payment_value ==='Pay On Online (Stripe)') {
              jQuery('.payment_form'). attr('id', 'stripe_form');
              jQuery('#stripe_paymnet_form').css('display','block');
-             stripePayment_Form(jQuery(`#StripeKey`).val());
+                stripePayment_Form(jQuery(`#StripeKey`).val());
          }else{
              jQuery('.payment_form'). attr('id', 'payment-form');
              jQuery('#stripe_paymnet_form').css('display','none');
@@ -591,8 +592,6 @@ jQuery(document).ready(function () {
     payment_intergation(jQuery(`#StripeKey`).val());
 
     jQuery('#billing_phone').inputmask('+1 (999) 999-9999');
-
-
      jQuery('#billing_postcode').inputmask('A9A 9A9', {
          placeholder: 'K1N 8W5\n',
          clearMaskOnLostFocus: false,

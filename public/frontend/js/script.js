@@ -47,9 +47,6 @@ let url = window.location.pathname;
                 dots: false
               }
             },
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
           ]
       });
   };
@@ -78,4 +75,3 @@ const updateTotals = async (deliveryCost) => {
         }
     }
 }
-
