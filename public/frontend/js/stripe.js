@@ -1,124 +1,106 @@
 function stripePayment_Form(StripekEY){
     localStorage.clear();
-    // let stripe = Stripe(StripekEY);
-    const stripe = Stripe(StripekEY);
-    const options = {
-        mode: 'payment',
-        amount: 1099,
-        currency: 'usd',
-        // Customizable with appearance API.
-        appearance: {/*...*/},
-      };
-      const elements = stripe.elements(options);
-      const expressCheckoutElement = elements.create('expressCheckout');
-      expressCheckoutElement.mount('#express-checkout-element');
+    let stripe = Stripe(StripekEY);
+    let elements = stripe.elements();
+    let style = {
+        base: {
+            iconColor: '#666EE8',
+            color: '#31325F',
+            lineHeight: '40px',
+            fontWeight: 300,
+            fontFamily: 'Helvetica Neue',
+            fontSize: '15px',
 
-      console.log(expressCheckoutElement);
-
-    // let elements = stripe.elements();
-    // let style = {
-    //     base: {
-    //         iconColor: '#666EE8',
-    //         color: '#31325F',
-    //         lineHeight: '40px',
-    //         fontWeight: 300,
-    //         fontFamily: 'Helvetica Neue',
-    //         fontSize: '15px',
-
-    //         '::placeholder': {
-    //             color: '#00000',
-    //         },
-    //     },
-    // };
-    // var cardNumberElement  = elements.create("card", { style: style });
-    // cardNumberElement .mount("#card-element");
-
-    // let cardNumberElement = elements.create('cardNumber', {
-    //     showIcon: true,
-    //     placeholder: 'Card Number',
-    //     hidePostalCode: true,
-    // //     theme: 'stripe',
-    // //     style: style
-    // // });
+            '::placeholder': {
+                color: '#00000',
+            },
+        },
+    };
+    let cardNumberElement = elements.create('cardNumber', {
+        showIcon: true,
+        placeholder: 'Card Number',
+        hidePostalCode: true,
+        theme: 'stripe',
+        style: style
+    });
 
 
-    // // cardNumberElement.mount('#card-number-element');
+    cardNumberElement.mount('#card-number-element');
 
-    // // let cardExpiryElement = elements.create('cardExpiry', {
-    // //     style: style
-    // // });
-    // // cardExpiryElement.mount('#card-expiry-element');
+    let cardExpiryElement = elements.create('cardExpiry', {
+        style: style
+    });
+    cardExpiryElement.mount('#card-expiry-element');
 
-    // // let cardCvcElement = elements.create('cardCvc', {
-    // //     style: style
-    // // });
-    // // cardCvcElement.mount('#card-cvc-element');
+    let cardCvcElement = elements.create('cardCvc', {
+        style: style
+    });
+    cardCvcElement.mount('#card-cvc-element');
 
-    // function setOutcome(result) {
-    //     let successElement = document.querySelector('.success');
-    //     let errorElement = document.querySelector('.error');
-    //     successElement.classList.remove('visible');
-    //     errorElement.classList.remove('visible');
-    //     if (result.token) {
-    //     } else if (result.error) {
-    //         errorElement.classList.add('visible');
-    //           errorElement.textContent = result.error.message;
-    //     }
-    // }
+    function setOutcome(result) {
+        let successElement = document.querySelector('.success');
+        let errorElement = document.querySelector('.error');
+        successElement.classList.remove('visible');
+        errorElement.classList.remove('visible');
+        if (result.token) {
+        } else if (result.error) {
+            errorElement.classList.add('visible');
+              errorElement.textContent = result.error.message;
+        }
+    }
 
-    // let cardBrandToPfClass = {
-    //     'visa': 'pf-visa',
-    //     'mastercard': 'pf-mastercard',
-    //     'amex': 'pf-american-express',
-    //     'discover': 'pf-discover',
-    //     'diners': 'pf-diners',
-    //     'jcb': 'pf-jcb',
-    //     'unknown': 'pf-credit-card',
-    // }
+    let cardBrandToPfClass = {
+        'visa': 'pf-visa',
+        'mastercard': 'pf-mastercard',
+        'amex': 'pf-american-express',
+        'discover': 'pf-discover',
+        'diners': 'pf-diners',
+        'jcb': 'pf-jcb',
+        'unknown': 'pf-credit-card',
+    }
 
-    // function setBrandIcon(brand) {
-    //     let brandIconElement = document.getElementById('brand-icon');
-    //     let pfClass = 'pf-credit-card';
-    //     if (brand in cardBrandToPfClass) {
-    //         pfClass = cardBrandToPfClass[brand];
-    //     }
-    //     for (var i = brandIconElement.classList.length - 1; i >= 0; i--) {
-    //         brandIconElement.classList.remove(brandIconElement.classList[i]);
-    //     }
-    //     brandIconElement.classList.add('pf');
-    //     brandIconElement.classList.add(pfClass);
-    // }
+    function setBrandIcon(brand) {
+        let brandIconElement = document.getElementById('brand-icon');
+        let pfClass = 'pf-credit-card';
+        if (brand in cardBrandToPfClass) {
+            pfClass = cardBrandToPfClass[brand];
+        }
+        for (var i = brandIconElement.classList.length - 1; i >= 0; i--) {
+            brandIconElement.classList.remove(brandIconElement.classList[i]);
+        }
+        brandIconElement.classList.add('pf');
+        brandIconElement.classList.add(pfClass);
+    }
 
-    // cardNumberElement.on('change', function(event) {
-    //     // Switch brand logo
-    //     if (event.brand) {
-    //         setBrandIcon(event.brand);
-    //     }
-    //     setOutcome(event);
-    // });
-    // jQuery(document).on("submit","#stripe_form",async function(e) {
-    //     stripe.createToken(cardNumberElement).then(function (result) {
-    //         if (result.error) {
-    //           let errorElement = document.querySelector('.error');
-    //           errorElement.classList.add('visible');
-    //           errorElement.textContent = result.error.message;
-    //           console.error(result.error.message);
-    //         } else {
-    //             console.log(result);
-    //         //     jQuery(`.spinner-border`).removeClass(`d-none`);
-    //         //     jQuery(`.theme_btn`).attr(`disabled`, true);
-    //         //     jQuery(`.btn-txt`).text(`Processing ...`);
-    //         //     const hiddenInput = document.createElement('input');
-    //         //     hiddenInput.setAttribute(`type`, `hidden`);
-    //         //     hiddenInput.setAttribute(`name`, `stripeToken`);
-    //         //     hiddenInput.setAttribute(`id`, `stripeToken`);
-    //         //     hiddenInput.setAttribute('value', result.token.id);
-    //         //     document.getElementById(`stripe_form`).appendChild(hiddenInput);
-    //         //     document.getElementById(`stripe_form`).submit();
-    //         //   console.log(`Card is valid:`, result.token);
-    //         }
-    //       })
-    // });
+    cardNumberElement.on('change', function(event) {
+        // Switch brand logo
+        if (event.brand) {
+            setBrandIcon(event.brand);
+        }
+        setOutcome(event);
+    });
+    jQuery(document).on("submit","#stripe_form",async function(e) {
+        stripe.createToken(cardNumberElement).then(function (result) {
+            if (result.error) {
+              let errorElement = document.querySelector('.error');
+              errorElement.classList.add('visible');
+              errorElement.textContent = result.error.message;
+              console.error(result.error.message);
+            } else {
+                jQuery(`.spinner-border`).removeClass(`d-none`);
+                jQuery(`.theme_btn`).attr(`disabled`, true);
+                jQuery(`.btn-txt`).text(`Processing ...`);
+                const hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute(`type`, `hidden`);
+                hiddenInput.setAttribute(`name`, `stripeToken`);
+                hiddenInput.setAttribute(`id`, `stripeToken`);
+                hiddenInput.setAttribute('value', result.token.id);
+                document.getElementById(`stripe_form`).appendChild(hiddenInput);
+                document.getElementById(`stripe_form`).submit();
+              console.log(`Card is valid:`, result.token);
+            }
+          })
+    });
 
 }
 function payment_intergation() {
