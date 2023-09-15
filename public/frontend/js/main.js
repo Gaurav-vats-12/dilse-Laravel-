@@ -246,9 +246,10 @@ jQuery(document).ready(function () {
 
 
     } else if (url.indexOf("/contact-us") > -1) {
-        jQuery(document).on("click", ".location_img", async function (event) {
-            console.log('jkjjkjk')
-
+        jQuery(document).on("click", "#location", async function (event) {
+            jQuery('html, body').animate({
+                scrollTop: jQuery('#location_drag').offset().top
+            }, 500); // You can adjust the animation speed (1000ms = 1 second)
         });
 
 
