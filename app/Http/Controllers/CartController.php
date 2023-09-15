@@ -132,6 +132,7 @@ public function update_details(Request $request){
     public function destroy(Request $request ,string $id)  : JsonResponseAlias
     {
         $subtotal = 0;
+
         try {
             if($id) {
                 $cart = session()->get('cart');

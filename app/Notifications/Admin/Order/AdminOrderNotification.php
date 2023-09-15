@@ -37,6 +37,7 @@ class AdminOrderNotification extends Notification
     {
         return (new MailMessage)
               ->greeting('Hello Admin')
+              ->subject('Custom Notification Subject')
              ->line('New Order Notification Request')
             ->line('The introduction to the notification.')
                 ->line($this->adminOrderNotification['body'])

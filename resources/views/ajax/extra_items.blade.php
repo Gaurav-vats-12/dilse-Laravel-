@@ -14,7 +14,7 @@
                     <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
                     <div class="cost_p">
                         <h6>    {{ setting('site_currency')}}{{ $extra_item->price }}</h6>
-                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}" is_spisy="{{ ($extra_item->menu->menu_slug =='desserts' || $extra_item->menu->menu_slug =='drinks' ) ? 'true' : 'false' }}">  <span class="add-to-cart">Add to cart</span>
+                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" product_uid = "{{$extra_item->id }}" is_spisy="{{ ($extra_item->menu->menu_slug =='desserts' || $extra_item->menu->menu_slug =='drinks' || $extra_item->menu->menu_slug =='breads') ? 'true' : 'false' }}">  <span class="add-to-cart">Add to cart</span>
                             <span class="added-to-cart">Added to cart</span>
                         </a>
                     </div>

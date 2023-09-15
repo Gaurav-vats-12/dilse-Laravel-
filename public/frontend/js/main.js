@@ -481,7 +481,7 @@ jQuery(document).ready(function () {
 
     jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
         let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-
+        var form =  jQuery(this).closest("form");
         event.preventDefault();
         Swal.fire({
             title: `Are you sure you want to delete this Item?`,

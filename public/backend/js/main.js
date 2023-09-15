@@ -17,10 +17,6 @@ jQuery( function () {
     $("#site_location").select2({
         maximumSelectionLength: 2
       });
-
-
-
-
     var url = window.location.pathname;
     if (url.indexOf("/banner") > -1) {
         jQuery(document).on("change","#banner_type", function(e) {

@@ -47,8 +47,10 @@
                                                     </div>
                                                     <div class="price"><h6> <span id="product_quantity_price__{{$id}}">{{setting('site_currency')}}{{  round($details['productdetails']->price  * $details["quantity"] ,2)   }}</span></h6></div>
                                                     <div class="remove_price">
-                                                        <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.delete' ,$id) }}">
-                                                        <a class="theme_btn" href="javascript:void(0)" id ="remove_add_to_Cart" produc_id ="{{ $id }}" is_spicy ="{{ $details['is_spisy']}}">Remove</a>
+                                                        <form method="POST"  action="{{ route('cart.destroy', $id) }}">  @csrf @method('POST')
+                                                            <input type="hidden" name="is_spicy" value="{{ $details['is_spisy']}}">
+                                                            <input type="hidden" name="delete_ajax_url" id="delete_ajax_url" value="{{ route('cart.destroy' ,$id) }}">
+                                                            <a class="theme_btn" href="javascript:void(0)" id ="remove_add_to_Cart" produc_id ="{{ $id }}" is_spicy ="{{ $details['is_spisy']}}">Remove</a></form>
                                                     </div>
                                                 </div>
                                             </li>

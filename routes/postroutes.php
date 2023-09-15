@@ -20,7 +20,7 @@ RouteAlias::post('/submit-reservation-form', [BookingControllerAlias::class, 'su
 RouteAlias::prefix('cart')->name('cart.')->group(callback: function (){
     RouteAlias::POST('/create', [CartController::class, 'addtocart'])->name('add');
     RouteAlias::POST('/update', [CartController::class, 'updatecart'])->name('update');
-    RouteAlias::POST('/delete/{id}', [CartController::class, 'destroy'])->name('delete');
+    RouteAlias::POST('/delete/{id}', [CartController::class, 'destroy'])->name('destroy');
 });
 
 //Checkout

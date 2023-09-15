@@ -220,7 +220,7 @@ header.main_header {
     max-width: 820px;
     margin: auto;
     padding: 30px;
-    background: rgb(0 0 0 / 62%);
+    background: rgb(0 0 0 / 30%);
 }
 
 .home-slider-content h3 {
@@ -3459,4 +3459,14 @@ span.sign_up_for a {
 }
 .swal2-styled.swal2-confirm {
     background-color: #eb0029 !important;
+}
+.stat {
+    display: flex;
+    gap: 20px;
+}
+h6.ser-infh.pla {
+    display: flex;
+}
+form.order_cancel {
+    padding: 1px 22px;
 }
