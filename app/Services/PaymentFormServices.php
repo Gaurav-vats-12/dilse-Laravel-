@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Stripe\Charge as ChargeAlias;
+use App\Models\{Country,State};
+use Stripe\Customer as Customeras;
 use Stripe\Exception\ApiErrorException;
 use Stripe\Stripe;
 
@@ -80,23 +82,45 @@ class PaymentFormServices{
             $payment_message = "Order Placed Successfully ";
             $url = route('thank-you.orderStatus',['order_id' =>  $order_id, 'PaymentStatus' => 'pending', 'payment_id' =>$payment_id]);
         }else{
-
-
             Stripe::setApiKey(Config::get('stripe.api_keys.secret_key', ''));
             try {
-
+                $customer = \Stripe\Customer::create(array(
+                    "address" => [
+                            "line1" => $request->billing_address_1,
+                            "line2" => $request->billing_address_2,
+                            "postal_code" =>  $request->billing_postcode,
+                            "city" => $request->billing_city,
+                            "state" => State::findOrFail($request->billing_state)->iso2,
+                            "country" => Country::findOrFail($request->billing_country)->iso2,
+                        ],
+                    "email" => $request->billing_email,
+                    "name" => $request->billing_full_name,
+                    'phone'=> trim($request->billing_phone),
+                    "source" => $request->stripeToken
+                 ));
+                if(AuthAlias::guard('user')->check()){
+                    $user = AuthAlias::guard('user')->user();
+                    $user->stripecustomerid =$customer->id;
+                    $user->save();
+                }
                 $stripe_paymnet = ChargeAlias::create([
                     "amount" => $grand_Total *100 ,
                     "currency" => "usd",
-                    "description" => "Dilse Payment",
-                    "source" =>$request->stripeToken,
-                    'metadata' => [
-                        'customer_name' => $request->billing_first_name . ' ' . $request->billing_last_name,
-                        'customer_address' => $request->billing_address_1 . ',' . $request->billing_address_2 . ',' . $request->billing_country . ',' . $request->billing_state . ',' . $request->billing_city . ',' . $request->billing_postcode,
-                    ],
-                ]);
+                    "customer" => $customer->id,
+                    "description" => "Dilse Payment form Order Number-".$order_id.""  ,
+                    "shipping" => [
+                        "name" => $request->billing_full_name,
+                      "address" => [
+                        "line1" => $request->billing_address_1,
+                        "line2" => $request->billing_address_2,
+                        "postal_code" =>  $request->billing_postcode,
+                        "city" => $request->billing_city,
+                        "state" => State::findOrFail($request->billing_state)->iso2,
+                        "country" => Country::findOrFail($request->billing_country)->iso2,
+                      ],
 
-
+                    ]
+            ]);
                 $payment_id = $stripe_paymnet->id;
                 $payment_method = 'PayOnOnline';
                 $payment_json = json_encode($stripe_paymnet);
@@ -104,7 +128,6 @@ class PaymentFormServices{
                 $statusMessage = 'success';
                 $payment_message = "Order Placed Successfully ";
                 $url = route('thank-you.orderStatus',['order_id' =>  $order_id, 'PaymentStatus' => 'Paid', 'payment_id' =>$payment_id]);
-
             } catch (ApiErrorException $e) {
 
                 $error = $e->getError();

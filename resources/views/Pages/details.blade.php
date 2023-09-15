@@ -58,7 +58,7 @@
                                 <input type="hidden" name="ajax_url" id="ajax_url" value="{{ route('cart.add') }}" >
                             <input type="hidden" name="product_price" id="product_price__{{$related_products->id}}" value="{{ $related_products->price }}">
                             <input type="hidden" name="product_quntity" id="product_quntity_{{$related_products->id}}" value="1">
-                            <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" role="button" product_uid = "{{$related_products->id }}" is_spisy="{{ ($related_products->menu->menu_slug =='desserts' || $related_products->menu->menu_slug =='drinks' ) ? 'true' : 'false' }}">  <span class="add-to-cart">Add to cart</span>
+                            <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" role="button" product_uid = "{{$related_products->id }}" is_spisy="{{ ($related_products->menu->menu_slug =='desserts' || $related_products->menu->menu_slug =='drinks' ||$related_products->menu->menu_slug =='breads') ? 'true' : 'false' }}">  <span class="add-to-cart">Add to cart</span>
                                         <span class="added-to-cart">Added to cart</span>
                                     </a>                                </div>
             </div>

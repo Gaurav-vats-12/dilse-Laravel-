@@ -98,6 +98,7 @@ function stripePayment_Form(StripekEY){
                 document.getElementById(`stripe_form`).appendChild(hiddenInput);
                 document.getElementById(`stripe_form`).submit();
               console.log(`Card is valid:`, result.token);
+                 //
             }
           })
     });

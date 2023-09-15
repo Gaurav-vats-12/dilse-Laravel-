@@ -2,16 +2,15 @@
 @if (isset($OrderDetails) && count($OrderDetails) >0)
     @foreach($OrderDetails as $key => $orders)
         <div class="wap-lis" order_uiod = {{ $orders->id }}>
-            <div class="stat d-flex justify-content-between">
+            <div class="stat d-flex ">
                 <h6 class="ser-infh"><b>Order No.</b>{{ $orders->id }}</h6>
                 <h6 class="ser-infh pla"> <b>Order Date</b>
                     :{{   date("d/m/Y", strtotime($orders->order_date))  }} ({{  DateTime::createFromFormat('H:i:s',explode(' ', $orders->order_date)[1])->format('h:i:s A')  }})
                     &nbsp;| &nbsp; <b>Status:</b>
                     <span id="OrderStatus">{{ $orders->status }}</span>
                     @if($orders->status =='Pending')|
-                    <form method="POST" id="OrderCencelled_Form" action="{{ route('user.order-cancelled', $orders->id) }}">  @csrf @method('PUT')
-                    <a href="javascript:void(0)"  ajax_url ="{{ route('user.order-cancelled' ,$orders->id) }}" class="btn-danger show_confirm">Cancel Order</a>
-</form>
+                    <form method="POST" class="order_cancel" id="OrderCencelled_Form" action="{{ route('user.order-cancelled', $orders->id) }}">  @csrf @method('PUT')
+                    <a href="javascript:void(0)"  ajax_url ="{{ route('user.order-cancelled' ,$orders->id) }}" class="btn-danger show_confirm">Cancel Order</a></form>
                         <!-- <a href="javascript:void(0)" id="OrderCencelled" ajax_url ="{{ route('user.order-cancelled' ,$orders->id) }}" class="btn-danger">Cancel Order</a> -->
                     @endif
                 </h6>
