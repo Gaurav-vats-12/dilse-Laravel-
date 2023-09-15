@@ -17,18 +17,20 @@
         <div class="container py_8">
             <div class="row">
                 <div class="col-md-4 mb-5 mb-xl-0">
+                <a href="javascript:void(0)" id="location" data_lication_uid="location_drag"><div class="under_location">
+
                     <div class="location">
-                        <a href="javascript:void(0)"  id="location" data_lication_uid ="location_drag"><div class="under_location">
                             <div class="location_img">
-                                <img src="{{asset('frontend/img/location.png')}}" alt="" />
+                            <img src="{{asset('frontend/img/location.png')}}" alt="" />
                             </div>
                             <p>{{ setting('address') != null ? setting('address') : '' }}</p>
-                        </div></a>
-
+                        </div>
                     </div>
+                    </a>
                 </div>
                 <div class="col-md-4 mb-5 mb-xl-0">
                     <div class="location">
+
                         <div class="under_location">
                             <div class="location_img" id="location" data-map = "location_drag">
                                 <img src="{{asset('frontend/img/message.png')}}" alt="" />
@@ -39,14 +41,18 @@
                     </div>
                 </div>
                 <div class="col-md-4 mb-5 mb-xl-0">
+                <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
                     <div class="location">
                         <div class="under_location">
                             <div class="location_img"  data_location_id ="location_drag">
-                                <a href="javascript:void(0)" id="location_img" data_location_id ="location_drag"> <img src="{{asset('frontend/img/mobile.png')}}" alt="" /></a>
+                             <img src="{{asset('frontend/img/mobile.png')}}" alt="" />
                             </div>
-                            <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}"> <p>{{ setting('phone') != null ? setting('phone') : '' }}</p></a>
+                           <p>{{ setting('phone') != null ? setting('phone') : '' }} | 416-534-6344
+</p>
                         </div>
+
                     </div>
+                    </a>
                 </div>
             </div>
         </div>
