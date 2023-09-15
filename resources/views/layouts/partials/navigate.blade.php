@@ -12,7 +12,7 @@
                                     <div class="contact_info_img">
                                         <img src="{{asset('frontend/img/phone-o1.png') }}" alt=""/>
                                     </div>
-                                    <p>{{ setting('phone') != null ? setting('phone') : '' }}</p>
+                                    <p>{{ setting('phone') != null ? setting('phone') : '' }}| 416-534-6344</p>
                                 </div>
                             </a>
                         </li>
