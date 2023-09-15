@@ -18,31 +18,33 @@
             <div class="row">
                 <div class="col-md-4 mb-5 mb-xl-0">
                     <div class="location">
-                        <div class="under_location">
+                        <a href="javascript:void(0)"  id="location" data_lication_uid ="location_drag"><div class="under_location">
                             <div class="location_img">
                                 <img src="{{asset('frontend/img/location.png')}}" alt="" />
                             </div>
                             <p>{{ setting('address') != null ? setting('address') : '' }}</p>
-                        </div>
+                        </div></a>
+
                     </div>
                 </div>
                 <div class="col-md-4 mb-5 mb-xl-0">
                     <div class="location">
                         <div class="under_location">
-                            <div class="location_img">
+                            <div class="location_img" id="location" data-map = "location_drag">
                                 <img src="{{asset('frontend/img/message.png')}}" alt="" />
                             </div>
-                            <p>{{ setting('site_email') != null ? setting('site_email') : '' }}</p>
+                            <a href="mailto:{{ setting('site_email') != null ? setting('site_email') : '' }}">
+                                <p>{{ setting('site_email') != null ? setting('site_email') : '' }}</p></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-5 mb-xl-0">
                     <div class="location">
                         <div class="under_location">
-                            <div class="location_img">
-                                <img src="{{asset('frontend/img/mobile.png')}}" alt="" />
+                            <div class="location_img"  data_location_id ="location_drag">
+                                <a href="javascript:void(0)" id="location_img" data_location_id ="location_drag"> <img src="{{asset('frontend/img/mobile.png')}}" alt="" /></a>
                             </div>
-                            <p>{{ setting('phone') != null ? setting('phone') : '' }}</p>
+                            <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}"> <p>{{ setting('phone') != null ? setting('phone') : '' }}</p></a>
                         </div>
                     </div>
                 </div>
@@ -54,7 +56,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="contact_img_us">
+                    <div class="contact_img_us" id="location_drag">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d65301131.98038571!2d-87.91986629730727!3d2.6146120148738166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b35487c6d8901%3A0xd40d12d1bb3c682!2sDil%20Se%20Indian%20Restaurant%20%26%20Bar!5e0!3m2!1sen!2sin!4v1693892472690!5m2!1sen!2sin"
                             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"

@@ -180,8 +180,8 @@ jQuery(document).ready(function () {
         },
         submitHandler: async function (form, e) {
             e.preventDefault();
-            jQuery(".theme_btn").attr("disabled", true);
-            jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
+            jQuery(`.theme_btn`).attr("disabled", true);
+            jQuery(`.btn-txt`).html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
             let ajax_value_list = $('form').serialize(), ajx_url = jQuery(`#contact_us_action_url`).val();
             const [resPose] = await Promise.all([Ajax_response(ajx_url, "POST", ajax_value_list, '')]);
             console.log(resPose);
@@ -189,7 +189,7 @@ jQuery(document).ready(function () {
                 jQuery(".theme_btn").attr("disabled", false);
                 jQuery(".btn-txt").text("Send");
                 NotyfMessage(resPose.message, 'success');
-                jQuery("#conatact_cus_form")[0].reset();
+                jQuery(`#conatact_cus_form`)[0].reset();
             } else {
                 jQuery.each(resPose.errors, function (key, value) {
                     jQuery(`#${key}-error`).text(value);
@@ -200,7 +200,7 @@ jQuery(document).ready(function () {
 
     jQuery(document).on("change", ".delivery", async function (event) {
         jQuery('#shipping_charge').val(parseFloat(jQuery('input[name="delivery_type"]:checked').val()));
-        updateTotals(parseFloat(jQuery('input[name="delivery_type"]:checked').val()));
+         updateTotals(parseFloat(jQuery(`input[name="delivery_type"]:checked`).val()));
     });
 
 
@@ -245,7 +245,16 @@ jQuery(document).ready(function () {
 
 
 
-    } else if (url.indexOf("/product") > -1) {
+    } else if (url.indexOf("/contact-us") > -1) {
+        jQuery(document).on("click", "#location", async function (event) {
+            jQuery('html, body').animate({
+                scrollTop: jQuery('#location_drag').offset().top
+            }, 500); // You can adjust the animation speed (1000ms = 1 second)
+        });
+
+
+
+        }else if (url.indexOf("/product") > -1) {
                 /**
         *  RELATED PRODUCTS Slider In Product Details Page
         */
