@@ -36,7 +36,7 @@
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="our_achievement_img">
-                <img src="{{asset('frontend/img/achievements.png') }}" alt="">
+              <img src="{{asset('frontend/img/DSC_1331.jpg') }}" alt="" />
               </div>
             </div>
             <div class="col-md-6">
@@ -57,11 +57,22 @@
       <section class="about_se py_8">
         <div class="container">
           <div class="row">
-            <div class="col-md-6 my-slider" >
-            <div class="restaurdent_update_image">
+            <div class="col-md-6 my-slider" id="about_us_page">
+              <div class="about_img">
+                <img src="{{asset('frontend/img/DSC_1336.jpg') }}" alt="" />
+              </div>
+              <div class="about_img">
+                <img src="{{asset('frontend/img/DSC_1339.jpg') }}" alt="" />
+              </div>
+              <div class="about_img">
+                <img src="{{asset('frontend/img/DSC_1345.jpg') }}" alt="" />
+              </div>
+              <div class="about_img">
+                <img src="{{asset('frontend/img/DSC_1352.jpg') }}" alt="" />
+              </div>
+              <div class="about_img">
                 <img src="{{asset('frontend/img/DSC_1331.jpg') }}" alt="" />
               </div>
-
             </div>
             <div class="col-md-6">
               <div class="about_cntnt about_under_text">
@@ -138,21 +149,9 @@
       <section class="inner_bannners bg_style" style="background-image: url('{{asset('frontend/img/restudent_wine.png') }}')">
         <div class="container py_8">
           <div class="row">
-            <div class="col-md-7" id="about_us_page">
+            <div class="col-md-7">
               <div class="restaurdent_update_image">
-                <img src="{{asset('frontend/img/DSC_1336.jpg') }}" alt="" />
-              </div>
-              <div class="restaurdent_update_image">
-                <img src="{{asset('frontend/img/DSC_1339.jpg') }}" alt="" />
-              </div>
-              <div class="restaurdent_update_image">
-                <img src="{{asset('frontend/img/DSC_1345.jpg') }}" alt="" />
-              </div>
-              <div class="restaurdent_update_image">
-                <img src="{{asset('frontend/img/DSC_1352.jpg') }}" alt="" />
-              </div>
-              <div class="restaurdent_update_image">
-                <img src="{{asset('frontend/img/DSC_1331.jpg') }}" alt="" />
+                <img src="{{asset('frontend/img/restudent.png') }}" alt="" />
               </div>
             </div>
             <div class="col-md-5">
