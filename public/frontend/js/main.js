@@ -230,7 +230,8 @@ jQuery(document).ready(function () {
             if (response) {
                 jQuery(`.loader`).toggleClass('display');
                 window.history.pushState(null, '', `/menu/${slug}?page=${page}`);
-                jQuery(`#menu_data_find`).empty().html(response);
+                jQuery(`#menu_data_find`).empty().append(response.rows);
+                jQuery('ul.pagination').replaceWith(response.links); // update links
                 // jQuery('#CustomPagination').reload(true);
                 //
                 // jQuery('.pagination a').attr('href', pageUrl);

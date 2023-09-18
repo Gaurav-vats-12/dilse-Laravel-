@@ -3476,3 +3476,7 @@ form.order_cancel {
    top: 90%;
 
 }
+.social_icons {
+    text-align: center;
+    display: none;
+}

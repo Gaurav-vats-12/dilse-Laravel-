@@ -14,6 +14,7 @@ class MenuController extends Controller
     public function menu(Request $request, $slug = ''){
         $order_type = session()->get('order_type');
         if ($request->ajax()) {
+
             $slug = $request->slug;
             $current_url = $request->current_url;
             if($current_url =='home'){
@@ -32,8 +33,15 @@ class MenuController extends Controller
             }else{
 
                 $menu_id = Menu::where('menu_slug',$slug)->first()->id;
+
                 $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);
-                 return view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug]);
+
+                $html = view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug])->render();
+                // dd($html);
+                return response()->json([
+                    'rows' => $html,
+                    'links' => $FoodItem->render()
+                ], 200);
             }
         }else{
             $menu_id = Menu::where('menu_slug',$slug)->first()->id;
