@@ -39,15 +39,8 @@
           </div>
           <div class="menu_left menu_right">
             <ul>
-            <li><a href="{{ url('/')}}">Home</a></li>
-                        <li><a href="{{url('about-us')}}">About Us</a></li>
-                        <li><a href="{{url('blog')}}">Blog</a></li>
-                        <li><a href="{{ route('menu','appetizers') }}">Menu</a></li>
-                        <li><a href="{{url('gallery')}}">Gallery</a></li>
-                        <li><a href="{{url('contact-us')}}">Contact Us</a></li>
-                        <li><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
-                        @if(Auth::guard('user')->check())
-                        <li class="">
+            @if(Auth::guard('user')->check())
+                        <li class="name_drop_down">
                                 <div class="dropdown">
                                     <a class="dropdown-toggle" href="javascript:void(0)" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> {!! Str::limit(strip_tags(Auth::guard('user')->user()->name), 12) !!} </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -56,34 +49,25 @@
                                         <li> <form method="POST" action="{{ route('user.logout') }}">  @csrf <x-responsive-nav-link :href="route('user.logout')" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item"> <span> {{ __('Log Out') }}</span>  </form> </x-responsive-nav-link></li>
                                     </ul>
                                 </div>
-                    </ul>
                     </li>                           @else
-                        <li><a class="login_header" href="{{route('user.login')}}"> Login </a></li>
+                        <li class="name_drop_down"><a class="login_header" href="{{route('user.login')}}"> Login </a></li>
                         @endif
-            </ul>
-            <div class="social_icons">
-              <ul>
-                <li></li>
-                <a href="https://www.facebook.com/dilse.ca/" target="_blank"><img
-                    src="https://dilse.exoticaitsolutions.com/frontend/img/fb-01.png" alt=""></a>
+                        <li class="cart_responseive"><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
 
-                <li>
-                  <a href="https://www.instagram.com/dilse.ca/" target="_blank"><img
-                      src="https://dilse.exoticaitsolutions.com/frontend/img/insta-1.png" alt=""></a>
-                </li>
-
-                <li>
-                  <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target="_blank"><img
-                      src="https://dilse.exoticaitsolutions.com/frontend/img/blogto.png" alt=""></a>
-                </li>
-                <li>
+            <li><a href="{{ url('/')}}">Home</a></li>
+                        <li><a href="{{url('about-us')}}">About Us</a></li>
+                        <li><a href="{{url('blog')}}">Blog</a></li>
+                        <li><a href="{{ route('menu','appetizers') }}">Menu</a></li>
+                        <li><a href="{{url('gallery')}}">Gallery</a></li>
+                        <li><a href="{{url('contact-us')}}">Contact Us</a></li>
+                        <li>
                 <select class="select_location" name="select_location" id="select_location" ajax_value ="{{ route('cart.update_details')}}" location_Type="location">
                              <option value="Toronto" {{ session('update_location') =='Toronto'? 'selected' : '' }}>Toronto</option>
                             <option value="Brampton" {{ session('update_location') =='Brampton'? 'selected' : '' }}>Brampton</option>
                             </select>
                 </li>
-              </ul>
-            </div>
+            </ul>
+
           </div>
           <div class="hamburger">
             <span class="bar"></span>

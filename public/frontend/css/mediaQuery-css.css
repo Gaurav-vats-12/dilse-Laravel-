@@ -6,8 +6,8 @@
 .responsi_header .hamburger .bar {
     display: block;
     background-color: #fff;
-    width: 28px;
-    height: 6px;
+    width: 23px;
+    height: 4px;
     margin-bottom: 4px;
 }
 .responsi_header .hamburger .bar :last-child {
@@ -45,7 +45,7 @@
     transform: rotate(-45deg) translate(1px, -1px);
 }
 .responsi_header .hamburger.is_active span.bar:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 7px);
+    transform: rotate(45deg) translate(4px, 5px);
 }
 .responsi_header .hamburger.is_active span.bar:nth-child(3) {
     display: none;
@@ -516,7 +516,7 @@ li.page-item.disabled span.page-link {
         line-height: 29px;
     }
     .responsi_header .menu_right {
-        width: 300px;
+        width: 400px;
     }
     .shopping_cart .tittle_heading {
         margin-bottom: 40px;
@@ -557,7 +557,42 @@ li.page-item.disabled span.page-link {
              .cart_head h3 {
                 font-size: 20px;
             }
-
+            header.main_header {
+                z-index: 999;
+                width: 100%;
+                background-color: #000;
+                position: sticky;
+                top: 0;
+            }
+            .responsi_header .hamburger {
+           padding: 6px 5px;
+                position: relative;
+                z-index: 999;
+            }
+            .menu_left.menu_right.is_active li.name_drop_down {
+                margin-top: -16px;
+            }
+            li.cart_responseive {
+                position: absolute;
+                right: 92px;
+                top: 19px;
+            }
+            .social_icons {
+                text-align: center;
+                display: block;
+            }
+            .open_hr {
+                margin: 10px auto 10px;
+            }
+            #button.show {
+                             display: none;
+            }
+            .select_location {
+                padding: 12px 12px;
+                         }
+                         .font-medium {
+                                                margin-bottom: 0;
+                        }
         }
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
