@@ -565,9 +565,10 @@ li.page-item.disabled span.page-link {
                 top: 0;
             }
             .responsi_header .hamburger {
-           padding: 6px 5px;
+                padding: 10px 10px;
                 position: relative;
                 z-index: 999;
+                margin-top: 23px;
             }
             .menu_left.menu_right.is_active li.name_drop_down {
                 margin-top: -16px;
