@@ -74,7 +74,7 @@ jQuery(document).ready(function () {
     /**
  *  testimonial_slider   (Home Page)
  */
-    jQuery('.testimonial_slider').slick({
+    jQuery(`.testimonial_slider`).slick({
         infinite: true,
         arrows: false,
         dots: false,
@@ -85,13 +85,12 @@ jQuery(document).ready(function () {
         if (content.length > charLimit) {
             const truncatedContent = content.substring(0, charLimit);
             jQuery(this).text(truncatedContent);
-            jQuery(this).addClass("collapsed");
-
+            jQuery(this).addClass(`collapsed`);
             jQuery(this)
-                .siblings(".read-more")
+                .siblings(`.read-more`)
                 .click(function (e) {
                     e.preventDefault();
-                    const isCollapsed = jQuery(this).siblings(".content").hasClass("collapsed");
+                    const isCollapsed = jQuery(this).siblings(`.content`).hasClass(`collapsed`);
                     if (isCollapsed) {
                         jQuery(this).siblings(".content").text(content);
                         jQuery(this).siblings(".content").removeClass("collapsed");
