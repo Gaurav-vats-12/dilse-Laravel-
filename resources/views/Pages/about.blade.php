@@ -32,7 +32,8 @@
         </div>
       </section>
       <section class="our_achievement py_8">
-        <div class="container">
+        <div class="container" style="    max-width: 1300px !important;
+    width: unset;">
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="our_achievement_img">
@@ -55,7 +56,7 @@
         </div>
       </section>
       <section class="about_se py_8">
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
             <div class="col-md-6 my-slider" id="about_us_page">
               <div class="about_img">

@@ -216,16 +216,19 @@ jQuery(document).ready(function () {
             let slug = jQuery(this).attr("menu-slug");
             let page = 1;
             let ajax_value = { slug, page };
-            let pageUrl = `${location.hostname}/menu/${slug}?page=${page + 1}`;
+            let pageUrl = `${slug}?page=${page + 1}`;
+            console.log(pageUrl);
             const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
                 jQuery(`.loader`).toggleClass('display');
-                window.history.pushState(null, '', `/menu/${slug}?page=${page}`);
+                window.history.pushState(null, '', "/menu/"+slug);
                 jQuery(`#menu_data_find`).empty().html(response);
-                // jQuery('#CustomPagination').reload(true);
-                //
-                // jQuery('.pagination a').attr('href', pageUrl);
-                // window.location.reload(true);
+                jQuery('.pagination a').attr('href',pageUrl);
+                window.location.reload(true);
+
+
+                // setTimeout(function() {$('#menu').trigger('click')},
+                // 1000);
             }
         });
         /**

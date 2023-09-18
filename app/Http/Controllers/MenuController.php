@@ -33,9 +33,9 @@ class MenuController extends Controller
             }else{
 
                 $menu_id = Menu::where('menu_slug',$slug)->first()->id;
-
-                $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);
-                 return view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug])->render();
+                $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6)->withQueryString();
+               dd($FoodItem );
+                return view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug])->render();
             }
         }else{
             $menu_id = Menu::where('menu_slug',$slug)->first()->id;

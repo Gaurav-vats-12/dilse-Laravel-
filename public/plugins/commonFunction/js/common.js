@@ -12,9 +12,7 @@ async function Ajax_response(url, method, values, beforetask, success, callback)
         },
         error: function (_request, status, _error) {
         }
-
     });
-
 }
 
 function NotyfMessage(message ,type){
