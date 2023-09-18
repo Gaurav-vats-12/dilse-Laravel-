@@ -3472,6 +3472,7 @@ form.order_cancel {
 }
 
 .modal {
-    position: absolute;
-    top: 90%;
- }
+   position: absolute;
+   top: 90%;
+
+}
