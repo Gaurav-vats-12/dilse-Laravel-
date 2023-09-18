@@ -24,8 +24,11 @@
                             </div>
                         </div>
                         @endforeach
+
                         <div class="CustomPagination"  id="menu_items">
-                            {!! $FoodItem->links() !!}
+                            <!-- {!! $FoodItem->links() !!} -->
+                            {!! $FoodItem->render() !!}
+
                         </div>
                     @else
                     <h4>No Food Item  Found</h4>
