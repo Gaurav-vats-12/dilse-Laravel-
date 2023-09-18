@@ -39,23 +39,25 @@
           <h3>Opening Hours</h3>
           <p>{{ setting('opening_hour') != null ?__(setting('opening_hour' ,'Mon – Sun: 11:30 AM – 10:30 PM')) : '' }}</p>
         </div>
-        <div class="social_icons">
-              <ul>
-                <li></li>
-                <a href="https://www.facebook.com/dilse.ca/" target="_blank"><img
-                    src="https://dilse.exoticaitsolutions.com/frontend/img/fb-01.png" alt=""></a>
-
-                <li>
-                  <a href="https://www.instagram.com/dilse.ca/" target="_blank"><img
-                      src="https://dilse.exoticaitsolutions.com/frontend/img/insta-1.png" alt=""></a>
-                </li>
-
-                <li>
-                  <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target="_blank"><img
-                      src="https://dilse.exoticaitsolutions.com/frontend/img/blogto.png" alt=""></a>
-                </li>
-
-              </ul>
+        <div class="social_icons_footer">
+        <ul>
+                        <li></li>
+                        <a href="{{ setting('facebook_url') != null ? setting('facebook_url') : '' }}"
+                           target="_blank"><img src="{{asset('frontend/img/fb-01.png') }}" alt=""/></a>
+                        </li>
+                        <li>
+                            <a href="{{ setting('instagram_url') != null ? setting('instagram_url') : '' }}"
+                               target="_blank"><img src="{{asset('frontend/img/insta-1.png') }}" alt=""/></a>
+                        </li>
+                        <li>
+                            <a href="{{ setting('twitter_url') != null ? setting('twitter_url') : '' }}"
+                               target="_blank"><img src="{{asset('frontend/img/twi.png') }}" alt=""/></a>
+                        </li>
+                        <li>
+                            <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target="_blank"><img
+                                        src="{{asset('frontend/img/blogto.png') }}" alt=""/></a>
+                        </li>
+                    </ul>
             </div>
       </div>
 
