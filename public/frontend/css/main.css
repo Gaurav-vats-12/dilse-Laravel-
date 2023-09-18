@@ -3470,3 +3470,8 @@ h6.ser-infh.pla {
 form.order_cancel {
     padding: 1px 22px;
 }
+
+.modal {
+    position: absolute;
+    top: 50%;
+ }
