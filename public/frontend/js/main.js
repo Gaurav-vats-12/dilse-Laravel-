@@ -215,14 +215,15 @@ jQuery(document).ready(function () {
             jQuery(`#menu_data_find`).empty();
             let slug = jQuery(this).attr("menu-slug");
             let page = 1;
+            console.log(slug);
             let ajax_value = { slug, page };
             let pageUrl = `${slug}?page=${page + 1}`;
-            console.log(pageUrl);
             const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
                 jQuery(`.loader`).toggleClass('display');
                 window.history.pushState(null, '', "/menu/"+slug);
-                jQuery(`#menu_data_find`).empty().html(response);
+                jQuery(`#menu_data_find`).empty().html(response.html);
+                // jQuery('menu_items').empty().load(response.page);
                 // jQuery('.pagination a').attr('href',pageUrl);
                 // window.location.reload(true);
 
@@ -245,7 +246,9 @@ jQuery(document).ready(function () {
             if (response) {
                 window.history.pushState(null, '',jQuery(this).attr('href'));
                 jQuery(`.loader`).toggleClass('display');
-                jQuery(`#menu_data_find`).empty().html(response);
+                // jQuery(`#menu_data_find`).empty().html(response);
+                jQuery(`#menu_data_find`).empty().html(response.html);
+
             }
         });
 
