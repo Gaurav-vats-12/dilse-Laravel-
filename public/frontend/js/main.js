@@ -219,10 +219,12 @@ jQuery(document).ready(function () {
             const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
                 jQuery(`.loader`).toggleClass('display');
-                window.history.pushState(null, '', "/menu/" + slug);
+                window.history.pushState(null, '', `/menu/${slug}?page=${page}`);
                 jQuery(`#menu_data_find`).empty().html(response);
-                jQuery('.pagination a').attr('href', pageUrl);
-                window.location.reload(true);
+                jQuery('#CustomPagination').reload(true);
+                //
+                // jQuery('.pagination a').attr('href', pageUrl);
+                // window.location.reload(true);
             }
         });
         /**

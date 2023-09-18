@@ -22,7 +22,8 @@ class MenuController extends Controller
                 $slug = 'appetizers';
                 $menu_id = Menu::where('menu_slug',$slug)->first()->id;
                 $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);
-             return view('Pages.menu',['FoodItem'=>$FoodItem ,'slug'=>$slug]);
+            //  return view('Pages.menu',['FoodItem'=>$FoodItem ,'slug'=>$slug]);
+                 return view('Pages.menu', compact('FoodItem','slug'))->render();
             }else if ($current_url =='cart.view'){
                 $authType =  AuthAlias::guard('user')->check();
                 $loginroute = AuthAlias::guard('user')->check() ? route('checkout.view') : route('user.login');
