@@ -36,7 +36,7 @@
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="our_achievement_img">
-              <img src="{{asset('frontend/img/DSC_1331.jpg') }}" alt="" />
+              <img src="{{asset('frontend/img/DSC_1332.jpg') }}" alt="" />
               </div>
             </div>
             <div class="col-md-6">
