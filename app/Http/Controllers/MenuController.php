@@ -29,19 +29,13 @@ class MenuController extends Controller
                 $authType =  AuthAlias::guard('user')->check();
                 $loginroute = AuthAlias::guard('user')->check() ? route('checkout.view') : route('user.login');
                 session()->put('order_type', $request->type);
-                return response()->json(['code' => 200 , 'status' =>'success','url'=> $loginroute]);
+                return response()->json(['code' => 200 , 'status' =>'success','url'=> $loginroute])->render();
             }else{
 
                 $menu_id = Menu::where('menu_slug',$slug)->first()->id;
 
                 $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);
-
-                $html = view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug])->render();
-                // dd($html);
-                return response()->json([
-                    'rows' => $html,
-                    'links' => $FoodItem->render()
-                ], 200);
+                 return view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug])->render();
             }
         }else{
             $menu_id = Menu::where('menu_slug',$slug)->first()->id;
