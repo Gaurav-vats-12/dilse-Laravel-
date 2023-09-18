@@ -1,25 +1,18 @@
 jQuery(document).ready(function () {
-    let url = window.location.pathname;
-    /**
-     * Save The store_location In Jquery
-     */
-    jQuery(`#store_location`).val(jQuery(`#select_location`).find(`:selected`).val());
-
-    jQuery(document).on(`change`, `#select_location`,  async function (event) {
+    jQuery('#store_location').val(jQuery('#select_location').find(":selected").val());
+    jQuery(document).on("change", "#select_location",  async function (event) {
         event.preventDefault();
-        let store_location = jQuery(this).find(`:selected`).val();
-        let location_type = jQuery(this).attr(`location_type`);
-        let ajax_URL = jQuery(this).attr(`ajax_value`);
-        let ajax_value = {store_location, location_type};
-        const [resPose] = await Promise.all([Ajax_response(ajax_URL, "POST", ajax_value, '')]);
-        if (`success` === resPose.status) {
-            jQuery(`#store_location`).val(store_location);
-            NotyfMessage(resPose.message, `success`);
+        let store_location = jQuery(this).find(":selected").val();
+        let location_type = jQuery(this).attr('location_type');
+        const resPose = await Ajax_response(jQuery(this).attr('ajax_value'), "POST", { store_location, location_type }, '');
+        if (resPose.status === 'success') {
+            jQuery('#store_location').val(store_location);
+            NotyfMessage(resPose.message, 'success');
         }else{
          jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value);  });
         }
     });
-
+    let url = window.location.pathname;
     /**
 * Scroller
 */
@@ -40,8 +33,13 @@ jQuery(document).ready(function () {
   */
     jQuery(document).on(`click`, `.thumbnail`, async function (event) {
         event.preventDefault();
-        let type = jQuery(this).attr(`type`), current_url = jQuery(this).attr(`current_url`), AjaxForm = jQuery(this).attr(`AjaxForm`), slug = `appetizers`, page = 1;
-        const [response] = await Promise.all([Ajax_response(AjaxForm, "GET", {current_url, page, slug, type}, '', '')]);
+        let type = jQuery(this).attr(`type`);
+        let current_url = jQuery(this).attr(`current_url`);
+        let AjaxForm = jQuery(this).attr(`AjaxForm`);
+        let slug = `appetizers`;
+        let page = 1;
+        let ajax_value = {current_url, page, slug, type};
+        const response = await Ajax_response(AjaxForm, "GET", ajax_value, '', '');
         if (response.status === `success`) {
             window.location.href = response.url;
         } else {
@@ -51,30 +49,22 @@ jQuery(document).ready(function () {
     /**
       *  Add to Cart  In Website (Home Page ,Menu page,Product Details Pages)
       */
-    jQuery(document).on(`click`,
-        `#add_to_cart`,
-        async function (event) {
-            jQuery(this).toggleClass(`added`);
-            let is_spisy = jQuery(this).attr(`is_spisy`), product_oid, product_quntity, product_price, ajax_value,
-                ajax_url;
-            product_oid = jQuery(this).attr("product_uid");
-            product_quntity = jQuery(`#product_quntity_${product_oid}`).val();
-            product_price = jQuery(`#product_price__${product_oid}`).val();
-            ajax_value = {product_oid, product_quntity, product_price, is_spisy};
-            ajax_url = jQuery('#ajax_url').val();
-            const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-            if (resPose.status === `success`) {
-                setTimeout(function () {
-                    jQuery(`.add-to-cart-button`).removeClass(`added`)
-                }, 2000);
-                NotyfMessage(resPose.message, 'success');
-                jQuery(`.cart_count`).html(resPose.cart_total);
-            }
-        });
+    jQuery(document).on("click", "#add_to_cart", async function (event) {
+        jQuery(this).toggleClass(`added`);
+        let is_spisy= jQuery(this).attr('is_spisy');
+
+        let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = { product_oid, product_quntity, product_price,is_spisy }, ajax_url = jQuery('#ajax_url').val();
+        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+        if (resPose.status === `success`) {
+            setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 2000);
+            NotyfMessage(resPose.message, 'success');
+            jQuery(`.cart_count`).html(resPose.cart_total);
+        }
+    });
     /**
  *  testimonial_slider   (Home Page)
  */
-    jQuery(`.testimonial_slider`).slick({
+    jQuery('.testimonial_slider').slick({
         infinite: true,
         arrows: false,
         dots: false,
@@ -85,12 +75,13 @@ jQuery(document).ready(function () {
         if (content.length > charLimit) {
             const truncatedContent = content.substring(0, charLimit);
             jQuery(this).text(truncatedContent);
-            jQuery(this).addClass(`collapsed`);
+            jQuery(this).addClass("collapsed");
+
             jQuery(this)
-                .siblings(`.read-more`)
+                .siblings(".read-more")
                 .click(function (e) {
                     e.preventDefault();
-                    const isCollapsed = jQuery(this).siblings(`.content`).hasClass(`collapsed`);
+                    const isCollapsed = jQuery(this).siblings(".content").hasClass("collapsed");
                     if (isCollapsed) {
                         jQuery(this).siblings(".content").text(content);
                         jQuery(this).siblings(".content").removeClass("collapsed");
@@ -230,8 +221,7 @@ jQuery(document).ready(function () {
             if (response) {
                 jQuery(`.loader`).toggleClass('display');
                 window.history.pushState(null, '', `/menu/${slug}?page=${page}`);
-                jQuery(`#menu_data_find`).empty().append(response.rows);
-                jQuery('ul.pagination').replaceWith(response.links); // update links
+                jQuery(`#menu_data_find`).empty().html(response);
                 // jQuery('#CustomPagination').reload(true);
                 //
                 // jQuery('.pagination a').attr('href', pageUrl);

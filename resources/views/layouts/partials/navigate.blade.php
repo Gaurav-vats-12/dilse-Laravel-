@@ -46,7 +46,7 @@
                             <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target="_blank"><img
                                         src="{{asset('frontend/img/blogto.png') }}" alt=""/></a>
                         </li>
-                        <li><select class="select_location" name="select_location" id="select_location">
+                        <select class="select_location" name="select_location" id="select_location" ajax_value ="{{ route('cart.update_details')}}" location_Type="location">
                                 <option value="Toronto">Toronto</option>
                                 <option value="Brampton">Brampton</option>
                             </select></li>
