@@ -31,9 +31,13 @@ class MenuController extends Controller
                 session()->put('order_type', $request->type);
                 return response()->json(['code' => 200 , 'status' =>'success','url'=> $loginroute])->render();
             }else{
+
                 $menu_id = Menu::where('menu_slug',$slug)->first()->id;
+
                 $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6)->withQueryString();
-                return view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug])->render();
+                 $html =  view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug])->render();
+                 return response()->json(['code' => 200 ,  'status' =>'success', "html"=>$html ,'page'=>$FoodItem->links()]);
+
             }
         }else{
             $menu_id = Menu::where('menu_slug',$slug)->first()->id;
