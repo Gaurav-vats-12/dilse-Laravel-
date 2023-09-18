@@ -57,24 +57,13 @@
       <section class="about_se py_8">
         <div class="container">
           <div class="row">
-            <div class="col-md-5 my-slider" id="about_us_page">
-              <div class="about_img">
-                <img src="{{asset('frontend/img/DSC_1336.jpg') }}" alt="" />
-              </div>
-              <div class="about_img">
-                <img src="{{asset('frontend/img/DSC_1339.jpg') }}" alt="" />
-              </div>
-              <div class="about_img">
-                <img src="{{asset('frontend/img/DSC_1345.jpg') }}" alt="" />
-              </div>
-              <div class="about_img">
-                <img src="{{asset('frontend/img/DSC_1352.jpg') }}" alt="" />
-              </div>
-              <div class="about_img">
+            <div class="col-md-6 my-slider" >
+            <div class="restaurdent_update_image">
                 <img src="{{asset('frontend/img/DSC_1331.jpg') }}" alt="" />
               </div>
+
             </div>
-            <div class="col-md-7">
+            <div class="col-md-6">
               <div class="about_cntnt about_under_text">
                 <h3>About us Dil Se Indian Restaurant & BaR</h3>
                 <h2 class="bringing">Bringing You An Authentic Indian Taste</h2>
@@ -149,9 +138,21 @@
       <section class="inner_bannners bg_style" style="background-image: url('{{asset('frontend/img/restudent_wine.png') }}')">
         <div class="container py_8">
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-7" id="about_us_page">
               <div class="restaurdent_update_image">
-                <img src="{{asset('frontend/img/restudent.png') }}" alt="" />
+                <img src="{{asset('frontend/img/DSC_1336.jpg') }}" alt="" />
+              </div>
+              <div class="restaurdent_update_image">
+                <img src="{{asset('frontend/img/DSC_1339.jpg') }}" alt="" />
+              </div>
+              <div class="restaurdent_update_image">
+                <img src="{{asset('frontend/img/DSC_1345.jpg') }}" alt="" />
+              </div>
+              <div class="restaurdent_update_image">
+                <img src="{{asset('frontend/img/DSC_1352.jpg') }}" alt="" />
+              </div>
+              <div class="restaurdent_update_image">
+                <img src="{{asset('frontend/img/DSC_1331.jpg') }}" alt="" />
               </div>
             </div>
             <div class="col-md-5">
