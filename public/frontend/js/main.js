@@ -224,7 +224,7 @@ jQuery(document).ready(function () {
                 window.history.pushState(null, '', "/menu/"+slug);
                 jQuery(`#menu_data_find`).empty().html(response);
                 jQuery('.pagination a').attr('href',pageUrl);
-                window.location.reload(true);
+                // window.location.reload(true);
 
 
                 // setTimeout(function() {$('#menu').trigger('click')},
