@@ -223,7 +223,7 @@ jQuery(document).ready(function () {
                 jQuery(`.loader`).toggleClass('display');
                 window.history.pushState(null, '', "/menu/"+slug);
                 jQuery(`#menu_data_find`).empty().html(response);
-                jQuery('.pagination a').attr('href',pageUrl);
+                // jQuery('.pagination a').attr('href',pageUrl);
                 // window.location.reload(true);
 
 
