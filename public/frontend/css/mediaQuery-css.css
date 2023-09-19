@@ -422,8 +422,12 @@ li.page-item.disabled span.page-link {
     }
     .footer_logo {
         position: absolute;
-        top: 4%;
-        right: 10%;
+        top: 2%;
+        left: 0;
+        right: 0;
+        text-align: center;
+        bottom: 0px;
+    
     }
     .open_hr {
         flex-direction: column;
@@ -495,6 +499,8 @@ li.page-item.disabled span.page-link {
         font-size: 16px;
         line-height: 26px;
     }
+
+
     .award_winning_txt p {
         font-size: 14px;
         line-height: 32px;
@@ -611,6 +617,9 @@ li.page-item.disabled span.page-link {
         width: 100px;
         object-fit: contain;
         height: 100px;
+    }
+    .sub_scribe_form_btn {
+        margin-top: 20px;
     }
 }
 @media screen and (max-width: 320px) {
