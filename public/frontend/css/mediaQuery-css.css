@@ -647,6 +647,11 @@ li.page-item.disabled span.page-link {
         padding: 10px 15px;
         color: #000 !important;
     }
+    .col.text-center h2 {
+        text-align: left;
+        margin-bottom: 10px;
+        font-size: 30px;
+    }
 }
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
