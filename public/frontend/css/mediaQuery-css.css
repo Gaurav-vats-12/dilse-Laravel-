@@ -602,6 +602,11 @@ li.page-item.disabled span.page-link {
     .home_slider_btn {
         text-align: center;
     }
+    .taste_the_img img {
+        height: 145px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
 }
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
