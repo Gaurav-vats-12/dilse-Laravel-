@@ -215,6 +215,10 @@ jQuery(document).ready(function () {
                 jQuery(this).find("h3").addClass("active");
             }
         });
+
+        var video = document.getElementById("home_banner_vd");
+        video.currentTime = 13.8; // Set the desired starting time in seconds
+        video.play(); // Start playing the video
         jQuery(document).on("click", "#menu", async function (e) {
             e.preventDefault();
             jQuery(`.loader`).toggleClass('display');

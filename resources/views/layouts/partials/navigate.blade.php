@@ -77,9 +77,7 @@
                     <ul>
                         <li><a href="{{url('gallery')}}">Gallery</a></li>
                         <li><a href="{{url('contact-us')}}">Contact Us</a></li>
-                        <li><a href="{{url('cart')}}" class="cart_item"><img
-                                        src="{{asset('frontend/img/carts__icon.svg')}}"/><span
-                                        class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
+                        <li><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
                         @if(Auth::guard('user')->check())
                             <li class="">
                                 <div class="dropdown">
