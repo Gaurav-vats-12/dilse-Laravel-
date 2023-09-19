@@ -630,6 +630,9 @@ li.page-item.disabled span.page-link {
         left: 0;
         right: 0;
     }
+    .shopping_cart .tittle_heading {
+        margin-bottom: 13px;
+    }
 }
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
