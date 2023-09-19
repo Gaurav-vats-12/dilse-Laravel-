@@ -1,6 +1,10 @@
 @import url("../font/Kalam/stylesheet.css");
 @import url("../font/Nunito/stylesheet.css");
 @import url("../font/ThePretender-ExpSans/stylesheet.css");
+.fixedPosition
+{
+    position: fixed;
+}
 
 body {
     margin: 0;
