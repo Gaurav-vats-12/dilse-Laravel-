@@ -11,6 +11,7 @@
         "browner12/helpers": "^3.5",
         "guzzlehttp/guzzle": "^7.7",
         "intervention/image": "*",
+        "jenssegers/agent": "^2.6",
         "laravel/breeze": "^1.21",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
