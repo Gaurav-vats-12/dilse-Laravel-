@@ -468,6 +468,13 @@ li.page-item.disabled span.page-link {
     .location {
         padding: 26px 28px;
     }
+    .home_slider_btn {
+        text-align: center;
+    }
+    .shopping_cart .tittle_heading h2 {
+        margin-top: -19px;
+        margin-bottom: -27px;
+    }
 }
 @media screen and (max-width: 375px) {
     .tittle_heading h2,
@@ -632,6 +639,13 @@ li.page-item.disabled span.page-link {
     }
     .shopping_cart .tittle_heading {
         margin-bottom: 13px;
+    }
+    .cart_btn .theme_btn {
+          font-size: 16px;
+    }
+    .product_c_main ul#myTab .nav-link {
+        padding: 10px 15px;
+        color: #000 !important;
     }
 }
 @media screen and (max-width: 320px) {

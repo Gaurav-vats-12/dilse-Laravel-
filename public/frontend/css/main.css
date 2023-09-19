@@ -1903,6 +1903,7 @@ form.contact_form a {
 .forget_passcode {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
 }
 
 .read-more {
@@ -3308,7 +3309,7 @@ section.menu_main1 .cusstom_input input,
 
 #button {
     display: inline-block;
-    background-color: red;
+    background-color: #eb0029;
     width: 50px;
     height: 50px;
     text-align: center;
