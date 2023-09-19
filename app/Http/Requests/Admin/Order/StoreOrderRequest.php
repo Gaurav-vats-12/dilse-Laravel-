@@ -6,6 +6,9 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
+/**
+ * @property mixed $order_id
+ */
 class StoreOrderRequest extends FormRequest
 {
     /**

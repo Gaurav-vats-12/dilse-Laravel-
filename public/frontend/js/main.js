@@ -214,24 +214,31 @@ jQuery(document).ready(function () {
             jQuery(`.loader`).toggleClass('display');
             jQuery(`#menu_data_find`).empty();
             let slug = jQuery(this).attr("menu-slug");
+            jQuery('#slug').val(slug);
+
             let page = 1;
-            console.log(slug);
-            let ajax_value = { slug, page };
-            let pageUrl = `${slug}?page=${page + 1}`;
-            const response = await Ajax_response('', "GET", ajax_value, '', '');
+            let ajax_value = { slug, page};
+             const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
                 jQuery(`.loader`).toggleClass('display');
                 window.history.pushState(null, '', "/menu/"+slug);
-                jQuery(`#menu_data_find`).empty().html(response.html);
-                // jQuery('menu_items').empty().load(response.page);
-                // jQuery('.pagination a').attr('href',pageUrl);
-                // window.location.reload(true);
-
-
-                // setTimeout(function() {$('#menu').trigger('click')},
-                // 1000);
+                jQuery(`#menu_data_find`).empty().html(response);
+                history.pushState({}, "", window.location.href);
+                jQuery('#refreshButton').trigger('click');
             }
         });
+
+        jQuery(document).on("click", "#refreshButton", async function (e) {
+            let slug = jQuery('#slug').val();
+            let page = 1;
+            let ajax_value = { slug, page};
+            const response = await Ajax_response('', "GET", ajax_value, '', '');
+            if (response) {
+                jQuery(`#menu_data_find`).empty().html(response);
+            }
+
+        });
+
         /**
      *   Fetch Food Items via Menu Pagination(Menu Page)
      */
@@ -240,14 +247,15 @@ jQuery(document).ready(function () {
             jQuery(`.loader`).toggleClass('display');
             jQuery(`#menu_data_find`).empty();
             jQuery(`li`).removeClass('active');
-            let slug = jQuery('#slug').val(), page = jQuery(this).attr('href').split('page=')[1],
-                ajax_value = { slug, page };
+            let slug = jQuery('#slug').val();
+            let page = jQuery(this).attr('href').split('page=')[1];
+            let ajax_value = {slug, page};
+                console.log(ajax_value)
             const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
                 window.history.pushState(null, '',jQuery(this).attr('href'));
                 jQuery(`.loader`).toggleClass('display');
-                // jQuery(`#menu_data_find`).empty().html(response);
-                jQuery(`#menu_data_find`).empty().html(response.html);
+           jQuery(`#menu_data_find`).empty().html(response);
 
             }
         });

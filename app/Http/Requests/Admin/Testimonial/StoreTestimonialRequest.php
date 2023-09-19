@@ -4,6 +4,9 @@ namespace App\Http\Requests\Admin\Testimonial;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property mixed $custumber_name
+ */
 class StoreTestimonialRequest extends FormRequest
 {
     /**

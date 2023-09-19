@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+
     }
 
     /**
@@ -24,9 +24,12 @@ class AppServiceProvider extends ServiceProvider
     {
 
         Paginator::useBootstrap();
+
         Blade::directive('capture', function ($expression) {
             return "<?php ob_start(); ?>";
         });
+
+
         Blade::directive('endcapture', function ($expression) {
             return "<?php \$__captured = ob_get_clean(); echo \$__captured; ?>";
         });

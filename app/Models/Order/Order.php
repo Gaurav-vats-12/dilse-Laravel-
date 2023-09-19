@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static create(array $checkout_value)
  * @method static findOrFail(int $order_id)
  * @method static where(string $string, int|string|null $user_id)
+ * @method static orderByDesc(string $string)
  */
 class Order extends Model
 {

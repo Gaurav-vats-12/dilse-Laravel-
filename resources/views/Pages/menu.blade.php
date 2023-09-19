@@ -15,7 +15,7 @@
                     <ul class="menu_list">
                         @foreach (Menuhelper() as $key => $menu)
                         <li class="menu_list_inner">
-                                <a href="javascript:void(0)" id="menu" menu-slug ="{{ $menu->menu_slug}}" default ="6">
+                                <a href="javascript:void(0)" id="menu"  menu_uid =  {{ $menu->id }}  menu-slug ="{{ $menu->menu_slug}}" default ="6">
                                     <h3 class="active">{{ __($menu->menu_name) }}</h3>
                                     <div class="menu_icon_img">
                                         <img src="{{ asset('frontend/img/menu_icon.png') }}" alt="">
@@ -28,6 +28,7 @@
                 <div class="col-lg-9">
                     <div class="loader display"></div>
                     <input type="hidden" name="slug" id="slug" value="{{$slug}}">
+                    <button id="refreshButton"></button>
                     <div class="menu_main_box " id="menu_data_find">
                         @include('ajax.menufooditems')
                     </div>
