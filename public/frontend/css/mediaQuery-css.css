@@ -624,6 +624,12 @@ li.page-item.disabled span.page-link {
     .sub_scribe_form_btn {
         margin-top: 20px;
     }
+    .location_img {
+        position: absolute;
+        top: -33px;
+        left: 0;
+        right: 0;
+    }
 }
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
