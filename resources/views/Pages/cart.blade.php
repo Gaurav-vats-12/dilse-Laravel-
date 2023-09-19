@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Cart')
 @section('frontcontent')
-    <div class="wraper">
         <section class="shopping_cart py_8">
             <div class="container">
                 <div class="tittle_heading">
@@ -185,7 +184,6 @@
                             </div>
                         </div>
             </div>
-    </div>
     @endif
     @endif
     </section>

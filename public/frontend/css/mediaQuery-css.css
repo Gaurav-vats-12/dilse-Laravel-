@@ -638,7 +638,7 @@ li.page-item.disabled span.page-link {
         right: 0;
     }
     .shopping_cart .tittle_heading {
-        margin-bottom: 13px;
+        /*margin-bottom: 13px;*/
     }
     .cart_btn .theme_btn {
           font-size: 16px;
