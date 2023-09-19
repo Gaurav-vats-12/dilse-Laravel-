@@ -528,54 +528,51 @@ jQuery(document).ready(function () {
                 let dilavery_charge = jQuery('#dilavery_charge').val();
                 let ajax_value = {dilavery_charge};
                 let resPose;
-
-
-
                 [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
                 if (resPose.status === 'success') {
-
-                    jQuery(`.cart_count`).html(resPose.cart_total);
-                    jQuery('#subtotal').attr('subtotal',resPose.subtotal)
-                    jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
-                    jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                    jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
-                    if (uid === 0) {
-                        jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                        jQuery('#order_details').empty();
-                        jQuery('.product_c_main').empty();
-                    } else {
-                        var myArray = [];
-                        let product_oid = parseInt(jQuery(this).attr("produc_id"));
-                        var falseCount = 0;
-
-                         jQuery(`#cart_products-${product_oid}`).empty();
-                        let allUlElements = $("ul");
-                        if (allUlElements.length > 0) { //
-                            allUlElements.each(function() {
-                                var customAttrValue = $(this).data("custom-attr"); // Get the data-custom-attr attribute value
-                                if (customAttrValue !== undefined) {
-                                    myArray.push(customAttrValue);
-                                } else {
-                                    myArray.push(null);
-                                }
-                            });
-                        }
-
-                        jQuery.each(myArray, function(index, value) {
-                            if (value === false) {
-                                falseCount++;
-                            }
-                        });
-                    // console.log(falseCount);
-                    if(falseCount ===0){
-                        location.reload(true);
-                    }
-                        if (uid - 1 === 0) {
-                            jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                            jQuery('#order_details').empty();
-                            jQuery('.product_c_main').empty();
-                        }
-                    }
+                    location.reload(true);
+                    // jQuery(`.cart_count`).html(resPose.cart_total);
+                    // jQuery('#subtotal').attr('subtotal',resPose.subtotal)
+                    // jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
+                    // jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
+                    // jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
+                    // if (uid === 0) {
+                    //     jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
+                    //     jQuery('#order_details').empty();
+                    //     jQuery('.product_c_main').empty();
+                    // } else {
+                    //     var myArray = [];
+                    //     let product_oid = parseInt(jQuery(this).attr("produc_id"));
+                    //     var falseCount = 0;
+                    //
+                    //      jQuery(`#cart_products-${product_oid}`).empty();
+                    //     let allUlElements = $("ul");
+                    //     if (allUlElements.length > 0) { //
+                    //         allUlElements.each(function() {
+                    //             var customAttrValue = $(this).data("custom-attr"); // Get the data-custom-attr attribute value
+                    //             if (customAttrValue !== undefined) {
+                    //                 myArray.push(customAttrValue);
+                    //             } else {
+                    //                 myArray.push(null);
+                    //             }
+                    //         });
+                    //     }
+                    //
+                    //     jQuery.each(myArray, function(index, value) {
+                    //         if (value === false) {
+                    //             falseCount++;
+                    //         }
+                    //     });
+                    // // console.log(falseCount);
+                    // if(falseCount ===0){
+                    //     location.reload(true);
+                    // }
+                    //     if (uid - 1 === 0) {
+                    //         jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
+                    //         jQuery('#order_details').empty();
+                    //         jQuery('.product_c_main').empty();
+                    //     }
+                    // }
                 }
             }
         });
