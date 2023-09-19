@@ -652,6 +652,9 @@ li.page-item.disabled span.page-link {
         margin-bottom: 10px;
         font-size: 30px;
     }
+    .row.take_pop .thumb {
+        border-right: none;
+    }
 }
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
