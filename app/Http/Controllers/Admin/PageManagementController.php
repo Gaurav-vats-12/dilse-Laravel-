@@ -11,7 +11,7 @@ class PageManagementController extends Controller
 {
     public function index()
     {
-        $page    = Page::get();
+        $page    = Page::orderByDesc('id')->get();
          return view('admin.page.pages.index',compact('page'));
     }
 

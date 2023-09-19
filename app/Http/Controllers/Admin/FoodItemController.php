@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\{FoodItem,Menu,ExtraItem,ExtraFoodItems,Attributes,FoodAttribute};
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Admin\FoodItems\{StoreFoodItemRequest,UpdateFoodItemRequest};
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as ResizeImage;
@@ -11,13 +15,19 @@ use Illuminate\Http\Request;
 
 class FoodItemController extends Controller
 {
-    public function index()
+    /**
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function index(): View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $foodItems = FoodItem::with(['menu'])->orderBy('id', 'DESC')->get();
+        $foodItems = FoodItem::with(['menu'])->orderByDesc('id')->get();
         return view(view: 'admin.page.food_items.index', data: compact('foodItems'));
     }
 
-    public function create()
+    /**
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $menus = Menu::where('status','active')->get();
         $attribuite  = Attributes::where('attributes_type','other')->where('status',1)->get();
@@ -26,9 +36,12 @@ class FoodItemController extends Controller
     }
 
 
-    public function store(StoreFoodItemRequest $request)
+    /**
+     * @param StoreFoodItemRequest $request
+     * @return RedirectResponse
+     */
+    public function store(StoreFoodItemRequest $request): \Illuminate\Http\RedirectResponse
     {
-        // dd($request->all());
         if($request->hasFile('product_image') && $request->file('product_image')->isValid()){
             $product_image = $request->file('product_image');
             $ProductImage = time().'-'.$product_image->getClientOriginalName();
@@ -46,12 +59,15 @@ class FoodItemController extends Controller
     }
 
 
-    public function edit($id)
+    /**
+     * @param $id
+     * @return View|Application|Factory|RedirectResponse|\Illuminate\Contracts\Foundation\Application
+     */
+    public function edit($id): View|Application|Factory|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $attribuite  = Attributes::where('attributes_type','other')->where('status',1)->get();
 
         $checkId = FoodItem::where('id', $id)->count();
-
         if($checkId == 0){
            return redirect()->back();
   }
@@ -65,7 +81,12 @@ class FoodItemController extends Controller
     }
 
 
-    public function update(UpdateFoodItemRequest $request, string $id)
+    /**
+     * @param UpdateFoodItemRequest $request
+     * @param string $id
+     * @return RedirectResponse
+     */
+    public function update(UpdateFoodItemRequest $request, string $id): RedirectResponse
     {
 
         $FoodItem = FoodItem::findOrFail($id);

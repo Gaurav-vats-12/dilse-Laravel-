@@ -5,6 +5,10 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+/**
+ * @method static where(string $string, int $int)
+ */
 class ExtraItem extends Model
 {
     use HasFactory, SoftDeletes;

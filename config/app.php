@@ -173,7 +173,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Flasher\Laravel\FlasherServiceProvider::class,
 
-        
+
     ])->toArray(),
 
     /*
