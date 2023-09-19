@@ -607,6 +607,11 @@ li.page-item.disabled span.page-link {
         object-fit: cover;
         border-radius: 20px;
     }
+    .order_online_img img {
+        width: 100px;
+        object-fit: contain;
+        height: 100px;
+    }
 }
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
