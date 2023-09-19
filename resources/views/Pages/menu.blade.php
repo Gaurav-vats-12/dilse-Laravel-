@@ -16,11 +16,11 @@
 
             <div class="row">
                 <div class="col-lg-3">
-
+{{--                    @dd(checkUser())--}}
                     <ul class="menu_list">
                         @foreach (Menuhelper() as $key => $menu)
                         <li class="menu_list_inner">
-                                <a href="javascript:void(0)" id="menu"  menu_uid =  {{ $menu->id }}  menu-slug ="{{ $menu->menu_slug}}" default ="6">
+                                <a href="javascript:void(0)" id="menu"  menu_uid =  {{ $menu->id }}  menu-slug ="{{ $menu->menu_slug}}" mobile_type = "{{checkUser()}}" default ="6">
                             <h3 class="">{{ __($menu->menu_name) }}</h3>
                                     <div class="menu_icon_img">
                                         <img src="{{ asset('frontend/img/menu_icon.png') }}" alt="">
@@ -30,7 +30,7 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-9" id="{{ checkUser()==='mobile' ? 'mobile' : 'desktop' }}">
                     <div class="loader display"></div>
                     <input type="hidden" name="slug" id="slug" value="{{$slug}}">
                     <button id="refreshButton"></button>

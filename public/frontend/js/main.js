@@ -220,6 +220,7 @@ jQuery(document).ready(function () {
             jQuery(`.loader`).toggleClass('display');
             jQuery(`#menu_data_find`).empty();
             let slug = jQuery(this).attr("menu-slug");
+
             jQuery('#slug').val(slug);
             jQuery("h3").removeClass("active");
 
@@ -233,19 +234,26 @@ jQuery(document).ready(function () {
                 history.pushState({}, "", window.location.href);
                 jQuery('#refreshButton').trigger('click');
                 jQuery(this).find("h3").addClass("active");
-
             }
         });
 
         jQuery(document).on("click", "#refreshButton", async function (e) {
             let slug = jQuery('#slug').val();
+            let mobile_type = jQuery('#menu').attr("mobile_type");
             let page = 1;
             let ajax_value = { slug, page};
             const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
-                jQuery(`#menu_data_find`).empty().html(response);
-            }
+                if (mobile_type ==='mobile'){
+                    jQuery('html, body').animate({
+                        scrollTop: jQuery('#mobile').offset().top
+                    }, 500); // You can adjust the animation speed (1000ms = 1 second)
+                }else{
 
+                }
+                jQuery(`#menu_data_find`).empty().html(response);
+
+            }
         });
 
         /**
