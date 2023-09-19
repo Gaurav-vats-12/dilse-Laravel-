@@ -427,7 +427,10 @@ li.page-item.disabled span.page-link {
         right: 0;
         text-align: center;
         bottom: 0px;
-    
+
+    }
+    .quick_links {
+        margin-top: 25px;
     }
     .open_hr {
         flex-direction: column;
