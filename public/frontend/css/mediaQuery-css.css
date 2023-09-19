@@ -590,9 +590,9 @@ li.page-item.disabled span.page-link {
             .open_hr {
                 margin: 10px auto 10px;
             }
-            #button.show {
-                             display: none;
-            }
+            /*#button.show {*/
+            /*                 display: none;*/
+            /*}*/
             .select_location {
                 padding: 12px 12px;
                 margin-left: 18px;
