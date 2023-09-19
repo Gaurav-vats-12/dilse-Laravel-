@@ -209,12 +209,16 @@ jQuery(document).ready(function () {
         /**
 * Fetch Food Items via Menu (Menu  Page)
 */
+jQuery(".menu_list_inner").each(function () {
+     if (window.location.pathname === `/menu/${jQuery(this).find("a").attr("menu-slug")}`) {jQuery(this).find("h3").addClass("active");}
+  });
         jQuery(document).on("click", "#menu", async function (e) {
             e.preventDefault();
             jQuery(`.loader`).toggleClass('display');
             jQuery(`#menu_data_find`).empty();
             let slug = jQuery(this).attr("menu-slug");
             jQuery('#slug').val(slug);
+            jQuery("h3").removeClass("active");
 
             let page = 1;
             let ajax_value = { slug, page};
@@ -225,6 +229,8 @@ jQuery(document).ready(function () {
                 jQuery(`#menu_data_find`).empty().html(response);
                 history.pushState({}, "", window.location.href);
                 jQuery('#refreshButton').trigger('click');
+                jQuery(this).find("h3").addClass("active");
+
             }
         });
 

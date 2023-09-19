@@ -3471,9 +3471,9 @@ form.order_cancel {
     padding: 1px 22px;
 }
 
-.modal {
+.Cart_modal {
    position: absolute;
-   top: 90%;
+   top: 80%;
 
 }
 .social_icons_footer {

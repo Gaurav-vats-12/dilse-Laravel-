@@ -10,13 +10,18 @@
 </section>
     <section class="menu_main py_8">
         <div class="container">
+            <div class="col text-center">
+                <h2>Menu</h2>
+            </div>
+
             <div class="row">
                 <div class="col-lg-3">
+
                     <ul class="menu_list">
                         @foreach (Menuhelper() as $key => $menu)
                         <li class="menu_list_inner">
                                 <a href="javascript:void(0)" id="menu"  menu_uid =  {{ $menu->id }}  menu-slug ="{{ $menu->menu_slug}}" default ="6">
-                                    <h3 class="active">{{ __($menu->menu_name) }}</h3>
+                            <h3 class="">{{ __($menu->menu_name) }}</h3>
                                     <div class="menu_icon_img">
                                         <img src="{{ asset('frontend/img/menu_icon.png') }}" alt="">
                                     </div>
