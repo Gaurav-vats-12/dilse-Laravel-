@@ -334,9 +334,9 @@ li.page-item.disabled span.page-link {
     }
 }
 @media screen and (max-width: 480px) {
-    .container {
-        width: 97%;
-    }
+    /*.container {*/
+    /*    width: 97%;*/
+    /*}*/
     .py_8,
     .contact_sec {
         padding: 40px 0;
@@ -626,7 +626,7 @@ li.page-item.disabled span.page-link {
     }
     .location_img {
         position: absolute;
-        top: -33px;
+        top: -32px;
         left: 0;
         right: 0;
     }
