@@ -27,7 +27,7 @@ class MenuController extends Controller
                 $authType =  AuthAlias::guard('user')->check();
                 $loginroute = AuthAlias::guard('user')->check() ? route('checkout.view') : route('user.login');
                 session()->put('order_type', $request->type);
-                return response()->json(['code' => 200 , 'status' =>'success','url'=> $loginroute])->render();
+                return response()->json(['code' => 200 , 'status' =>'success','url'=> $loginroute]);
             }else{
                 $Menu = Menu::where('menu_slug',$slug)->first();
                 if (!$Menu) {
