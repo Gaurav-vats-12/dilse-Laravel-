@@ -34,6 +34,7 @@
                                 {!! $FoodItem->links() !!}
                             </div>
                         @endif
+
                     @else
                     <h4>No Food Item  Found</h4>
                     @endif
