@@ -586,8 +586,8 @@ li.page-item.disabled span.page-link {
     }
     li.cart_responseive {
         position: absolute;
-        right: 92px;
-        top:32px;
+        right: 115px;
+        top: 32px;
     }
     .social_icons_footer ul {
         display: flex;
