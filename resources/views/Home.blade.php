@@ -5,7 +5,7 @@
 <input type="hidden" id="nextArrow" value="{{asset('frontend/img/right_arrow.png') }}">
 <section class="video_dilse-tw">
   <div class="video_dilse_play-tw">
-    <video id="home_banner_vd" width="" height="" autoplay loop muted>
+    <video id="home_banner_vd" width="" height=""  autoplay muted loop playsinline >
       <source src="{{asset('frontend/vedio/DilSe Home.mp4')}}" type="video/mp4" />
     </video>
     <div class="home-slider-main-tw">
