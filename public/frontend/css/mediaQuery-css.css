@@ -2,6 +2,8 @@
     background-color: #eb0029;
     padding: 12px 12px;
     border-radius: 5px;
+    position: relative;
+    z-index: 999;
 }
 .responsi_header .hamburger .bar {
     display: block;
@@ -343,16 +345,16 @@ li.page-item.disabled span.page-link {
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        }
-        ul.shopping_items li {
+    }
+    ul.shopping_items li {
         margin-bottom: 20px;
-        }
-        .shope_price{
-        width:100%;
-        }
-        .order_summary {
-            padding: 20px;
-        }
+    }
+    .shope_price {
+        width: 100%;
+    }
+    .order_summary {
+        padding: 20px;
+    }
     .tittle_heading h2,
     .sub_scribe_txt h2 {
         font-size: 22px;
@@ -465,7 +467,7 @@ li.page-item.disabled span.page-link {
     .sub_scribe_txt h2 {
         font-size: 16px;
         line-height: 28px;
-           }
+    }
     .restudent_text h3 {
         padding: 0 20px;
     }
@@ -539,68 +541,65 @@ li.page-item.disabled span.page-link {
         margin-left: 10px;
     }
     .swal2-styled.swal2-confirm {
-              background-color: #eb0029 !important;
-          }
-          .tittle_heading h2 {
-            margin-bottom: 10px;
-        }
-        .contact_form .tittle_heading {
-            margin-bottom: 19px;
+        background-color: #eb0029 !important;
+    }
+    .tittle_heading h2 {
+        margin-bottom: 10px;
+    }
+    .contact_form .tittle_heading {
+        margin-bottom: 19px;
+    }
+    form.contact_form label {
+        margin-top: 6px;
+    }
+    .contcat_text h5 {
+        font-size: 11px;
+    }
+    .cart_head h3 {
+        font-size: 20px;
+    }
+    header.main_header {
+        z-index: 999;
+        width: 100%;
+        background-color: #000;
+        position: sticky;
+        top: 0;
+    }
+    .responsi_header .hamburger {
+        padding: 10px 10px;
+        position: relative;
+        z-index: 999;
+        margin-top: 23px;
+    }
 
-        }
-        form.contact_form label {
-            margin-top: 6px;
-        }
-        .contcat_text h5 {
-                  font-size: 11px;
-             }
-             .cart_head h3 {
-                font-size: 20px;
-            }
-            header.main_header {
-                z-index: 999;
-                width: 100%;
-                background-color: #000;
-                position: sticky;
-                top: 0;
-            }
-            .responsi_header .hamburger {
-                padding: 10px 10px;
-                position: relative;
-                z-index: 999;
-                margin-top: 23px;
-            }
-            .menu_left.menu_right.is_active li.name_drop_down {
-                margin-top: -16px;
-            }
-            li.cart_responseive {
-                position: absolute;
-                right: 92px;
-                top: 19px;
-            }
-            .social_icons_footer ul {
-                display: flex;
-                gap: 10px;
-                                justify-content: center;
-            }
-            .social_icons_footer {
-                text-align: center;
-                display: block;
-            }
-            .open_hr {
-                margin: 10px auto 10px;
-            }
-            /*#button.show {*/
-            /*                 display: none;*/
-            /*}*/
-            .select_location {
-                padding: 12px 12px;
-                margin-left: 18px;
-            }
-                         .font-medium {
-                                                margin-bottom: 0;
-                        }
-        }
+    .menu_left.menu_right.is_active li.name_drop_down {
+        margin-top: -16px;
+    }
+    li.cart_responseive {
+        position: absolute;
+        right: 92px;
+        top: 19px;
+    }
+    .social_icons_footer ul {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+    .social_icons_footer {
+        text-align: center;
+        display: block;
+    }
+    .open_hr {
+        margin: 10px auto 10px;
+    }
+    .select_location {
+        padding: 12px 12px;
+        margin-left: 18px;
+    }
+    .font-medium {
+        margin-bottom: 0;
+    }
+}
 @media screen and (max-width: 320px) {
     .video_dilse_play-tw .home-slider-content {
         padding: 0;

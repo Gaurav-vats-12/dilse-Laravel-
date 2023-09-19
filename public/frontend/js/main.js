@@ -209,9 +209,12 @@ jQuery(document).ready(function () {
         /**
 * Fetch Food Items via Menu (Menu  Page)
 */
-jQuery(".menu_list_inner").each(function () {
-     if (window.location.pathname === `/menu/${jQuery(this).find("a").attr("menu-slug")}`) {jQuery(this).find("h3").addClass("active");}
-  });
+        let currentPath = window.location.pathname;
+        jQuery(".menu_list_inner").each(function () {
+            if (currentPath === "/menu/" + jQuery(this).find("a").attr("menu-slug")) {
+                jQuery(this).find("h3").addClass("active");
+            }
+        });
         jQuery(document).on("click", "#menu", async function (e) {
             e.preventDefault();
             jQuery(`.loader`).toggleClass('display');
