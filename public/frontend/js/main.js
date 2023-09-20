@@ -534,74 +534,74 @@ jQuery(document).ready(function () {
                 [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
                 if (resPose.status === 'success') {
                     console.log(resPose)
-                    // location.reload(true);
-                    jQuery(`.cart_count`).html(resPose.cart_total);
-                    jQuery('#subtotal').attr('subtotal',resPose.subtotal)
-                    jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
-                    jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                    jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
-                    if (uid === 0) {
-                        jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                        jQuery('#order_details').empty();
-                        jQuery('.product_c_main').empty();
-                    } else {
-                        var myArray = [];
-                        let product_oid = parseInt(jQuery(this).attr("produc_id"));
-                        var falseCount = 0;
-
-                         jQuery(`#cart_products-${product_oid}`).empty();
-                        let allUlElements = $("ul");
-                        if (allUlElements.length > 0) { //
-                            allUlElements.each(function() {
-                                var customAttrValue = $(this).data("custom-attr"); // Get the data-custom-attr attribute value
-                                if (customAttrValue !== undefined) {
-                                    myArray.push(customAttrValue);
-                                } else {
-                                    myArray.push(null);
-                                }
-                            });
-                        }
-
-                        jQuery.each(myArray, function(index, value) {
-                            if (value === false) {
-                                falseCount++;
-                            }
-                        });
-                    // console.log(falseCount);
-                    if(falseCount ===0){
-                        location.reload(true);
-                    }
-                        if (uid - 1 === 0) {
-                            jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                            jQuery('#order_details').empty();
-                            jQuery('.product_c_main').empty();
-                        }
-                    }
-                }
-            }
-        });
-    });
-
- } else  if (url.indexOf("/checkout") > -1) {
-
-    jQuery("#dilvery_tip").on("input", function(evt) {
-        jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
-      });
-
-      jQuery('#dilvery_tip').on('focusout', function() {
-        let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-        let subtotal = parseFloat(jQuery('#subtotal').attr('subtotal'));
-        // let  inputValue = parseFloat(jQuery(this).val());
-        let inputValue  = (jQuery(this).val()) ? parseFloat(jQuery(this).val())   :  parseFloat('0.00',2) ;
-        let totaltax = parseFloat(jQuery('#totaltax').attr('totaltax'));
-        let dilevery_total  = (jQuery('#dilevery_total').attr('dilevery_total') === undefined || (jQuery('#dilevery_total').attr('dilevery_total') === 'undefined')) ?parseFloat('0.00',2)  :  parseFloat(jQuery('#dilevery_total').attr('dilevery_total')) ;
-         let grandTotal = subtotal + totaltax + dilevery_total + inputValue;
-         jQuery(`#grandTotal`).html(`${site_currency}${grandTotal.toFixed(2)}`);
-         if(inputValue >0){
-        }else{
-            NotyfMessage('The tip must be grater then zero ', 'error');
-            jQuery('#dilvery_tip').val(null)
-        }
+                    location.reload(false);
+ //                    jQuery(`.cart_count`).html(resPose.cart_total);
+ //                    jQuery('#subtotal').attr('subtotal',resPose.subtotal)
+ //                    jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
+ //                    jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
+ //                    jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
+ //                    if (uid === 0) {
+ //                        jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
+ //                        jQuery('#order_details').empty();
+ //                        jQuery('.product_c_main').empty();
+ //                    } else {
+ //                        var myArray = [];
+ //                        let product_oid = parseInt(jQuery(this).attr("produc_id"));
+ //                        var falseCount = 0;
+ //
+ //                         jQuery(`#cart_products-${product_oid}`).empty();
+ //                        let allUlElements = $("ul");
+ //                        if (allUlElements.length > 0) { //
+ //                            allUlElements.each(function() {
+ //                                var customAttrValue = $(this).data("custom-attr"); // Get the data-custom-attr attribute value
+ //                                if (customAttrValue !== undefined) {
+ //                                    myArray.push(customAttrValue);
+ //                                } else {
+ //                                    myArray.push(null);
+ //                                }
+ //                            });
+ //                        }
+ //
+ //                        jQuery.each(myArray, function(index, value) {
+ //                            if (value === false) {
+ //                                falseCount++;
+ //                            }
+ //                        });
+ //                    // console.log(falseCount);
+ //                    if(falseCount ===0){
+ //                        location.reload(true);
+ //                    }
+ //                        if (uid - 1 === 0) {
+ //                            jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
+ //                            jQuery('#order_details').empty();
+ //                            jQuery('.product_c_main').empty();
+ //                        }
+ //                    }
+ //                }
+ //            }
+ //        });
+ //    });
+ //
+ // } else  if (url.indexOf("/checkout") > -1) {
+ //
+ //    jQuery("#dilvery_tip").on("input", function(evt) {
+ //        jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
+ //      });
+ //
+ //      jQuery('#dilvery_tip').on('focusout', function() {
+ //        let site_currency = jQuery('meta[name="site_currency"]').attr('content');
+ //        let subtotal = parseFloat(jQuery('#subtotal').attr('subtotal'));
+ //        // let  inputValue = parseFloat(jQuery(this).val());
+ //        let inputValue  = (jQuery(this).val()) ? parseFloat(jQuery(this).val())   :  parseFloat('0.00',2) ;
+ //        let totaltax = parseFloat(jQuery('#totaltax').attr('totaltax'));
+ //        let dilevery_total  = (jQuery('#dilevery_total').attr('dilevery_total') === undefined || (jQuery('#dilevery_total').attr('dilevery_total') === 'undefined')) ?parseFloat('0.00',2)  :  parseFloat(jQuery('#dilevery_total').attr('dilevery_total')) ;
+ //         let grandTotal = subtotal + totaltax + dilevery_total + inputValue;
+ //         jQuery(`#grandTotal`).html(`${site_currency}${grandTotal.toFixed(2)}`);
+ //         if(inputValue >0){
+ //        }else{
+ //            NotyfMessage('The tip must be grater then zero ', 'error');
+ //            jQuery('#dilvery_tip').val(null)
+ //        }
 
     });
      /**
