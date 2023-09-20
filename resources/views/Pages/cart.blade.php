@@ -13,7 +13,6 @@
                         @if(session('cart'))
                             @foreach(session('cart') as $id => $details)
                                 @php  $subtotal = $subtotal + $details["price"] *  $details["quantity"]@endphp
-
                                 <div class="shoping_main_top" id="cart_products-{{$id}}">
                                     <div class="shopping_items_main">
                                         <ul class="shopping_items" data-custom-attr="{{ $details['is_spisy']}}">

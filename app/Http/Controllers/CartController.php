@@ -53,24 +53,36 @@ public function update_details(Request $request){
             if (!empty($request->product_uid)) {
                 $product_uid =(int)$request->product_uid;
                 $product=FoodItemAlias::find( $product_uid);
-                $cart = session()->get('cart', []);
-                if(isset($cart[$request->product_uid])) {
-                    $cart[$request->product_uid]['quantity']++;
-                }else{
-                    $cart[$request->product_uid] = [
-                        "id" => $request->product_uid,
-                        "name" => $product->name,
-                        "image" => $product->image,
-                        "price" =>  round($product->price ,2) ,
-                        "quantity" => 1,
-                        'is_spisy'=> $request->is_spisy
-                        ];
+                if(!$product) {abort(404);}
+                $cart = session()->get('cart');
+                // if cart is empty then this the first product
+                if(!$cart) {
+                    $cart = [
+                        $product_uid => [
+                            "name" => $product->name,
+                            "quantity" => 1,
+                            "price" => $product->price,
+                            "image" => $product->image,
+                            'is_spisy' => $request->is_spisy
+                        ]
+                    ];
+                    session()->put('cart', $cart);
+                    return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
+                }  if(isset($cart[$product_uid])) {
+
+                    $cart[$product_uid]['quantity']++;
+                    session()->put('cart', $cart);
+                    return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
                 }
-
+                $cart[$product_uid] = [
+                    "name" => $product->name,
+                    "quantity" => 1,
+                    "price" => $product->price,
+                    "image" => $product->image,
+                    'is_spisy' => $request->is_spisy
+                ];
                 session()->put('cart', $cart);
-
-                return response()->json(['code' => 200 , 'status' =>'success','cart_total'=>count((array) session('cart')),"message"=>"Product added to cart successfully."]);
-
+                return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
             }else{
                 return response()->json(['code' => 203 ,  'cart_total'=>null,'status' =>'error', "message"=>"Product Id Not Found"]);
             }
@@ -133,7 +145,7 @@ public function update_details(Request $request){
      * @return JsonResponseAlias
      * @noinspection PhpUndefinedFieldInspection
      */
-    public function destroy(Request $request ,string $id)  : JsonResponseAlias
+    public function destroy(Request $request ,string $id)
     {
         $subtotal = 0;
         try {
@@ -153,14 +165,14 @@ public function update_details(Request $request){
                 }
                 $total_tax = round(($total_before_Tex * setting('tax' ,0.00)) / 100 ,2);
                 $total = $total_before_Tex+$total_tax;
-                Session::forget('spicy_lavel');
-                return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total_tax'=>$total_tax,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product  Remove from add to cart  successfully"]);
+                notyf()->duration(2000) ->addSuccess('Product  Remove from add to cart  successfully');
+                return redirect()->back();
             }else{
-                return response()->json(['code' => 203 ,  'cart_total'=>nullValue(),'status' =>'error', "message"=>"Product Id Not Found"]);
+                return redirect()->back();
             }
 
         } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
-            return response()->json(['code' => 400 , 'cart_total'=>'Null', 'subtotal'=>nullOrEmptyString() ,'total'=>nullOrEmptyString() , 'status' =>'error', "message"=>"Something Wrong"]);
+            return redirect()->back();
         }
 
 

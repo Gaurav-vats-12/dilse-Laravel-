@@ -11,7 +11,6 @@ if (!function_exists('cart_functionalty')) {
      */
     function cart_functionalty($searchValue,$item)
     {
-
         $nonSpicyItemCount = 0;
         foreach ($item as $item) {
             if ($item["is_spisy"] === "false") {
