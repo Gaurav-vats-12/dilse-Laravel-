@@ -29,12 +29,10 @@
                     <span id="payment_method_error" class="text-danger"></span>
                 </ul>
 
-                <div class="secure_image">
-
+                <div class="{{ checkUser()==='mobile' ? 'secure_image_mobile' : 'secure_image' }}">
                     <img class ="images"src="{{ asset('frontend/img/secure-stripe-payment-logo.png')}}">
                 </div>
             </div>
-
             <div class="payment">
                 <div class="payment-meth" data-method="stripe" id="stripe_paymnet_form" >
                     @include('ajax.checkout.stripe_credit_card_form')
