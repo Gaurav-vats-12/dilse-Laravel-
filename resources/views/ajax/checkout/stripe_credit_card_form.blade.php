@@ -5,16 +5,26 @@
         <!-- A Stripe Element will be inserted here. -->
     <div class="group">
       <label>
+        @if (checkUser()==='mobile')
+        @else
         <span>Card number</span>
+        @endif
         <div id="card-number-element" class="field cusstom_input"></div>
         <span class="brand"><i class="pf pf-credit-card" id="brand-icon"></i></span>
       </label>
       <label>
+        @if (checkUser()==='mobile')
+        @else
         <span>Expiry date</span>
+        @endif
         <div id="card-expiry-element" class="field cusstom_input"></div>
       </label>
       <label>
+
+        @if (checkUser()==='mobile')
+        @else
         <span>CVC</span>
+        @endif
         <div id="card-cvc-element" class="field"></div>
       </label>
     </div>
