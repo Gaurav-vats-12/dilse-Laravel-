@@ -145,7 +145,7 @@ public function update_details(Request $request){
      * @return JsonResponseAlias
      * @noinspection PhpUndefinedFieldInspection
      */
-    public function destroy(Request $request ,string $id) 
+    public function destroy(Request $request ,string $id)
     {
         $subtotal = 0;
         try {
