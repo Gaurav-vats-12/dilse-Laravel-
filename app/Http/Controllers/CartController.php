@@ -155,30 +155,25 @@ public function update_details(Request $request){
                     unset($cart[$id]);
                     session()->put('cart', $cart);
                 }
-                foreach ($cart as $key => $details) {
-                    $subtotal =  $subtotal + round($details["price"] ,2) ;
-                }
-                if(session('order_type') == 'delivery'){
-                    $total_before_Tex =   $subtotal + setting('delivery_charge' ,0.00);
-                }else{
-                    $total_before_Tex =  $subtotal ;
-                }
-                $total_tax = round(($total_before_Tex * setting('tax' ,0.00)) / 100 ,2);
-                $total = $total_before_Tex+$total_tax;
+//                foreach ($cart as $key => $details) {
+//                    $subtotal =  $subtotal + round($details["price"] ,2) ;
+//                }
+//                if(session('order_type') == 'delivery'){
+//                    $total_before_Tex =   $subtotal + setting('delivery_charge' ,0.00);
+//                }else{
+//                    $total_before_Tex =  $subtotal ;
+//                }
+//                $total_tax = round(($total_before_Tex * setting('tax' ,0.00)) / 100 ,2);
+//                $total = $total_before_Tex+$total_tax;
                 notyf()->duration(2000) ->addSuccess('Product  Remove from add to cart  successfully');
                 return redirect()->back();
             }else{
                 return redirect()->back();
             }
-
         } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
             return redirect()->back();
         }
-
-
-
     }
-
 }
 
 

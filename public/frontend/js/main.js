@@ -1,4 +1,5 @@
 jQuery(document).ready(function () {
+    let url = window.location.pathname;
     jQuery('#store_location').val(jQuery('#select_location').find(":selected").val());
     jQuery(document).on("change", "#select_location",  async function (event) {
         event.preventDefault();
@@ -12,8 +13,7 @@ jQuery(document).ready(function () {
          jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value);  });
         }
     });
-    let url = window.location.pathname;
-    /**
+/**
 * Scroller
 */
     let btn = jQuery('#button');
@@ -491,98 +491,36 @@ jQuery(document).ready(function () {
                     }
                 }
             });
-
-
-
-
-                 /**
+        /**
         *  Add to Cart  In Website (Extra_Items)
         */
        jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
-        jQuery(this).toggleClass(`added`);
-        let is_spisy= jQuery(this).attr('is_spisy');
-        let product_oid = jQuery(this).attr("product_uid"),
-            product_quntity = jQuery(`#product_quntity_${product_oid}`).val(),
-            product_price = jQuery(`#product_price__${product_oid}`).val(),
-            ajax_value = {product_oid, product_quntity, product_price ,is_spisy}, ajax_url = jQuery('#extra_ajax_url').val();
-            const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-        if (resPose.status === `success`) {
-           NotyfMessage(resPose.message,'success');
-            jQuery(`.cart_count`).html(resPose.cart_total);
-            setTimeout(function () {
-                window.location.reload()
-            }, 1000);
-        }
+           jQuery(this).toggleClass(`added`);
+           let ajax_url = jQuery(this).attr('cart_ajax_url');
+           let product_uid = jQuery(this).attr("product_uid");
+           let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
+           let product_quntity = jQuery(`#product_quntity_${product_uid}`).val();
+           let ajax_value = {product_uid, product_quntity, is_spisy};
+           const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+           if (resPose.status === `success`) {
+                  NotyfMessage(resPose.message,'success');
+                   jQuery(`.cart_count`).html(resPose.cart_total);
+                   setTimeout(function () {
+                       window.location.reload()
+                   }, 1000);
+           }
     });
 
     jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
-        let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-        var form =  jQuery(this).closest("form");
+        let form =  jQuery(this).closest("form");
         event.preventDefault();
         Swal.fire({
             title: `Are you sure you want to delete this Item?`,
             showCancelButton: true,
             confirmButtonText: 'Ok',
         }).then(async (result) => {
-            let uid = jQuery('.shopping_items_main').length;
             if (result.isConfirmed) {
                 form.submit();
-            //
-            //         let ajax_url = jQuery('#delete_ajax_url').val();
-            //     let dilavery_charge = jQuery('#dilavery_charge').val();
-            //     let ajax_value = {dilavery_charge};
-            //     let resPose;
-            //     [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
-            //     console.log(resPose)
-            //     // if (resPose.status === 'success') {
-            //     //
-            //     // location.reload();
-            //     //
-            //     // }
-            //         jQuery(`.cart_count`).html(resPose.cart_total);
-            //         jQuery('#subtotal').attr('subtotal',resPose.subtotal)
-            //         jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
-            //         jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-            //         jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
-            //         if (uid === 0) {
-            //             jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-            //             jQuery('#order_details').empty();
-            //             jQuery('.product_c_main').empty();
-            //         } else {
-            //             var myArray = [];
-            //             let product_oid = parseInt(jQuery(this).attr("produc_id"));
-            //             var falseCount = 0;
-            //
-            //              jQuery(`#cart_products-${product_oid}`).empty();
-            //             let allUlElements = $("ul");
-            //             if (allUlElements.length > 0) { //
-            //                 allUlElements.each(function() {
-            //                     var customAttrValue = $(this).data("custom-attr"); // Get the data-custom-attr attribute value
-            //                     if (customAttrValue !== undefined) {
-            //                         myArray.push(customAttrValue);
-            //                     } else {
-            //                         myArray.push(null);
-            //                     }
-            //                 });
-            //             }
-            //
-            //             jQuery.each(myArray, function(index, value) {
-            //                 if (value === false) {
-            //                     falseCount++;
-            //                 }
-            //             });
-            //         console.log(falseCount);
-            //         if(falseCount ===0){
-            //             // location.reload(false);
-            //             jQuery('#cart_functionalty').empty();
-            //         }
-            //             if (uid - 1 === 0) {
-            //                 jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-            //                 jQuery('#order_details').empty();
-            //                 jQuery('.product_c_main').empty();
-            //             }
-            //         }
-            //     }
             }
         });
     });
