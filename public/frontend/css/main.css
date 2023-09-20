@@ -1224,19 +1224,15 @@ section.sight_food_location {
 /*}*/
 /*}*/
 
-@import url("https://fonts.googleapis.com/css?family=Abel");
+/* @import url("https://fonts.googleapis.com/css?family=Abel"); */
 
 h1 {
-    font-family: "Abel", sans-serif;
+    /* font-family: "Abel", sans-serif; */
     font-weight: 100;
     font-size: 40px;
     text-align: center;
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-}
 
 a {
     outline: 0 !important;
@@ -1249,7 +1245,7 @@ a {
 
 .mfp-bottom-bar,
 * {
-    font-family: "Abel", sans-serif;
+    /* font-family: "Abel", sans-serif; */
 }
 
 .magnific-img {
@@ -1895,7 +1891,7 @@ form.contact_form p {
 }
 
 form.contact_form a {
-    /* color: #eb0029; */
+    color: #eb0029 !important;
     font-family: "Kalam";
     font-weight: 600;
 }
@@ -2440,7 +2436,7 @@ product
 
 .cusstom_input label,
 .radio_btnns label {
-    font-family: "Poppins";
+    /* font-family: "Poppins"; */
     font-weight: 600;
     margin-bottom: 6px;
     font-size: 14px;
@@ -2449,7 +2445,7 @@ product
 }
 
 .radio_btnns label .radio_input label {
-    font-family: "Open Sans";
+    /* font-family: "Open Sans"; */
     line-height: 19px;
 }
 
@@ -2468,7 +2464,7 @@ product
 
 .cusstom_input input,
 .cusstom_input select {
-    font-family: "Open Sans";
+    /* font-family: "Open Sans"; */
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -2510,12 +2506,26 @@ span.required {
 }
 
 .payment-metho-radio li {
-    padding: 10px 20px;
-    border: 1px solid hsl(0deg 0% 95%);
-    margin-right: 10px;
-    margin-bottom: 10px;
+    /* padding: 10px 20px; */
+    /* border: 1px solid hsl(0deg 0% 95%); */
+    /* margin-right: 10px;
+    margin-bottom: 10px; */
 }
 
+.payment-metho-radio li .radio-item_1  label{
+    color: #100f0f;
+    font-weight: 800;
+    padding: 18px 16px;
+       border: 1px solid hsl(0deg 0% 95%);
+}
+.payment-metho-radio li .radio-item_1 input{
+    display: none;
+}
+.payment-metho-radio li .radio-item_1 input:checked + label {
+    background: red;
+    border: 1px solid hsl(0deg 0% 95%);
+    color: #fff !important;
+}
 .total-summary-list {
     padding-left: 0px;
     font-size: 14px;
@@ -2546,13 +2556,15 @@ span.required {
 } */
 
 .payment_form .secure_image {
-    flex: 0 0 30%;
-    max-width: 30%;
+    /* flex: 0 0 30%;
+    max-width: 30%; */
+    margin-bottom: 10px;
 }
 
 .payment_form ul.payment-metho-radio.d-flex {
     flex: 0 0 70%;
     max-width: 70%;
+
 }
 
 p {
@@ -3408,8 +3420,9 @@ label {
 }
 
 p#message {
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: unset;
 }
 .alert {
     display: none;
@@ -3484,4 +3497,7 @@ form.order_cancel {
 .social_icons_footer {
     text-align: center;
     display: none;
+}
+.mce_inline_error {
+    color: red;
 }
