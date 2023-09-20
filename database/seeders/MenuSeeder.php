@@ -25,7 +25,7 @@ class MenuSeeder extends Seeder
             ['menu_name'  => 'NON VEG','menu_slug' => 'non-veg','status' =>'active','created_at' => now(), 'updated_at' => now()],
             ['menu_name'  => 'BASMATI RICE','menu_slug' => 'basmati-rice','status' =>'active','created_at' => now(), 'updated_at' => now()],
             ['menu_name'  => 'BREADS','menu_slug' => 'breads','status' =>'active','created_at' => now(), 'updated_at' => now()],
-            ['menu_name'  => 'SIDE ORDERS/ SALAD','menu_slug' => 'side-orders/-salad','status' =>'active','created_at' => now(), 'updated_at' => now()],
+            ['menu_name'  => 'SIDE ORDERS/ SALAD','menu_slug' => 'side-orders-salad','status' =>'active','created_at' => now(), 'updated_at' => now()],
             ['menu_name'  => 'DESSERTS','menu_slug' => 'desserts','status' =>'active','created_at' => now(), 'updated_at' => now()],
             ['menu_name'  => 'DRINKS','menu_slug' => 'drinks','status' =>'active','created_at' => now(), 'updated_at' => now()],
             ['menu_name'  => 'LUNCH SPECIAL COMBO','menu_slug' => 'lunch-special-combo','status' =>'active','created_at' => now(), 'updated_at' => now()],

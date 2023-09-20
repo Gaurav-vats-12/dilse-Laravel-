@@ -4,7 +4,7 @@
 
                         @foreach ( $FoodItem as $key => $FoodItems)
                             <input type="hidden" name="menu_id" id="menu_id" value="{{ $FoodItems->menu->id }}" >
-                        <div class="best_food_crd">
+                        <div class="best_food_crd" >
                                 <a href="{{ route('menudetails' , $FoodItems->slug)}}">
                             <div class="best_food_crd_img">
                             <img src="{{ url('/storage/products/'.$FoodItems->image.'') }}" alt="{{ $FoodItems->name}}">

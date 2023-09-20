@@ -35,15 +35,14 @@ jQuery(document).ready(function () {
         event.preventDefault();
         let type = jQuery(this).attr(`type`);
         let current_url = jQuery(this).attr(`current_url`);
-        let AjaxForm = jQuery(this).attr(`AjaxForm`);
         let slug = `appetizers`;
         let page = 1;
         let ajax_value = {current_url, page, slug, type};
-        const response = await Ajax_response(AjaxForm, "GET", ajax_value, '', '');
+        const response = await Ajax_response(jQuery(this).attr(`AjaxForm`), "GET", ajax_value, '', '');
         if (response.status === `success`) {
             window.location.href = response.url;
         } else {
-            window.location.href = AjaxForm;
+            window.location.href = jQuery(this).attr(`AjaxForm`);
         }
     });
     /**
@@ -55,8 +54,7 @@ jQuery(document).ready(function () {
         let product_uid = jQuery(this).attr("product_uid");
         let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
         let product_quntity = jQuery(`#product_quntity_${product_uid}`).val();
-        let ajax_value = {product_uid, product_quntity, is_spisy};
-        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+        const resPose = await Ajax_response(ajax_url, "POST", { product_uid, product_quntity, is_spisy }, '');
         if (resPose.status === `success`) {
             setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 1000);
             NotyfMessage(resPose.message, 'success');
@@ -249,7 +247,7 @@ jQuery(document).ready(function () {
             if (response) {
                 if (mobile_type ==='mobile'){
                     jQuery('html, body').animate({
-                        scrollTop: jQuery('#mobile').offset().top
+                        scrollTop: jQuery('#mobile').offset().top- 10
                     }, 500); // You can adjust the animation speed (1000ms = 1 second)
                 }else{
 
@@ -326,13 +324,13 @@ jQuery(document).ready(function () {
     }else if (url.indexOf("/about-us") > -1) {
 
         jQuery('#about_us_page').slick({
-            dots: false,
-            infinite: true,
-            speed: 200,
-            arrows: false,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            adaptiveHeight: true
+        autoplay:true,
+        autoplaySpeed:1500,
+        arrows:false,
+        slidesToShow:1,
+        slidesToScroll:1,
+        slidesToScroll: 1,
+        adaptiveHeight: true
         });
         const counters = document.querySelectorAll('.counter');
         const speed = 2000;
