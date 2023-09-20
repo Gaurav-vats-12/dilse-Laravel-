@@ -30,13 +30,15 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="col-lg-9" id="{{ checkUser()==='mobile' ? 'mobile' : 'desktop' }}">
+                <div id="{{ checkUser()==='mobile' ? 'mobile' : 'desktop' }}">
+                <div class="col-lg-9" >
                     <div class="loader display"></div>
                     <input type="hidden" name="slug" id="slug" value="{{$slug}}">
                     <button id="refreshButton"></button>
                     <div class="menu_main_box " id="menu_data_find">
                         @include('ajax.menufooditems')
                     </div>
+                </div>
                 </div>
             </div>
         </div>
