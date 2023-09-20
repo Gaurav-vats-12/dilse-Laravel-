@@ -13,8 +13,8 @@
             </div>
         </div>
     </section>
-    <section class="sight_food_location">
-        <div class="container py_8">
+    <section class="sight_food_location py_8">
+        <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-5 mb-xl-0">
                 <a href="javascript:void(0)" id="location" data_lication_uid="location_drag"><div class="under_location">

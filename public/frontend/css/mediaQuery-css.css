@@ -35,6 +35,7 @@
     opacity: 0;
     visibility: hidden;
     transition: 500ms ease-in all;
+    overflow-y: hidden;
 }
 .responsi_header .menu_right ul li {
     display: block;
@@ -117,6 +118,7 @@ li.page-item.disabled span.page-link {
     .order_summary .tittle_heading h4 {
         font-size: 18px;
     }
+
 
 }
 @media screen and (max-width: 991px) {
@@ -215,6 +217,9 @@ li.page-item.disabled span.page-link {
         font-size: 32px;
         line-height: 44px;
     }
+    .select_location{
+        margin-left: 20px;
+    }
 }
 @media screen and (max-width: 767px) {
     .py_8,
@@ -312,7 +317,7 @@ li.page-item.disabled span.page-link {
         font-size: 26px;
     }
     .our_achievement {
-        margin-top: 30px;
+        /* margin-top: 30px; */
     }
     .about_cntnt h2 {
         font-size: 26px;
@@ -380,6 +385,16 @@ li.page-item.disabled span.page-link {
         width: 19px;
         position: relative;
         top: 5px;
+    }
+    .about_se .about_img.slick-slide{
+        height: unset;
+    }
+    .under_location{
+        max-width: unset;
+    }
+    .sight_food_location{
+        padding-top: 60px !important;
+    padding-bottom: 0 !important;
     }
 }
 @media screen and (max-width: 480px) {
