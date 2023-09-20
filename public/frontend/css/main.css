@@ -198,7 +198,7 @@ header.main_header {
 }
 
 .menu_left {
-    z-index: 1;
+    z-index: 99;
 }
 
 .menu_left ul li {
@@ -1189,7 +1189,7 @@ section.sight_food_location {
 
 .post_txt p {
     line-height: 28px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -1202,7 +1202,7 @@ section.sight_food_location {
 }
 
 .post_txt {
-    padding: 34px 32px;
+    padding: 16px 15px;
 }
 
 /* ------------------

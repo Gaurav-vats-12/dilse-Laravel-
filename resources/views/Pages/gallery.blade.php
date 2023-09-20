@@ -2,7 +2,7 @@
 @section('title', 'Gallery')
 @section('frontcontent')
 <section class="inner_bannner bg_style" style="background-image: url('{{ asset('frontend/img/gallery.jpg') }}')">
-    <div class="about_banner_section">s
+    <div class="about_banner_section">
         <div class="home-slider-main">
             <div class="container">
                 <div class="home-slider-content">
