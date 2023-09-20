@@ -51,12 +51,14 @@ jQuery(document).ready(function () {
       */
     jQuery(document).on("click", "#add_to_cart", async function (event) {
         jQuery(this).toggleClass(`added`);
-        let is_spisy= jQuery(this).attr('is_spisy');
-
-        let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = { product_oid, product_quntity, product_price,is_spisy }, ajax_url = jQuery('#ajax_url').val();
+        let ajax_url = jQuery(this).attr('cart_ajax_url');
+        let product_uid = jQuery(this).attr("product_uid");
+        let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
+        let product_quntity = jQuery(`#product_quntity_${product_uid}`).val();
+        let ajax_value = {product_uid, product_quntity, is_spisy};
         const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
-            setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 2000);
+            setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 1000);
             NotyfMessage(resPose.message, 'success');
             jQuery(`.cart_count`).html(resPose.cart_total);
         }
@@ -215,7 +217,7 @@ jQuery(document).ready(function () {
                 jQuery(this).find("h3").addClass("active");
             }
         });
-        
+
         jQuery(document).on("click", "#menu", async function (e) {
             e.preventDefault();
             jQuery(`.loader`).toggleClass('display');
@@ -406,8 +408,7 @@ jQuery(document).ready(function () {
         let type =  jQuery(this).attr('type');
         if (show_form ==='false') {
             if (subtotal < mimimum_ammout) {
-                jQuery('#minimum_order_message').html(`<div class="auto-close alert alert-warning d-flex align-items-center" role="alert" id ="auto-close-alert"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><div id="alert_message">Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> --You must have an order with minimum of ${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 to place the order </div></div>`);
-                setTimeout(function() {  jQuery('#auto-close-alert').alert('close'); }, 6000);
+                NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b>.You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 </b>to place the order`, 'error');
             }else{
                 if(type =='null'){
                     jQuery(`#staticBackdrop`).modal('show')
@@ -424,8 +425,9 @@ jQuery(document).ready(function () {
         } else {
         if(spicy_lavel){
             if (subtotal < mimimum_ammout) {
-                jQuery('#minimum_order_message').html(`<div class="auto-close alert alert-warning d-flex align-items-center" role="alert" id ="auto-close-alert"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><div id="alert_message">Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> --You must have an order with minimum of ${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 to place the order </div></div>`);
-                setTimeout(function() {  jQuery('#auto-close-alert').alert('close'); }, 2000);
+                NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> .You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00</b> to place the order`, 'error');
+                
+
             }else{
                 if(type ==='null'){
                     jQuery(`#staticBackdrop`).modal('show')
@@ -531,49 +533,50 @@ jQuery(document).ready(function () {
                 let resPose;
                 [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
                 if (resPose.status === 'success') {
-                    location.reload(true);
-                    // jQuery(`.cart_count`).html(resPose.cart_total);
-                    // jQuery('#subtotal').attr('subtotal',resPose.subtotal)
-                    // jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
-                    // jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                    // jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
-                    // if (uid === 0) {
-                    //     jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                    //     jQuery('#order_details').empty();
-                    //     jQuery('.product_c_main').empty();
-                    // } else {
-                    //     var myArray = [];
-                    //     let product_oid = parseInt(jQuery(this).attr("produc_id"));
-                    //     var falseCount = 0;
-                    //
-                    //      jQuery(`#cart_products-${product_oid}`).empty();
-                    //     let allUlElements = $("ul");
-                    //     if (allUlElements.length > 0) { //
-                    //         allUlElements.each(function() {
-                    //             var customAttrValue = $(this).data("custom-attr"); // Get the data-custom-attr attribute value
-                    //             if (customAttrValue !== undefined) {
-                    //                 myArray.push(customAttrValue);
-                    //             } else {
-                    //                 myArray.push(null);
-                    //             }
-                    //         });
-                    //     }
-                    //
-                    //     jQuery.each(myArray, function(index, value) {
-                    //         if (value === false) {
-                    //             falseCount++;
-                    //         }
-                    //     });
-                    // // console.log(falseCount);
-                    // if(falseCount ===0){
-                    //     location.reload(true);
-                    // }
-                    //     if (uid - 1 === 0) {
-                    //         jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                    //         jQuery('#order_details').empty();
-                    //         jQuery('.product_c_main').empty();
-                    //     }
-                    // }
+                    console.log(resPose)
+                    // location.reload(true);
+                    jQuery(`.cart_count`).html(resPose.cart_total);
+                    jQuery('#subtotal').attr('subtotal',resPose.subtotal)
+                    jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
+                    jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
+                    jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
+                    if (uid === 0) {
+                        jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
+                        jQuery('#order_details').empty();
+                        jQuery('.product_c_main').empty();
+                    } else {
+                        var myArray = [];
+                        let product_oid = parseInt(jQuery(this).attr("produc_id"));
+                        var falseCount = 0;
+
+                         jQuery(`#cart_products-${product_oid}`).empty();
+                        let allUlElements = $("ul");
+                        if (allUlElements.length > 0) { //
+                            allUlElements.each(function() {
+                                var customAttrValue = $(this).data("custom-attr"); // Get the data-custom-attr attribute value
+                                if (customAttrValue !== undefined) {
+                                    myArray.push(customAttrValue);
+                                } else {
+                                    myArray.push(null);
+                                }
+                            });
+                        }
+
+                        jQuery.each(myArray, function(index, value) {
+                            if (value === false) {
+                                falseCount++;
+                            }
+                        });
+                    // console.log(falseCount);
+                    if(falseCount ===0){
+                        location.reload(true);
+                    }
+                        if (uid - 1 === 0) {
+                            jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
+                            jQuery('#order_details').empty();
+                            jQuery('.product_c_main').empty();
+                        }
+                    }
                 }
             }
         });

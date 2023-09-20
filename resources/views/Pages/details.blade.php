@@ -22,13 +22,12 @@
              {!! $food_details->description !!}
             </div>
             <div class="product_btn">
-            <input type="hidden" name="ajax_url" id="ajax_url" value="{{ route('cart.add') }}" >
-                            <input type="hidden" name="product_price" id="product_price__{{$food_details->id}}" value="{{ $food_details->price }}">
-                            <input type="hidden" name="product_quntity" id="product_quntity_{{$food_details->id}}" value="1">
-                <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" role="button" product_uid = "{{$food_details->id }}" is_spisy="{{ ($food_details->menu->menu_slug =='desserts' || $food_details->menu->menu_slug =='drinks' ) ? 'true' : 'false' }}">
-                    <span class="add-to-cart">Add to cart</span>
-                    <span class="added-to-cart">Added to cart</span>
-                </a>            </div>
+                    <input type="hidden" name="product_quntity" id="product_quntity_{{$food_details->id}}" value="1">
+                    <input type="hidden" name="is_spisy" id="is_spisy_{{$food_details->id}}" value="{{($food_details->menu->menu_slug =='desserts' || $food_details->menu->menu_slug =='drinks' ||$food_details->menu->menu_slug =='breads' ) ? 'true' : 'false'}}">
+                    <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" role="button" cart_ajax_url ="{{ route('cart.add') }}"  product_uid ="{{ $food_details->id }}"> <span class="add-to-cart">Add to cart</span>
+                        <span class="added-to-cart">Added to cart</span>
+                    </a>
+            </div>
           </div>
 
         </div>
