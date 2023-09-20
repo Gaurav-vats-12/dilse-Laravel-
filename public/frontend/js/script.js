@@ -24,6 +24,8 @@ let url = window.location.pathname;
           arrows: true,
           dots: false,
           slidesToShow: 4,
+          autoplaySpeed:1500,
+          slidesToScroll: 4,
           prevArrow: `<button class="slide-arrow prev-arrow"></button>`,
           nextArrow: `<button class="slide-arrow next-arrow"></button>`,
           responsive: [
@@ -32,7 +34,9 @@ let url = window.location.pathname;
               settings: {
                 arrows: false,
                 slidesToShow: 2,
-                slidesToScroll: 1,
+                autoplay:true,
+                autoplaySpeed:1500,
+                slidesToScroll: 2,
                 infinite: true,
                 dots: false
               }
@@ -43,6 +47,8 @@ let url = window.location.pathname;
                 arrows: false,
                 slidesToShow: 1,
                 slidesToScroll: 1,
+                autoplay:true,
+                autoplaySpeed:1500,
                 infinite: true,
                 dots: false
               }
