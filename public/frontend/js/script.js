@@ -25,7 +25,7 @@ let url = window.location.pathname;
           dots: false,
           slidesToShow: 4,
           autoplaySpeed:1500,
-          slidesToScroll: 4,
+          slidesToScroll: 1,
           prevArrow: `<button class="slide-arrow prev-arrow"></button>`,
           nextArrow: `<button class="slide-arrow next-arrow"></button>`,
           responsive: [
