@@ -3501,3 +3501,17 @@ form.order_cancel {
 .mce_inline_error {
     color: red;
 }
+#mce-responses #mce-success-response {
+    color: green;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 6px 0px 0 0;
+    text-align: center;
+}
+div#mmce-error-response {
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 6px 0px 0 0;
+    text-align: center;
+}

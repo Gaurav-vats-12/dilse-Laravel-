@@ -21,9 +21,8 @@ class PaymentFormServices{
     /** @noinspection PhpUnreachableStatementInspection */
     public function PaymentForm($request){
 
-        $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
+        $user_id = !AuthAlias::guard('user')->check() ? 'guest' : AuthAlias::guard('user')->id();
         if(AuthAlias::guard('user')->check()){
-
             $user = AuthAlias::guard('user')->user();
             $user->phone = $request->billing_phone;
             $user->save();
