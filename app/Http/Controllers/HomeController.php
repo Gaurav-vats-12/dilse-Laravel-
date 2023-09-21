@@ -41,7 +41,7 @@ class HomeController extends Controller
     public function sendEmail()
     {
 
-        $recipientEmail = 'shaurya.dograexoticait@gmail.com';
+        $recipientEmail = 'bheemexoticait@gmail.com';
         $subject = 'Subject of the Email';
         $message = 'This is the content of the email.';
 

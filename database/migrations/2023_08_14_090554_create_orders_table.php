@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->string('user_id')->default('guest');
             $table->datetime('order_date');
             $table->string('full_name', 255)->nullable();
             $table->string('company_name', 255)->nullable();
