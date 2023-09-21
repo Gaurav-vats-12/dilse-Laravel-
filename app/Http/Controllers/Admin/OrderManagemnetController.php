@@ -8,7 +8,7 @@ use App\Models\Order\Order as OrderAlias;
 use App\Models\Order\Payments;
 use Illuminate\Contracts\Foundation\Application as ApplicationAlias1;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
-use Illuminate\Contracts\View\View as ViewAlias;
+use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application as ApplicationAlias;
 use Illuminate\Http\JsonResponse as JsonResponseAlias;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -18,19 +18,19 @@ use Illuminate\Http\Request;
 class OrderManagemnetController extends Controller
 {
     /**
-     * @return ViewAlias|ApplicationAlias|FactoryAlias|ApplicationAlias1
+     * @return View|ApplicationAlias|FactoryAlias|ApplicationAlias1
      */
-    public function index(): ViewAlias|ApplicationAlias|FactoryAlias|ApplicationAlias1
+    public function index(): View|ApplicationAlias|FactoryAlias|ApplicationAlias1
     {
-        return view(view: 'admin.page.order.index')->with('orders', value: OrderAlias::orderBy('id', 'DESC')->get());
+        return view(view: 'admin.page.order.index')->with('orders', value: OrderAlias::orderByDesc('id')->get());
     }
 
 
     /**
      * @param string $id
-     * @return ApplicationAlias1|FactoryAlias|ViewAlias|ApplicationAlias
+     * @return ApplicationAlias1|FactoryAlias|View|ApplicationAlias
      */
-    public function viewOrder(string $id): ApplicationAlias|ViewAlias|FactoryAlias|ApplicationAlias1
+    public function viewOrder(string $id): ApplicationAlias|View|FactoryAlias|ApplicationAlias1
     {
 
         return view(view: 'admin.page.order.view')->with('orders', value:  OrderAlias::with('orderItems.product', 'payment')->find($id));

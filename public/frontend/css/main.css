@@ -1,6 +1,10 @@
 @import url("../font/Kalam/stylesheet.css");
 @import url("../font/Nunito/stylesheet.css");
 @import url("../font/ThePretender-ExpSans/stylesheet.css");
+.fixed-position {
+    overflow: hidden;
+
+}
 
 body {
     margin: 0;
@@ -131,7 +135,7 @@ header.main_header {
 
 .top_header {
     padding: 10px 0;
-    border-bottom: 1px solid rgb(245 234 224 / 33%);
+    border-bottom: 0px solid rgb(245 234 224 / 33%);
 }
 
 .info_bx {
@@ -194,7 +198,7 @@ header.main_header {
 }
 
 .menu_left {
-    z-index: 1;
+    z-index: 99;
 }
 
 .menu_left ul li {
@@ -1185,7 +1189,7 @@ section.sight_food_location {
 
 .post_txt p {
     line-height: 28px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -1198,7 +1202,7 @@ section.sight_food_location {
 }
 
 .post_txt {
-    padding: 34px 32px;
+    padding: 16px 15px;
 }
 
 /* ------------------
@@ -1220,19 +1224,15 @@ section.sight_food_location {
 /*}*/
 /*}*/
 
-@import url("https://fonts.googleapis.com/css?family=Abel");
+/* @import url("https://fonts.googleapis.com/css?family=Abel"); */
 
 h1 {
-    font-family: "Abel", sans-serif;
+    /* font-family: "Abel", sans-serif; */
     font-weight: 100;
     font-size: 40px;
     text-align: center;
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-}
 
 a {
     outline: 0 !important;
@@ -1245,7 +1245,7 @@ a {
 
 .mfp-bottom-bar,
 * {
-    font-family: "Abel", sans-serif;
+    /* font-family: "Abel", sans-serif; */
 }
 
 .magnific-img {
@@ -1891,7 +1891,7 @@ form.contact_form p {
 }
 
 form.contact_form a {
-    /* color: #eb0029; */
+    color: #eb0029 !important;
     font-family: "Kalam";
     font-weight: 600;
 }
@@ -1899,6 +1899,7 @@ form.contact_form a {
 .forget_passcode {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
 }
 
 .read-more {
@@ -2444,7 +2445,7 @@ product
 
 .cusstom_input label,
 .radio_btnns label {
-    font-family: "Poppins";
+    /* font-family: "Poppins"; */
     font-weight: 600;
     margin-bottom: 6px;
     font-size: 14px;
@@ -2453,7 +2454,7 @@ product
 }
 
 .radio_btnns label .radio_input label {
-    font-family: "Open Sans";
+    /* font-family: "Open Sans"; */
     line-height: 19px;
 }
 
@@ -2472,7 +2473,7 @@ product
 
 .cusstom_input input,
 .cusstom_input select {
-    font-family: "Open Sans";
+    /* font-family: "Open Sans"; */
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -2514,12 +2515,26 @@ span.required {
 }
 
 .payment-metho-radio li {
-    padding: 10px 20px;
-    border: 1px solid hsl(0deg 0% 95%);
-    margin-right: 10px;
-    margin-bottom: 10px;
+    /* padding: 10px 20px; */
+    /* border: 1px solid hsl(0deg 0% 95%); */
+    /* margin-right: 10px;
+    margin-bottom: 10px; */
 }
 
+.payment-metho-radio li .radio-item_1  label{
+    color: #100f0f;
+    font-weight: 800;
+    padding: 18px 16px;
+       border: 1px solid hsl(0deg 0% 95%);
+}
+.payment-metho-radio li .radio-item_1 input{
+    display: none;
+}
+.payment-metho-radio li .radio-item_1 input:checked + label {
+    background: red;
+    border: 1px solid hsl(0deg 0% 95%);
+    color: #fff !important;
+}
 .total-summary-list {
     padding-left: 0px;
     font-size: 14px;
@@ -2550,13 +2565,15 @@ span.required {
 } */
 
 .payment_form .secure_image {
-    flex: 0 0 30%;
-    max-width: 30%;
+    /* flex: 0 0 30%;
+    max-width: 30%; */
+    margin-bottom: 10px;
 }
 
 .payment_form ul.payment-metho-radio.d-flex {
     flex: 0 0 70%;
     max-width: 70%;
+
 }
 
 p {
@@ -2921,7 +2938,7 @@ input[type="password"]::-ms-reveal {
     position: absolute;
     right: 0.75em;
     top: 1.25em;
-    z-index: 9;
+    z-index: 9999;
     margin: 6px 0 0 0;
     font-size: 16px;
 }
@@ -3312,8 +3329,9 @@ section.menu_main1 .cusstom_input input,
 }
 
 #button {
-    display: inline-block;
-    background-color: red;
+    /* display: inline-block; */
+    display: none;
+    background-color: #eb0029;
     width: 50px;
     height: 50px;
     text-align: center;
@@ -3385,10 +3403,10 @@ iframe {
     max-width: 100%;
 }
 
-.fa {
-    margin-left: -12px;
-    margin-right: 8px;
-}
+/*.fa {*/
+/*    margin-left: -12px;*/
+/*    margin-right: 8px;*/
+/*}*/
 
 .about_img img {
     border-radius: 60px;
@@ -3412,8 +3430,9 @@ label {
 }
 
 p#message {
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: unset;
 }
 .alert {
     display: none;
@@ -3453,10 +3472,14 @@ span.sign_up_for a {
     margin-bottom: 11px;
 }
 .toggle_button {
+    background: none;
+    border: none;
     position: absolute;
-    top: 0;
-    transform: translatey(50px);
-    right: 5px;
+    right: 0.75em;
+    top: 1.25em;
+    z-index: 9999;
+    margin: 32px 0 0 0;
+    font-size: 16px;
 }
 .tittle_heading.reset_pass h2 {
     margin-bottom: -21px;
@@ -3480,12 +3503,36 @@ form.order_cancel {
     padding: 1px 22px;
 }
 
-.modal {
+.Cart_modal {
    position: absolute;
-   top: 90%;
+   top: 50%;
 
 }
 .social_icons_footer {
     text-align: center;
     display: none;
+}
+.mce_inline_error {
+    color: red;
+}
+#mce-responses #mce-success-response {
+    color: green;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 6px 0px 0 0;
+    text-align: center;
+}
+div#mmce-error-response {
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 6px 0px 0 0;
+    text-align: center;
+}
+
+.password_message_append {
+    text-align: center;
+    color: green;
+    font-weight: 700;
+    font-size: larger;
 }

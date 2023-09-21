@@ -52,7 +52,6 @@
                     </li>                           @else
                         <li class="name_drop_down"><a class="login_header" href="{{route('user.login')}}"> Login </a></li>
                         @endif
-                        <li class="cart_responseive"><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
 
             <li><a href="{{ url('/')}}">Home</a></li>
                         <li><a href="{{url('about-us')}}">About Us</a></li>
@@ -62,8 +61,8 @@
                         <li><a href="{{url('contact-us')}}">Contact Us</a></li>
                         <li>
                         <select class="select_location" name="select_location" id="select_location" ajax_value ="{{ route('cart.update_details')}}" location_Type="location">
-                             <option value="Toronto" {{ session('update_location') =='Toronto'? 'selected' : '' }}>Toronto</option>
-                            <option value="Brampton" {{ session('update_location') =='Brampton'? 'selected' : '' }}>Brampton</option>
+                        <option value="Toronto" {{ session('update_location') =='Toronto'? 'selected' : '' }}>Toronto</option>
+                        <option value="Brampton" {{ session('update_location') =='Brampton'? 'selected' : '' }}>Brampton</option>
                             </select>
                 </li>
             </ul>
@@ -74,8 +73,11 @@
             <span class="bar"></span>
             <span class="bar"></span>
           </div>
-
         </div>
+          <li class="cart_responseive">
+              <a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a>
+          </li>
+
       </div>
     </div>
   </header>

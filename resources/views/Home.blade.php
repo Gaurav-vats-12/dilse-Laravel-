@@ -5,7 +5,7 @@
 <input type="hidden" id="nextArrow" value="{{asset('frontend/img/right_arrow.png') }}">
 <section class="video_dilse-tw">
   <div class="video_dilse_play-tw">
-    <video id="home_banner_vd" width="" height="" autoplay loop muted>
+    <video id="home_banner_vd" width="" height=""  autoplay muted loop playsinline >
       <source src="{{asset('frontend/vedio/DilSe Home.mp4')}}" type="video/mp4" />
     </video>
     <div class="home-slider-main-tw">
@@ -105,7 +105,7 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
     </div>
     <div class="custm_nav_pills">
       <div class="d-flex align-items-center">
-        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="{{checkUser()==='mobile' ? 'horizontal' : 'vertical' }}">
           <button class="nav-link active" id="v-pills-Appetizers-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Appetizers" type="button" role="tab" aria-controls="v-pills-Appetizers" aria-selected="true">
             Appetizers <img src="{{asset('frontend/img/arrow_taste.png')}}" alt="" />
           </button>
@@ -284,10 +284,9 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
               <h2>{{setting('site_currency')}} {{ $FoodItemValue->price}}</h2>
             </div>
             <div class="best_food_btn">
-              <input type="hidden" name="ajax_url" id="ajax_url" value="{{ route('cart.add') }}">
-              <input type="hidden" name="product_price" id="product_price__{{$FoodItemValue->id}}" value="{{ $FoodItemValue->price }}">
-              <input type="hidden" name="product_quntity" id="product_quntity_{{$FoodItemValue->id}}" value="1">
-              <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" role="button" product_uid="{{$FoodItemValue->id }}" is_spisy="{{ ($FoodItemValue->menu->menu_slug =='desserts' || $FoodItemValue->menu->menu_slug =='drinks' ||$FoodItemValue->menu->menu_slug =='breads' ) ? 'true' : 'false' }}"> <span class="add-to-cart">Add to cart</span>
+                <input type="hidden" name="product_quntity" id="product_quntity_{{$FoodItemValue->id}}" value="1">
+                <input type="hidden" name="is_spisy" id="is_spisy_{{$FoodItemValue->id}}" value="{{($FoodItemValue->menu->menu_slug =='desserts' || $FoodItemValue->menu->menu_slug =='drinks' ||$FoodItemValue->menu->menu_slug =='breads' ) ? 'true' : 'false'}}">
+              <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" role="button" cart_ajax_url ="{{ route('cart.add') }}"  product_uid ="{{ $FoodItemValue->id }}"> <span class="add-to-cart">Add to cart</span>
                 <span class="added-to-cart">Added to cart</span>
               </a>
             </div>
@@ -388,13 +387,14 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
         <form action="https://dilse.us12.list-manage.com/subscribe/post?u=ef3584d822e3060c8cdb4139f&amp;id=f13100197e&amp;f_id=0078bce0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
             <div id="mc_embed_signup_scroll">
                 <div class="mc-field-group custn_input"><input type="email"  placeholder="Enter your email"  name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""></div>
-            <div id="mce-responses" class="clear">
-                <div class="response" id="mce-error-response" style="display: none;"></div>
-                <div class="response" id="mce-success-response" style="display: none;"></div>
-            </div><div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_ef3584d822e3060c8cdb4139f_f13100197e" tabindex="-1" value=""></div><div class="clear">
+            <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_ef3584d822e3060c8cdb4139f_f13100197e" tabindex="-1" value=""></div><div class="clear">
             <div class="sub_scribe_form_btn">
             <button class="theme_btn btn-txt">Subscribe Now</button>
           </div>
+          <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display: none;"></div>
+                <div class="response" id="mce-success-response" style="display: none;"></div>
+            </div>
         </div>
         </div>
     </form>

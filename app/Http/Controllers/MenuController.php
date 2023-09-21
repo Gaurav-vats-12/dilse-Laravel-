@@ -14,7 +14,6 @@ class MenuController extends Controller
     public function menu(Request $request, $slug = ''){
         $order_type = session()->get('order_type');
         if ($request->ajax()) {
-
             $slug = $request->slug;
             $current_url = $request->current_url;
             if($current_url =='home'){
@@ -23,21 +22,19 @@ class MenuController extends Controller
                 $slug = 'appetizers';
                 $menu_id = Menu::where('menu_slug',$slug)->first()->id;
                 $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6);
-            //  return view('Pages.menu',['FoodItem'=>$FoodItem ,'slug'=>$slug]);
                  return view('Pages.menu', compact('FoodItem','slug'))->render();
             }else if ($current_url =='cart.view'){
                 $authType =  AuthAlias::guard('user')->check();
                 $loginroute = AuthAlias::guard('user')->check() ? route('checkout.view') : route('user.login');
                 session()->put('order_type', $request->type);
-                return response()->json(['code' => 200 , 'status' =>'success','url'=> $loginroute])->render();
+                return response()->json(['code' => 200 , 'status' =>'success','url'=> $loginroute]);
             }else{
-
-                $menu_id = Menu::where('menu_slug',$slug)->first()->id;
-
-                $FoodItem = FoodItem::where('menu_id',$menu_id)->where('extra_items',0)->where('status',1)->paginate(6)->withQueryString();
-                 $html =  view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug])->render();
-                 return response()->json(['code' => 200 ,  'status' =>'success', "html"=>$html ,'page'=>$FoodItem->links()]);
-
+                $Menu = Menu::where('menu_slug',$slug)->first();
+                if (!$Menu) {
+                    abort(404);
+                }
+                $FoodItem = $Menu->products()->where('extra_items', 0)->where('status', 1)->paginate(6); // Change 10 to your desired number of products per page.
+                 return  view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug])->render();
             }
         }else{
             $menu_id = Menu::where('menu_slug',$slug)->first()->id;
@@ -45,26 +42,14 @@ class MenuController extends Controller
             return view('Pages.menu',['FoodItem'=>$FoodItem ,'slug'=>$slug]);
         }
     }
-
-
     /**
-     * @param $FoodItem
-     * @param $slug
+     * @param string $id
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    protected static function captureOutput($FoodItem, $slug): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function menudetails(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        ob_start();
-        return view('ajax.menufooditems',['FoodItem'=>$FoodItem ,'slug'=>$slug]);
-        ob_end_clean();
-    }
-
-    public function menudetails( string $id){
         $food_details = FoodItem::where('slug',$id)->first();
         $related_product = FoodItem::where('menu_id',$food_details->menu_id )->where('extra_items',0)->where('status',1)->get();
         return view('Pages.details',compact('food_details','related_product'));
-    }
-    public function post_menu_data(Request $request){
-        dd($request->all());
     }
 }

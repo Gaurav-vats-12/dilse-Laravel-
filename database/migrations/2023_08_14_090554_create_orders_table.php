@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->datetime('order_date');
+            $table->string('user_type', 255)->nullable();
             $table->string('full_name', 255)->nullable();
             $table->string('company_name', 255)->nullable();
             $table->string('email_address', 255)->nullable();

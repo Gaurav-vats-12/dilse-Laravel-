@@ -44,10 +44,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 mb-4">
-                                <div class="form-check d-flex align-items-center">
+                            <div class="col-12">
+                                <div class="form-check d-flex">
                                     <input type="checkbox" name="privacyPolicy" class="form-check-input me-2" id="remember"   value="1">
-                                    <label class="form-check-label mt-2" for="remember">
+                                    <label class="form-check-label mt-2" for="remember" class="text-capitalize">
                                         By signing up you agree to our
                                         <a href="{{url('terms-and-conditions')}}" target="_blank">Terms &amp; Conditions</a>
                                         &amp;
@@ -56,12 +56,11 @@
 
                                 </div>
                                 <x-input-error :messages="$errors->get('privacyPolicy')" class="mt-2" />
-
                             </div>
                             <div class="contact_form_btn">
                                 <button class="theme_btn">Sign Up</button>
                             </div>
-                            <p>Already have an account? <a href="{{ route('user.login') }}">sign-In </a></p>
+                            <p>Already have an account? <a href="{{ route('user.login') }}" class="text-capitalize">sign-In </a></p>
                         </form>
                     </div>
                 </div>

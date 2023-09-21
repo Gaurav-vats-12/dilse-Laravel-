@@ -1,4 +1,5 @@
 jQuery(document).ready(function () {
+    let url = window.location.pathname;
     jQuery('#store_location').val(jQuery('#select_location').find(":selected").val());
     jQuery(document).on("change", "#select_location",  async function (event) {
         event.preventDefault();
@@ -12,8 +13,7 @@ jQuery(document).ready(function () {
          jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value);  });
         }
     });
-    let url = window.location.pathname;
-    /**
+/**
 * Scroller
 */
     let btn = jQuery('#button');
@@ -35,15 +35,14 @@ jQuery(document).ready(function () {
         event.preventDefault();
         let type = jQuery(this).attr(`type`);
         let current_url = jQuery(this).attr(`current_url`);
-        let AjaxForm = jQuery(this).attr(`AjaxForm`);
         let slug = `appetizers`;
         let page = 1;
         let ajax_value = {current_url, page, slug, type};
-        const response = await Ajax_response(AjaxForm, "GET", ajax_value, '', '');
+        const response = await Ajax_response(jQuery(this).attr(`AjaxForm`), "GET", ajax_value, '', '');
         if (response.status === `success`) {
             window.location.href = response.url;
         } else {
-            window.location.href = AjaxForm;
+            window.location.href = jQuery(this).attr(`AjaxForm`);
         }
     });
     /**
@@ -51,12 +50,13 @@ jQuery(document).ready(function () {
       */
     jQuery(document).on("click", "#add_to_cart", async function (event) {
         jQuery(this).toggleClass(`added`);
-        let is_spisy= jQuery(this).attr('is_spisy');
-
-        let product_oid = jQuery(this).attr("product_uid"), product_quntity = jQuery(`#product_quntity_${product_oid}`).val(), product_price = jQuery(`#product_price__${product_oid}`).val(), ajax_value = { product_oid, product_quntity, product_price,is_spisy }, ajax_url = jQuery('#ajax_url').val();
-        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+        let ajax_url = jQuery(this).attr('cart_ajax_url');
+        let product_uid = jQuery(this).attr("product_uid");
+        let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
+        let product_quntity = jQuery(`#product_quntity_${product_uid}`).val();
+        const resPose = await Ajax_response(ajax_url, "POST", { product_uid, product_quntity, is_spisy }, '');
         if (resPose.status === `success`) {
-            setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 2000);
+            setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 1000);
             NotyfMessage(resPose.message, 'success');
             jQuery(`.cart_count`).html(resPose.cart_total);
         }
@@ -209,29 +209,54 @@ jQuery(document).ready(function () {
         /**
 * Fetch Food Items via Menu (Menu  Page)
 */
+        let currentPath = window.location.pathname;
+        jQuery(".menu_list_inner").each(function () {
+            if (currentPath === "/menu/" + jQuery(this).find("a").attr("menu-slug")) {
+                jQuery(this).find("h3").addClass("active");
+            }
+        });
+
         jQuery(document).on("click", "#menu", async function (e) {
             e.preventDefault();
             jQuery(`.loader`).toggleClass('display');
             jQuery(`#menu_data_find`).empty();
             let slug = jQuery(this).attr("menu-slug");
+
+            jQuery('#slug').val(slug);
+            jQuery("h3").removeClass("active");
+
             let page = 1;
-            console.log(slug);
-            let ajax_value = { slug, page };
-            let pageUrl = `${slug}?page=${page + 1}`;
-            const response = await Ajax_response('', "GET", ajax_value, '', '');
+            let ajax_value = { slug, page};
+             const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
                 jQuery(`.loader`).toggleClass('display');
                 window.history.pushState(null, '', "/menu/"+slug);
-                jQuery(`#menu_data_find`).empty().html(response.html);
-                // jQuery('menu_items').empty().load(response.page);
-                // jQuery('.pagination a').attr('href',pageUrl);
-                // window.location.reload(true);
-
-
-                // setTimeout(function() {$('#menu').trigger('click')},
-                // 1000);
+                jQuery(`#menu_data_find`).empty().html(response);
+                history.pushState({}, "", window.location.href);
+                jQuery('#refreshButton').trigger('click');
+                jQuery(this).find("h3").addClass("active");
             }
         });
+
+        jQuery(document).on("click", "#refreshButton", async function (e) {
+            let slug = jQuery('#slug').val();
+            let mobile_type = jQuery('#menu').attr("mobile_type");
+            let page = 1;
+            let ajax_value = { slug, page};
+            const response = await Ajax_response('', "GET", ajax_value, '', '');
+            if (response) {
+                if (mobile_type ==='mobile'){
+                    jQuery('html, body').animate({
+                        scrollTop: jQuery('#mobile').offset().top- 10
+                    }, 500); // You can adjust the animation speed (1000ms = 1 second)
+                }else{
+
+                }
+                jQuery(`#menu_data_find`).empty().html(response);
+
+            }
+        });
+
         /**
      *   Fetch Food Items via Menu Pagination(Menu Page)
      */
@@ -240,14 +265,15 @@ jQuery(document).ready(function () {
             jQuery(`.loader`).toggleClass('display');
             jQuery(`#menu_data_find`).empty();
             jQuery(`li`).removeClass('active');
-            let slug = jQuery('#slug').val(), page = jQuery(this).attr('href').split('page=')[1],
-                ajax_value = { slug, page };
+            let slug = jQuery('#slug').val();
+            let page = jQuery(this).attr('href').split('page=')[1];
+            let ajax_value = {slug, page};
+                console.log(ajax_value)
             const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
                 window.history.pushState(null, '',jQuery(this).attr('href'));
                 jQuery(`.loader`).toggleClass('display');
-                // jQuery(`#menu_data_find`).empty().html(response);
-                jQuery(`#menu_data_find`).empty().html(response.html);
+           jQuery(`#menu_data_find`).empty().html(response);
 
             }
         });
@@ -298,13 +324,13 @@ jQuery(document).ready(function () {
     }else if (url.indexOf("/about-us") > -1) {
 
         jQuery('#about_us_page').slick({
-            dots: false,
-            infinite: true,
-            speed: 200,
-            arrows: false,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            adaptiveHeight: true
+        autoplay:true,
+        autoplaySpeed:1500,
+        arrows:false,
+        slidesToShow:1,
+        slidesToScroll:1,
+        slidesToScroll: 1,
+        adaptiveHeight: true
         });
         const counters = document.querySelectorAll('.counter');
         const speed = 2000;
@@ -380,8 +406,7 @@ jQuery(document).ready(function () {
         let type =  jQuery(this).attr('type');
         if (show_form ==='false') {
             if (subtotal < mimimum_ammout) {
-                jQuery('#minimum_order_message').html(`<div class="auto-close alert alert-warning d-flex align-items-center" role="alert" id ="auto-close-alert"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><div id="alert_message">Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> --You must have an order with minimum of ${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 to place the order </div></div>`);
-                setTimeout(function() {  jQuery('#auto-close-alert').alert('close'); }, 6000);
+                NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b>.You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 </b>to place the order`, 'error');
             }else{
                 if(type =='null'){
                     jQuery(`#staticBackdrop`).modal('show')
@@ -398,8 +423,8 @@ jQuery(document).ready(function () {
         } else {
         if(spicy_lavel){
             if (subtotal < mimimum_ammout) {
-                jQuery('#minimum_order_message').html(`<div class="auto-close alert alert-warning d-flex align-items-center" role="alert" id ="auto-close-alert"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg><div id="alert_message">Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> --You must have an order with minimum of ${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 to place the order </div></div>`);
-                setTimeout(function() {  jQuery('#auto-close-alert').alert('close'); }, 2000);
+                NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> .You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 to place the order`, 'error');
+
             }else{
                 if(type ==='null'){
                     jQuery(`#staticBackdrop`).modal('show')
@@ -464,94 +489,36 @@ jQuery(document).ready(function () {
                     }
                 }
             });
-
-
-
-
-                 /**
+        /**
         *  Add to Cart  In Website (Extra_Items)
         */
        jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
-        jQuery(this).toggleClass(`added`);
-        let is_spisy= jQuery(this).attr('is_spisy');
-        let product_oid = jQuery(this).attr("product_uid"),
-            product_quntity = jQuery(`#product_quntity_${product_oid}`).val(),
-            product_price = jQuery(`#product_price__${product_oid}`).val(),
-            ajax_value = {product_oid, product_quntity, product_price ,is_spisy}, ajax_url = jQuery('#extra_ajax_url').val();
-            const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-        if (resPose.status === `success`) {
-           NotyfMessage(resPose.message,'success');
-            jQuery(`.cart_count`).html(resPose.cart_total);
-            setTimeout(function () {
-                window.location.reload()
-            }, 1000);
-        }
+           jQuery(this).toggleClass(`added`);
+           let ajax_url = jQuery(this).attr('cart_ajax_url');
+           let product_uid = jQuery(this).attr("product_uid");
+           let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
+           let product_quntity = jQuery(`#product_quntity_${product_uid}`).val();
+           let ajax_value = {product_uid, product_quntity, is_spisy};
+           const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+           if (resPose.status === `success`) {
+                  NotyfMessage(resPose.message,'success');
+                   jQuery(`.cart_count`).html(resPose.cart_total);
+                   setTimeout(function () {
+                       window.location.reload()
+                   }, 1000);
+           }
     });
 
     jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
-        let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-        var form =  jQuery(this).closest("form");
+        let form =  jQuery(this).closest("form");
         event.preventDefault();
         Swal.fire({
             title: `Are you sure you want to delete this Item?`,
             showCancelButton: true,
             confirmButtonText: 'Ok',
         }).then(async (result) => {
-            let uid = jQuery('.shopping_items_main').length;
             if (result.isConfirmed) {
-                let ajax_url = jQuery('#delete_ajax_url').val();
-                let dilavery_charge = jQuery('#dilavery_charge').val();
-                let ajax_value = {dilavery_charge};
-                let resPose;
-
-
-
-                [resPose] = await Promise.all([Ajax_response(ajax_url, "POST", ajax_value, '')])
-                if (resPose.status === 'success') {
-
-                    jQuery(`.cart_count`).html(resPose.cart_total);
-                    jQuery('#subtotal').attr('subtotal',resPose.subtotal)
-                    jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
-                    jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                    jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
-                    if (uid === 0) {
-                        jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                        jQuery('#order_details').empty();
-                        jQuery('.product_c_main').empty();
-                    } else {
-                        var myArray = [];
-                        let product_oid = parseInt(jQuery(this).attr("produc_id"));
-                        var falseCount = 0;
-
-                         jQuery(`#cart_products-${product_oid}`).empty();
-                        let allUlElements = $("ul");
-                        if (allUlElements.length > 0) { //
-                            allUlElements.each(function() {
-                                var customAttrValue = $(this).data("custom-attr"); // Get the data-custom-attr attribute value
-                                if (customAttrValue !== undefined) {
-                                    myArray.push(customAttrValue);
-                                } else {
-                                    myArray.push(null);
-                                }
-                            });
-                        }
-
-                        jQuery.each(myArray, function(index, value) {
-                            if (value === false) {
-                                falseCount++;
-                            }
-                        });
-                    // console.log(falseCount);
-                    if(falseCount ===0){
-                        location.reload(true);
-                    }
-                        if (uid - 1 === 0) {
-                            jQuery('#cart_messages').html('<h4> No Cart  Items Found</h4>');
-                            jQuery('#order_details').empty();
-                            jQuery('.product_c_main').empty();
-                        }
-                    }
-                }
+                form.submit();
             }
         });
     });

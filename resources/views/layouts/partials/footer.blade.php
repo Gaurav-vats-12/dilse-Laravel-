@@ -41,7 +41,7 @@
         </div>
         <div class="social_icons_footer">
         <ul>
-                        <li></li>
+   <li>
                         <a href="{{ setting('facebook_url') != null ? setting('facebook_url') : '' }}"
                            target="_blank"><img src="{{asset('frontend/img/fb-01.png') }}" alt=""/></a>
                         </li>

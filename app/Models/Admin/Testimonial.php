@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @method static sortDesc()
+ * @method static insertGetId(array $array)
+ * @method static findOrFail(string $id)
+ */
 class Testimonial extends Model
 {
     use HasFactory, SoftDeletes;

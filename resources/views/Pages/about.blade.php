@@ -147,8 +147,8 @@
           </div>
         </div>
       </section>
-      <section class="inner_bannners bg_style" style="background-image: url('{{asset('frontend/img/restudent_wine.png') }}')">
-        <div class="container py_8">
+      <section class="inner_bannners bg_style py_8" style="background-image: url('{{asset('frontend/img/restudent_wine.png') }}')">
+        <div class="container ">
           <div class="row">
             <div class="col-md-7">
               <div class="restaurdent_update_image">

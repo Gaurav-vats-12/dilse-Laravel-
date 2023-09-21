@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\Admin\FoodItem as FoodItemAlias;
 use App\Models\Admin\Menu;
-
 use App\Models\Admin\Page;
+use Cart;
 use Illuminate\Http\JsonResponse as JsonResponseAlias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 class CartController extends Controller
@@ -15,7 +16,6 @@ class CartController extends Controller
 
 public function viewcart(){
     $menus = Menu::whereIn('id',[7,6,5,9])->where('status','active')->get();
-//    dd($menus);
     $extra_items = FoodItemAlias::whereIn('menu_id',[7,6,5,9])->where('status',1)->get();
     return view('Pages.cart',compact('extra_items'));
 }
@@ -48,27 +48,45 @@ public function update_details(Request $request){
      * @return JsonResponseAlias
      * @noinspection PhpUndefinedFieldInspection
      */
-    public function addtocart(Request $request ) : JsonResponseAlias {
+    public function addtocart(Request $request ){
         try {
-            if (!empty($request->product_oid)) {
+            if (!empty($request->product_uid)) {
+                $product_uid =(int)$request->product_uid;
+                $product=FoodItemAlias::find( $product_uid);
+                if(!$product) {abort(404);}
+                $cart = session()->get('cart');
+                // if cart is empty then this the first product
+                if(!$cart) {
+                    $cart = [
+                        $product_uid => [
+                            'id'=>$product_uid,
+                            "name" => $product->name,
+                            "quantity" => 1,
+                            "price" => $product->price,
+                            "image" => $product->image,
+                            'is_spisy' => $request->is_spisy
+                        ]
+                    ];
+                    session()->put('cart', $cart);
+                    return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
+                }  if(isset($cart[$product_uid])) {
 
-                $product = FoodItemAlias::findOrFail($request->product_oid);
-                $cart = session()->get('cart', []);
-                if(isset($cart[$request->product_oid])) {
-                    $cart[$request->product_oid]['quantity']++;
-                }else{
-                    $cart[$request->product_oid] = [
-                        "id" => $request->product_oid,
-                        "price" =>  round($product->price ,2) ,
-                        "quantity" => 1,
-                        "productdetails" => $product,
-                        'is_spisy'=> $request->is_spisy
-                        ];
+                    $cart[$product_uid]['quantity']++;
+                    session()->put('cart', $cart);
+                    return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
                 }
+                $cart[$product_uid] = [
+                    'id'=>$product_uid,
+                    "name" => $product->name,
+                    "quantity" => 1,
+                    "price" => $product->price,
+                    "image" => $product->image,
+                    'is_spisy' => $request->is_spisy
+                ];
                 session()->put('cart', $cart);
-                return response()->json(['code' => 200 ,  'cart_total'=>count((array) $cart), 'status' =>'success', "message"=>"Product added to cart successfully."]);
+                return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
             }else{
-                return response()->json(['code' => 203 ,  'cart_total'=>nullValue(),'status' =>'error', "message"=>"Product Id Not Found"]);
+                return response()->json(['code' => 203 ,  'cart_total'=>null,'status' =>'error', "message"=>"Product Id Not Found"]);
             }
         } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
             return response()->json(['code' => 400 ,  'cart_total'=>nullValue(),'status' =>'error', "message"=>"Something Wrong"]);
@@ -129,10 +147,9 @@ public function update_details(Request $request){
      * @return JsonResponseAlias
      * @noinspection PhpUndefinedFieldInspection
      */
-    public function destroy(Request $request ,string $id)  : JsonResponseAlias
+    public function destroy(Request $request ,string $id)
     {
         $subtotal = 0;
-
         try {
             if($id) {
                 $cart = session()->get('cart');
@@ -140,29 +157,25 @@ public function update_details(Request $request){
                     unset($cart[$id]);
                     session()->put('cart', $cart);
                 }
-                foreach ($cart as $key => $details) {
-                    $subtotal =  $subtotal + round($details["price"] ,2) ;
-                }
-                if(session('order_type') == 'delivery'){
-                    $total_before_Tex =   $subtotal + setting('delivery_charge' ,0.00);
-                }else{
-                    $total_before_Tex =  $subtotal ;
-                }
-                $total_tax = round(($total_before_Tex * setting('tax' ,0.00)) / 100 ,2);
-                $total = $total_before_Tex+$total_tax;
-                return response()->json(['code' => 200 , 'cart_total'=>count((array) session('cart')),'subtotal'=>round($subtotal,2) ,'total_tax'=>$total_tax,'total'=>round($total,2) ,'status' =>'success', "message"=>"Product  Remove from add to cart  successfully"]);
+//                foreach ($cart as $key => $details) {
+//                    $subtotal =  $subtotal + round($details["price"] ,2) ;
+//                }
+//                if(session('order_type') == 'delivery'){
+//                    $total_before_Tex =   $subtotal + setting('delivery_charge' ,0.00);
+//                }else{
+//                    $total_before_Tex =  $subtotal ;
+//                }
+//                $total_tax = round(($total_before_Tex * setting('tax' ,0.00)) / 100 ,2);
+//                $total = $total_before_Tex+$total_tax;
+                notyf()->duration(2000) ->addSuccess('Product  Remove from add to cart  successfully');
+                return redirect()->back();
             }else{
-                return response()->json(['code' => 203 ,  'cart_total'=>nullValue(),'status' =>'error', "message"=>"Product Id Not Found"]);
+                return redirect()->back();
             }
-
         } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
-            return response()->json(['code' => 400 , 'cart_total'=>'Null', 'subtotal'=>nullOrEmptyString() ,'total'=>nullOrEmptyString() , 'status' =>'error', "message"=>"Something Wrong"]);
+            return redirect()->back();
         }
-
-
-
     }
-
 }
 
 

@@ -47,9 +47,10 @@
                                         src="{{asset('frontend/img/blogto.png') }}" alt=""/></a>
                         </li>
                         <select class="select_location" name="select_location" id="select_location" ajax_value ="{{ route('cart.update_details')}}" location_Type="location">
-                                <option value="Toronto">Toronto</option>
-                                <option value="Brampton">Brampton</option>
-                            </select></li>
+                        <option value="Toronto" {{ session('update_location') =='Toronto'? 'selected' : '' }}>Toronto</option>
+                        <option value="Brampton" {{ session('update_location') =='Brampton'? 'selected' : '' }}>Brampton</option>
+                            </select>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -68,18 +69,13 @@
                     </ul>
                 </div>
                 <div class="site_logo">
-                    <a href="{{ url('/')}}"><img
-                                src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}"
-                                alt="">
-                    </a>
+                <a href="{{ url('/')}}"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/white-logo.svg')  }}"  alt=""> </a>
                 </div>
                 <div class="menu_left menu_right">
                     <ul>
                         <li><a href="{{url('gallery')}}">Gallery</a></li>
                         <li><a href="{{url('contact-us')}}">Contact Us</a></li>
-                        <li><a href="{{url('cart')}}" class="cart_item"><img
-                                        src="{{asset('frontend/img/carts__icon.svg')}}"/><span
-                                        class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
+                        <li><a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a></li>
                         @if(Auth::guard('user')->check())
                             <li class="">
                                 <div class="dropdown">

@@ -6,11 +6,15 @@ use App\Models\Order\OrderItems;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\ExtraFoodItems;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 /**
  * @method static whereIn(string $string, array $productIds)
+ * @method static create(array $array)
+ * @method static where(string $string, $id)
  */
 class FoodItem extends Model
 {
@@ -19,22 +23,26 @@ class FoodItem extends Model
     protected $dates = ['deleted_at'];
 
 
-    public function menu()
+    public function menu(): BelongsTo
     {
         return $this->belongsTo(Menu::class, 'menu_id', 'id');
     }
 
-    public function ExtraFoodItems(){
+    public function ExtraFoodItems(): HasMany
+    {
         return $this->hasMany(ExtraFoodItems::class, 'food_item_id', 'id');
     }
 
-    public function attributes()
+    public function attributes(): HasMany
     {
         return $this->hasMany(FoodAttribute::class);
     }
 
 
-    protected static function booted()
+    /**
+     * @return void
+     */
+    protected static function booted(): void
     {
         static::creating(function ($footItem) {
             $footItem->slug = self::createUniqueSlug($footItem->name);
@@ -43,7 +51,13 @@ class FoodItem extends Model
 
 
     // Method to generate a unique slug from the given title
-    protected static function createUniqueSlug($title, $id = null)
+
+    /**
+     * @param $title
+     * @param $id
+     * @return string
+     */
+    protected static function createUniqueSlug($title, $id = null): string
     {
         $slug = Str::slug($title);
 
@@ -59,11 +73,13 @@ class FoodItem extends Model
         if ($count > 0) {
             $slug .= '-' . ($count + 1);
         }
-
         return $slug;
     }
 
-    public function orderItems(): \Illuminate\Database\Eloquent\Relations\HasMany
+    /**
+     * @return HasMany
+     */
+    public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItems::class);
     }

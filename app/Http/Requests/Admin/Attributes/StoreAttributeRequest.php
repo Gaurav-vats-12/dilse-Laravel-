@@ -4,6 +4,9 @@ namespace App\Http\Requests\Admin\Attributes;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property mixed $attributes_name
+ */
 class StoreAttributeRequest extends FormRequest
 {
     /**
