@@ -2246,8 +2246,13 @@ product
     padding: 15px;
 }
 
-.Product_slider.slick-initialized {
+/*.Product_slider.slick-initialized {
     overflow:hidden;
+}*/
+
+.disable-scrolling{
+    height: 100%;
+    overflow: hidden;
 }
 
 .add-to-cart-button {
