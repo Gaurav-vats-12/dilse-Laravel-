@@ -55,11 +55,11 @@ class PaymentFormServices{
 
         $cart_datals = [];
         $cart = session()->get('cart', []);
-        foreach ($cart as $key => $details) $cart_datals[] = [
+        foreach ($cart as $key => $details)   $cart_datals[] = [
             'order_id' => $order_id,
-            'product_id' => $details['id'],
-            'quantity' => $details['quantity'],
+            'product_id' =>$key,
             'price' => $details['price'],
+            'quantity'=>$details['quantity'],
             'created_at' => now(),
             'updated_at' => now()
         ];

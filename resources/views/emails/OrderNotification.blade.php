@@ -52,7 +52,6 @@
             <tbody>
             @php  $subtotal = 0; @endphp
             @foreach ($orderMail['CartDetails']->orderItems as $keys=>  $items)
-
                 <tr>
                 <td  >{{ $keys + 1 }}</td>
                 <td>{{ $items->product->name }}</td>
