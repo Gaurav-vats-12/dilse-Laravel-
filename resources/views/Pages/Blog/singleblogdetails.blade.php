@@ -4,7 +4,7 @@
     <section class="featured_posts py_8">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
+                <div class="col-md-12">
                     <div class="about_img">
                         <img src="{{ url('/storage/blog/'.$blog->blog_image.'') }}" alt="{{ $blog->blog_image}}" />
                     </div>

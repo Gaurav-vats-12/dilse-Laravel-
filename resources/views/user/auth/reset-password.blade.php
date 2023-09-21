@@ -33,10 +33,10 @@
                       <div class="custn_input">
                       <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
                         <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"  name="password_confirmation"  autocomplete="new-password" />
+                        <button type="button" id="btnToggle" class="toggle_button" passwordType="password_confirmation"><i id="eyeIcon" passwordType="password_confirmation" class="fa fa-eye " style="font-size: 16px;"></i></button>
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                       </div>
                     </div>
-
                </div>
                   <div class="contact_form_btn">
                     <button class="theme_btn">    {{ __('Reset Password') }}</button>

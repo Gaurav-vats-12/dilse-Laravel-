@@ -14,10 +14,9 @@
                 <form method="POST" action="{{ route('user.password.email') }}" class="contact_form"> @csrf
                   <div class="tittle_heading">
                     <h2>FORGET YOUR <span>PASSWORD</span></h2>
-                    <div class="text-sm text-gray-600 forget_password_txt">
+                    <div class="text-sm text-gray-600 forget_password_txt ">
                     {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
                 </div>
-                <x-auth-session-status class="" :status="session('status')" />
 
                   </div>
                   <div class="row">
@@ -32,6 +31,8 @@
                   <div class="contact_form_btn">
                     <button class="theme_btn">  {{ __('Email Password Reset Link') }}</button>
                   </div>
+                  <x-auth-session-status class="password_message_append" :status="session('status')" />
+
                   </form>
               </div>
           </div>
