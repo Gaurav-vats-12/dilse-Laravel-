@@ -105,7 +105,7 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
     </div>
     <div class="custm_nav_pills">
       <div class="d-flex align-items-center">
-        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="{{checkUser()==='mobile' ? 'horizontal' : 'vertical' }}">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <button class="nav-link active" id="v-pills-Appetizers-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Appetizers" type="button" role="tab" aria-controls="v-pills-Appetizers" aria-selected="true">
             Appetizers <img src="{{asset('frontend/img/arrow_taste.png')}}" alt="" />
           </button>
@@ -387,14 +387,13 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
         <form action="https://dilse.us12.list-manage.com/subscribe/post?u=ef3584d822e3060c8cdb4139f&amp;id=f13100197e&amp;f_id=0078bce0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
             <div id="mc_embed_signup_scroll">
                 <div class="mc-field-group custn_input"><input type="email"  placeholder="Enter your email"  name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""></div>
-            <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_ef3584d822e3060c8cdb4139f_f13100197e" tabindex="-1" value=""></div><div class="clear">
+            <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display: none;"></div>
+                <div class="response" id="mce-success-response" style="display: none;"></div>
+            </div><div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_ef3584d822e3060c8cdb4139f_f13100197e" tabindex="-1" value=""></div><div class="clear">
             <div class="sub_scribe_form_btn">
             <button class="theme_btn btn-txt">Subscribe Now</button>
           </div>
-          <div id="mce-responses" class="clear">
-                <div class="response" id="mce-error-response" style="display: none;"></div>
-                <div class="response" id="mce-success-response" style="display: none;"></div>
-            </div>
         </div>
         </div>
     </form>
