@@ -3527,6 +3527,15 @@ div#mmce-error-response {
     font-weight: 700;
     font-size: larger;
 }
+
+.Product_slider.slick-initialized {
+    overflow:hidden;
+}
+
+.disable-scrolling{
+    height: 100%;
+    overflow: hidden;
+}
 /* div#v-pills-tab {
     display: none !important;
 } */
