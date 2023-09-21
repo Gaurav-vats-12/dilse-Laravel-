@@ -3515,3 +3515,9 @@ div#mmce-error-response {
     margin: 6px 0px 0 0;
     text-align: center;
 }
+.password_message_append {
+    text-align: center;
+    font-size: large;
+    font-weight: 800;
+    color: darkgreen;
+}
