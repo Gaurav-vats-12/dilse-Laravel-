@@ -105,7 +105,7 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
     </div>
     <div class="custm_nav_pills">
       <div class="d-flex align-items-center">
-        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="{{checkUser()==='mobile' ? 'horizontal' : 'vertical' }}">
           <button class="nav-link active" id="v-pills-Appetizers-tab" data-bs-toggle="pill" data-bs-target="#v-pills-Appetizers" type="button" role="tab" aria-controls="v-pills-Appetizers" aria-selected="true">
             Appetizers <img src="{{asset('frontend/img/arrow_taste.png')}}" alt="" />
           </button>
