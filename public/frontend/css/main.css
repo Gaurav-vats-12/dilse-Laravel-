@@ -3533,8 +3533,9 @@ div#mmce-error-response {
 }
 
 .disable-scrolling{
-    height: 100%;
+    width: 100%; height: 100%;
     overflow: hidden;
+    touch-action: none;
 }
 /* div#v-pills-tab {
     display: none !important;
