@@ -2247,6 +2247,10 @@ product
     padding: 15px;
 }
 
+.Product_slider.slick-initialized {
+    overflow:hidden;
+}
+
 .add-to-cart-button {
     &:active {
         -webkit-box-shadow: 0 0 0 0.2rem rgba(252, 186, 3, 0.45);
