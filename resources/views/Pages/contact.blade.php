@@ -29,16 +29,18 @@
                     </a>
                 </div>
                 <div class="col-md-4 mb-5 mb-xl-0">
-                    <div class="location">
+                <a href="mailto:{{ setting('site_email') != null ? setting('site_email') : '' }}">
 
+                    <div class="location">
                         <div class="under_location">
-                            <div class="location_img" id="location" data-map = "location_drag">
+                            <div class="location_img" >
                                 <img src="{{asset('frontend/img/message.png')}}" alt="" />
                             </div>
-                            <a href="mailto:{{ setting('site_email') != null ? setting('site_email') : '' }}">
-                                <p>{{ setting('site_email') != null ? setting('site_email') : '' }}</p></a>
+                                <p>{{ setting('site_email') != null ? setting('site_email') : '' }}</p>
                         </div>
+
                     </div>
+                    </a>
                 </div>
                 <div class="col-md-4 mb-5 mb-xl-0">
                 <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
