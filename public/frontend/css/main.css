@@ -135,7 +135,7 @@ header.main_header {
 
 .top_header {
     padding: 10px 0;
-    border-bottom: 1px solid rgb(245 234 224 / 33%);
+    border-bottom: 0px solid rgb(245 234 224 / 33%);
 }
 
 .info_bx {
@@ -3462,10 +3462,14 @@ span.sign_up_for a {
     margin-bottom: 11px;
 }
 .toggle_button {
+    background: none;
+    border: none;
     position: absolute;
-    top: 0;
-    transform: translatey(50px);
-    right: 5px;
+    right: 0.75em;
+    top: 1.25em;
+    z-index: 9999;
+    margin: 32px 0 0 0;
+    font-size: 16px;
 }
 .tittle_heading.reset_pass h2 {
     margin-bottom: -21px;
@@ -3514,4 +3518,11 @@ div#mmce-error-response {
     font-size: 15px;
     margin: 6px 0px 0 0;
     text-align: center;
+}
+
+.password_message_append {
+    text-align: center;
+    color: green;
+    font-weight: 700;
+    font-size: larger;
 }
