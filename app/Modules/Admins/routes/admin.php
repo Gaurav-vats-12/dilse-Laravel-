@@ -22,11 +22,21 @@ Route::prefix('admin')->name('admin.')->group(callback: function(){
         Route::get('/dashboard', [AdminControllerAlias::class, 'dashboard'])->name('dashboard');
         Route::resource('banner', BannerControllerAlias::class);
         // Route::get('/banner/changeStatus/{id}', [BannerController::class, 'updateStatus'])->name('banner.changeStatus');
-        Route::prefix('setting')->name('setting.')->group(callback: function(){
-            Route::get('/genral', [SettingControllerAlias::class, 'genralsetting'])->name('genral');
-            Route::put('/genral/{id}', [SettingControllerAlias::class, 'unregenerateSetting'])->name('genralstore');
-            Route::get('/footer-setting', [SettingControllerAlias::class, 'footersetting'])->name('footersetting');
+
+        Route::middleware('optimizeImages')->group(function () {
+            Route::prefix('setting')->name('setting.')->group(callback: function(){
+                Route::get('/genral', [SettingControllerAlias::class, 'genralsetting'])->name('genral');
+                Route::put('/genral/{id}', [SettingControllerAlias::class, 'unregenerateSetting'])->name('genralstore');
+                Route::get('/footer-setting', [SettingControllerAlias::class, 'footersetting'])->name('footersetting');
+            });
+        // food items
+            Route::resource('food-items', FoodItemControllerAlias::class);
+      // Blog
+      Route::resource('blog', BlogControllerAlias::class);
+
         });
+
+
         Route::resource('manage-pages', PageManagementControllerAlias::class);
     // Manage Subscriber
         Route::prefix('manage-subscribers')->name('manage-subscribers.')->group(callback: function(){
@@ -37,8 +47,8 @@ Route::prefix('admin')->name('admin.')->group(callback: function(){
         // Manage Attributes
         Route::resource('manage-attributes', AttributeController::class);
 
-        // food items
-        Route::resource('food-items', FoodItemControllerAlias::class);
+
+
         Route::resource('extra-items', ExtraFoodItemControllerAlias::class);
 
         // testimonial
@@ -47,8 +57,6 @@ Route::prefix('admin')->name('admin.')->group(callback: function(){
         // Menu's
         Route::resource('menu', MenuControllerAlias::class);
 
-        // Blog
-        Route::resource('blog', BlogControllerAlias::class);
 
         // Gallery Image
         Route::resource('manage-gallery', GalleryControllerAlias::class);

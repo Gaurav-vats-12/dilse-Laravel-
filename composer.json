@@ -19,6 +19,7 @@
         "php-flasher/flasher-laravel": "^1.15",
         "php-flasher/flasher-notyf-laravel": "^1.15",
         "spatie/image": "^2.2",
+        "spatie/laravel-image-optimizer": "^1.7",
         "stripe/stripe-php": "^11.0"
     },
     "require-dev": {

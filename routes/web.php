@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\URL;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::middleware('optimizeImages')->group(function () {
 // Home Page
 Route::get('/', [HomeController::class, 'Homepage'])->name('home');
 // Contact Us
@@ -41,15 +41,10 @@ Route::get('/blog/{slug}', [BlogControllerAlias::class, 'blogdetails'])->name('b
 Route::get('/menu/{slug}', [MenuControllerAlias::class, 'menu'])->name('menu');
 
 Route::get('/product/{slug}', [MenuControllerAlias::class, 'menudetails'])->name('menudetails');
-
-
 // Booking  a Reservation
 Route::get('/book-a-reservation', [BookingControllerAlias::class, 'bookATable'])->name('booktable');
 
 Route::get('/send', [HomeController::class, 'sendEmail']);
-
-
-
 // Add to Cart
 Route::prefix('cart')->name('cart.')->group(callback: function(){
     Route::get('/', [CartController::class, 'viewcart'])->name('view');
@@ -67,6 +62,7 @@ Route::prefix('thank-you')->name('thank-you.')->group(callback: function(){
     Route::get('/', [PaymentStatusController::class, 'OrderPaymentStatus'])->name('orderStatus');
 
 
+});
 });
 
 //  Slug Dependency
