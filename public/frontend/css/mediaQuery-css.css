@@ -93,6 +93,7 @@ li.page-item.disabled span.page-link {
         position: absolute;
         right: 80px;
         top: 28px;
+        list-style: none;
     }
     li.cart_responseive a span {
         position: absolute;
@@ -410,6 +411,19 @@ li.page-item.disabled span.page-link {
         padding-top: 60px !important;
     padding-bottom: 0 !important;
     }
+    .custm_nav_pills .nav{
+        flex: unset;
+        max-width: unset;
+    }
+    .shoping_main_top{
+        padding: 0 0 0 0;
+        max-width: 280px;
+    margin: 0 auto;
+    }
+    .quick_links{
+        position: relative;
+        z-index: 9;
+    }
 }
 @media screen and (max-width: 480px) {
     /*.container {*/
@@ -624,7 +638,7 @@ li.page-item.disabled span.page-link {
         padding-top: 40px;
     }
     .shoping_imge {
-        max-width: 332px;
+        max-width: unset;
         height: 202px;
     }
     .product_c_main ul#myTab {
@@ -653,7 +667,7 @@ li.page-item.disabled span.page-link {
         font-size: 20px;
     }
     header.main_header {
-        z-index: 999;
+        /* z-index: 999; */
         width: 100%;
         background-color: #000;
         position: sticky;

@@ -298,6 +298,7 @@ jQuery(document).ready(function () {
             infinite: true,
             speed: 300,
             slidesToShow: 4,
+            autoplay: true,
             slidesToScroll: 1,
             responsive: [
                 {
