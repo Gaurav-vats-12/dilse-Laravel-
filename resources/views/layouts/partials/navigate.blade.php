@@ -39,10 +39,6 @@
                                target="_blank"><img src="{{asset('frontend/img/insta-1.png') }}" alt=""/></a>
                         </li>
                         <li>
-                            <a href="{{ setting('twitter_url') != null ? setting('twitter_url') : '' }}"
-                               target="_blank"><img src="{{asset('frontend/img/twi.png') }}" alt=""/></a>
-                        </li>
-                        <li>
                             <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target="_blank"><img
                                         src="{{asset('frontend/img/blogto.png') }}" alt=""/></a>
                         </li>
