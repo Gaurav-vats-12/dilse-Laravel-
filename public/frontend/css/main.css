@@ -2938,7 +2938,7 @@ input[type="password"]::-ms-reveal {
     position: absolute;
     right: 0.75em;
     top: 1.25em;
-    /* z-index: 9999; */
+    z-index: 9999;
     margin: 6px 0 0 0;
     font-size: 16px;
 }
@@ -3536,3 +3536,6 @@ div#mmce-error-response {
     font-weight: 700;
     font-size: larger;
 }
+/* div#v-pills-tab {
+    display: none !important;
+} */
