@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactUsController as ContactUsControllerAlias;
 use App\Http\Controllers\MenuController as MenuControllerAlias;
 use Illuminate\Support\Facades\Route as RouteAlias;
 
+Route::middleware(['optimizeImages','addExpires'])->group(function () {
 //Contact Us
 RouteAlias::post('/contact-us', [ContactUsControllerAlias::class, 'submitContactFormAjax'])->name('contact-us-form');
 //Email Subcriptiopn
@@ -26,4 +27,5 @@ RouteAlias::prefix('cart')->name('cart.')->group(callback: function (){
 //Checkout
 RouteAlias::prefix('checkout')->name('checkout.')->group(callback: function (){
     RouteAlias::POST('/create', [CheckoutControllerAlias::class, 'create'])->name('create');
+});
 });

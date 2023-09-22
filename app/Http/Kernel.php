@@ -22,6 +22,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Illuminate\Http\Middleware\HandleCors::class,
+        \App\Http\Middleware\AddExpiresHeader::class,
+
     ];
 
     /**
@@ -67,5 +69,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checkUser'=>\App\Http\Middleware\CheckUserLogin::class,
         'optimizeImages' => \Spatie\LaravelImageOptimizer\Middlewares\OptimizeImages::class,
+        'addExpires' => \App\Http\Middleware\AddExpiresHeader::class,
+
     );
 }
