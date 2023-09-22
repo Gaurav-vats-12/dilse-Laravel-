@@ -10,7 +10,7 @@ use App\Modules\Admins\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Modules\Admins\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['as' => 'admin.', 'prefix' => '/admin', 'middleware' => ['web', 'admin.guest']], function () {
+Route::group(['as' => 'admin.', 'prefix' => '/admin', 'middleware' => ['web', 'admin.guest','addExpires']], function () {
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');

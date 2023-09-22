@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\URL;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::middleware('optimizeImages')->group(function () {
+Route::middleware(['optimizeImages','addExpires'])->group(function () {
 // Home Page
 Route::get('/', [HomeController::class, 'Homepage'])->name('home');
 // Contact Us

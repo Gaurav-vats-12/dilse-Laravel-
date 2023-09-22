@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\FoodItemController as FoodItemControllerAlias;
 use App\Http\Controllers\Admin\ExtraFoodItemController as ExtraFoodItemControllerAlias;
 
 Route::prefix('admin')->name('admin.')->group(callback: function(){
-    Route::middleware(['web', 'admin.auth', 'admin.verified'])->group(callback: function(){
+    Route::middleware(['web', 'admin.auth', 'admin.verified','addExpires'])->group(callback: function(){
         Route::get('/dashboard', [AdminControllerAlias::class, 'dashboard'])->name('dashboard');
         Route::resource('banner', BannerControllerAlias::class);
         // Route::get('/banner/changeStatus/{id}', [BannerController::class, 'updateStatus'])->name('banner.changeStatus');
