@@ -84,7 +84,7 @@ Route::prefix('admin')->name('admin.')->group(callback: function(){
         Route::prefix('manage-customer')->name('manage-customer.')->group(callback: function(){
             Route::get('/', [CustomerControllerAlias::class, 'index'])->name('index');
             Route::get('/view/{id}', [CustomerControllerAlias::class, 'show'])->name('view');
-            Route::get('/control/{id}', [CustomerControllerAlias::class, 'control'])->name('control');
+            Route::PUT('/control/{id}', [CustomerControllerAlias::class, 'control'])->name('control');
 
         });
 

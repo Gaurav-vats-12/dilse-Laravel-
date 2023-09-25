@@ -16,6 +16,7 @@ class CustomerController extends Controller
     }
     public function show(string $id)
     {
+
         return view('admin.page.customer.view')->with('user',User::findOrFail($id));
     }
     public function control(Request $request ,string $id)

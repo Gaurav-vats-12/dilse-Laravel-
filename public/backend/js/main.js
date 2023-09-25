@@ -299,6 +299,11 @@ jQuery( function () {
             ]
         });
 
+    }else if(url.indexOf("/manage-customer") > -1){
+        jQuery(document).on("click", "#user_status", async function (event) {
+            var form =  $(this).closest("form");
+            form.submit();
+        });
     }
 
 });
