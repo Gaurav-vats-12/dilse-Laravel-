@@ -524,7 +524,9 @@ jQuery(document).ready(function () {
         });
     });
 
- } else  if (url.indexOf("/checkout") > -1) {
+ }
+
+ else  if (url.indexOf("/checkout") > -1) {
 
     jQuery("#dilvery_tip").on("input", function(evt) {
         jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
@@ -584,6 +586,53 @@ jQuery(document).ready(function () {
 
 
 
+
+    } else if(url.indexOf("/user/login") > -1){
+        var rememberMe = $.cookie("rememberMe");
+        var encodedText = $.cookie("encodedText");
+        if (rememberMe === "true") {
+            var decodedText = atob(encodedText);
+            var result = decodedText.split(':');
+                jQuery("#email").val(result[0]);
+                jQuery("#password").val(result[1]);
+                jQuery('#remember_me').attr('checked',true);
+        }
+        jQuery(document).on("click", "#remember_me", async function (event) {
+            if (jQuery(this).is(":checked")) {
+                if (jQuery("#email").val() === "" && jQuery("#password").val() === "") {
+                    NotyfMessage('Please Fill the email and password', 'error');
+                }else{
+                    $.cookie("rememberMe", "true");
+                    $.cookie("sessionId", generateSessionId());
+                    $.cookie("encodedText", btoa(`${jQuery("#email").val()}:${jQuery("#password").val()}`));
+                }
+            }else{
+                $.removeCookie("rememberMe");
+                $.removeCookie("sessionId");
+                $.removeCookie("encodedText");
+            }
+
+
+
+            //     // sessionStorage.setItem("dropselvalue", dropselvalue);
+
+            //     // $.cookie("remember", "true", { expires: 30 }); // Expires in 30 days
+            //     // $.cookie("email", email, { expires: 30 });
+            //     // $.cookie("password", password, { expires: 30 });
+            // }else{
+            //     // $.removeCookie("remember");
+            //     // $.removeCookie("email");
+            //     // $.removeCookie("password");
+            // }
+            // // if(jQuery('input[name="remember"]:checked'))
+            // // {
+            // //     console.log('checked');
+            // // }else{
+            // //   // unchecked
+            // //   console.log('unchecked');
+            // // }
+
+        });
 
     }else if (url.indexOf("/user/order") > -1) {
         jQuery(document).on("change", ".manage_by_order", async function (event) {
