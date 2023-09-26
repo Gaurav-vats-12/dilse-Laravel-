@@ -59,6 +59,7 @@ public function update_details(Request $request){
                 if(!$cart) {
                     $cart = [
                         $product_uid => [
+                            'id'=>$product_uid,
                             "name" => $product->name,
                             "quantity" => 1,
                             "price" => $product->price,
@@ -75,6 +76,7 @@ public function update_details(Request $request){
                     return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
                 }
                 $cart[$product_uid] = [
+                    'id'=>$product_uid,
                     "name" => $product->name,
                     "quantity" => 1,
                     "price" => $product->price,
