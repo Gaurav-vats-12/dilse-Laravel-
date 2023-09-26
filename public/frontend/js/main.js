@@ -537,32 +537,6 @@ jQuery(document).ready(function () {
 
 
 
-    } else if(url.indexOf("/user/login") > -1){
-        var rememberMe = $.cookie("rememberMe");
-        var encodedText = $.cookie("encodedText");
-        if (rememberMe === "true") {
-            var decodedText = atob(encodedText);
-            var result = decodedText.split(':');
-                jQuery("#email").val(result[0]);
-                jQuery("#password").val(result[1]);
-                jQuery('#remember_me').attr('checked',true);
-        }
-        jQuery(document).on("click", "#remember_me", async function (event) {
-            if (jQuery(this).is(":checked")) {
-                if (jQuery("#email").val() === "" && jQuery("#password").val() === "") {
-                    NotyfMessage('Please Fill the email and password', 'error');
-                }else{
-                    $.cookie("rememberMe", "true");
-                    $.cookie("sessionId", generateSessionId());
-                    $.cookie("encodedText", btoa(`${jQuery("#email").val()}:${jQuery("#password").val()}`));
-                }
-            }else{
-                $.removeCookie("rememberMe");
-                $.removeCookie("sessionId");
-                $.removeCookie("encodedText");
-            }
-        });
-
     }else if (url.indexOf("/user/order") > -1) {
         jQuery(document).on("change", ".manage_by_order", async function (event) {
             jQuery(`#OrderStatus`).empty().html('<h2 class="text-center"> Processing</h2>');
