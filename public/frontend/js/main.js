@@ -51,15 +51,22 @@ jQuery(document).ready(function () {
     jQuery(document).on("click", "#add_to_cart", async function (event) {
         jQuery(this).toggleClass(`added`);
         let ajax_url = jQuery(this).attr('cart_ajax_url');
+        console.log(ajax_url);
         let product_uid = jQuery(this).attr("product_uid");
         let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
+        let cart_type = jQuery(this).attr('cart_type');
         let product_quntity = jQuery(`#product_quntity_${product_uid}`).val();
-        const resPose = await Ajax_response(ajax_url, "POST", { product_uid, product_quntity, is_spisy }, '');
+        let ajax_value = { product_uid, product_quntity, is_spisy };
+        const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
             setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 1000);
             NotyfMessage(resPose.message, 'success');
             jQuery(`.cart_count`).html(resPose.cart_total);
+            if (cart_type ==='extra_items') {
+                jQuery(`#cart_messages`).empty().html(resPose.html);
+            }
         }
+
     });
     /**
  *  testimonial_slider   (Home Page)
@@ -97,47 +104,6 @@ jQuery(document).ready(function () {
             jQuery(this).siblings(".read-more").hide();
         }
     });
-
-
-    /**
-     * Subscribe Our Newsletter Submission Form Ajax (Home Page)
-     */
-    // jQuery("#mc-embedded-subscribe-form").validate({
-    //     rules: {
-    //         EMAIL: {
-    //             required: true,
-    //             email: true,
-    //         }
-    //     },
-    //     messages: {
-    //         EMAIL: {
-    //             required: "Please Enter the  email address",
-    //             maxlength: "Please Enter vaid email address"
-    //         }
-    //     },
-    //     submitHandler: async function (form, event) {
-    //         // jQuery(".theme_btn").attr("disabled", true);
-    //         // jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
-    //         // event.preventDefault();
-    //         // let ajax_value_list = jQuery('#emailSubscribeForm').serialize(), ajx_url = jQuery('#email_action_url').val();
-    //         // const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
-    //         // jQuery(".theme_btn").attr("disabled", false);
-    //         // jQuery(".btn-txt").text("Subscribe Now");
-    //         // if (resPose.status === `success`) {
-    //         //     NotyfMessage(resPose.message, 'success');
-    //         //     jQuery("#emailSubscribeForm")[0].reset();
-    //         // } else if (resPose.status === `error`) {
-    //         //     NotyfMessage(resPose.message, 'warning');
-    //         //     jQuery("#emailSubscribeForm")[0].reset();
-    //         // } else if (resPose.status === `error_message`) {
-    //         //     NotyfMessage(resPose.message, 'warning');
-    //         //     jQuery("#emailSubscribeForm")[0].reset();
-    //         // } else {
-    //         //     jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
-    //         // }
-    //     }
-    // });
-
     /**
  *     Contact us Form Submission  iN ajax   (Home Page ,Contact Us Page)
  */
@@ -490,25 +456,7 @@ jQuery(document).ready(function () {
                     }
                 }
             });
-        /**
-        *  Add to Cart  In Website (Extra_Items)
-        */
-       jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
-           jQuery(this).toggleClass(`added`);
-           let ajax_url = jQuery(this).attr('cart_ajax_url');
-           let product_uid = jQuery(this).attr("product_uid");
-           let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
-           let product_quntity = jQuery(`#product_quntity_${product_uid}`).val();
-           let ajax_value = {product_uid, product_quntity, is_spisy};
-           const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-           if (resPose.status === `success`) {
-                  NotyfMessage(resPose.message,'success');
-                   jQuery(`.cart_count`).html(resPose.cart_total);
-                   setTimeout(function () {
-                       window.location.reload()
-                   }, 1000);
-           }
-    });
+// Remkove from Add to cart
 
     jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
         let form =  jQuery(this).closest("form");

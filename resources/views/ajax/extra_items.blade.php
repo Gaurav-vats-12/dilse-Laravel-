@@ -18,7 +18,7 @@
 
                         <input type="hidden" name="product_quntity" id="product_quntity_{{$extra_item->id}}" value="1">
                         <input type="hidden" name="is_spisy" id="is_spisy_{{$extra_item->id}}" value="{{($extra_item->menu->menu_slug =='desserts' || $extra_item->menu->menu_slug =='drinks' ||$extra_item->menu->menu_slug =='breads' ) ? 'true' : 'false'}}">
-                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart_extra" role="button" cart_ajax_url ="{{ route('cart.add') }}"  product_uid ="{{ $extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
+                        <a href="javascript:void(0)" class="view_product theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" role="button" cart_type="extra_items" cart_ajax_url ="{{ route('cart.add') }}"  product_uid ="{{ $extra_item->id }}">  <span class="add-to-cart">Add to cart</span>
                             <span class="added-to-cart">Added to cart</span>
                         </a>
 </div>

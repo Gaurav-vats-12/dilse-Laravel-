@@ -286,7 +286,7 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
             <div class="best_food_btn">
                 <input type="hidden" name="product_quntity" id="product_quntity_{{$FoodItemValue->id}}" value="1">
                 <input type="hidden" name="is_spisy" id="is_spisy_{{$FoodItemValue->id}}" value="{{($FoodItemValue->menu->menu_slug =='desserts' || $FoodItemValue->menu->menu_slug =='drinks' ||$FoodItemValue->menu->menu_slug =='breads' ) ? 'true' : 'false'}}">
-              <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" role="button" cart_ajax_url ="{{ route('cart.add') }}"  product_uid ="{{ $FoodItemValue->id }}"> <span class="add-to-cart">Add to cart</span>
+              <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" cart_type="cart" role="button" cart_ajax_url ="{{ route('cart.add') }}"  product_uid ="{{ $FoodItemValue->id }}"> <span class="add-to-cart">Add to cart</span>
                 <span class="added-to-cart">Added to cart</span>
               </a>
             </div>

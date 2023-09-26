@@ -3544,3 +3544,9 @@ div#mmce-error-response {
 .Product_slider button {
     display: none !important;
 }
+
+.payment-metho-radio li .radio-item_1 input:checked + label {
+    background: #eb0029;
+    border: 1px solid hsl(0deg 0% 95%);
+    color: #fff !important;
+}
