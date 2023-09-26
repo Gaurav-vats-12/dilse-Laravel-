@@ -177,10 +177,3 @@ public function update_details(Request $request){
         }
     }
 }
-
-
-
-
-
-
-
