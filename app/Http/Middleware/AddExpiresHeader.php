@@ -11,7 +11,7 @@ class AddExpiresHeader
         $response = $next($request);
 
         // Set Expires header to one week from the current date
-        $response->header('Expires', gmdate('D, d M Y H:i:s', time() + 604800) . ' GMT');
+        // $response->header('Expires', gmdate('D, d M Y H:i:s', time() + 604800) . ' GMT');
 
         return $response;
     }
