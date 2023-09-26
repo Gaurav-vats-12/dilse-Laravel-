@@ -19,7 +19,7 @@
                                 <div class="best_food_btn">
                                     <input type="hidden" name="product_quntity" id="product_quntity_{{$FoodItems->id}}" value="1">
                                     <input type="hidden" name="is_spisy" id="is_spisy_{{$FoodItems->id}}" value="{{($FoodItems->menu->menu_slug =='desserts' || $FoodItems->menu->menu_slug =='drinks' ||$FoodItems->menu->menu_slug =='breads' ) ? 'true' : 'false'}}">
-                                    <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" cart_type="cart" role="button" cart_ajax_url ="{{ route('cart.add') }}"  product_uid ="{{ $FoodItems->id }}"> <span class="add-to-cart">Add to cart</span>
+                                    <a href="javascript:void(0)" class="theme_btn btn-block text-center add-to-cart-button" id="add_to_cart" role="button" cart_ajax_url ="{{ route('cart.add') }}"  product_uid ="{{ $FoodItems->id }}"> <span class="add-to-cart">Add to cart</span>
                                         <span class="added-to-cart">Added to cart</span>
                                     </a>
                                 </div>
