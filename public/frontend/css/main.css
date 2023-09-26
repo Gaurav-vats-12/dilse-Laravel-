@@ -3544,3 +3544,10 @@ div#mmce-error-response {
 .Product_slider button {
     display: none !important;
 }
+._user_toggle_button {
+    float: right;
+    cursor: pointer;
+    position: absolute;
+    transform: translateY(66%);
+    margin: 0 0 0 -32px;
+}
