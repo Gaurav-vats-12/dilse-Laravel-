@@ -51,7 +51,6 @@ jQuery(document).ready(function () {
     jQuery(document).on("click", "#add_to_cart", async function (event) {
         jQuery(this).toggleClass(`added`);
         let ajax_url = jQuery(this).attr('cart_ajax_url');
-        console.log(ajax_url);
         let product_uid = jQuery(this).attr("product_uid");
         let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
         let cart_type = jQuery(this).attr('cart_type');
@@ -59,6 +58,8 @@ jQuery(document).ready(function () {
         let ajax_value = { product_uid, product_quntity, is_spisy };
         const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
         if (resPose.status === `success`) {
+            jQuery(`#cart_messages`).empty().html(resPose.html);
+            jQuery('#cart_functionalty').html(resPose.html2);
             setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 1000);
             NotyfMessage(resPose.message, 'success');
             jQuery(`.cart_count`).html(resPose.cart_total);
