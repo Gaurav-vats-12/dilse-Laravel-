@@ -64,6 +64,7 @@ jQuery(document).ready(function () {
             jQuery(`.cart_count`).html(resPose.cart_total);
             if (cart_type ==='extra_items') {
                 jQuery(`#cart_messages`).empty().html(resPose.html);
+                jQuery('#cart_functionalty').html(resPose.html2);
             }
         }
 
@@ -559,27 +560,6 @@ jQuery(document).ready(function () {
                 $.removeCookie("sessionId");
                 $.removeCookie("encodedText");
             }
-
-
-
-            //     // sessionStorage.setItem("dropselvalue", dropselvalue);
-
-            //     // $.cookie("remember", "true", { expires: 30 }); // Expires in 30 days
-            //     // $.cookie("email", email, { expires: 30 });
-            //     // $.cookie("password", password, { expires: 30 });
-            // }else{
-            //     // $.removeCookie("remember");
-            //     // $.removeCookie("email");
-            //     // $.removeCookie("password");
-            // }
-            // // if(jQuery('input[name="remember"]:checked'))
-            // // {
-            // //     console.log('checked');
-            // // }else{
-            // //   // unchecked
-            // //   console.log('unchecked');
-            // // }
-
         });
 
     }else if (url.indexOf("/user/order") > -1) {
