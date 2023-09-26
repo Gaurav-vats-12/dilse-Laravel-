@@ -25,9 +25,7 @@
    <script src="{{asset('plugins/jqueryscripttop/js/jquery-editable-select.js')}}"></script>
    <!-- InputMask -->
    <script src="{{asset('plugins/inputmask/jquery.inputmask.min.js') }}"></script>
-   <script src="{{asset('plugins/jquery-cookie/js/jquery.cookie.js') }}"></script>
    <!-- main.js -->
-
     <script src="{{asset('frontend/js/main.js') }}"></script>
     <!-- Common.js -->
 <script src="{{asset('plugins/commonFunction/js/common.js') }}"></script>

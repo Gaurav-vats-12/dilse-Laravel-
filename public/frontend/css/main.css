@@ -3550,4 +3550,9 @@ div#mmce-error-response {
     position: absolute;
     transform: translateY(66%);
     margin: 0 0 0 -32px;
+
+.payment-metho-radio li .radio-item_1 input:checked + label {
+    background: #eb0029;
+    border: 1px solid hsl(0deg 0% 95%);
+    color: #fff !important;
 }
