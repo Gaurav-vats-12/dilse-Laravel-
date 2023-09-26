@@ -49,45 +49,68 @@ public function update_details(Request $request){
      * @noinspection PhpUndefinedFieldInspection
      */
     public function addtocart(Request $request ){
+
         try {
             if (!empty($request->product_uid)) {
-                $product_uid =(int)$request->product_uid;
-                $product=FoodItemAlias::find( $product_uid);
-                if(!$product) {abort(404);}
-                $cart = session()->get('cart');
-                // if cart is empty then this the first product
-                if(!$cart) {
-                    $cart = [
-                        $product_uid => [
-                            'id'=>$product_uid,
+                $id =(int)$request->product_uid;
+                $product = FoodItemAlias::findOrFail($id);
+                $cart = session()->get('cart', []);
+                if(isset($cart[$id])) {
+                    $cart[$id]['quantity']++;
+                    session()->put('cart', $cart);
+                } else {
+                    $cart[$id] = [
+                        'id'=>$id,
                             "name" => $product->name,
                             "quantity" => 1,
                             "price" => $product->price,
                             "image" => $product->image,
                             'is_spisy' => $request->is_spisy
-                        ]
                     ];
                     session()->put('cart', $cart);
-                    return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
-                }  if(isset($cart[$product_uid])) {
-
-                    $cart[$product_uid]['quantity']++;
-                    session()->put('cart', $cart);
-                    return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
                 }
-                $cart[$product_uid] = [
-                    'id'=>$product_uid,
-                    "name" => $product->name,
-                    "quantity" => 1,
-                    "price" => $product->price,
-                    "image" => $product->image,
-                    'is_spisy' => $request->is_spisy
-                ];
-                session()->put('cart', $cart);
-                return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
+
+                $html =  view('ajax.add_to_cart')->render();
+                return response()->json(['code' => 200 , 'status' =>'success','html'=>$html ,'cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
             }else{
-                return response()->json(['code' => 203 ,  'cart_total'=>null,'status' =>'error', "message"=>"Product Id Not Found"]);
+                return response()->json(['code' => 203 , 'html'=>'' ,'cart_total'=>null,'status' =>'error', "message"=>"Product Id Not Found"]);
             }
+            //
+            //     $product=FoodItemAlias::find( $product_uid);
+            //     if(!$product) {abort(404);}
+            //     $cart = session()->get('cart');
+            //     if(!$cart) {
+            //         $cart = [
+            //             $product_uid => [
+            //                 'id'=>$product_uid,
+            //                 "name" => $product->name,
+            //                 "quantity" => 1,
+            //                 "price" => $product->price,
+            //                 "image" => $product->image,
+            //                 'is_spisy' => $request->is_spisy
+            //             ]
+            //         ];
+            //         session()->put('cart', $cart);
+            //         return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
+            //     }  if(isset($cart[$product_uid])) {
+
+            //         $cart[$product_uid]['quantity']++;
+            //         session()->put('cart', $cart);
+            //         return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
+            //     }
+            //     $cart[$product_uid] = [
+            //         'id'=>$product_uid,
+            //         "name" => $product->name,
+            //         "quantity" => 1,
+            //         "price" => $product->price,
+            //         "image" => $product->image,
+            //         'is_spisy' => $request->is_spisy
+            //     ];
+            //     session()->put('cart', $cart);
+            //     return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
+            // }else{
+            //
+            // }
         } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
             return response()->json(['code' => 400 ,  'cart_total'=>nullValue(),'status' =>'error', "message"=>"Something Wrong"]);
         }
