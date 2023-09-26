@@ -49,6 +49,7 @@ public function update_details(Request $request){
      * @noinspection PhpUndefinedFieldInspection
      */
     public function addtocart(Request $request ){
+
         try {
             if (!empty($request->product_uid)) {
                 $product_uid =(int)$request->product_uid;
@@ -59,13 +60,11 @@ public function update_details(Request $request){
                 if(!$cart) {
                     $cart = [
                         $product_uid => [
-                            'id'=>$product_uid,
                             "name" => $product->name,
                             "quantity" => 1,
                             "price" => $product->price,
                             "image" => $product->image,
                             'is_spisy' => $request->is_spisy
-                        ]
                     ];
                     session()->put('cart', $cart);
                     return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
@@ -76,7 +75,6 @@ public function update_details(Request $request){
                     return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
                 }
                 $cart[$product_uid] = [
-                    'id'=>$product_uid,
                     "name" => $product->name,
                     "quantity" => 1,
                     "price" => $product->price,
@@ -86,7 +84,7 @@ public function update_details(Request $request){
                 session()->put('cart', $cart);
                 return response()->json(['code' => 200 , 'status' =>'success','cart_total'=> count((array) session('cart')),"message"=>"Product added to cart successfully."]);
             }else{
-                return response()->json(['code' => 203 ,  'cart_total'=>null,'status' =>'error', "message"=>"Product Id Not Found"]);
+                return response()->json(['code' => 203 , 'html'=>'' ,'cart_total'=>null,'status' =>'error', "message"=>"Product Id Not Found"]);
             }
         } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
             return response()->json(['code' => 400 ,  'cart_total'=>nullValue(),'status' =>'error', "message"=>"Something Wrong"]);
@@ -157,16 +155,7 @@ public function update_details(Request $request){
                     unset($cart[$id]);
                     session()->put('cart', $cart);
                 }
-//                foreach ($cart as $key => $details) {
-//                    $subtotal =  $subtotal + round($details["price"] ,2) ;
-//                }
-//                if(session('order_type') == 'delivery'){
-//                    $total_before_Tex =   $subtotal + setting('delivery_charge' ,0.00);
-//                }else{
-//                    $total_before_Tex =  $subtotal ;
-//                }
-//                $total_tax = round(($total_before_Tex * setting('tax' ,0.00)) / 100 ,2);
-//                $total = $total_before_Tex+$total_tax;
+
                 notyf()->duration(2000) ->addSuccess('Product  Remove from add to cart  successfully');
                 return redirect()->back();
             }else{

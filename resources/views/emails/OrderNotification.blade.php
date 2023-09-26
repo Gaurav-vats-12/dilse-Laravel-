@@ -52,7 +52,6 @@
             <tbody>
             @php  $subtotal = 0; @endphp
             @foreach ($orderMail['CartDetails']->orderItems as $keys=>  $items)
-
                 <tr>
                 <td  >{{ $keys + 1 }}</td>
                 <td>{{ $items->product->name }}</td>
@@ -102,12 +101,10 @@
         <p  style=" color: #fff;"><strong>Order Total: {{setting('site_currency')}}{{$orderMail['CartDetails']->total_amount}}</strong></p>
         <p  style=" color: #fff;"><strong>Spice Level	: {{$orderMail['CartDetails']->spice_lavel}}</strong></p>
 
-        <p style="color: #ffff !importent; font-size: 14px;"> {{ $orderMail['PaymentResponse']['statusMessage'] === "error" ? "We have initiated the refund process for your payment. Please allow some time for the refund to be processed." : "" }}</p>
-
-        <p style="color: #ffff !importent; font-size: 14px;">If you have any questions or need further information, please contact us at {{ setting('site_email') != null ? __(setting('site_email')) : '' }}  or {{ setting('phone') != null ? __(setting('phone')) : '' }}.</p>
-
-        <p style="color: #ffff ;padding: 20px 0; font-size: 18px;">Thank you for choosing our service.</p>
-        <p style="color:#eb0029;text-align: right;font-size: 22px;">Regards,<br><span style="color: #fff;font-size: 16px;"> Site Name</span></p>
+        <p style="color: #fff !importent; font-size: 14px;"> {{ $orderMail['PaymentResponse']['statusMessage'] === "error" ? "We have initiated the refund process for your payment. Please allow some time for the refund to be processed." : "" }}</p>
+        <p style="color: #fff !importent; font-size: 14px;">If you have any questions or need further information, please contact us at {{ setting('site_email') != null ? __(setting('site_email')) : '' }}  or {{ setting('phone') != null ? __(setting('phone')) : '' }}.</p>
+        <p style="color: #fff ;padding: 20px 0; font-size: 18px;">Thank you for choosing our service.</p>
+        <p style="color:#eb0029;text-align: right;font-size: 22px;">Regards,<br><span style="color: #fff;font-size: 16px;">Dil Se Indian Restaurant & Bar </span></p>
     </div>
 </body>
 </html>

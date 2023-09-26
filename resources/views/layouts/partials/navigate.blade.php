@@ -39,17 +39,14 @@
                                target="_blank"><img src="{{asset('frontend/img/insta-1.png') }}" alt=""/></a>
                         </li>
                         <li>
-                            <a href="{{ setting('twitter_url') != null ? setting('twitter_url') : '' }}"
-                               target="_blank"><img src="{{asset('frontend/img/twi.png') }}" alt=""/></a>
-                        </li>
-                        <li>
                             <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target="_blank"><img
                                         src="{{asset('frontend/img/blogto.png') }}" alt=""/></a>
                         </li>
                         <select class="select_location" name="select_location" id="select_location" ajax_value ="{{ route('cart.update_details')}}" location_Type="location">
-                                <option value="Toronto">Toronto</option>
-                                <option value="Brampton">Brampton</option>
-                            </select></li>
+                        <option value="Toronto" {{ session('update_location') =='Toronto'? 'selected' : '' }}>Toronto</option>
+                        <option value="Brampton" {{ session('update_location') =='Brampton'? 'selected' : '' }}>Brampton</option>
+                            </select>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -68,10 +65,7 @@
                     </ul>
                 </div>
                 <div class="site_logo">
-                    <a href="{{ url('/')}}"><img
-                                src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/site-logo-dil.png')  }}"
-                                alt="">
-                    </a>
+                <a href="{{ url('/')}}"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/white-logo.svg')  }}"  alt=""> </a>
                 </div>
                 <div class="menu_left menu_right">
                     <ul>

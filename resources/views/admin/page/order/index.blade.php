@@ -24,7 +24,7 @@
               </div>
                         <div class="card-body">
                             <table id="manage_orders" class="table table-bordered table-hover">
-                                <thead class="text-uppercase">
+                                <thead >
                                     <tr>
                                  <th>Id </th>
                                 <th>Date</th>
@@ -42,7 +42,7 @@
                                             <td>  {{ __( date("d M ,Y", strtotime($order->order_date)) ) }} ({{ __( DateTime::createFromFormat('H:i:s',explode(' ', $order->order_date )[1])->format('h:i:s A') ) }} )</td>
                                             <td class="text-capitalize">  {{ $order->order_type }}  </td>
                                             <td class="" > @if(isset($order) && isset($order->payment) && isset($order->payment->payment_amount)) {{ $order->payment->payment_method }}   @endif</td>
-                                            <td class=""><div class="d-flex align-items-center"> <div class="d-flex flex-column">  {{ $order->full_name }} <span class="mb-1 text-decoration-none fs-6">{{ $order->email_address }}</span></div> </div></td>
+                                            <td class=""><div class="d-flex align-items-center"> <div class="d-flex flex-column">  {{ $order->full_name }} -<span class="text-capitalize"> ( {{ $order->user_type }})</span> <span class="mb-1 text-decoration-none fs-6">{{ $order->email_address }}</span></div> </div></td>
                                             <td class="project-actions"> <a class="btn btn-info btn-sm" href="{{ route('admin.order.show' , $order->id) }}"><i class="fa-solid fa-eye"  title="View"></i>  </a> @if( $order->status =='Pending')  <a href="javascript:void(0)" id="append_pop_ups"  class="btn btn-info btn-sm" order_uid = "{{ $order->id }}"> <i class="fa-solid fa-plus" title="Pnding" ></i></a> @endif @if( $order->status =='Processing') <input type="hidden" name="ajax_value" id="ajax_value" value="{{ route('admin.order.ChangeOrderStatus') }}"> <a href="javascript:void(0)" id="ChangeOrderStatus"  class="btn btn-info btn-sm" order_uid = "{{ $order->id }}"><i class="fa-solid fa-minus" title="Accept" ></i> </a> @endif </td>
                                             <div class="order_data">@include('admin.page.order.includes.order_accept')  </div>
                                         </tr>

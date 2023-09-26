@@ -21,9 +21,9 @@ class PaymentFormServices{
     /** @noinspection PhpUnreachableStatementInspection */
     public function PaymentForm($request){
 
-        $user_id = !AuthAlias::guard('user')->check() ? NULL : AuthAlias::guard('user')->id();
+        $user_id = !AuthAlias::guard('user')->check() ? null : AuthAlias::guard('user')->id();
+        $user_type = !AuthAlias::guard('user')->check() ? 'guest' : 'user';
         if(AuthAlias::guard('user')->check()){
-
             $user = AuthAlias::guard('user')->user();
             $user->phone = $request->billing_phone;
             $user->save();
@@ -34,6 +34,7 @@ class PaymentFormServices{
         $grand_Total = round($request->sub_total ,2) +  round($request->tax_total ,2)+ round($request->shipping_charge ,2) + $dilvery_tip;
         $order_id = Order::insertGetId([
             'user_id' => $user_id,
+            'user_type' => $user_type,
             "order_date" => date("Y-m-d H:i:s"),
             'full_name' => $request->billing_full_name,
             'email_address' => $request->billing_email,
@@ -55,11 +56,11 @@ class PaymentFormServices{
 
         $cart_datals = [];
         $cart = session()->get('cart', []);
-        foreach ($cart as $key => $details) $cart_datals[] = [
+        foreach ($cart as $key => $details)   $cart_datals[] = [
             'order_id' => $order_id,
-            'product_id' => $details['id'],
-            'quantity' => $details['quantity'],
+            'product_id' =>$key,
             'price' => $details['price'],
+            'quantity'=>$details['quantity'],
             'created_at' => now(),
             'updated_at' => now()
         ];

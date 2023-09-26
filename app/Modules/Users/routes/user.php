@@ -5,7 +5,7 @@ use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route as RouteAlias;
 
 RouteAlias::prefix('user')->name('user.')->group(callback: function(){
-    RouteAlias::middleware(['web', 'user.auth', 'user.verified'])->group(callback: function(){
+    RouteAlias::middleware(['web', 'user.auth', 'user.verified','addExpires'])->group(callback: function(){
         // User Dashboard
         RouteAlias::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard')->middleware('checkUser');
         // View and update Profile Routes

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             Adminseeder::class,
             MenuSeeder::class,
+            FoodItemsAttribute::class,
             PageSeeder::class,
             SettingSeeder::class,
             CountriesTableSeeder::class,
@@ -27,7 +28,6 @@ class DatabaseSeeder extends Seeder
             CitiesTableChunkThreeSeeder::class,
             CitiesTableChunkFourSeeder::class,
             CitiesTableChunkFiveSeeder::class,
-
         ]);
         $this->command->info('Finished!');
 
