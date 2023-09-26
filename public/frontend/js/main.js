@@ -54,12 +54,22 @@ jQuery(document).ready(function () {
         let product_uid = jQuery(this).attr("product_uid");
         let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
         let product_quntity = jQuery(`#product_quntity_${product_uid}`).val();
+        let ajaxValue = { product_uid, product_quntity, is_spisy };
         const resPose = await Ajax_response(ajax_url, "POST", { product_uid, product_quntity, is_spisy }, '');
         if (resPose.status === `success`) {
             setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 1000);
             NotyfMessage(resPose.message, 'success');
             jQuery(`.cart_count`).html(resPose.cart_total);
         }
+        //
+        //
+        //
+        //
+        // if (resPose.status === `success`) {
+        //     setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 1000);
+        //     NotyfMessage(resPose.message, 'success');
+        //     jQuery(`.cart_count`).html(resPose.cart_total);
+        // }
     });
     /**
  *  testimonial_slider   (Home Page)

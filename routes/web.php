@@ -47,7 +47,7 @@ Route::get('/book-a-reservation', [BookingControllerAlias::class, 'bookATable'])
 Route::get('/send', [HomeController::class, 'sendEmail']);
 // Add to Cart
 Route::prefix('cart')->name('cart.')->group(callback: function(){
-    Route::get('/', [CartController::class, 'viewcart'])->name('view');
+    Route::GET('/', [CartController::class, 'viewcart'])->name('view');
      Route::POST('/update-details', [CartController::class, 'update_details'])->name('update_details');
 });
 
