@@ -47,7 +47,7 @@ function updateCountryCode(countryCode ,) {
     phoneInput.val(phoneInput.val().replace(/^\+9/, countryCode));
   }
 
-  jQuery(document).on("click", "#btnToggle", function (event) {
+  jQuery(document).on("click", "#btnToggle", function (event) {3
     let passwordItd;
     jQuery(this).find("#eyeIcon").toggleClass("fa-eye fa-eye-slash");
     if (jQuery(this).attr('passwordType') === 'password') {
@@ -63,8 +63,3 @@ function updateCountryCode(countryCode ,) {
         passwordItd.attr('type', 'password')
     }
 });
-
-function generateSessionId(){
-    return Math.floor(Math.random() * 1000000).toString();
-}
-
