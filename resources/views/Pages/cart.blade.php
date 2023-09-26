@@ -57,7 +57,19 @@
                    @endforeach
               <div class="row">
               @if (cart_functionalty('false',session('cart')) > 0)
-              <div class="col-md-6" id="cart_functionalty">
+
+                    @else
+                    <input type="hidden" name="spicy_lavel" id="spicy_lavel" value="" show_form= "false">
+                    @endif
+
+                </div>
+                            @else
+                            <h4> No Cart  Items Found</h4>  @endif
+                    </div>
+
+                    <div class="col-sm-12 col-md-7 col-lg-4" id="order_details">
+                        @if(session('cart'))
+                        <div id="cart_functionalty">
                         <h3>Add spice level</h3>
                         <div class="card-body">
                             <div class="form-group">
@@ -72,18 +84,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @else
-                    <input type="hidden" name="spicy_lavel" id="spicy_lavel" value="" show_form= "false">
-                    @endif
-
-                </div>
-                            @else
-                            <h4> No Cart  Items Found</h4>  @endif
-                    </div>
-
-                    <div class="col-sm-12 col-md-7 col-lg-4" id="order_details">
-                        @if(session('cart'))
+                        </div>
                             <div class="order_summary">
                                 <div class="tittle_heading">
                                     <h4> Order Summary </h4>
