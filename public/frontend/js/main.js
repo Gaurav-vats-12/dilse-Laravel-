@@ -417,7 +417,7 @@ jQuery(document).ready(function () {
         let type =  jQuery(this).attr('type');
         if (show_form ==='false') {
             if (subtotal < mimimum_ammout) {
-                NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b>.You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 </b>to place the order`, 'error');
+                NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 </b>to place the order`, 'error');
             }else{
                 if(type =='null'){
                     jQuery(`#staticBackdrop`).modal('show')
