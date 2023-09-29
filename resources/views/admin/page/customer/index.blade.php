@@ -43,7 +43,10 @@
 
                                 <td class="project-actions">
                                     <a class="btn btn-info btn-sm" href="{{ route('admin.manage-customer.view', $users->id) }}"><i class="fa-solid fa-eye"></i>  </a>
-                                    <a href="{{ route('admin.manage-customer.control', $users->id) }}" class="btn text-warning btn-sm" data-bs-toggle="tooltip" data-bs-original-title="inactive"><i class="fa-solid fa-user-large-slash"></i></a>
+                                    <form method="POST"
+                                                  action="{{ route('admin.manage-customer.control', $users->id) }}">  @csrf @method('PUT')
+                                                  <a href="javascript:void(0)" class="btn text-warning btn-sm" id="user_status" data-bs-toggle="tooltip" user_status="{{ $users->status == 1 ? 'active' : 'inactive' }}"><i class="fa-solid fa-user-large-slash"></i></a>
+                                            </form>
                                 </tr>
                                     @endforeach
                                 <tbody>
