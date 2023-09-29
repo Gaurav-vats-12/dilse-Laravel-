@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'About Us')
 @section('frontcontent')
-<section class="inner_bannner bg_style" style="background-image: url('{{asset('frontend/img/about_banner-image.png') }}')">
+<section class="inner_bannner bg_style" style="background-image: url('{{asset('frontend/img/about-banner.jpg') }}')">
         <div class="about_banner_section">
           <div class="home-slider-main">
             <div class="container">

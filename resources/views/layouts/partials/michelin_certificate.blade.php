@@ -1,22 +1,23 @@
 <section class="certified_crd py_8">
         <div class="container">
           <div class="row align-items-center">
-            <div class="col-md-7">
+            <div class="col-md-8 m-auto">
               <div class="certified_crd_cntnt">
-                <div class="tittle_heading text-start">
+                <div class="tittle_heading text-center mb-0">
                   <div class="certified_crd_img">
                     <img src="{{asset('frontend/img/Michelin-Logo.png') }}" alt="">
                   </div>
+                  <h2>Made With love Serve with Attention</h2>
                   <h2>
-                    We Are<br><span>Michelin</span> Certified
+                    We Are <span>Michelin</span> Certified
                   </h2>
                   <p>Dil Se is proud to announce that we have achieved Michelin certification, a prestigious recognition in the world of fine dining.</p>
-                  <h4>More Than <br>
-                    <span>1800+</span> Google  Review</h4>
+                  <h2>More Than <br>
+                    <span>1800+</span> Google  Review</h2>
                 </div>
               </div>
             </div>
-            <div class="col-md-5">
+            <!-- <div class="col-md-5">
               <div class="certified_img_txt">
                 <div class="certified_img text-center">
                   <img src="{{asset('frontend/img/certificate_img.png') }}" alt="">
@@ -28,7 +29,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </section>

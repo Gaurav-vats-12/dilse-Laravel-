@@ -73,19 +73,17 @@
 @include('layouts.partials.michelin_certificate')
 <section class="about_se py_8">
   <div class="container">
-    <div class="row">
+    <div class="row align-items-center">
       <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
         <div class="about_img">
-          <img src="{{asset('frontend/img/IMG_7794.jpeg')}}" alt="" />
+          <img style="border-radius : 0;" src="{{asset('frontend/img/IMG_7794.jpg')}}" alt="" />
         </div>
       </div>
-      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0"> 
         <div class="about_cntnt">
           <h3>Welcome to Dil Se Indian Restaurant & Bar</h3>
           <h2>Bringing You An Authentic Indian Taste</h2>
-          <p>Craving for homemade Indian food? Dil Se brings you the taste you’ve been missing living away from home. Our dine-in restaurant in Toronto offers a menu of authentic and freshly prepared North Indian delicacies. With great Punjabi Dhaba style cooking, our chef uses seasonal herbs and rich spices to create a culinary delight that satisfies your taste buds.
-
-We provide dine-in, take-out, delivery, and catering service for popular Indian dishes and homemade desserts. With a relishing and fresh aroma, we are sure once you sit inside our restaurant, you’ll keep ordering more and more.</p>
+          <p>Craving for homemade Indian food? Dil Se brings you the taste you’ve been missing living away from home. Our dine-in restaurant in Toronto offers a menu of authentic and freshly prepared North Indian delicacies. With great Punjabi Dhaba style cooking, our chef uses seasonal herbs and rich spices to create a culinary delight that satisfies your taste buds.</p>
           <div class="about_cntnt_bn">
             <a href="{{url('about-us')}}" class="theme_btn">About Us</a>
           </div>
@@ -230,14 +228,14 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
       <div class="col-md-3">
         <div class="order_online_crd">
           <div class="order_online_img">
-            <img src="{{asset('frontend/img/uber-1.png')}}" alt="" />
+            <img src="{{asset('frontend/img/uber.png')}}" alt="" />
           </div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="order_online_crd">
           <div class="order_online_img">
-            <img src="{{asset('frontend/img/skip-1.png')}}" alt="UberEates" title="UberEates" />
+            <img src="{{asset('frontend/img/skip.png')}}" alt="UberEates" title="UberEates" />
           </div>
         </div>
       </div>
@@ -245,14 +243,14 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
         <div class="order_online_crd">
           <div class="order_online_img">
 
-            <img src="{{asset('frontend/img/ritual-1.png')}}" alt="skipthedishes"  title ="skipthedishes"/>
+            <img src="{{asset('frontend/img/ritual.png')}}" alt="skipthedishes"  title ="skipthedishes"/>
           </div>
         </div>
       </div>
       <div class="col-md-3">
         <div class="order_online_crd">
           <div class="order_online_img">
-            <img src="{{asset('frontend/img/doordash.png')}}" alt="" />
+            <img src="{{asset('frontend/img/door.png')}}" alt="" />
           </div>
         </div>
       </div>
@@ -404,7 +402,7 @@ We provide dine-in, take-out, delivery, and catering service for popular Indian 
   </div>
 </section>
 <section class="contact_sec bg_style" style="background-image: url('{{asset('frontend/img/contact_bkg.jpg')}}')">
-  <div class="container">
+  <div class="container-fluid">
     <form method="POST" class="contact_form" id="conatact_cus_form">
       <input type="hidden" name="contact_us_action_url" id="contact_us_action_url" value="{{ route('contact-us-form') }}">
       <div class="tittle_heading">
