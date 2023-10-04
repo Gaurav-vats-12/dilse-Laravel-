@@ -43,12 +43,13 @@
                     </a>
                 </div>
                 <div class="col-md-4 mb-5 mb-xl-0">
-                <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
                     <div class="location">
                         <div class="under_location">
                             <div class="location_img"  data_location_id ="location_drag">
                              <img src="{{asset('frontend/img/mobile.png')}}" alt="" />
                             </div>
+                            <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
+
                            <p>{{ setting('phone') != null ? setting('phone') : '' }} | 416-534-6344
 </p>
                         </div>
