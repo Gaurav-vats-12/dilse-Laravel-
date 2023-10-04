@@ -65,6 +65,27 @@
                         <option value="Brampton" {{ session('update_location') =='Brampton'? 'selected' : '' }}>Brampton</option>
                             </select>
                 </li>
+                <li>
+                                <div class="contact_info_txt">
+                                    <div class="contact_info_img">
+                                        <img src="{{asset('frontend/img/phone-o1.png') }}" alt=""/>
+                                    </div>
+                                    <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}" style="padding-left: 0;">
+                                    <p>{{ setting('phone') != null ? setting('phone') : '' }}</p>
+                                    </a>|<a href="tel:416-534-6344"><p>416-534-6344</p></a>    
+                                </div>
+                           
+                        </li>
+                        <li>
+                            <a href="mailto:{{ setting('site_email') != null ? setting('site_email') : '' }}" style="padding: 0;">
+                                <div class="contact_info_txt">
+                                    <div class="contact_info_img">
+                                        <img src="{{asset('frontend/img/mail.png') }}" alt=""/>
+                                    </div>
+                                    <p style="color: #f8d385;">{{ setting('site_email') != null ? setting('site_email') : '' }}</p>
+                                </div>
+                            </a>
+                        </li>
             </ul>
 
           </div>
@@ -75,7 +96,7 @@
           </div>
         </div>
           <li class="cart_responseive">
-              <a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/carts__icon.svg')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a>
+              <a href="{{url('cart')}}" class="cart_item"><img src="{{asset('frontend/img/cart-1.png')}}"/><span class="cart_count">{{ count((array) session('cart')) }}</span></a>
           </li>
 
       </div>

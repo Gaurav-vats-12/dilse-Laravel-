@@ -1,5 +1,5 @@
 .responsi_header .hamburger {
-    background-color: #eb0029;
+    background-color: #573d24;
     padding: 12px 12px;
     border-radius: 5px;
     position: relative;
@@ -7,7 +7,7 @@
 }
 .responsi_header .hamburger .bar {
     display: block;
-    background-color: #fff;
+    background-color: #d0b07f;
     width: 23px;
     height: 4px;
     margin-bottom: 4px;
@@ -63,8 +63,8 @@
     display: none;
 }
 .login_wrapper {
-    background-color: #fcebb9;
-    padding-top: 50px;
+    /* background-color: #fcebb9; */
+    /* padding-top: 50px; */
 }
 a.page-link {
     padding: 10px 20px;
@@ -92,7 +92,7 @@ li.page-item.disabled span.page-link {
     li.cart_responseive {
         position: absolute;
         right: 80px;
-        top: 28px;
+        top: 19px;
         list-style: none;
     }
     li.cart_responseive a span {
@@ -119,7 +119,10 @@ li.page-item.disabled span.page-link {
     .order_summary .tittle_heading h4 {
         font-size: 18px;
     }
-
+    .btm_header{
+        padding: 10px 0;
+        background: #d0b07f;
+    }
 
 }
 @media screen and (max-width: 991px) {
@@ -135,6 +138,23 @@ li.page-item.disabled span.page-link {
     }
     .location {
         padding: 26px 0px;
+    }
+    .btm_header_flx{
+        display: flex;
+        justify-content: space-between;
+    }
+    .contact_info_txt a p{
+        color: #f8d385;
+    }
+    .contact_info_txt {
+        color: #f8d385;
+    }
+    .contact_info_txt a:first-child {
+        padding-left: 0 !important;
+    }
+    .contact_info_txt {
+        margin-left: 20px;
+        margin-top: 10px;
     }
 }
 @media screen and (max-width: 991px) {
@@ -235,6 +255,7 @@ li.page-item.disabled span.page-link {
         flex-wrap: wrap;
         max-width: 100%;
     }
+
 }
 @media screen and (max-width: 767px) {
     .py_8,
@@ -370,7 +391,7 @@ li.page-item.disabled span.page-link {
         display: block;
     }
     .login_wrapper {
-        padding-top: 16px;
+        /* padding-top: 16px; */
     }
     .contact_form .tittle_heading {
         text-align: left;
@@ -423,6 +444,21 @@ li.page-item.disabled span.page-link {
     .quick_links{
         position: relative;
         z-index: 9;
+    }
+    .home_slider_btn{
+        flex-direction: column;
+    }
+    .home_slider_btn a{
+        margin-bottom: 10px !important;
+    }
+    .home_slider_btn a:last-child{  
+        margin-bottom: 10px !important;
+    }
+    .home_slider_btn{
+        padding-bottom: 10px !important;
+    }
+    .login_wrapper .tittle_heading h2{
+        font-size: 20px;
     }
 }
 @media screen and (max-width: 480px) {
@@ -575,6 +611,7 @@ li.page-item.disabled span.page-link {
         line-height: 28px;
     }
     .restudent_text h3 {
+        font-size: 22px;
         padding: 0 20px;
     }
     .inner_bannner {
@@ -669,7 +706,7 @@ li.page-item.disabled span.page-link {
     header.main_header {
         /* z-index: 999; */
         width: 100%;
-        background-color: #000;
+        background-color: #573d24;
         position: sticky;
         top: 0;
     }

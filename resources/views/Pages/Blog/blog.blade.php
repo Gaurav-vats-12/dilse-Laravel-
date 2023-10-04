@@ -37,7 +37,7 @@
                                         {!! Str::limit(strip_tags($blog->blog_content),40) !!}
                                     </p>
                                     <div class="post_btn">
-                                        <a href="{{route('blogdetails' ,$blog->slug)}}" class="">READ MORE</a>
+                                        <a href="{{route('blogdetails' ,$blog->slug)}}" class="theme_btn">READ MORE</a>
                                     </div>
                                 </div>
                             </div>

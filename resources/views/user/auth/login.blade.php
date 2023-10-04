@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'User Login')
 @section('frontcontent')
-<div class="login_wrapper py_8">
+<div class="login_wrapper">
     <section class="about_se about_left_image ">
         <div class="container">
             <div class="row align-items-center">

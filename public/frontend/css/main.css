@@ -112,7 +112,7 @@ ul {
 
 .tittle_heading h3 {
     font-size: 16px;
-    color: #eb0029;
+    color: #573d24;
     margin-bottom: 6px;
     text-transform: capitalize;
 }
@@ -132,7 +132,7 @@ header.main_header {
     width: 100%;
     background-color: #000;
     position: sticky;
-    top: -52px;
+    top: 0px;
 }
 
 .top_header {
@@ -507,7 +507,7 @@ a.login_header{
 }
 
 .CustomPagination ul.pagination li.page-item.active span {
-    background-color: #eb0029;
+    background-color: #573d24;
     border: none;
 }
 
@@ -532,7 +532,7 @@ a.login_header{
 }
 
 .award_winning_txt h2 span {
-    color: #eb0029;
+    /* color: #eb0029; */
     /* font-family: "ThePretender-ExpSansBoldPress"; */
 }
 
@@ -559,7 +559,7 @@ a.login_header{
     left: 0;
     width: 14px;
     height: 14px;
-    background: #eb0029;
+    background: #573d24;
     border-radius: 50%;
 }
 
@@ -605,7 +605,7 @@ a.login_header{
 } 
 
 .taste_the {
-    background: #fcebb9;
+    background: #d0b07f;
     position: relative;
     z-index: 9;
 }
@@ -641,14 +641,14 @@ a.login_header{
     font-weight: 800;
     align-items: center;
     color: #0b0708;
-    border-bottom: 1px solid #9d9d9d;
+    border-bottom: 1px solid #573d24;
     border-radius: 0;
     /* font-family: "ThePretender-ExpSansBoldPress"; */
 }
 
 .custm_nav_pills button.nav-link.active {
     background: transparent;
-    color: #eb0029;
+    color: #573d24;
 }
 
 .custm_nav_pills .nav button.nav-link:first-child {
@@ -758,7 +758,7 @@ ul._service_list li:last-child {
 
 .best_food_txt h2 {
     font-size: 24px;
-    color: #eb0029;
+    color: #573d24;
     margin-bottom: 0;
     font-family: 'Times New Roman Cyr';
 
@@ -929,7 +929,7 @@ ul._service_list li:last-child {
 }
 .contact_sec .tittle_heading h2{
     font-size: 56px;
-    color: #eb0029;
+    color: #573d24;
     margin-bottom: 6px;
     text-transform: capitalize;
 }
@@ -1042,7 +1042,7 @@ form.contact_form {
 
 .open_hr h3 {
     font-size: 34px;
-    color: #eb0029;
+    color: #573d24;
     text-transform: capitalize;
     margin-right: 30px;
 }
@@ -1097,7 +1097,7 @@ form.contact_form {
 
 .restudent_text h3 {
     color: #fff;
-    font-size: 16px;
+    font-size: 46px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1124,11 +1124,11 @@ form.contact_form {
 }
 
 .counter_im {
-    background: #fcebb9;
+    background: #d0b07f;
 }
 
 .counter_crd {
-    background: #fff;
+    background: #573d24;
     text-align: center;
     padding: 36px 15px 31px;
     border-radius: 30px;
@@ -1136,19 +1136,20 @@ form.contact_form {
 
 .counter_crd h3 {
     font-size: 22px;
-    color: #eb0029;
+    color: #fff;
     margin-bottom: 2px;
 }
 
 .counter_crd h2 {
     font-size: 46px;
+    color: #fff;
 }
 
 /* ---------------------
         contact us
 ------------------------ */
-section.sight_food_location {
-    background-color: #fcebb9;
+.sight_food_location {
+    background-color: #d0b07f;
 }
 
 .location {
@@ -1197,7 +1198,7 @@ section.sight_food_location {
          Gallery
 ------------------------ */
 .gallery_pics {
-    background: #fcebb9;
+    background: #d0b07f;
     padding-bottom: 50px;
 }
 
@@ -1259,6 +1260,7 @@ section.sight_food_location {
 --------------------- */
 .featured_posts {
     padding: 80px 0 40px;
+    background: #d0b07f;
 }
 
 .featured_card {
@@ -1857,11 +1859,11 @@ img.mfp-img {
 ------------------------ */
 
 .menu_main {
-    background: #fcebb9;
+    background: #d0b07f;
 }
 
 .menu_list_inner {
-    border-bottom: 1px solid #9d9d9d;
+    border-bottom: 1px solid #573d24;
 }
 
 .menu_list_inner a {
@@ -1873,7 +1875,7 @@ img.mfp-img {
 }
 
 .menu_list_inner h3.active {
-    color: #eb0029;
+    color: #573d24;
 }
 
 .menu_list_inner:last-child {
@@ -1913,7 +1915,7 @@ img.mfp-img {
 }
 
 .menu_main_box .best_food_txt h2 {
-    color: #eb0029;
+    color: #573d24;
     /* font-family: "ThePretender-ExpSansBoldPress"; */
     font-size: 15px;
     font-style: normal;
@@ -1957,7 +1959,7 @@ img.mfp-img {
 
 .login_wrapper {
     background-color: #fcebb9;
-    padding-top: 120px;
+    /* padding-top: 120px; */
 }
 
 .proceed_ancho {
@@ -1965,7 +1967,7 @@ img.mfp-img {
 }
 
 .tittle_heading span {
-    color: #eb0029;
+    /* color: #eb0029; */
 }
 
 form.contact_form label {
@@ -1995,7 +1997,7 @@ form.contact_form p {
 }
 
 form.contact_form a {
-    color: #eb0029 !important;
+    color: #573d24 !important;
     font-family: "Kalam";
     font-weight: 600;
 }
@@ -2123,7 +2125,7 @@ form.contact_form a {
 .shop_item_quantity #myform {
     text-align: center;
     padding: 5px;
-    border: 1px dotted #ccc;
+    border: none;
     margin: 2%;
 }
 .shop_item_quantity .qty {
@@ -2147,7 +2149,7 @@ form.contact_form a {
 .shop_item_quantity #myform {
     text-align: center;
     padding: 5px;
-    border: 1px dotted #efefef;
+    border: none;
     margin: 2%;
     display: flex;
     justify-content: center;
@@ -2165,9 +2167,9 @@ form.contact_form a {
 }
 
 .shope_price .shope_p_tag {
-    border: 1px solid #eb0029;
+    border: 1px solid #573d24;
     padding: 6px 16px;
-    color: #eb0029;
+    color: #573d24;
     font-weight: 700;
     border-radius: 7px;
     display: inline;
@@ -2321,6 +2323,7 @@ form.contact_form a {
 }
 
 .cart_head h3 {
+    color: #573d24;
     font-size: 36px;
     margin-bottom: 35px;
 }
@@ -2496,7 +2499,7 @@ product
 }
 
 .checkout_page {
-    background: #f7f7f7;
+    background: #d0b07f;
 }
 
 .checkout_page .pro_cart_summary {
@@ -2636,7 +2639,7 @@ span.required {
     display: none;
 }
 .payment-metho-radio li .radio-item_1 input:checked + label {
-    background: red;
+    background: #573d24;
     border: 1px solid hsl(0deg 0% 95%);
     color: #fff !important;
 }
@@ -2738,10 +2741,10 @@ p {
 /* 16-8-23 */
 a.qtyminus.minus.qty-count.qty-count--minus.update-qty,
 a.qty-plus.plus.qty-count.qty-count--add.update-qty {
-    border: 1px solid rgb(124, 118, 118);
+    border: 1px solid #573d24;
     padding: 2px 15px;
     border-radius: 5px;
-    color: rgb(0, 0, 0) !important;
+    color: #573d24 !important;
 }
 .product_cont a.view_product {
     padding: 4px 10px;
@@ -2763,21 +2766,23 @@ a.qty-plus.plus.qty-count.qty-count--add.update-qty {
 
 .product_c_main ul#myTab .nav-link.active {
     padding: 10px 30px;
-    background: red !important;
-    color: #fff !important;
+    background: #573d24 !important;
+    color: #f8d385 !important;
 }
 
 .product_c_main ul#myTab .nav-link {
     padding: 10px 30px;
     color: #000 !important;
+    border: none;
+    border-radius: 30px;
 }
 
 .product_c_main ul#myTab .nav-link:hover {
-    box-shadow: 3px 3px 5px #eb0029 !important;
+    /* box-shadow: 3px 3px 5px #eb0029 !important; */
 }
 
 .product_c_main ul#myTab .nav-link:hover {
-    box-shadow: 1px 1px 16px 3px #f3bac4 !important;
+    /* box-shadow: 1px 1px 16px 3px #f3bac4 !important; */
 }
 
 .product_c_main .tittle_heading h6 {
@@ -2847,6 +2852,7 @@ a.qty-plus.plus.qty-count.qty-count--add.update-qty {
 .product_cont .title_cost h3 {
     font-size: 17px;
     text-align: left;
+    font-family: 'Times New Roman Cyr';
 }
 
 /* -----------------------------
@@ -2854,7 +2860,7 @@ a.qty-plus.plus.qty-count.qty-count--add.update-qty {
  -------------------------------*/
 
 .menu_main1 {
-    background: #fcebb9;
+    background: #d0b07f;
 }
 
 .menu_main1 .tittle_heading {
@@ -2868,12 +2874,13 @@ a.qty-plus.plus.qty-count.qty-count--add.update-qty {
 }
 
 .menu_list_inner1.active {
-    background: #eb0029;
+    background: #573d24;
     border-radius: 10px;
 }
 
 .menu_main1 .tittle_heading h2 {
-    font-size: 26px;
+    font-size: 46px;
+    color: #573d24;
 }
 
 .menu_list_inner1 a {
@@ -2885,10 +2892,13 @@ a.qty-plus.plus.qty-count.qty-count--add.update-qty {
 
 .menu_list_inner1 a h3 {
     margin-bottom: 0px;
+    font-family: 'Times New Roman Cyr';
+    color: #573d24;
+
 }
 
 .menu_list_inner1 h3.active {
-    color: #fff;
+    color: #f8d385;
 }
 
 .menu_list_inner1:last-child {
@@ -3326,7 +3336,7 @@ a.checkout_link_guest {
     width: 0;
     height: 0;
     border-left: 0 solid transparent;
-    border-right: 15px solid #113463;
+    border-right: 15px solid #573d24;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
@@ -3336,7 +3346,7 @@ a.checkout_link_guest {
     width: 0;
     height: 0;
     border-right: 0 solid transparent;
-    border-left: 15px solid #113463;
+    border-left: 15px solid #573d24;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
@@ -3402,8 +3412,6 @@ section.menu_main1 .cusstom_input input,
     color: #fff;
     font-weight: 900;
     padding: 8px 38px;
-    background: #eb0029;
-    border: 1px solid #eb0029;
     text-align: center;
     border-radius: 7px;
     transition: all 0.3s;
@@ -3435,8 +3443,8 @@ section.menu_main1 .cusstom_input input,
 
 #button {
     /* display: inline-block; */
-    display: none;
-    background-color: #eb0029;
+    /* display: none; */
+    background-color: #573d24;
     width: 50px;
     height: 50px;
     text-align: center;
@@ -3542,8 +3550,8 @@ p#message {
 .alert {
     display: none;
 }
-section.shopping_cart {
-    background: #fcebb9;
+.shopping_cart {
+    background: #d0b07f;
 }
 .input-group select#spicy_lavel {
     padding: 10px;
@@ -3560,13 +3568,13 @@ span.grandTotal {
     margin: 0px -38px 0 0;
 }
 .forget_passcode a {
-    color: #eb0029;
+    color: #573d24;
 }
 a.checkout_link_guest {
-    color: #eb0029;
+    color: #573d24;
 }
 span.sign_up_for a {
-    color: #eb0029;
+    color: #573d24;
 }
 .forget_password_txt {
     margin-bottom: 15px;
@@ -3663,7 +3671,7 @@ div#mmce-error-response {
     margin: 0 0 0 -32px;
 }
 .payment-metho-radio li .radio-item_1 input:checked + label {
-    background: #eb0029;
+    background: #573d24;
     border: 1px solid hsl(0deg 0% 95%);
     color: #fff !important;
 }
@@ -3690,4 +3698,15 @@ div#mmce-error-response {
 .about_banner_section .home-slider-content h1 {
     font-size: 56px;
     color: #fff;
+}
+.social_icons_footer{
+    position: relative;
+}
+.login_wrapper .about_se{
+    background: #d0b07f;
+}
+.login_wrapper  .tittle_heading h2{
+    font-family: "Kalam";
+    font-size: 32px;
+    color: #573d24;  
 }
