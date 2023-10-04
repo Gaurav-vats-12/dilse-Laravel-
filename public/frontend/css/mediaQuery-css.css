@@ -384,7 +384,7 @@ li.page-item.disabled span.page-link {
     }
     .counter_crd h3 {
         font-size: 20px;
-        color: #eb0029;
+        /* color: #eb0029; */
         margin-bottom: 2px;
     }
     .menu_main_box {
@@ -587,6 +587,7 @@ li.page-item.disabled span.page-link {
         padding: 83px 0 83px;
     }
     .restudent_text h3 {
+        font-size: 22px;
         padding: 0 20px;
     }
     .restudent_text h2 {
