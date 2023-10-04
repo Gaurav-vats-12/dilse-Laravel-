@@ -7,14 +7,15 @@
                 <div class="contact_info">
                     <ul>
                         <li>
-                            <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
                                 <div class="contact_info_txt">
                                     <div class="contact_info_img">
                                         <img src="{{asset('frontend/img/phone-o1.png') }}" alt=""/>
                                     </div>
+                                    <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
                                     <p>{{ setting('phone') != null ? setting('phone') : '' }}</p>
+                                    </a>|<a href="tel:416-534-6344"><p>416-534-6344</p></a>    
                                 </div>
-                            </a>
+                           
                         </li>
                         <li>
                             <a href="mailto:{{ setting('site_email') != null ? setting('site_email') : '' }}">
