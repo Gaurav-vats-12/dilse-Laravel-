@@ -77,19 +77,19 @@ ul {
 .theme_btn {
     position: relative;
     display: inline-block;
-    color: #fff;
+    color: #f8d385;
     font-size: 16px;
     font-weight: 600;
     padding: 13px 38px;
-    background: #eb0029;
-    border: 1px solid #eb0029;
+    background: #573d24;
+    border: 1px solid #573d24;
     text-align: center;
     border-radius: 7px;
     transition: all 0.3s;
 }
 
 .theme_btn:hover {
-    color: #fff;
+    color: #f8d385;
 }
 
 .py_8 {
@@ -138,6 +138,7 @@ header.main_header {
 .top_header {
     padding: 10px 0;
     border-bottom: 0px solid rgb(245 234 224 / 33%);
+    background: #d0b07f;
 }
 
 .info_bx {
@@ -148,7 +149,8 @@ header.main_header {
 
 .contact_info ul {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    flex-direction: column;
 }
 
 .contact_info_txt {
@@ -157,20 +159,25 @@ header.main_header {
 }
 
 .contact_info_txt p {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
-    color: #fff;
+    color: #0b0708;
     margin-bottom: 0;
 }
 
 .contact_info_img {
-    margin-right: 12px;
+    margin-right: 10px;
 }
-
+.contact_info_img img {
+    width: 26px;
+}
 .contact_info ul li {
-    margin-right: 19px;
+    /* margin-right: 19px; */
+    margin-bottom: 4px;
 }
-
+.contact_info ul li:last-child {
+    margin-bottom: 0;
+}
 .social_icons ul li {
     display: inline-block;
     margin: 0 4px;
@@ -179,23 +186,50 @@ header.main_header {
 .social_icons ul li a {
     display: inline-block;
 }
-
+.social_icons li::marker{
+    content: none;
+}
+a#dropdownMenuLink{
+    color: #0b0708;
+}
+a.cart_item {
+    position: relative;
+}
+a.cart_item span.cart_count {
+    position: absolute;
+    top: -10px;
+    left: 28px;
+    background: #ffffff;
+    width: 23px;
+    height: 23px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 700;
+    color: #573d24;
+}
+a.login_header{
+    color: #0b0708;
+}
 .btm_header {
-    padding: 10px 0;
+    /* padding: 10px 0; */
+    background: #573d24;
 }
 
 .btm_header_flx {
     display: flex;
-    justify-content: space-between;
+    justify-content:center;
     align-items: center;
-    padding: 10px 0;
+    /* padding: 10px 0; */
 }
 
 .menu_left ul li a {
     display: inline-block;
     font-size: 16px;
     font-weight: 700;
-    color: #fff;
+    color: #f8d385;
     padding: 11px 18.5px;
 }
 
@@ -235,16 +269,17 @@ header.main_header {
     /* letter-spacing: 4px; */
     margin-bottom: 6px;
 }
-
-
-
-
-.home-slider-content h1 {
-    font-size: 22px;
-    color: #fff;
+.home-slider_sec {
+    padding: 20px 0 15px;
+}
+.home-slider-content{
+    text-align: center;
+}
+.home-slider-content h2 {
+    font-size: 42px;
+    color: #573d24;
     /* text-transform: uppercase; */
     margin-bottom: 0;
-    line-height: 44px;
 }
 
 .home-slider-content h1 span {
@@ -261,15 +296,24 @@ header.main_header {
 }
 
 .home_slider_btn .theme_btn {
-    font-size: 18px;
+    /* font-size: 18px; */
     font-weight: 800;
-    padding: 14px 25px;
+    padding: 8px 25px;
+    min-width: 280px;
+    margin: 0 20px;
 }
 
 .home_slider_btn {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: rgb(208 176 127 / 32%);
+    padding: 16px 15px;
 }
 
 .home_slider_btn.active {
@@ -285,7 +329,7 @@ header.main_header {
 }
 
 .home_slider_btn a.theme_btn {
-    margin: 10px;
+    /* margin: 10px; */
 }
 
 .home-slider .slick-arrow {
@@ -360,10 +404,12 @@ header.main_header {
 }
 
 .available_on {
-    background: #0b0708;
-    padding-bottom: 129px;
+    /* background: #0b0708; */
+    /* padding-bottom: 129px; */
 }
-
+.gluten_free_img img{
+    width: 100%;
+}
 .available_on_crd {
     position: relative;
     text-align: center;
@@ -393,7 +439,8 @@ header.main_header {
 }
 
 .certified_crd {
-    background: #fcebb9;
+    background: #573d24;
+    padding: 30px 0;
 }
 
 .certified_crd_img img {
@@ -403,19 +450,21 @@ header.main_header {
 .certified_crd_cntnt .tittle_heading h2 {
     font-size: 49px;
     line-height: 70px;
+    color: #f8d385;
     margin-bottom: 0;
+
 }
 
 .certified_crd_cntnt .tittle_heading h2 span {
-    color: #eb0029;
+    color: #f8d385;
     /* font-family: "ThePretender-ExpSansBoldPress"; */
 }
 
 .certified_crd_cntnt .tittle_heading p {
     font-size: 22px;
-    color: #716b6d;
+    color: #f8d385;
     line-height: unset;
-    margin-bottom: 44px;
+    margin-bottom: 14px;
 }
 
 .certified_crd_cntnt .tittle_heading h4 {
@@ -473,6 +522,8 @@ header.main_header {
 
 .about_se {
     position: relative;
+    background: #573d24;
+    padding: 60px 0;
 }
 
 .award_winning_txt h2 {
@@ -530,21 +581,28 @@ header.main_header {
 
 .about_cntnt h3 {
     font-size: 32px;
-    color: #eb0029;
+    color: #f8d385;
     margin-bottom: 12px;
 }
 
 .about_cntnt h2 {
     font-size: 36px;
+    color: #f8d385;
     line-height: 55px;
     margin-bottom: 4px;
 }
 
 .about_cntnt p {
     font-size: 16px;
+    color: #f8d385;
     line-height: 32px;
     margin-bottom: 26px;
 }
+.about_cntnt_bn a.theme_btn{
+    background: #f8d385;
+    border: 1px solid #f8d385;
+    color: #573d24;
+} 
 
 .taste_the {
     background: #fcebb9;
@@ -687,7 +745,7 @@ ul._service_list li:last-child {
 .best_food_cntnt {
     display: flex;
     align-items: self-end;
-    padding-top: 27px;
+    padding-top: 16px;
 }
 
 .best_food_txt h3 {
@@ -712,8 +770,7 @@ ul._service_list li:last-child {
 
 .best_food_btn .theme_btn {
     padding: 7px 20px;
-    background: #0b0708;
-    border: 1px solid #0b0708;
+    
 }
 
 .meet_chef_cntnt {
@@ -1012,7 +1069,7 @@ form.contact_form {
 .about_under_text p {
     margin-bottom: 8px;
     font-size: 16px;
-    color: #716b6d;
+    color: #f8d385;  
 }
 
 .restudent_text p {
@@ -1858,20 +1915,21 @@ img.mfp-img {
 .menu_main_box .best_food_txt h2 {
     color: #eb0029;
     /* font-family: "ThePretender-ExpSansBoldPress"; */
-    font-size: 18px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+    margin-bottom: 10px;
 }
 
 .menu_main_box .best_food_txt h3 {
     color: #0b0708;
     font-family: Kalam;
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     text-transform: capitalize;
+    margin-bottom: 4px;
 }
 
 .best_btn_food .theme_btn {
@@ -2251,8 +2309,8 @@ form.contact_form a {
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background: #d90d0d;
-    color: #fff;
+    background: #573d24;
+    color: #f8d385;
     border: none;
     margin-left: 4px;
 }
@@ -2412,7 +2470,7 @@ product
 .best_food_cntnt {
     display: block;
     align-items: self-end;
-    padding-top: 27px;
+    padding-top: 16px;
 }
 
 .best_btn_food .theme_btn {
@@ -3631,4 +3689,5 @@ div#mmce-error-response {
 }
 .about_banner_section .home-slider-content h1 {
     font-size: 56px;
+    color: #fff;
 }

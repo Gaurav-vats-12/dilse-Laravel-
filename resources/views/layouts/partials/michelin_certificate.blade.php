@@ -4,16 +4,15 @@
             <div class="col-md-8 m-auto">
               <div class="certified_crd_cntnt">
                 <div class="tittle_heading text-center mb-0">
-                  <div class="certified_crd_img">
+                  <!-- <div class="certified_crd_img">
                     <img src="{{asset('frontend/img/Michelin-Logo.png') }}" alt="">
-                  </div>
-                  <h2>Made With love Serve with Attention</h2>
+                  </div> -->
+                  <!-- <h2>Made With love Serve with Attention</h2> -->
                   <h2>
                     We Are <span>Michelin</span> Certified
                   </h2>
                   <p>Dil Se is proud to announce that we have achieved Michelin certification, a prestigious recognition in the world of fine dining.</p>
-                  <h2>More Than <br>
-                    <span>1800+</span> Google  Review</h2>
+                  <h2>More Than 1800+ Google Review</h2>
                 </div>
               </div>
             </div>

@@ -8,29 +8,28 @@
     <video id="home_banner_vd" width="" height=""  autoplay muted loop playsinline >
       <source src="{{asset('frontend/vedio/DilSe Home.mp4')}}" type="video/mp4" />
     </video>
-    <div class="home-slider-main-tw">
-      <div class="container">
-        <div class="home-slider-content">
-          <h3>Welcome to Dil se</h3>
-          <h1>
-            Made With Love- Served With Affection
-          </h1>
-          <p> Your Go-to Indian Restaurant</p>
-        </div>
-
-        <div class="home_slider_btn">
+    <div class="home_slider_btn">
           <a href="{{route('booktable')}}" class="theme_btn">Book A Reservation</a> <a href="javascript:void(0)" class="theme_btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Order Now</a>
 
         </div>
-
-      </div>
-
-    </div>
     @include('layouts.partials.order_popup')
   </div>
 </section>
-<section class="available_on py_8">
-        <div class="container">
+<section class="home-slider_sec">
+<div class="home-slider-content">
+  <div class="container">
+         <!-- <h3>Welcome to Dil se</h3> -->
+         <h2>
+            Made With Love- Served With Affection
+          </h2>
+          <!-- <p> Your Go-to Indian Restaurant</p> -->
+  </div>
+ 
+        </div>
+</section>
+@include('layouts.partials.michelin_certificate')
+<section class="available_on">
+        <!-- <div class="container">
           <div class="tittle_heading">
             <h2>
               available on <span>your personal</span> request
@@ -40,7 +39,7 @@
             <div class="col-md-4">
               <div class="available_on_crd">
                 <div class="available_on_img">
-                  <img src="{{asset('frontend/img/glutan.png') }}" alt="">
+                  <img src="{{asset('frontend/img/gluten-free.png') }}" alt="">
                 </div>
                 <div class="available_on_txt">
                   <h5>Gluten Free</h5>
@@ -68,23 +67,21 @@
               </div>
             </div>
           </div>
+        </div> -->
+        <div class="gluten_free_img">
+        <img src="{{asset('frontend/img/gluten-free.png') }}" alt="gluten-free.png">
         </div>
       </section>
-@include('layouts.partials.michelin_certificate')
+
 <section class="about_se py_8">
   <div class="container">
-    <div class="row align-items-center">
-      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
-        <div class="about_img">
-          <img style="border-radius : 0;" src="{{asset('frontend/img/IMG_7794.jpg')}}" alt="" />
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0"> 
-        <div class="about_cntnt">
+    <div class="row">
+      <div class="col-md-8 m-auto">
+        <div class="about_cntnt text-center">
           <h3>Welcome to Dil Se Indian Restaurant & Bar</h3>
           <h2>Bringing You An Authentic Indian Taste</h2>
           <p>Craving for homemade Indian food? Dil Se brings you the taste you’ve been missing living away from home. Our dine-in restaurant in Toronto offers a menu of authentic and freshly prepared North Indian delicacies. With great Punjabi Dhaba style cooking, our chef uses seasonal herbs and rich spices to create a culinary delight that satisfies your taste buds.</p>
-          <div class="about_cntnt_bn">
+          <div class="about_cntnt_bn text-center">
             <a href="{{url('about-us')}}" class="theme_btn">About Us</a>
           </div>
         </div>

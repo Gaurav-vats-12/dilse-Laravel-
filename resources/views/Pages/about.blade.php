@@ -168,7 +168,7 @@
           </div>
         </div>
       </section>
-      <section class="our_acheivements py_8">
+      <section class="our_acheivements py_8" style="background: #573d24;">
         <div class="container">
           <div class="row">
             <div class="col-md-5">
