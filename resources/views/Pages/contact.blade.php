@@ -21,7 +21,7 @@
 
                     <div class="location">
                             <div class="location_img">
-                            <img src="{{asset('frontend/img/location.png')}}" alt="" />
+                            <img src="{{asset('frontend/img/location.svg')}}" alt="location.svg" />
                             </div>
                             <p>{{ setting('address') != null ? setting('address') : '' }}</p>
                         </div>
@@ -34,7 +34,7 @@
                     <div class="location">
                         <div class="under_location">
                             <div class="location_img" >
-                                <img src="{{asset('frontend/img/message.png')}}" alt="" />
+                                <img src="{{asset('frontend/img/msg.svg')}}" alt="msg.svg" />
                             </div>
                                 <p>{{ setting('site_email') != null ? setting('site_email') : '' }}</p>
                         </div>
@@ -46,16 +46,16 @@
                     <div class="location">
                         <div class="under_location">
                             <div class="location_img"  data_location_id ="location_drag">
-                             <img src="{{asset('frontend/img/mobile.png')}}" alt="" />
+                             <img src="{{asset('frontend/img/calling.svg')}}" alt="calling.svg" />
                             </div>
-                            <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
-
+                            <p class="cntact"><a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">{{ setting('phone') != null ? setting('phone') : '' }}</a> | <a href="tel:416-534-6344">416-534-6344</a></p>
+                            <!-- <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
                            <p>{{ setting('phone') != null ? setting('phone') : '' }} | 416-534-6344
-</p>
+</p></a> -->
                         </div>
 
                     </div>
-                    </a>
+             
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
                             value="{{ route('contact-us-form') }}">
                         @csrf
                         <div class="tittle_heading">
-                            <h3>Reach US</h3>
+                            {{-- <h3>Reach US</h3> --}}
                             <h2>Contact Us</h2>
                         </div>
                         <div class="row">

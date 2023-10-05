@@ -68,8 +68,35 @@
             </div>
           </div>
         </div> -->
-        <div class="gluten_free_img">
+        <!-- <div class="gluten_free_img">
         <img src="{{asset('frontend/img/gluten-free.png') }}" alt="gluten-free.png">
+        </div> -->
+   
+   
+        <div class="gluten_free py_8">
+          <div class="container">
+            <div class="row">
+            <div class="gluten_sec">
+              <ul>
+                <li>
+                  <div class="gluten_txt">
+                  <h2>Gluten Free</h2> 
+                                   </div>
+                </li>
+                <li>
+                  <div class="gluten_txt">
+                  <h2>VEGAN</h2> 
+                                   </div>
+                </li>
+                <li>
+                  <div class="gluten_txt">
+                  <h2>JAIN FOOD</h2>
+                                   </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
         </div>
       </section>
 
@@ -95,7 +122,7 @@
       <h3>Taste The Best</h3>
       <h2>
         From appetizers to tandoori snacks and vegetarian dishes to halal
-        meat, we have everything on our menu.
+        meat, <span class="we_ever">we have everything on our menu.</span>
       </h2>
     </div>
     <div class="custm_nav_pills">
@@ -219,7 +246,7 @@
   <div class="container">
     <div class="tittle_heading">
       <h3>Order Online</h3>
-      <h2>Our Service PArtner</h2>
+      <h2>Our Service Partner</h2>
     </div>
     <div class="row ourServices">
       <div class="col-md-3">

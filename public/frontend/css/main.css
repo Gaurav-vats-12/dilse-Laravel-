@@ -452,8 +452,9 @@ a.login_header{
     line-height: 70px;
     color: #f8d385;
     margin-bottom: 0;
-
+    font-family: 'Times New Roman Cyr';
 }
+
 
 .certified_crd_cntnt .tittle_heading h2 span {
     color: #f8d385;
@@ -580,9 +581,9 @@ a.login_header{
 }
 
 .about_cntnt h3 {
-    font-size: 32px;
+    font-size: 53px;
     color: #f8d385;
-    margin-bottom: 12px;
+    margin-bottom: 4px;
 }
 
 .about_cntnt h2 {
@@ -620,13 +621,13 @@ a.login_header{
     object-fit: contain;
 }
 
-.taste_the::before {
+/* .taste_the::before {
     content: url(../img/taste_the_bg.png);
     position: absolute;
     right: 0;
     bottom: -7px;
     z-index: -1;
-}
+} */
 
 .custm_nav_pills .nav {
     flex: 1 0 0;
@@ -1045,8 +1046,8 @@ form.contact_form {
     color: #573d24;
     text-transform: capitalize;
     margin-right: 30px;
+    font-family: 'Times New Roman Cyr'!important;
 }
-
 .open_hr p {
     font-size: 20px;
 }
@@ -1073,10 +1074,10 @@ form.contact_form {
 }
 
 .restudent_text p {
-    color: #fff;
-    font-size: 26px;
+    color: #2f2f30;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 46px;
+    line-height: 32px;
 }
 
 .restudent_text h2 {
@@ -1094,17 +1095,16 @@ form.contact_form {
 .restudent_text h2 {
     margin-bottom: 0;
 }
-
 .restudent_text h3 {
-    color: #fff;
-    font-size: 46px;
+    color: #0b0708;
+    font-size: 39px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
+    font-family: 'Times New Roman Cyr';
 }
-
 .restaurdent_update_image img {
-    border-radius: 60px;
+    /* border-radius: 60px; */
 }
 
 .about_cntnt.about_under_text {
@@ -1138,11 +1138,13 @@ form.contact_form {
     font-size: 22px;
     color: #fff;
     margin-bottom: 2px;
+    font-family: 'Times New Roman Cyr';
 }
 
 .counter_crd h2 {
-    font-size: 46px;
+    font-size: 22px;
     color: #fff;
+    font-family: 'Times New Roman Cyr';
 }
 
 /* ---------------------
@@ -3522,7 +3524,7 @@ iframe {
 /*}*/
 
 .about_img img {
-    border-radius: 60px;
+    /* border-radius: 60px; */
 }
 ul {
     list-style: none;
@@ -3709,4 +3711,59 @@ div#mmce-error-response {
     font-family: "Kalam";
     font-size: 32px;
     color: #573d24;  
+}
+span.we_ever {
+    display: block;
+}
+p.cntact {
+    margin-bottom: 0;
+}
+
+p.cntact a {
+    color: #333;
+}
+.gluten_sec ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.gluten_txt h2 {
+    font-family: 'Times New Roman Cyr';
+    font-size: 49px;
+    font-weight: 700;
+    color: #573d24;
+    text-transform: uppercase;
+}
+/* .gluten_txt h2 {
+    border-left: 3px solid #573d24;
+    padding: 0 0px 0 20px;
+}
+.gluten_txt h2:first-child {
+    border-left: 0;
+} */
+/* .gluten_sec li :before {
+    content: "";
+    position: absolute;
+    border-left: 3px solid #573d24;
+    height: 34px;
+}
+.gluten_sec li{
+    position: relative;
+}
+.gluten_sec li:before:first-child{
+    border-left: 0;
+} */
+.gluten_sec li:before {
+    content: "";
+    position: absolute;
+    border-left: 3px solid #573d24;
+    height: 35px;
+    top: 10px;
+    left: -37px;
+}
+.gluten_sec li {
+    position: relative;
+}
+.gluten_sec li:first-child:before {
+    border-left: 0;
 }

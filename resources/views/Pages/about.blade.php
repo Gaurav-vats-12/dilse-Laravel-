@@ -118,7 +118,7 @@
             <div class="col-md-7">
               <div class="meet_chef_cntnt chef_text">
                 <div class="tittle_heading">
-                  <h3>Our Expert Chef</h3>
+                  {{-- <h3>Our Expert Chef</h3> --}}
                   <h2>Meet Our Expert Chef</h2>
                 </div>
                 <p>
@@ -147,7 +147,9 @@
           </div>
         </div>
       </section>
-      <section class="inner_bannners bg_style py_8" style="background-image: url('{{asset('frontend/img/restudent_wine.png') }}')">
+      {{-- <section class="inner_bannners bg_style py_8" style="background-image: url('{{asset('frontend/img/restudent_wine.png') }}')"> --}}
+        <section class="inner_bannners bg_style py_8" style="
+          background: #d0b07f">
         <div class="container ">
           <div class="row">
             <div class="col-md-7">
@@ -158,11 +160,11 @@
             <div class="col-md-5">
               <div class="restudent_text">
                 <h3>Our achievements</h3>
-                <h2>
+                <p>
                   Dil Se Indian is open for takeout and delivery. There are
                   floor markers. Masks are mandatory and hand sanitizer is at
                   the counter.
-                </h2>
+                </p>
               </div>
             </div>
           </div>
