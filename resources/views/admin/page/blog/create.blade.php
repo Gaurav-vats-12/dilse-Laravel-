@@ -39,13 +39,6 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                        <label for="blog_short_content"> {{ __('Blog Short Description') }}</label>
-                        <textarea name="blog_short_content" id="blog_short_content" class="form-control" placeholder="Blog Short Description" >{{ old('blog_short_content') }}</textarea>
-                            @error('blog_short_content')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
                         <label for="blog_content"> {{ __('Blog Content') }}</label>
                         <textarea name="blog_content" id="blog_content" class="form-control summernote" placeholder="Blog Content" >{{ old('blog_content') }}</textarea>
                             @error('blog_content')
