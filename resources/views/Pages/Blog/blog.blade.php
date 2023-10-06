@@ -34,7 +34,7 @@
                                         {{ $blog->blog_title}}
                                     </h3>
                                     <p>
-                                        {!! Str::limit(strip_tags($blog->blog_short_content),40) !!}
+                                      <!-- {!! Str::limit(strip_tags($blog->blog_short_content),50) !!} -->
                                     </p>
                                     <div class="post_btn">
                                         <a href="{{route('blogdetails' ,$blog->slug)}}" class="theme_btn">Read More</a>
