@@ -26,6 +26,7 @@ class StoreBannerRequest extends FormRequest
             'blog_content' =>  'required',
             'blog_image' =>  'required',
             'blog_meta_title' =>  'required|max:255',
+            'blog_short_content' =>  'required',
             'blog_meta_description' =>  'required',
             'status' => 'required|in:published,inactive,draft',
 
