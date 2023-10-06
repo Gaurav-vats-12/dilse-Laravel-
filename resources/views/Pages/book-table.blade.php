@@ -19,7 +19,7 @@
 
       <section class="contact_form_us py_8">
         <div class="container">
-          <div class="row">
+          <div class="row align-items-center" >
             <div class="col-md-6">
               <div class="contact_img_us">
                 <img src="{{asset('frontend/img/contactimg.png')}}" alt="" />

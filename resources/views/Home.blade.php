@@ -77,6 +77,7 @@
           <div class="container">
             <div class="row">
             <div class="gluten_sec">
+
               <ul>
                 <li>
                   <div class="gluten_txt">
@@ -118,7 +119,7 @@
 </section>
 <section class="taste_the py_8">
   <div class="container">
-    <div class="tittle_heading">
+    <div class="tittle_heading taste_the_best">
       <h3>Taste The Best</h3>
       <h2>
         From appetizers to tandoori snacks and vegetarian dishes to halal
@@ -326,12 +327,12 @@
 <section class="meet_chef py_8">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-5 mb-4 mb-xl-0">
         <div class="meet_chef_img">
           <img src="{{asset('frontend/img/chef-1.png')}}" alt="" />
         </div>
       </div>
-      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
+      <div class="col-sm-12 col-md-12 col-lg-6 col-xl-7 mb-4 mb-xl-0">
         <div class="meet_chef_cntnt">
           <div class="tittle_heading">
             <!-- <h3>Our Expert Chef</h3> -->
