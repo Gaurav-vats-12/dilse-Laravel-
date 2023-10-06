@@ -15,7 +15,7 @@
       @include('layouts.partials.michelin_certificate')
       <section class="award_winning py_8">
         <div class="container">
-          <div class="row align-items-center">
+          <div class="row">
             <div class="col-md-6">
               <div class="award_winning_txt">
                 <h2>Our 2023<br>
@@ -32,8 +32,7 @@
         </div>
       </section>
       <section class="our_achievement py_8">
-        <div class="container" style="    max-width: 1300px !important;
-    width: unset;">
+        <div class="container" style=" width: unset;">
           <div class="row align-items-center">
             <div class="col-md-6">
               <div class="our_achievement_img">
@@ -55,9 +54,9 @@
           </div>
         </div>
       </section>
-      <section class="about_se py_8">
-        <div class="container-fluid">
-          <div class="row">
+      <section class="about_se about_us_indian py_8">
+        <div class="container">
+          <div class="row align-items-center">
             <div class="col-md-6 my-slider" id="about_us_page">
               <div class="about_img">
                 <img src="{{asset('frontend/img/DSC_1336.jpg') }}" alt="" />
@@ -77,7 +76,7 @@
             </div>
             <div class="col-md-6">
               <div class="about_cntnt about_under_text">
-                <h3>About us Dil Se Indian Restaurant & BaR</h3>
+                <h3>About us Dil Se Indian Restaurant & Bar</h3>
                 <h2 class="bringing">Bringing You An Authentic Indian Taste</h2>
                 <p>
                   Dil se originated from Hindi language which means ‘from Heart’
@@ -97,11 +96,11 @@
                 <p>
                   Dil se is powered by Baba’s Hospitality services in Ontario.
                 </p>
-                <p>
+                <!-- <p>
                   Dil Se Indian adds to a street that’s teeming with unique
                   restaurants and cafes, providing not only curries and biryanis
                   to those in the neighbourhood but lots of heart.s
-                </p>
+                </p> -->
               </div>
             </div>
           </div>
@@ -109,7 +108,7 @@
       </section>
       <section class="meet_chef meet_chef_about py_8">
         <div class="container">
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col-md-5">
               <div class="meet_chef_img">
                 <img src="{{asset('frontend/img/chef-1.png') }}" alt="" />
@@ -131,7 +130,7 @@
                   Indian restaurant & bar.
                 </p>
 
-                <p>
+                <!-- <p>
                   Mani is not only a seasoned culinary chef he is an award
                   winning Indian cuisine very famous dish , Chicken Kamashutra ,
                   Chef whose creations are beautiful edible works of art. Now
@@ -141,7 +140,7 @@
                   from his mother. There fore, through Dil Se, we present you
                   the best indian food in toronto coming straight from our home
                   to yours.
-                </p>
+                </p> -->
               </div>
             </div>
           </div>
@@ -149,9 +148,9 @@
       </section>
       {{-- <section class="inner_bannners bg_style py_8" style="background-image: url('{{asset('frontend/img/restudent_wine.png') }}')"> --}}
         <section class="inner_bannners bg_style py_8" style="
-          background: #d0b07f">
+        ">
         <div class="container ">
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col-md-7">
               <div class="restaurdent_update_image">
                 <img src="{{asset('frontend/img/restudent.png') }}" alt="" />
@@ -172,7 +171,7 @@
       </section>
       <section class="our_acheivements py_8" style="background: #573d24;">
         <div class="container">
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col-md-5">
               <div class="our_acheive_image">
                 <img src="{{asset('frontend/img/food-01.png') }}" alt="" />

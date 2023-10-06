@@ -11,7 +11,10 @@
     <section class="menu_main py_8">
         <div class="container">
             <div class="col text-center">
+                <div class="menu_sec_food">
                 <h2>Menu</h2>
+                </div>
+               
             </div>
 
             <div class="row">
@@ -20,7 +23,7 @@
                     <ul class="menu_list">
                         @foreach (Menuhelper() as $key => $menu)
                         <li class="menu_list_inner">
-                                <a href="javascript:void(0)" id="menu"  menu_uid =  {{ $menu->id }}  menu-slug ="{{ $menu->menu_slug}}" mobile_type = "{{checkUser()}}" default ="6">
+                                <a href="javascript:void(0)" id="menu"  menu_uid =  "{{ $menu->id }}"  menu-slug ="{{ $menu->menu_slug}}" mobile_type = "{{checkUser()}}" default ="6">
                             <h3 class="">{{ __($menu->menu_name) }}</h3>
                                     <div class="menu_icon_img">
                                         <img src="{{ asset('frontend/img/menu_icon.png') }}" alt="">

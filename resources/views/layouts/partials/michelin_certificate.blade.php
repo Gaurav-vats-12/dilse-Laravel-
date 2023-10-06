@@ -12,7 +12,7 @@
                     We Are <span>Michelin</span> Certified
                   </h2>
                   <p>Dil Se is proud to announce that we have achieved Michelin certification, a prestigious recognition in the world of fine dining.</p>
-                  <h2>More Than 1800+ Google Review</h2>
+                  <h3 class="more_than">More Than 1800+ Google Review</h3>
                 </div>
               </div>
             </div>

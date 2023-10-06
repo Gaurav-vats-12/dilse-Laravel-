@@ -28,7 +28,7 @@
               <ul>
             @foreach ( Menuhelper() as $key => $menu )
             @if ($key < 6)
-            <li><a href="{{url('menu',$menu->menu_slug)}}" menu_slug ="{{ __(ucfirst( $menu->menu_slug)) }}">{{ __(ucfirst( $menu->menu_name)) }}</a></li>
+            <li><a href="{{url('menu',$menu->menu_slug)}}" menu_slug ="{{ __(ucfirst( $menu->menu_slug)) }}" class="text-capitalize">{{ __(ucfirst( $menu->menu_name)) }}</a></li>
             @endif
             @endforeach
             </ul>
@@ -43,15 +43,15 @@
         <ul>
    <li>
                         <a href="{{ setting('facebook_url') != null ? setting('facebook_url') : '' }}"
-                           target="_blank"><img src="{{asset('frontend/img/fb-01.png') }}" alt=""/></a>
+                           target="_blank"><img src="{{asset('frontend/img/fb-01.svg') }}" alt=""/></a>
                         </li>
                         <li>
                             <a href="{{ setting('instagram_url') != null ? setting('instagram_url') : '' }}"
-                               target="_blank"><img src="{{asset('frontend/img/insta-1.png') }}" alt=""/></a>
+                               target="_blank"><img src="{{asset('frontend/img/insta-1.svg') }}" alt=""/></a>
                         </li>
                         <li>
                             <a href="https://www.blogto.com/restaurants/dil-se-indian-toronto/" target="_blank"><img
-                                        src="{{asset('frontend/img/blogto.png') }}" alt=""/></a>
+                                        src="{{asset('frontend/img/blog_to cart.svg') }}" alt=""/></a>
                         </li>
                     </ul>
             </div>
