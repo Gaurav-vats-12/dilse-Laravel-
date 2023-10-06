@@ -93,7 +93,7 @@ ul {
 }
 
 .py_8 {
-    padding: 80px 0;
+    padding: 30px 0;
 }
 
 .tittle_heading {
@@ -113,7 +113,7 @@ ul {
 .tittle_heading h3 {
     font-size: 16px;
     color: #573d24;
-    margin-bottom: 6px;
+    margin-bottom: 0px;
     text-transform: capitalize;
 }
 
@@ -159,7 +159,7 @@ header.main_header {
 }
 
 .contact_info_txt p {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: #0b0708;
     margin-bottom: 0;
@@ -210,8 +210,10 @@ a.cart_item span.cart_count {
     font-weight: 700;
     color: #573d24;
 }
-a.login_header{
+a.login_header {
     color: #0b0708;
+    font-size: 14px;
+    font-weight: 700;
 }
 .btm_header {
     /* padding: 10px 0; */
@@ -227,7 +229,7 @@ a.login_header{
 
 .menu_left ul li a {
     display: inline-block;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: #f8d385;
     padding: 11px 18.5px;
@@ -276,7 +278,7 @@ a.login_header{
     text-align: center;
 }
 .home-slider-content h2 {
-    font-size: 42px;
+    font-size: 52px;
     color: #573d24;
     /* text-transform: uppercase; */
     margin-bottom: 0;
@@ -448,8 +450,8 @@ a.login_header{
 }
 
 .certified_crd_cntnt .tittle_heading h2 {
-    font-size: 49px;
-    line-height: 70px;
+    font-size: 32px;
+    line-height: 50px;
     color: #f8d385;
     margin-bottom: 0;
     font-family: 'Times New Roman Cyr';
@@ -462,10 +464,12 @@ a.login_header{
 }
 
 .certified_crd_cntnt .tittle_heading p {
-    font-size: 22px;
+    font-size: 18px;
     color: #f8d385;
     line-height: unset;
     margin-bottom: 14px;
+    max-width: 400px;
+    margin: auto;
 }
 
 .certified_crd_cntnt .tittle_heading h4 {
@@ -524,7 +528,7 @@ a.login_header{
 .about_se {
     position: relative;
     background: #573d24;
-    padding: 60px 0;
+    padding: 30px 0;     
 }
 
 .award_winning_txt h2 {
@@ -594,7 +598,7 @@ a.login_header{
 }
 
 .about_cntnt p {
-    font-size: 16px;
+    font-size: 17px;
     color: #f8d385;
     line-height: 32px;
     margin-bottom: 26px;
@@ -637,8 +641,8 @@ a.login_header{
 .custm_nav_pills button.nav-link {
     display: flex;
     justify-content: space-between;
-    padding: 28px 0;
-    font-size: 36px;
+    padding: 17px 0;
+    font-size: 30px;
     font-weight: 800;
     align-items: center;
     color: #0b0708;
@@ -693,12 +697,12 @@ ul._service_list li:last-child {
 }
 
 .order_online {
-    padding: 100px 0 100px;
+    padding:30px 0 40px;
 }
-
 .order_online .tittle_heading h3 {
     color: #fff;
-    font-size: 56px;
+    font-size: 64px;
+    margin-bottom: -9px;
 }
 
 .order_online .tittle_heading h2 {
@@ -706,7 +710,7 @@ ul._service_list li:last-child {
     font-family: 'Times New Roman Cyr';
     font-weight: bold;
     line-height: unset;
-    font-size: 26px;
+    font-size: 23px;
 }
 
 .order_online_crd {
@@ -728,7 +732,7 @@ ul._service_list li:last-child {
     margin: 0 auto 46px;
 }
 .best_food .tittle_heading h3 {
-    font-size: 56px;
+    font-size:60px;
 }
 .best_food .tittle_heading h2 {
     font-family: 'Times New Roman Cyr';
@@ -792,12 +796,13 @@ ul._service_list li:last-child {
 
 .meet_chef_cntnt .tittle_heading h2 {
     margin-bottom: 10px;
-    font-size: 35px;
+    font-size:46px;
 }
 
 .meet_chef_cntnt p {
     line-height: 32px;
     margin-bottom: 33px;
+    font-size: 17px;
 }
 .meet_chef_cntnt .tittle_heading h3{
     font-size: 56px;
@@ -806,13 +811,13 @@ ul._service_list li:last-child {
     font-family: 'Times New Roman Cyr';
     font-weight: bold;
     line-height: unset;
-    font-size: 26px;
+    font-size: 46px;
 }
 
 
 .testimonial_sec .tittle_heading h3 {
     color: #fff;
-    font-size: 56px;
+    font-size:60px;
 }
 
 .testimonial_sec .tittle_heading h2 {
@@ -820,7 +825,7 @@ ul._service_list li:last-child {
     font-family: 'Times New Roman Cyr';
     font-weight: bold;
     line-height: unset;
-    font-size: 26px;
+    font-size: 23px;
 }
 
 .testimonial_sec .tittle_heading {
@@ -849,10 +854,10 @@ ul._service_list li:last-child {
 }
 
 .testimonial_slider_txt p {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     color: #fff;
-    line-height: 42px;
+    line-height: 35px;
     max-width: 860px;
     margin: 0 auto;
 }
@@ -873,10 +878,10 @@ ul._service_list li:last-child {
 .testimonial_user_txt h3 {
     color: #fff;
     text-transform: capitalize;
-    font-size: 18px;
+    font-size: 21px;
     margin-bottom: 2px;
+    font-family: 'Times New Roman Cyr';
 }
-
 .testimonial_user_txt ul li {
     display: inline-block;
 }
@@ -890,14 +895,16 @@ ul._service_list li:last-child {
 }
 
 .sub_scribe_txt h2 {
-    font-size: 56px;
+    font-size: 60px;
     line-height: 59px;
     margin-bottom: 6px;
 }
 
 .sub_scribe_txt p {
     line-height: 32px;
-    margin-bottom: 36px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .sub_scribe_form .custn_input input {
@@ -922,7 +929,7 @@ ul._service_list li:last-child {
 }
 
 .contact_sec {
-    padding: 90px 0;
+    padding: 40px 0;
 }
 .contact_sec .tittle_heading h3{
     font-size: 56px;
@@ -962,7 +969,7 @@ form.contact_form {
     padding: 19px 30px;
     border: none;
     border-radius: 10px;
-    background: #fff;
+        background: #fff !important;
 }
 
 .contact_form_btn button {
@@ -976,30 +983,28 @@ form.contact_form {
           footer
 --------------------------- */
 .main_footer {
-    padding: 70px 0 0;
+    padding: 40px 0 0;
 }
 
 .quick_links h3 {
-    font-size: 24px;
+    font-size: 35px;
     text-transform: capitalize;
     color: #0b0708;
-    margin-bottom: 24px;
+    margin-bottom: 14px;
 }
-
 .quick_links ul li:first-child a {
     padding-top: 0;
 }
 
 .quick_links ul li a {
-    font-size: 16px;
+    font-size: 14px;
     color: #716b6d;
     display: block;
-    padding: 10px 0;
-    font-size: 16px;
+    padding: 7px 0;
 }
 
 .copy_right {
-    padding: 38px 0;
+    padding: 20px 0;
     border-top: 1px solid #dcd9da;
 }
 
@@ -1035,14 +1040,13 @@ form.contact_form {
 
 .open_hr {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: baseline;
+    justify-content: space-evenly;
     max-width: 562px;
-    margin: 53px auto 40px;
+    margin: 13px auto 13px;
 }
-
 .open_hr h3 {
-    font-size: 34px;
+    font-size: 30px;
     color: #573d24;
     text-transform: capitalize;
     margin-right: 30px;
@@ -1247,8 +1251,8 @@ form.contact_form {
     text-align: center;
     width: 100%;
     padding-top: 18px;
-    border-top: 1px solid #dcd9da;
-    margin-top: 20px;
+    /* border-top: 1px solid #dcd9da; */
+    margin-top: 0px;
     font-weight: 500;
 }
 
@@ -3680,16 +3684,16 @@ div#mmce-error-response {
 
 
 .taste_the .tittle_heading h3{
-    font-size: 56px;
+    font-size: 64px;
 }
 .taste_the .tittle_heading h2{
     font-family: 'Times New Roman Cyr';
     font-weight: bold;
     line-height: unset;
-    font-size: 26px;
+    font-size: 22px;
 }
 .our_servics .tittle_heading h3{
-    font-size: 56px;
+    font-size: 65px;
 }
 .our_servics .tittle_heading h2{
     font-family: 'Times New Roman Cyr';
@@ -3729,41 +3733,35 @@ p.cntact a {
 }
 .gluten_txt h2 {
     font-family: 'Times New Roman Cyr';
-    font-size: 49px;
+    font-size:30px;
     font-weight: 700;
     color: #573d24;
     text-transform: uppercase;
+    margin-bottom: 0;
 }
-/* .gluten_txt h2 {
-    border-left: 3px solid #573d24;
-    padding: 0 0px 0 20px;
-}
-.gluten_txt h2:first-child {
-    border-left: 0;
-} */
-/* .gluten_sec li :before {
-    content: "";
-    position: absolute;
-    border-left: 3px solid #573d24;
-    height: 34px;
-}
-.gluten_sec li{
-    position: relative;
-}
-.gluten_sec li:before:first-child{
-    border-left: 0;
-} */
 .gluten_sec li:before {
     content: "";
     position: absolute;
     border-left: 3px solid #573d24;
-    height: 35px;
-    top: 10px;
-    left: -37px;
+    height: 30px;
+    top: 5px;
+    left: -82px;
 }
 .gluten_sec li {
     position: relative;
 }
 .gluten_sec li:first-child:before {
     border-left: 0;
+}
+.gluten_free {
+    padding: 20px 0;
+}
+.meet_chef {
+    background: #d0b07f;
+}
+.our_title_head {
+    margin-bottom: 25px;
+}
+.order_online_img img {
+    max-width: 106px;
 }

@@ -73,7 +73,7 @@
         </div> -->
    
    
-        <div class="gluten_free py_8">
+        <div class="gluten_free">
           <div class="container">
             <div class="row">
             <div class="gluten_sec">
@@ -244,7 +244,7 @@
 </section>
 <section class="order_online bg_style py_8" style="background-image: url('{{asset('frontend/img/order-online.jpg')}}')">
   <div class="container">
-    <div class="tittle_heading">
+    <div class="tittle_heading our_title_head">
       <h3>Order Online</h3>
       <h2>Our Service Partner</h2>
     </div>
@@ -325,7 +325,7 @@
 </section>
 <section class="meet_chef py_8">
   <div class="container">
-    <div class="row">
+    <div class="row align-items-center">
       <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
         <div class="meet_chef_img">
           <img src="{{asset('frontend/img/chef-1.png')}}" alt="" />
@@ -334,7 +334,7 @@
       <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
         <div class="meet_chef_cntnt">
           <div class="tittle_heading">
-            <h3>Our Expert Chef</h3>
+            <!-- <h3>Our Expert Chef</h3> -->
             <h2>Meet Our Expert Chef</h2>
           </div>
           <p>
