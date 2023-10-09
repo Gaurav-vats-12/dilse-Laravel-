@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Requests\ConntactUs;
-use Illuminate\Http\Exceptions\HttpResponseException;
+
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreEmailSubcriptionRequest extends FormRequest
 {
@@ -27,12 +28,12 @@ class StoreEmailSubcriptionRequest extends FormRequest
         ];
     }
 
-
-    public function failedValidation(Validator $validator){
+    public function failedValidation(Validator $validator)
+    {
         throw new HttpResponseException(response()->json([
-            'success'   => false,
-            'message'   => 'Validation errors',
-            'errors'      =>$validator->messages()
+            'success' => false,
+            'message' => 'Validation errors',
+            'errors' => $validator->messages(),
 
         ]));
     }

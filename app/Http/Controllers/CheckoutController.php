@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Requests\Checkout\StoreCheckoutRequest;
-use App\Mail\Order\EmailOrderCencelledConfirmation;
 use App\Mail\User\Order\OrderNotification;
 use App\Models\Order\Order;
 use App\Modules\Admins\Models\Admin;
@@ -23,18 +23,17 @@ use Psr\Container\NotFoundExceptionInterface;
 class CheckoutController extends Controller
 {
 
-
     /**
      * @return Application|Factory|View|\Illuminate\Foundation\Application|RedirectResponse
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function index(): \Illuminate\Foundation\Application|View|Factory|RedirectResponse|Application
+    public function index(): \Illuminate\Foundation\Application  | View | Factory | RedirectResponse | Application
     {
         $cart = session()->get('cart');
-        if(session('cart')){
+        if (session('cart')) {
             return view(view: 'Pages.checkout.create');
-        }else{
+        } else {
             return redirect()->route('home');
         }
     }
@@ -43,13 +42,13 @@ class CheckoutController extends Controller
      * @param StoreCheckoutRequest $request
      * @return JsonResponse
      */
-    public function create (StoreCheckoutRequest $request)
+    public function create(StoreCheckoutRequest $request)
     {
         $payment = new PaymentFormServices();
-         $resPonse = $payment->PaymentForm($request);
+        $resPonse = $payment->PaymentForm($request);
         Notification::send(Admin::all(), new AdminOrderNotification(['type' => 'Order Notification', 'body' => 'You have received a new order with the following details Order Information:- Order ID: ' . $resPonse['order_id'] . '- Customer Name: ' . $request->billing_full_name . ' - Customer Email: ' . $request->billing_email . ' - Order Date: ' . Order::findOrFail($resPonse['order_id'])->order_date . ' ', 'thanks' => 'Thank you', 'notification_url' => url('/admin/order/view/' . $resPonse['order_id'] . ''), 'notification_uuid' => Str::random(10), 'notification_date' => date('Y-m-d H:i:s')]));
-        Mail::to($request->billing_email)->send(new OrderNotification(['PaymentResponse'=> $resPonse, 'CartDetails'=> Order::findOrFail($resPonse['order_id']),'Response'=> $request])) ;
-        notyf()->duration(2000) ->addSuccess($resPonse['message']);
-        return  redirect( $resPonse['url']);
+        Mail::to($request->billing_email)->send(new OrderNotification(['PaymentResponse' => $resPonse, 'CartDetails' => Order::findOrFail($resPonse['order_id']), 'Response' => $request]));
+        notyf()->duration(2000)->addSuccess($resPonse['message']);
+        return redirect($resPonse['url']);
     }
 }

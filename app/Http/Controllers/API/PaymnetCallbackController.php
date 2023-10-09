@@ -13,9 +13,10 @@ class PaymnetCallbackController extends Controller
      * @return void
      */
 
-    public function callback(Request $request ){
+    public function callback(Request $request)
+    {
         return 'data';
 //        dd('Data');
 
-  }
+    }
 }

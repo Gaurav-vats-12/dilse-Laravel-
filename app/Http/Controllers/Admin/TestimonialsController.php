@@ -3,37 +3,38 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
+use App\Http\Requests\Admin\Testimonial\StoreTestimonialRequest;
+
+use App\Http\Requests\Admin\Testimonial\UpdateTestimonialRequest;
+
+use App\Models\Admin\Testimonial;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application as ApplicationAlias;
+use Illuminate\Contracts\View\View;use Illuminate\Foundation\Application as ApplicationAlias;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\Admin\Testimonial\{StoreTestimonialRequest,UpdateTestimonialRequest};
-use Illuminate\Support\Facades\Storage;
-use App\Models\Admin\{Testimonial};
-use Intervention\Image\Facades\Image as ResizeImage;
-use RealRashid\SweetAlert\Facades\Alert;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as ResizeImage;
 
 class TestimonialsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View|ApplicationAlias|Factory|Application
+    public function index(): View | ApplicationAlias | Factory | Application
     {
         $Testimonial = Testimonial::orderByDesc('id')->get();
-        return view('admin.page.testimonial.index',compact('Testimonial'));
+        return view('admin.page.testimonial.index', compact('Testimonial'));
     }
 
     /**
      * Show the form for creating a new resource.
      * @return View|ApplicationAlias|Factory|Application
      */
-    public function create(): View|ApplicationAlias|Factory|Application
+    public function create(): View | ApplicationAlias | Factory | Application
     {
-       return view('admin.page.testimonial.create');
+        return view('admin.page.testimonial.create');
     }
 
     /**
@@ -44,15 +45,15 @@ class TestimonialsController extends Controller
     public function store(StoreTestimonialRequest $request): RedirectResponse
     {
         // dd($request->all());
-        if($request->hasFile(trim('testonomailsImage'))){
+        if ($request->hasFile(trim('testonomailsImage'))) {
             $banner_image = $request->file(trim('testonomailsImage'));
-            $testonomailsImage = time().'-'.$banner_image->getClientOriginalName();
-            $destinationPath = public_path('storage/testimonial/'); !is_dir($destinationPath) &&  mkdir($destinationPath, 0777, true);
-            ResizeImage::make($request->file('testonomailsImage'))->resize(80, 80)->save($destinationPath.'/'. $testonomailsImage);
+            $testonomailsImage = time() . '-' . $banner_image->getClientOriginalName();
+            $destinationPath = public_path('storage/testimonial/');!is_dir($destinationPath) && mkdir($destinationPath, 0777, true);
+            ResizeImage::make($request->file('testonomailsImage'))->resize(80, 80)->save($destinationPath . '/' . $testonomailsImage);
         }
 
-        Testimonial::insertGetId(['custumber_name'=>$request->custumber_name,'testimonial_description'=>$request->testimonial_description,'testonomailsImage'=>$testonomailsImage,'rating'=>$request->rating,'status'=>$request->status,'created_at' => now(),'updated_at' => now()]);
-        notyf()->duration(duration: 2000) ->addSuccess(message: 'Testimonial Created Successfully.');
+        Testimonial::insertGetId(['custumber_name' => $request->custumber_name, 'testimonial_description' => $request->testimonial_description, 'testonomailsImage' => $testonomailsImage, 'rating' => $request->rating, 'status' => $request->status, 'created_at' => now(), 'updated_at' => now()]);
+        notyf()->duration(duration: 2000)->addSuccess(message: 'Testimonial Created Successfully.');
         return redirect()->route(route: 'admin.testimonial.index');
     }
 
@@ -70,7 +71,7 @@ class TestimonialsController extends Controller
     public function edit(string $id)
     {
         $Testimonial = Testimonial::findOrFail($id);
-        return view('admin.page.testimonial.edit',compact('Testimonial'));
+        return view('admin.page.testimonial.edit', compact('Testimonial'));
     }
 
     /**
@@ -79,17 +80,17 @@ class TestimonialsController extends Controller
     public function update(UpdateTestimonialRequest $request, string $id): RedirectResponse
     {
         $Testimonial = Testimonial::findOrFail($id);
-        if($request->hasFile(trim('testonomailsImage'))){
-            $destinationPath = public_path('storage/testimonial/'); !is_dir($destinationPath) &&  mkdir($destinationPath, 0777, true);
+        if ($request->hasFile(trim('testonomailsImage'))) {
+            $destinationPath = public_path('storage/testimonial/');!is_dir($destinationPath) && mkdir($destinationPath, 0777, true);
             $banner_image = $request->file(trim('testonomailsImage'));
-            $testonomailsImage = time().'-'.$banner_image->getClientOriginalName();
-            ResizeImage::make($request->file('testonomailsImage'))->resize(80, 80)->save($destinationPath.'/'. $testonomailsImage);
-            DeleteOldImage($destinationPath.'/'.$Testimonial->testonomailsImage);
-        }else{
+            $testonomailsImage = time() . '-' . $banner_image->getClientOriginalName();
+            ResizeImage::make($request->file('testonomailsImage'))->resize(80, 80)->save($destinationPath . '/' . $testonomailsImage);
+            DeleteOldImage($destinationPath . '/' . $Testimonial->testonomailsImage);
+        } else {
             $testonomailsImage = $Testimonial->testonomailsImage;
         }
-        Testimonial::findOrFail($id)->update(['custumber_name'=>$request->custumber_name,'testimonial_description'=>$request->testimonial_description,'testonomailsImage'=>$testonomailsImage,'rating'=>$request->rating,'status'=>$request->status,'updated_at' => now() ]);
-        notyf()->duration(2000) ->addSuccess('Testimonial Updated Successfully.');
+        Testimonial::findOrFail($id)->update(['custumber_name' => $request->custumber_name, 'testimonial_description' => $request->testimonial_description, 'testonomailsImage' => $testonomailsImage, 'rating' => $request->rating, 'status' => $request->status, 'updated_at' => now()]);
+        notyf()->duration(2000)->addSuccess('Testimonial Updated Successfully.');
         return redirect()->route('admin.testimonial.index');
 
     }
@@ -99,8 +100,8 @@ class TestimonialsController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        $Testimonial =  Testimonial::findOrFail($id)->delete();
-        notyf()->duration(2000) ->addSuccess('Testimonial Deleted Successfully.');
+        $Testimonial = Testimonial::findOrFail($id)->delete();
+        notyf()->duration(2000)->addSuccess('Testimonial Deleted Successfully.');
         return redirect()->route('admin.testimonial.index');
     }
 }

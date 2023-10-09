@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Checkout;
 
 use Illuminate\Foundation\Http\FormRequest;
+
 class StoreCheckoutRequest extends FormRequest
 {
     /**
@@ -30,9 +31,8 @@ class StoreCheckoutRequest extends FormRequest
             'billing_state' => 'required',
             'billing_city' => 'required',
             'billing_postcode' => 'required|min:1|max:7',
-           'payment_method' => 'required|in:Pay On  Delivery,Pay On Store,Pay On Online (Stripe)',
+            'payment_method' => 'required|in:Pay On  Delivery,Pay On Store,Pay On Online (Stripe)',
         ];
     }
-
 
 }

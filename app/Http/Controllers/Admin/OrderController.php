@@ -4,19 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Order\StoreOrderRequest as StoreOrderRequestAlias;
+use App\Models\Order\Order;
 use App\Models\Order\Order as OrderAlias;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use App\Models\Order\Order;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View|\Illuminate\Foundation\Application|Factory|Application
+    public function index(): View | \Illuminate\Foundation\Application  | Factory | Application
     {
         return view(view: 'admin.page.order.index')->with('orders', value: OrderAlias::latest()->get());
     }
@@ -58,8 +58,8 @@ class OrderController extends Controller
      */
     public function update(StoreOrderRequestAlias $request, string $id)
     {
-        Order::findOrFail($id)->update(['time_taken' => $request->order_time_taken,'status' => 'Processing','updated_at' => now() ]);
-        return response()->json(['code' => 200 ,  'status' =>'success', "message"=>"Order Change Successfully"]);
+        Order::findOrFail($id)->update(['time_taken' => $request->order_time_taken, 'status' => 'Processing', 'updated_at' => now()]);
+        return response()->json(['code' => 200, 'status' => 'success', "message" => "Order Change Successfully"]);
     }
 
     /**

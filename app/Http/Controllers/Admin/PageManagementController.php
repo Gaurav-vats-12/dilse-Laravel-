@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Requests\Admin\Pages\{StorepagesRequest, UpdatePagesRequest};
-use App\Models\Admin\Page;
+
 use App\Http\Controllers\Controller;
-use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\Pages\StorepagesRequest;
+
+use App\Http\Requests\Admin\Pages\UpdatePagesRequest;
+use App\Models\Admin\Page;
 
 class PageManagementController extends Controller
 {
     public function index()
     {
-        $page    = Page::orderByDesc('id')->get();
-         return view('admin.page.pages.index',compact('page'));
+        $page = Page::orderByDesc('id')->get();
+        return view('admin.page.pages.index', compact('page'));
     }
 
     /**
@@ -28,9 +29,9 @@ class PageManagementController extends Controller
      */
     public function store(StorepagesRequest $request)
     {
-           Page::insert(['pagesuuid' => $request->pagesuuid, 'page_title' => $request->page_title, 'page_slug' => $request->page_slug,'page_content' => $request->page_content,'page_meta_title' => $request->page_meta_title,'page_meta_description' => $request->page_meta_description,'status' => $request->status,'created_at' => now(), 'updated_at' => now() ]);
-           notyf()->duration(2000) ->addSuccess('Page Successfully Created.');
-           return redirect()->route('admin.manage-pages.index');
+        Page::insert(['pagesuuid' => $request->pagesuuid, 'page_title' => $request->page_title, 'page_slug' => $request->page_slug, 'page_content' => $request->page_content, 'page_meta_title' => $request->page_meta_title, 'page_meta_description' => $request->page_meta_description, 'status' => $request->status, 'created_at' => now(), 'updated_at' => now()]);
+        notyf()->duration(2000)->addSuccess('Page Successfully Created.');
+        return redirect()->route('admin.manage-pages.index');
     }
 
     /**
@@ -47,7 +48,7 @@ class PageManagementController extends Controller
     public function edit(string $id)
     {
         $page = Page::findOrFail($id);
-        return view('admin.page.pages.edit' ,compact('page'));
+        return view('admin.page.pages.edit', compact('page'));
 
     }
 
@@ -56,8 +57,8 @@ class PageManagementController extends Controller
      */
     public function update(UpdatePagesRequest $request, string $id)
     {
-        Page::findOrFail($id)->update(['page_title' => $request->page_title,'page_slug' => Page::findOrFail($id)->page_slug,'page_meta_title' => $request->page_meta_title,'page_meta_description' => $request->page_meta_description,'status' => $request->status, 'updated_at' => now() ]);
-        notyf()->duration(2000) ->addSuccess('Page Updated Successfully.');
+        Page::findOrFail($id)->update(['page_title' => $request->page_title, 'page_slug' => Page::findOrFail($id)->page_slug, 'page_meta_title' => $request->page_meta_title, 'page_meta_description' => $request->page_meta_description, 'status' => $request->status, 'updated_at' => now()]);
+        notyf()->duration(2000)->addSuccess('Page Updated Successfully.');
         return redirect()->route('admin.manage-pages.index');
     }
 
@@ -66,9 +67,9 @@ class PageManagementController extends Controller
      */
     public function destroy(string $id)
     {
-        $page =  Page::findOrFail($id);
+        $page = Page::findOrFail($id);
         $page->delete();
-        notyf()->duration(2000) ->addSuccess('Page Deleted Successfully.');
+        notyf()->duration(2000)->addSuccess('Page Deleted Successfully.');
         return redirect()->route('admin.manage-pages.index');
     }
 

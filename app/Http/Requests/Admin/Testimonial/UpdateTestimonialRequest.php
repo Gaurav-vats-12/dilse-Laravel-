@@ -22,8 +22,8 @@ class UpdateTestimonialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'custumber_name' =>  'required|max:250',
-            'testimonial_description' =>  'required|max:5000',
+            'custumber_name' => 'required|max:250',
+            'testimonial_description' => 'required|max:5000',
             'rating' => 'required|in:1,2,3,4,5',
             'status' => 'required|in:active,inactive',
         ];

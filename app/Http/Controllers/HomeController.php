@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\{Banner, Testimonial, Page, FoodItem, Gallery};
-use Illuminate\Contracts\View\Factory;
+use App\Models\Admin\Banner;
+use App\Models\Admin\FoodItem;
+use App\Models\Admin\Gallery;
+use App\Models\Admin\Testimonial;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
-use App\Models\Order\Order;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Mail;
 use JetBrains\PhpStorm\NoReturn;
 
@@ -53,11 +51,7 @@ class HomeController extends Controller
         return "Email sent successfully!";
     }
 
-
-
-
-
-    #[NoReturn] public  function update_location(Request $request): void
+    #[NoReturn] public function update_location(Request $request): void
     {
         dd($request->all());
     }

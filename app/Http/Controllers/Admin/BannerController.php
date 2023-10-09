@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Http\Requests\Admin\Banner\{StoreBannerRequest,UpdateBannerRequest};
+
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Banner\StoreBannerRequest;
+
+use App\Http\Requests\Admin\Banner\UpdateBannerRequest;
+
+use App\Models\Admin\Banner;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image as ResizeImage;
-use App\Models\Admin\{Banner};
-use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
@@ -19,8 +20,8 @@ class BannerController extends Controller
         $banner = Banner::get();
         $title = 'Delete Banner!';
         $text = "Are you sure you want to delete?";
-        confirmDelete('Delete testimonial!',"Are you sure you want to delete?");
-       return view('admin.page.banner.index',compact('banner'));
+        confirmDelete('Delete testimonial!', "Are you sure you want to delete?");
+        return view('admin.page.banner.index', compact('banner'));
     }
 
     /**
@@ -43,10 +44,14 @@ class BannerController extends Controller
         //     $img = ResizeImage::make($banner_image->path ResizeImage::make($request->file('banner_image'))->resize(1440, 674)->save($destinationPath.'/'. $bannerImage);());
         //
         // }
-        if ($request->banner_type =='home') { $banner_details1 = $request->home_banner_button_url; $banner_details2 = $request->home_banner_button_name; } else if($request->banner_type =='popup') { $banner_details1 = $request->popup_banner_button_url;  $banner_details2 = $request->popup_banner_button_name;}else if($request->banner_type =='promo') {$banner_details1 = $request->promo_banner_button_url; $banner_details2 = $request->promo_banner_button_name; }else{ $banner_details1 = $request->banner_sales_start_date; $banner_details2 = $request->banner_sales_end_date; }
-        Banner::insertGetId(['banneruuid'=>\Str::random(10), 'banner_title' => $request->banner_title,'banner_heading' => $request->banner_heading, 'banner_discription' => strip_tags($request->banner_discription),'bannerImage' =>null, 'banner_type' => $request->banner_type,'status' => $request->status,'banner_details1'=>$banner_details1,'banner_details2'=>$banner_details2,'created_at' => now(),'updated_at' => now()]);
+        if ($request->banner_type == 'home') {$banner_details1 = $request->home_banner_button_url;
+            $banner_details2 = $request->home_banner_button_name;} else if ($request->banner_type == 'popup') {$banner_details1 = $request->popup_banner_button_url;
+            $banner_details2 = $request->popup_banner_button_name;} else if ($request->banner_type == 'promo') {$banner_details1 = $request->promo_banner_button_url;
+            $banner_details2 = $request->promo_banner_button_name;} else { $banner_details1 = $request->banner_sales_start_date;
+            $banner_details2 = $request->banner_sales_end_date;}
+        Banner::insertGetId(['banneruuid' => \Str::random(10), 'banner_title' => $request->banner_title, 'banner_heading' => $request->banner_heading, 'banner_discription' => strip_tags($request->banner_discription), 'bannerImage' => null, 'banner_type' => $request->banner_type, 'status' => $request->status, 'banner_details1' => $banner_details1, 'banner_details2' => $banner_details2, 'created_at' => now(), 'updated_at' => now()]);
         return redirect()->route('admin.banner.index')->withSuccess('Banner Successfully Created');
-}
+    }
 
     /**
      * Display the specified resource.
@@ -62,7 +67,7 @@ class BannerController extends Controller
     public function edit(string $id)
     {
         $Banner = Banner::findOrFail($id);
-        return view('admin.page.banner.edit' ,compact('Banner'));
+        return view('admin.page.banner.edit', compact('Banner'));
     }
 
     /**
@@ -81,10 +86,14 @@ class BannerController extends Controller
         //     $bannerImage =  $Banner->bannerImage;
         // }
         $bannerImage = null;
-        if ($request->banner_type =='home') { $banner_details1 = $request->home_banner_button_url; $banner_details2 = $request->home_banner_button_name; } else if($request->banner_type =='popup') { $banner_details1 = $request->popup_banner_button_url;  $banner_details2 = $request->popup_banner_button_name;}else if($request->banner_type =='promo') {$banner_details1 = $request->promo_banner_button_url; $banner_details2 = $request->promo_banner_button_name; }else{ $banner_details1 = $request->banner_sales_start_date; $banner_details2 = $request->banner_sales_end_date; };
-        $bjkkjk = ['banner_title' => $request->banner_title,'banner_heading' => $request->banner_heading, 'banner_discription' => strip_tags($request->banner_discription),'bannerImage' =>$bannerImage, 'banner_type' => $request->banner_type,'status' => $request->status,'banner_details1'=>$banner_details1,'banner_details2'=>$banner_details2,'updated_at' => now()];
+        if ($request->banner_type == 'home') {$banner_details1 = $request->home_banner_button_url;
+            $banner_details2 = $request->home_banner_button_name;} else if ($request->banner_type == 'popup') {$banner_details1 = $request->popup_banner_button_url;
+            $banner_details2 = $request->popup_banner_button_name;} else if ($request->banner_type == 'promo') {$banner_details1 = $request->promo_banner_button_url;
+            $banner_details2 = $request->promo_banner_button_name;} else { $banner_details1 = $request->banner_sales_start_date;
+            $banner_details2 = $request->banner_sales_end_date;};
+        $bjkkjk = ['banner_title' => $request->banner_title, 'banner_heading' => $request->banner_heading, 'banner_discription' => strip_tags($request->banner_discription), 'bannerImage' => $bannerImage, 'banner_type' => $request->banner_type, 'status' => $request->status, 'banner_details1' => $banner_details1, 'banner_details2' => $banner_details2, 'updated_at' => now()];
         Banner::findOrFail($id)->update($bjkkjk);
-            return redirect()->route('admin.banner.index')->withSuccess('Banner Successfully Updated');;
+        return redirect()->route('admin.banner.index')->withSuccess('Banner Successfully Updated');
     }
 
     /**
@@ -92,14 +101,14 @@ class BannerController extends Controller
      */
     public function destroy(string $id)
     {
-        $banner =  Banner::findOrFail($id);
+        $banner = Banner::findOrFail($id);
         $banner->delete();
-        return redirect()->route('admin.banner.index')->withSuccess('Banner Successfully Deleted');;
+        return redirect()->route('admin.banner.index')->withSuccess('Banner Successfully Deleted');
 
     }
 
-
-    public function updateStatus(string $id ){
+    public function updateStatus(string $id)
+    {
         dd('sadsa');
 
     }

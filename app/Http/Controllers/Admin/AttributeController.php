@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Models\Admin\Attributes;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Attributes\StoreAttributeRequest;
+use App\Models\Admin\Attributes;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -16,11 +17,9 @@ class AttributeController extends Controller
      * Display a listing of the resource.
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function index(): View | Application | Factory | \Illuminate\Contracts\Foundation\Application
     {
-        return view('admin.page.attributes.index',['Attributes'=>Attributes::orderByDesc('id')->get()]);
-
-
+        return view('admin.page.attributes.index', ['Attributes' => Attributes::orderByDesc('id')->get()]);
 
     }
 
@@ -28,9 +27,9 @@ class AttributeController extends Controller
      * Show the form for creating a new resource.
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function create(): View | Application | Factory | \Illuminate\Contracts\Foundation\Application
     {
-       return view('admin.page.attributes.create');
+        return view('admin.page.attributes.create');
     }
 
     /**
@@ -38,8 +37,8 @@ class AttributeController extends Controller
      */
     public function store(StoreAttributeRequest $request): RedirectResponse
     {
-        Attributes::create(['attributes_name' => $request->attributes_name, 'attributes_type' => $request->attributes_type,'status'=> (isset($request->status)) ? 1 : 0,'created_at' => now(),'updated_at' => now()]);
-        notyf()->duration(duration: 2000) ->addSuccess(message: 'Attribute  Created Successfully.');
+        Attributes::create(['attributes_name' => $request->attributes_name, 'attributes_type' => $request->attributes_type, 'status' => (isset($request->status)) ? 1 : 0, 'created_at' => now(), 'updated_at' => now()]);
+        notyf()->duration(duration: 2000)->addSuccess(message: 'Attribute  Created Successfully.');
         return redirect()->route(route: 'admin.manage-attributes.index');
     }
 
@@ -49,7 +48,6 @@ class AttributeController extends Controller
     public function show(string $id)
     {
 
-
     }
 
     /**
@@ -57,9 +55,9 @@ class AttributeController extends Controller
      * @param string $id
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function edit(string $id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function edit(string $id): View | Application | Factory | \Illuminate\Contracts\Foundation\Application
     {
-        return view('admin.page.attributes.edit',['attributes'=>Attributes::findOrFail($id)]);
+        return view('admin.page.attributes.edit', ['attributes' => Attributes::findOrFail($id)]);
     }
 
     /**
@@ -70,8 +68,8 @@ class AttributeController extends Controller
      */
     public function update(StoreAttributeRequest $request, string $id): RedirectResponse
     {
-        Attributes::findOrFail($id)->update(array('attributes_name' => $request->attributes_name, 'attributes_type' => $request->attributes_type,'status'=> (isset($request->status)) ? 1 : 0,'updated_at' => now()));
-        notyf()->duration(2000) ->addSuccess('Attribute  Updated Successfully.');
+        Attributes::findOrFail($id)->update(array('attributes_name' => $request->attributes_name, 'attributes_type' => $request->attributes_type, 'status' => (isset($request->status)) ? 1 : 0, 'updated_at' => now()));
+        notyf()->duration(2000)->addSuccess('Attribute  Updated Successfully.');
         return redirect()->route('admin.manage-attributes.index');
     }
 
@@ -83,7 +81,7 @@ class AttributeController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         Attributes::findOrFail($id)->delete();
-        notyf()->duration(2000) ->addSuccess('Attribute Deleted Successfully.');
+        notyf()->duration(2000)->addSuccess('Attribute Deleted Successfully.');
         return redirect()->route('admin.manage-attributes.index');
     }
 }
