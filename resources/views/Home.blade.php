@@ -101,7 +101,7 @@
         </div>
       </section>
 
-<section class="about_se py_8">
+<section class="about_se about_home_txt py_8">
   <div class="container">
     <div class="row">
       <div class="col-md-8 m-auto">
@@ -292,7 +292,7 @@
     <div class="row">
       @if (isset($FoodItem) && count($FoodItem) >0)
       @foreach ( $FoodItem as $key => $FoodItemValue )
-      <div class="col-md-4">
+      <div class="col-md-4 mb-2">
         <div class="best_food_crd">
           <a href="{{ route('menudetails' , $FoodItemValue->slug)}}">
             <div class="best_food_crd_img">
@@ -324,7 +324,7 @@
     </div>
   </div>
 </section>
-<section class="meet_chef py_8">
+<section class="meet_chef meet_home_chef py_8">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-sm-12 col-md-12 col-lg-6 col-xl-5 mb-4 mb-xl-0">

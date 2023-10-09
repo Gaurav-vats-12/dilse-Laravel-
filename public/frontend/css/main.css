@@ -278,7 +278,7 @@ a.login_header {
   text-align: center;
 }
 .home-slider-content h2 {
-  font-size: 52px;
+  font-size: 60px;
   color: #573d24;
   /* text-transform: uppercase; */
   margin-bottom: 0;
@@ -839,7 +839,7 @@ ul._service_list li:last-child {
 .testimonial_slider_txt {
   text-align: center;
   position: relative;
-  padding-top: 60px;
+  padding-top: 25px;
 }
 
 .testimonial_slider_txt::before {
@@ -867,7 +867,7 @@ ul._service_list li:last-child {
 
 .testimonial_user {
   max-width: 230px;
-  margin: 32px auto 0;
+  margin: -12px auto 0;
   display: flex;
   align-items: center;
 }
@@ -890,7 +890,7 @@ ul._service_list li:last-child {
 }
 
 .sub_scribe {
-  background: #fcebb9;
+  background: #fff;
 }
 
 .sub_scribe .container {
@@ -969,7 +969,7 @@ form.contact_form {
   width: 100%;
   font-size: 16px;
   color: #716b6d;
-  padding: 19px 30px;
+  padding: 12px 30px;
   border: none;
   border-radius: 10px;
   background: #fff !important;
@@ -1194,7 +1194,7 @@ form.contact_form {
   width: 100%;
   font-size: 16px;
   color: #716b6d;
-  padding: 19px 30px;
+  padding: 11px 30px;
   border: none;
   border-radius: 10px;
   background: #fcebb9 !important;
@@ -3808,4 +3808,16 @@ h3.best-of-listing-box-title {
 }
 .site_logo img {
   width: 110px;
+}
+.about_home_txt {
+  background: #573d24;
+}
+.about_home_txt p {
+  color: #f8d385;
+}
+.meet_home_chef {
+  background: #fff;
+}
+.sub_scribe input#mce-EMAIL {
+  border: 1px solid #573d2442 !important;
 }
