@@ -15,6 +15,7 @@
             </div>
             @include('layouts.partials.order_popup')
         </div>
+        
     </section>
     <section class="home-slider_sec">
         <div class="home-slider-content">
