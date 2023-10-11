@@ -148,6 +148,16 @@ jQuery(document).ready(function () {
     //     }
     // });
 
+
+jQuery('#phone').attr('maxlength','10');
+    jQuery(document).on("keyup", "#phone", async function () {
+      if (/\D/g.test(this.value))
+      {
+        // Filter non-digits from input value.
+        this.value = this.value.replace(/\D/g, '');
+      }
+
+    });
     /**
  *     Contact us Form Submission  iN ajax   (Home Page ,Contact Us Page)
  */
