@@ -11,16 +11,9 @@
                                 <div class="contact_info_img">
                                     <img src="{{ asset('frontend/img/phone-o1.png') }}" alt="" />
                                 </div>
-                                @if (setting('phone') != '')
-                                    @foreach (explode(',', setting('phone')) as $info)
-                                        <a href="tel:{{ $info }}">
-                                            <p>{{ $info }}</p>
-                                        </a>
-                                        @unless($loop->last)
-                                            |
-                                        @endunless
-                                    @endforeach
-                                @endif
+                                <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
+                                    <p>{{ setting('phone') != null ? setting('phone') : '' }}</p>
+                                    </a>|<a href="tel:416-534-6344"><p>416-534-6344</p></a> 
                             </div>
 
                         </li>
