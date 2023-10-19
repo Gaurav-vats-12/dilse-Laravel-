@@ -48,9 +48,9 @@
                                 <div class="row py-2">
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                     <label for="phone">Phone Number *</label>
-                                    <input type="text" name="phone" id="phone"  class="form-control" value="{{ old('phone',setting('phone'))}}">
-                                    <small><i class="fa-solid fa-circle-question"></i> Please Enter the valid phone number</small>
-                                    @error('phone')  <span class="text-danger">{{ $message }}</span> @enderror
+                                   <input type="text" name="phone" id="phone"  class="form-control" value="{{ old('phone',setting('phone'))}}">
+                                <small><i class="fa-solid fa-circle-question"></i> Please Enter the valid phone number</small>
+                               @error('phone')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="col-xl-6 col-lg-6 form-group">
                                     <label for="copyright_text">Copyright Text </label>
@@ -86,7 +86,7 @@
                                     @error('site_location')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="row py-2">
+                                <!-- <div class="row py-2">
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                     <label for="logo">Logo</label>
                                     <input type="file" name="logo" id="logo" class="dropify" data-max-file-size="1M" data-max-height="1000"  data-errors-position="outside" data-allowed-file-extensions="png jpg svg" data-default-file="{{ url('/storage/site/logo/'.setting('logo').'')  }}" >
@@ -97,15 +97,15 @@
                                     <input type="file" name="Favicon" id="Favicon" class="dropify" data-max-file-size="1M" data-max-height="1000"  data-errors-position="outside" data-allowed-file-extensions="png jpg svg" data-default-file="{{ url('/storage/site/Favicon/'.setting('favicon').'') }}" >
                                      @error('Favicon')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
-                                </div>
-                                <div class="row py-2">
+                                </div> -->
+                                <!-- <div class="row py-2">
                                     <div class="col-xl-12 col-lg-12 col-12 form-group">
                                     <label for="footer_logo"> Footer Logo</label>
                                     <input type="file" name="footer_logo" id="footer_logo" class="dropify" data-max-file-size="1M" data-max-height="1000"  data-errors-position="outside" data-allowed-file-extensions="png jpg svg" data-default-file="{{ url('/storage/site/logo/'.setting('footer_logo').'') }}" >
                                     @error('logo')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
 
-                                </div>
+                                </div> -->
                                 <div class="row py-2">
                                 <div class="col-xl-6 col-lg-6 col-12 form-group">
                                 <label for="address"> Address</label>

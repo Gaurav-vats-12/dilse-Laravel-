@@ -61,15 +61,7 @@ jQuery(document).ready(function () {
             NotyfMessage(resPose.message, 'success');
             jQuery(`.cart_count`).html(resPose.cart_total);
         }
-        //
-        //
-        //
-        //
-        // if (resPose.status === `success`) {
-        //     setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 1000);
-        //     NotyfMessage(resPose.message, 'success');
-        //     jQuery(`.cart_count`).html(resPose.cart_total);
-        // }
+
     });
     /**
  *  testimonial_slider   (Home Page)
@@ -150,7 +142,8 @@ jQuery(document).ready(function () {
 
 
 jQuery('#phone').attr('maxlength','10');
-    jQuery(document).on("keyup", "#phone", async function () {
+jQuery('#conatact_phone_number').attr('maxlength','10');
+    jQuery(document).on("keyup", "#phone ,#conatact_phone_number", async function () {
       if (/\D/g.test(this.value))
       {
         // Filter non-digits from input value.
@@ -160,8 +153,9 @@ jQuery('#phone').attr('maxlength','10');
     });
     /**
  *     Contact us Form Submission  iN ajax   (Home Page ,Contact Us Page)
+ * 
  */
-
+    // jQuery('#conatact_phone_number').inputmask('+1 (999) 999-9999');
     jQuery("#conatact_cus_form").validate({
         messages: {
             first_name: {
@@ -691,7 +685,7 @@ jQuery('#phone').attr('maxlength','10');
 
         });
 
-        jQuery('#phone').inputmask('+1 (999) 999-9999');
+        jQuery('#booking_phone').inputmask('+1 (999) 999-9999');
 
 
     }

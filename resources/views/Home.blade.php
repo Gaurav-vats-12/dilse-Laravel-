@@ -523,7 +523,7 @@
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
                         <div class="custn_input">
-                            <input type="tel" placeholder="Phone number" name="phone" id="phone"
+                            <input type="tel" placeholder="Phone number" name="phone" id="conatact_phone_number"
                                 maxlength="10" />
                             <span id="phone-error" class="text-danger error"></span>
                             <span id="phone-error" class="text-danger error"></span>
