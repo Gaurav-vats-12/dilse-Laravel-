@@ -37,7 +37,7 @@ class AttributeController extends Controller
      */
     public function store(StoreAttributeRequest $request): RedirectResponse
     {
-        Attributes::create(['attributes_name' => $request->attributes_name, 'attributes_type' => $request->attributes_type, 'status' => (isset($request->status)) ? 1 : 0, 'created_at' => now(), 'updated_at' => now()]);
+        Attributes::create(['attributes_name' => $request->attributes_name, 'attributes_type' => $request->attributes_type, 'status' => (int)$request->status, 'created_at' => now(), 'updated_at' => now()]);
         notyf()->duration(duration: 2000)->addSuccess(message: 'Attribute  Created Successfully.');
         return redirect()->route(route: 'admin.manage-attributes.index');
     }
@@ -68,7 +68,7 @@ class AttributeController extends Controller
      */
     public function update(StoreAttributeRequest $request, string $id): RedirectResponse
     {
-        Attributes::findOrFail($id)->update(array('attributes_name' => $request->attributes_name, 'attributes_type' => $request->attributes_type, 'status' => (isset($request->status)) ? 1 : 0, 'updated_at' => now()));
+        Attributes::findOrFail($id)->update(array('attributes_name' => $request->attributes_name, 'attributes_type' => $request->attributes_type, 'status' =>  (int)$request->status, 'updated_at' => now()));
         notyf()->duration(2000)->addSuccess('Attribute  Updated Successfully.');
         return redirect()->route('admin.manage-attributes.index');
     }
