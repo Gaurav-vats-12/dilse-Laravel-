@@ -52,7 +52,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="custn_input">
-                      <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone number" id="phone" />
+                      <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone number" id="booking_phone" />
                       @error('phone')
                       <div class="error">{{ $message }}</div>
                        @enderror

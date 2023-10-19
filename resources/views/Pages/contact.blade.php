@@ -48,10 +48,20 @@
                             <div class="location_img"  data_location_id ="location_drag">
                              <img src="{{asset('frontend/img/calling.svg')}}" alt="calling.svg" />
                             </div>
-                            <p class="cntact"><a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">{{ setting('phone') != null ? setting('phone') : '' }}</a> | <a href="tel:416-534-6344">416-534-6344</a></p>
-                            <!-- <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
-                           <p>{{ setting('phone') != null ? setting('phone') : '' }} | 416-534-6344
-</p></a> -->
+                            <p class="cntact">
+                            @if (setting('phone') != '')
+                                    @foreach (explode(',', setting('phone')) as $info)
+                                        <a href="tel:{{ $info }}">
+                                          {{ $info }}
+                                        </a>
+                                        @unless($loop->last)
+                                            |
+                                        @endunless
+                                    @endforeach
+                                @endif
+                       
+                            
+                            </p>
                         </div>
 
                     </div>
@@ -108,7 +118,7 @@
                             <div class="col-md-6 mb-4 mb-xl-0">
                                 <div class="custn_input">
                                     <input type="text" name="phone" value="{{ old('phone') }}"
-                                        placeholder="Phone number" id="phone" />
+                                        placeholder="Phone number" id="conatact_phone_number" />
                                     @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
 
                                 </div>
