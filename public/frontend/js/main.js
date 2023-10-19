@@ -633,7 +633,7 @@ jQuery('#phone').attr('maxlength','10');
          })
 
     }else if (url.indexOf("/user/profile") > -1) {
-        jQuery('#phone').inputmask('+1 (999) 999-9999');
+        jQuery('#user_phone').inputmask('+1 (999) 999-9999');
 
     }else if (url.indexOf("/book-a-reservation") > -1) {
         jQuery('#datepicker').datepicker({
