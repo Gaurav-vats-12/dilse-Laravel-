@@ -32,6 +32,7 @@ class UpdateGenralSettingRequst extends FormRequest
             'minimum_order_for_delivery' =>  'required',
             'delivery_charge_within_5km' =>  'required',
             'delivery_charge_outside_5km' =>  'required',
+            'referrel_points_on_signup' =>  'required',
         ];
     }
 }

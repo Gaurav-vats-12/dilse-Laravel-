@@ -16,6 +16,8 @@ return new class extends Migration
         $table->decimal('delivery_charge_within_5km', 10, 2)->nullable()->default(null)->after('blogto_url');
         $table->decimal('delivery_charge_outside_5km', 10, 2)->nullable()->default(null)->after('blogto_url');
         $table->decimal('tax', 10, 2)->nullable()->default(null)->after('blogto_url');
+        $table->decimal('referrel_points_on_signup', 10, 2)->nullable()->default(null)->after('blogto_url');
+
     });
 }
 
