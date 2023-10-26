@@ -65,7 +65,7 @@
             </div>
         </li>
         <li class="Delivery Tip">
-            <span class="key">Tip Tour Delivery Partner </span>
+            <span class="key">Tip Tour Delivery Partner  (Optional) </span>
             <span class="value" id="dilevery_tip">{{setting('site_currency')}} <input type="text"  class="" name="dilvery_tip" id="dilvery_tip" value="" maxlength="2" size="2"></span>
      </li>
         @endif
