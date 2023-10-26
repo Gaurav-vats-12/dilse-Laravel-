@@ -153,7 +153,7 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
     });
     /**
  *     Contact us Form Submission  iN ajax   (Home Page ,Contact Us Page)
- * 
+ *
  */
     // jQuery('#conatact_phone_number').inputmask('+1 (999) 999-9999');
     jQuery("#conatact_cus_form").validate({
@@ -544,10 +544,10 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
         jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
       });
 
+        // dilvery_tip Functionalty
       jQuery('#dilvery_tip').on('focusout', function() {
         let site_currency = jQuery('meta[name="site_currency"]').attr('content');
         let subtotal = parseFloat(jQuery('#subtotal').attr('subtotal'));
-        // let  inputValue = parseFloat(jQuery(this).val());
         let inputValue  = (jQuery(this).val()) ? parseFloat(jQuery(this).val())   :  parseFloat('0.00',2) ;
         let totaltax = parseFloat(jQuery('#totaltax').attr('totaltax'));
         let dilevery_total  = (jQuery('#dilevery_total').attr('dilevery_total') === undefined || (jQuery('#dilevery_total').attr('dilevery_total') === 'undefined')) ?parseFloat('0.00',2)  :  parseFloat(jQuery('#dilevery_total').attr('dilevery_total')) ;
@@ -555,7 +555,7 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
          jQuery(`#grandTotal`).html(`${site_currency}${grandTotal.toFixed(2)}`);
          if(inputValue >0){
         }else{
-            NotyfMessage('The tip must be grater then zero ', 'error');
+            // NotyfMessage('The tip must be grater then zero ', 'error');
             jQuery('#dilvery_tip').val(null)
         }
 
