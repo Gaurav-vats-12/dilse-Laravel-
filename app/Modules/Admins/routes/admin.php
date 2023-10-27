@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\PageManagementController as PageManagementControllerAlias;
 use App\Http\Controllers\Admin\SettingController as SettingControllerAlias;
 use App\Http\Controllers\Admin\TestimonialsController as TestimonialsControllerAlias;
+use App\Http\Controllers\Admin\CouponController;
 use App\Modules\Admins\Http\Controllers\ProfileController as ProfileControllerAlias;
 use App\Http\Controllers\BookingController as BookingControllerAlias;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ Route::prefix('admin')->name('admin.')->group(callback: function(){
         Route::get('/dashboard', [AdminControllerAlias::class, 'dashboard'])->name('dashboard');
         Route::resource('banner', BannerControllerAlias::class);
         // Route::get('/banner/changeStatus/{id}', [BannerController::class, 'updateStatus'])->name('banner.changeStatus');
+
 
         Route::middleware('optimizeImages')->group(function () {
             Route::prefix('setting')->name('setting.')->group(callback: function(){
@@ -79,16 +81,17 @@ Route::prefix('admin')->name('admin.')->group(callback: function(){
 
 
 //        Route::resource('order', OrderController::class);
-
-
         Route::prefix('manage-customer')->name('manage-customer.')->group(callback: function(){
             Route::get('/', [CustomerControllerAlias::class, 'index'])->name('index');
             Route::get('/view/{id}', [CustomerControllerAlias::class, 'show'])->name('view');
             Route::PUT('/control/{id}', [CustomerControllerAlias::class, 'control'])->name('control');
-
         });
 
+           // Manage Coupan Functionalty
+           Route::resource('manage-coupon', CouponController::class);
     });
+
+
 });
 Route::group(['as' => 'admin.', 'prefix' => '/admin', 'middleware' => ['web', 'admin.auth']], function () {
     Route::get('/profile', [ProfileControllerAlias::class, 'edit'])->name('profile.edit');

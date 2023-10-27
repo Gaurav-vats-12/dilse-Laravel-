@@ -101,17 +101,13 @@
                   <li class="nav-item">
                       <a href="{{ route('admin.manage-customer.index') }}"
                           class="nav-link {{ request()->is('admin/manage-customer*') ? 'active' : '' }}">
-                          <p>
-                              {{ __('Manage Customer ') }}
-                          </p>
+                          <p>   {{ __('Manage Customer ') }}  </p>
                       </a>
                   </li>
                   <li class="nav-item">
                       <a href="{{ route('admin.booking.index') }}"
                           class="nav-link {{ request()->is('admin/booking*') ? 'active' : '' }}">
-                          <p>
-                              {{ __('Manage Booking ') }}
-                          </p>
+                          <p>   {{ __('Manage Booking ') }}   </p>
                       </a>
                   </li>
                   <li class="nav-item">
@@ -122,7 +118,13 @@
                           </p>
                       </a>
                   </li>
-
+                  <li class="nav-item">
+                <a href="{{ route('admin.manage-coupon.index') }}" class="nav-link {{ request()->is('admin/manage-coupon*') ? 'active' : '' }}">
+              <p>
+              {{ __('Manage Coupon ') }}
+              </p>
+            </a>
+          </li>
                   <li class="nav-item {{ request()->is('admin/setting*') ? 'menu-open' : '' }}">
                       <a href="#" class="nav-link {{ request()->is('admin/setting*') ? 'active' : '' }}">
                           <p> {{ __('Site   Setting') }} <i class="right fas fa-angle-left"></i> </p>

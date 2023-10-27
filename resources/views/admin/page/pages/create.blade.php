@@ -23,8 +23,7 @@
                     <div class="card card-primary">
                         <div class="card">
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.manage-pages.store')}}"
-                                      accept-charset="UTF-8" enctype="multipart/form-data">@csrf
+                                <form method="POST" action="{{ route('admin.manage-pages.store')}}"  accept-charset="UTF-8" enctype="multipart/form-data">@csrf
                                     <div class="form-group">
                                         <label for="page_title">Page Title*</label>
                                         <input type="hidden" name="pagesuuid" id="pagesuuid"
