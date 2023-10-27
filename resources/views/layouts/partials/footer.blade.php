@@ -10,6 +10,7 @@
                 <li><a href="{{ route('discountandcoupons') }}">Discount and Coupons</a></li>
                 <li><a href="{{ url('dilse-foundation-and-donation') }}">Dilse Foundation and Donation</a></li>
                 <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                <li><a href="{{ route('user.referral') }}">Referral Program </a></li>
               </ul>
             </div>
           </div>

@@ -125,4 +125,6 @@ class UserController extends Controller
         notyf()->duration(2000)->addSuccess('Items Added to Card Successfully');
         return redirect(route('checkout.view'));
     }
+
+
 }

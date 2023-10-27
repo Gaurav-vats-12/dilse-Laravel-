@@ -63,3 +63,14 @@ function updateCountryCode(countryCode ,) {
         passwordItd.attr('type', 'password')
     }
 });
+
+const genrate_code =  (codeLength ) => {
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let randomCode = '';
+    for (let i = 0; i < codeLength; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        randomCode += characters.charAt(randomIndex);
+      }
+    return randomCode ;
+
+}

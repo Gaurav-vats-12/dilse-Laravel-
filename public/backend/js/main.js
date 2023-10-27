@@ -180,16 +180,6 @@ jQuery( function () {
         ]
         });
     }else if(url.indexOf("/booking") > -1){
-        // jQuery(document).on("change", "#status", async function (event) {
-        //     let statusValue  = (jQuery(this).is(":checked") ) ? parseInt(jQuery(this).val()) : 0 ;
-        //     let booking_id = parseInt(jQuery(this).attr('booking_id'));
-        //     let ajax_value = {statusValue,booking_id};
-        //     let  ajax_url =  jQuery(this).closest("form").attr('action');
-        //     const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-        //     console.log(resPose,ajax_url);
-
-        //     // console.log(ajax_value);
-        // });
         new DataTable('#manage_bookign_table',{
             "responsive": true,
             "lengthMenu": [10, 20],
@@ -304,6 +294,51 @@ jQuery( function () {
             var form =  $(this).closest("form");
             form.submit();
         });
+    }else if(url.indexOf("/manage-coupon") > -1){
+        jQuery('#coupon_amount').attr('min','');
+        jQuery('#coupon_amount').attr('min','');
+        jQuery(document).on("click", "#coupon_code", async function (event) {
+            jQuery('#coupon_code').val(genrate_code(10).toUpperCase());
+        });
+        jQuery(document).on("change", "#discount_type", async function (event) {
+            let discount_type = jQuery(this).find(":selected").val();
+            if (discount_type ==='percent') {
+             jQuery('#coupon_amount').attr('max',100);
+             jQuery('#appemd_data_list').html('<i class="fa-solid fa-circle-question"></i> Please Enter value must less then 100 ');
+             jQuery('#coupon_amount').attr('min',1);
+            } else if (discount_type ==='fixed_cart') {
+                jQuery('#coupon_amount').attr('max',1000);
+                jQuery('#coupon_amount').attr('min',1);
+                jQuery('#appemd_data_list').html('<i class="fa-solid fa-circle-question"></i> Please Enter value must greater  then 100 ');
+
+            }else{
+                jQuery('#coupon_amount').attr('min','');
+                jQuery('#coupon_amount').attr('max','');
+            }
+
+        });
+
+        let discount_type =  jQuery('#discount_type').find(":selected").val();
+        if (discount_type ==='percent') {
+            jQuery('#coupon_amount').attr('max',100);
+            jQuery('#appemd_data_list').html('<i class="fa-solid fa-circle-question"></i> Please Enter value must less then 100 ');
+            jQuery('#coupon_amount').attr('min',1);
+           } else if (discount_type ==='fixed_cart') {
+               jQuery('#coupon_amount').attr('max',1000);
+               jQuery('#coupon_amount').attr('min',1);
+               jQuery('#appemd_data_list').html('<i class="fa-solid fa-circle-question"></i> Please Enter value must greater  then 100 ');
+
+           }else{
+               jQuery('#coupon_amount').attr('min','');
+               jQuery('#coupon_amount').attr('max','');
+           }
+
+        jQuery('#expiry_date').datepicker({
+            minDate: 1,
+            defaultDate: "+1",
+            dateFormat: 'yy-mm-dd'
+        });
+
     }
 
 });

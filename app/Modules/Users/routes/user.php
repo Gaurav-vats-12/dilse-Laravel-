@@ -2,10 +2,12 @@
 
 use App\Modules\Users\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\ReferralController;
 use Illuminate\Support\Facades\Route as RouteAlias;
 
 RouteAlias::prefix('user')->name('user.')->group(callback: function(){
     RouteAlias::middleware(['web', 'user.auth', 'user.verified','addExpires'])->group(callback: function(){
+
         // User Dashboard
         RouteAlias::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard')->middleware('checkUser');
         // View and update Profile Routes
@@ -18,6 +20,10 @@ RouteAlias::prefix('user')->name('user.')->group(callback: function(){
         RouteAlias::PUT('/order-cancelled/{id}', [UserController::class, 'OrderCancelled'])->name('order-cancelled');
         RouteAlias::get('/order-reorder/{id}', [UserController::class, 'OrderReorder'])->name('OrderReorder');
         RouteAlias::get('/confirm-passwords', [ProfileController::class, 'confirmPass'])->name('confirm-passwords');
+
+        RouteAlias::get('/referral', [ReferralController::class, 'index'])->name('referral')->middleware('checkUser');
+
+
     });
 });
 
