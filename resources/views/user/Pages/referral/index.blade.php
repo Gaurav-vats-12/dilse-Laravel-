@@ -17,7 +17,7 @@
                         <div class="col-md-12">
                             <div class="cusstom_input">
                                 <label for="reffrel_code" class="">Your referral Code </span></label>
-                                <input type="text"  id="reffrel_code" name="reffrel_code"  value="{{ $Coupon->coupon_code }}" readonly >
+                                <input type="text"  id="reffrel_code" name="reffrel_code"  value="{{ $Coupon->code }}" readonly >
                             </div>
                         </div>
                         @endif

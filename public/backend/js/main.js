@@ -297,7 +297,7 @@ jQuery( function () {
     }else if(url.indexOf("/manage-coupon") > -1){
         jQuery('#coupon_amount').attr('min','');
         jQuery('#coupon_amount').attr('min','');
-        jQuery(document).on("click", "#coupon_code", async function (event) {
+        jQuery(document).on("click", "#genrate_coupon", async function (event) {
             jQuery('#coupon_code').val(genrate_code(10).toUpperCase());
         });
         jQuery(document).on("change", "#discount_type", async function (event) {

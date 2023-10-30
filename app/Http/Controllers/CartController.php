@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\FoodItem as FoodItemAlias;
 use App\Models\Admin\Menu;
+use App\Models\Admin\Coupon;
+use Illuminate\Support\Facades\Auth as AuthAlias;
+use App\Services\CouponService;
 use Illuminate\Http\JsonResponse as JsonResponseAlias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -159,16 +162,6 @@ class CartController extends Controller
                     unset($cart[$id]);
                     session()->put('cart', $cart);
                 }
-//                foreach ($cart as $key => $details) {
-//                    $subtotal =  $subtotal + round($details["price"] ,2) ;
-//                }
-//                if(session('order_type') == 'delivery'){
-//                    $total_before_Tex =   $subtotal + setting('delivery_charge' ,0.00);
-//                }else{
-//                    $total_before_Tex =  $subtotal ;
-//                }
-//                $total_tax = round(($total_before_Tex * setting('tax' ,0.00)) / 100 ,2);
-//                $total = $total_before_Tex+$total_tax;
                 notyf()->duration(2000)->addSuccess('Product  Remove from add to cart  successfully');
                 return redirect()->back();
             } else {
@@ -177,5 +170,18 @@ class CartController extends Controller
         } catch (NotFoundExceptionInterface | ContainerExceptionInterface $e) {
             return redirect()->back();
         }
+    }
+
+
+    public function apply_coupon(Request $request){
+        $code       = $request->coupon_code;
+        $amount     = $request->subtotal;
+        $deviceName = null;
+        $ipaddress  = null;
+        $vendorId = null;
+        $skipFields =  [];
+        $userId = !AuthAlias::guard('user')->check() ? '' : AuthAlias::guard('user')->id();
+        $coupon = CouponService::validity($code, $amount, $userId, $deviceName, $ipaddress,  $vendorId ,$skipFields);
+        return $coupon;
     }
 }

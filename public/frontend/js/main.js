@@ -537,13 +537,31 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
             }
         });
     });
-
+    //  Appllied Coupon Functionalty
+    jQuery(document).on("click", "#apply_coupon", async function (event) {
+        let mimimum_ammout= parseFloat(jQuery('#message').attr('mimimum_ammout'));
+        let subtotal= jQuery('#subtotal').attr('subtotal');
+        let route_ajax = jQuery(this).attr('route_ajax');
+        let  coupon_code = jQuery(`#coupon_code`).val();
+        if (coupon_code ==='') {
+            NotyfMessage(`Please Enter a Coupon Code `, 'error');
+        }else{
+            if (subtotal < mimimum_ammout) {
+                NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${subtotal}</b> You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${mimimum_ammout}.00 </b>to place the order`, 'error');
+            }else{
+                let ajax_value = {mimimum_ammout, subtotal, coupon_code};
+                try {
+                    const resPose = await Ajax_response(route_ajax, "POST", ajax_value, '');
+                } catch (error) {
+                  NotyfMessage(error.responseJSON.message, 'error');
+                }
+            }
+        }
+    });
  } else  if (url.indexOf("/checkout") > -1) {
-
     jQuery("#dilvery_tip").on("input", function(evt) {
         jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
       });
-
         // dilvery_tip Functionalty
       jQuery('#dilvery_tip').on('focusout', function() {
         let site_currency = jQuery('meta[name="site_currency"]').attr('content');
@@ -558,7 +576,6 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
             // NotyfMessage('The tip must be grater then zero ', 'error');
             jQuery('#dilvery_tip').val(null)
         }
-
     });
      /**
          * State Dependency In Checkout Page

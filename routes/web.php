@@ -48,6 +48,7 @@ Route::get('/send', [HomeController::class, 'sendEmail']);
 // Add to Cart
 Route::prefix('cart')->name('cart.')->group(callback: function(){
     Route::GET('/', [CartController::class, 'viewcart'])->name('view');
+    Route::POST('/apply-coupon', [CartController::class, 'apply_coupon'])->name('vieapply_couponw');
      Route::POST('/update-details', [CartController::class, 'update_details'])->name('update_details');
 });
 

@@ -28,7 +28,7 @@
                                     @method('PUT')
                                     <div class="form-group">
                                         <label for="coupon_code"> {{ __('Coupon  Code *') }}</label>
-                                        <input type="text" name="coupon_code"  readonly class="form-control" placeholder="Coupon Code"  value="{{ old('coupon_code' ,$Coupon->coupon_code)}}">
+                                        <input type="text" name="coupon_code"  readonly class="form-control" placeholder="Coupon Code"  value="{{ old('coupon_code' ,$Coupon->code )}}">
                                         @error('coupon_code')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -47,11 +47,11 @@
                                                 <select name="discount_type" id="discount_type"
                                                     class="form-control form-select">
                                                     <option value="">Select Discount Type</option>
-                                                    <option value="percent"
-                                                        {{ old('discount_type',$Coupon->discount_type) == 'percent' ? 'selected' : '' }}>
+                                                    <option value="percentage"
+                                                        {{ old('discount_type',$Coupon->type) == 'percentage' ? 'selected' : '' }}>
                                                         Percentage discount</option>
                                                     <option value="fixed_cart"
-                                                        {{ old('discount_type',$Coupon->discount_type) == 'fixed_cart' ? 'selected' : '' }}>
+                                                        {{ old('discount_type',$Coupon->type) == 'fixed_cart' ? 'selected' : '' }}>
                                                         Fixed cart discount </option>
                                                 </select>
                                                 @error('discount_type')
@@ -63,7 +63,7 @@
                                             <div class="form-group">
                                                 <label for="coupon_amount"> {{ __('Coupon amount *') }}</label>
                                                 <input type="number"inputmode="numeric" class="short form-control" name="coupon_amount"
-                                                    id="coupon_amount" value="{{ old('coupon_amount',$Coupon->coupon_amount) }}"
+                                                    id="coupon_amount" value="{{ old('coupon_amount',$Coupon->amount) }}"
                                                     placeholder="coupon_amount" max="1">
                                                     <small id="appemd_data_list"></small>
 
@@ -76,7 +76,7 @@
                                             <div class="form-group">
                                                 <label for="minimum_amount"> {{ __('Minimum spend *') }}</label>
                                                 <input type="text" class="short form-control" name="minimum_amount"
-                                                    id="minimum_amount" value="{{ old('minimum_amount',$Coupon->minimum_amount) }}"
+                                                    id="minimum_amount" value="{{ old('minimum_amount',$Coupon->minimum_spend) }}"
                                                     placeholder="No minimum">
                                                 @error('minimum_amount')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -86,7 +86,7 @@
                                         <div class="col-md-6">
                                             <label for="maximum_amount"> {{ __('Maximum spend') }}</label>
                                             <input type="text" class="form-control" name="maximum_amount"
-                                                id="maximum_amount" value="{{ old('maximum_amount',$Coupon->maximum_amount) }}">
+                                                id="maximum_amount" value="{{ old('maximum_amount',$Coupon->maximum_spend) }}">
                                             @error('maximum_amount')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -111,7 +111,7 @@
                                             <div class="form-group">
                                                 <label for="expiry_date"> {{ __('Coupon expiry date * ') }}</label>
                                                 <input type="text" class="form-control" name="expiry_date"
-                                                    id="expiry_date" value="{{ old('expiry_date',$Coupon->expiry_date) }}">
+                                                    id="expiry_date" value="{{ old('expiry_date',$Coupon->end_date) }}">
                                                 @error('expiry_date')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -122,9 +122,9 @@
                                         <label for="status"> {{ __('Coupon  status') }}</label>
                                         <select name="status" id="status" class="form-control form-select">
                                             <option value="">Select status</option>
-                                            <option value="active" {{ old('status',$Coupon->status) == 'active' ? 'selected' : '' }}>Active
+                                            <option value="active" {{ old('status',$Coupon->status) == '1' ? 'selected' : '' }}>Active
                                             </option>
-                                            <option value="inactive" {{ old('status',$Coupon->status) == 'inactive' ? 'selected' : '' }}>Inactive
+                                            <option value="inactive" {{ old('status',$Coupon->status) == '0' ? 'selected' : '' }}>Inactive
                                         </select>
                                         @error('status')
                                             <span class="text-danger">{{ $message }}</span>

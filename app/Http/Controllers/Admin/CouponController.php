@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Coupon\StoreCouponRequest;
+use App\Services\CouponService;
 use App\Models\Admin\Coupon;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -35,7 +37,23 @@ class CouponController extends Controller
      */
     public function store(StoreCouponRequest $request)
     {
-        Coupon::insertGetId([ 'coupon_code' => $request->coupon_code, 'coupan_description' => $request->coupan_description, 'discount_type' => $request->discount_type, 'coupon_amount' => $request->coupon_amount, 'minimum_amount' => $request->minimum_amount, 'maximum_amount' => $request->maximum_amount, 'coupon_type' => $request->coupon_type, 'expiry_date' => $request->expiry_date, 'status'=>$request->status,'created_at' => now(), 'updated_at' => now()]);
+        $coupon = CouponService::add([
+            'coupon_code'       => $request->coupon_code, // (required) Coupon code
+            'discount_type'     => $request->discount_type, // (required) coupon discount type. two type are accepted (1. percentage and 2. fixed)
+            'coupon_description'     => $request->coupon_description, // (required) coupon discount type. two type are accepted (1. percentage and 2. fixed)
+            'discount_amount'   => $request->coupon_amount, // (required) discount amount or percentage value
+            'start_date'        => Carbon::today()->toDateString(), // (required) coupon start date
+            'end_date'          => $request->expiry_date,
+            'status'            => ($request->status ==='active') ? 1 : 0, // (required) two status are accepted. (for active 1 and for inactive 0)
+            'minimum_spend'     =>$request->minimum_amount, // (optional) for apply this coupon minimum spend amount. if set empty then it's take unlimited
+            'maximum_spend'     => $request->maximum_amount, // (optional) for apply this coupon maximum spend amount. if set empty then it's take unlimited
+            'coupon_type'     => $request->coupon_type, // (optional) for apply this coupon maximum spend amount. if set empty then it's take unlimited
+            'use_limit'         => 1, // (optional) how many times are use this coupon. if set empty then it's take unlimited
+            'use_same_ip_limit' => 1, // (optional) how many times are use this coupon in same ip address. if set empty then it's take unlimited
+            'user_limit'        => 0, // (optional) how many times are use this coupon a user. if set empty then it's take unlimited
+            'use_device'        => "", // (optional) This coupon can be used on any device
+            'multiple_use'      => "yes", // (optional) you can check manually by this multiple coupon code use or not
+        ]);
         notyf()->duration(duration: 2000)->addSuccess(message: 'Coupon  Created Successfully.');
         return redirect()->route(route: 'admin.manage-coupon.index');
     }
@@ -61,7 +79,23 @@ class CouponController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Coupon::findOrFail($id)->update([ 'coupon_code' => $request->coupon_code, 'coupan_description' => $request->coupan_description, 'discount_type' => $request->discount_type, 'coupon_amount' => $request->coupon_amount, 'minimum_amount' => $request->minimum_amount, 'maximum_amount' => $request->maximum_amount, 'coupon_type' => $request->coupon_type, 'expiry_date' => $request->expiry_date, 'status'=>$request->status,'updated_at' => now()]);
+        $update = CouponService::update([
+            'coupon_code'       => $request->coupon_code, // (required) Coupon code
+            'discount_type'     => $request->discount_type, // (required) coupon discount type. two type are accepted (1. percentage and 2. fixed)
+            'coupon_description'     => $request->coupon_description, // (required) coupon discount type. two type are accepted (1. percentage and 2. fixed)
+            'discount_amount'   => $request->coupon_amount, // (required) discount amount or percentage value
+            'start_date'        => Carbon::today()->toDateString(), // (required) coupon start date
+            'end_date'          => $request->expiry_date,
+            'status'            => ($request->status ==='active') ? 1 : 0, // (required) two status are accepted. (for active 1 and for inactive 0)
+            'minimum_spend'     =>$request->minimum_amount, // (optional) for apply this coupon minimum spend amount. if set empty then it's take unlimited
+            'maximum_spend'     => $request->maximum_amount, // (optional) for apply this coupon maximum spend amount. if set empty then it's take unlimited
+            'coupon_type'     => $request->coupon_type, // (optional) for apply this coupon maximum spend amount. if set empty then it's take unlimited
+            'use_limit'         => 1, // (optional) how many times are use this coupon. if set empty then it's take unlimited
+            'use_same_ip_limit' => 1, // (optional) how many times are use this coupon in same ip address. if set empty then it's take unlimited
+            'user_limit'        => 0, // (optional) how many times are use this coupon a user. if set empty then it's take unlimited
+            'use_device'        => "", // (optional) This coupon can be used on any device
+            'multiple_use'      => "yes", // (optional) you can check manually by this multiple coupon code use or not
+        ] ,$id);
         notyf()->duration(duration: 2000)->addSuccess(message: 'Coupon  Updated Successfully.');
         return redirect()->route(route: 'admin.manage-coupon.index');
     }
@@ -71,7 +105,7 @@ class CouponController extends Controller
      */
     public function destroy(string $id)
     {
-        Coupon::findOrFail($id)->delete();
+        $delete  = CouponService::remove($id);
         notyf()->duration(2000)->addSuccess('Coupon Deleted Successfully.');
         return redirect()->route('admin.manage-coupon.index');
     }
