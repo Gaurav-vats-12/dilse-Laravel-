@@ -33,7 +33,8 @@
                                     <th>Discount Type </th>
                                     <th>coupon Type </th>
                                     <th>Coupon Value  </th>
-                                    <th>Expiry date</th>
+                                    <th>Start date</th>
+                                    <th>End date</th>
                                     <th>Status </th>
                                     <th>Action</th>
                                 </tr>
@@ -42,12 +43,13 @@
                                     @foreach ($Coupon as $key => $value)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $value->coupon_code }}</td>
-                                        <td>{{ $value->discount_type }}</td>
+                                        <td>{{ $value->code }}</td>
+                                        <td>{{ $value->type }}</td>
                                         <td>{{ $value->coupon_type }}</td>
-                                        <td>{{ $value->coupon_amount }}</td>
-                                        <td>{{ $value->expiry_date }}</td>
-                                        <td> @if ($value->status == 'active')<div class="mt-sm-1 d-block"> <span class="badge badge-success">Active</span>  </div> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Inactive</span> </div> @endif </td>
+                                        <td>{{ $value->amount }}</td>
+                                        <td>{{ $value->start_date }}</td>
+                                        <td>{{ $value->end_date }}</td>
+                                        <td> @if ($value->status == '1')<div class="mt-sm-1 d-block"> <span class="badge badge-success">Active</span>  </div> @else <div class="mt-sm-1 d-block"> <span class="badge badge-danger  ">Inactive</span> </div> @endif </td>
                                         <td class="project-actions"><a class="btn btn-info btn-sm"
                                                                  href="{{ route('admin.manage-coupon.edit', $value->id) }}">
                      <i class="fas fa-pencil-alt"></i> </a>

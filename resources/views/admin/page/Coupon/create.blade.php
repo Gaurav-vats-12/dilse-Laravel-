@@ -27,7 +27,8 @@
                                     accept-charset="UTF-8" enctype="multipart/form-data">@csrf
                                     <div class="form-group">
                                         <label for="coupon_code"> {{ __('Coupon  Code *') }}</label>
-                                        <input type="text" name="coupon_code" id="coupon_code" readonly
+                                        <a href="javascript:void(0)" id="genrate_coupon"> Genrate Coupon </a>
+                                        <input type="text" name="coupon_code" id="coupon_code"
                                             class="form-control" placeholder="Coupon Code "
                                             value="{{ old('coupon_code') }}">
                                         @error('coupon_code')
@@ -37,9 +38,7 @@
                                     <div class="form-group">
                                         <label for="coupon_description"> {{ __('Coupon  Discription (Optional)') }}</label>
                                         <textarea name="coupon_description" class="form-control" id="coupon_description" placeholder="" cols="2" rows="2">{{ old('coupon_description') }}</textarea>
-                                        {{-- <input type="text" name="coupon_description" id="coupon_code" readonly
-                                            class="form-control" placeholder="Coupon Code "
-                                            value="{{ old('coupon_code') }}"> --}}
+
                                         @error('coupon_description')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -51,8 +50,8 @@
                                                 <select name="discount_type" id="discount_type"
                                                     class="form-control form-select">
                                                     <option value="">Select Discount Type</option>
-                                                    <option value="percent"
-                                                        {{ old('discount_type') == 'percent' ? 'selected' : '' }}>
+                                                    <option value="percentage"
+                                                        {{ old('discount_type') == 'percentage' ? 'selected' : '' }}>
                                                         Percentage discount</option>
                                                     <option value="fixed_cart"
                                                         {{ old('discount_type') == 'fixed_cart' ? 'selected' : '' }}>
@@ -80,8 +79,8 @@
                                             <div class="form-group">
                                                 <label for="minimum_amount"> {{ __('Minimum spend *') }}</label>
                                                 <input type="text" class="short form-control" name="minimum_amount"
-                                                    id="minimum_amount" value="{{ old('minimum_amount', 0.0) }}"
-                                                    placeholder="No minimum">
+                                                    id="minimum_amount" value="{{ old('minimum_amount',setting('minimum_order_for_delivery')) }}"
+                                                    placeholder="No minimum" readonly>
                                                 @error('minimum_amount')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror

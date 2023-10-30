@@ -86,6 +86,9 @@
                         @if(session('cart'))
                             <div class="order_summary">
                                 <div class="tittle_heading">
+                                    <input type="text" name="coupon_code" class="input-text"  id="coupon_code" value="" placeholder="Coupon code">
+
+                                    <a href="javascript:void(0)" id="apply_coupon" route_ajax ="{{ route('cart.vieapply_couponw')}}">Apply coupon</a>
                                     <h4> Order Summary </h4>
                                     <p id="message"  mimimum_ammout= "{{  round(( setting('minimum_order_for_delivery' ,0.00)) ,2) }}">Minimum order amount is {{ setting('site_currency')}}{{ round(( setting('minimum_order_for_delivery',0.00)) ,2) }}</p>
                                 <ul class="summary_main">

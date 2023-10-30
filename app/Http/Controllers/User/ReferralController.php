@@ -12,7 +12,10 @@ class ReferralController extends Controller
    public function index(){
     $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id() : null;
     $date = today()->format('Y-m-d');
-    $Coupon = Coupon::where('user_id', $user_id)->where('status', 'active')->first();
+    $Coupon = Coupon::where('user_id', $user_id)->where('status', 1)->first();
     return view('user.Pages.referral.index', ['Coupon' => $Coupon]);
    }
+
+
+
 }

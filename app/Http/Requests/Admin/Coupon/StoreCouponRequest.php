@@ -25,7 +25,7 @@ class StoreCouponRequest extends FormRequest
         return [
             'coupon_code' =>  'required|max:255',
             'banner_discription' =>  'max:5000',
-            'discount_type' => 'required|in:percent,fixed_cart',
+            'discount_type' => 'required|in:percentage,fixed_cart',
             'coupon_amount' =>  'required|max:30',
             'minimum_amount' =>  'required|max:30',
             'coupon_type' => 'required|in:referral,offer',

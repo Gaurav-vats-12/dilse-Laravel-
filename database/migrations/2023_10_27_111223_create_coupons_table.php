@@ -11,23 +11,32 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (!Schema::hasTable('coupons')) {
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
-            $table->string('coupon_code',200);
+            $table->string('user_email')->unique()->nullable();
+            $table->string('code')->unique();
             $table->text('coupan_description')->nullable();
-            $table->enum('discount_type', ['percent','fixed_cart']);
-            $table->decimal('coupon_amount', 10, 2);
-            $table->decimal('minimum_amount', 10, 2);
-            $table->decimal('maximum_amount', 10, 2);
+            $table->enum('type', ['percentage','fixed_cart']);
+            $table->double('amount', 12, 2);
+            $table->double('minimum_spend', 12, 2)->nullable();
+            $table->double('maximum_spend', 12, 2)->nullable();
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
+            $table->integer("use_limit")->nullable();
+            $table->integer("same_ip_limit")->nullable();
+            $table->integer("use_limit_per_user")->nullable();
+            $table->string("use_device")->nullable();
+            $table->enum("multiple_use", ["yes", "no"])->default("no");
             $table->enum('coupon_type', ['referral','offer']);
-            $table->date('expiry_date')->nullable();
-            $table->enum('status', ['active','inactive']);
-            $table->string('Coupan_usage',200)->nullable();
+            $table->integer("total_use")->default(0);
+            $table->integer("status")->default(0);
             $table->timestamps();
-            $table->softDeletes(); // <-- This will add a deleted_at field
 
+            $table->softDeletes(); // <-- This will add a deleted_at field
         });
+    }
     }
 
     /**
