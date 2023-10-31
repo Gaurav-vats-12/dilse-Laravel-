@@ -1,7 +1,7 @@
 jQuery(document).ready(function () {
     let url = window.location.pathname;
     jQuery('#store_location').val(jQuery('#select_location').find(":selected").val());
-    jQuery(document).on("change", "#select_location",  async function (event) {
+    jQuery(document).on("change", "#select_location", async function (event) {
         event.preventDefault();
         let store_location = jQuery(this).find(":selected").val();
         let location_type = jQuery(this).attr('location_type');
@@ -9,13 +9,13 @@ jQuery(document).ready(function () {
         if (resPose.status === 'success') {
             jQuery('#store_location').val(store_location);
             NotyfMessage(resPose.message, 'success');
-        }else{
-         jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value);  });
+        } else {
+            jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
         }
     });
-/**
-* Scroller
-*/
+    /**
+    * Scroller
+    */
     let btn = jQuery('#button');
     jQuery(window).scroll(function () {
         if (jQuery(window).scrollTop() > 300) btn.addClass(`show`); else {
@@ -37,7 +37,7 @@ jQuery(document).ready(function () {
         let current_url = jQuery(this).attr(`current_url`);
         let slug = `appetizers`;
         let page = 1;
-        let ajax_value = {current_url, page, slug, type};
+        let ajax_value = { current_url, page, slug, type };
         const response = await Ajax_response(jQuery(this).attr(`AjaxForm`), "GET", ajax_value, '', '');
         if (response.status === `success`) {
             window.location.href = response.url;
@@ -141,14 +141,13 @@ jQuery(document).ready(function () {
     // });
 
 
-jQuery('#phone').attr('maxlength','10');
-jQuery('#conatact_phone_number').attr('maxlength','10');
+    jQuery('#phone').attr('maxlength', '10');
+    jQuery('#conatact_phone_number').attr('maxlength', '10');
     jQuery(document).on("keyup", "#phone ,#conatact_phone_number", async function () {
-      if (/\D/g.test(this.value))
-      {
-        // Filter non-digits from input value.
-        this.value = this.value.replace(/\D/g, '');
-      }
+        if (/\D/g.test(this.value)) {
+            // Filter non-digits from input value.
+            this.value = this.value.replace(/\D/g, '');
+        }
 
     });
     /**
@@ -215,7 +214,7 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
 
     jQuery(document).on("change", ".delivery", async function (event) {
         jQuery('#shipping_charge').val(parseFloat(jQuery('input[name="delivery_type"]:checked').val()));
-         updateTotals(parseFloat(jQuery(`input[name="delivery_type"]:checked`).val()));
+        updateTotals(parseFloat(jQuery(`input[name="delivery_type"]:checked`).val()));
     });
 
 
@@ -240,11 +239,11 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
             jQuery("h3").removeClass("active");
 
             let page = 1;
-            let ajax_value = { slug, page};
-             const response = await Ajax_response('', "GET", ajax_value, '', '');
+            let ajax_value = { slug, page };
+            const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
                 jQuery(`.loader`).toggleClass('display');
-                window.history.pushState(null, '', "/menu/"+slug);
+                window.history.pushState(null, '', "/menu/" + slug);
                 jQuery(`#menu_data_find`).empty().html(response);
                 history.pushState({}, "", window.location.href);
                 jQuery('#refreshButton').trigger('click');
@@ -256,14 +255,14 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
             let slug = jQuery('#slug').val();
             let mobile_type = jQuery('#menu').attr("mobile_type");
             let page = 1;
-            let ajax_value = { slug, page};
+            let ajax_value = { slug, page };
             const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
-                if (mobile_type ==='mobile'){
+                if (mobile_type === 'mobile') {
                     jQuery('html, body').animate({
-                        scrollTop: jQuery('#mobile').offset().top- 10
+                        scrollTop: jQuery('#mobile').offset().top - 10
                     }, 500); // You can adjust the animation speed (1000ms = 1 second)
-                }else{
+                } else {
 
                 }
                 jQuery(`#menu_data_find`).empty().html(response);
@@ -281,13 +280,13 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
             jQuery(`li`).removeClass('active');
             let slug = jQuery('#slug').val();
             let page = jQuery(this).attr('href').split('page=')[1];
-            let ajax_value = {slug, page};
-                console.log(ajax_value)
+            let ajax_value = { slug, page };
+            console.log(ajax_value)
             const response = await Ajax_response('', "GET", ajax_value, '', '');
             if (response) {
-                window.history.pushState(null, '',jQuery(this).attr('href'));
+                window.history.pushState(null, '', jQuery(this).attr('href'));
                 jQuery(`.loader`).toggleClass('display');
-           jQuery(`#menu_data_find`).empty().html(response);
+                jQuery(`#menu_data_find`).empty().html(response);
 
             }
         });
@@ -303,10 +302,10 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
 
 
 
-        }else if (url.indexOf("/product") > -1) {
-                /**
-        *  RELATED PRODUCTS Slider In Product Details Page
-        */
+    } else if (url.indexOf("/product") > -1) {
+        /**
+*  RELATED PRODUCTS Slider In Product Details Page
+*/
         jQuery('.row.Product_slider').slick({
             dots: false,
             infinite: true,
@@ -316,36 +315,36 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
             slidesToScroll: 1,
             responsive: [
                 {
-                  breakpoint: 767,
-                  settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: false
-                  }
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false
+                    }
                 },
                 {
-                  breakpoint: 575,
-                  settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: false
-                  }
+                    breakpoint: 575,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false
+                    }
                 },
-              ]
+            ]
         });
 
-    }else if (url.indexOf("/about-us") > -1) {
+    } else if (url.indexOf("/about-us") > -1) {
 
         jQuery('#about_us_page').slick({
-        autoplay:true,
-        autoplaySpeed:1500,
-        arrows:false,
-        slidesToShow:1,
-        slidesToScroll:1,
-        slidesToScroll: 1,
-        adaptiveHeight: true
+            autoplay: true,
+            autoplaySpeed: 1500,
+            arrows: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            slidesToScroll: 1,
+            adaptiveHeight: true
         });
         const counters = document.querySelectorAll('.counter');
         const speed = 2000;
@@ -365,288 +364,315 @@ jQuery('#conatact_phone_number').attr('maxlength','10');
         });
         let text1 = document.getElementById('counter1');
         animate(text1, 0, 200, 7000);
-    }else if (url.indexOf("/gallery") > -1) {
-            /**
-     * magnificPopup In Gallery Page
-     */
-    jQuery('.image-popup-vertical-fit').magnificPopup({
-        type: 'image',
-        mainClass: 'mfp-with-zoom',
-        gallery:{ enabled:true },
-        zoom: { enabled: true,
-            duration: 300,
-            easing: 'ease-in-out',
-            opener: openerElement => openerElement.is('img') ? openerElement : openerElement.find('img')
-        }
-    });
+    } else if (url.indexOf("/gallery") > -1) {
+        /**
+ * magnificPopup In Gallery Page
+ */
+        jQuery('.image-popup-vertical-fit').magnificPopup({
+            type: 'image',
+            mainClass: 'mfp-with-zoom',
+            gallery: { enabled: true },
+            zoom: {
+                enabled: true,
+                duration: 300,
+                easing: 'ease-in-out',
+                opener: openerElement => openerElement.is('img') ? openerElement : openerElement.find('img')
+            }
+        });
 
-    }else if (url.indexOf("/cart") > -1) {
+    } else if (url.indexOf("/cart") > -1) {
 
         if (!jQuery('.active').not(jQuery('#Bread-tab'))) {
         } else {
             let menu_id = jQuery(jQuery('#Bread-tab')).attr('menu_id');
-            let ajax_value = {menu_id};
+            let ajax_value = { menu_id };
             fetch_extra_items_data(ajax_value);
         }
         jQuery(document).on("change", "#spicy_lavel", async function (event) {
             event.preventDefault();
             let spicy_lavel = jQuery(this).find(":selected").val();
             let location_type = jQuery(this).attr('location_type');
-                const resPose = await Ajax_response(jQuery(this).attr('ajax_value'), "POST", {spicy_lavel,location_type}, '');
-                if (resPose.status === 'success') {
-                    NotyfMessage(resPose.message, 'success');
-                    jQuery('#spicy_lavel').val(spicy_lavel);
-                } else {
-                    jQuery.each(resPose.errors, function (key, value) {
-                        jQuery(`#${key}-error`).text(value);
-                    });
-                }
+            const resPose = await Ajax_response(jQuery(this).attr('ajax_value'), "POST", { spicy_lavel, location_type }, '');
+            if (resPose.status === 'success') {
+                NotyfMessage(resPose.message, 'success');
+                jQuery('#spicy_lavel').val(spicy_lavel);
+            } else {
+                jQuery.each(resPose.errors, function (key, value) {
+                    jQuery(`#${key}-error`).text(value);
+                });
+            }
         });
 
 
-       jQuery(document).on("click", ".extra_items", async function (event) {
-        jQuery('.active').not(this).removeClass('active');
-        jQuery(this).toggleClass('active');
-        let menu_id = jQuery(this).attr('menu_id');
-        let ajax_value = {menu_id};
-        fetch_extra_items_data(ajax_value);
-    });
+        jQuery(document).on("click", ".extra_items", async function (event) {
+            jQuery('.active').not(this).removeClass('active');
+            jQuery(this).toggleClass('active');
+            let menu_id = jQuery(this).attr('menu_id');
+            let ajax_value = { menu_id };
+            fetch_extra_items_data(ajax_value);
+        });
 
-    jQuery(document).on("click", "#checkout_btn", async function (event) {
-        let shipping_charge= jQuery('#shipping_charge').val();
-        let spicy_lavel= jQuery(`#spicy_lavel`).val();
-        let show_form= jQuery(`#spicy_lavel`).attr('show_form');
-        let subtotal=  parseFloat(jQuery('#subtotal').attr('subtotal'));
-        let mimimum_ammout= parseFloat(jQuery('#message').attr('mimimum_ammout'));
-        let type =  jQuery(this).attr('type');
-        if (show_form ==='false') {
-            if (subtotal < mimimum_ammout) {
-                NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 </b>to place the order`, 'error');
-            }else{
-                if(type =='null'){
-                    jQuery(`#staticBackdrop`).modal('show')
-                }else if(type =='take_out') {
-                    window.location.href = jQuery(this).attr('login_url');
-                }else{
-                    if(shipping_charge){
-                        window.location.href = jQuery(this).attr('login_url');
-                    }else{
-                        NotyfMessage('Please Choose Delivery Charges', 'error');
-                    }
-                }
-            }
-        } else {
-        if(spicy_lavel){
-            if (subtotal < mimimum_ammout) {
-                NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 to place the order`, 'error');
-
-            }else{
-                if(type ==='null'){
-                    jQuery(`#staticBackdrop`).modal('show')
-                }else if(type =='take_out') {
-                    window.location.href = jQuery(this).attr('login_url');
-                }else{
-                    if(shipping_charge){
-                        window.location.href = jQuery(this).attr('login_url');
-                    }else{
-                        NotyfMessage('Please Choose Delivery Charges', 'error');
-                    }
-                }
-            }
-        }else{
-            NotyfMessage('Please Select the Spice  Level  for order ', 'error');
-        }
-    }
-
-    });
-
-              /**
-        *  Update the quantity According to plus and minus in cart page (Cart page )
-        */
-              jQuery(document).on("click", ".update-qty", async function (e) {
-                let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-                let newVal;
-
-                let $button = jQuery(this), oldValue = $button.closest('.update-cart-qty').find("input.product-qty").val(),
-                    quantity = jQuery(this).parent().find(`.product-qty`), ajax_url = jQuery(`#ajax_url`).val(),
-                    dilavery_charge = jQuery(`#dilavery_charge`).val(),
-                    product__price = parseFloat(quantity.attr(`product__price`)),
-                    product_oid = parseInt(jQuery(this).attr(`productoid`));
-                    is_spicy = jQuery(this).attr('is_spicy');
-                if ($button.text() === "+") {
-                    newVal = parseFloat(oldValue) + 1;
+        jQuery(document).on("click", "#checkout_btn", async function (event) {
+            let shipping_charge = jQuery('#shipping_charge').val();
+            let spicy_lavel = jQuery(`#spicy_lavel`).val();
+            let show_form = jQuery(`#spicy_lavel`).attr('show_form');
+            let subtotal = parseFloat(jQuery('#subtotal').attr('subtotal'));
+            let mimimum_ammout = parseFloat(jQuery('#message').attr('mimimum_ammout'));
+            let type = jQuery(this).attr('type');
+            if (show_form === 'false') {
+                if (subtotal < mimimum_ammout) {
+                    NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 </b>to place the order`, 'error');
                 } else {
-                    if (oldValue > 0) {
-                        newVal = parseFloat(oldValue) - 1;
+                    if (type == 'null') {
+                        jQuery(`#staticBackdrop`).modal('show')
+                    } else if (type == 'take_out') {
+                        window.location.href = jQuery(this).attr('login_url');
                     } else {
-                        newVal = 0;
+                        if (shipping_charge) {
+                            window.location.href = jQuery(this).attr('login_url');
+                        } else {
+                            NotyfMessage('Please Choose Delivery Charges', 'error');
+                        }
                     }
-                    if (newVal === 0) {
-                        $button.closest('.shopping_items').find('#remove_add_to_Cart').trigger('click');
+                }
+            } else {
+                if (spicy_lavel) {
+                    if (subtotal < mimimum_ammout) {
+                        NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#subtotal').attr('subtotal'))}</b> You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${parseFloat(jQuery('#message').attr('mimimum_ammout'))}.00 to place the order`, 'error');
+
+                    } else {
+                        if (type === 'null') {
+                            jQuery(`#staticBackdrop`).modal('show')
+                        } else if (type == 'take_out') {
+                            window.location.href = jQuery(this).attr('login_url');
+                        } else {
+                            if (shipping_charge) {
+                                window.location.href = jQuery(this).attr('login_url');
+                            } else {
+                                NotyfMessage('Please Choose Delivery Charges', 'error');
+                            }
+                        }
                     }
+                } else {
+                    NotyfMessage('Please Select the Spice  Level  for order ', 'error');
+                }
+            }
+
+        });
+
+        /**
+  *  Update the quantity According to plus and minus in cart page (Cart page )
+  */
+        jQuery(document).on("click", ".update-qty", async function (e) {
+            let site_currency = jQuery('meta[name="site_currency"]').attr('content');
+            let newVal;
+
+            let $button = jQuery(this), oldValue = $button.closest('.update-cart-qty').find("input.product-qty").val(),
+                quantity = jQuery(this).parent().find(`.product-qty`), ajax_url = jQuery(`#ajax_url`).val(),
+                dilavery_charge = jQuery(`#dilavery_charge`).val(),
+                product__price = parseFloat(quantity.attr(`product__price`)),
+                product_oid = parseInt(jQuery(this).attr(`productoid`));
+            is_spicy = jQuery(this).attr('is_spicy');
+            if ($button.text() === "+") {
+                newVal = parseFloat(oldValue) + 1;
+            } else {
+                if (oldValue > 0) {
+                    newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 0;
                 }
                 if (newVal === 0) {
-
-                } else {
-                    $button.closest('.update-cart-qty').find("input.product-qty").attr('value', newVal);
-                    let qty = newVal;
-                    let counterproductive = parseFloat(newVal * product__price),
-                        ajax_value = {product_oid, qty, counterproductive, dilavery_charge};
-                    jQuery(`#product_quantity_price__${product_oid}`).text(`${site_currency}${counterproductive.toFixed(2)}`);
-                    jQuery(`#product_quntity__${product_oid}`).val(qty);
-                    jQuery(`#product_price__${product_oid}`).val(`${site_currency}${counterproductive.toFixed(2)}`);
-                    const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-                    if (resPose.status === `success`) {
-                        jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
-                        jQuery('#subtotal').attr('subtotal',resPose.subtotal)
-                        jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
-                        jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
-                    }
+                    $button.closest('.shopping_items').find('#remove_add_to_Cart').trigger('click');
                 }
-            });
+            }
+            if (newVal === 0) {
+
+            } else {
+                $button.closest('.update-cart-qty').find("input.product-qty").attr('value', newVal);
+                let qty = newVal;
+                let coupon_code = jQuery(`#coupon_code`).val();
+                let apply_coupon= jQuery(`#apply_coupon`).attr('appied_coupon');
+                let counterproductive = parseFloat(newVal * product__price),
+                    ajax_value = { product_oid, qty, counterproductive, dilavery_charge ,coupon_code,apply_coupon};
+                jQuery(`#product_quantity_price__${product_oid}`).text(`${site_currency}${counterproductive.toFixed(2)}`);
+                jQuery(`#product_quntity__${product_oid}`).val(qty);
+                jQuery(`#product_price__${product_oid}`).val(`${site_currency}${counterproductive.toFixed(2)}`);
+                const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+                console.log(resPose);
+                if (resPose.status === `success`) {
+                    jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
+                    jQuery('#subtotal').attr('subtotal', resPose.subtotal)
+                    jQuery('#discount_price').attr('discountprice',resPose.couponResponse.discount_amount.toFixed(2)  );
+                    jQuery(`#discount`).html(`<p>${site_currency} ${resPose.couponResponse.discount_amount.toFixed(2)} </p>`);
+                    jQuery(`#total_price_after_discount`).html(`<p>${site_currency} ${resPose.couponResponse.discount_total} </p>`);
+
+                    jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
+                    jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
+                }
+            }
+        });
         /**
         *  Add to Cart  In Website (Extra_Items)
         */
-       jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
-           jQuery(this).toggleClass(`added`);
-           let ajax_url = jQuery(this).attr('cart_ajax_url');
-           let product_uid = jQuery(this).attr("product_uid");
-           let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
-           let product_quntity = jQuery(`#product_quntity_${product_uid}`).val();
-           let ajax_value = {product_uid, product_quntity, is_spisy};
-           const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-           if (resPose.status === `success`) {
-                  NotyfMessage(resPose.message,'success');
-                   jQuery(`.cart_count`).html(resPose.cart_total);
-                   setTimeout(function () {
-                       window.location.reload()
-                   }, 1000);
-           }
-    });
-
-    jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
-        let form =  jQuery(this).closest("form");
-        event.preventDefault();
-        Swal.fire({
-            title: `Are you sure you want to delete this Item?`,
-            showCancelButton: true,
-            confirmButtonText: 'Ok',
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                form.submit();
+        jQuery(document).on("click", "#add_to_cart_extra", async function (event) {
+            jQuery(this).toggleClass(`added`);
+            let ajax_url = jQuery(this).attr('cart_ajax_url');
+            let product_uid = jQuery(this).attr("product_uid");
+            let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
+            let product_quntity = jQuery(`#product_quntity_${product_uid}`).val();
+            let ajax_value = { product_uid, product_quntity, is_spisy };
+            const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
+            if (resPose.status === `success`) {
+                NotyfMessage(resPose.message, 'success');
+                jQuery(`.cart_count`).html(resPose.cart_total);
+                setTimeout(function () {
+                    window.location.reload()
+                }, 1000);
             }
         });
-    });
-    //  Appllied Coupon Functionalty
-    jQuery(document).on("click", "#apply_coupon", async function (event) {
-        let mimimum_ammout= parseFloat(jQuery('#message').attr('mimimum_ammout'));
-        let subtotal= jQuery('#subtotal').attr('subtotal');
-        let route_ajax = jQuery(this).attr('route_ajax');
-        let  coupon_code = jQuery(`#coupon_code`).val();
-        if (coupon_code ==='') {
-            NotyfMessage(`Please Enter a Coupon Code `, 'error');
-        }else{
-            if (subtotal < mimimum_ammout) {
-                NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${subtotal}</b> You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${mimimum_ammout}.00 </b>to place the order`, 'error');
-            }else{
-                let ajax_value = {mimimum_ammout, subtotal, coupon_code};
-                try {
-                    const resPose = await Ajax_response(route_ajax, "POST", ajax_value, '');
-                } catch (error) {
-                  NotyfMessage(error.responseJSON.message, 'error');
+
+        jQuery(document).on("click", "#remove_add_to_Cart", async function (event) {
+            let form = jQuery(this).closest("form");
+            event.preventDefault();
+            Swal.fire({
+                title: `Are you sure you want to delete this Item?`,
+                showCancelButton: true,
+                confirmButtonText: 'Ok',
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+        //  Appllied Coupon Functionalty
+        jQuery(document).on("click", "#apply_coupon", async function (event) {
+            let site_currency = jQuery('meta[name="site_currency"]').attr('content');
+            let coupon_type = jQuery(this).attr('coupon_type');
+            let mimimum_ammout = parseFloat(jQuery('#message').attr('mimimum_ammout'));
+            let subtotal = jQuery('#subtotal').attr('subtotal');
+            let route_ajax = jQuery(this).attr('route_ajax');
+            let coupon_code = jQuery(`#coupon_code`).val();
+            let ajax_value = { mimimum_ammout, subtotal, coupon_code, coupon_type };
+            if (coupon_code === '') {
+                NotyfMessage(`Please Enter a Coupon Code `, 'error');
+            } else {
+                if (subtotal < mimimum_ammout) {
+                    NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${subtotal}</b> You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${mimimum_ammout}.00 </b>to place the order`, 'error');
+                } else {
+                    try {
+                        const resPose = await Ajax_response(route_ajax, "POST", ajax_value, '');
+                             NotyfMessage(resPose.message, 'success');
+                             jQuery('#discount_price').attr('discountprice',resPose.discount_amount.toFixed(2)  );
+                             jQuery(`#discount`).html(`<p>${site_currency} ${resPose.discount_amount.toFixed(2)} </p>`);
+                             jQuery('#total_after_discount').attr('total_after_discount',resPose.discount_total.toFixed(2)  );
+                             jQuery(`#total_price_after_discount`).html(`<p>${site_currency} ${resPose.discount_total} </p>`);
+                            jQuery('#tax_total').val(resPose.tax);
+                            jQuery(`#totaltax`).attr('totaltax',resPose.tax);
+                            jQuery(`#tax_total`).html(`<p>${site_currency} ${resPose.tax} </p>`);
+                           jQuery(`#grandTotal`).html(`<p>${site_currency} ${resPose.total} </p>`);
+                            if (coupon_type ==='coupon') {
+                                jQuery('#apply_coupon').text('Remove Coupon');
+                                jQuery('#apply_coupon').attr('coupon_type','remove');
+                               } else {
+                                jQuery('#apply_coupon').text('Apply Coupon');
+                                jQuery('#apply_coupon').attr('coupon_type','coupon');
+                                jQuery(`#coupon_code`).val('')
+                               }
+                            } catch (error) {
+                                NotyfMessage(error.responseJSON.message, 'error');
+                            }
                 }
             }
-        }
-    });
- } else  if (url.indexOf("/checkout") > -1) {
-    jQuery("#dilvery_tip").on("input", function(evt) {
-        jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
-      });
+        });
+    } else if (url.indexOf("/checkout") > -1) {
+        jQuery("#dilvery_tip").on("input", function (evt) {
+            jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
+        });
         // dilvery_tip Functionalty
-      jQuery('#dilvery_tip').on('focusout', function() {
-        let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-        let subtotal = parseFloat(jQuery('#subtotal').attr('subtotal'));
-        let inputValue  = (jQuery(this).val()) ? parseFloat(jQuery(this).val())   :  parseFloat('0.00',2) ;
-        let totaltax = parseFloat(jQuery('#totaltax').attr('totaltax'));
-        let dilevery_total  = (jQuery('#dilevery_total').attr('dilevery_total') === undefined || (jQuery('#dilevery_total').attr('dilevery_total') === 'undefined')) ?parseFloat('0.00',2)  :  parseFloat(jQuery('#dilevery_total').attr('dilevery_total')) ;
-         let grandTotal = subtotal + totaltax + dilevery_total + inputValue;
-         jQuery(`#grandTotal`).html(`${site_currency}${grandTotal.toFixed(2)}`);
-         if(inputValue >0){
-        }else{
-            // NotyfMessage('The tip must be grater then zero ', 'error');
-            jQuery('#dilvery_tip').val(null)
-        }
-    });
-     /**
-         * State Dependency In Checkout Page
-    */
-     let country_uid = parseInt(jQuery('#billing_country').find(":selected").attr('country_uid'));
-     let ajax_url = jQuery('#state_ajax').val();
+        jQuery('#dilvery_tip').on('focusout', function () {
+            let site_currency = jQuery('meta[name="site_currency"]').attr('content');
+            let subtotal = parseFloat(jQuery('#subtotal').attr('subtotal'));
+            let inputValue = (jQuery(this).val()) ? parseFloat(jQuery(this).val()) : parseFloat('0.00', 2);
+            let totaltax = parseFloat(jQuery('#totaltax').attr('totaltax'));
+            let dilevery_total = (jQuery('#dilevery_total').attr('dilevery_total') === undefined || (jQuery('#dilevery_total').attr('dilevery_total') === 'undefined')) ? parseFloat('0.00', 2) : parseFloat(jQuery('#dilevery_total').attr('dilevery_total'));
+            let grandTotal = subtotal + totaltax + dilevery_total + inputValue;
+            jQuery(`#grandTotal`).html(`${site_currency}${grandTotal.toFixed(2)}`);
+            if (inputValue > 0) {
+            } else {
+                // NotyfMessage('The tip must be grater then zero ', 'error');
+                jQuery('#dilvery_tip').val(null)
+            }
+        });
+        /**
+            * State Dependency In Checkout Page
+       */
+        let country_uid = parseInt(jQuery('#billing_country').find(":selected").attr('country_uid'));
+        let ajax_url = jQuery('#state_ajax').val();
 
-     let selected_billing_state = jQuery('#selected_billing_state').val();
-     let ajax_value = {country_uid,'type':'country',selected_billing_state};
-     state_dependency_country_list(ajax_value, ajax_url);
-     /**
-      * Payment Option
-      */
-     let payment_value = jQuery('input[name="payment_method"]:checked').val();
-     (`payonline` == payment_value) ? jQuery(`#stripe_paymnet_form`).css(`display`, `block`) : jQuery(`#stripe_paymnet_form`).css(`display`, `none`);
-     jQuery('.payment_form'). attr('id', 'payment-form');
-     jQuery('#stripe_paymnet_form').css('display','none');
-     jQuery(document).on("click", ".payment_option", async function (event) {
-         let payment_value = jQuery('input[name="payment_method"]:checked').val();
-         if (payment_value ==='Pay On Online (Stripe)') {
-             jQuery('.payment_form'). attr('id', 'stripe_form');
-             jQuery('#stripe_paymnet_form').css('display','block');
+        let selected_billing_state = jQuery('#selected_billing_state').val();
+        let ajax_value = { country_uid, 'type': 'country', selected_billing_state };
+        state_dependency_country_list(ajax_value, ajax_url);
+        /**
+         * Payment Option
+         */
+        let payment_value = jQuery('input[name="payment_method"]:checked').val();
+        (`payonline` == payment_value) ? jQuery(`#stripe_paymnet_form`).css(`display`, `block`) : jQuery(`#stripe_paymnet_form`).css(`display`, `none`);
+        jQuery('.payment_form').attr('id', 'payment-form');
+        jQuery('#stripe_paymnet_form').css('display', 'none');
+        jQuery(document).on("click", ".payment_option", async function (event) {
+            let payment_value = jQuery('input[name="payment_method"]:checked').val();
+            if (payment_value === 'Pay On Online (Stripe)') {
+                jQuery('.payment_form').attr('id', 'stripe_form');
+                jQuery('#stripe_paymnet_form').css('display', 'block');
                 stripePayment_Form(jQuery(`#StripeKey`).val());
-         }else{
-             jQuery('.payment_form'). attr('id', 'payment-form');
-             jQuery('#stripe_paymnet_form').css('display','none');
-             payment_intergation();
-         }
-     });
-    payment_intergation();
+            } else {
+                jQuery('.payment_form').attr('id', 'payment-form');
+                jQuery('#stripe_paymnet_form').css('display', 'none');
+                payment_intergation();
+            }
+        });
+        payment_intergation();
 
-    jQuery('#billing_phone').inputmask('+1 (999) 999-9999');
-     jQuery('#billing_postcode').inputmask('A9A 9A9', {
-         placeholder: 'K1N 8W5\n',
-         clearMaskOnLostFocus: false,
-     })
-
-
+        jQuery('#billing_phone').inputmask('+1 (999) 999-9999');
+        jQuery('#billing_postcode').inputmask('A9A 9A9', {
+            placeholder: 'K1N 8W5\n',
+            clearMaskOnLostFocus: false,
+        })
 
 
-    }else if (url.indexOf("/user/order") > -1) {
+
+
+    } else if (url.indexOf("/user/order") > -1) {
         jQuery(document).on("change", ".manage_by_order", async function (event) {
             jQuery(`#OrderStatus`).empty().html('<h2 class="text-center"> Processing</h2>');
             let element, filterType, filterValue, ajax_value, orderedajax;
             element = jQuery(this);
             filterType = element.attr("type");
             filterValue = element.val();
-            ajax_value = {filterType, filterValue};
+            ajax_value = { filterType, filterValue };
             orderedajax = jQuery('orderedajax').val();
             const resPose = await Ajax_response(orderedajax, "GET", ajax_value, '');
-             jQuery(`#OrderStatus`).empty().html(resPose);
+            jQuery(`#OrderStatus`).empty().html(resPose);
         });
-    }else if (url.indexOf("user/profile-address") > -1) {
-          /**
-         * State Dependency In profile   Page
-         */
-          let country_uid = parseInt(jQuery('#billing_country').find(":selected").attr('country_uid'));
-          let ajax_url = jQuery('#state_ajax').val();
-          let selected_billing_state = jQuery('#selected_billing_state').val();
-          let ajax_value = {country_uid,'type':'country',selected_billing_state};
+    } else if (url.indexOf("user/profile-address") > -1) {
+        /**
+       * State Dependency In profile   Page
+       */
+        let country_uid = parseInt(jQuery('#billing_country').find(":selected").attr('country_uid'));
+        let ajax_url = jQuery('#state_ajax').val();
+        let selected_billing_state = jQuery('#selected_billing_state').val();
+        let ajax_value = { country_uid, 'type': 'country', selected_billing_state };
 
-          state_dependency_country_list(ajax_value, ajax_url);
-         jQuery('#billing_postcode').inputmask('A9A 9A9', {
-             placeholder: 'K1N 8W5\n',
-             clearMaskOnLostFocus: false,
-         })
+        state_dependency_country_list(ajax_value, ajax_url);
+        jQuery('#billing_postcode').inputmask('A9A 9A9', {
+            placeholder: 'K1N 8W5\n',
+            clearMaskOnLostFocus: false,
+        })
 
-    }else if (url.indexOf("/user/profile") > -1) {
+    } else if (url.indexOf("/user/profile") > -1) {
         jQuery('#user_phone').inputmask('+1 (999) 999-9999');
 
-    }else if (url.indexOf("/book-a-reservation") > -1) {
+    } else if (url.indexOf("/book-a-reservation") > -1) {
         jQuery('#datepicker').datepicker({
             minDate: 1,
             defaultDate: "+1",

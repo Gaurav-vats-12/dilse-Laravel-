@@ -309,7 +309,7 @@ class CouponService
 
         // calculate discount amount
         $discount_amount = 0;
-        if ($coupon->type == 'fixed') {
+        if ($coupon->type == 'fixed_cart') {
             $discount_amount += floatval($coupon->amount);
         } else {
             $discount_percentage = floatval($coupon->amount);
@@ -319,9 +319,13 @@ class CouponService
         $coupon->discount_amount = $discount_amount;
 
         return $coupon;
-
-
     }
+
+
+
+
+
+
 }
 
 ?>

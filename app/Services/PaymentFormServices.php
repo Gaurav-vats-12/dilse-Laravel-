@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\Order\Order;
 use App\Models\Order\OrderItems as OrderItemsAlias;
 use App\Models\Order\Payments;
+use App\Models\CouponHistory;
 use App\Services\User_addressServices as User_addressServicesAlias;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Config;
@@ -20,7 +21,6 @@ class PaymentFormServices{
     protected $paymentForm;
     /** @noinspection PhpUnreachableStatementInspection */
     public function PaymentForm($request){
-
         $user_id = !AuthAlias::guard('user')->check() ? null : AuthAlias::guard('user')->id();
         $user_type = !AuthAlias::guard('user')->check() ? 'guest' : 'user';
         if(AuthAlias::guard('user')->check()){
@@ -31,7 +31,7 @@ class PaymentFormServices{
            $addressObject->Change_user_address($request ,$user_id);
         }
         $dilvery_tip = ($request->dilvery_tip) ? round($request->dilvery_tip ,2) : 0.00 ;
-        $grand_Total = round($request->sub_total ,2) +  round($request->tax_total ,2)+ round($request->shipping_charge ,2) + $dilvery_tip;
+        $grand_Total = round($request->sub_total ,2) +  round($request->tax_total ,2)+ round($request->shipping_charge ,2) + $dilvery_tip - $request->discout_total;
         $order_id = Order::insertGetId([
             'user_id' => $user_id,
             'user_type' => $user_type,
@@ -44,6 +44,7 @@ class PaymentFormServices{
             'status'=> 'Pending',
             'order_type' => $request->order_type,
             'sub_total' => round($request->sub_total ,2),
+            'discount_price' => round($request->discout_total ,2),
             'tax' => round($request->tax_total ,2),
             'delivery_tip' => $dilvery_tip,
             'shipping_charge' => round($request->shipping_charge ,2),
@@ -53,6 +54,19 @@ class PaymentFormServices{
             'created_at' => now(),
             'updated_at' => now()
         ]);
+//         $order_id = 1;
+//         $couponHistory = CouponHistory::query()
+//         ->create([
+//             "user_id"         => $user_id,
+//             "user_email"         =>$request->billing_email,
+//             "coupon_id"       => $request->coupon_uuid,
+//             "order_id"        => $order_id ,
+//             "discount_amount" => $request->discout_total,
+//             "user_ip"         => null,
+//         ]);
+// dd($couponHistor);
+
+
 
         $cart_datals = [];
         $cart = session()->get('cart', []);
@@ -153,6 +167,7 @@ class PaymentFormServices{
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
         Session::forget('cart');
         Session::forget('order_type');
         Session::forget('deliveryCost');

@@ -59,13 +59,11 @@ class RegisteredUserController extends Controller
             'maximum_spend'     => 0,
             'coupon_type'     => 'referral',
             'use_limit'         => 1,
-            'use_same_ip_limit' => 1,
+            'use_same_ip_limit' => 0,
             'user_limit'        => 0,
             'use_device'        => "",
             'multiple_use'      => "yes",
         ]);
-        // dd( $coupon);
-        // Coupon::insertGetId([ 'code' => strtoupper(Str::random(10)), 'coupan_description' => 'The referral Code genrated by '.$request->name.' and their email is '.$request->email.'', 'discount_type' => 'percent', 'coupon_amount' => setting('referrel_points_on_signup'), 'minimum_amount' => 100, 'maximum_amount' => 0.00, 'coupon_type' => 'referral', 'expiry_date' => null, 'status'=>'active','user_id'=>$user->id,'created_at' => now(), 'updated_at' => now()]);
         event(new Registered($user));
         Auth::guard('user')->login($user);
         return redirect('/user');
