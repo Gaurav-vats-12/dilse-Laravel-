@@ -9,6 +9,7 @@ class CouponHistory extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
 
     public function coupon()
     {

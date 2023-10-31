@@ -18,6 +18,7 @@ class CartController extends Controller
 
     public function viewcart()
     {
+
         $menus = Menu::whereIn('id', [7, 6, 5, 9])->where('status', 'active')->get();
         $extra_items = FoodItemAlias::whereIn('menu_id', [7, 6, 5, 9])->where('status', 1)->get();
         return view('Pages.cart', compact('extra_items'));
@@ -55,6 +56,7 @@ class CartController extends Controller
      */
     public function addtocart(Request $request)
     {
+
         try {
             if (!empty($request->product_uid)) {
                 $product_uid = (int) $request->product_uid;
@@ -116,14 +118,15 @@ class CartController extends Controller
                 foreach ($cart as $key => $details) {
                     $subtotal = $subtotal + round($details["price"] * $details["quantity"], 2);
                 }
+                $couponResponse = $this->Coupon_functionalty($request->coupon_code ,$subtotal,$request->apply_coupon);
                 if (session('order_type') == 'delivery') {
-                    $total_before_Tex = $subtotal + setting('delivery_charge');
+                    $total_before_Tex = $couponResponse['discount_total'] + setting('delivery_charge');
                 } else {
-                    $total_before_Tex = $subtotal;
+                    $total_before_Tex = $couponResponse['discount_total'];
                 }
                 $total_tax = round(($total_before_Tex * setting('tax', 0.00)) / 100, 2);
                 $total = $total_before_Tex + $total_tax;
-                return response()->json(['code' => 200, 'cart_total' => count((array) session('cart')), 'subtotal' => round($subtotal, 2), 'total_tax' => $total_tax, 'total' => round($total, 2), 'status' => 'success', "message" => "Product add to cart successfully"]);
+                return response()->json(['code' => 200,  'couponResponse'=>$couponResponse,'cart_total' => count((array) session('cart')), 'subtotal' => round($subtotal, 2), 'total_tax' => $total_tax, 'total' => round($total, 2), 'status' => 'success', "message" => "Product add to cart successfully"]);
             } else {
                 if (isset($request->product_oid)) {
                     unset($request->product_oid);
@@ -132,14 +135,16 @@ class CartController extends Controller
                 foreach ($cart as $key => $details) {
                     $subtotal = $subtotal + round($details["price"], 2);
                 }
+                $couponResponse = $this->Coupon_functionalty($request->coupon_code ,$subtotal,$request->apply_coupon);
+
                 if (session('order_type') == 'delivery') {
-                    $total_before_Tex = $subtotal + setting('delivery_charge', 0.00);
+                    $total_before_Tex = $$couponResponse['discount_total'] + setting('delivery_charge', 0.00);
                 } else {
-                    $total_before_Tex = $subtotal;
+                    $total_before_Tex = $couponResponse['discount_total'];
                 }
                 $total_tax = round(($total_before_Tex * setting('tax', 0.00)) / 100, 2);
                 $total = $total_before_Tex + $total_tax;
-                return response()->json(['code' => 200, 'cart_total' => count((array) session('cart')), 'subtotal' => round($subtotal, 2), 'total_tax' => $total_tax, 'total' => round($total, 2), 'status' => 'success', "message" => "Product add to cart successfully"]);
+                return response()->json(['code' => 200, 'couponResponse'=>$couponResponse, 'cart_total' => count((array) session('cart')), 'subtotal' => round($subtotal, 2), 'total_tax' => $total_tax, 'total' => round($total, 2), 'status' => 'success', "message" => "Product add to cart successfully"]);
 
             }
         } catch (NotFoundExceptionInterface | ContainerExceptionInterface $e) {
@@ -158,9 +163,15 @@ class CartController extends Controller
         try {
             if ($id) {
                 $cart = session()->get('cart');
+                $arraySize = count($cart);
+                // dd( $arraySize);
+
                 if (isset($cart[$id])) {
                     unset($cart[$id]);
                     session()->put('cart', $cart);
+                }
+                if($arraySize ===1){
+                    session()->put('coupon', []);
                 }
                 notyf()->duration(2000)->addSuccess('Product  Remove from add to cart  successfully');
                 return redirect()->back();
@@ -174,14 +185,35 @@ class CartController extends Controller
 
 
     public function apply_coupon(Request $request){
-        $code       = $request->coupon_code;
-        $amount     = $request->subtotal;
-        $deviceName = null;
-        $ipaddress  = null;
-        $vendorId = null;
-        $skipFields =  [];
+        $code       = $request->coupon_code;  $amount     = $request->subtotal;
+        $coupon_type =$request->coupon_type;
+        $couponResponse = $this->Coupon_functionalty($code ,$amount,$coupon_type);
+        return response()->json($couponResponse, 200);
+ }
+
+ private function Coupon_functionalty($code ,$amount,$coupon_type){
+        $deviceName = null; $ipaddress  = null; $vendorId = null; $skipFields =  [];
         $userId = !AuthAlias::guard('user')->check() ? '' : AuthAlias::guard('user')->id();
-        $coupon = CouponService::validity($code, $amount, $userId, $deviceName, $ipaddress,  $vendorId ,$skipFields);
-        return $coupon;
+        if($coupon_type ==='coupon'){
+            $coupon = CouponService::validity($code, $amount, $userId, $deviceName, $ipaddress,  $vendorId ,$skipFields);
+            $discount_amount = round($coupon->discount_amount, 2);
+            $discount_total = $amount  - $discount_amount;
+            $discount_tex = round(($discount_total * setting('tax', 0.00)) / 100, 2);
+            $total = round($discount_total + $discount_tex,2);
+            $message  =  "This Coupon Code ".$code." Aplled  Successfully";
+            $couponResponse =[  "code" => $code , 'status' => 'success','cart_type' => $coupon_type,  "message" => $message , "amount" => $amount , 'discount_amount'=>$discount_amount, 'discount_total'=>round($discount_total ,2),'tax'=>round($discount_tex ,2), 'total'=>round($total,2),  "coupon" => $coupon];
+            session()->put('coupon', $couponResponse);
+        }else{
+            $discount_amount = 0.00;
+            $discount_total = $amount  - $discount_amount;
+            $discount_tex = round(($discount_total * setting('tax', 0.00)) / 100, 2);
+            $total = round($discount_total + $discount_tex,2);
+            $message  =  "This Coupon Code ".$code." Remove  Successfully";
+            $coupon =[];
+            $couponResponse= [];
+            session()->put('coupon', $couponResponse);
+        }
+        return  [  "code" => $code , 'status' => 'success','cart_type' => $coupon_type,  "message" => $message , "amount" => $amount , 'discount_amount'=>$discount_amount, 'discount_total'=>round($discount_total ,2),'tax'=>round($discount_tex ,2), 'total'=>round($total,2),  "coupon" => $coupon];
+
     }
 }

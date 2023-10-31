@@ -84,11 +84,28 @@
 
                     <div class="col-sm-12 col-md-7 col-lg-4" id="order_details">
                         @if(session('cart'))
+                        @php
+                        $cart_session = session('coupon');
+                        // @dd($cart_session);
+                            if ($cart_session) {
+                                $discount_amount = session('coupon')['discount_amount'];
+                                $coupon_code  = session('coupon')['code'];
+                                $cart_Test = (session('coupon')['cart_type'] ==='coupon') ? 'Remove Coupon' : 'Apply Coupon' ;
+                                $cart_type = (session('coupon')['cart_type'] ==='coupon') ? 'remove' : 'coupon' ;
+                                $appied_coupon = session('coupon')['cart_type'];
+                            } else {
+                                $discount_amount= 0.00;
+                                $cart_type= 'coupon';
+                                $cart_Test = 'Apply coupon';
+                                $coupon_code = '';
+                                $appied_coupon = '';
+                            }
+                        @endphp
                             <div class="order_summary">
                                 <div class="tittle_heading">
-                                    <input type="text" name="coupon_code" class="input-text"  id="coupon_code" value="" placeholder="Coupon code">
+                                    <input type="text" name="coupon_code" class="input-text"  id="coupon_code" value="{{ $coupon_code }}" placeholder="Coupon code">
 
-                                    <a href="javascript:void(0)" id="apply_coupon" route_ajax ="{{ route('cart.vieapply_couponw')}}">Apply coupon</a>
+                                    <a href="javascript:void(0)" id="apply_coupon" appied_coupon ="{{ $appied_coupon}}" coupon_type ="{{ $cart_type}}" route_ajax ="{{ route('cart.vieapply_couponw')}}">{{ $cart_Test}}</a>
                                     <h4> Order Summary </h4>
                                     <p id="message"  mimimum_ammout= "{{  round(( setting('minimum_order_for_delivery' ,0.00)) ,2) }}">Minimum order amount is {{ setting('site_currency')}}{{ round(( setting('minimum_order_for_delivery',0.00)) ,2) }}</p>
                                 <ul class="summary_main">
@@ -102,19 +119,38 @@
                                         </div>
                                     </li>
                                     <li>
-                        <div class="s_subtotal">
-                            <p>Tax
-                            </p>
-                        </div>
-                        <div class="s_total" id="tax_total" >
-                            @php
-                                $subTotal_Tax = $subtotal + 0.00;
-                                $tax_total = round(($subTotal_Tax * setting('tax' ,0.00)) / 100 ,2);
-                            @endphp
-                            <input type="hidden" name="tax_total" id="tax_total" value="{{ $tax_total }}">
-                            <p id="totaltax"  totaltax ="{{ $tax_total }}">{{ setting('site_currency')}} {{ $tax_total }}</p>
-                        </div>
-                        </li>
+                                        <div class="s_subtotal">
+                                            <p>Discount
+                                            </p>
+
+                                        </div>
+                                        <div class="s_total" id="discount_price" discountprice ="{{$discount_amount}}"   trypeList="cart">
+                                            <p id="discount" >{{ setting('site_currency')}} {{ $discount_amount}}</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="s_subtotal">
+                                            <p>Total
+                                            </p>
+                                        </div>
+                                        <div class="s_total" id="total_after_discount" total_after_discount ="0.00"   trypeList="cart">
+                                            <p id="total_price_after_discount" >{{ setting('site_currency')}}  {{ $subtotal - $discount_amount }}</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                     <div class="s_subtotal">
+                                    <p>Tax
+                                    </p>
+                                </div>
+                                <div class="s_total" id="tax_total" >
+                                    @php
+                                        $subTotal_Tax = $subtotal - $discount_amount ;
+                                        $tax_total = round(($subTotal_Tax * setting('tax' ,0.00)) / 100 ,2);
+                                    @endphp
+                                    <input type="hidden" name="tax_total" id="tax_total" value="{{ $tax_total }}">
+                                    <p id="totaltax"  totaltax ="{{ $tax_total }}">{{ setting('site_currency')}} {{ $tax_total }}</p>
+                                </div>
+                                </li>
                                     @php
                                         $orderType = session('order_type');
                                     @endphp
@@ -136,13 +172,11 @@
                                 </ul>
                                 <div class="order_totals d-flex align-items-center justify-content-between">
                                     <div class="order_totalses">
-                                        <p>Total
-                                        </p>
+                                        <p>Grand Total </p>
                                     </div>
                                     <input type="hidden" name="dilavery_charge" id="dilavery_charge" value="{{ (session('order_type') == 'delivery') ? session('deliveryCost') :  '' }}">
                                     <div class="order_totalse" id="grandTotal">
-                                        <p>{{ setting('site_currency')}}{{ (session('order_type') == 'delivery') ? $subtotal + session('deliveryCost') +  $tax_total : $subtotal + 0.00 +  $tax_total }}
-                                        </p>
+                                        <p>{{ setting('site_currency')}}{{ (session('order_type') == 'delivery') ? $subtotal - $discount_amount + session('deliveryCost') +  $tax_total : $subtotal - $discount_amount + 0.00 +  $tax_total }}</p>
                                     </div>
                                 </div>
                                 <div class="cart_btn">
@@ -166,7 +200,6 @@
                             <div class="tittle_heading">
                                 <h6>Extra Items</h6>
                             </div>
-
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="extra_items nav-link active" id="Bread-tab" menu_id = "6">Bread</button>
