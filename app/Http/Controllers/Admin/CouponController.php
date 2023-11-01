@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use JetBrains\PhpStorm\NoReturn;
 
@@ -34,8 +35,10 @@ class CouponController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @param StoreCouponRequest $request
+     * @return RedirectResponse
      */
-    public function store(StoreCouponRequest $request)
+    public function store(StoreCouponRequest $request): RedirectResponse
     {
         $coupon = CouponService::add([
             'coupon_code'       => $request->coupon_code, // (required) Coupon code
@@ -68,16 +71,21 @@ class CouponController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * @param string $id
+     * @return View|\Illuminate\Foundation\Application|Factory|Application
      */
-    public function edit(string $id)
+    public function edit(string $id): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('admin.page.Coupon.edit', ['Coupon' => Coupon::findOrFail($id)]);
     }
 
     /**
      * Update the specified resource in storage.
+     * @param StoreCouponRequest $request
+     * @param string $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, string $id)
+    public function update(StoreCouponRequest $request, string $id): RedirectResponse
     {
         $update = CouponService::update([
             'coupon_code'       => $request->coupon_code, // (required) Coupon code
@@ -102,8 +110,10 @@ class CouponController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param string $id
+     * @return RedirectResponse
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
         $delete  = CouponService::remove($id);
         notyf()->duration(2000)->addSuccess('Coupon Deleted Successfully.');

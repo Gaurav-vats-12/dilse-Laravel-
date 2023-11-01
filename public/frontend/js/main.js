@@ -559,28 +559,48 @@ jQuery(document).ready(function () {
                 if (subtotal < mimimum_ammout) {
                     NotyfMessage(`Your current order is <b>${jQuery('meta[name="site_currency"]').attr('content')}${subtotal}</b> You must have an order with minimum of <b>${jQuery('meta[name="site_currency"]').attr('content')}${mimimum_ammout}.00 </b>to place the order`, 'error');
                 } else {
-                    try {
-                        const resPose = await Ajax_response(route_ajax, "POST", ajax_value, '');
-                             NotyfMessage(resPose.message, 'success');
-                             jQuery('#discount_price').attr('discountprice',resPose.discount_amount.toFixed(2)  );
-                             jQuery(`#discount`).html(`<p>${site_currency} ${resPose.discount_amount.toFixed(2)} </p>`);
-                             jQuery('#total_after_discount').attr('total_after_discount',resPose.discount_total.toFixed(2)  );
-                             jQuery(`#total_price_after_discount`).html(`<p>${site_currency} ${resPose.discount_total} </p>`);
-                            jQuery('#tax_total').val(resPose.tax);
-                            jQuery(`#totaltax`).attr('totaltax',resPose.tax);
-                            jQuery(`#tax_total`).html(`<p>${site_currency} ${resPose.tax} </p>`);
-                           jQuery(`#grandTotal`).html(`<p>${site_currency} ${resPose.total} </p>`);
-                            if (coupon_type ==='coupon') {
-                                jQuery('#apply_coupon').text('Remove Coupon');
-                                jQuery('#apply_coupon').attr('coupon_type','remove');
-                               } else {
-                                jQuery('#apply_coupon').text('Apply Coupon');
-                                jQuery('#apply_coupon').attr('coupon_type','coupon');
-                                jQuery(`#coupon_code`).val('')
-                               }
-                            } catch (error) {
-                                NotyfMessage(error.responseJSON.message, 'error');
-                            }
+                    const resPose = await Ajax_response(route_ajax, "POST", ajax_value, '');
+                    if (resPose.status === 'success') {
+                        NotyfMessage(resPose.message, 'success');
+                        jQuery('#discount_price').attr('discountprice',resPose.discount_amount.toFixed(2)  );
+                        jQuery(`#discount`).html(`<p>${site_currency} ${resPose.discount_amount.toFixed(2)} </p>`);
+                        jQuery('#total_after_discount').attr('total_after_discount',resPose.discount_total.toFixed(2)  );
+                        jQuery(`#total_price_after_discount`).html(`<p>${site_currency} ${resPose.discount_total} </p>`);
+                        jQuery('#tax_total').val(resPose.tax);
+                        jQuery(`#totaltax`).attr('totaltax',resPose.tax);
+                        jQuery(`#tax_total`).html(`<p>${site_currency} ${resPose.tax} </p>`);
+                        jQuery(`#grandTotal`).html(`<p>${site_currency} ${resPose.total} </p>`);
+                        if (coupon_type ==='coupon') {
+                            jQuery('#apply_coupon').text('Remove Coupon');
+                            jQuery('#apply_coupon').attr('coupon_type','remove');
+                        } else {
+                            jQuery('#apply_coupon').text('Apply Coupon');
+                            jQuery('#apply_coupon').attr('coupon_type','coupon');
+                            jQuery(`#coupon_code`).val('')
+                        }
+                    } else {
+                        NotyfMessage(resPose.message, 'error');
+                    }
+                           //   NotyfMessage(resPose.message, 'success');
+                           //   jQuery('#discount_price').attr('discountprice',resPose.discount_amount.toFixed(2)  );
+                           //   jQuery(`#discount`).html(`<p>${site_currency} ${resPose.discount_amount.toFixed(2)} </p>`);
+                           //   jQuery('#total_after_discount').attr('total_after_discount',resPose.discount_total.toFixed(2)  );
+                           //   jQuery(`#total_price_after_discount`).html(`<p>${site_currency} ${resPose.discount_total} </p>`);
+                           //  jQuery('#tax_total').val(resPose.tax);
+                           //  jQuery(`#totaltax`).attr('totaltax',resPose.tax);
+                           //  jQuery(`#tax_total`).html(`<p>${site_currency} ${resPose.tax} </p>`);
+                           // jQuery(`#grandTotal`).html(`<p>${site_currency} ${resPose.total} </p>`);
+                           //  if (coupon_type ==='coupon') {
+                           //      jQuery('#apply_coupon').text('Remove Coupon');
+                           //      jQuery('#apply_coupon').attr('coupon_type','remove');
+                           //     } else {
+                           //      jQuery('#apply_coupon').text('Apply Coupon');
+                           //      jQuery('#apply_coupon').attr('coupon_type','coupon');
+                           //      jQuery(`#coupon_code`).val('')
+                           //     }
+                            // } catch (error) {
+                            //     NotyfMessage(error.responseJSON.message, 'error');
+                            // }
                 }
             }
         });
@@ -589,14 +609,15 @@ jQuery(document).ready(function () {
             jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
         });
         // dilvery_tip Functionalty
-        jQuery('#dilvery_tip').on('focusout', function () {
+        jQuery('#dilvery_tip').on('focusout  keyup', function () {
+            console.log(';Kejkkjjkkj')
             let site_currency = jQuery('meta[name="site_currency"]').attr('content');
-            let subtotal = parseFloat(jQuery('#subtotal').attr('subtotal'));
+            let subtotal = parseFloat(jQuery('#total_ammount').val());
             let inputValue = (jQuery(this).val()) ? parseFloat(jQuery(this).val()) : parseFloat('0.00', 2);
             let totaltax = parseFloat(jQuery('#totaltax').attr('totaltax'));
             let dilevery_total = (jQuery('#dilevery_total').attr('dilevery_total') === undefined || (jQuery('#dilevery_total').attr('dilevery_total') === 'undefined')) ? parseFloat('0.00', 2) : parseFloat(jQuery('#dilevery_total').attr('dilevery_total'));
             let grandTotal = subtotal + totaltax + dilevery_total + inputValue;
-            jQuery(`#grandTotal`).html(`${site_currency}${grandTotal.toFixed(2)}`);
+            jQuery(`#grandTotalammount`).html(`${site_currency}${grandTotal.toFixed(2)}`);
             if (inputValue > 0) {
             } else {
                 // NotyfMessage('The tip must be grater then zero ', 'error');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\User;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,16 +10,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactNotification extends Mailable
+class Sendrewardemail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($contactData)
+    public function __construct($user_data)
     {
-        $this->contactData = $contactData;
+        $this->user_data = $user_data;
     }
 
     /**
@@ -28,7 +28,7 @@ class ContactNotification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contact Notification',
+            subject: 'Referral Reward: Your Special Coupon',
         );
     }
 
@@ -38,7 +38,8 @@ class ContactNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contact_notification',
+            view: 'emails.user.contactrewards',
+
         );
     }
 
@@ -52,10 +53,11 @@ class ContactNotification extends Mailable
         return [];
     }
 
-    public function build()
+
+    public function build(): Sendrewardemail
     {
         return $this->from('noreply@mailsender.ca')
-            ->subject('New Contact Form Submission')
-                    ->with('contactData', $this->contactData);
+            ->subject('Referral Reward: Your Special Coupon')
+            ->with('user_data', $this->user_data);
     }
 }

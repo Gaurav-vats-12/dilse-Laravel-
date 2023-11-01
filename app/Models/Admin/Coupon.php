@@ -2,13 +2,20 @@
 
 namespace App\Models\Admin;
 
+use App\Modules\Users\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\CouponHistory;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
+/**
+ * @method static findOrFail($id)
+ * @method static find(mixed $coupon_uuid)
+ */
 class Coupon extends Model
 {
     use HasFactory, SoftDeletes;
@@ -39,13 +46,18 @@ class Coupon extends Model
      *
      * @return HasMany
      */
-    public function couponHistories()
+    public function couponHistories(): HasMany
     {
         return $this->hasMany(CouponHistory::class, "coupon_id", "id");
     }
 
-    public static function paginate(int $limit = 10, int $page = 1)
+    public static function paginate(int $limit = 10, int $page = 1): mixed
     {
         return self::paginate($limit, "*", "page", $page);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(related: User::class);
     }
 }
