@@ -53,6 +53,7 @@
                     $discount_amount= 0.00;
                     $cart_type= 'coupon';
                     $cart_Test = 'Apply coupon';
+                    $coupon_uuid ='';
                     $coupon_code = '';
                     $appied_coupon = '';
                 }
