@@ -14,13 +14,15 @@ return new class extends Migration
         if (!Schema::hasTable('coupon_histories')) {
             Schema::create('coupon_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
-            $table->string('user_email')->unique()->nullable();
-            $table->foreignId('coupon_id')->constrained()->on('coupons')->onUpdate('cascade')->onDelete('cascade')->nullable();
-            $table->foreignId('order_id')->constrained()->on('orders')->nullable()->onUpdate('cascade')->onDelete('cascade');
-            $table->double('discount_amount', 12, 2);
-            $table->string("user_ip")->nullable();
-            $table->timestamps();
+                $table->unsignedBigInteger('order_id');
+                $table->unsignedBigInteger('coupon_id');
+                $table->unsignedBigInteger('user_id');
+                $table->string('user_email', 255);
+                $table->decimal('discount', 8, 2); // Or adjust the data type according to your needs
+                $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+                $table->foreign('coupon_id')->references('id')->on('coupons')->onDelete('cascade');
+                $table->timestamps();
         });
     }
     }

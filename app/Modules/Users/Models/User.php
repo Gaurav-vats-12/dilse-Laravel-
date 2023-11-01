@@ -2,6 +2,7 @@
 
 namespace App\Modules\Users\Models;
 
+use App\Models\Admin\Coupon;
 use App\Models\Order\Order as OrderAlias;
 use App\Models\User\UserAddressManage;
 use App\Modules\Users\Database\Factories\UserFactory;
@@ -103,5 +104,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserAddressManage::class);
     }
 
+    /**
+     * @return HasManyAlias
+     */
+    public function coupons(): HasManyAlias
+    {
+        return $this->hasMany(related: Coupon::class);
+    }
 
 }

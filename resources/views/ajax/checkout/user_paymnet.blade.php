@@ -41,11 +41,10 @@
             </li>
             @php
             $cart_session = session('coupon');
-            // @dd($cart_session);
                 if ($cart_session) {
                     $discount_amount = session('coupon')['discount_amount'];
                     $coupon_code  = session('coupon')['code'];
-                    $coupon_uuid  = session('coupon')['coupon']['id'];
+                    $coupon_uuid  = session('coupon')['coupon']['coupon']['id'];
                     $cart_Test = (session('coupon')['cart_type'] ==='coupon') ? 'Remove Coupon' : 'Apply Coupon' ;
                     $cart_type = (session('coupon')['cart_type'] ==='coupon') ? 'remove' : 'coupon' ;
                     $appied_coupon = session('coupon')['cart_type'];
@@ -63,9 +62,14 @@
                 <input type="hidden" name="discout_total" id="discout_total" value="{{ $discount_amount }}">
                 <input type="hidden" name="coupon_code" id="coupon_code" value="{{$coupon_code }}">
                 <input type="hidden" name="coupon_uuid" id="coupon_uuid" value="{{$coupon_uuid }}">
-                <span class="value"  id="totaltax"  totaltax ="{{ $discount_amount }}" >{{ setting('site_currency')}}{{ $discount_amount }}</span>
+                <span class="value"  >{{ setting('site_currency')}}{{ $discount_amount }}</span>
             </li>
-            <li class="charges">
+                <li class="charges">
+                    <span class="key">Total </span>
+                    <input type="hidden" name="total_ammount" id="total_ammount" value="{{ $subtotal - $discount_amount }}">
+                    <span class="value"  id="tantamount"  totalammount ="{{ $subtotal - $discount_amount }}" >{{ setting('site_currency')}}  {{ $subtotal - $discount_amount }}</span>
+                </li>
+                <li class="charges">
                 @php
                 $subTotal_Tax = $subtotal - $discount_amount ;
                 $tax_total = round(($subTotal_Tax * setting('tax' ,0.00)) / 100 ,2);
@@ -96,8 +100,7 @@
             <span class="key">GRAND TOTAL:</span>
 
             <input type="hidden" name="grandTotal" id="grandTotal" value="{{ (session('order_type') && session('order_type') == "delivery") ?  $subtotal - $discount_amount + session('deliveryCost') +  $tax_total:   $subtotal - $discount_amount + 0.00 +  $tax_total }}">
-
-            <span class="value" id="grandTotal">{{setting('site_currency')}}{{ (session('order_type') && session('order_type') == "delivery") ?  $subtotal - $discount_amount + session('deliveryCost') +  $tax_total:   $subtotal - $discount_amount + 0.00 +  $tax_total }}</span>
+            <span class="value" id="grandTotalammount">{{setting('site_currency')}}{{ (session('order_type') && session('order_type') == "delivery") ?  $subtotal - $discount_amount + session('deliveryCost') +  $tax_total:   $subtotal - $discount_amount + 0.00 +  $tax_total }}</span>
      </li>
             </ul>
             <ul>

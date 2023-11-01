@@ -65,19 +65,21 @@ async function state_dependency_country_list(ajax_post, url) {
 const updateTotals = async (deliveryCost) => {
     let site_currency = jQuery('meta[name="site_currency"]').attr('content');
     let location_type =  jQuery('input[name="delivery_type"]:checked').attr('location_type');
-    let SubTotal = parseFloat(jQuery('#subtotal').attr('subtotal')) + deliveryCost  ;
+    let total_ammount = parseFloat(jQuery('#total_ammount').val());
     let tax =parseFloat(jQuery('#totaltax').attr('totaltax'));
+    let grandTotal = total_ammount + deliveryCost + tax;
     let trypelist =jQuery('#subtotal').attr('trypelist');
-    let grandTotal = parseFloat(jQuery('#subtotal').attr('subtotal')) + deliveryCost + tax;
+
     const resPose = await Ajax_response(jQuery('#subtotal').attr('updated_route'), "POST", {deliveryCost,location_type}, '');
-    if(resPose.code =='200' || resPose.code ==200){
-        if(trypelist==='cart'){
+    if (resPose.code == '200') {
+        if (trypelist === 'cart') {
             location.reload(true);
-        }else{
-            jQuery(`#dilevery_total`).html(`${site_currency}${deliveryCost.toFixed(2)}`);
-            jQuery(`#dilevery_total`).attr( 'dilevery_total',`${deliveryCost.toFixed(2)}`);
-            jQuery(`#grandTotal`).html(`${site_currency}${grandTotal.toFixed(2)}`);
-            jQuery('#dilvery_tip').val(null)
+        } else {
+                    jQuery(`#dilevery_total`).html(`${site_currency}${deliveryCost.toFixed(2)}`);
+                    jQuery(`#dilevery_total`).attr( 'dilevery_total',`${deliveryCost.toFixed(2)}`);
+                    jQuery(`#grandTotalammount`).html(`${site_currency}${grandTotal.toFixed(2)}`);
+                    jQuery('#dilvery_tip').val(null)
         }
+
     }
 }

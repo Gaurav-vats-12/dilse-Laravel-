@@ -192,17 +192,22 @@ class CartController extends Controller
  }
 
  private function Coupon_functionalty($code ,$amount,$coupon_type){
-        $deviceName = null; $ipaddress  = null; $vendorId = null; $skipFields =  [];
+        $deviceName = null; $ipaddress  = null; $skipFields =  [];
         $userId = !AuthAlias::guard('user')->check() ? '' : AuthAlias::guard('user')->id();
+     $vendorId = $userId;
         if($coupon_type ==='coupon'){
             $coupon = CouponService::validity($code, $amount, $userId, $deviceName, $ipaddress,  $vendorId ,$skipFields);
-            $discount_amount = round($coupon->discount_amount, 2);
+        if($coupon['status'] ==='error'){
+            return $coupon;
+        }else{
+            $discount_amount = round($coupon['coupon']->discount_amount, 2);
             $discount_total = $amount  - $discount_amount;
             $discount_tex = round(($discount_total * setting('tax', 0.00)) / 100, 2);
             $total = round($discount_total + $discount_tex,2);
             $message  =  "This Coupon Code ".$code." Aplled  Successfully";
             $couponResponse =[  "code" => $code , 'status' => 'success','cart_type' => $coupon_type,  "message" => $message , "amount" => $amount , 'discount_amount'=>$discount_amount, 'discount_total'=>round($discount_total ,2),'tax'=>round($discount_tex ,2), 'total'=>round($total,2),  "coupon" => $coupon];
             session()->put('coupon', $couponResponse);
+        }
         }else{
             $discount_amount = 0.00;
             $discount_total = $amount  - $discount_amount;

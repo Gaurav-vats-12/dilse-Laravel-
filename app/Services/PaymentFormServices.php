@@ -19,8 +19,9 @@ use Stripe\Stripe;
 class PaymentFormServices{
 
     protected $paymentForm;
-    /** @noinspection PhpUnreachableStatementInspection */
+
     public function PaymentForm($request){
+//        return $request->all();
         $user_id = !AuthAlias::guard('user')->check() ? null : AuthAlias::guard('user')->id();
         $user_type = !AuthAlias::guard('user')->check() ? 'guest' : 'user';
         if(AuthAlias::guard('user')->check()){
@@ -50,24 +51,11 @@ class PaymentFormServices{
             'shipping_charge' => round($request->shipping_charge ,2),
             'total_amount' => round($grand_Total ,2),
             'store_location' => $request->store_location,
+            'coupon_code' => $request->coupon_code,
             'spice_lavel' => $request->spice_lavel,
             'created_at' => now(),
             'updated_at' => now()
         ]);
-//         $order_id = 1;
-//         $couponHistory = CouponHistory::query()
-//         ->create([
-//             "user_id"         => $user_id,
-//             "user_email"         =>$request->billing_email,
-//             "coupon_id"       => $request->coupon_uuid,
-//             "order_id"        => $order_id ,
-//             "discount_amount" => $request->discout_total,
-//             "user_ip"         => null,
-//         ]);
-// dd($couponHistor);
-
-
-
         $cart_datals = [];
         $cart = session()->get('cart', []);
         foreach ($cart as $key => $details)   $cart_datals[] = [
@@ -173,6 +161,7 @@ class PaymentFormServices{
         Session::forget('deliveryCost');
         Session::forget('spicy_lavel');
         Session::forget('store_location');
+        Session::forget('coupon');
        return  ['code' => 200 , 'order_id'=>$order_id , 'url'=>  $url , 'statusMessage'=> $statusMessage,'payment_id'=>$payment_id, 'status' =>true, "message"=> $payment_message];
     }
 }

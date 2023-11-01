@@ -13,7 +13,7 @@
                                 </div>
                                 <a href="tel:{{ setting('phone') != null ? setting('phone') : '' }}">
                                     <p>{{ setting('phone') != null ? setting('phone') : '' }}</p>
-                                    </a>|<a href="tel:416-534-6344"><p>416-534-6344</p></a> 
+                                    </a>|<a href="tel:416-534-6344"><p>416-534-6344</p></a>
                             </div>
 
                         </li>
@@ -78,7 +78,7 @@
                         @endif
                         <li>
                             <select class="select_location" name="select_location" id="select_location"
-                                ajax_value=?{{ route('cart.update_details') }}" location_Type="location">
+                                ajax_value="{{ route('cart.update_details') }}" location_Type="location">
                                 <option value="Toronto" {{ session('update_location') == 'Toronto' ? 'selected' : '' }}>
                                     Toronto</option>
                                 <option value="Brampton"
