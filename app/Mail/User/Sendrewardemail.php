@@ -38,7 +38,7 @@ class Sendrewardemail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.user.contactrewards',
+            view: 'emails.User.contactrewards',
         );
     }
 
