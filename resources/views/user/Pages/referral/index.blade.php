@@ -1,3 +1,6 @@
+@php
+use Carbon\Carbon;
+ @endphp
 @extends('layouts.app')
 @section('title', 'User Edit Profile Update ')
 @section('frontcontent')
@@ -28,7 +31,8 @@
                                 <thead>
                                 <tr>
                                     <th style="width:130px">S.N.</th>
-                                    <th>Reffreal name</th>
+                                    <th>Reffreal Email address </th>
+                                    {{-- <th>Description</th> --}}
                                     <th style="width:150px" class="text-center">Coupon Code </th>
                                     <th style="width:150px" class="text-center">Start date</th>
                                     <th style="width:150px" class="text-center">End  date</th>
@@ -40,6 +44,20 @@
                                     {{-- @dd($reffral_list) --}}
                                     <tr>
                                         <td  >{{ $keys + 1 }}</td>
+                                        <td>{{ $reffral_list->user_email}}</td>
+
+                                        <td id="textToCopy">{{ $reffral_list->code }}
+                                            <a href="javascript:void(0)" id="copy_code" unique_code ="{{ $reffral_list->code  }}"><i class="fa-solid fa-copy" title="copy_code"></i></a>
+                                        </td>
+                                        <td>{{ date("Y-m-d", strtotime($reffral_list->start_date)) }}</td>
+                                        <td>{{ date("Y-m-d", strtotime($reffral_list->end_date)) }}</td>
+                                        <td>
+                                        @if (Carbon::today()->greaterThan($reffral_list->end_date))
+                                     <span >Expired</span>
+                                      @else
+                                      @if (Carbon::parse($reffral_list->start_date)->diffInDays(Carbon::parse($reffral_list->end_date))==0)
+                                      <span>Last Day</span>  @else  {{Carbon::parse($reffral_list->start_date)->diffInDays(Carbon::parse($reffral_list->end_date)) }} Days Left @endif  @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                 {{-- @php  $subtotal = 0; @endphp

@@ -88,8 +88,6 @@ class CouponService
     {
 
         $coupon = Coupon::query()->where("code", $couponCode)->withCount(["couponHistories as user_use_coupon" => function ($q) use ($userId) {$q->selectRaw("COUNT(*)")->where("user_id", $userId);},])->first();
-        //01.Check if coupon exists
-
         if (!$coupon) {
             return
                 [
@@ -97,6 +95,14 @@ class CouponService
                     "message" => "Invalid coupon code!",
                 ];
 
+        }
+        if ($coupon->user_id == $userId) {
+            return
+            [
+                "status" => "error",
+                "message" =>
+                    "This Promotional Code This isn't for you because it's a referral voucher. ",
+            ];
         }
         //02. Check coupon status
         if ($coupon->status != 1) {
@@ -107,6 +113,8 @@ class CouponService
                         "Coupon apply failed. This coupon is inactive.",
                 ];
         }
+
+
 
         //03. Check coupon start date validity
         // dd(Carbon::today()->toDateTimeString());

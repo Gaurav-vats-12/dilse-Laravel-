@@ -32,6 +32,11 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
         session()->put('url_session',url()->previous());
+        $login_redirct = session()->get('login_redirct');
+        // dd($login_redirct);
+        if($login_redirct){
+            return redirect()->intended($login_redirct);
+        }
         return redirect()->intended('/');
     }
 

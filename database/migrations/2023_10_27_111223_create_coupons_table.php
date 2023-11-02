@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->foreignId('vendor_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->foreignId('parant_coupon_id')->constrained()->on('coupons')->onUpdate('cascade')->onDelete('cascade')->nullable();
-            $table->string('user_email')->unique()->nullable();
+            $table->string('user_email')->nullable();
             $table->string('code')->unique();
             $table->text('coupan_description')->nullable();
             $table->enum('type', ['percentage','fixed_cart']);
