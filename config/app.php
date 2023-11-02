@@ -173,6 +173,8 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Flasher\Laravel\FlasherServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
+
 
     ])->toArray(),
 
@@ -188,6 +190,7 @@ return [
     */
     'aliases' => Facade::defaultAliases()->merge(array('Image' => Intervention\Image\Facades\Image::class, 'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class, 'PDF' => Barryvdh\DomPDF\Facade::class,
     'Flasher' => Flasher\Laravel\Facade\Flasher::class, 'Agent' => Jenssegers\Agent\Facades\Agent::class,
+    'Share' => Jorenvh\Share\ShareFacade::class,
 
     ))->toArray(),
 ];

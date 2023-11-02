@@ -13,10 +13,21 @@ class ReferralController extends Controller
 {
    public function index(){
     $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id() : null;
+
     $date = today()->format('Y-m-d');
     $Coupon = Coupon::where('user_id', $user_id)->where('status', 1)->first();
+    $message = "Here is your Reffral code".$Coupon->code."";
+    $shareComponent = \Share::page(
+        "Here is your Reffral code".$Coupon->code."",
+    )
+    ->facebook()
+    ->twitter()
+    ->linkedin()
+    ->telegram()
+    ->whatsapp()
+    ->reddit();
     $reffreal_couypon_list = Coupon::where('vendor_id', $user_id)->where('parant_coupon_id', $Coupon->id)->where('status', 1)->whereDate('end_date', '>=', Carbon::today()->subDays(1))->get();
-    return view('user.Pages.referral.index', ['Coupon' => $Coupon,'reffral'=> $reffreal_couypon_list]);
+    return view('user.Pages.referral.index', ['Coupon' => $Coupon,'reffral'=> $reffreal_couypon_list,'shareComponent'=>$shareComponent]);
    }
 
 
