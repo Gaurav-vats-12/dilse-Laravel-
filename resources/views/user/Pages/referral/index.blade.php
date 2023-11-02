@@ -22,6 +22,7 @@ use Carbon\Carbon;
                             <div class="cusstom_input">
                                 <label for="reffrel_code" class="">Your referral Code </span></label>
                                 <input type="text"  id="reffrel_code" name="reffrel_code"  value="{{ $Coupon->code }}" readonly >
+                                {!! $shareComponent !!}
                             </div>
                         </div>
                         <span class="text-bold"> List of User Which have used Referral </span>

@@ -12,6 +12,7 @@
         "guzzlehttp/guzzle": "^7.7",
         "intervention/image": "*",
         "jenssegers/agent": "^2.6",
+        "jorenvanhocht/laravel-share": "^4.2",
         "laravel/breeze": "^1.21",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
