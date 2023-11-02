@@ -27,15 +27,6 @@
                                     </select>
                                 </div></div>
                             <div class="col-md-6">
-{{--                                <div class="filterList">--}}
-{{--                                    <h6 for="manage_by_order">Filter By Payment   Status:</h6>--}}
-{{--                                    <select id="manage_by_order"  type="payment" class="manage_by_order">--}}
-{{--                                        <option value="all">All</option>--}}
-{{--                                        <option value="pending">Pending</option>--}}
-{{--                                        <option value="paid">Paid</option>--}}
-{{--                                        <option value="Failed">failed</option>--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
                             </div>
 
                         </div>

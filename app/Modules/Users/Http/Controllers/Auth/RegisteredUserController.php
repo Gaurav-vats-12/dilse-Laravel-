@@ -58,7 +58,7 @@ class RegisteredUserController extends Controller
             'minimum_spend'     =>setting('minimum_order_for_delivery'),
             'maximum_spend'     => 0,
             'coupon_type'     => 'referral',
-            'use_limit'         => 1,
+            'use_limit'         => 0,
             'use_same_ip_limit' => 0,
             'user_limit'        => 0,
             'use_device'        => "",

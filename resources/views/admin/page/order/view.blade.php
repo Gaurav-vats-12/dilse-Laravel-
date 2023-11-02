@@ -120,11 +120,18 @@
                                         </div>
                                         <div class="row mt-3">
                                             <div class="col-4">
-                                                <strong>Shipping Fees :</strong>
+                                                <strong>Discount ( Coupon Applied : {{ $orders->coupon_code  }})</strong>
                                             </div>
                                             <div class="col-8">
-                                                {{ setting('site_currency')}}{{ $orders->shipping_charge }}
-                                                (Tip :{{setting('site_currency')}}{{ __($orders->delivery_tip) }} )
+                                                {{ setting('site_currency')}}{{ $orders->discount_price }}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <strong>Total </strong>
+                                            </div>
+                                            <div class="col-8">
+                                                {{ setting('site_currency')}}{{ $orders->sub_total -  $orders->discount_price  }}
                                             </div>
                                         </div>
                                         <div class="row mt-3">
@@ -136,9 +143,19 @@
                                             </div>
                                         </div>
                                         <div class="row mt-3">
+                                            <div class="col-4">
+                                                <strong>Shipping Fees :</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                {{ setting('site_currency')}}{{ $orders->shipping_charge }}
+                                                (Tip :{{setting('site_currency')}}{{ __($orders->delivery_tip) }} )
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
 
                                             <div class="col-4">
-                                                <strong>Total Amount :</strong>
+                                                <strong>Grand Total  :</strong>
                                             </div>
                                             <div class="col-8">
                                                 {{ setting('site_currency')}} {{ $orders->total_amount }}

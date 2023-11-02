@@ -1,5 +1,5 @@
 let  ajaxResult = null;
-async function Ajax_response(url, method, values, beforetask, success, callback) {
+const Ajax_response = async (url, method, values, beforetask, success, callback) => {
     jQuery.ajaxSetup({headers: {'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')}});
     return jQuery.ajax({
         type: method,
@@ -13,9 +13,9 @@ async function Ajax_response(url, method, values, beforetask, success, callback)
         error: function (_request, status, _error) {
         }
     });
-}
+};
 
-function NotyfMessage(message ,type){
+const NotyfMessage = (message , type) => {
     var notyf = new Notyf();
     if(type ==='success'){
         notyf.success(message);
@@ -24,11 +24,11 @@ function NotyfMessage(message ,type){
     }else if(type ==='warning'){
         notyf.error(message);
     }
-}
+};
 
 
 jQuery('.show_confirm').click(function(event) {
-    var form =  $(this).closest("form");
+    const form = $(this).closest("form");
     var name = $(this).data("name");
     event.preventDefault();
      Swal.fire({
@@ -43,25 +43,25 @@ jQuery('.show_confirm').click(function(event) {
       })
 });
 
-function updateCountryCode(countryCode ,) {
+const updateCountryCode = countryCode => {
     phoneInput.val(phoneInput.val().replace(/^\+9/, countryCode));
-  }
+  };
 
-  jQuery(document).on("click", "#btnToggle", function (event) {3
+  jQuery(document).on("click", '#btnToggle', function (event) {3
     let passwordItd;
     jQuery(this).find("#eyeIcon").toggleClass("fa-eye fa-eye-slash");
     if (jQuery(this).attr('passwordType') === 'password') {
- passwordItd = jQuery('#password');
-    } else  if(jQuery(this).attr('passwordType') === 'password_confirmation'){
-         passwordItd = jQuery('#password_confirmation');
-    }else if(jQuery(this).attr('passwordType') === 'current_password'){
-         passwordItd = jQuery('#current_password');
-    }
-    if (passwordItd.attr('type') === 'password') {
-        passwordItd.attr('type', 'text');
-    } else {
-        passwordItd.attr('type', 'password')
-    }
+     passwordItd = jQuery('#password');
+        } else  if(jQuery(this).attr('passwordType') === 'password_confirmation'){
+             passwordItd = jQuery('#password_confirmation');
+        }else if(jQuery(this).attr('passwordType') === 'current_password'){
+             passwordItd = jQuery('#current_password');
+        }
+        if (passwordItd.attr('type') === 'password') {
+            passwordItd.attr('type', 'text');
+        } else {
+            passwordItd.attr('type', 'password')
+        }
 });
 
 const genrate_code =  (codeLength ) => {
