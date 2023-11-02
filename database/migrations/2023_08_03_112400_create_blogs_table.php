@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('blog_title');
             $table->string('slug')->nullable();
+            $table->text('blog_short_content');
             $table->text('blog_content');
             $table->string('blog_meta_title');
             $table->text('blog_meta_description');
