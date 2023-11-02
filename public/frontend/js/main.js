@@ -498,14 +498,12 @@ jQuery(document).ready(function () {
                 jQuery(`#product_quntity__${product_oid}`).val(qty);
                 jQuery(`#product_price__${product_oid}`).val(`${site_currency}${counterproductive.toFixed(2)}`);
                 const resPose = await Ajax_response(ajax_url, "POST", ajax_value, '');
-                console.log(resPose);
                 if (resPose.status === `success`) {
                     jQuery(`#subtotal`).html(`<p>${site_currency}${resPose.subtotal}</p>`);
                     jQuery('#subtotal').attr('subtotal', resPose.subtotal)
-                    jQuery('#discount_price').attr('discountprice',resPose.couponResponse.discount_amount.toFixed(2)  );
+                    jQuery('#discount_price').attr('discountprice',resPose.couponResponse.discount_amount  );
                     jQuery(`#discount`).html(`<p>${site_currency} ${resPose.couponResponse.discount_amount.toFixed(2)} </p>`);
                     jQuery(`#total_price_after_discount`).html(`<p>${site_currency} ${resPose.couponResponse.discount_total} </p>`);
-
                     jQuery(`#tax_total`).html(`<p>${site_currency}${resPose.total_tax}</p>`);
                     jQuery(`#grandTotal`).html(`<p>${site_currency}${resPose.total}</p>`);
                 }
@@ -572,35 +570,17 @@ jQuery(document).ready(function () {
                         jQuery(`#grandTotal`).html(`<p>${site_currency} ${resPose.total} </p>`);
                         if (coupon_type ==='coupon') {
                             jQuery('#apply_coupon').text('Remove Coupon');
+                            jQuery(`#apply_coupon`).attr('appied_coupon','coupon')
                             jQuery('#apply_coupon').attr('coupon_type','remove');
                         } else {
                             jQuery('#apply_coupon').text('Apply Coupon');
+                            jQuery(`#apply_coupon`).attr('appied_coupon','')
                             jQuery('#apply_coupon').attr('coupon_type','coupon');
                             jQuery(`#coupon_code`).val('')
                         }
                     } else {
                         NotyfMessage(resPose.message, 'error');
                     }
-                           //   NotyfMessage(resPose.message, 'success');
-                           //   jQuery('#discount_price').attr('discountprice',resPose.discount_amount.toFixed(2)  );
-                           //   jQuery(`#discount`).html(`<p>${site_currency} ${resPose.discount_amount.toFixed(2)} </p>`);
-                           //   jQuery('#total_after_discount').attr('total_after_discount',resPose.discount_total.toFixed(2)  );
-                           //   jQuery(`#total_price_after_discount`).html(`<p>${site_currency} ${resPose.discount_total} </p>`);
-                           //  jQuery('#tax_total').val(resPose.tax);
-                           //  jQuery(`#totaltax`).attr('totaltax',resPose.tax);
-                           //  jQuery(`#tax_total`).html(`<p>${site_currency} ${resPose.tax} </p>`);
-                           // jQuery(`#grandTotal`).html(`<p>${site_currency} ${resPose.total} </p>`);
-                           //  if (coupon_type ==='coupon') {
-                           //      jQuery('#apply_coupon').text('Remove Coupon');
-                           //      jQuery('#apply_coupon').attr('coupon_type','remove');
-                           //     } else {
-                           //      jQuery('#apply_coupon').text('Apply Coupon');
-                           //      jQuery('#apply_coupon').attr('coupon_type','coupon');
-                           //      jQuery(`#coupon_code`).val('')
-                           //     }
-                            // } catch (error) {
-                            //     NotyfMessage(error.responseJSON.message, 'error');
-                            // }
                 }
             }
         });

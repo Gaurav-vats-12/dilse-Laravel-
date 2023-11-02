@@ -87,19 +87,30 @@
                         @php
                         $cart_session = session('coupon');
                         // @dd($cart_session);
-                            if ($cart_session) {
+                        if ($subtotal < round(( setting('minimum_order_for_delivery' ,0.00)) ,2)) {
+                            $discount_amount= 0.00;
+                                $cart_type= 'coupon';
+                                $cart_Test = 'Apply Coupon';
+                                $coupon_code = '';
+                                $appied_coupon = '';
+                                session()->put('coupon', []);
+                        } else {
+
+                            if ($cart_session  ) {
                                 $discount_amount = session('coupon')['discount_amount'];
                                 $coupon_code  = session('coupon')['code'];
                                 $cart_Test = (session('coupon')['cart_type'] ==='coupon') ? 'Remove Coupon' : 'Apply Coupon' ;
                                 $cart_type = (session('coupon')['cart_type'] ==='coupon') ? 'remove' : 'coupon' ;
                                 $appied_coupon = session('coupon')['cart_type'];
-                            } else {
+                            }  else {
                                 $discount_amount= 0.00;
                                 $cart_type= 'coupon';
                                 $cart_Test = 'Apply Coupon';
                                 $coupon_code = '';
                                 $appied_coupon = '';
                             }
+                        }
+
                         @endphp
                             <div class="order_summary">
                                 <div class="tittle_heading">

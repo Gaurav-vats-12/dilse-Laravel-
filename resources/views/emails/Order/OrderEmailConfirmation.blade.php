@@ -12,10 +12,10 @@
         </div>
 
 
-        <h1 style="color: #eb0029;text-align: center;border-bottom: 1px solid #ffffff2e;padding: 10px 0;margin: 0;">{{ $orderMail['PaymentResponse']['statusMessage'] === "error" ? "Order Cancellation - Payment Failed:" : "Order Confirmation" }}</h1>
+        <h1 style="color: #eb0029;text-align: center;border-bottom: 1px solid black;padding: 10px 0;margin: 0;">{{ $orderMail['PaymentResponse']['statusMessage'] === "error" ? "Order Cancellation - Payment Failed:" : "Order Confirmation" }}</h1>
         <p style="margin-bottom: -12px;font-size: 20px;font-weight: 600;color: #fff;">Dear {{ __($orderMail['CartDetails']->full_name) }} ,</p>
 
-        <p style="color: #ffff;font-size: 15px;display: block;">{{ $orderMail['PaymentResponse']['statusMessage'] === "error" ? "We regret to inform you that your order has been canceled due to a  ".json_decode($orderMail['CartDetails']->payment->paymnet_json,true)['message']." . The order details are as follows:" : "We are delighted to confirm your order. Your order details are as follows:" }}</p>
+        <p style="color: red;font-size: 15px;display: block;">{{ $orderMail['PaymentResponse']['statusMessage'] === "error" ? "We regret to inform you that your order has been canceled due to a  ".json_decode($orderMail['CartDetails']->payment->paymnet_json,true)['message']." . The order details are as follows:" : "We are delighted to confirm your order. Your order details are as follows:" }}</p>
         <h2 style="color: #fff; ">Delivery Address:  </h2>
         <address style="color: #fff; font-style: inherit;  ">
         {{ __($orderMail['CartDetails']->billing_address) }}
@@ -52,6 +52,7 @@
             <tbody>
             @php  $subtotal = 0; @endphp
             @foreach ($orderMail['CartDetails']->orderItems as $keys=>  $items)
+
                 <tr>
                 <td  >{{ $keys + 1 }}</td>
                 <td>{{ $items->product->name }}</td>
@@ -66,7 +67,6 @@
         <table width="100%" cellpadding="10" cellspacing="0" border="1" style="text-align: center;border-collapse:collapse;color: #fff;border-bottom: 1px solid #ffffff2e;padding: 0 20px 20px;">
             <thead style="font-weight: bold;color: #eb0029;">
             <tr>
-                
                 <th>Shipping Charge</th>
                 <th>Tax Charge (13 %)</th>
                 <th>Delivery Type:</th>
@@ -99,13 +99,18 @@
                 </tr>
                 </tbody>
         </table>
-        <p  style=" color: #fff;"><strong>Order Total: {{setting('site_currency')}}{{$orderMail['CartDetails']->total_amount}}</strong></p>
-        <p  style=" color: #fff;"><strong>Spice Level	: {{$orderMail['CartDetails']->spice_lavel}}</strong></p>
+        <p  style=" color: #FFFFFF;"><strong>Order Total: {{setting('site_currency')}}{{$orderMail['CartDetails']->sub_total}}</strong></p>
+        <p  style=" color: #FFFFFF;"><strong>Discout ammout ( Coupon Applied : {{ $orderMail['CartDetails']->coupon_code  }}): {{setting('site_currency')}}{{$orderMail['CartDetails']->discount_price}}</strong></p>
+        <p  style=" color: #FFFFFF;"><strong> Grand  Total: {{setting('site_currency')}}{{$orderMail['CartDetails']->total_amount}}</strong></p>
 
-        <p style="color: #fff !importent; font-size: 14px;"> {{ $orderMail['PaymentResponse']['statusMessage'] === "error" ? "We have initiated the refund process for your payment. Please allow some time for the refund to be processed." : "" }}</p>
-        <p style="color: #fff !importent; font-size: 14px;">If you have any questions or need further information, please contact us at {{ setting('site_email') != null ? __(setting('site_email')) : '' }}  or {{ setting('phone') != null ? __(setting('phone')) : '' }}.</p>
-        <p style="color: #fff ;padding: 20px 0; font-size: 18px;">Thank you for choosing our service.</p>
-        <p style="color:#eb0029;text-align: right;font-size: 22px;">Regards,<br><span style="color: #fff;font-size: 16px;">Dil Se Indian Restaurant & Bar </span></p>
+        <p  style=" color: #FFFFFF;"><strong>Spice Level	: {{$orderMail['CartDetails']->spice_lavel}}</strong></p>
+
+        <p style="color: #FFFFFF !importent; font-size: 14px;"> {{ $orderMail['PaymentResponse']['statusMessage'] === "error" ? "We have initiated the refund process for your payment. Please allow some time for the refund to be processed." : "" }}</p>
+
+        <p style="color: #FFFFFF !importent; font-size: 14px;">If you have any questions or need further information, please contact us at {{ setting('site_email') != null ? __(setting('site_email')) : '' }}  or {{ setting('phone') != null ? __(setting('phone')) : '' }}.</p>
+
+        <p style="color: #FFFFFF;padding: 20px 0; font-size: 18px;">Thank you for choosing our service.</p>
+        <p style="color:#eb0029;text-align: right;font-size: 22px;">Regards,<br><span style="color: #fff;font-size: 16px;"> Site Name</span></p>
     </div>
 </body>
 </html>

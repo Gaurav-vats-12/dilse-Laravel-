@@ -17,6 +17,7 @@ class CouponService
             "code" => $array["coupon_code"],
             "type" => $array["discount_type"],
             "user_id" => $array["user_id"] ?? null,
+            "parant_coupon_id" => $array["parant_coupon_id"] ?? null,
             "user_email" => $array["user_email"] ?? null,
             "coupan_description" => $array["coupon_description"],
             "amount" => $array["discount_amount"],
@@ -28,7 +29,7 @@ class CouponService
             "use_limit" => $array["use_limit"] ?? null,
             "same_ip_limit" => $array["use_same_ip_limit"] ?? null,
             "use_limit_per_user" => $array["user_limit"] ?? null,
-            "vendor_id" => $array["parant_user_id"] ?? null,
+            "vendor_id" => $array["vendor_id"] ?? null,
             "multiple_use" => $array["multiple_use"] ?? "no",
             "status" => $array["status"] ?? 0,
             "created_at" => now(),
@@ -42,12 +43,14 @@ class CouponService
             "type" => $array["discount_type"],
             "user_id " => isset($array["user_id "]) ? $array["user_id"] : null,
             "user_email" => $array["user_email"] ?? null,
+            "parant_coupon_id" => $array["parant_coupon_id"] ?? null,
             "coupan_description" => $array["coupon_description"],
             "amount" => $array["discount_amount"],
             "minimum_spend" => $array["minimum_spend"] ?? null,
             "maximum_spend" => $array["maximum_spend"] ?? null,
             "coupon_type" => $array["coupon_type"],
             "start_date" => $array["start_date"],
+            "vendor_id" => $array["vendor_id"] ?? null,
             "end_date" => $array["end_date"],
             "use_limit" => $array["use_limit"] ?? null,
             "same_ip_limit" => $array["use_same_ip_limit"] ?? null,
@@ -182,7 +185,6 @@ class CouponService
                             "Coupon apply failed! Not found any device name.",
                     ];
             }
-
             if ($coupon->use_device != $deviceName) {
                 return
                     [
@@ -192,7 +194,6 @@ class CouponService
                     ];
             }
         }
-
         // check same ip restriction
         if ($coupon->same_ip_limit && $coupon->same_ip_limit > 0 && !in_array("ip_address", $skip)) {
             if (empty($ipaddress)) {
@@ -203,7 +204,6 @@ class CouponService
                             "Coupon apply failed! Not found any IP address",
                     ];
             }
-
             if (!filter_var($ipaddress, FILTER_VALIDATE_IP)) {
                 return
                     [
@@ -213,7 +213,7 @@ class CouponService
                     ];
             }
 
-            $couponHistories = $coupon->couponHistories->where("user_ip", $ipaddress);
+         $couponHistories = $coupon->couponHistories->where("user_ip", $ipaddress);
             if ($couponHistories && $coupon->same_ip_limit <= $couponHistories->count()) {
                 return
                     [
@@ -223,7 +223,6 @@ class CouponService
                     ];
             }
         }
-
         // check vendor restriction
         if ($coupon->vendor_id && $coupon->vendor_id > 0 && !in_array("vendor_id", $skip)) {
             if (empty($vendorId)) {
@@ -234,7 +233,6 @@ class CouponService
                             "Coupon apply failed! this coupon not for you",
                     ];
             }
-
             if ($coupon->vendor_id != $vendorId) {
                 return
                     [
@@ -244,7 +242,6 @@ class CouponService
                     ];
             }
         }
-
         // calculate discount amount
         $discount_amount = 0;
         if ($coupon->type == 'fixed_cart') {
@@ -253,7 +250,6 @@ class CouponService
             $discount_percentage = floatval($coupon->amount);
             $discount_amount     += ($discount_percentage / 100) * floatval($amount);
         }
-
         $coupon->discount_amount = $discount_amount;
         return
             ["status" => "success",
@@ -261,7 +257,6 @@ class CouponService
                 'coupon'=> $coupon
             ];
     }
-
     /**
      * @param array $data
      * @return bool
@@ -274,9 +269,4 @@ class CouponService
         $coupon->save();
         return true;
     }
-
-
-
 }
-
-?>

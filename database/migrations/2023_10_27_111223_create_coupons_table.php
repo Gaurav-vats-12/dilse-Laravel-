@@ -15,6 +15,8 @@ return new class extends Migration
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->foreignId('vendor_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
+            $table->foreignId('parant_coupon_id')->constrained()->on('coupons')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->string('user_email')->unique()->nullable();
             $table->string('code')->unique();
             $table->text('coupan_description')->nullable();
@@ -32,7 +34,6 @@ return new class extends Migration
             $table->enum('coupon_type', ['referral','offer']);
             $table->integer("total_use")->default(0);
             $table->integer("status")->default(0);
-            $table->foreignId('vendor_id')->constrained()->on('users')->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->timestamps();
             $table->softDeletes(); // <-- This will add a deleted_at field
         });

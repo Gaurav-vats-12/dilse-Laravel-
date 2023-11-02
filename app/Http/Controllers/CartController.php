@@ -108,6 +108,10 @@ class CartController extends Controller
      */
     public function updatecart(Request $request): JsonResponseAlias
     {
+        // dd($request->all());
+
+        $apply_coupon = $request->apply_coupon;
+        $coupon_code = $request->coupon_code;
         $subtotal = 0;
         try {
             $product = FoodItemAlias::findOrFail($request->product_oid);
@@ -118,11 +122,19 @@ class CartController extends Controller
                 foreach ($cart as $key => $details) {
                     $subtotal = $subtotal + round($details["price"] * $details["quantity"], 2);
                 }
-                $couponResponse = $this->Coupon_functionalty($request->coupon_code ,$subtotal,$request->apply_coupon);
-                if (session('order_type') == 'delivery') {
-                    $total_before_Tex = $couponResponse['discount_total'] + setting('delivery_charge');
+// dd('Hello');
+            if ($apply_coupon && $coupon_code) {
+                $couponResponse = $this->Coupon_functionalty($coupon_code ,$subtotal,$request->apply_coupon);
+                 $discount_total = $couponResponse['discount_total'];
                 } else {
-                    $total_before_Tex = $couponResponse['discount_total'];
+                    $discount_total = 0.00;
+                    $couponResponse  =['discount_amount'=>0.00,'discount_total'=>round( $subtotal ,2)];
+                }
+
+                if (session('order_type') == 'delivery') {
+                    $total_before_Tex = $discount_total+ setting('delivery_charge');
+                } else {
+                    $total_before_Tex = $discount_total;
                 }
                 $total_tax = round(($total_before_Tex * setting('tax', 0.00)) / 100, 2);
                 $total = $total_before_Tex + $total_tax;
@@ -135,16 +147,23 @@ class CartController extends Controller
                 foreach ($cart as $key => $details) {
                     $subtotal = $subtotal + round($details["price"], 2);
                 }
-                $couponResponse = $this->Coupon_functionalty($request->coupon_code ,$subtotal,$request->apply_coupon);
+                if ($apply_coupon && $coupon_code) {
+                    $couponResponse = $this->Coupon_functionalty($coupon_code ,$subtotal,$request->apply_coupon);
+                     $discount_total = $couponResponse['discount_total'];
+                    } else {
+                        $discount_total = 0.00;
+                        $couponResponse  =[];
+                    }
+
 
                 if (session('order_type') == 'delivery') {
-                    $total_before_Tex = $$couponResponse['discount_total'] + setting('delivery_charge', 0.00);
+                    $total_before_Tex = $$discount_total + setting('delivery_charge', 0.00);
                 } else {
-                    $total_before_Tex = $couponResponse['discount_total'];
+                    $total_before_Tex = $discount_total;
                 }
                 $total_tax = round(($total_before_Tex * setting('tax', 0.00)) / 100, 2);
                 $total = $total_before_Tex + $total_tax;
-                return response()->json(['code' => 200, 'couponResponse'=>$couponResponse, 'cart_total' => count((array) session('cart')), 'subtotal' => round($subtotal, 2), 'total_tax' => $total_tax, 'total' => round($total, 2), 'status' => 'success', "message" => "Product add to cart successfully"]);
+                return response()->json(['code' => 200, 'couponResponse'=>$couponResponse, 'discount_total'=>$discount_total, 'cart_total' => count((array) session('cart')), 'subtotal' => round($subtotal, 2), 'total_tax' => $total_tax, 'total' => round($total, 2), 'status' => 'success', "message" => "Product add to cart successfully"]);
 
             }
         } catch (NotFoundExceptionInterface | ContainerExceptionInterface $e) {
