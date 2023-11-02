@@ -93,9 +93,7 @@
                                 $cart_Test = 'Apply Coupon';
                                 $coupon_code = '';
                                 $appied_coupon = '';
-                                session()->put('coupon', []);
                         } else {
-
                             if ($cart_session  ) {
                                 $discount_amount = session('coupon')['discount_amount'];
                                 $coupon_code  = session('coupon')['code'];
@@ -114,9 +112,11 @@
                         @endphp
                             <div class="order_summary">
                                 <div class="tittle_heading">
-                                    <input type="text" name="coupon_code" class="input-text"  id="coupon_code" value="{{ $coupon_code }}" placeholder="Coupon code">
+                                    @if (Auth::guard('user')->check())
 
+                                    <input type="text" name="coupon_code" class="input-text"  id="coupon_code" value="{{ $coupon_code }}" placeholder="Coupon code">
                                     <a href="javascript:void(0)" id="apply_coupon" appied_coupon ="{{ $appied_coupon}}" coupon_type ="{{ $cart_type}}" route_ajax ="{{ route('cart.vieapply_couponw')}}">{{ $cart_Test}}</a>
+                                    @endif
                                     <h4> Order Summary </h4>
                                     <p id="message"  mimimum_ammout= "{{  round(( setting('minimum_order_for_delivery' ,0.00)) ,2) }}">Minimum order amount is {{ setting('site_currency')}}{{ round(( setting('minimum_order_for_delivery',0.00)) ,2) }}</p>
                                 <ul class="summary_main">

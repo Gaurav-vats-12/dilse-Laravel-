@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ $key++ }}</td>
                 <td>
-                    <h6>{{ $details['name'] }}</h6>
+                    <h6>{{ $details['productdetails']['name'] }}</h6>
                 </td>
                 <td>{{ $details['quantity'] }}</td>
                 <td>{{setting('site_currency')}}{{ round($details['price'], 2) }}</td>

@@ -74,3 +74,10 @@ const genrate_code =  (codeLength ) => {
     return randomCode ;
 
 }
+
+const copy_clipborad =  (copy_text ) => {
+    navigator.clipboard.writeText(copy_text);
+    return true
+
+
+}

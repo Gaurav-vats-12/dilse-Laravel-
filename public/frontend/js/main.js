@@ -673,7 +673,15 @@ jQuery(document).ready(function () {
     } else if (url.indexOf("/user/profile") > -1) {
         jQuery('#user_phone').inputmask('+1 (999) 999-9999');
 
-    } else if (url.indexOf("/book-a-reservation") > -1) {
+    } else if (url.indexOf("/user/referral") > -1) {
+    // Copy Code Functionalty
+    jQuery(document).on("click", "#copy_code", async function (event) {
+        copy_clipborad(jQuery(this).attr('unique_code'));
+        NotyfMessage('This Code is copy Successfully', 'success');
+    });
+
+
+    }else if (url.indexOf("/book-a-reservation") > -1) {
         jQuery('#datepicker').datepicker({
             minDate: 1,
             defaultDate: "+1",

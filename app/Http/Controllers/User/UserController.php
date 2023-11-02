@@ -108,19 +108,25 @@ class UserController extends Controller
      */
     public function OrderReorder($id)
     {
-        $order_details = Order::findOrFail($id)->orderItems;
+        $order_details = Order::findOrFail($id);
+
+        $orderItems = $order_details->orderItems;
         if (session('cart')) {
             Session::forget('cart');
         }
 
-        foreach ($order_details as $key => $details) {
+        foreach ($orderItems as $key => $details) {
             $cart[$details->product_id] = [
                 "id" => $details->product_id,
-                "price" => round($details->price, 2),
+                "name" => FoodItemAlias::findOrFail($details->product_id)->name,
                 "quantity" => $details->quantity,
+                "price" => round($details->price, 2),
+                "image" => FoodItemAlias::findOrFail($details->product_id)->image,
+                'is_spisy' => $order_details->spice_lavel,
                 "productdetails" => FoodItemAlias::findOrFail($details->product_id),
             ];
         }
+
         session()->put('cart', $cart);
         notyf()->duration(2000)->addSuccess('Items Added to Card Successfully');
         return redirect(route('checkout.view'));

@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
             'coupon_code'       =>strtoupper(Str::random(10)), // (required) Coupon code
             'discount_type'     => 'percentage',
             'user_id'=> $user->id,
-            'user_email '=> $request->email,
+            'user_email'=> $request->email,
             'coupon_description'     =>'The referral Code genrated by '.$request->name.' and their email is '.$request->email.'',
             'discount_amount'   => 10,
             'start_date'        => Carbon::today()->toDateString(),

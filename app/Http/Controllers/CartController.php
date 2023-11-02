@@ -18,7 +18,13 @@ class CartController extends Controller
 
     public function viewcart()
     {
-
+        if(AuthAlias::guard('user')->check()){
+            session()->put('login_redirct',[]);
+        }else{
+            session()->put('login_redirct', route('cart.view'));
+        }
+        $cart = session()->get('login_redirct');
+        // dd($cart);
         $menus = Menu::whereIn('id', [7, 6, 5, 9])->where('status', 'active')->get();
         $extra_items = FoodItemAlias::whereIn('menu_id', [7, 6, 5, 9])->where('status', 1)->get();
         return view('Pages.cart', compact('extra_items'));
@@ -122,12 +128,11 @@ class CartController extends Controller
                 foreach ($cart as $key => $details) {
                     $subtotal = $subtotal + round($details["price"] * $details["quantity"], 2);
                 }
-// dd('Hello');
             if ($apply_coupon && $coupon_code) {
                 $couponResponse = $this->Coupon_functionalty($coupon_code ,$subtotal,$request->apply_coupon);
                  $discount_total = $couponResponse['discount_total'];
                 } else {
-                    $discount_total = 0.00;
+                    $discount_total = round( $subtotal ,2);
                     $couponResponse  =['discount_amount'=>0.00,'discount_total'=>round( $subtotal ,2)];
                 }
 
@@ -154,8 +159,6 @@ class CartController extends Controller
                         $discount_total = 0.00;
                         $couponResponse  =[];
                     }
-
-
                 if (session('order_type') == 'delivery') {
                     $total_before_Tex = $$discount_total + setting('delivery_charge', 0.00);
                 } else {
@@ -164,7 +167,6 @@ class CartController extends Controller
                 $total_tax = round(($total_before_Tex * setting('tax', 0.00)) / 100, 2);
                 $total = $total_before_Tex + $total_tax;
                 return response()->json(['code' => 200, 'couponResponse'=>$couponResponse, 'discount_total'=>$discount_total, 'cart_total' => count((array) session('cart')), 'subtotal' => round($subtotal, 2), 'total_tax' => $total_tax, 'total' => round($total, 2), 'status' => 'success', "message" => "Product add to cart successfully"]);
-
             }
         } catch (NotFoundExceptionInterface | ContainerExceptionInterface $e) {
             return response()->json(['code' => 400, 'cart_total' => 'Null', 'subtotal' => nullOrEmptyString(), 'total_tax' => nullOrEmptyString(), 'total' => nullOrEmptyString(), 'status' => 'error', "message" => "Something Wrong"]);
@@ -213,10 +215,11 @@ class CartController extends Controller
  private function Coupon_functionalty($code ,$amount,$coupon_type){
         $deviceName = null; $ipaddress  = null; $skipFields =  [];
         $userId = !AuthAlias::guard('user')->check() ? '' : AuthAlias::guard('user')->id();
+
      $vendorId = $userId;
         if($coupon_type ==='coupon'){
             $coupon = CouponService::validity($code, $amount, $userId, $deviceName, $ipaddress,  $vendorId ,$skipFields);
-        if($coupon['status'] ==='error'){
+            if($coupon['status'] ==='error'){
             return $coupon;
         }else{
             $discount_amount = round($coupon['coupon']->discount_amount, 2);
