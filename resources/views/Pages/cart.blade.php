@@ -86,13 +86,13 @@
                         @if(session('cart'))
                         @php
                         $cart_session = session('coupon');
-                        // @dd($cart_session);
                         if ($subtotal < round(( setting('minimum_order_for_delivery' ,0.00)) ,2)) {
                             $discount_amount= 0.00;
                                 $cart_type= 'coupon';
                                 $cart_Test = 'Apply Coupon';
                                 $coupon_code = '';
                                 $appied_coupon = '';
+                                $coupon_notice='';
                         } else {
                             if ($cart_session  ) {
                                 $discount_amount = session('coupon')['discount_amount'];
@@ -100,11 +100,14 @@
                                 $cart_Test = (session('coupon')['cart_type'] ==='coupon') ? 'Remove Coupon' : 'Apply Coupon' ;
                                 $cart_type = (session('coupon')['cart_type'] ==='coupon') ? 'remove' : 'coupon' ;
                                 $appied_coupon = session('coupon')['cart_type'];
+                                $type = (session('coupon')['coupon']['coupon']->type =='percentage') ? '%' : setting('site_currency') ;
+                                $coupon_notice = "(".session('coupon')['coupon']['coupon']->amount."". $type .")";
                             }  else {
                                 $discount_amount= 0.00;
                                 $cart_type= 'coupon';
                                 $cart_Test = 'Apply Coupon';
                                 $coupon_code = '';
+                                $coupon_notice = '';
                                 $appied_coupon = '';
                             }
                         }
@@ -131,7 +134,7 @@
                                     </li>
                                     <li>
                                         <div class="s_subtotal">
-                                            <p>Discount
+                                            <p>Discount {{ $coupon_notice }}
                                             </p>
 
                                         </div>
