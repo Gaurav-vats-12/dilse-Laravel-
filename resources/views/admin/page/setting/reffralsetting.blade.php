@@ -41,13 +41,13 @@
                                             @error('referral_points')  <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
-                                    <div class="row py-2">
+                                    <!-- <div class="row py-2">
                                         <div class="col-xl-12 col-lg-6 col-6 form-group">
                                             <label for="referral_privacy_policy">Referral Privacy policy </label>
                                             <textarea name="referral_privacy_policy" id="referral_privacy_policy" class="form-control summernote" placeholder="Enter Description" >{{ old('referral_privacy_policy',reffrelsetting('referral_privacy_policy')) }}</textarea>
                                             @error('referral_privacy_policy')  <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-12 form-group mg-t-8 mt-2">
                                     <button type="submit" class="btn btn-primary"><i class="fe fe-plus-circle"></i> Update</button>
