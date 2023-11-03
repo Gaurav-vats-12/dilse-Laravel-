@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-if (reffrelsetting('referral_status') === 1){
+if (reffrelsetting('referral_status') === '1'){
     $coupon = CouponService::add([
         'coupon_code'       =>strtoupper(Str::random(10)), // (required) Coupon code
         'discount_type'     => 'percentage',

@@ -9,8 +9,10 @@
                 <li><a href="{{ route('gallery') }}">Gallery</a></li>
                 <li><a href="{{ route('discountandcoupons') }}">Discount and Coupons</a></li>
                 <li><a href="{{ url('dilse-foundation-and-donation') }}">Dilse Foundation and Donation</a></li>
-                <li><a href="{{ route('contact') }}">Contact Us</a></li
-                    @if (reffrelsetting('referral_status') === 1){<li><a href="{{ route('user.referral') }}">Referral Program </a></li>@endif
+                <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                    @if (reffrelsetting('referral_status') === '1')
+                      <li><a href="{{ route('user.referral') }}">Referral Program </a></li>
+                      @endif
               </ul>
             </div>
           </div>

@@ -10,7 +10,7 @@
             <h3 class="{{ (request()->is('user/order')) ? 'active' : '' }}">Orders</h3>
         </a>
     </li>
-    @if (reffrelsetting('referral_status') === 1)
+    @if (reffrelsetting('referral_status') === '1')
     <li class="menu_list_inner1 {{ (request()->is('user/referral')) ? 'active' : '' }}">
         <a href="{{ route('user.referral') }}">
             <h3 class="{{ (request()->is('user/referral')) ? 'active' : '' }}">Referral</h3>
