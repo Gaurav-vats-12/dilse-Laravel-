@@ -20,7 +20,7 @@ class ReferralController extends Controller
     $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id() : null;
 
     $Coupon = CouponAlias::where('user_id', $user_id)->where('status', 1)->first();
-    $shareComponent = (new ShareAlias)->page(url: "Here is your Referral code".$Coupon->code, title: null, options: array('class' => 'my-class', 'id' => 'my-id', 'target'=>'_blank','title' => 'my-title', 'rel' => 'nofollow noopener noreferrer'))->facebook()
+    $shareComponent = (new ShareAlias)->page(url: "Here is your Referral code ".$Coupon->code, title: null, options: array('class' => 'my-class', 'id' => 'my-id', 'target'=>'_blank','title' => 'my-title', 'rel' => 'nofollow noopener noreferrer'))->facebook()
     ->twitter()
     ->linkedin()
     ->telegram()

@@ -1,5 +1,7 @@
 
+
 @if (isset($OrderDetails) && count($OrderDetails) >0)
+
     @foreach($OrderDetails as $key => $orders)
         <div class="wap-lis" order_uiod = {{ $orders->id }}>
             <div class="stat d-flex ">
@@ -11,7 +13,6 @@
                     @if($orders->status =='Pending')|
                     <form method="POST" class="order_cancel" id="OrderCencelled_Form" action="{{ route('user.order-cancelled', $orders->id) }}">  @csrf @method('PUT')
                     <a href="javascript:void(0)"  ajax_url ="{{ route('user.order-cancelled' ,$orders->id) }}" class="btn-danger show_confirm">Cancel Order</a></form>
-                        <!-- <a href="javascript:void(0)" id="OrderCencelled" ajax_url ="{{ route('user.order-cancelled' ,$orders->id) }}" class="btn-danger">Cancel Order</a> -->
                     @endif
                 </h6>
 
@@ -36,25 +37,42 @@
                         <tr>
                             <td  >{{ $keys + 1 }}</td>
                             <td>{{ $items->product->name }}</td>
-                            <td>{{ $items->product->price }}</td>
+                            <td>{{ $items->product->price  }}</td>
                             <td>{{ $items->quantity }}</td>
-                            <td>{{ $items->price    }}</td>
+                            <td>{{ $items->price * $items->quantity }}</td>
                         </tr>
                     @endforeach
                     <div class="subtotal_Order">
                         <tr class="last-tqab">
                             <td><span class="do">Sub Total: </span></td>
-                            <td><span class="totals">${{$subtotal}}</span>
+                            <td><span class="totals">{{ setting('site_currency')}}{{$subtotal}}</span>
                             </td>
                         </tr>
+                        <tr class="last-tqab">
+                            <td><span class="do">Discount </span></td>
+                            <td><span class="totals">{{ setting('site_currency')}}{{$orders->discount_price}}</span>
+                            </td>
+                        </tr>
+
                         <tr class="last-tqab">
                             <td><span class="do">Shipping Cost:</span></td>
-                            <td><span class="totals">${{$orders->shipping_charge}}</span>
+                            <td><span class="totals">{{ setting('site_currency')}}{{$orders->shipping_charge}} (Tip :{{ setting('site_currency')}}{{$orders->delivery_tip}})</span>
                             </td>
                         </tr>
                         <tr class="last-tqab">
-                            <td><span class="do">Order Total:</span></td>
-                            <td><span class="totals">${{ $subtotal + $orders->shipping_charge }}</span>
+                            <td><span class="do">Total : </span></td>
+                            <td><span class="totals">{{ setting('site_currency')}}{{$subtotal - $orders->discount_price  + $orders->shipping_charge }} </span>
+                            </td>
+                        </tr>
+                        <tr class="last-tqab">
+                            <td><span class="do">Tax : </span></td>
+                            <td><span class="totals">{{ setting('site_currency')}}{{$orders->tax}} </span>
+                            </td>
+                        </tr>
+
+                        <tr class="last-tqab">
+                            <td><span class="do">Grand  Total:</span></td>
+                            <td><span class="totals">{{ setting('site_currency')}}{{ $subtotal - $orders->discount_price  + $orders->shipping_charge + $orders->tax }}</span>
                             </td>
                         </tr>
                     </div>
