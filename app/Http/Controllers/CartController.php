@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Admin\FoodItem as FoodItemAlias;
 use App\Models\Admin\Menu;
 use App\Models\Admin\Coupon;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 use App\Services\CouponService;
 use Illuminate\Http\JsonResponse as JsonResponseAlias;
@@ -16,6 +19,11 @@ use Psr\Container\NotFoundExceptionInterface;
 class CartController extends Controller
 {
 
+    /**
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     public function viewcart()
     {
         if(AuthAlias::guard('user')->check()){
@@ -29,6 +37,11 @@ class CartController extends Controller
         $extra_items = FoodItemAlias::whereIn('menu_id', [7, 6, 5, 9])->where('status', 1)->get();
         return view('Pages.cart', compact('extra_items'));
     }
+
+    /**
+     * @param Request $request
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
+     */
     public function extra_items(Request $request)
     {
         $menu_id = $request->menu_id;
@@ -36,6 +49,13 @@ class CartController extends Controller
         return view('ajax.extra_items', compact('extra_items'));
     }
 //
+
+    /**
+     * @param Request $request
+     * @return JsonResponseAlias|void
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     public function update_details(Request $request)
     {
         if ($request->ajax()) {
@@ -185,8 +205,6 @@ class CartController extends Controller
             if ($id) {
                 $cart = session()->get('cart');
                 $arraySize = count($cart);
-                // dd( $arraySize);
-
                 if (isset($cart[$id])) {
                     unset($cart[$id]);
                     session()->put('cart', $cart);

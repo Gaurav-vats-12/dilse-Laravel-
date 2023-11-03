@@ -11,9 +11,9 @@ use App\Models\User\UserAddressManage as UserAddressManageAlias;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory as FactoryAlias;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application as ApplicationAlias1;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -28,16 +28,16 @@ class UserController extends Controller
     /**
      * @return Application|FactoryAlias|View
      */
-    public function user_address()
+    public function user_address(): View|FactoryAlias|Application
     {
         return view('user.profile.profileaddressedit');
     }
 
     /**
      * @param UpdateStroreRequestAlias $request
-     * @return void
+     * @return RedirectResponse
      */
-    public function update_address(UpdateStroreRequestAlias $request)
+    public function update_address(UpdateStroreRequestAlias $request): RedirectResponse
     {
         $user_address = [
             'user_id' => $request->login_uer_id,
@@ -56,9 +56,10 @@ class UserController extends Controller
     }
 
     /**
-     * @return View|ApplicationAlias1|FactoryAlias|Application
+     * @param Request $request
+     * @return View|\Illuminate\Foundation\Application|FactoryAlias|Application
      */
-    public function listingOrder(Request $request): View | ApplicationAlias1 | FactoryAlias | Application
+    public function listingOrder(Request $request): View |\Illuminate\Foundation\Application| FactoryAlias | Application
     {$user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id() : null;
 
         if ($request->ajax()) {
@@ -78,8 +79,6 @@ class UserController extends Controller
                     return view('user.ajax.OrderDetails', ['OrderDetails' => $OrderDetails]);
                 } else {
                     $OrderDetails = Order::with('payment')->where('payment_status', $request->filterValue)->get();
-
-                    dd($OrderDetails);
                     return view('user.ajax.OrderDetails', ['OrderDetails' => $OrderDetails]);
                 }
             }
@@ -95,7 +94,7 @@ class UserController extends Controller
      * @param $id
      * @return RedirectResponse
      */
-    public function OrderCancelled($id): \Illuminate\Http\RedirectResponse
+    public function OrderCancelled($id): RedirectResponse
     {
         Order::findOrFail($id)->update(['status' => 'Cancelled', 'updated_at' => now()]);
         notyf()->duration(2000)->addSuccess('This Order Cancelled SuccessFully');
@@ -104,9 +103,9 @@ class UserController extends Controller
 
     /**
      * @param $id
-     * @return mixed
+     * @return \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
      */
-    public function OrderReorder($id)
+    public function OrderReorder($id): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
     {
         $order_details = Order::findOrFail($id);
 

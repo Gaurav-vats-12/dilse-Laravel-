@@ -20,78 +20,23 @@ use Carbon\Carbon;
 
                         <div class="col-md-12">
                             <div class="cusstom_input">
-                                <label for="reffrel_code" class="">Your referral Code </span></label>
+                                <span>
+                                    Hello, <b>{{ \Illuminate\Support\Facades\Auth::guard('user')->user()->name }} </b>. Here is your  referral Code  share  with your friends and family to receive the <b>$10</b> discount on your order.
+                               for Unlimited times**
+                                </span>
+
                                 <input type="text"  id="reffrel_code" name="reffrel_code"  value="{{ $Coupon->code }}" readonly >
                                 {!! $shareComponent !!}
                             </div>
                         </div>
-                        <span class="text-bold"> List of User Which have used Referral </span>
+                        <span class="text-bold"></span>
                         <div class="franchies-wap table-responsive orders-table-wrapper mt-3">
                             <hr>
-                            <table class="table orders-table table-borderless">
-                                <thead>
-                                <tr>
-                                    <th style="width:130px">S.N.</th>
-                                    <th>Reffreal Email address </th>
-                                    {{-- <th>Description</th> --}}
-                                    <th style="width:150px" class="text-center">Coupon Code </th>
-                                    <th style="width:150px" class="text-center">Start date</th>
-                                    <th style="width:150px" class="text-center">End  date</th>
-                                    <th style="width:100px" class="text-center">Status</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($reffral  as $keys=>  $reffral_list)
-                                    {{-- @dd($reffral_list) --}}
-                                    <tr>
-                                        <td  >{{ $keys + 1 }}</td>
-                                        <td>{{ $reffral_list->user_email}}</td>
-
-                                        <td id="textToCopy">{{ $reffral_list->code }}
-                                            <a href="javascript:void(0)" id="copy_code" unique_code ="{{ $reffral_list->code  }}"><i class="fa-solid fa-copy" title="copy_code"></i></a>
-                                        </td>
-                                        <td>{{ date("Y-m-d", strtotime($reffral_list->start_date)) }}</td>
-                                        <td>{{ date("Y-m-d", strtotime($reffral_list->end_date)) }}</td>
-                                        <td>
-                                        @if (Carbon::today()->greaterThan($reffral_list->end_date))
-                                     <span >Expired</span>
-                                      @else
-                                      @if (Carbon::parse($reffral_list->start_date)->diffInDays(Carbon::parse($reffral_list->end_date))==0)
-                                      <span>Last Day</span>  @else  {{Carbon::parse($reffral_list->start_date)->diffInDays(Carbon::parse($reffral_list->end_date)) }} Days Left @endif  @endif
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                {{-- @php  $subtotal = 0; @endphp
-                                @foreach ($orders->orderItems as $keys=>  $items)
-                                    @php  $subtotal = $subtotal + $items["price"] *  $items["quantity"]@endphp
-
-                                    <tr>
-                                        <td  >{{ $keys + 1 }}</td>
-                                        <td>{{ $items->product->name }}</td>
-                                        <td>{{ $items->product->price }}</td>
-                                        <td>{{ $items->quantity }}</td>
-                                        <td>{{ $items->price    }}</td>
-                                    </tr>
-                                @endforeach --}}
-                                {{-- <div class="subtotal_Order">
-                                    <tr class="last-tqab">
-                                        <td><span class="do">Sub Total: </span></td>
-                                        <td><span class="totals">${{$subtotal}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="last-tqab">
-                                        <td><span class="do">Shipping Cost:</span></td>
-                                        <td><span class="totals">${{$orders->shipping_charge}}</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="last-tqab">
-                                        <td><span class="do">Order Total:</span></td>
-                                        <td><span class="totals">${{ $subtotal + $orders->shipping_charge }}</span>
-                                        </td>
-                                    </tr>
-                                </div> --}}
-                                </tbody>
-                            </table>
+                            @foreach ($reffral  as $keys=>  $reffral_list)
+                            <div class="" role="alert">
+                                <h5><b>Congratulations {{ \Illuminate\Support\Facades\Auth::guard('user')->user()->name }} !</b> Your referral code redemption at Dil Se Indian Restaurant & Bar reveals a special coupon. Use code <b>{{ $reffral_list->code }}</b> form  <b>{{ $reffral_list->user_email}}</b> for an exclusive offer. Hurry, it's valid for <b> {{Carbon::parse($reffral_list->start_date)->diffInDays(Carbon::parse($reffral_list->end_date)) }} days</b> . Enjoy the benefits on your next visit or online order!
+                            </div>
+                            @endforeach
                             <div class="Reorder_Class">
                                 {{-- @if($orders->status =='Delivered')
                                     <a class="" href="{{ route('user.OrderReorder' ,$orders->id) }}"> Reorder Order</a>

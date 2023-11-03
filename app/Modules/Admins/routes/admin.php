@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\MenuController as MenuControllerAlias;
 use App\Http\Controllers\Admin\OrderManagemnetController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\PageManagementController as PageManagementControllerAlias;
+use App\Http\Controllers\Admin\ReferralSettingController;
 use App\Http\Controllers\Admin\SettingController as SettingControllerAlias;
 use App\Http\Controllers\Admin\TestimonialsController as TestimonialsControllerAlias;
 use App\Http\Controllers\Admin\CouponController;
@@ -20,23 +21,28 @@ use App\Http\Controllers\Admin\ExtraFoodItemController as ExtraFoodItemControlle
 
 Route::prefix('admin')->name('admin.')->group(callback: function(){
     Route::middleware(['web', 'admin.auth', 'admin.verified','addExpires'])->group(callback: function(){
+//      Admin Dashboard
         Route::get('/dashboard', [AdminControllerAlias::class, 'dashboard'])->name('dashboard');
         Route::resource('banner', BannerControllerAlias::class);
-        // Route::get('/banner/changeStatus/{id}', [BannerController::class, 'updateStatus'])->name('banner.changeStatus');
+  Route::middleware('optimizeImages')->group(callback: function () {
+      Route::prefix('setting')->name('setting.')->group(callback: function(){
+//         genral Route
+          Route::get('/genral', [SettingControllerAlias::class, 'genralsetting'])->name('genral');
+          Route::put('/genral/{id}', [SettingControllerAlias::class, 'unregenerateSetting'])->name('genralstore');
+          Route::get('/footer-setting', [SettingControllerAlias::class, 'footersetting'])->name('footersetting');
+            //  Reffral Setting  Routes
+          Route::get('/referral', [ReferralSettingController::class, 'index'])->name('referral');
+          Route::put('/referral/{id}', [ReferralSettingController::class, 'update'])->name('referralstore');
 
-
-        Route::middleware('optimizeImages')->group(function () {
-            Route::prefix('setting')->name('setting.')->group(callback: function(){
-                Route::get('/genral', [SettingControllerAlias::class, 'genralsetting'])->name('genral');
-                Route::put('/genral/{id}', [SettingControllerAlias::class, 'unregenerateSetting'])->name('genralstore');
-                Route::get('/footer-setting', [SettingControllerAlias::class, 'footersetting'])->name('footersetting');
-            });
+      });
         // food items
             Route::resource('food-items', FoodItemControllerAlias::class);
       // Blog
-      Route::resource('blog', BlogControllerAlias::class);
+        Route::resource('blog', BlogControllerAlias::class);
 
         });
+
+
 
 
         Route::resource('manage-pages', PageManagementControllerAlias::class);

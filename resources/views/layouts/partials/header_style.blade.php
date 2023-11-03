@@ -4,8 +4,9 @@
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/brands.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/solid.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
-    <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="{{asset('plugins/bootstrap-5.0.2-dist/css/bootstrap.min.css')}}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+{{--  <link rel="stylesheet" href="{{asset('plugins/bootstrap-5.0.2-dist/css/bootstrap.min.css')}}">--}}
     <!--slick CSS -->
     <link rel="stylesheet" href="{{asset('plugins/slick-1.8.1/slick/slick.css')}}">
     <link rel="stylesheet" href="{{asset('plugins/slick-1.8.1/slick/slick-theme.css')}}">

@@ -15,12 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         $this->command->info('Initializing...');
     	$this->command->info('Deleting tables...');
-        $this->call([
+        $this->call(array(
             Adminseeder::class,
             MenuSeeder::class,
             FoodItemsAttribute::class,
             PageSeeder::class,
             SettingSeeder::class,
+            ReferralSeeder::class,
             CountriesTableSeeder::class,
             StatesTableSeeder::class,
             CitiesTableChunkOneSeeder::class,
@@ -28,7 +29,7 @@ class DatabaseSeeder extends Seeder
             CitiesTableChunkThreeSeeder::class,
             CitiesTableChunkFourSeeder::class,
             CitiesTableChunkFiveSeeder::class,
-        ]);
+        ));
         $this->command->info('Finished!');
 
     }

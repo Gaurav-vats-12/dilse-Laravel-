@@ -171,13 +171,13 @@
                                         @error('tax')  <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                <div class="row py-2">
-                                    <div class="col-xl-12 col-lg-6 col-6 form-group">
-                                        <label for="referrel_points_on_signup">Referral points</label>
-                                        <input type="text" name="referrel_points_on_signup" id="referrel_points_on_signup"  class="form-control" value="{{ old('referrel_points_on_signup',setting('referrel_points_on_signup'))}}">
-                                        @error('referrel_points_on_signup')  <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
-                                </div>
+{{--                                <div class="row py-2">--}}
+{{--                                    <div class="col-xl-12 col-lg-6 col-6 form-group">--}}
+{{--                                        <label for="referrel_points_on_signup">Referral points</label>--}}
+{{--                                        <input type="text" name="referrel_points_on_signup" id="referrel_points_on_signup"  class="form-control" value="{{ old('referrel_points_on_signup',setting('referrel_points_on_signup'))}}">--}}
+{{--                                        @error('referrel_points_on_signup')  <span class="text-danger">{{ $message }}</span> @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col-12 form-group mg-t-8 mt-2">
                                         <button type="submit" class="btn btn-primary"><i class="fe fe-plus-circle"></i> Update Settings</button>
                                     </div>

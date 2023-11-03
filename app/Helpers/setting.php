@@ -1,16 +1,17 @@
 <?php
 
+use App\Models\Admin\Setting\Setting;
+
 if (!function_exists('setting')) {
 
     /**
      * description
      *
-     * @param
-     * @return
+     * @param $key
+     * @return null
      */
     function setting($key)
     {
-        $setting = \App\Models\Admin\Setting\Setting::first();
-        return ($setting) ? $setting->$key : null ;
+        return (Setting::first()) ? Setting::first()->$key : null ;
     }
 }

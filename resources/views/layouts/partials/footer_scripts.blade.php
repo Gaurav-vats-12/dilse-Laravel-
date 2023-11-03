@@ -11,9 +11,11 @@
     <!-- magnific Pop Ups -->
     <script src="{{asset('plugins/magnific-popup/js/magnific-popup.min.js')}}"></script>
     <!-- Bootstrap Bundle (includes Popper) -->
-    <script src="{{asset('plugins/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js')}}"></script>
+{{--    <script src="{{asset('plugins/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js')}}"></script>--}}
     <!--slick js -->
-    <script src="{{asset('plugins/slick-1.8.1/slick/slick.min.js') }}"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+   <script src="{{asset('plugins/slick-1.8.1/slick/slick.min.js') }}"></script>
     <!-- Sweet Alert  -->
     <script src="{{asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
    <!-- TimePicker  -->
