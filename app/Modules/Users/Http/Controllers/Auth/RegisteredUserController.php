@@ -44,26 +44,28 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+if (reffrelsetting('referral_status') === 1){
+    $coupon = CouponService::add([
+        'coupon_code'       =>strtoupper(Str::random(10)), // (required) Coupon code
+        'discount_type'     => 'percentage',
+        'user_id'=> $user->id,
+        'user_email'=> $request->email,
+        'coupon_description'     =>'The referral Code genrated by '.$request->name.' and their email is '.$request->email.'',
+        'discount_amount'   => reffrelsetting('referral_points'),
+        'start_date'        => Carbon::today()->toDateString(),
+        'end_date'          => null,
+        'status'            => 1,
+        'minimum_spend'     =>setting('minimum_order_for_delivery'),
+        'maximum_spend'     => 0,
+        'coupon_type'     => 'referral',
+        'use_limit'         => 0,
+        'use_same_ip_limit' => 0,
+        'user_limit'        => 0,
+        'use_device'        => "",
+        'multiple_use'      => "yes",
+    ]);
+}
 
-        $coupon = CouponService::add([
-            'coupon_code'       =>strtoupper(Str::random(10)), // (required) Coupon code
-            'discount_type'     => 'percentage',
-            'user_id'=> $user->id,
-            'user_email'=> $request->email,
-            'coupon_description'     =>'The referral Code genrated by '.$request->name.' and their email is '.$request->email.'',
-            'discount_amount'   => 10,
-            'start_date'        => Carbon::today()->toDateString(),
-            'end_date'          => null,
-            'status'            => 1,
-            'minimum_spend'     =>setting('minimum_order_for_delivery'),
-            'maximum_spend'     => 0,
-            'coupon_type'     => 'referral',
-            'use_limit'         => 0,
-            'use_same_ip_limit' => 0,
-            'user_limit'        => 0,
-            'use_device'        => "",
-            'multiple_use'      => "yes",
-        ]);
         event(new Registered($user));
         Auth::guard('user')->login($user);
         return redirect('/user');

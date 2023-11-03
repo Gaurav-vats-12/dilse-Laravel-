@@ -7,17 +7,26 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Setting\UpdateGenralSettingRequst;
 
 use App\Models\Admin\Setting\Setting;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Intervention\Image\Facades\Image as ResizeImage;
 
 class SettingController extends Controller
 {
-    public function genralsetting()
+    public function genralsetting(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('admin.page.setting.genralsetting');
 
     }
 
-    public function unregenerateSetting(UpdateGenralSettingRequst $request, string $id)
+    /**
+     * @param UpdateGenralSettingRequst $request
+     * @param string $id
+     * @return RedirectResponse
+     */
+    public function unregenerateSetting(UpdateGenralSettingRequst $request, string $id): \Illuminate\Http\RedirectResponse
     {
         $setting_get = Setting::findOrFail($id);
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
@@ -58,7 +67,28 @@ class SettingController extends Controller
             }$footer_image_2 = implode(',', $imageslist);} else {
             $footer_image_2 = $setting_get->footer_image_2;
         }
-        Setting::findOrFail($id)->update(['site_title' => $request->site_title, 'site_email' => $request->site_email, 'phone' => $request->phone, 'site_currency' => $request->site_currency, 'site_location' => ($request->site_location) ? implode(',', $request->site_location) : null, 'address' => $request->address, 'copyright_text' => $request->copyright_text, 'facebook_url' => $request->facebook_url, 'twitter_url' => $request->twitter_url, 'blogto_url' => $request->blogto_url, 'minimum_order_for_delivery' => $request->minimum_order_for_delivery, 'delivery_charge_within_5km' => $request->delivery_charge_within_5km, 'delivery_charge_outside_5km' => $request->delivery_charge_outside_5km,'referrel_points_on_signup' => $request->referrel_points_on_signup,  'tax' => $request->tax, 'opening_hour' => $request->opening_hour, 'instagram_url' => $request->instagram_url, 'logo' => $siteImage, 'footer_logo' => $footer_logoImage, 'favicon' => $FaviconImage, 'footer_image_2' => $footer_image_2, 'updated_at' => now()]);
+        Setting::findOrFail($id)->update(['site_title' => $request->site_title,
+            'site_email' => $request->site_email,
+            'phone' => $request->phone,
+            'site_currency' => $request->site_currency,
+            'site_location' => ($request->site_location) ? implode(',', $request->site_location) : null,
+            'address' => $request->address,
+            'copyright_text' => $request->copyright_text,
+            'facebook_url' => $request->facebook_url,
+            'twitter_url' => $request->twitter_url,
+            'blogto_url' => $request->blogto_url,
+            'minimum_order_for_delivery' => $request->minimum_order_for_delivery,
+            'delivery_charge_within_5km' => $request->delivery_charge_within_5km,
+            'delivery_charge_outside_5km' => $request->delivery_charge_outside_5km,
+            'referrel_points_on_signup' => $request->referrel_points_on_signup,
+            'tax' => $request->tax,
+            'opening_hour' => $request->opening_hour,
+            'instagram_url' => $request->instagram_url,
+            'logo' => $siteImage,
+            'footer_logo' => $footer_logoImage,
+            'favicon' => $FaviconImage,
+            'footer_image_2' => $footer_image_2,
+            'updated_at' => now()]);
         notyf()->duration(2000)->addSuccess('Site Setting  Updated');
         return redirect()->route('admin.setting.genral');
     }

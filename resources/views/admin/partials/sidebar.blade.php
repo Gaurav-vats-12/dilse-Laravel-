@@ -137,6 +137,13 @@
                                   <p>{{ __('General Setting') }}</p>
                               </a>
                           </li>
+                          <li class="nav-item">
+                              <a href="{{ route('admin.setting.referral') }}"
+                                 class="nav-link {{ request()->is('admin/setting/referral') ? 'active' : '' }}">
+                                  <i class="far fa-circle nav-icon"></i>
+                                  <p>{{ __('Referral  Setting') }}</p>
+                              </a>
+                          </li>
                       </ul>
           </nav>
           <!-- /.sidebar-menu -->

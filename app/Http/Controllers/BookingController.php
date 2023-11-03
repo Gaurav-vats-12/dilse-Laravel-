@@ -12,18 +12,28 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use JetBrains\PhpStorm\NoReturn;
 use Notification;
 
 class BookingController extends Controller
 {
-    public function bookATable()
+    /**
+     * @return View|\Illuminate\Foundation\Application|Factory|Application
+     */
+    public function bookATable(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('Pages.book-table');
     }
-    public function submitBookATable(StoreBookingTable $request)
+
+    /**
+     * @param StoreBookingTable $request
+     * @return RedirectResponse
+     */
+    public function submitBookATable(StoreBookingTable $request): \Illuminate\Http\RedirectResponse
     {
         $bookingData = [
             'name' => $request->input('name'),
@@ -40,16 +50,25 @@ class BookingController extends Controller
         notyf()->duration(2000)->addSuccess('You booking requested has been sent! We will update you shortly');
         return redirect()->back();
     }
+
+    /**
+     * @param Request $request
+     * @return View|\Illuminate\Foundation\Application|Factory|JsonResponse|Application
+     */
     public function fetchBooking(Request $request): View | \Illuminate\Foundation\Application  | Factory | JsonResponse | Application
     {
         return view(view: 'admin.page.booking.index')->with('booking', value: Booking::latest()->get());
     }
 
-    public function updateStatus(Request $request)
-    {
-        $booking_email = Booking::findOrFail($request->booking_id)->email;
-
-        dd('asdsadsa', $booking);
-    }
+    /**
+     * @param Request $request
+     * @return void
+     */
+//    #[NoReturn] public function updateStatus(Request $request): void
+//    {
+//        $booking_email = Booking::findOrFail($request->booking_id)->email;
+//
+//        dd('asdsadsa', $booking);
+//    }
 
 }

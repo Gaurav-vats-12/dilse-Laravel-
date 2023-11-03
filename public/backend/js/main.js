@@ -79,8 +79,12 @@ jQuery( function () {
     }else if(url.indexOf("/genral") > -1){
         $("#site_location").select2({ maximumSelectionLength: 2});
 
-
-    }else if(url.indexOf("/manage-pages") > -1){
+    }else if(url.indexOf("/referral") > -1){
+        reffral_status(jQuery("input[name='referral_status']:checked").val());
+        jQuery(document).on("click","#referral_status", function(e) {
+            reffral_status(jQuery("input[name='referral_status']:checked").val());
+        });
+    } else if(url.indexOf("/manage-pages") > -1){
         jQuery(document).on("focusout","#page_title", function(e) {
             jQuery('#page_slug').val(`${jQuery('#page_title').val().replace(/\s+/g, '-').toLowerCase()}`);
           });

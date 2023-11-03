@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static findOrFail(string $id)
+ * @method static where(string $string, string $string1)
  */
 class Blog extends Model
 {
