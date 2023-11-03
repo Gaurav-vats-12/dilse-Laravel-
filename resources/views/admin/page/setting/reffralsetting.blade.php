@@ -19,7 +19,7 @@
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">General Setting </h3>
+                    <h3 class="card-title">Referral Setting </h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -27,7 +27,7 @@
                         <div class="col-md-12">
                             <form method="POST" action="{{ route('admin.setting.referralstore', reffrelsetting('id')) }}" accept-charset="UTF-8" enctype="multipart/form-data">@csrf @method('PUT')
                                 <div class="form-group">
-                                    <h6>  Featured</h6>
+                                    <h6>  Enable Referral Setting </h6>
                                     <label class="switch" for="referral_status">
                                         <input type="checkbox" name="referral_status" id="referral_status" value="1" {{ old('referral_status',reffrelsetting('referral_status')) == 1 ? 'checked' : '' }}>
                                         <span class="slider round"></span>
