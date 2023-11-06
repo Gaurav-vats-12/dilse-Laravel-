@@ -37,7 +37,8 @@
                       at Dil Se Indian Restaurant & Bar reveals a special coupon. Use code
                       <b>{{ $reffral_list->code }}</b> form <b>{{ $reffral_list->user_email}}</b> for an exclusive
                       offer. Hurry, it's valid for
-                      <b> {{Carbon::today()->diffInDays(Carbon::parse($reffral_list->end_date)) }}days</b> . Enjoy the benefits on your next visit or online order!
+                      <b> {{CarbonAlias::today()->diffInDays(Carbon::parse($reffral_list->end_date)) }}
+                        days</b> . Enjoy the benefits on your next visit or online order!
                   </div>
                 @endforeach
                 <div class="Reorder_Class">
