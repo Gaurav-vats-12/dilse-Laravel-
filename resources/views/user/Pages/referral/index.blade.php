@@ -35,7 +35,7 @@
                   <div class="" role="alert">
                     <h5><b>Congratulations {{ Auth::guard('user')->user()->name }} !</b> Your referral code redemption
                       at Dil Se Indian Restaurant & Bar reveals a special coupon. Use code
-                      <b>{{ $reffral_list->code }}</b> form <b>{{ $reffral_list->user_email}}</b> for an exclusive
+                     <a href="javascript:void(0)" id="copy_code"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Copy Code " data-bs-html="true" ><b>{{ $reffral_list->code }}</b></a>  form <b>{{ $reffral_list->user_email}}</b> for an exclusive
                       offer. Hurry, it's valid for
                       <b> {{Carbon::today()->diffInDays(Carbon::parse($reffral_list->end_date)) }}
                         days</b> . Enjoy the benefits on your next visit or online order!
