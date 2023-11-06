@@ -3835,3 +3835,6 @@ h3.best-of-listing-box-title {
                 color: #222;
                 background-color: #ccc;
             }
+a#copy_code {
+  text-decoration: underline !important;
+}
