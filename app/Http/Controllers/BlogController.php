@@ -18,11 +18,11 @@ class BlogController extends Controller
         return view('Pages.Blog.blog', compact('blog'));
     }
 
-    /**
-     * @param string $slug
-     * @return View|\Illuminate\Foundation\Application|Factory|Application
-     */
-    public function blogdetails(string $slug): View|\Illuminate\Foundation\Application|Factory|Application
+  /**
+   * @param string $slug
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+  public function blogdetails(string $slug): View|\Illuminate\Foundation\Application|Factory|Application
     {
         $blog = Blog::where('slug', $slug)->firstOrFail();
         return view('Pages.Blog.singleblogdetails', compact('blog'));

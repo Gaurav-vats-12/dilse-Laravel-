@@ -26,11 +26,11 @@ Route::prefix('admin')->name('admin.')->group(callback: function(){
         Route::resource('banner', BannerControllerAlias::class);
   Route::middleware('optimizeImages')->group(callback: function () {
       Route::prefix('setting')->name('setting.')->group(callback: function(){
-//         genral Route
+//         general Route
           Route::get('/genral', [SettingControllerAlias::class, 'genralsetting'])->name('genral');
           Route::put('/genral/{id}', [SettingControllerAlias::class, 'unregenerateSetting'])->name('genralstore');
           Route::get('/footer-setting', [SettingControllerAlias::class, 'footersetting'])->name('footersetting');
-            //  Reffral Setting  Routes
+            //  Referral Setting  Routes
           Route::get('/referral', [ReferralSettingController::class, 'index'])->name('referral');
           Route::put('/referral/{id}', [ReferralSettingController::class, 'update'])->name('referralstore');
 

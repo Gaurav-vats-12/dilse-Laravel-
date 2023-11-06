@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static findOrFail($id)
  * @method static find(mixed $coupon_uuid)
  * @method static where(string $string, int|string|null $user_id)
+ * @method static insertGetId(array $array)
  */
 class Coupon extends Model
 {

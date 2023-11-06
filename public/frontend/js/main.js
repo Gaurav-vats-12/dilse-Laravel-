@@ -55,13 +55,12 @@ jQuery(document).ready(function () {
         let is_spisy = jQuery(`#is_spisy_${product_uid}`).val();
         let product_quntity = jQuery(`#product_quntity_${product_uid}`).val();
         let ajaxValue = { product_uid, product_quntity, is_spisy };
-        const resPose = await Ajax_response(ajax_url, "POST", { product_uid, product_quntity, is_spisy }, '');
+        const resPose = await Ajax_response(ajax_url, "POST", ajaxValue, '');
         if (resPose.status === `success`) {
-            setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 1000);
+            setTimeout(function () { jQuery('.add-to-cart-button').removeClass(`added`) }, 500);
             NotyfMessage(resPose.message, 'success');
             jQuery(`.cart_count`).html(resPose.cart_total);
         }
-
     });
     /**
  *  testimonial_slider   (Home Page)
@@ -101,45 +100,6 @@ jQuery(document).ready(function () {
     });
 
 
-    /**
-     * Subscribe Our Newsletter Submission Form Ajax (Home Page)
-     */
-    // jQuery("#mc-embedded-subscribe-form").validate({
-    //     rules: {
-    //         EMAIL: {
-    //             required: true,
-    //             email: true,
-    //         }
-    //     },
-    //     messages: {
-    //         EMAIL: {
-    //             required: "Please Enter the  email address",
-    //             maxlength: "Please Enter vaid email address"
-    //         }
-    //     },
-    //     submitHandler: async function (form, event) {
-    //         // jQuery(".theme_btn").attr("disabled", true);
-    //         // jQuery(".btn-txt").html("<i class='fa fa-spinner fa-spin'></i>Please Wait");
-    //         // event.preventDefault();
-    //         // let ajax_value_list = jQuery('#emailSubscribeForm').serialize(), ajx_url = jQuery('#email_action_url').val();
-    //         // const resPose = await Ajax_response(ajx_url, "POST", ajax_value_list, '');
-    //         // jQuery(".theme_btn").attr("disabled", false);
-    //         // jQuery(".btn-txt").text("Subscribe Now");
-    //         // if (resPose.status === `success`) {
-    //         //     NotyfMessage(resPose.message, 'success');
-    //         //     jQuery("#emailSubscribeForm")[0].reset();
-    //         // } else if (resPose.status === `error`) {
-    //         //     NotyfMessage(resPose.message, 'warning');
-    //         //     jQuery("#emailSubscribeForm")[0].reset();
-    //         // } else if (resPose.status === `error_message`) {
-    //         //     NotyfMessage(resPose.message, 'warning');
-    //         //     jQuery("#emailSubscribeForm")[0].reset();
-    //         // } else {
-    //         //     jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
-    //         // }
-    //     }
-    // });
-
 
     jQuery('#phone').attr('maxlength', '10');
     jQuery('#conatact_phone_number').attr('maxlength', '10');
@@ -154,7 +114,6 @@ jQuery(document).ready(function () {
  *     Contact us Form Submission  iN ajax   (Home Page ,Contact Us Page)
  *
  */
-    // jQuery('#conatact_phone_number').inputmask('+1 (999) 999-9999');
     jQuery("#conatact_cus_form").validate({
         messages: {
             first_name: {

@@ -20,13 +20,12 @@ class ReferralController extends Controller
     $user_id = (AuthAlias::guard('user')->check()) ? AuthAlias::guard('user')->id() : null;
 
     $Coupon = CouponAlias::where('user_id', $user_id)->where('status', 1)->first();
-    $shareComponent = (new ShareAlias)->page(url: "Here is your Referral code ".$Coupon->code, title: null, options: array('class' => 'my-class', 'id' => 'my-id', 'target'=>'_blank','title' => 'my-title', 'rel' => 'nofollow noopener noreferrer'))->facebook()
-    ->twitter()
+    $shareComponent = (new ShareAlias)->page(url: "Here is your Referral code ".$Coupon->code, options: array('class' => 'my-class', 'id' => 'my-id', 'target'=>'_blank','title' => 'my-title', 'rel' => 'nofollow noopener noreferrer'))->facebook()->twitter()
     ->linkedin()
     ->telegram()
     ->whatsapp()
     ->reddit();
-    $reffreal_couypon_list = CouponAlias::where('vendor_id', $user_id)->where('parant_coupon_id', $Coupon->id)->where('status', 1)->whereDate('end_date', '>=', CarbonAlias::today()->subDays(1))->get();
-    return view('user.Pages.referral.index', data: ['Coupon' => $Coupon,'reffral'=> $reffreal_couypon_list,'shareComponent'=>$shareComponent]);
+    $reffreal_coupon_list = CouponAlias::where('vendor_id', $user_id)->where('parant_coupon_id', $Coupon->id)->where('status', 1)->whereDate('end_date', '>=', CarbonAlias::today()->subDays(1))->get();
+    return view('user.Pages.referral.index', data: ['Coupon' => $Coupon,'reffral'=> $reffreal_coupon_list,'shareComponent'=>$shareComponent]);
    }
 }
