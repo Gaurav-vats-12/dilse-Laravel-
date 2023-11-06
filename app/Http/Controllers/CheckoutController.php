@@ -31,7 +31,6 @@ use Psr\Container\NotFoundExceptionInterface;
 
 class CheckoutController extends Controller
 {
-
     /**
      * @return Application|Factory|View|\Illuminate\Foundation\Application|RedirectResponse
      * @throws ContainerExceptionInterface
@@ -72,7 +71,7 @@ class CheckoutController extends Controller
                         'discount_type'     => 'percentage',
                         'user_id'=> $user_id,
                         'user_email'=> $request->billing_email,
-                        'parant_coupon_id'=> $request->coupon_uuid,
+                        'parent_coupon_id'=> $request->coupon_uuid,
                         'coupon_description'     =>'Your Referral Reward: from '.$request->billing_full_name.' and  email is'.$request->billing_email.'',
                         'discount_amount'   => 10,
                         'start_date'        => Carbon::today()->toDateString(),

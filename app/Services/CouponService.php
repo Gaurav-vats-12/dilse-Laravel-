@@ -3,16 +3,15 @@
 namespace App\Services;
 use App\Models\Admin\Coupon;
 use Carbon\Carbon;
-
-use Illuminate\Validation\ValidationException;
-use Illuminate\Auth\Access\AuthorizationException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Response;
 use App\Models\CouponHistory;
 class CouponService
 {
-    public static function add($array)
-    {
+  /**
+   * @param $array
+   * @return mixed
+   */
+  public static function add($array): mixed
+  {
         return Coupon::insertGetId([
             "code" => $array["coupon_code"],
             "type" => $array["discount_type"],
@@ -36,8 +35,14 @@ class CouponService
             "updated_at" => now(),
         ]);
     }
-    public static function update($array, $id)
-    {
+
+  /**
+   * @param $array
+   * @param $id
+   * @return mixed
+   */
+  public static function update($array, $id): mixed
+  {
         return Coupon::findOrFail($id)->update([
             "code" => $array["coupon_code"],
             "type" => $array["discount_type"],
@@ -61,7 +66,11 @@ class CouponService
         ]);
     }
 
-    public static function remove($couponId): bool
+  /**
+   * @param $couponId
+   * @return bool
+   */
+  public static function remove($couponId): bool
     {
         $coupon = Coupon::findOrFail($couponId);
         if ($coupon) {
@@ -162,27 +171,23 @@ class CouponService
             }
         }
 
-        //07. Check minimum order amount to applied  this coupon
+        //07. Check minimum order amount to apply  this coupon
         if ($coupon->minimum_spend > 0 && $coupon->minimum_spend > $amount) {
-            return
-                [
-                    "status" => "error",
-                    "message" =>
-                        "Invalid Amount! To apply this coupon minimum {$coupon->minimum_spend} amount is required",
-                ];
-
+          return
+            array(
+              "status" => "error",
+              "message" => "Invalid Amount! To apply this coupon minimum {$coupon->minimum_spend} amount is required",
+            );
         }
 
-        //08. Check maximum order amount to applied  this coupon
+        //08. Check maximum order amount to apply  this coupon
         if ($coupon->maximum_spend > 0 && $coupon->maximum_spend < $amount) {
             return
                 [
                     "status" => "error",
-                    "message" =>
-                        "Invalid Amount! To apply this coupon maximum {$coupon->maximum_spend} amount is required",
+                    "message" => "Invalid Amount! To apply this coupon maximum {$coupon->maximum_spend} amount is required",
                 ];
         }
-
         // check coupon code using device
         if ($coupon->use_device && !in_array("device_name", $skip)) {
             if (empty($deviceName)) {
@@ -265,11 +270,12 @@ class CouponService
                 'coupon'=> $coupon
             ];
     }
-    /**
-     * @param array $data
-     * @return bool
-     */
-    public static  function apply(array $data): bool
+
+  /**
+   * @param array $data
+   * @return bool
+   */
+  public static  function apply(array $data): bool
     {
          CouponHistory::create( $data);
         $coupon            = Coupon::query()->find($data["coupon_id"]);

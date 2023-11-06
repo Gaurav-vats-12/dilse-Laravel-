@@ -106,7 +106,7 @@
                         @php
                             $cart_session = session('coupon');
                             if ($subtotal < round(( setting('minimum_order_for_delivery' ,0.00)) ,2)) {
-                                $discount_amount= 0.00;
+                                $discount_amount='0.00';
                                     $cart_type= 'coupon';
                                     $cart_Test = 'Apply Coupon';
                                     $coupon_code = '';
@@ -123,7 +123,7 @@
                                     $coupon_notice = "<b>Coupon Applied  ( ".session('coupon')['coupon']['coupon']->amount. $type .")</b>";
 
                                 }  else {
-                                    $discount_amount= 0.00;
+                                    $discount_amount= '0.00';
                                     $cart_type= 'coupon';
                                     $cart_Test = 'Apply Coupon';
                                     $coupon_code = '';
@@ -145,7 +145,6 @@
                                        coupon_type="{{ $cart_type}}"
                                        route_ajax="{{ route('cart.vieapply_couponw')}}">{{ $cart_Test}}</a>
                                 @endif
-
                                 <h4> Order Summary </h4>
                                 <p id="message"
                                    mimimum_ammout="{{  round(( setting('minimum_order_for_delivery' ,0.00)) ,2) }}">

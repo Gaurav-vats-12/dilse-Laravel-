@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 use App\Services\CouponService;
-use Illuminate\Http\JsonResponse as JsonResponseAlias;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Psr\Container\ContainerExceptionInterface;
@@ -32,7 +32,6 @@ class CartController extends Controller
             session()->put('login_redirct', route('cart.view'));
         }
         $cart = session()->get('login_redirct');
-        // dd($cart);
         $menus = Menu::whereIn('id', [7, 6, 5, 9])->where('status', 'active')->get();
         $extra_items = FoodItemAlias::whereIn('menu_id', [7, 6, 5, 9])->where('status', 1)->get();
         return view('Pages.cart', compact('extra_items'));
@@ -48,11 +47,10 @@ class CartController extends Controller
         $extra_items = FoodItemAlias::where('menu_id', $menu_id)->where('status', 1)->get();
         return view('ajax.extra_items', compact('extra_items'));
     }
-//
 
     /**
      * @param Request $request
-     * @return JsonResponseAlias|void
+     * @return JsonResponse|void
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
@@ -77,7 +75,7 @@ class CartController extends Controller
     }
     /**
      * @param Request $request
-     * @return JsonResponseAlias
+     * @return JsonResponse
      * @noinspection PhpUndefinedFieldInspection
      */
     public function addtocart(Request $request)
@@ -89,7 +87,6 @@ class CartController extends Controller
                 $product = FoodItemAlias::find($product_uid);
                 if (!$product) {abort(404);}
                 $cart = session()->get('cart');
-                // if cart is empty then this the first product
                 if (!$cart) {
                     $cart = [
                         $product_uid => [
@@ -102,12 +99,12 @@ class CartController extends Controller
                         ],
                     ];
                     session()->put('cart', $cart);
-                    return response()->json(['code' => 200, 'status' => 'success', 'cart_total' => count((array) session('cart')), "message" => "Product added to cart successfully."]);
+                    return response()->json(['code' => 200, 'status' => 'success', 'cart_total' => count((array) session('cart')), "message" => "Product added to cart successfully.",'cart'=> $cart]);
                 }if (isset($cart[$product_uid])) {
 
                     $cart[$product_uid]['quantity']++;
                     session()->put('cart', $cart);
-                    return response()->json(['code' => 200, 'status' => 'success', 'cart_total' => count((array) session('cart')), "message" => "Product added to cart successfully."]);
+                    return response()->json(['code' => 200, 'status' => 'success', 'cart_total' => count((array) session('cart')), "message" => "Product added to cart successfully." ,'cart'=> $cart]);
                 }
                 $cart[$product_uid] = [
                     'id' => $product_uid,
@@ -118,7 +115,7 @@ class CartController extends Controller
                     'is_spisy' => $request->is_spisy,
                 ];
                 session()->put('cart', $cart);
-                return response()->json(['code' => 200, 'status' => 'success', 'cart_total' => count((array) session('cart')), "message" => "Product added to cart successfully."]);
+                return response()->json(['code' => 200, 'status' => 'success', 'cart_total' => count((array) session('cart')), "message" => "Product added to cart successfully.",'cart'=> $cart]);
             } else {
                 return response()->json(['code' => 203, 'cart_total' => null, 'status' => 'error', "message" => "Product Id Not Found"]);
             }
@@ -129,10 +126,10 @@ class CartController extends Controller
 
     /**
      * @param Request $request
-     * @return JsonResponseAlias
+     * @return JsonResponse
      * @noinspection PhpUndefinedFieldInspection
      */
-    public function updatecart(Request $request): JsonResponseAlias
+    public function updatecart(Request $request): JsonResponse
     {
         // dd($request->all());
 
@@ -155,7 +152,6 @@ class CartController extends Controller
                     $discount_total = round( $subtotal ,2);
                     $couponResponse  =['discount_amount'=>0.00,'discount_total'=>round( $subtotal ,2)];
                 }
-
                 if (session('order_type') == 'delivery') {
                     $total_before_Tex = $discount_total+ setting('delivery_charge');
                 } else {
@@ -163,7 +159,7 @@ class CartController extends Controller
                 }
                 $total_tax = round(($total_before_Tex * setting('tax', 0.00)) / 100, 2);
                 $total = $total_before_Tex + $total_tax;
-                return response()->json(['code' => 200,  'couponResponse'=>$couponResponse,'cart_total' => count((array) session('cart')), 'subtotal' => round($subtotal, 2), 'total_tax' => $total_tax, 'total' => round($total, 2), 'status' => 'success', "message" => "Product add to cart successfully"]);
+                return response()->json(['code' => 200,  'couponResponse'=>$couponResponse,'cart_total' => count((array) session('cart')), 'subtotal' => round($subtotal, 2), 'total_tax' => $total_tax, 'total' => round($total, 2), 'status' => 'success', "message" => "Product add to cart successfully",'cart'=> $cart]);
             } else {
                 if (isset($request->product_oid)) {
                     unset($request->product_oid);
@@ -180,22 +176,21 @@ class CartController extends Controller
                         $couponResponse  =[];
                     }
                 if (session('order_type') == 'delivery') {
-                    $total_before_Tex = $$discount_total + setting('delivery_charge', 0.00);
+                    $total_before_Tex = $discount_total + setting('delivery_charge', 0.00);
                 } else {
                     $total_before_Tex = $discount_total;
                 }
                 $total_tax = round(($total_before_Tex * setting('tax', 0.00)) / 100, 2);
                 $total = $total_before_Tex + $total_tax;
-                return response()->json(['code' => 200, 'couponResponse'=>$couponResponse, 'discount_total'=>$discount_total, 'cart_total' => count((array) session('cart')), 'subtotal' => round($subtotal, 2), 'total_tax' => $total_tax, 'total' => round($total, 2), 'status' => 'success', "message" => "Product add to cart successfully"]);
+                return response()->json(['code' => 200, 'couponResponse'=>$couponResponse, 'discount_total'=>$discount_total, 'cart_total' => count((array) session('cart')), 'subtotal' => round($subtotal, 2), 'total_tax' => $total_tax, 'total' => round($total, 2), 'status' => 'success', "message" => "Product add to cart successfully" ,'cart'=> $cart]);
             }
         } catch (NotFoundExceptionInterface | ContainerExceptionInterface $e) {
             return response()->json(['code' => 400, 'cart_total' => 'Null', 'subtotal' => nullOrEmptyString(), 'total_tax' => nullOrEmptyString(), 'total' => nullOrEmptyString(), 'status' => 'error', "message" => "Something Wrong"]);
         }
     }
-
     /**
      * @param string $id
-     * @return JsonResponseAlias
+     * @return JsonResponse
      * @noinspection PhpUndefinedFieldInspection
      */
     public function destroy(Request $request, string $id)
@@ -212,7 +207,7 @@ class CartController extends Controller
                 if($arraySize ===1){
                     session()->put('coupon', []);
                 }
-                notyf()->duration(2000)->addSuccess('Product  Remove from add to cart  successfully');
+                notyf()->duration(2000)->addSuccess('Product  Remove from add to cart  successfully' ,);
                 return redirect()->back();
             } else {
                 return redirect()->back();
@@ -223,18 +218,27 @@ class CartController extends Controller
     }
 
 
-    public function apply_coupon(Request $request){
+  /**
+   * @param Request $request
+   * @return JsonResponse
+   */
+  public function apply_coupon(Request $request){
         $code       = $request->coupon_code;  $amount     = $request->subtotal;
         $coupon_type =$request->coupon_type;
         $couponResponse = $this->Coupon_functionalty($code ,$amount,$coupon_type);
         return response()->json($couponResponse, 200);
  }
 
- private function Coupon_functionalty($code ,$amount,$coupon_type){
+  /**
+   * @param $code
+   * @param $amount
+   * @param $coupon_type
+   * @return array|string[]
+   */
+  protected function Coupon_functionalty($code , $amount, $coupon_type){
         $deviceName = null; $ipaddress  = null; $skipFields =  [];
         $userId = !AuthAlias::guard('user')->check() ? '' : AuthAlias::guard('user')->id();
-
-     $vendorId = $userId;
+       $vendorId = $userId;
         if($coupon_type ==='coupon'){
             $coupon = CouponService::validity($code, $amount, $userId, $deviceName, $ipaddress,  $vendorId ,$skipFields);
             if($coupon['status'] ==='error'){
