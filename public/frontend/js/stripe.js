@@ -1,4 +1,4 @@
-function stripePayment_Form(StripekEY){
+const stripePayment_Form = StripekEY => {
     localStorage.clear();
     let stripe = Stripe(StripekEY);
     let elements = stripe.elements();
@@ -59,7 +59,7 @@ function stripePayment_Form(StripekEY){
         'unknown': 'pf-credit-card',
     }
 
-    function setBrandIcon(brand) {
+    const setBrandIcon = brand => {
         let brandIconElement = document.getElementById('brand-icon');
         let pfClass = 'pf-credit-card';
         if (brand in cardBrandToPfClass) {
@@ -70,7 +70,7 @@ function stripePayment_Form(StripekEY){
         }
         brandIconElement.classList.add('pf');
         brandIconElement.classList.add(pfClass);
-    }
+    };
 
     cardNumberElement.on('change', function(event) {
         // Switch brand logo
@@ -103,8 +103,8 @@ function stripePayment_Form(StripekEY){
           })
     });
 
-}
-function payment_intergation() {
+};
+const payment_intergation = () => {
     jQuery(`.payment_form`).validate({
         rules: {
             billing_full_name: {
@@ -174,4 +174,4 @@ function payment_intergation() {
             }
         }
     });
-}
+};

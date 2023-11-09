@@ -135,15 +135,12 @@
                         <div class="order_summary">
                             <div class="tittle_heading">
                                 @if (Auth::guard('user')->check())
-                                    <div class="alert alert-success alert-dismissible">
-                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                        <strong>Success!</strong> Indicates a successful or positive action.
-                                    </div>
-                                    <input type="text" name="coupon_code" class="input-text" id="coupon_code"
-                                           value="{{ $coupon_code }}" placeholder="Coupon code">
-                                    <a href="javascript:void(0)" id="apply_coupon" appied_coupon="{{ $appied_coupon}}"
-                                       coupon_type="{{ $cart_type}}"
-                                       route_ajax="{{ route('cart.vieapply_couponw')}}">{{ $cart_Test}}</a>
+                                  <p> Applied Coupon</p>
+                                <label for="coupon_code"></label><input type="text" name="coupon_code" class="input-text" id="coupon_code" value="{{ $coupon_code }}" placeholder="Coupon code">
+                              <a href="javascript:void(0)" id="apply_coupon"
+                                 appied_coupon="{{ $appied_coupon}}"
+                                 coupon_type="{{ $cart_type}}"
+                                 route_ajax="{{ route('cart.vieapply_couponw')}}">{{ $cart_Test}}</a>
                                 @endif
                                 <h4> Order Summary </h4>
                                 <p id="message"

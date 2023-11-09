@@ -1,4 +1,4 @@
-function animate(obj, initVal, lastVal, duration) {
+let animate = (obj, initVal, lastVal, duration) => {
     let startTime = null;
     let currentTime = Date.now();
     const step = (currentTime ) => {
@@ -14,7 +14,7 @@ function animate(obj, initVal, lastVal, duration) {
         }
     };
     window.requestAnimationFrame(step);
-}
+};
 let url = window.location.pathname;
   const fetch_extra_items_data = async (ajax_value) => {
       let cart_ajx_url = jQuery('#cart_ajx_url').val();
@@ -26,7 +26,7 @@ let url = window.location.pathname;
           slidesToShow: 4,
           autoplaySpeed:1500,
           slidesToScroll: 1,
-          prevArrow: `<button class="slide-arrow prev-arrow"></button>`,
+          preletrow: `<button class="slide-arrow prev-arrow"></button>`,
           nextArrow: `<button class="slide-arrow next-arrow"></button>`,
           responsive: [
             {
@@ -57,10 +57,10 @@ let url = window.location.pathname;
       });
   };
 
-async function state_dependency_country_list(ajax_post, url) {
+const state_dependency_country_list = async (ajax_post, url) => {
     const response = await Ajax_response(url, "POST", ajax_post, '');
     jQuery(`#billing_state`).empty().html(response);
-}
+};
 
 const updateTotals = async (deliveryCost) => {
     let site_currency = jQuery('meta[name="site_currency"]').attr('content');
@@ -69,7 +69,6 @@ const updateTotals = async (deliveryCost) => {
     let tax =parseFloat(jQuery('#totaltax').attr('totaltax'));
     let grandTotal = total_ammount + deliveryCost + tax;
     let trypelist =jQuery('#subtotal').attr('trypelist');
-
     const resPose = await Ajax_response(jQuery('#subtotal').attr('updated_route'), "POST", {deliveryCost,location_type}, '');
     if (resPose.code == '200') {
         if (trypelist === 'cart') {
