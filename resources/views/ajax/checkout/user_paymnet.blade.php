@@ -59,7 +59,7 @@
                 }
             @endphp
                <li class="charges">
-                <span class="key">{{$coupon_notice}}  </span>
+                <span class="key">Discount {!! $coupon_notice  !!} </span>
                 <input type="hidden" name="discout_total" id="discout_total" value="{{ $discount_amount }}">
                 <input type="hidden" name="coupon_code" id="coupon_code" value="{{$coupon_code }}">
                 <input type="hidden" name="coupon_uuid" id="coupon_uuid" value="{{$coupon_code }}">
