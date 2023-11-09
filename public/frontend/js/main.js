@@ -633,7 +633,9 @@ jQuery(document).ready(function () {
         jQuery('#user_phone').inputmask('+1 (999) 999-9999');
 
     } else if (url.indexOf("/user/referral") > -1) {
-    // Copy Code Functionalty
+      /*
+       Copy Code Functionality
+      */
     jQuery(document).on("click", "#copy_code", async function (event) {
         copy_clipborad(jQuery(this).attr('unique_code'));
         NotyfMessage('This Code is copy Successfully', 'success');
@@ -673,7 +675,7 @@ jQuery(document).ready(function () {
         jQuery(document).on("change", "#datepicker", async function (event) {
             let selectedDate = new Date($(this).val()); // Assuming the date format is 'yyyy-mm-dd'
             if (selectedDate.toDateString() === now.toDateString()) {
-                var minTimeValue = (currentHour < 10 ? '0' : '') + currentHour + ':' + (currentMinute < 10 ? '0' : '') + currentMinute;
+                let minTimeValue = (currentHour < 10 ? '0' : '') + currentHour + ':' + (currentMinute < 10 ? '0' : '') + currentMinute;
                 jQuery('#timepicker').timepicker('option', 'minTime', minTimeValue);
             } else {
                 jQuery('#timepicker').timepicker('option', 'minTime', '11:30 AM');
