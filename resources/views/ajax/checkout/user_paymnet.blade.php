@@ -43,22 +43,23 @@
             $cart_session = session('coupon');
                 if ($cart_session) {
                     $discount_amount = session('coupon')['discount_amount'];
-                    $coupon_code  = session('coupon')['code'];
-                    $coupon_uuid  = session('coupon')['coupon']['coupon']['id'];
-                    $cart_Test = (session('coupon')['cart_type'] ==='coupon') ? 'Remove Coupon' : 'Apply Coupon' ;
-                    $cart_type = (session('coupon')['cart_type'] ==='coupon') ? 'remove' : 'coupon' ;
-                    $appied_coupon = session('coupon')['cart_type'];
+                                    $coupon_code  = session('coupon')['code'];
+                                    $cart_Test = (session('coupon')['cart_type'] ==='coupon') ? 'Remove Coupon' : 'Apply Coupon' ;
+                                    $cart_type = (session('coupon')['cart_type'] ==='coupon') ? 'remove' : 'coupon' ;
+                                    $appied_coupon = session('coupon')['cart_type'];
+                                    $type = (session('coupon')['coupon']['coupon']->type =='percentage') ? '%' : setting('site_currency') ;
+                                    $coupon_notice = "<b>Coupon Applied  ( ".session('coupon')['coupon']['coupon']->amount. $type .")</b>";
                 } else {
-                    $discount_amount= 0.00;
-                    $cart_type= 'coupon';
-                    $cart_Test = 'Apply coupon';
-                    $coupon_uuid ='';
-                    $coupon_code = '';
-                    $appied_coupon = '';
+                    $discount_amount= '0.00';
+                                    $cart_type= 'coupon';
+                                    $cart_Test = 'Apply Coupon';
+                                    $coupon_code = '';
+                                    $coupon_notice = '';
+                                    $appied_coupon = '';
                 }
             @endphp
                <li class="charges">
-                <span class="key">Discount ( Coupon Applied : {{ $coupon_code}})  </span>
+                <span class="key">{{$coupon_notice}}  </span>
                 <input type="hidden" name="discout_total" id="discout_total" value="{{ $discount_amount }}">
                 <input type="hidden" name="coupon_code" id="coupon_code" value="{{$coupon_code }}">
                 <input type="hidden" name="coupon_uuid" id="coupon_uuid" value="{{$coupon_uuid }}">
