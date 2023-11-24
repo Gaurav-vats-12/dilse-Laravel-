@@ -16,10 +16,11 @@ use JetBrains\PhpStorm\NoReturn;
 
 class CouponController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+  /**
+   * Display a listing of the resource.
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+    public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('admin.page.Coupon.index', ['Coupon' => Coupon::orderByDesc('id')->get()]);
     }

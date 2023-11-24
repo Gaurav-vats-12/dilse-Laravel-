@@ -7,18 +7,29 @@ use App\Http\Requests\ConntactUs\StoreEmailSubcriptionRequest;
 use App\Mail\ContactNotification;
 use App\Models\Subscriber;
 use App\Services\MailchimpService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
 
 class ContactUsController extends Controller
 {
 
-    public function index()
+  /**
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+  public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('Pages.contact');
 
     }
 
-    public function submitContactFormAjax(StoreContactUsAjaxRequest $request): \Illuminate\Http\JsonResponse
+  /**
+   * @param StoreContactUsAjaxRequest $request
+   * @return JsonResponse
+   */
+  public function submitContactFormAjax(StoreContactUsAjaxRequest $request): JsonResponse
     {
         $contactData = [
             'first_name' => $request->first_name,
@@ -31,7 +42,11 @@ class ContactUsController extends Controller
         return response()->json(['code' => 200, 'status' => 'success', "message" => "Thanks for being awesome! We have received your message and would like to thank you for writing to us. ..."]);
     }
 
-    public function emailSubscription(StoreEmailSubcriptionRequest $request)
+  /**
+   * @param StoreEmailSubcriptionRequest $request
+   * @return JsonResponse
+   */
+  public function emailSubscription(StoreEmailSubcriptionRequest $request): JsonResponse
     {
         $getdata = Subscriber::where('email_address', $request->input('email_address'))->where('status', 'subscribed')->first();
         if ($getdata) {

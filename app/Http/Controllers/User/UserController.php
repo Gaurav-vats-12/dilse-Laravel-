@@ -20,7 +20,10 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    public function dashboard()
+  /**
+   * @return View|\Illuminate\Foundation\Application|FactoryAlias|Application
+   */
+  public function dashboard(): View|\Illuminate\Foundation\Application|FactoryAlias|Application
     {
         return view('user.dashboard');
     }
@@ -125,7 +128,6 @@ class UserController extends Controller
                 "productdetails" => FoodItemAlias::findOrFail($details->product_id),
             ];
         }
-
         session()->put('cart', $cart);
         notyf()->duration(2000)->addSuccess('Items Added to Card Successfully');
         return redirect(route('checkout.view'));

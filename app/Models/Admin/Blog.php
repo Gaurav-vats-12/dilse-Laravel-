@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @method static findOrFail(string $id)
  * @method static where(string $string, string $string1)
+ * @method static orderBy(string $string, string $string1)
+ * @method static insert(array $array)
  */
 class Blog extends Model
 {

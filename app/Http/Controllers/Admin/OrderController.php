@@ -9,13 +9,15 @@ use App\Models\Order\Order as OrderAlias;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+  /**
+   * Display a listing of the resource.
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
     public function index(): View | \Illuminate\Foundation\Application  | Factory | Application
     {
         return view(view: 'admin.page.order.index')->with('orders', value: OrderAlias::latest()->get());
@@ -53,10 +55,13 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(StoreOrderRequestAlias $request, string $id)
+  /**
+   * Update the specified resource in storage.
+   * @param StoreOrderRequestAlias $request
+   * @param string $id
+   * @return JsonResponse
+   */
+    public function update(StoreOrderRequestAlias $request, string $id): JsonResponse
     {
         Order::findOrFail($id)->update(['time_taken' => $request->order_time_taken, 'status' => 'Processing', 'updated_at' => now()]);
         return response()->json(['code' => 200, 'status' => 'success', "message" => "Order Change Successfully"]);

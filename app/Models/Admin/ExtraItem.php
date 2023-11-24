@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @method static where(string $string, int $int)
+ * @method static create(array $array)
+ * @method static findOrFail($id)
  */
 class ExtraItem extends Model
 {

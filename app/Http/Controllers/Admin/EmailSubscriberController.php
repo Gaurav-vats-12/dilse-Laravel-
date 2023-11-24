@@ -8,6 +8,7 @@ use App\Services\MailchimpService;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 
 class EmailSubscriberController extends Controller
 {
@@ -19,7 +20,11 @@ class EmailSubscriberController extends Controller
         return view('admin.page.manage-subscribe.index', ['subscribers' => Subscriber::where('status', 'subscribed')->orderBy('id', 'DESC')->get()]);
     }
 
-    public function unsubscribe_mail($id)
+  /**
+   * @param $id
+   * @return RedirectResponse|void
+   */
+  public function unsubscribe_mail($id)
     {
         $mailchimp = new MailchimpService();
         $unsubscribed = $mailchimp->UnsubscribeToList(Subscriber::findOrFail($id)->email_address, config('services.mailchimp.list_key'));
@@ -29,7 +34,6 @@ class EmailSubscriberController extends Controller
                 'updated_at' => now(),
             ]);
             notyf()->duration(2000)->addSuccess('Email successfully Unsubscribe');
-
             return redirect()->route('admin.manage-subscribers.index');
 
         }

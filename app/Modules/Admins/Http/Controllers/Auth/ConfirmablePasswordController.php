@@ -11,17 +11,21 @@ use Illuminate\View\View;
 
 class ConfirmablePasswordController extends Controller
 {
-    /**
-     * Show the confirm password view.
-     */
+  /**
+   * Show the confirm password view.
+   * @return View
+   */
     public function show(): View
     {
         return view('admin.auth.confirm-password');
     }
 
-    /**
-     * Confirm the admin's password.
-     */
+  /**
+   * Confirm the admin's password.
+   * @param Request $request
+   * @return RedirectResponse
+   * @throws ValidationException
+   */
     public function store(Request $request): RedirectResponse
     {
         if (! Auth::guard('admin')->validate([

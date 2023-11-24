@@ -8,25 +8,40 @@ use App\Http\Requests\Admin\ExtraItems\StoreExtaItemsRequest;
 use App\Http\Requests\Admin\ExtraItems\UpdateExtaItemsRequest;
 
 use App\Models\Admin\ExtraItem;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image as ResizeImage;
 
 class ExtraFoodItemController extends Controller
 {
 
-    public function index()
+  /**
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+  public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         $items = ExtraItem::get();
         return view('admin.page.extra_items.index', compact('items'));
     }
 
-    public function create()
-    {
+  /**
+   * @return Application|Factory|View|\Illuminate\Foundation\Application
+   */
+  public function create(): View|\Illuminate\Foundation\Application|Factory|Application
+  {
         return view('admin.page.extra_items.create');
     }
 
-    public function store(StoreExtaItemsRequest $request)
-    {
+  /**
+   * @param StoreExtaItemsRequest $request
+   * @return mixed
+   */
+  public function store(StoreExtaItemsRequest $request): mixed
+  {
         if ($request->hasFile('extra_product_image') && $request->file('extra_product_image')->isValid()) {
             $product_image = $request->file('extra_product_image');
             $ProductImage = time() . '-' . $product_image->getClientOriginalName();
@@ -43,19 +58,27 @@ class ExtraFoodItemController extends Controller
         return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Created Successfully', 500);
     }
 
-    public function edit($id)
+  /**
+   * @param $id
+   * @return View|\Illuminate\Foundation\Application|Factory|RedirectResponse|Application
+   */
+  public function edit($id): View|\Illuminate\Foundation\Application|Factory|\Illuminate\Http\RedirectResponse|Application
     {
         $checkId = ExtraItem::where('id', $id)->count();
         if ($checkId == 0) {
             return redirect()->back();
         }
-
         $extraItem = ExtraItem::where('id', $id)->first();
         return view('admin.page.extra_items.edit', compact('extraItem'));
     }
 
-    public function update(UpdateExtaItemsRequest $request, $id)
-    {
+  /**
+   * @param UpdateExtaItemsRequest $request
+   * @param $id
+   * @return mixed
+   */
+  public function update(UpdateExtaItemsRequest $request, $id): mixed
+  {
 
         $FoodItem = ExtraItem::findOrFail($id);
 
@@ -77,8 +100,13 @@ class ExtraFoodItemController extends Controller
         return redirect(route('admin.extra-items.index'))->withSuccess('Extra Item Updated Successfully', 500);
     }
 
-    public function destroy(Request $request, $id)
-    {
+  /**
+   * @param Request $request
+   * @param $id
+   * @return string
+   */
+  public function destroy(Request $request, $id): string
+  {
         try {
             $user_id = $request->user_id;
             ExtraItem::findOrFail($id)->delete();

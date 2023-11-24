@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class NewPasswordController extends Controller
@@ -22,11 +23,12 @@ class NewPasswordController extends Controller
         return view('admin.auth.reset-password', ['request' => $request]);
     }
 
-    /**
-     * Handle an incoming new password request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+  /**
+   * Handle an incoming new password request.
+   *
+   * @param Request $request
+   * @return RedirectResponse
+   */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([

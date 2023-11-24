@@ -8,33 +8,40 @@ use App\Http\Requests\Admin\Gallery\StoreGalleryRequest;
 use App\Http\Requests\Admin\Gallery\UpdateGalleryRequest;
 use App\Models\Admin\Gallery;
 use File;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as ResizeImage;
 
 class GalleryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+  /**
+   * Display a listing of the resource.
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+    public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('admin.page.gallery.index')->with('gallery', Gallery::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+  /**
+   * Show the form for creating a new resource.
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+    public function create(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('admin.page.gallery.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreGalleryRequest $request)
+  /**
+   * Store a newly created resource in storage.
+   * @param StoreGalleryRequest $request
+   * @return RedirectResponse
+   */
+    public function store(StoreGalleryRequest $request): RedirectResponse
     {
-        // dd($request->all());
         if ($request->hasFile('gallery_image') && $request->file('gallery_image')->isValid()) {
             $gallery_image = $request->file('gallery_image');
             $galleryImage = time() . '-' . $gallery_image->getClientOriginalName();
@@ -43,7 +50,6 @@ class GalleryController extends Controller
         }
         Gallery::insert(['name' => $request->image_title, 'image' => $galleryImage, 'image_postion' => (int) $request->image_postion, 'status' => ($request->status == '1') ? 1 : 0, 'created_at' => now(), 'updated_at' => now()]);
         notyf()->duration(2000)->addSuccess('Gallery Image Created Successfully.');
-
         return redirect()->route('admin.manage-gallery.index');
 
     }
@@ -56,19 +62,25 @@ class GalleryController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+  /**
+   * Show the form for editing the specified resource.
+   * @param string $id
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+    public function edit(string $id): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('admin.page.gallery.edit')->with('gallery', Gallery::findOrFail($id));
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateGalleryRequest $request, string $id, Gallery $gallery)
+  /**
+   * Update the specified resource in storage.
+   * @param UpdateGalleryRequest $request
+   * @param string $id
+   * @param Gallery $gallery
+   * @return RedirectResponse
+   */
+    public function update(UpdateGalleryRequest $request, string $id, Gallery $gallery): RedirectResponse
     {
         $Gallery = $gallery::findOrFail($id);
         if ($request->hasFile('gallery_image') && $request->file('gallery_image')->isValid()) {
@@ -85,14 +97,16 @@ class GalleryController extends Controller
         return redirect()->route('admin.manage-gallery.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id, Gallery $gallery)
+  /**
+   * Remove the specified resource from storage.
+   * @param string $id
+   * @param Gallery $gallery
+   * @return RedirectResponse
+   */
+    public function destroy(string $id, Gallery $gallery): RedirectResponse
     {
         $gallery::findOrFail($id)->delete();
         notyf()->duration(2000)->addSuccess('Gallery Image Deleted Successfully.');
-
         return redirect()->route('admin.manage-gallery.index');
     }
 

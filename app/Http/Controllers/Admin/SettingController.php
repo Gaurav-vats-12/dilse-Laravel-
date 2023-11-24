@@ -15,7 +15,10 @@ use Intervention\Image\Facades\Image as ResizeImage;
 
 class SettingController extends Controller
 {
-    public function genralsetting(): View|\Illuminate\Foundation\Application|Factory|Application
+  /**
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+  public function genralsetting(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('admin.page.setting.genralsetting');
 

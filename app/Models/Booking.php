@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static create(array $bookingData)
+ * @method static count()
  */
 class Booking extends Model
 {

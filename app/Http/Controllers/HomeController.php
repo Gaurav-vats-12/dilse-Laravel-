@@ -18,7 +18,6 @@ class HomeController extends Controller
         $banner = Banner::where(['banner_type' => 'home'])->where('status', 'active')->get();
         $FoodItem = FoodItem::where('extra_items', 0)->where('featured', 1)->where('status', 1)->limit(3)->get();
         $Testimonial = Testimonial::where('status', 'active')->get();
-
         return view('Home', compact('banner', 'Testimonial', 'FoodItem'));
     }
 

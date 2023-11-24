@@ -19,9 +19,10 @@ use Intervention\Image\Facades\Image as ResizeImage;
 
 class TestimonialsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+  /**
+   * Display a listing of the resource.
+   * @return View|ApplicationAlias|Factory|Application
+   */
     public function index(): View | ApplicationAlias | Factory | Application
     {
         $Testimonial = Testimonial::orderByDesc('id')->get();
@@ -65,18 +66,23 @@ class TestimonialsController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+  /**
+   * Show the form for editing the specified resource.
+   * @param string $id
+   * @return View|ApplicationAlias|Factory|Application
+   */
+    public function edit(string $id): View|ApplicationAlias|Factory|Application
     {
         $Testimonial = Testimonial::findOrFail($id);
         return view('admin.page.testimonial.edit', compact('Testimonial'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+  /**
+   * Update the specified resource in storage.
+   * @param UpdateTestimonialRequest $request
+   * @param string $id
+   * @return RedirectResponse
+   */
     public function update(UpdateTestimonialRequest $request, string $id): RedirectResponse
     {
         $Testimonial = Testimonial::findOrFail($id);
@@ -95,9 +101,11 @@ class TestimonialsController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+  /**
+   * Remove the specified resource from storage.
+   * @param string $id
+   * @return RedirectResponse
+   */
     public function destroy(string $id): RedirectResponse
     {
         $Testimonial = Testimonial::findOrFail($id)->delete();

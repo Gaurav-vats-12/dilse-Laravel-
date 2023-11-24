@@ -7,14 +7,24 @@ use App\Models\Admin\Menu;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Session;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class MenuController extends Controller
 {
-    public function menu(Request $request, $slug = '')
-    {
+  /**
+   * @param Request $request
+   * @param string $slug
+   * @return View|Application|Factory|JsonResponse|string|\Illuminate\Contracts\Foundation\Application
+   * @throws ContainerExceptionInterface
+   * @throws NotFoundExceptionInterface
+   */
+  public function menu(Request $request, string $slug = ''): View|Application|Factory|\Illuminate\Http\JsonResponse|string|\Illuminate\Contracts\Foundation\Application
+  {
         $order_type = session()->get('order_type');
         if ($request->ajax()) {
             $slug = $request->slug;

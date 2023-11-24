@@ -27,10 +27,11 @@ class RegisteredUserController extends Controller
         return view('user.auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     */
+  /**
+   * Handle an incoming registration request.
+   * @param Request $request
+   * @return RedirectResponse
+   */
     public function store(Request $request): RedirectResponse
     {
             $request->validate([

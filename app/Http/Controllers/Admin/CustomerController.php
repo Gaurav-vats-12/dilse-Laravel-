@@ -4,22 +4,40 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Users\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
-    public function index()
+  /**
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+  public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         $user = User::orderBy('name')->get();
         return view('admin.page.customer.index', ['user' => $user]);
     }
-    public function show(string $id)
+
+  /**
+   * @param string $id
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+  public function show(string $id): View|\Illuminate\Foundation\Application|Factory|Application
     {
 
         return view('admin.page.customer.view')->with('user', User::findOrFail($id));
     }
-    public function control(Request $request, string $id)
+
+  /**
+   * @param Request $request
+   * @param string $id
+   * @return RedirectResponse
+   */
+  public function control(Request $request, string $id): RedirectResponse
     {
         $User = User::findOrFail($id);
         $staus = $User->status;

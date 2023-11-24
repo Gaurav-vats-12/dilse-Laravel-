@@ -4,6 +4,8 @@ namespace App\Modules\Users\Http\Controllers;
 
 use App\Modules\Users\Http\Requests\ProfileUpdateRequest;
 use App\Modules\Users\Models\User;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,9 +14,11 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+  /**
+   * Display the user's profile form.
+   * @param Request $request
+   * @return View
+   */
     public function edit(Request $request): View
     {
         return view('user.profile.edit', [
@@ -22,15 +26,13 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
+  /**
+   * Update the user's profile information.
+   * @param ProfileUpdateRequest $request
+   * @return RedirectResponse
+   */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-
-
-
-
         $user = Auth::guard('user')->user();
         $user->name = $request->name;
         $user->phone = $request->phone;
@@ -39,9 +41,11 @@ class ProfileController extends Controller
         return redirect()->route('user.profile.edit');
     }
 
-    /**
-     * Delete the user's account.
-     */
+  /**
+   * Delete the user's account.
+   * @param Request $request
+   * @return RedirectResponse
+   */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
@@ -49,20 +53,18 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user('user');
-
         Auth::guard('user')->logout();
-
         $user->delete();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
         return Redirect::to('/user');
     }
-    public function confirmPass(){
-        //return view('user.update-password-form');
-        return view('user.profile.partials.update-password-form');
 
-
+  /**
+   * @return \Illuminate\Contracts\View\View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+   */
+  public function confirmPass(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    {
+      return view('user.profile.partials.update-password-form');
     }
 }
