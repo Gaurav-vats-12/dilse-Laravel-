@@ -8,7 +8,7 @@
                 <a href="tel:416-532-4141,416-534-6344">
                   <div class="contact_info_txt">
                     <div class="contact_info_img">
-                    <img src="{{asset('frontend/img/phone-o1.png') }}" alt=""/>
+                    <img src="{{asset('frontend/img/phone-o1.png') }}" alt="phone-o1.png"/>
                     </div>
                     <p>{{ setting('phone') != null ? setting('phone') : '' }}</p>
                   </div>
@@ -18,7 +18,7 @@
               <a href="mailto:{{ setting('site_email') != null ? setting('site_email') : '' }}">
                                 <div class="contact_info_txt">
                                     <div class="contact_info_img">
-                                        <img src="{{asset('frontend/img/mail.png') }}" alt=""/>
+                                        <img src="{{asset('frontend/img/mail.png') }}" alt="mail.png"/>
                                     </div>
                                     <p>{{ setting('site_email') != null ? setting('site_email') : '' }}</p>
                                 </div>
@@ -35,7 +35,7 @@
         <div class="btm_header_flx">
 
           <div class="site_logo">
-            <a href="{{ url('/')}}"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/white-logo.svg')  }}"  alt=""> </a>
+            <a href="{{ url('/')}}"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/white-logo.svg')  }}"  alt="white-logo.svg"> </a>
           </div>
           <div class="menu_left menu_right">
             <ul>
@@ -80,7 +80,7 @@
                             <a href="mailto:{{ setting('site_email') != null ? setting('site_email') : '' }}" style="padding: 0;">
                                 <div class="contact_info_txt">
                                     <div class="contact_info_img">
-                                        <img src="{{asset('frontend/img/mail.png') }}" alt=""/>
+                                        <img src="{{asset('frontend/img/mail.png') }}" alt="mail.png"/>
                                     </div>
                                     <p style="color: #f8d385;">{{ setting('site_email') != null ? setting('site_email') : '' }}</p>
                                 </div>

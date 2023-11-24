@@ -186,7 +186,7 @@
                         <li>
                             <div class="our_servics_crd">
                                 <div class="our_servics_crd_img">
-                                    <img src="{{ asset('frontend/img/services-1.png') }}" alt="" />
+                                    <img src="{{ asset('frontend/img/services-1.png') }}" alt="services-1.png" />
                                 </div>
                                 <div class="our_servics_txt">
                                     <h2>Dine-in</h2>
@@ -201,7 +201,7 @@
                         <li>
                             <div class="our_servics_crd">
                                 <div class="our_servics_crd_img">
-                                    <img src="{{ asset('frontend/img/take-out.png') }}" alt="" />
+                                    <img src="{{ asset('frontend/img/take-out.png') }}" alt="take-out.png" />
                                 </div>
                                 <div class="our_servics_txt">
                                     <h2>Take Out</h2>
@@ -217,7 +217,7 @@
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-4 mb-xl-0">
                     <div class="our_servics_img">
-                        <img src="{{ asset('frontend/img/services-img.png') }}" alt="" />
+                        <img src="{{ asset('frontend/img/services-img.png') }}" alt="services-img.png" />
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-3">
@@ -225,7 +225,7 @@
                         <li>
                             <div class="our_servics_crd">
                                 <div class="our_servics_crd_img">
-                                    <img src="{{ asset('frontend/img/Delivery-1.png') }}" alt="" />
+                                    <img src="{{ asset('frontend/img/Delivery-1.png') }}" alt="Delivery-1.png" />
                                 </div>
                                 <div class="our_servics_txt">
                                     <h2>Delivery</h2>
@@ -240,7 +240,7 @@
                         <li>
                             <div class="our_servics_crd">
                                 <div class="our_servics_crd_img">
-                                    <img src="{{ asset('frontend/img/Catering.png') }}" alt="" />
+                                    <img src="{{ asset('frontend/img/Catering.png') }}" alt="Catering.png" />
                                 </div>
                                 <div class="our_servics_txt">
                                     <h2>Catering</h2>
