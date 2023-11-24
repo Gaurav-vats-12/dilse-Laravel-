@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\Blog\{StoreBannerRequest,UpdateBlogRequest};
 use App\Http\Controllers\Controller;
@@ -13,27 +17,31 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+  /**
+   * Display a listing of the resource.
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+    public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         $blog = Blog::orderBy('id', 'DESC')->get();
         return view('admin.page.blog.index',compact('blog'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+  /**
+   * Show the form for creating a new resource.
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+    public function create(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('admin.page.blog.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreBannerRequest $request)
+  /**
+   * Store a newly created resource in storage.
+   * @param StoreBannerRequest $request
+   * @return RedirectResponse
+   */
+    public function store(StoreBannerRequest $request): RedirectResponse
     {
         $author = Auth::guard('admin')->check() ? Auth::guard('admin')->user()->name : '';
         if($request->hasFile(trim('blog_image'))){
@@ -50,30 +58,35 @@ class BlogController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+  /**
+   * Display the specified resource.
+   * @param string $id
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+    public function show(string $id): View|\Illuminate\Foundation\Application|Factory|Application
     {
         $blog = Blog::findOrFail($id);
-
         return view('admin.page.blog.view',compact('blog'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+  /**
+   * Show the form for editing the specified resource.
+   * @param string $id
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+    public function edit(string $id): View|\Illuminate\Foundation\Application|Factory|Application
     {
         $blog = Blog::findOrFail($id);
-
         return view('admin.page.blog.edit',compact('blog'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateBlogRequest $request, string $id)
+  /**
+   * Update the specified resource in storage.
+   * @param UpdateBlogRequest $request
+   * @param string $id
+   * @return RedirectResponse
+   */
+    public function update(UpdateBlogRequest $request, string $id): RedirectResponse
     {
         $blog = Blog::findOrFail($id);
         if($request->hasFile(trim('blog_image'))){
@@ -95,15 +108,16 @@ class BlogController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+  /**
+   * Remove the specified resource from storage.
+   * @param string $id
+   * @return RedirectResponse
+   */
+    public function destroy(string $id): RedirectResponse
     {
         Blog::findOrFail($id)->delete();
         notyf()->duration(2000) ->addSuccess('Blog Deleted Successfully.');
         return redirect()->route('admin.blog.index');
-
     }
 
 

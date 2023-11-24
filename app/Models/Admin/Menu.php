@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static orderByDesc(string $string)
  * @method static where(string $string, string $string1)
  * @method static pluck(string $string, string $string1)
+ * @method static insert(array $array)
  */
 class Menu extends Model
 {

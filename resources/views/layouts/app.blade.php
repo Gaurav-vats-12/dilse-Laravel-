@@ -7,25 +7,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="site_currency" content="{{setting('site_currency')}}">
     <meta name="tax" content="{{setting('tax')}}">
-      <meta name="description" content="Dils Se ">
-
+    <meta name="description" content="{{ setting('site_title', 'Dilse') }}">
   <!-- Facebook Meta Tags -->
-  <meta property="og:url" content="https://dilse.exoticaitsolutions.com/">
+  <meta property="og:url" content="{{ url('/') }}">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Dil Se | Home">
-  <meta property="og:description" content="Dils Se ">
-  <meta property="og:image" content="https://dilse.exoticaitsolutions.com/frontend/img/footer-logo.svg">
-
+  <meta property="og:title" content="{{ setting('site_title', 'Dilse') }}">
+  <meta property="og:description" content="{{ setting('site_title', 'Dilse') }}">
+  <meta property="og:image" content="{{ setting('logo') != null ? url('/storage/site/logo/' . setting('logo') . ''): asset('frontend/img/white-logo.svg') }}">
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:domain" content="dilse.exoticaitsolutions.com">
-  <meta property="twitter:url" content="https://dilse.exoticaitsolutions.com/">
-  <meta name="twitter:title" content="Dil Se | Home">
-  <meta name="twitter:description" content="Dils Se ">
-  <meta name="twitter:image" content="https://dilse.exoticaitsolutions.com/frontend/img/footer-logo.svg">
-
-  <!-- Meta Tags Generated via https://www.opengraph.xyz -->
-        
+  <meta property="twitter:domain" content="{{ url('/') }}">
+  <meta property="twitter:url" content="{{ url('/') }}">
+  <meta name="twitter:title" content="{{ setting('site_title', 'Dilse') }}">
+  <meta name="twitter:description" content="{{ setting('site_title', 'Dilse') }}">
+  <meta name="twitter:image" content="{{ setting('logo') != null ? url('/storage/site/logo/' . setting('logo') . ''): asset('frontend/img/white-logo.svg') }}">        
     @yield('meta')
         <title>{{ setting('site_title', 'Dilse') }} | @yield('title')</title>
         <link rel="icon" type="image/x-icon" href="{{ setting('favicon') != null ? url('/storage/site/Favicon/'.setting('favicon').'') : url('frontend/img/fav.png') }}">

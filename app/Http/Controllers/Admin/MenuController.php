@@ -13,10 +13,10 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return View|\Illuminate\Foundation\Application|Factory|Application
-     */
+  /**
+   * Display a listing of the resource.
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
     public function index(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         $Menu    = Menu::orderByDesc('id')->get();

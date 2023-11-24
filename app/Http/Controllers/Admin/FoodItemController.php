@@ -140,7 +140,12 @@ class FoodItemController extends Controller
 
     }
 
-    public function destroy(Request $request, $id)
+  /**
+   * @param Request $request
+   * @param $id
+   * @return RedirectResponse
+   */
+  public function destroy(Request $request, $id): RedirectResponse
     {
         FoodItem::findOrFail($id)->delete();
         notyf()->duration(2000)->addSuccess('Food Item  Deleted Successfully.');

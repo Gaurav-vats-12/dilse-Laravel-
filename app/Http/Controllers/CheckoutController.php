@@ -46,7 +46,11 @@ class CheckoutController extends Controller
         }
     }
 
-    public function create(StoreCheckoutRequest $request): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
+  /**
+   * @param StoreCheckoutRequest $request
+   * @return \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
+   */
+  public function create(StoreCheckoutRequest $request): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
     {
         $payment = new PaymentFormServices();
        $resPonse = $payment->PaymentForm($request);

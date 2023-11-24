@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static sortDesc()
  * @method static insertGetId(array $array)
  * @method static findOrFail(string $id)
+ * @method static orderByDesc(string $string)
  */
 class Testimonial extends Model
 {

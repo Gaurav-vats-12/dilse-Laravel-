@@ -7,6 +7,7 @@ use App\Models\Admin\Setting\Referral;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use JetBrains\PhpStorm\NoReturn;
 
@@ -20,7 +21,13 @@ class ReferralSettingController extends Controller
        return view('admin.page.setting.reffralsetting');
     }
 
-    public function update(Request $request  ,$id){
+  /**
+   * @param Request $request
+   * @param $id
+   * @return RedirectResponse
+   */
+  public function update(Request $request  , $id): RedirectResponse
+    {
         Referral::findOrFail($id)->update(array('referral_status' => $request->referral_status ?? 0,
             'referral_points' => $request->referral_points ?? 0,
             'referral_privacy_policy' => $request->referral_privacy_policy,

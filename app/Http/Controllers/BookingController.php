@@ -17,7 +17,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use JetBrains\PhpStorm\NoReturn;
-use Notification;
 
 class BookingController extends Controller
 {
@@ -59,16 +58,4 @@ class BookingController extends Controller
     {
         return view(view: 'admin.page.booking.index')->with('booking', value: Booking::latest()->get());
     }
-
-    /**
-     * @param Request $request
-     * @return void
-     */
-//    #[NoReturn] public function updateStatus(Request $request): void
-//    {
-//        $booking_email = Booking::findOrFail($request->booking_id)->email;
-//
-//        dd('asdsadsa', $booking);
-//    }
-
 }

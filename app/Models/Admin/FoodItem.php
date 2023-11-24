@@ -15,6 +15,8 @@ use Illuminate\Support\Str;
  * @method static whereIn(string $string, array $productIds)
  * @method static create(array $array)
  * @method static where(string $string, $id)
+ * @method static findOrFail($product_id)
+ * @method static count()
  */
 class FoodItem extends Model
 {

@@ -8,7 +8,10 @@ use http\Url;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -23,9 +26,14 @@ class AuthenticatedSessionController extends Controller
         return view('user.auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
+  /**
+   * Handle an incoming authentication request.
+   * @param LoginRequest $request
+   * @return RedirectResponse
+   * @throws ValidationException
+   * @throws ContainerExceptionInterface
+   * @throws NotFoundExceptionInterface
+   */
     public function store(LoginRequest $request): RedirectResponse
     {
 
@@ -33,22 +41,21 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         session()->put('url_session',url()->previous());
         $login_redirct = session()->get('login_redirct');
-        // dd($login_redirct);
         if($login_redirct){
             return redirect()->intended($login_redirct);
         }
         return redirect()->intended('/');
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
+  /**
+   * Destroy an authenticated session.
+   * @param Request $request
+   * @return RedirectResponse
+   */
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('user')->logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
         return redirect()->route('user.dashboard');
     }
