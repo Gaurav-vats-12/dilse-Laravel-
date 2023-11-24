@@ -108,7 +108,6 @@ jQuery(document).ready(function () {
             // Filter non-digits from input value.
             this.value = this.value.replace(/\D/g, '');
         }
-
     });
     /**
  *     Contact us Form Submission  iN ajax   (Home Page ,Contact Us Page)
