@@ -6,6 +6,8 @@ use App\Models\Admin\Banner;
 use App\Models\Admin\FoodItem;
 use App\Models\Admin\Gallery;
 use App\Models\Admin\Testimonial;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -13,7 +15,10 @@ use JetBrains\PhpStorm\NoReturn;
 
 class HomeController extends Controller
 {
-    public function Homepage()
+  /**
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+  public function Homepage(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         $banner = Banner::where(['banner_type' => 'home'])->where('status', 'active')->get();
         $FoodItem = FoodItem::where('extra_items', 0)->where('featured', 1)->where('status', 1)->limit(3)->get();
@@ -21,23 +26,35 @@ class HomeController extends Controller
         return view('Home', compact('banner', 'Testimonial', 'FoodItem'));
     }
 
-    public function aboutus()
+  /**
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+  public function aboutus(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('Pages.about');
     }
-    public function gallery()
+
+  /**
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+  public function gallery(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('Pages.gallery')->with('gallery', Gallery::where('status', 1)->orderBy('image_postion', 'desc')->get());
     }
 
-    public function giftCard()
+  /**
+   * @return View|\Illuminate\Foundation\Application|Factory|Application
+   */
+  public function giftCard(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('Pages.gift-card');
     }
 
-    public function sendEmail()
+  /**
+   * @return string
+   */
+  public function sendEmail(): string
     {
-
         $recipientEmail = 'bheemexoticait@gmail.com';
         $subject = 'Subject of the Email';
         $message = 'This is the content of the email.';
@@ -46,12 +63,6 @@ class HomeController extends Controller
             $mail->to($recipientEmail);
             $mail->subject($subject);
         });
-
         return "Email sent successfully!";
-    }
-
-    #[NoReturn] public function update_location(Request $request): void
-    {
-        dd($request->all());
     }
 }

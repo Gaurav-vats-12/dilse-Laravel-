@@ -17,7 +17,10 @@ class Payments extends Model
     protected $guarded = [];
 
 
-    public function order(): BelongsToAlias
+  /**
+   * @return BelongsToAlias
+   */
+  public function order(): BelongsToAlias
     {
         return $this->belongsTo(Order::class);
     }

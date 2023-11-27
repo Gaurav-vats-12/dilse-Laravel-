@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @method static where(string $string, mixed $country_uid)
+ * @method static findOrFail($billing_state)
  */
 class State extends Model
 {

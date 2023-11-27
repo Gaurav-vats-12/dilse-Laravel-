@@ -172,7 +172,7 @@ jQuery(document).ready(function () {
 
     jQuery(document).on("change", ".delivery", async function (event) {
         jQuery('#shipping_charge').val(parseFloat(jQuery('input[name="delivery_type"]:checked').val()));
-        updateTotals(parseFloat(jQuery(`input[name="delivery_type"]:checked`).val()));
+        await updateTotals(parseFloat(jQuery(`input[name="delivery_type"]:checked`).val()));
     });
 
 

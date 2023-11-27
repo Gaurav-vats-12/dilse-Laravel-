@@ -22,20 +22,29 @@ class FoodItem extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
+    protected array $dates = ['deleted_at'];
 
 
-    public function menu(): BelongsTo
+  /**
+   * @return BelongsTo
+   */
+  public function menu(): BelongsTo
     {
         return $this->belongsTo(Menu::class, 'menu_id', 'id');
     }
 
-    public function ExtraFoodItems(): HasMany
+  /**
+   * @return HasMany
+   */
+  public function ExtraFoodItems(): HasMany
     {
         return $this->hasMany(ExtraFoodItems::class, 'food_item_id', 'id');
     }
 
-    public function attributes(): HasMany
+  /**
+   * @return HasMany
+   */
+  public function attributes(): HasMany
     {
         return $this->hasMany(FoodAttribute::class);
     }

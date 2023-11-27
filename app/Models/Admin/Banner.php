@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static get()
  * @method static insertGetId(array $array)
  * @method static findOrFail(string $id)
+ * @method static where(string[] $array)
  */
 class Banner extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
+    protected array $dates = ['deleted_at'];
 
 
 }

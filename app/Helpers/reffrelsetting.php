@@ -4,13 +4,14 @@ use App\Models\Admin\Setting\Referral;
 
 if (!function_exists('reffrelsetting')) {
 
-    /**
-     * description
-     *
-     * @return void
-     */
+  /**
+   * description
+   *
+   * @param $key
+   * @return void
+   */
     function reffrelsetting($key)
     {
-        return (Referral::first()) ? Referral::first()->$key : null ;
+        return !Referral::first() ? null : Referral::first()->$key;
     }
 }

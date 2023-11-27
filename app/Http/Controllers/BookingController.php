@@ -15,9 +15,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
-use JetBrains\PhpStorm\NoReturn;
-
 class BookingController extends Controller
 {
     /**
@@ -32,7 +31,7 @@ class BookingController extends Controller
      * @param StoreBookingTable $request
      * @return RedirectResponse
      */
-    public function submitBookATable(StoreBookingTable $request): \Illuminate\Http\RedirectResponse
+    public function submitBookATable(StoreBookingTable $request): RedirectResponse
     {
         $bookingData = [
             'name' => $request->input('name'),
@@ -46,7 +45,7 @@ class BookingController extends Controller
         Booking::create($bookingData);
         Mail::to($request->email)->send(new BookingNotification($bookingData));
         Notification::send(Admin::all(), new BookingNotificationToAdmin(['type' => 'New Booking', 'body' => 'A new booking has been made for ' . $request->date . ' at ' . $request->time . '. The following information is available for the booking:.Name: ' . $request->name . '.Email: ' . $request->email . '.Phone number: ' . $request->phone . '.Notes: ' . $request->comments . ' Please review the booking', 'thanks' => 'Thank you', 'notification_url' => url('/admin/booking'), 'notification_uuid' => Str::random(10), 'notification_date' => date('Y-m-d H:i:s')]));
-        notyf()->duration(2000)->addSuccess('You booking requested has been sent! We will update you shortly');
+        notyf()->duration(2000)->addSuccess(message: 'You booking requested has been sent! We will update you shortly');
         return redirect()->back();
     }
 

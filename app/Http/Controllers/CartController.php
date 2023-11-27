@@ -8,7 +8,7 @@ use App\Models\Admin\Coupon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth as AuthAlias;
+use Illuminate\Support\Facades\Auth;
 use App\Services\CouponService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -26,7 +26,7 @@ class CartController extends Controller
      */
     public function viewcart()
     {
-        if(AuthAlias::guard('user')->check()){
+        if(Auth::guard('user')->check()){
             session()->put('login_redirct',[]);
         }else{
             session()->put('login_redirct', route('cart.view'));
@@ -237,7 +237,7 @@ class CartController extends Controller
    */
   protected function Coupon_functionalty($code , $amount, $coupon_type){
         $deviceName = null; $ipaddress  = null; $skipFields =  [];
-        $userId = !AuthAlias::guard('user')->check() ? '' : AuthAlias::guard('user')->id();
+        $userId = !Auth::guard('user')->check() ? '' : Auth::guard('user')->id();
        $vendorId = $userId;
         if($coupon_type ==='coupon'){
             $coupon = CouponService::validity($code, $amount, $userId, $deviceName, $ipaddress,  $vendorId ,$skipFields);

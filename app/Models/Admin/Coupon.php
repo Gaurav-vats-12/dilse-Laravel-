@@ -22,14 +22,14 @@ class Coupon extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
+    protected array $dates = ['deleted_at'];
 
 
-
-        /**
-     * coupon validity
-     */
-    public function getValidityAttribute()
+  /**
+   * coupon validity
+   * @return string
+   */
+    public function getValidityAttribute(): string
     {
         if ($this->attributes['end_date']) {
             if ($this->attributes['end_date'] < Carbon::today()->toDateTimeString()) {
@@ -53,12 +53,20 @@ class Coupon extends Model
         return $this->hasMany(CouponHistory::class, "coupon_id", "id");
     }
 
-    public static function paginate(int $limit = 10, int $page = 1): mixed
+  /**
+   * @param int $limit
+   * @param int $page
+   * @return mixed
+   */
+  public static function paginate(int $limit = 10, int $page = 1): mixed
     {
         return self::paginate($limit, "*", "page", $page);
     }
 
-    public function user(): BelongsTo
+  /**
+   * @return BelongsTo
+   */
+  public function user(): BelongsTo
     {
         return $this->belongsTo(related: User::class);
     }

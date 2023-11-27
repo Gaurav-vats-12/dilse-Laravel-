@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FoodItemController as FoodItemControllerAlias;
 use App\Http\Controllers\Admin\ExtraFoodItemController as ExtraFoodItemControllerAlias;
 
-Route::prefix('admin')->name('admin.')->group(callback: function(){
+Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['web', 'admin.auth', 'admin.verified','addExpires'])->group(callback: function(){
 //      Admin Dashboard
         Route::get('/dashboard', [AdminControllerAlias::class, 'dashboard'])->name('dashboard');
@@ -41,9 +41,6 @@ Route::prefix('admin')->name('admin.')->group(callback: function(){
         Route::resource('blog', BlogControllerAlias::class);
 
         });
-
-
-
 
         Route::resource('manage-pages', PageManagementControllerAlias::class);
     // Manage Subscriber

@@ -31,7 +31,7 @@ class UserServiceProvider extends ServiceProvider
     /**
      * @see https://laracasts.com/discuss/channels/general-discussion/register-middleware-via-service-provider
      */
-    protected function registerMiddleware()
+    protected function registerMiddleware(): void
     {
         $router = $this->app['router'];
         $router->aliasMiddleware('user.auth', Http\Middleware\RedirectIfNotUser::class);
@@ -40,7 +40,10 @@ class UserServiceProvider extends ServiceProvider
         $router->aliasMiddleware('user.password.confirm', Http\Middleware\RequireUserPassword::class);
     }
 
-    protected function injectAuthConfiguration()
+  /**
+   * @return void
+   */
+  protected function injectAuthConfiguration(): void
     {
         $this->app['config']->set('auth.guards.user', [
             'driver' => 'session',

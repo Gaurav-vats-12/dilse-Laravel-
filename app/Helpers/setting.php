@@ -12,6 +12,6 @@ if (!function_exists('setting')) {
      */
     function setting($key)
     {
-        return (Setting::first()) ? Setting::first()->$key : null ;
+        return !Setting::first() ? null : Setting::first()->$key;
     }
 }

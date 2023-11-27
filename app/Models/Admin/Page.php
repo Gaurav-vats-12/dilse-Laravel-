@@ -14,5 +14,5 @@ class Page extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
+    protected array $dates = ['deleted_at'];
 }

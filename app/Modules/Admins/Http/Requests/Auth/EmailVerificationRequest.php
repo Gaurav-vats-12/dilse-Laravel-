@@ -16,7 +16,7 @@ class EmailVerificationRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         if (! hash_equals((string) $this->user('admin')->getKey(), (string) $this->route('id'))) {
             return false;
@@ -34,7 +34,7 @@ class EmailVerificationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             //
@@ -46,7 +46,7 @@ class EmailVerificationRequest extends FormRequest
      *
      * @return void
      */
-    public function fulfill()
+    public function fulfill(): void
     {
         if (! $this->user('admin')->hasVerifiedEmail()) {
             $this->user('admin')->markEmailAsVerified();
@@ -58,9 +58,8 @@ class EmailVerificationRequest extends FormRequest
     /**
      * Configure the validator instance.
      *
-     * @return void
      */
-    public function withValidator(Validator $validator)
+    public function withValidator(Validator $validator): Validator
     {
         return $validator;
     }

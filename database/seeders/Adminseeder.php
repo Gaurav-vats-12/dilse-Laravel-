@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Modules\Admins\Models\Admin;
+use Illuminate\Support\Str;
 
 
 class Adminseeder extends Seeder
@@ -17,10 +18,13 @@ class Adminseeder extends Seeder
         $this->createAdmins();
     }
 
-    private function createAdmins()
+  /**
+   * @return void
+   */
+  private function createAdmins(): void
     {
         Admin::create([
-        'admins_uuid'=>\Str::random(10),
+        'admins_uuid'=>Str::random(10),
         'name'  => 'Superadmin',
         'email' =>'admin@dlse.com',
         'password' =>bcrypt('cryPOtiver'),

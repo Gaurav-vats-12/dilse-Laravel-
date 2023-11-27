@@ -5,6 +5,7 @@ namespace App\Mail\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -21,9 +22,10 @@ class EmailOrderConfirmation extends Mailable
         $this->orderMail = $orderMail;
     }
 
-    /**
-     * Get the message envelope.
-     */
+  /**
+   * Get the message envelope.
+   * @return Envelope
+   */
     public function envelope(): Envelope
     {
         return new Envelope(
@@ -31,9 +33,10 @@ class EmailOrderConfirmation extends Mailable
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
+  /**
+   * Get the message content definition.
+   * @return Content
+   */
     public function content(): Content
     {
         return new Content(
@@ -41,7 +44,10 @@ class EmailOrderConfirmation extends Mailable
         );
     }
 
-    public function build()
+  /**
+   * @return EmailOrderConfirmation
+   */
+  public function build(): EmailOrderConfirmation
     {
         return $this->from('noreply@mailsender.ca')
             ->subject('Order Cancelled Confirmation')
@@ -51,7 +57,7 @@ class EmailOrderConfirmation extends Mailable
     /**
      * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return array<int, Attachment>
      */
     public function attachments(): array
     {

@@ -73,14 +73,15 @@ class CouponService
   public static function remove($couponId): bool
     {
         $coupon = Coupon::findOrFail($couponId);
+      if (isset($coupon)) {
         if ($coupon) {
             CouponHistory::query()
                 ->where("coupon_id", $couponId)
                 ->delete();
             $coupon->delete();
-        } else {
         }
-        return true;
+      }
+      return true;
     }
 
     /**
@@ -126,7 +127,6 @@ class CouponService
 
 
         //03. Check coupon start date validity
-        // dd(Carbon::today()->toDateTimeString());
         if ($coupon->start_date > Carbon::today()->toDateString()) {
             return
                 [

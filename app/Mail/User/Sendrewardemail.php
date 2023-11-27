@@ -22,9 +22,10 @@ class Sendrewardemail extends Mailable
         $this->user_data = $user_data;
     }
 
-    /**
-     * Get the message envelope.
-     */
+  /**
+   * Get the message envelope.
+   * @return Envelope
+   */
     public function envelope(): Envelope
     {
         return new Envelope(
@@ -32,9 +33,10 @@ class Sendrewardemail extends Mailable
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
+  /**
+   * Get the message content definition.
+   * @return Content
+   */
     public function content(): Content
     {
         return new Content(
@@ -53,7 +55,10 @@ class Sendrewardemail extends Mailable
     }
 
 
-    public function build(): Sendrewardemail
+  /**
+   * @return Sendrewardemail
+   */
+  public function build(): Sendrewardemail
     {
         return $this->from('noreply@mailsender.ca')
             ->subject('Referral Reward: Your Special Coupon')

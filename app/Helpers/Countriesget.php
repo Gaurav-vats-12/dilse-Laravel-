@@ -3,17 +3,14 @@ use App\Models\{Country,State,City};
 
 if (!function_exists('Countriesget')) {
 
-    /**
-     * description
-     *
-     * @param
-     * @return
-     */
-    function Countriesget()
+  /**
+   * description
+   *
+   * @return array
+   */
+    function Countriesget(): array
     {
-        $currency =  collect(Country::pluck('name', 'name'))->toArray();
-
-     return $currency;
+      return collect(Country::pluck('name', 'name'))->toArray();
 
     }
 }

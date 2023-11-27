@@ -24,7 +24,12 @@ class MailchimpService
 
     }
 
-    public function subscribeToList($email, $listId): array
+  /**
+   * @param $email
+   * @param $listId
+   * @return array
+   */
+  public function subscribeToList($email, $listId): array
     {
         try {
             $response = $this->client->post("lists/{$listId}/members", [
@@ -39,7 +44,12 @@ class MailchimpService
         }
     }
 
-    public function UnsubscribeToList( $email, $listId)
+  /**
+   * @param $email
+   * @param $listId
+   * @return array|void
+   */
+  public function UnsubscribeToList($email, $listId)
     {
         if (!empty($this->client)) {
             $subscriberHash = md5(strtolower($email));
@@ -54,9 +64,5 @@ class MailchimpService
             }
         }
     }
-
 }
-
-
-
 ?>

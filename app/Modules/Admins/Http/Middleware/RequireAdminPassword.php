@@ -16,14 +16,14 @@ class RequireAdminPassword
     /**
      * The response factory instance.
      *
-     * @var \Illuminate\Contracts\Routing\ResponseFactory
+     * @var ResponseFactory
      */
     protected $responseFactory;
 
     /**
      * The URL generator instance.
      *
-     * @var \Illuminate\Contracts\Routing\UrlGenerator
+     * @var UrlGenerator
      */
     protected $urlGenerator;
 
@@ -36,9 +36,13 @@ class RequireAdminPassword
         $this->urlGenerator = $urlGenerator;
     }
 
-    /**
-     * Handle an incoming request.
-     */
+  /**
+   * Handle an incoming request.
+   * @param Request $request
+   * @param Closure $next
+   * @param string|null $redirectToRoute
+   * @return Response
+   */
     public function handle(Request $request, Closure $next, ?string $redirectToRoute = null): Response
     {
         if ($this->shouldConfirmPassword($request)) {
@@ -56,13 +60,14 @@ class RequireAdminPassword
         return $next($request);
     }
 
-    /**
-     * Determine if the confirmation timeout has expired.
-     */
+  /**
+   * Determine if the confirmation timeout has expired.
+   * @param Request $request
+   * @return bool
+   */
     protected function shouldConfirmPassword(Request $request): bool
     {
         $confirmedAt = time() - $request->session()->get('admin.auth.password_confirmed_at', 0);
-
         return $confirmedAt > config('auth.password_timeout', 10800);
     }
 }
