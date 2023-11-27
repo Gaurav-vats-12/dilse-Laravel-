@@ -1,17 +1,14 @@
 <?php
 
+use App\Models\Admin\Menu as MenuAlias;
+
 if (!function_exists('Menuhelper')) {
 
-    /**
-     * description
-     *
-     * @param
-     * @return
-     */
-    function Menuhelper( )
-    {
-
-        return  \App\Models\Admin\Menu::where('status','active')->get();
-
+  /**
+   * @return mixed
+   */
+  function Menuhelper( ): mixed
+  {
+        return  MenuAlias::where('status','active')->get();
     }
 }

@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static create(array $array)
  * @method static findOrFail(string $id)
  * @method static where(string $string, string $string1)
+ * @method static insert(array[] $attribute)
  */
 class Attributes extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
+    protected array $dates = ['deleted_at'];
 }

@@ -49,6 +49,8 @@ class CheckoutController extends Controller
   /**
    * @param StoreCheckoutRequest $request
    * @return \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
+   * @throws ContainerExceptionInterface
+   * @throws NotFoundExceptionInterface
    */
   public function create(StoreCheckoutRequest $request): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
     {

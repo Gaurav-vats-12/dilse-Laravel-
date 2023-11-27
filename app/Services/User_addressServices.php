@@ -6,8 +6,6 @@ use App\Models\User\UserAddressManage;
 class  User_addressServices{
 
     /**
-     * @param $request
-     * @param $login_User_id
      * @return array{code: int, status: true, message: string}
      */
     public function Change_user_address($request , $login_User_id): array
@@ -30,7 +28,5 @@ class  User_addressServices{
         UserAddressManage::updateOrCreate(['user_id'=>$login_User_id],$user_address );
         return  ['code' => 200 ,'status' =>true, "message"=> 'User Address Updated Successfully'];
     }
-
 }
-
 ?>

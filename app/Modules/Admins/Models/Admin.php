@@ -6,11 +6,15 @@ use App\Modules\Admins\Database\Factories\AdminFactory;
 use App\Modules\Admins\Notifications\Auth\ResetPassword;
 use App\Modules\Admins\Notifications\Auth\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @method static create(array $array)
+ */
 class Admin extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -48,9 +52,9 @@ class Admin extends Authenticatable implements MustVerifyEmail
     /**
      * Create a new factory instance for the model.
      *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory<static>
+     * @return Factory<static>
      */
-    protected static function newFactory()
+    protected static function newFactory(): Factory
     {
         return AdminFactory::new();
     }
@@ -60,7 +64,7 @@ class Admin extends Authenticatable implements MustVerifyEmail
      *
      * @param  string  $token
      */
-    public function sendPasswordResetNotification($token)
+    public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPassword($token));
     }
@@ -68,7 +72,7 @@ class Admin extends Authenticatable implements MustVerifyEmail
     /**
      * Send the email verification notification.
      */
-    public function sendEmailVerificationNotification()
+    public function sendEmailVerificationNotification(): void
     {
         $this->notify(new VerifyEmail());
     }

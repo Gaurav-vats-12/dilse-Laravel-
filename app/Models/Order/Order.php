@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static where(string $string, int|string|null $user_id)
  * @method static orderByDesc(string $string)
  * @method static count()
+ * @method static insertGetId(array $array)
  */
 class Order extends Model
 {

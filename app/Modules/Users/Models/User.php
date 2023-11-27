@@ -9,9 +9,10 @@ use App\Modules\Users\Database\Factories\UserFactory;
 use App\Modules\Users\Notifications\Auth\ResetPassword;
 use App\Modules\Users\Notifications\Auth\VerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasMany as HasManyAlias;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -62,9 +63,9 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Create a new factory instance for the model.
      *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory<static>
+     * @return Factory<static>
      */
-    protected static function newFactory(): \Illuminate\Database\Eloquent\Factories\Factory
+    protected static function newFactory(): Factory
     {
         return UserFactory::new();
     }
@@ -94,24 +95,24 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @return HasMany
      */
-    public function orders(): HasManyAlias
+    public function orders(): HasMany
     {
         return $this->hasMany(OrderAlias::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
 
-    public function addresses(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function addresses(): HasOne
     {
         return $this->hasOne(UserAddressManage::class);
     }
 
     /**
-     * @return HasManyAlias
+     * @return HasMany
      */
-    public function coupons(): HasManyAlias
+    public function coupons(): HasMany
     {
         return $this->hasMany(related: Coupon::class);
     }

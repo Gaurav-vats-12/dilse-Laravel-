@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth as AuthAlias;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Stripe\Charge as ChargeAlias;
 use App\Models\{Country,State};
 use Stripe\Customer as Customeras;
@@ -18,11 +20,15 @@ use Stripe\Stripe;
 
 class PaymentFormServices{
 
-    protected $paymentForm;
-
-    public function PaymentForm($request){
-//        return $request->all();
-        $user_id = !AuthAlias::guard('user')->check() ? null : AuthAlias::guard('user')->id();
+  /**
+   * @param $request
+   * @return array
+   * @throws ContainerExceptionInterface
+   * @throws NotFoundExceptionInterface
+   */
+  public function PaymentForm($request): array
+  {
+       $user_id = !AuthAlias::guard('user')->check() ? null : AuthAlias::guard('user')->id();
         $user_type = !AuthAlias::guard('user')->check() ? 'guest' : 'user';
         if(AuthAlias::guard('user')->check()){
             $user = AuthAlias::guard('user')->user();

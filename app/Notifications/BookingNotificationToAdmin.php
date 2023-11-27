@@ -10,31 +10,36 @@ use Illuminate\Notifications\Notification;
 class BookingNotificationToAdmin extends Notification
 {
     use Queueable;
-    public $BookingNotificationToAdmin;
+
+  public $BookingNotificationToAdmin;
 
 
-    /**
-     * Create a new notification instance.
-     */
+  /**
+   * Create a new notification instance.
+   * @param $BookingNotificationToAdmin
+   */
     public function __construct($BookingNotificationToAdmin)
     {
          $this->BookingNotificationToAdmin = $BookingNotificationToAdmin;
 
     }
 
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @return array<int, string>
-     */
+  /**
+   * Get the notification's delivery channels.
+   *
+   * @param object $notifiable
+   * @return array<int, string>
+   */
     public function via(object $notifiable): array
     {
         return ['database' ,'mail'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     */
+  /**
+   * Get the mail representation of the notification.
+   * @param object $notifiable
+   * @return MailMessage
+   */
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)

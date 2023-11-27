@@ -12,9 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class RedirectIfUser
 {
-    /**
-     * Handle an incoming request.
-     */
+  /**
+   * Handle an incoming request.
+   * @param Request $request
+   * @param Closure $next
+   * @param string $guard
+   * @return Response
+   */
     public function handle(Request $request, Closure $next, string $guard = 'user'): Response
     {
         if (Auth::guard($guard)->check()) {

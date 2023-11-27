@@ -32,7 +32,6 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
         notyf()->duration(2000) ->addSuccess('Login Successfully as a Admin');
-
         return redirect()->intended('/admin/dashboard');
     }
 

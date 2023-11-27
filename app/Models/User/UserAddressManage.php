@@ -17,10 +17,10 @@ class UserAddressManage extends Model
     protected $guarded = [];
 
 
-    /**
-     * @return BelongsTo
-     */
-    public function user(): BelongsToAlias
+  /**
+   * @return BelongsToAlias
+   */
+  public function user(): BelongsToAlias
     {
         return $this->belongsTo(User::class);
     }

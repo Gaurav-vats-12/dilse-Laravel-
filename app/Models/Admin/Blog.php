@@ -13,14 +13,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static where(string $string, string $string1)
  * @method static orderBy(string $string, string $string1)
  * @method static insert(array $array)
+ * @method static whereName($name)
+ * @method static whereSlug(string $param)
  */
 class Blog extends Model
 {
     use HasFactory, SoftDeletes;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
+    protected array $dates = ['deleted_at'];
 
-    protected static function boot()
+  /**
+   * @return void
+   */
+  protected static function boot(): void
     {
         parent::boot();
         static::created(function ($post) {
@@ -28,7 +33,12 @@ class Blog extends Model
             $post->save();
         });
     }
-    private function generateSlug($name)
+
+  /**
+   * @param $name
+   * @return array|string|null
+   */
+  private function generateSlug($name): array|string|null
     {
         if (static::whereSlug($slug = Str::slug($name))->exists()) {
             $max = static::whereName($name)->latest('id')->skip(1)->value('slug');

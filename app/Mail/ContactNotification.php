@@ -22,9 +22,10 @@ class ContactNotification extends Mailable
         $this->contactData = $contactData;
     }
 
-    /**
-     * Get the message envelope.
-     */
+  /**
+   * Get the message envelope.
+   * @return Envelope
+   */
     public function envelope(): Envelope
     {
         return new Envelope(
@@ -32,9 +33,10 @@ class ContactNotification extends Mailable
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
+  /**
+   * Get the message content definition.
+   * @return Content
+   */
     public function content(): Content
     {
         return new Content(
@@ -52,7 +54,10 @@ class ContactNotification extends Mailable
         return [];
     }
 
-    public function build()
+  /**
+   * @return ContactNotification
+   */
+  public function build(): ContactNotification
     {
         return $this->from('noreply@mailsender.ca')
             ->subject('New Contact Form Submission')

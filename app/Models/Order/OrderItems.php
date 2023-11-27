@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Stripe\Product;
 
 /**
  * @method static insert(array $cart_datals)
@@ -17,22 +18,35 @@ class OrderItems extends Model
     protected $guarded = [];
 
 
-
-    public function order(): BelongsTo
+  /**
+   * @return BelongsTo
+   */
+  public function order(): BelongsTo
     {
         return $this->belongsTo(related: Order::class);
     }
 
 
-    public function product()
+  /**
+   * @return BelongsTo
+   */
+  public function product(): BelongsTo
     {
         return $this->belongsTo(FoodItem::class);
     }
-    public function orderItems()
+
+  /**
+   * @return HasMany
+   */
+  public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItems::class);
     }
-    public function products()
+
+  /**
+   * @return BelongsTo
+   */
+  public function products(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }

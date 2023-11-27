@@ -24,7 +24,12 @@ class CouponHistory extends Model
         return $this->belongsTo(Coupon::class);
     }
 
-    public static function paginate(int $limit = 10, int $page = 1): mixed
+  /**
+   * @param int $limit
+   * @param int $page
+   * @return mixed
+   */
+  public static function paginate(int $limit = 10, int $page = 1): mixed
     {
         return self::paginate($limit, "*", "page", $page);
     }

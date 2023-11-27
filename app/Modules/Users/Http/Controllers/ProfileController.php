@@ -19,6 +19,8 @@ class ProfileController extends Controller
    * @param Request $request
    * @return View
    */
+
+
     public function edit(Request $request): View
     {
         return view('user.profile.edit', [
@@ -51,7 +53,6 @@ class ProfileController extends Controller
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current-password:user'],
         ]);
-
         $user = $request->user('user');
         Auth::guard('user')->logout();
         $user->delete();

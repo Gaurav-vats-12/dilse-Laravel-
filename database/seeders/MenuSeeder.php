@@ -17,7 +17,11 @@ class MenuSeeder extends Seeder
         $this->menuseeder();
     }
 
-    private function menuseeder(){
+  /**
+   * @return void
+   */
+  private function menuseeder(): void
+    {
         $menu = [
             ['menu_name'  => 'APPETIZERS','menu_slug' => 'appetizers','status' =>'active','created_at' => now(), 'updated_at' => now()],
             ['menu_name'  => 'TANDOORI','menu_slug' => 'tandoori','status' =>'active','created_at' => now(), 'updated_at' => now()],

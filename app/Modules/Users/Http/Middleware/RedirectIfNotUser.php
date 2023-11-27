@@ -13,11 +13,15 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class RedirectIfNotUser
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @throws \Illuminate\Auth\AuthenticationException
-     */
+  /**
+   * Handle an incoming request.
+   *
+   * @param Request $request
+   * @param Closure $next
+   * @param string $guard
+   * @return Response
+   * @throws AuthenticationException
+   */
     public function handle(Request $request, Closure $next, string $guard = 'user'): Response
     {
         if (Auth::guard($guard)->check()) {
