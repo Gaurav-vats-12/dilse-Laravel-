@@ -55,11 +55,12 @@ class MenuController extends Controller
             return view('Pages.menu', ['FoodItem' => $FoodItem, 'slug' => $slug]);
         }
     }
-    /**
-     * @param string $id
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
-     */
-    public function menudetails(string $id): View | Application | Factory | \Illuminate\Contracts\Foundation\Application
+
+  /**
+   * @param string $id
+   * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+   */
+  public function menudetails(string $id): View | Application | Factory | \Illuminate\Contracts\Foundation\Application
     {
         $food_details = FoodItem::where('slug', $id)->first();
         $related_product = FoodItem::where('menu_id', $food_details->menu_id)->where('extra_items', 0)->where('status', 1)->get();

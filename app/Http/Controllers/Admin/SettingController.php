@@ -27,9 +27,8 @@ class SettingController extends Controller
     /**
      * @param UpdateGenralSettingRequst $request
      * @param string $id
-     * @return RedirectResponse
      */
-    public function unregenerateSetting(UpdateGenralSettingRequst $request, string $id): \Illuminate\Http\RedirectResponse
+    public function unregenerateSetting(UpdateGenralSettingRequst $request, string $id)
     {
         $setting_get = Setting::findOrFail($id);
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {

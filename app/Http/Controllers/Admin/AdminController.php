@@ -28,5 +28,4 @@ class AdminController extends Controller
             'totalBookings' => Booking::count(),
         ]);
     }
-
 }

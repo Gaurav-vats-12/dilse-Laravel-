@@ -16,7 +16,6 @@ class BlogController extends Controller
         $blog = Blog::where('status', 'published')->get();
         return view('Pages.Blog.blog', compact('blog'));
     }
-
   /**
    * @param string $slug
    * @return View|\Illuminate\Foundation\Application|Factory|Application

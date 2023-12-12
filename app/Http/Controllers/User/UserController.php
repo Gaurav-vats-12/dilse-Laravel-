@@ -77,7 +77,6 @@ class UserController extends Controller
                 }
             } else {
                 if ($request->filterValue === 'all') {
-
                     $OrderDetails = Payments::whereIn('payment_status', ['pending', 'paid', 'failed'])->with('order')->orderBy('id', 'DESC')->get()->first()->order;
                     return view('user.ajax.OrderDetails', ['OrderDetails' => $OrderDetails]);
                 } else {
@@ -85,12 +84,10 @@ class UserController extends Controller
                     return view('user.ajax.OrderDetails', ['OrderDetails' => $OrderDetails]);
                 }
             }
-
         } else {
             $OrderDetails = Order::where('user_id', $user_id)->orderBy('id', 'DESC')->get();
             return view('user.Pages.Order.view-order-list', compact('OrderDetails'));
         }
-
     }
 
     /**
@@ -111,12 +108,10 @@ class UserController extends Controller
     public function OrderReorder($id): \Illuminate\Foundation\Application|Redirector|RedirectResponse|Application
     {
         $order_details = Order::findOrFail($id);
-
         $orderItems = $order_details->orderItems;
         if (session('cart')) {
             Session::forget('cart');
         }
-
         foreach ($orderItems as $key => $details) {
             $cart[$details->product_id] = [
                 "id" => $details->product_id,
@@ -132,6 +127,4 @@ class UserController extends Controller
         notyf()->duration(2000)->addSuccess('Items Added to Card Successfully');
         return redirect(route('checkout.view'));
     }
-
-
 }

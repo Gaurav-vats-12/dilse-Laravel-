@@ -59,7 +59,6 @@ class CheckoutController extends Controller
         Notification::send(Admin::all(), new AdminOrderNotification(['type' => 'Order Notification', 'body' => 'You have received a new order with the following details Order Information:- Order ID: ' . $resPonse['order_id'] . '- Customer Name: ' . $request->billing_full_name . ' - Customer Email: ' . $request->billing_email . ' - Order Date: ' . Order::findOrFail($resPonse['order_id'])->order_date . ' ', 'thanks' => 'Thank you', 'notification_url' => url('/admin/order/view/' . $resPonse['order_id'] . ''), 'notification_uuid' => Str::random(10), 'notification_date' => date('Y-m-d H:i:s')]));
         if ($resPonse['statusMessage'] ==='success'){
             Mail::to($request->billing_email)->send(new EmailOrderConfirmation(['PaymentResponse'=> $resPonse, 'CartDetails'=> Order::findOrFail($resPonse['order_id']),'Response'=> $request]));
-
             $user_id = !AuthAlias::guard('user')->check() ? null : AuthAlias::guard('user')->id();
             if($request->coupon_code){
                 $coupon_apply =     CouponService::apply([
