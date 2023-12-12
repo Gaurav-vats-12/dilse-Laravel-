@@ -105,6 +105,17 @@ class FoodItemController extends Controller
         } else {
             $ProductImage = $FoodItem->image;
         }
+        // dd([
+        //     'name' => $request->name,
+        //     'menu_id' => $request->menu,
+        //     'description' => $request->description,
+        //     'price' => $request->price,
+        //     'image' => $ProductImage,
+        //     'extra_items' => (isset($request->extra_items)) ? 1 : 0,
+        //     'featured' => (isset($request->featured)) ? 1 : 0,
+        //     'status' => $request->status,
+        //     'updated_at' => now(),
+        // ]);
 
         FoodItem::findOrFail($id)->update([
             'name' => $request->name,
