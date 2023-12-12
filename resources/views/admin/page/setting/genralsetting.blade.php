@@ -26,7 +26,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <form method="POST" action="{{ route('admin.setting.genralstore', setting('id')) }}"
-                                accept-charset="UTF-8" enctype="multipart/form-data">@csrf @method('PUT')
+                                accept-charset="UTF-8" enctype="multipart/form-data">@csrf
+                                 @method('PUT')
                                 <div class="row py-2">
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label for="site_title">Site Tile *</label>

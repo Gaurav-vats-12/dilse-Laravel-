@@ -27,12 +27,11 @@ class UpdateGenralSettingRequst extends FormRequest
             'phone' =>  'required',
             'copyright_text' =>  'required',
             'site_currency' =>  'required',
-            'site_location' =>  'required',
             'address' =>  'required',
-            'minimum_order_for_delivery' =>  'required',
-            'delivery_charge_within_5km' =>  'required',
-            'delivery_charge_outside_5km' =>  'required',
-            'referrel_points_on_signup' =>  'required',
+            // 'minimum_order_for_delivery' =>  'required',
+            // 'delivery_charge_within_5km' =>  'required',
+            // 'delivery_charge_outside_5km' =>  'required',
+            // 'referrel_points_on_signup' =>  'required',
         ];
     }
 }
