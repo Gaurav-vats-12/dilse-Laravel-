@@ -108,7 +108,7 @@ class FoodItemController extends Controller
         // dd([
         //     'name' => $request->name,
         //     'menu_id' => $request->menu,
-        //     'description' => $request->description,
+        //     'description' => $request->product_description,
         //     'price' => $request->price,
         //     'image' => $ProductImage,
         //     'extra_items' => (isset($request->extra_items)) ? 1 : 0,
@@ -120,7 +120,7 @@ class FoodItemController extends Controller
         FoodItem::findOrFail($id)->update([
             'name' => $request->name,
             'menu_id' => $request->menu,
-            'description' => $request->description,
+            'description' => $request->product_description,
             'price' => $request->price,
             'image' => $ProductImage,
             'extra_items' => (isset($request->extra_items)) ? 1 : 0,
