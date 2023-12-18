@@ -26,7 +26,14 @@
                     <form method="POST" action="{{ route('admin.food-items.update' ,$foodItem->id)}}" accept-charset="UTF-8" enctype="multipart/form-data">@csrf @method('PUT')
                         <div class="form-group">
                         <label for="name">   {{ __('Name *') }}</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder ="Blog Name" value="{{ old('name'  ,$foodItem->name) }}">
+                            <input type="text" name="name" id="name" class="form-control" placeholder ="Blog Name" value="{{ucfirst(old('name'  ,$foodItem->name)) }}">
+                            @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                        <label for="name">   {{ __('Product URL') }}</label>
+                            <input type="text" name="product_url" id="product_url" class="form-control"  value=" {{ route('menudetails' , $foodItem->slug)}}" readonly>
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -43,21 +50,6 @@
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <!-- <div class="form-group">
-                        <label for="spicy_lavel">   {{ __('Spice level') }}</label>
-                        <select name="spicy_lavel[]" id="spicy_lavel" class="form-control" multiple>
-                        <option value=""> Select Spice Lavel</option>
-                           @foreach( $attribuite as  $key=> $attribuite)
-                            <option value="{{$attribuite->id}}" {{ in_array($attribuite->id, $food_attribute_id) ? 'selected' : '' }} >{{ $attribuite->attributes_name}}</option>
-                              @endforeach
-                            </select>
-                            @error('menu')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div> -->
-
-
-
                         <div class="form-group">
                         <label for="product_image">   {{ __('Logo Image') }}</label>
                             <input type="file" name="product_image" id="product_image"  class="form-control dropify" data-default-file="{{ url('/storage/products/'.$foodItem->image.'') }}" >

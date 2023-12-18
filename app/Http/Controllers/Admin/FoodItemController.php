@@ -146,7 +146,6 @@ class FoodItemController extends Controller
             ])->delete();
         }
         notyf()->duration(2000)->addSuccess('Food Item  Updated Successfully.');
-
         return redirect()->route('admin.food-items.index');
 
     }

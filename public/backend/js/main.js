@@ -159,6 +159,11 @@ jQuery( function () {
           { orderable: false, targets: '_all' }
         ]
         });
+        jQuery(document).on("click", "#product_url", async function (event) {
+            copy_clipborad(jQuery(this).val());
+            NotyfMessage('copy Successfully', 'success');
+        });
+    
     }else if(url.indexOf("/extra-items") > -1){
         new DataTable('#extra_food_items',{
             "responsive": true,

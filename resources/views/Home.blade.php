@@ -302,7 +302,8 @@
     <section class="best_food py_8">
         <div class="container">
             <div class="tittle_heading">
-                <h3>Best Food Items</h3>
+                <!-- <h3>Best Food Items</h3> -->
+                <h3>Chef's Recommendation</h3>
                 <h2>Popular deals</h2>
             </div>
             <div class="row">
@@ -365,8 +366,8 @@
                             Mani is one of those Chefs that truly have a passion for
                             Authentic North Indian cuisine. With five years’ experience is
                             the culinary industry and 25 years’ experience in corporate
-                            sales and training in the hospitality industry, it’s this
-                            dynamic skill set that keeps his in the forefront of the
+                            sales and training in the hospitality industry, it’s his
+                            dynamic skill set that keeps him in the forefront of the
                             culinary industry. Mani .worked as Head Chef at Bombay Bhel
                             Indian restaurant & bar.
                         </p>

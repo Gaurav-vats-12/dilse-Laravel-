@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
+        Blade::directive('lang_u', function ($s) {
+            return "<?php echo ucfirst(trans($s)); ?>";
+        });
+    
+
         Paginator::useBootstrap();
 
         Blade::directive('capture', function ($expression) {
