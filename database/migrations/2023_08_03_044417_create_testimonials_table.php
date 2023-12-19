@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
             $table->string('custumber_name');
+            $table->string('google_testonomails_link',200)->nullable();
             $table->text('testimonial_description');
             $table->string('testonomailsImage');
             $table->bigInteger('rating');

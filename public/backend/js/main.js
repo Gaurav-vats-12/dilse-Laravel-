@@ -113,6 +113,12 @@ jQuery( function () {
           { orderable: false, targets: '_all' }
         ]
         });
+        jQuery(document).on("click", "#google_testonomails_link", async function (event) {
+            copy_clipborad(jQuery(this).val());
+            NotyfMessage('copy Successfully', 'success');
+        });
+
+
     }else if(url.indexOf("/menu") > -1){
         jQuery(document).on("focusout","#menu_name", function(e) {
             jQuery('#menu_slug').val(`${jQuery('#menu_name').val().replace(/\s+/g, '-').toLowerCase()}`);

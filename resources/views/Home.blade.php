@@ -96,6 +96,16 @@
                                     <h2>JAIN FOOD</h2>
                                 </div>
                             </li>
+                            <li>
+                                <div class="gluten_txt">
+                                    <h2>100% HALAAL</h2>
+                                </div>
+                            </li>
+                            <!-- <li>
+                                <div class="gluten_txt">
+                                <img src="https://dilse.exoticaitsolutions.com/frontend/img/logo-footer-5.png" alt="">
+                                </div>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -395,15 +405,13 @@
                                 <a href="javascript:void(0)" class="read-more">Read More</a>
                                 <div class="testimonial_user">
                                     <div class="testimonial_user_img">
-                                        <img src="{{ url('/storage/testimonial/' . $TestimonialValue->testonomailsImage . '') }}"
-                                            alt="" />
+                                        <img src="{{ url('/storage/testimonial/' . $TestimonialValue->testonomailsImage . '') }}" alt="{{ $TestimonialValue->testonomailsImage}}" />
                                     </div>
                                     <div class="testimonial_user_txt">
-                                        <h3>{!! __($TestimonialValue->custumber_name) !!}</h3>
+                                      <a href="{!! __($TestimonialValue->google_testonomails_link) !!}" target="_blank" title="{!! __($TestimonialValue->custumber_name) !!}"><h3>{!! __($TestimonialValue->custumber_name) !!}</h3></a>  
                                         <ul>
                                             @for ($i = 1; $i <= $TestimonialValue->rating; $i++)
-                                                <li><img src="{{ asset('frontend/img/stars-1.png') }}" alt="" />
-                                                </li>
+                                                <li><img src="{{ asset('frontend/img/stars-1.png') }}" alt="" /> </li>
                                             @endfor
                                         </ul>
                                     </div>

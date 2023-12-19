@@ -3,12 +3,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Create Testomonials</h1>
+                    <h1 class="m-0">Edit Testomonials</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Create Pages</li>
+                        <li class="breadcrumb-item active">Edit Pages</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -32,6 +32,14 @@
                                             class="form-control"
                                             value="{{ old('custumber_name', $Testimonial->custumber_name) }}">
                                         @error('custumber_name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="google_testonomails_link">Google Testomonial Link</label>
+                                        <input type="url" readonly name="google_testonomails_link" id="google_testonomails_link"
+                                            class="form-control" value="{{ old('google_testonomails_link', $Testimonial->google_testonomails_link) }}">
+                                        @error('google_testonomails_link')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

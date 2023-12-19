@@ -34,6 +34,14 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
+                                        <label for="google_testonomails_link">Google Testomonial Link</label>
+                                        <input type="url" name="google_testonomails_link" id="google_testonomails_link_1"
+                                            class="form-control" value="{{ old('google_testonomails_link') }}">
+                                        @error('google_testonomails_link')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
                                         <label for="testimonial_description">Description</label>
                                         <textarea name="testimonial_description" id="testimonial_description" class="form-control summernote">{{ old('testimonial_description') }}</textarea>
                                         <small><i class="fa-solid fa-circle-question"></i> Please Enter testonomials

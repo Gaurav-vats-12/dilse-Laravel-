@@ -45,7 +45,6 @@ class TestimonialsController extends Controller
      */
     public function store(StoreTestimonialRequest $request): RedirectResponse
     {
-        // dd($request->all());
         if ($request->hasFile(trim('testonomailsImage'))) {
             $banner_image = $request->file(trim('testonomailsImage'));
             $testonomailsImage = time() . '-' . $banner_image->getClientOriginalName();
@@ -53,7 +52,7 @@ class TestimonialsController extends Controller
             ResizeImage::make($request->file('testonomailsImage'))->resize(80, 80)->save($destinationPath . '/' . $testonomailsImage);
         }
 
-        Testimonial::insertGetId(['custumber_name' => $request->custumber_name, 'testimonial_description' => $request->testimonial_description, 'testonomailsImage' => $testonomailsImage, 'rating' => $request->rating, 'status' => $request->status, 'created_at' => now(), 'updated_at' => now()]);
+        Testimonial::insertGetId(['custumber_name' => $request->custumber_name,  'google_testonomails_link' => $request->google_testonomails_link,'testimonial_description' => $request->testimonial_description, 'testonomailsImage' => $testonomailsImage, 'rating' => $request->rating, 'status' => $request->status, 'created_at' => now(), 'updated_at' => now()]);
         notyf()->duration(duration: 2000)->addSuccess(message: 'Testimonial Created Successfully.');
         return redirect()->route(route: 'admin.testimonial.index');
     }

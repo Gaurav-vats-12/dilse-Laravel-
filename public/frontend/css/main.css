@@ -36,7 +36,7 @@ h6 {
 
 h2,
 h3 {
-  font-family: "Kaluna Script DEMO";
+  /* font-family: "Kaluna Script DEMO"; */
   font-weight: bold;
   text-transform: capitalize;
 }
@@ -229,7 +229,7 @@ a.login_header {
 
 .menu_left ul li a {
   display: inline-block;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: #f8d385;
   padding: 11px 18.5px;
@@ -278,10 +278,11 @@ a.login_header {
   text-align: center;
 }
 .home-slider-content h2 {
-  font-size: 60px;
+  font-size: 50px;
   color: #573d24;
   /* text-transform: uppercase; */
   margin-bottom: 0;
+  font-family: "Times New Roman Cyr";
 }
 
 .home-slider-content h1 span {
@@ -298,10 +299,10 @@ a.login_header {
 }
 
 .home_slider_btn .theme_btn {
-  /* font-size: 18px; */
+  font-size: 20px !important;
   font-weight: 800;
-  padding: 8px 25px;
-  min-width: 280px;
+  padding: 18px 25px;
+  min-width: 380px;
   margin: 0 20px;
 }
 
@@ -591,7 +592,7 @@ a.login_header {
 }
 
 .about_cntnt h2 {
-  font-size: 36px;
+  font-size: 30px;
   color: #f8d385;
   line-height: 55px;
   margin-bottom: 4px;
@@ -709,7 +710,7 @@ ul._service_list li:last-child {
 }
 .order_online .tittle_heading h3 {
   color: #fff;
-  font-size: 64px;
+  font-size: 50px;
   margin-bottom: -9px;
 }
 
@@ -740,7 +741,7 @@ ul._service_list li:last-child {
   margin: 0 auto 6px;
 }
 .best_food .tittle_heading h3 {
-  font-size: 60px;
+  font-size: 50px;
 }
 .best_food .tittle_heading h2 {
   font-family: "Times New Roman Cyr";
@@ -820,7 +821,7 @@ ul._service_list li:last-child {
 
 .testimonial_sec .tittle_heading h3 {
   color: #fff;
-  font-size: 60px;
+  font-size: 50px;
 }
 
 .testimonial_sec .tittle_heading h2 {
@@ -898,7 +899,7 @@ ul._service_list li:last-child {
 }
 
 .sub_scribe_txt h2 {
-  font-size: 60px;
+  font-size: 46px;
   line-height: 59px;
   margin-bottom: 6px;
 }
@@ -939,7 +940,7 @@ ul._service_list li:last-child {
   display: none;
 }
 .contact_sec .tittle_heading h2 {
-  font-size: 56px;
+  font-size: 50px;
   color: #573d24;
   margin-bottom: 6px;
   text-transform: capitalize;
@@ -994,6 +995,7 @@ form.contact_form {
   text-transform: capitalize;
   color: #0b0708;
   margin-bottom: 10px;
+  font-family: "Kaluna Script DEMO";
 }
 .quick_links ul li:first-child a {
   padding-top: 0;
@@ -3686,7 +3688,7 @@ div#mmce-error-response {
 }
 
 .taste_the .tittle_heading h3 {
-  font-size: 64px;
+  font-size: 50px;
 }
 .taste_the .tittle_heading h2 {
   font-family: "Times New Roman Cyr";
@@ -3695,7 +3697,7 @@ div#mmce-error-response {
   font-size: 22px;
 }
 .our_servics .tittle_heading h3 {
-  font-size: 65px;
+  font-size: 50px;
 }
 .our_servics .tittle_heading h2 {
   font-family: "Times New Roman Cyr";

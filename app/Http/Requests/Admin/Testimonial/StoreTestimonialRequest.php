@@ -26,11 +26,11 @@ class StoreTestimonialRequest extends FormRequest
     {
         return [
             'custumber_name' =>  'required|max:250',
+            'google_testonomails_link' =>  'required|max:250',
             'testimonial_description' =>  'required|max:5000',
             'testonomailsImage' =>  'required|image',
             'rating' => 'required|in:1,2,3,4,5',
             'status' => 'required|in:active,inactive',
-
         ];
     }
 }
