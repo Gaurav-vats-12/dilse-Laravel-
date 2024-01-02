@@ -1,4 +1,23 @@
 @extends('layouts.app')
+@section('meta')
+<meta name="title" content="Home Page">
+<meta name="url" content="{{ route('menu', 'appetizers') }}">
+<meta name="description" content="Menu Page">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="{{ route('menu', 'appetizers') }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Menu Page">
+  <meta property="og:description" content="Home Page">
+  <meta property="og:image" content="">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="{{ route('menu', 'appetizers') }}">
+  <meta property="twitter:domain" content="{{ route('menu', 'appetizers') }}">
+  <meta name="twitter:title" content="Home Page">
+  <meta name="twitter:description" content="Menu Page">
+  <meta name="twitter:image" content="">     
+  <link rel="canonical" href="{{ route('menu', 'appetizers') }}">
+@endsection
+@section('title', 'About Us')
 @section('title', 'Menu')
 @section('frontcontent')
 <section class="video_dilse-tw">
@@ -19,7 +38,6 @@
 
             <div class="row">
                 <div class="col-lg-3">
-{{--                    @dd(checkUser())--}}
                     <ul class="menu_list">
                         @foreach (Menuhelper() as $key => $menu)
                         <li class="menu_list_inner">

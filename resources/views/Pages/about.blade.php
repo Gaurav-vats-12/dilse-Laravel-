@@ -1,5 +1,24 @@
 @extends('layouts.app')
+@section('meta')
+<meta name="title" content="Home Page">
+<meta name="url" content="{{url('about-us')}}">
+<meta name="description" content="about-us Page">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="{{url('/about-us')}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="about-us Page">
+  <meta property="og:description" content="Home Page">
+  <meta property="og:image" content="">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="{{url('/about-us')}}">
+  <meta property="twitter:domain" content="{{url('/about-us')}}">
+  <meta name="twitter:title" content="Home Page">
+  <meta name="twitter:description" content="about-us Page">
+  <meta name="twitter:image" content="">     
+  <link rel="canonical" href="{{url('/about-us')}}">
+@endsection
 @section('title', 'About Us')
+
 @section('frontcontent')
 <section class="inner_bannner bg_style" style="background-image: url('{{asset('frontend/img/about-banner.jpg') }}')">
         <div class="about_banner_section">

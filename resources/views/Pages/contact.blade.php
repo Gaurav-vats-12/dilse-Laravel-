@@ -1,4 +1,22 @@
 @extends('layouts.app')
+@section('meta')
+<meta name="title" content="Home Page">
+<meta name="url" content="{{url('contact-us')}}">
+<meta name="description" content="contact-us Page">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="{{url('/contact-us')}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="contact-us Page">
+  <meta property="og:description" content="contact-us Page">
+  <meta property="og:image" content="">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="{{url('/contact-us')}}">
+  <meta property="twitter:domain" content="{{url('/contact-us')}}">
+  <meta name="twitter:title" content="Home Page">
+  <meta name="twitter:description" content="contact-us Page">
+  <meta name="twitter:image" content="">     
+  <link rel="canonical" href="{{url('/contact-us')}}">
+@endsection
 @section('title', 'Contact Us')
 @section('frontcontent')
 <div class="wraper">

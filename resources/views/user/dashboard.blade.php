@@ -1,4 +1,22 @@
 @extends('layouts.app')
+@section('meta')
+<meta name="title" content="Home Page">
+<meta name="url" content="{{url('/user/dashboard')}}">
+<meta name="description" content="User Dashboard Page">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="{{url('/user/dashboard')}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="User Dashboard Page">
+  <meta property="og:description" content="Home Page">
+  <meta property="og:image" content="">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="{{url('/user/dashboard')}}">
+  <meta property="twitter:domain" content="{{url('/user/dashboard')}}">
+  <meta name="twitter:title" content="Home Page">
+  <meta name="twitter:description" content="User Dashboard Page">
+  <meta name="twitter:image" content="">     
+  <link rel="canonical" href="{{url('/user/dashboard')}}">
+@endsection
 @section('title', 'User Dashboard')
 @section('frontcontent')
 

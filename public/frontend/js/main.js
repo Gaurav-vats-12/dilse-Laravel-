@@ -77,7 +77,6 @@ jQuery(document).ready(function () {
             const truncatedContent = content.substring(0, charLimit);
             jQuery(this).text(truncatedContent);
             jQuery(this).addClass("collapsed");
-
             jQuery(this)
                 .siblings(".read-more")
                 .click(function (e) {

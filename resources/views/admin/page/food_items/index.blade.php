@@ -71,9 +71,12 @@
                                             @else
                                                 {{'No'}}
                                             @endif</td>
-                                        <td class="project-actions"><a class="btn btn-info btn-sm"
-                                                                       href="{{ route('admin.food-items.edit', $foodItem->id) }}">
+                                        <td class="project-actions">
+                                       
+                                            <a class="btn btn-info btn-sm" href="{{ route('admin.food-items.edit', $foodItem->id) }}">
                                                 <i class="fas fa-pencil-alt"></i> </a>
+                                                <a class="btn btn-info btn-sm" href="javascript:void(0)" id="product_url" copy_url_id ="{{ route('menudetails' , $foodItem->slug)}}">
+                                        <i class="fa-solid fa-copy"></i></a>
                                             <form method="POST"
                                                   action="{{ route('admin.food-items.destroy', $foodItem->id) }}">  @csrf @method('DELETE')
                                                 <button type="submit"

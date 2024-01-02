@@ -254,6 +254,52 @@ li.page-item.disabled span.page-link {
     flex-wrap: wrap;
     max-width: 100%;
   }
+
+  /* 19-12-23 */
+
+  .home_slider_btn .theme_btn{
+      font-size: 18px !important;
+      padding: 18px 15px;
+      min-width: 250px;
+  }
+  .home_btn_sticky {
+    position: sticky !important;
+    top: 90px;
+    padding-bottom: 100px;
+    margin-top: -140px;
+}
+/* 19-12-23 */
+
+
+.gluten_txt h2 {
+  font-family: "Times New Roman Cyr";
+  font-size: 24px !important;
+  font-weight: 700;
+  color: #573d24;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.gluten_sec ul{
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.gluten_txt h2 {
+  font-size: 22px;
+}
+.gluten_sec li:before{
+  content: none;
+}
+.gluten_sec li {
+  position: relative;
+  border-right: 3px solid #573d24;
+  padding-right: 20px;
+}
+.gluten_sec li:last-child {
+  position: relative;
+  border-right: unset;
+  padding-right: 20px;
+}
 }
 @media screen and (max-width: 767px) {
   .award_winning_txt h2,
@@ -461,7 +507,8 @@ li.page-item.disabled span.page-link {
     z-index: 9;
   }
   .home_slider_btn {
-    flex-direction: column;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
   }
   .home_slider_btn a {
     margin-bottom: 10px !important;
@@ -503,6 +550,34 @@ li.page-item.disabled span.page-link {
   .restudent_text h2 {
     padding: 0 0px o !important;
   }
+
+  /* 19-12-23 */
+  .home_btn_sticky {
+    position: sticky !important;
+    top: 90px;
+    padding-bottom: 190px;
+    margin-top: -190px;
+}
+.gluten_sec ul{
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.gluten_txt h2 {
+  font-size: 22px;
+}
+.gluten_sec li:before{
+  content: none;
+}
+.gluten_sec li {
+  position: relative;
+  border-right: 3px solid #573d24;
+  padding-right: 20px;
+}
+.gluten_sec li:last-child {
+  position: relative;
+  border-right: unset;
+  padding-right: 20px;
+}
 }
 @media screen and (max-width: 480px) {
   /*.container {*/
@@ -665,6 +740,32 @@ li.page-item.disabled span.page-link {
   .our_servics_txt h2 {
     font-size: 32px;
   }
+/* 19-12-23 */
+
+  .gluten_sec li {
+    position: relative;
+    border-right: unset;
+    padding-right: 20px;
+  }
+  .gluten_sec ul {
+    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.gluten_txt h2 {
+  font-size: 20px !important;
+}
+.home_slider_btn .theme_btn {
+  font-size: 16px !important;
+  padding: 11px 13px;
+  min-width: 228px;
+}
+
+.taste_the .tittle_heading h3,.our_servics .tittle_heading h3,.order_online .tittle_heading h3,.testimonial_sec .tittle_heading h3,.contact_sec .tittle_heading h2 {
+  font-size: 38px !important;
+  margin-bottom: 12px;
+}
+
 }
 @media screen and (max-width: 414px) {
   .restudent_text h2 {

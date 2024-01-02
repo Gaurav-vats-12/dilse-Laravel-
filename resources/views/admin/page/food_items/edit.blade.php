@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                         <label for="name">   {{ __('Product URL') }}</label>
-                            <input type="text" name="product_url" id="product_url" class="form-control"  value=" {{ route('menudetails' , $foodItem->slug)}}" readonly>
+                            <input type="text" name="product_url" id="product_url" class="form-control"  copy_url_id ="{{ route('menudetails' , $foodItem->slug)}}" value="{{ route('menudetails' , $foodItem->slug)}}" readonly>
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror

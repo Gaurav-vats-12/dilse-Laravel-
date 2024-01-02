@@ -168,16 +168,20 @@ header.main_header {
 .contact_info_img {
   margin-right: 10px;
 }
+
 .contact_info_img img {
   width: 26px;
 }
+
 .contact_info ul li {
   /* margin-right: 19px; */
   margin-bottom: 4px;
 }
+
 .contact_info ul li:last-child {
   margin-bottom: 0;
 }
+
 .social_icons ul li {
   display: inline-block;
   margin: 0 4px;
@@ -186,15 +190,19 @@ header.main_header {
 .social_icons ul li a {
   display: inline-block;
 }
+
 .social_icons li::marker {
   content: none;
 }
+
 a#dropdownMenuLink {
   color: #0b0708;
 }
+
 a.cart_item {
   position: relative;
 }
+
 a.cart_item span.cart_count {
   position: absolute;
   top: -10px;
@@ -210,11 +218,13 @@ a.cart_item span.cart_count {
   font-weight: 700;
   color: #573d24;
 }
+
 a.login_header {
   color: #0b0708;
   font-size: 14px;
   font-weight: 700;
 }
+
 .btm_header {
   /* padding: 10px 0; */
   background: #573d24;
@@ -229,12 +239,14 @@ a.login_header {
 
 .menu_left ul li a {
   display: inline-block;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: #f8d385;
   padding: 11px 18.5px;
 }
-
+.contact_info_txt a p ,.contact_info_txt  p  {
+  font-size: 18px !important;
+}
 .menu_left {
   z-index: 99;
 }
@@ -271,12 +283,15 @@ a.login_header {
   /* letter-spacing: 4px; */
   margin-bottom: 6px;
 }
+
 .home-slider_sec {
   padding: 20px 0 15px;
 }
+
 .home-slider-content {
   text-align: center;
 }
+
 .home-slider-content h2 {
   font-size: 50px;
   color: #573d24;
@@ -306,14 +321,22 @@ a.login_header {
   margin: 0 20px;
 }
 
+.home_btn_sticky {
+  position: sticky !important;
+  top: 140px;
+  z-index: 9;
+  padding-bottom: 100px;
+  margin-top: -100px;
+}
+
 .home_slider_btn {
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  /* bottom: 0; */
+  /* left: 0; */
+  /* right: 0; */
   width: 100%;
   background: rgb(208 176 127 / 32%);
   padding: 16px 15px;
@@ -410,9 +433,11 @@ a.login_header {
   /* background: #0b0708; */
   /* padding-bottom: 129px; */
 }
+
 .gluten_free_img img {
   width: 100%;
 }
+
 .available_on_crd {
   position: relative;
   text-align: center;
@@ -429,13 +454,16 @@ a.login_header {
   right: 0;
   bottom: -62px;
 }
+
 .available_on .tittle_heading {
   max-width: 900px;
   margin: 0 auto 46px;
 }
+
 .available_on .tittle_heading h2 {
   color: #fff;
 }
+
 .available_on .tittle_heading h2 span {
   color: #eb0029;
   /* font-family: "ThePretender-ExpSansBoldPress"; */
@@ -597,21 +625,26 @@ a.login_header {
   line-height: 55px;
   margin-bottom: 4px;
 }
+
 .about_us_indian .about_cntnt h3 {
   color: #212529;
 }
+
 .about_us_indian .about_cntnt h2 {
   color: #212529;
 }
+
 .about_us_indian .about_under_text p {
   color: #212529;
 }
+
 .about_cntnt p {
   font-size: 18px;
   color: #212529;
   line-height: 32px;
   margin-bottom: 26px;
 }
+
 .about_cntnt_bn a.theme_btn {
   background: #f8d385;
   border: 1px solid #f8d385;
@@ -695,8 +728,9 @@ ul._service_list li:last-child {
 }
 
 .our_servics_txt h2 {
-  font-size: 35px;
+  font-size: 30px;
   margin-bottom: 5px;
+  /* font-family: "Kaluna Script DEMO"; */
 }
 
 .our_servics_txt p {
@@ -708,6 +742,7 @@ ul._service_list li:last-child {
 .order_online {
   padding: 30px 0 40px;
 }
+
 .order_online .tittle_heading h3 {
   color: #fff;
   font-size: 50px;
@@ -740,9 +775,11 @@ ul._service_list li:last-child {
   max-width: 660px;
   margin: 0 auto 6px;
 }
+
 .best_food .tittle_heading h3 {
   font-size: 50px;
 }
+
 .best_food .tittle_heading h2 {
   font-family: "Times New Roman Cyr";
   font-weight: bold;
@@ -809,9 +846,11 @@ ul._service_list li:last-child {
   margin-bottom: 33px;
   font-size: 18px;
 }
+
 .meet_chef_cntnt .tittle_heading h3 {
   font-size: 56px;
 }
+
 .meet_chef_cntnt .tittle_heading h2 {
   font-family: "Times New Roman Cyr";
   font-weight: bold;
@@ -886,6 +925,7 @@ ul._service_list li:last-child {
   margin-bottom: 2px;
   font-family: "Times New Roman Cyr";
 }
+
 .testimonial_user_txt ul li {
   display: inline-block;
 }
@@ -935,16 +975,19 @@ ul._service_list li:last-child {
 .contact_sec {
   padding: 40px 0;
 }
+
 .contact_sec .tittle_heading h3 {
   font-size: 56px;
   display: none;
 }
+
 .contact_sec .tittle_heading h2 {
   font-size: 50px;
   color: #573d24;
   margin-bottom: 6px;
   text-transform: capitalize;
 }
+
 .contact_form .tittle_heading {
   text-align: left;
   margin-bottom: 30px;
@@ -991,12 +1034,13 @@ form.contact_form {
 }
 
 .quick_links h3 {
-  font-size: 35px;
+  font-size: 30px;
   text-transform: capitalize;
   color: #0b0708;
   margin-bottom: 10px;
-  font-family: "Kaluna Script DEMO";
+  /* font-family: "Kaluna Script DEMO"; */
 }
+
 .quick_links ul li:first-child a {
   padding-top: 0;
 }
@@ -1050,12 +1094,14 @@ form.contact_form {
   max-width: 454px;
   margin: -13px auto 0px;
 }
+
 .open_hr h3 {
   font-size: 20px;
   color: #573d24;
   text-transform: capitalize;
   font-family: "Times New Roman Cyr" !important;
 }
+
 .open_hr p {
   font-size: 20px;
   margin-bottom: 9px;
@@ -1104,6 +1150,7 @@ form.contact_form {
 .restudent_text h2 {
   margin-bottom: 0;
 }
+
 .restudent_text h3 {
   color: #0b0708;
   font-size: 39px;
@@ -1112,6 +1159,7 @@ form.contact_form {
   text-transform: uppercase;
   font-family: "Times New Roman Cyr";
 }
+
 .restaurdent_update_image img {
   /* border-radius: 60px; */
 }
@@ -1789,7 +1837,8 @@ img.mfp-img {
 }
 
 @media screen and (max-width: 800px) and (orientation: landscape),
-  screen and (max-height: 300px) {
+screen and (max-height: 300px) {
+
   /**
            * Remove all paddings around the image on small screen
            */
@@ -2141,6 +2190,7 @@ form.contact_form a {
   border: none;
   margin: 2%;
 }
+
 .shop_item_quantity .qty {
   width: 40px;
   height: 30px;
@@ -2218,9 +2268,11 @@ form.contact_form a {
   margin-bottom: 0px;
   border-bottom: 0px;
 }
+
 .tittle_heading h4 {
   margin-bottom: 0;
 }
+
 .summary_main .s_total p {
   font-weight: 800;
   margin-bottom: 0px;
@@ -2430,8 +2482,7 @@ product
 }
 
 .add-to-cart,
-.added-to-cart {
-}
+.added-to-cart {}
 
 .added-to-cart {
   display: none;
@@ -2648,14 +2699,17 @@ span.required {
   padding: 18px 16px;
   border: 1px solid hsl(0deg 0% 95%);
 }
+
 .payment-metho-radio li .radio-item_1 input {
   display: none;
 }
-.payment-metho-radio li .radio-item_1 input:checked + label {
+
+.payment-metho-radio li .radio-item_1 input:checked+label {
   background: #573d24;
   border: 1px solid hsl(0deg 0% 95%);
   color: #fff !important;
 }
+
 .total-summary-list {
   padding-left: 0px;
   font-size: 14px;
@@ -2758,6 +2812,7 @@ a.qty-plus.plus.qty-count.qty-count--add.update-qty {
   border-radius: 5px;
   color: #573d24 !important;
 }
+
 .product_cont a.view_product {
   padding: 4px 10px;
 }
@@ -2874,6 +2929,7 @@ a.qty-plus.plus.qty-count.qty-count--add.update-qty {
 .menu_main1 {
   background: #d0b07f;
 }
+
 .menu_main1 .tittle_heading h2 {
   font-family: "Times New Roman Cyr";
 }
@@ -3112,7 +3168,7 @@ button.inline-flex {
   width: 100%;
 }
 
-li.admin_logot > a {
+li.admin_logot>a {
   background: #d90d0d;
   padding: 9px 8px;
   border-radius: 4px;
@@ -3298,7 +3354,7 @@ a.checkout_link_guest {
   font-size: 15px;
 }
 
-.table-borderless > :not(caption) > * > * {
+.table-borderless> :not(caption)>*>* {
   border-bottom-width: 1px;
 }
 
@@ -3534,6 +3590,7 @@ iframe {
 .about_img img {
   /* border-radius: 60px; */
 }
+
 ul {
   list-style: none;
   padding: 0;
@@ -3557,45 +3614,57 @@ p#message {
   font-size: 14px;
   line-height: unset;
 }
+
 .alert {
   display: none;
 }
+
 .shopping_cart {
   background: #d0b07f;
 }
+
 .input-group select#spicy_lavel {
   padding: 10px;
   font-size: 13px;
   border-radius: 6px;
 }
+
 .login-content {
   text-align: center;
   margin-top: 50px;
   font-size: 20px;
 }
+
 .login-content a {
   font-weight: 600;
 }
+
 span.grandTotal {
   margin: 0px -38px 0 0;
 }
+
 .forget_passcode a {
   color: #573d24;
 }
+
 a.checkout_link_guest {
   color: #573d24;
 }
+
 span.sign_up_for a {
   color: #573d24;
 }
+
 .forget_password_txt {
   margin-bottom: 15px;
 }
+
 .font-medium {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 11px;
 }
+
 .toggle_button {
   background: none;
   border: none;
@@ -3606,24 +3675,30 @@ span.sign_up_for a {
   margin: 32px 0 0 0;
   font-size: 16px;
 }
+
 .tittle_heading.reset_pass h2 {
   margin-bottom: -21px;
 }
+
 .payment_method {
   display: flex;
   align-items: baseline;
   margin-top: 10px;
 }
+
 .swal2-styled.swal2-confirm {
   background-color: #eb0029 !important;
 }
+
 .stat {
   display: flex;
   gap: 20px;
 }
+
 h6.ser-infh.pla {
   display: flex;
 }
+
 form.order_cancel {
   padding: 1px 22px;
 }
@@ -3632,21 +3707,26 @@ form.order_cancel {
   position: absolute;
   top: 50%;
 }
+
 .social_icons_footer {
   text-align: center;
   /* display: none; */
   margin-bottom: 10px;
 }
+
 .social_icons_footer ul li {
   display: inline-block;
   margin: 0 4px;
 }
+
 .social_icons_footer ul li a {
   display: inline-block;
 }
+
 .mce_inline_error {
   color: red;
 }
+
 #mce-responses #mce-success-response {
   color: green;
   font-weight: bold;
@@ -3654,6 +3734,7 @@ form.order_cancel {
   margin: 6px 0px 0 0;
   text-align: center;
 }
+
 div#mmce-error-response {
   color: red;
   font-weight: bold;
@@ -3668,12 +3749,15 @@ div#mmce-error-response {
   font-weight: 700;
   font-size: larger;
 }
+
 .product_image img {
   width: 100%;
 }
+
 .Product_slider button {
   display: none !important;
 }
+
 ._user_toggle_button {
   float: right;
   cursor: pointer;
@@ -3681,7 +3765,8 @@ div#mmce-error-response {
   transform: translateY(66%);
   margin: 0 0 0 -32px;
 }
-.payment-metho-radio li .radio-item_1 input:checked + label {
+
+.payment-metho-radio li .radio-item_1 input:checked+label {
   background: #573d24;
   border: 1px solid hsl(0deg 0% 95%);
   color: #fff !important;
@@ -3690,39 +3775,48 @@ div#mmce-error-response {
 .taste_the .tittle_heading h3 {
   font-size: 50px;
 }
+
 .taste_the .tittle_heading h2 {
   font-family: "Times New Roman Cyr";
   font-weight: bold;
   line-height: unset;
   font-size: 22px;
 }
+
 .our_servics .tittle_heading h3 {
   font-size: 50px;
 }
+
 .our_servics .tittle_heading h2 {
   font-family: "Times New Roman Cyr";
   font-weight: bold;
   line-height: unset;
   font-size: 26px;
 }
+
 .about_banner_section .home-slider-content h1 {
   font-size: 56px;
   color: #fff;
 }
+
 .social_icons_footer {
   position: relative;
 }
+
 .login_wrapper .about_se {
   background: #d0b07f;
 }
+
 .login_wrapper .tittle_heading h2 {
   font-family: "Kalam";
   font-size: 32px;
   color: #573d24;
 }
+
 span.we_ever {
   display: block;
 }
+
 p.cntact {
   margin-bottom: 0;
 }
@@ -3730,11 +3824,19 @@ p.cntact {
 p.cntact a {
   color: #333;
 }
+
 .gluten_sec ul {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
+
+.gluten_txt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .gluten_txt h2 {
   font-family: "Times New Roman Cyr";
   font-size: 30px;
@@ -3743,100 +3845,147 @@ p.cntact a {
   text-transform: uppercase;
   margin-bottom: 0;
 }
+
 .gluten_sec li:before {
   content: "";
   position: absolute;
   border-left: 3px solid #573d24;
   height: 30px;
   top: 5px;
-  left: -82px;
+  left: -50px;
 }
+
 .gluten_sec li {
   position: relative;
 }
+
 .gluten_sec li:first-child:before {
   border-left: 0;
+}
+
+.gluten_sec li:nth-child(1) h2 {
+  position: relative;
+  color: #ba6514;
+}
+.gluten_sec li:nth-child(2) h2 {
+  position: relative;
+  color: #009b49;
+}
+.gluten_sec li:nth-child(3) h2 {
+  position: relative;
+  color: #ba6514;
+}
+.gluten_sec li:nth-child(4) h2 {
+  position: relative;
+  color: red;
+}
+.gluten_sec li img{
+  width: 45px;
 }
 .gluten_free {
   padding: 20px 0;
 }
+
 .meet_chef {
   background: #fcebb9;
 }
+
 .our_title_head {
   margin-bottom: 25px;
 }
+
 .order_online_img img {
   max-width: 150px;
 }
+
 .footer_logo img {
   max-width: 300px;
 }
+
 .taste_the_best {
   margin-bottom: 25px;
 }
+
 .award_winning_img img {
   max-width: 300px;
 }
+
 h3.more_than {
   color: #f8d385;
   font-family: "Times New Roman Cyr";
   font-size: 25px;
   padding: 10px 0 0;
 }
+
 .menu_sec_food h2 {
   font-size: 70px;
 }
+
 .social_icons_footer img {
   max-width: 40px;
 }
+
 .social_icons_footer img:last-child {
   max-width: 65px;
 }
+
 .no-order-message.taxt-center h2 {
   font-family: "Times New Roman Cyr";
 }
+
 h2.featured_txt {
   color: #0b0708;
 }
+
 .rich-content p {
   margin-bottom: 7px;
 }
+
 p.post_by {
   margin-bottom: 8px;
 }
+
 h3.best-of-listing-box-title {
   color: #0b0708;
 }
+
 .site_logo img {
   width: 110px;
 }
+
 .about_home_txt {
   background: #573d24;
 }
+
 .about_home_txt p {
   color: #f8d385;
 }
+
 .meet_home_chef {
   background: #fff;
 }
+
 .sub_scribe input#mce-EMAIL {
   border: 1px solid #573d2442 !important;
 }
- div#social-links {
-                margin: 0 auto;
-            }
-            div#social-links ul li {
-                display: inline-block;
-            }
-            div#social-links ul li a {
 
-                border: 1px solid #ccc;
-                margin: 1px;
-                font-size: 30px;
-                color: #222;
-                background-color: #ccc;
-            }
+div#social-links {
+  margin: 0 auto;
+}
+
+div#social-links ul li {
+  display: inline-block;
+}
+
+div#social-links ul li a {
+
+  border: 1px solid #ccc;
+  margin: 1px;
+  font-size: 30px;
+  color: #222;
+  background-color: #ccc;
+}
+
 a#copy_code {
   text-decoration: underline !important;
 }

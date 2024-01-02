@@ -1,19 +1,41 @@
 @extends('layouts.app')
+@section('meta')
+<meta name="title" content="Home Page">
+<meta name="url" content="{{url('')}}">
+<meta name="description" content="Home Page">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="{{url('')}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Home Page">
+  <meta property="og:description" content="Home Page">
+  <meta property="og:image" content="">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="{{url('')}}">
+  <meta property="twitter:domain" content="{{url('')}}">
+  <meta name="twitter:title" content="Home Page">
+  <meta name="twitter:description" content="Home Page">
+  <meta name="twitter:image" content="">     
+  <link rel="canonical" href="{{url('')}}">
+@endsection
 @section('title', 'Home')
 @section('frontcontent')
     <input type="hidden" id="prevArrow" value="{{ asset('frontend/img/left_arrow.png') }}">
     <input type="hidden" id="nextArrow" value="{{ asset('frontend/img/right_arrow.png') }}">
     <section class="video_dilse-tw">
+    <div class="home_btn_sticky">    
+    <div class="home_slider_btn">
+                <a href="{{ route('booktable') }}" class="theme_btn">Book A Reservation</a> 
+                <a href="javascript:void(0)"
+                    class="theme_btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Order Now</a>
+                    <!-- <a href="#" class="theme_btn">Cancel  A Reservation</a>  -->
+            </div>
+            </div>
+            @include('layouts.partials.order_popup')
         <div class="video_dilse_play-tw">
             <video id="home_banner_vd" width="" height="" autoplay muted loop playsinline>
                 <source src="{{ asset('frontend/vedio/DilSe Home.mp4') }}" type="video/mp4" />
             </video>
-            <div class="home_slider_btn">
-                <a href="{{ route('booktable') }}" class="theme_btn">Book A Reservation</a> <a href="javascript:void(0)"
-                    class="theme_btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Order Now</a>
-
-            </div>
-            @include('layouts.partials.order_popup')
+        
         </div>
         
     </section>
@@ -31,50 +53,6 @@
     </section>
     @include('layouts.partials.michelin_certificate')
     <section class="available_on">
-        <!-- <div class="container">
-              <div class="tittle_heading">
-                <h2>
-                  available on <span>your personal</span> request
-                </h2>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="available_on_crd">
-                    <div class="available_on_img">
-                      <img src="{{ asset('frontend/img/gluten-free.png') }}" alt="">
-                    </div>
-                    <div class="available_on_txt">
-                      <h5>Gluten Free</h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="available_on_crd">
-                    <div class="available_on_img">
-                      <img src="{{ asset('frontend/img/vegan-2.png') }}" alt="">
-                    </div>
-                    <div class="available_on_txt">
-                      <h5>Vegan</h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="available_on_crd">
-                    <div class="available_on_img">
-                      <img src="{{ asset('frontend/img/jain.png') }}" alt="">
-                    </div>
-                    <div class="available_on_txt">
-                      <h5>Jain Food</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-        <!-- <div class="gluten_free_img">
-            <img src="{{ asset('frontend/img/gluten-free.png') }}" alt="gluten-free.png">
-            </div> -->
-
-
         <div class="gluten_free">
             <div class="container">
                 <div class="row">
@@ -83,29 +61,28 @@
                         <ul>
                             <li>
                                 <div class="gluten_txt">
+                                <img src="{{asset('frontend/img/Gluten.png') }}" alt="Gluten" caption="Gluten" description="Gluten">
                                     <h2>Gluten Free</h2>
                                 </div>
                             </li>
                             <li>
                                 <div class="gluten_txt">
+                                <img src="{{asset('frontend/img/vegan.png') }}" alt="vegan.png" caption="vegan.png" description="vegan.png">
                                     <h2>VEGAN</h2>
                                 </div>
                             </li>
                             <li>
                                 <div class="gluten_txt">
+                                <img src="{{asset('frontend/img/jain.png') }}" alt="jain.png" caption="jain.png" description="jain.png">
                                     <h2>JAIN FOOD</h2>
                                 </div>
                             </li>
                             <li>
                                 <div class="gluten_txt">
+                                <img src="{{asset('frontend/img/halal.png') }}" alt="halal.png" caption="halal.png" description="halal.png">
                                     <h2>100% HALAAL</h2>
                                 </div>
                             </li>
-                            <!-- <li>
-                                <div class="gluten_txt">
-                                <img src="https://dilse.exoticaitsolutions.com/frontend/img/logo-footer-5.png" alt="">
-                                </div>
-                            </li> -->
                         </ul>
                     </div>
                 </div>

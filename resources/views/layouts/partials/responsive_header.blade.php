@@ -35,7 +35,7 @@
         <div class="btm_header_flx">
 
           <div class="site_logo">
-            <a href="{{ url('/')}}"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/white-logo.svg')  }}"  alt="white-logo.svg"> </a>
+            <a href="{{ url('/')}}"><img src="{{ setting('logo') != null ? url('/storage/site/logo/'.setting('logo').'') : asset('frontend/img/dil-se-logo.svg')  }}"  alt="dil-se-logo.svg"> </a>
           </div>
           <div class="menu_left menu_right">
             <ul>

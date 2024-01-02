@@ -1,4 +1,23 @@
 @extends('layouts.app')
+@section('meta')
+<meta name="title" content="Home Page">
+<meta name="url" content="{{url('/gallery')}}">
+<meta name="description" content="Gallery Page">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="{{url('/gallery')}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gallery Page">
+  <meta property="og:description" content="Gallery Page">
+  <meta property="og:image" content="">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="{{url('/gallery')}}">
+  <meta property="twitter:domain" content="{{url('/gallery')}}">
+  <meta name="twitter:title" content="Home Page">
+  <meta name="twitter:description" content="Gallery Page">
+  <meta name="twitter:image" content="">     
+  <link rel="canonical" href="{{url('/gallery')}}">
+@endsection
+@section('title', 'About Us')
 @section('title', 'Gallery')
 @section('frontcontent')
 <section class="inner_bannner bg_style" style="background-image: url('{{ asset('frontend/img/gallery.jpg') }}')">

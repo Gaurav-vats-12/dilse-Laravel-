@@ -32,8 +32,8 @@
                 <div class="site_logo"> <a href="{{ url('/') }}"><img
                             src="{{ setting('logo') != null
                                 ? url('/storage/site/logo/' . setting('logo') . '')
-                                : asset('frontend/img/white-logo.svg') }}"
-                            alt="white-logo.svg"> </a>
+                                : asset('frontend/img/dil-se-logo.svg') }}"
+                            alt="dil-se-logo.svg"> </a>
                 </div>
                 <div class=" social_icons">
                     <ul>

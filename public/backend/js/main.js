@@ -166,7 +166,7 @@ jQuery( function () {
         ]
         });
         jQuery(document).on("click", "#product_url", async function (event) {
-            copy_clipborad(jQuery(this).val());
+            copy_clipborad(jQuery(this).attr('copy_url_id'));
             NotyfMessage('copy Successfully', 'success');
         });
     

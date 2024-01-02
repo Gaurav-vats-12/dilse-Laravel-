@@ -1,6 +1,23 @@
 @php use Illuminate\Support\Str; @endphp
 @extends('layouts.app')
-@section('title', 'Blog')
+@section('meta')
+<meta name="title" content="Home Page">
+<meta name="url" content="{{url('/blog')}}">
+<meta name="description" content="blog Page">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="{{url('/blog')}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="blog Page">
+  <meta property="og:description" content="blog Page">
+  <meta property="og:image" content="blog">
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="{{url('/blog')}}">
+  <meta property="twitter:domain" content="{{url('/blog')}}">
+  <meta name="twitter:title" content="blog Page">
+  <meta name="twitter:description" content="blog Page">
+  <meta name="twitter:image" content="">     
+  <link rel="canonical" href="{{url('/blog')}}">
+@endsection
 @section('title', 'Blog')
 @section('frontcontent')
     <section class="inner_bannner bg_style"
