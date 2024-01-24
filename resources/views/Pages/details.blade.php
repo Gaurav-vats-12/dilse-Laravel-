@@ -2,23 +2,8 @@
 @section('meta')
 <meta name="title" content="{{ $food_details->name }}">
 <meta name="url" content="{{ route('menudetails' , $food_details->slug)}}">
-<meta name="description" content="{!! $food_details->description !!}">
-  <!-- Facebook Meta Tags -->
-  <meta property="og:url" content="{{ route('menudetails' , $food_details->slug)}}">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="{{ $food_details->name }}">
-  <meta property="og:description" content="{!! $food_details->description !!}">
-  <meta property="og:image" content="{{ url('/storage/products/' . $food_details->image . '') }}">
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="{{ route('menudetails' , $food_details->slug)}}">
-  <meta property="twitter:domain" content="{{ route('menudetails' , $food_details->slug)}}">
-  <meta name="twitter:title" content="{{ $food_details->name }}">
-  <meta name="twitter:description" content="{{ $food_details->description }}">
-  <meta name="twitter:image" content="{{ url('/storage/products/' . $food_details->image . '') }}">     
-  <link rel="canonical" href="{{ route('menudetails' , $food_details->slug)}}">
 @endsection
 @section('title', $food_details->name )
-
 @section('frontcontent')
     <section class="single_product py_8">
         <div class="container">

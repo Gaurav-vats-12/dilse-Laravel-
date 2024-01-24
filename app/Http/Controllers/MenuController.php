@@ -34,7 +34,7 @@ class MenuController extends Controller
                 Session::forget('deliveryCost');
                 $slug = 'appetizers';
                 $menu_id = Menu::where('menu_slug', $slug)->first()->id;
-                $FoodItem = FoodItem::where('menu_id', $menu_id)->where('extra_items', 0)->where('status', 1)->paginate(6);
+                $FoodItem = FoodItem::where('menu_id', $menu_id)->where('extra_items', 0)->where('status', 1)->paginate(20);
                 return view('Pages.menu', compact('FoodItem', 'slug'))->render();
             } else if ($current_url == 'cart.view') {
                 $authType = AuthAlias::guard('user')->check();
@@ -46,12 +46,12 @@ class MenuController extends Controller
                 if (!$Menu) {
                     abort(404);
                 }
-                $FoodItem = $Menu->products()->where('extra_items', 0)->where('status', 1)->paginate(6); // Change 10 to your desired number of products per page.
+                $FoodItem = $Menu->products()->where('extra_items', 0)->where('status', 1)->paginate(20); // Change 10 to your desired number of products per page.
                 return view('ajax.menufooditems', ['FoodItem' => $FoodItem, 'slug' => $slug])->render();
             }
         } else {
             $menu_id = Menu::where('menu_slug', $slug)->first()->id;
-            $FoodItem = FoodItem::where('menu_id', $menu_id)->where('extra_items', 0)->where('status', 1)->paginate(6);
+            $FoodItem = FoodItem::where('menu_id', $menu_id)->where('extra_items', 0)->where('status', 1)->paginate(20);
             return view('Pages.menu', ['FoodItem' => $FoodItem, 'slug' => $slug]);
         }
     }

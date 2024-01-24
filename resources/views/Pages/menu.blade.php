@@ -17,7 +17,6 @@
   <meta name="twitter:image" content="">     
   <link rel="canonical" href="{{ route('menu', 'appetizers') }}">
 @endsection
-@section('title', 'About Us')
 @section('title', 'Menu')
 @section('frontcontent')
 <section class="video_dilse-tw">

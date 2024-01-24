@@ -13,6 +13,8 @@ jQuery(document).ready(function () {
             jQuery.each(resPose.errors, function (key, value) { jQuery(`#${key}-error`).text(value); });
         }
     });
+
+    
     /**
     * Scroller
     */

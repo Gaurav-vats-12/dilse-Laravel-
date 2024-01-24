@@ -170,6 +170,16 @@ jQuery( function () {
             NotyfMessage('copy Successfully', 'success');
         });
     
+        jQuery(document).on("change", "#item_status", async function (_event) {
+            var isChecked = jQuery(this).prop('checked') ? 1 : 0;
+            var ajaxUrl = jQuery(this).attr('ajax_request_url');
+            let AjaxValue ={isChecked};
+            const resPose = await Ajax_response(ajaxUrl, "GET", AjaxValue, '');
+            if(resPose.status === 'success'){
+                NotyfMessage(resPose.message, 'success');
+            }
+        });
+
     }else if(url.indexOf("/extra-items") > -1){
         new DataTable('#extra_food_items',{
             "responsive": true,

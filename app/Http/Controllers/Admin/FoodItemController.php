@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use App\Http\Requests\Admin\FoodItems\StoreFoodItemRequest;
 use App\Http\Requests\Admin\FoodItems\UpdateFoodItemRequest;
@@ -160,5 +161,14 @@ class FoodItemController extends Controller
         FoodItem::findOrFail($id)->delete();
         notyf()->duration(2000)->addSuccess('Food Item  Deleted Successfully.');
         return redirect()->route('admin.food-items.index');
+    }
+
+    public function Ajax_request_toggal(Request $request , $id){
+        FoodItem::findOrFail($id)->update([
+            'status' => $request->isChecked,
+            'updated_at' => now(),
+        ]);
+        return response()->json(['code' => 200, 'status' => 'success', "message" => "Food Item  Updated Successfully"]);
+
     }
 }

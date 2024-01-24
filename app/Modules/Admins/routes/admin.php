@@ -37,6 +37,11 @@ Route::prefix('admin')->name('admin.')->group(function(){
       });
         // food items
             Route::resource('food-items', FoodItemControllerAlias::class);
+            Route::prefix('food-items')->name('food-items.')->group(callback: function(){
+                Route::get('/ajax-toggal/{id}', [FoodItemControllerAlias::class, 'Ajax_request_toggal'])->name('food_items_toggal');
+
+
+            });
       // Blog
         Route::resource('blog', BlogControllerAlias::class);
 
