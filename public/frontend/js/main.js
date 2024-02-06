@@ -637,7 +637,7 @@ jQuery(document).ready(function () {
        Copy Code Functionality
       */
     jQuery(document).on("click", "#reffrel_code", async function (event) {
-        copy_clipborad(jQuery(this).attr('unique_code'));
+        copy_clipborad(jQuery(this).val(''));
         NotyfMessage('This Code is copy Successfully', 'success');
     });
 

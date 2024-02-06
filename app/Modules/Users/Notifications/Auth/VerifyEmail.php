@@ -20,7 +20,7 @@ class VerifyEmail extends Notification
      *
      * @var Closure|null
      */
-    public static ?Closure $createUrlCallback;
+    public static $createUrlCallback;
 
     /**
      * The callback that should be used to build the mail message.
@@ -49,10 +49,9 @@ class VerifyEmail extends Notification
     public function toMail(mixed $notifiable): MailMessage
     {
         $verificationUrl = $this->verificationUrl($notifiable);
-
-        if (static::$toMailCallback) {
-            return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
-        }
+        //  call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
+        // if (static::$toMailCallback) {
+        // }
 
         return $this->buildMailMessage($verificationUrl);
     }
