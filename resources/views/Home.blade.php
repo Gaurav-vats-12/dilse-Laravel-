@@ -25,9 +25,7 @@
     <div class="home_btn_sticky">    
     <div class="home_slider_btn">
                 <a href="{{ route('booktable') }}" class="theme_btn">Book A Reservation</a> 
-                <a href="javascript:void(0)"
-                    class="theme_btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Order Now</a>
-                    <!-- <a href="#" class="theme_btn">Cancel  A Reservation</a>  -->
+                <a href="javascript:void(0)" class="theme_btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Order Now</a>
             </div>
             </div>
             @include('layouts.partials.order_popup')
@@ -35,20 +33,15 @@
             <video id="home_banner_vd" width="" height="" autoplay muted loop playsinline>
                 <source src="{{ asset('frontend/vedio/DilSe Home.mp4') }}" type="video/mp4" />
             </video>
-        
         </div>
-        
     </section>
     <section class="home-slider_sec">
         <div class="home-slider-content">
             <div class="container">
-                <!-- <h3>Welcome to Dil se</h3> -->
                 <h2>
                     Made With Love- Served With Affection
                 </h2>
-                <!-- <p> Your Go-to Indian Restaurant</p> -->
             </div>
-
         </div>
     </section>
     @include('layouts.partials.michelin_certificate')
